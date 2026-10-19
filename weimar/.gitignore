@@ -1,0 +1,12 @@
+node_modules/
+dist/
+reference/*
+!reference/tts-document-1.txt
+!reference/tts-document-2.txt
+!reference/official-errata-2026-10-19.txt
+!reference/golden-english-source.json
+!reference/decline-english-source.json
+artifacts/
+*.log
+.env*
+!.env.example

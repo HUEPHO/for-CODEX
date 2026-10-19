@@ -1,0 +1,7 @@
+dist
+node_modules
+reference
+public
+artifacts
+pnpm-lock.yaml
+src/data/generated

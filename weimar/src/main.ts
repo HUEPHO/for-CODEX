@@ -1,0 +1,405 @@
+import './style.css';
+import {
+  GameSession,
+  legalActions,
+  legalParliamentaryActions,
+  previewElection,
+  FACTIONS,
+} from './engine/index.ts';
+import type { Action, Command, Faction } from './engine/index.ts';
+import { active, dominance, mcs, piecesAt, supply, supremacy, isUnit } from './engine/rules.ts';
+import { unitLabel } from './engine/units.ts';
+import { CARDS, CARD, IMPLEMENTED_CARDS } from './data/cards.ts';
+import { SPACES, SPACE, REGIONS, REGION_NAMES } from './data/board.ts';
+import { ACTION_LABELS } from './engine/actions.ts';
+import { seatsUsesRemaining } from './engine/policies.ts';
+
+const KEY = 'weimar-session-v5';
+const PREVIOUS_KEYS = ['weimar-session-v4', 'weimar-session-v3'];
+const LEGACY_KEY = 'weimar-tutorial-session-v1';
+const NAMES: Record<Faction, string> = {
+  Coalition: '民主联盟',
+  KPD: '德国共产党',
+  NSDAP: '国家社会主义工人党',
+  RC: '激进保守派',
+};
+const PHASES = {
+  order: '年度顺序',
+  action: '阵营行动',
+  'sudden-victory': '即时胜利检查',
+  election: '选举',
+  timeline: '推进时间轴',
+  finished: '对局结束',
+};
+const app = document.querySelector<HTMLDivElement>('#app')!;
+let session = new GameSession(),
+  tab: 'board' | 'map' | 'catalog' | 'coverage' = 'board',
+  selectedSpace = 'Berlin',
+  selectedCard = '',
+  actionKind: Action['kind'] = 'gain-momentum',
+  pcRegion = 'Berlin',
+  search = '',
+  status = '';
+try {
+  const saved =
+    localStorage.getItem(KEY) ??
+    PREVIOUS_KEYS.map((key) => localStorage.getItem(key)).find((save) => save !== null) ??
+    localStorage.getItem(LEGACY_KEY);
+  if (saved) session = GameSession.import(saved);
+  if (saved && !localStorage.getItem(KEY)) status = '已按新版规则尝试恢复旧存档；原始存档仍保留。';
+} catch (error) {
+  status = `自动恢复未完成：${error instanceof Error ? error.message : '存储不可用'}`;
+}
+const esc = (v: unknown) =>
+  String(v ?? '').replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
+  );
+const disabled = (condition: boolean) => (condition ? ' disabled' : '');
+const fmtLocation = (loc: string) => SPACE[loc]?.nameZh ?? loc;
+const factionBadge = (f: Faction | null) =>
+  f ? `<span class="badge ${f}">${esc(f)}</span>` : '<span class="muted">—</span>';
+function persist() {
+  try {
+    localStorage.setItem(KEY, session.export());
+  } catch {
+    status = '操作成功，但浏览器存储不可用，请导出存档。';
+  }
+}
+function send(c: Command) {
+  const r = session.send(c);
+  status = r.ok ? '' : r.error;
+  if (r.ok) persist();
+  render();
+}
+function bind(id: string, event: string, fn: (e: Event) => void) {
+  document.getElementById(id)?.addEventListener(event, fn);
+}
+function options(values: { value: string; label: string }[], selected = '') {
+  return values
+    .map(
+      (v) =>
+        `<option value="${esc(v.value)}"${v.value === selected ? ' selected' : ''}>${esc(v.label)}</option>`,
+    )
+    .join('');
+}
+function cardImage(n: number, extra = '') {
+  return `<button class="card-image ${extra}" data-card-preview="${n}" title="查看 #${n} ${esc(CARD[n].name)}"><img src="${CARD[n].image}" alt="#${n} ${esc(CARD[n].name)}" loading="lazy" /></button>`;
+}
+
+function render() {
+  const s = session.state,
+    f = active(s),
+    hand = s.hands[f];
+  if (!hand.some((c) => c.uid === selectedCard)) selectedCard = hand[0]?.uid ?? '';
+  const canAct = s.phase === 'action' && !s.pending;
+  const actions = legalActions(s);
+  const kinds = [...new Set(actions.map((a) => a.action.kind))];
+  if (kinds.length && !kinds.includes(actionKind)) {
+    actionKind = kinds[0];
+  }
+  const targets = actions.filter((a) => a.action.kind === actionKind);
+  const pcCards = REGIONS.filter((r) => s.pc[r].owner === f && s.pc[r].available);
+  if (!pcCards.includes(pcRegion)) pcRegion = pcCards[0] ?? 'Berlin';
+  const pcActions =
+    canAct && pcCards.length && !s.turn.pcUsed ? legalParliamentaryActions(s, pcRegion) : [];
+  const election = previewElection(s);
+  app.innerHTML = `
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">本地热座 · 开发版 0.5</div></header>
+    <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'} 完整时代切换、补牌与历史剧本仍待实现。</div>
+    <div class="toolbar">
+      <label>开局<select id="new-mode"><option value="demo"${s.demo && !session.options.testCard ? ' selected' : ''}>开发测试局</option><option value="tutorial"${!s.demo ? ' selected' : ''}>正式教程牌库</option><option value="cards"${session.options.testCard ? ' selected' : ''}>牌效实验局</option></select></label>
+      <label>实验局指定牌<select id="test-card">${options(
+        CARDS.filter((c) => c.id <= 151).map((c) => ({
+          value: String(c.id),
+          label: `#${c.id} ${c.name}`,
+        })),
+        String(session.options.testCard ?? 30),
+      )}</select></label>
+      <label><input id="test-prerequisites" type="checkbox"${session.options.testPrerequisites !== false ? ' checked' : ''}/>预置前置事件</label>
+      <label>随机种子<input id="new-seed" type="number" min="0" max="4294967295" value="${s.seed}" /></label><button id="new-game">新建对局</button>
+      <div class="toolbar-spacer"></div><button id="undo"${disabled(!session.commands.length)}>撤销</button><button id="redo"${disabled(!session.redoCommands.length)}>重做</button><button id="export">导出存档</button><button id="import">导入存档</button><input id="import-file" hidden type="file" accept=".json,application/json" />
+    </div>
+    ${status ? `<div role="alert" class="error">${esc(status)}</div>` : ''}
+    <div class="timeline"><div><strong>${s.year}</strong> / ${s.half === 'early' ? '上半年' : '下半年'} <span class="pill">${s.year <= 1923 ? '危机时代' : s.year <= 1929 ? '黄金时代' : '衰落时代'}</span></div><div class="steps">${Object.entries(
+      PHASES,
+    )
+      .filter(([p]) => p !== 'finished')
+      .map(([p, n]) => `<span class="${s.phase === p ? 'current' : ''}">${n}</span>`)
+      .join('<i>→</i>')}</div><div>momentum ${factionBadge(s.momentum)}</div></div>
+    <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><span>${i + 1}. ${x}</span><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
+    <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${s.stance.KPD}</b></span><span>NSDAP 立场 <b>${s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
+    <main><div class="workspace"><nav>${[
+      ['board', '地区状态'],
+      ['map', '中文地图'],
+      ['catalog', '卡牌库'],
+      ['coverage', '实现范围'],
+    ]
+      .map(
+        ([k, n]) =>
+          `<button data-tab="${k}" class="${tab === k ? 'selected' : ''}">${n}${k === 'catalog' ? ` <small>${CARDS.length}</small>` : ''}</button>`,
+      )
+      .join('')}</nav>
+    <div class="workspace-body">${tab === 'board' ? boardView() : tab === 'map' ? '<img class="map-image" src="/assets/board.webp" alt="中文游戏地图" /><p class="muted">地图供规则核对；交互操作使用地区状态表。</p>' : tab === 'catalog' ? catalogView() : coverageView()}</div></div>
+    <aside class="controls"><h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
+    ${combatView()}
+    ${
+      s.winner
+        ? `<div class="winner">${factionBadge(s.winner)}<h3>获胜</h3><p>${esc(s.winReason)}</p></div>`
+        : s.pending
+          ? `<div class="choice"><div>由 ${factionBadge(s.pending.actor)} 决定</div><p>${esc(s.pending.prompt)}</p><select id="choice-option" aria-label="待处理选项">${options(s.pending.options.map((o) => ({ value: o.id, label: o.label })))}</select><button id="resolve-choice" class="primary">确认选择</button></div>`
+          : s.phase === 'order'
+            ? `
+      <p>由 ${factionBadge(s.momentum)} 设置本年顺序。</p><div class="order-fields">${s.order
+        .map(
+          (x, i) =>
+            `<label>第${i + 1}位<select id="order-${i}">${options(
+              FACTIONS.map((value) => ({ value, label: value })),
+              x,
+            )}</select></label>`,
+        )
+        .join('')}</div><button id="set-order" class="primary">确定顺序，开始行动</button>`
+            : s.phase === 'action'
+              ? `
+      <p class="muted">每方选择1次行动、事件＋2次行动，或跳过。两个行动须连续完成。</p>
+      ${
+        s.turn.mode === 'unselected'
+          ? `<label>事件牌<select id="event-card">${options(
+              hand.map((c) => ({
+                value: c.uid,
+                label: `#${c.card} ${CARD[c.card].name}${CARD[c.card].status === 'pending' ? ' · 待实现' : ''}`,
+              })),
+              selectedCard,
+            )}</select></label><div class="button-grid"><button id="single">只做1次行动</button><button id="event-first"${disabled(!selectedCard || CARD[hand.find((c) => c.uid === selectedCard)!.card].status === 'pending')}>先事件，后2行动</button><button id="event-last"${disabled(!selectedCard || CARD[hand.find((c) => c.uid === selectedCard)!.card].status === 'pending')}>先2行动，后事件</button><button id="pass">跳过</button><button id="pass-draw"${disabled(!selectedCard || !s.deck.length || CARD[hand.find((c) => c.uid === selectedCard)!.card].mandatory || CARD[hand.find((c) => c.uid === selectedCard)!.card].election)}>跳过并换所选牌</button></div>`
+          : `
+      <div class="action-budget">剩余行动 <strong>${s.turn.actionsLeft}</strong><small>${s.turn.mode === 'single' ? '单行动' : s.turn.mode === 'pass' ? '已跳过' : s.turn.eventDone ? '事件已处理' : '事件将在行动后打出'}</small></div>
+      ${
+        s.turn.actionsLeft
+          ? `<label>行动<select id="action-kind">${options(
+              kinds.map((k) => ({ value: k, label: ACTION_LABELS[k] })),
+              actionKind,
+            )}</select></label><label>合法目标<select id="action-target">${options(targets.map((a, i) => ({ value: String(i), label: a.label })))}</select></label><button id="execute-action" class="primary"${disabled(!targets.length)}>执行行动</button>`
+          : ''
+      }
+      ${s.turn.mode === 'event-last' && !s.turn.eventDone && s.turn.actionsLeft === 0 ? '<button id="play-event" class="primary">打出承诺的事件牌</button>' : ''}
+      <button id="end-turn"${disabled(s.turn.actionsLeft > 0 || (['event-first', 'event-last'].includes(s.turn.mode) && !s.turn.eventDone))}>结束本阵营回合</button>`
+      }
+      <details><summary>议会牌与国会议席</summary><p>第48条：${s.article48Removed ? '永久移除' : s.article48 ? '可用' : '已消耗'}；符合条件时会自动询问联盟。</p><button id="play-seats"${disabled(s.seats.owner !== f || seatsUsesRemaining(s) === 0)}>使用国会议席（${s.seats.owner ?? '无人持有'} · 剩余${seatsUsesRemaining(s)}次）</button>
+      ${
+        pcCards.length && !s.turn.pcUsed
+          ? `<label>议会控制牌<select id="pc-region">${options(
+              pcCards.map((value) => ({ value, label: REGION_NAMES[value] })),
+              pcRegion,
+            )}</select></label><label>奖励行动<select id="pc-action"><option value="none">不执行奖励行动，仅清场</option>${options(pcActions.map((a, i) => ({ value: String(i), label: a.label })))}</select></label><label>可选移除改革<select id="pc-reform"><option value="">不移除改革</option>${options(s.pieces.filter((p) => p.kind === 'reform' && SPACE[p.location]?.region === pcRegion).map((p) => ({ value: p.id, label: fmtLocation(p.location) })))}</select></label><button id="play-pc">使用议会控制牌</button>`
+          : '<p class="muted">没有可用议会牌，或本回合已使用。</p>'
+      }</details>`
+              : s.phase === 'election'
+                ? `
+      <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是当前布局的结束选举，第一名直接获胜。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
+      <label>${s.momentum} 可转让PV<select id="transfer-to"><option value="">不转让</option>${options(FACTIONS.filter((x) => x !== s.momentum).map((value) => ({ value, label: value })))}</select></label><input id="transfer-amount" type="number" min="0" max="${Math.floor(election.totals[s.momentum] / 2)}" value="0" /><button id="advance" class="primary">结算选举</button>`
+                : `
+      ${s.phase === 'timeline' && s.tracks.economy === 1 ? `<label>恶性通胀：移除联盟影响力<select id="inflation-space">${options(SPACES.filter((p) => s.influence[p.id].Coalition > 0).map((p) => ({ value: p.id, label: p.nameZh })))}</select></label>` : ''}
+      <p>${s.phase === 'sudden-victory' ? '按当前行动顺序检查已放置的即时胜利标记。' : '清除受联盟部队保护地区的暗杀，处理经济并推进半年。'}</p><button id="advance" class="primary">${s.phase === 'timeline' ? '推进半年' : '执行胜利检查'}</button>`
+    }
+      <section class="event-log"><h3>行动记录 <small>${s.log.length}</small></h3><ol>${s.log
+        .slice(-16)
+        .reverse()
+        .map((l) => `<li><small>${l.n}</small>${esc(l.text)}</li>`)
+        .join('')}</ol></section>
+    </aside></main>
+    <section class="hand"><div class="section-top"><h2>${factionBadge(f)} 当前行动方手牌 <small>本地热座调试</small></h2><span class="muted">点击牌面放大 · 未实现牌可查看，不能结算事件</span></div><div class="hand-cards">${hand.length ? hand.map((c) => `<article>${cardImage(c.card)}<div>#${c.card} ${esc(CARD[c.card].name)}</div><small class="${CARD[c.card].status === 'implemented' ? 'supported' : 'muted'}">${CARD[c.card].status === 'implemented' ? '已实现' : '待实现'}${CARD[c.card].mandatory ? ' · 强制' : ''}</small></article>`).join('') : '<p class="muted">当前没有手牌。</p>'}</div></section>
+    ${s.lingering.length ? `<section class="hand"><h2>持续生效的事件</h2><div class="hand-cards">${s.lingering.map((c) => `<article>${cardImage(c.card)}<div>${esc(CARD[c.card].name)}</div></article>`).join('')}</div></section>` : ''}
+    ${s.reveals.map((r) => `<section class="hand"><h2>${r.viewer} 查看 ${r.target} 的手牌</h2><div class="hand-cards">${r.cards.map((c) => `<article>${cardImage(c.card)}</article>`).join('')}</div></section>`).join('')}
+    <footer>规则数据与素材来自所提供的 TTS 存档及中文图片包 · 状态在本机自动保存 · 共享此页面的操作者共同控制四个阵营</footer>
+    <dialog id="card-dialog"><div class="dialog-top"><span id="card-title"></span><button id="close-dialog" aria-label="关闭牌面">关闭 ×</button></div><img id="card-large" alt="放大牌面" /><p id="card-summary"></p></dialog>
+  `;
+  bind('new-game', 'click', () => {
+    try {
+      session = new GameSession({
+        seed: Number(value('new-seed')),
+        demo: value('new-mode') !== 'tutorial',
+        ...(value('new-mode') === 'cards'
+          ? {
+              testCard: Number(value('test-card')),
+              testPrerequisites: (document.getElementById('test-prerequisites') as HTMLInputElement)
+                .checked,
+            }
+          : {}),
+      });
+      selectedCard = '';
+      status = '';
+      persist();
+      render();
+    } catch (e) {
+      status = String(e);
+      render();
+    }
+  });
+  bind('undo', 'click', () => {
+    session.undo();
+    status = '';
+    persist();
+    render();
+  });
+  bind('redo', 'click', () => {
+    session.redo();
+    status = '';
+    persist();
+    render();
+  });
+  bind('export', 'click', () => {
+    const url = URL.createObjectURL(new Blob([session.export()], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `weimar-${s.year}-${s.half}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  bind('import', 'click', () => document.getElementById('import-file')?.click());
+  bind('import-file', 'change', async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    try {
+      session = GameSession.import(await file.text());
+      status = '';
+      persist();
+    } catch (error) {
+      status = String(error);
+    }
+    render();
+  });
+  bind('set-order', 'click', () =>
+    send({
+      type: 'set-order',
+      actor: s.momentum,
+      order: [0, 1, 2, 3].map((i) => value(`order-${i}`) as Faction),
+    }),
+  );
+  bind('resolve-choice', 'click', () =>
+    send({ type: 'choose', actor: s.pending!.actor, option: value('choice-option') }),
+  );
+  bind('event-card', 'change', () => {
+    selectedCard = value('event-card');
+    render();
+  });
+  for (const mode of ['single', 'event-first', 'event-last'] as const)
+    bind(mode, 'click', () =>
+      send({
+        type: 'begin-turn',
+        actor: f,
+        mode,
+        cardUid: mode === 'single' ? undefined : selectedCard,
+      }),
+    );
+  bind('pass', 'click', () => send({ type: 'pass', actor: f }));
+  bind('pass-draw', 'click', () => send({ type: 'pass', actor: f, discardUid: selectedCard }));
+  bind('action-kind', 'change', () => {
+    actionKind = value('action-kind') as Action['kind'];
+    render();
+  });
+  bind('execute-action', 'click', () => {
+    const a = targets[Number(value('action-target'))];
+    if (a) send({ type: 'action', actor: f, action: a.action });
+  });
+  bind('play-event', 'click', () => send({ type: 'play-event', actor: f }));
+  bind('end-turn', 'click', () => send({ type: 'end-turn', actor: f }));
+  bind('play-seats', 'click', () => send({ type: 'play-seats', actor: f }));
+  bind('pc-region', 'change', () => {
+    pcRegion = value('pc-region');
+    render();
+  });
+  bind('play-pc', 'click', () => {
+    const a = value('pc-action');
+    send({
+      type: 'play-pc',
+      actor: f,
+      region: pcRegion,
+      action: a === 'none' ? undefined : pcActions[Number(a)]?.action,
+      removeReform: value('pc-reform') || undefined,
+    });
+  });
+  bind('advance', 'click', () =>
+    send({
+      type: 'advance',
+      actor: s.momentum,
+      transfer: value('transfer-to')
+        ? { to: value('transfer-to') as Faction, amount: Number(value('transfer-amount')) }
+        : undefined,
+      inflationSpace: value('inflation-space') || undefined,
+    }),
+  );
+  document.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) =>
+    b.addEventListener('click', () => {
+      tab = b.dataset.tab as typeof tab;
+      render();
+    }),
+  );
+  document.querySelectorAll<HTMLElement>('[data-space]').forEach((b) => {
+    const select = () => {
+      selectedSpace = b.dataset.space!;
+      render();
+    };
+    b.addEventListener('click', select);
+    b.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        select();
+      }
+    });
+  });
+  document.querySelectorAll<HTMLElement>('[data-card-preview]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const c = CARD[Number(b.dataset.cardPreview)];
+      (document.getElementById('card-large') as HTMLImageElement).src = c.image;
+      document.getElementById('card-title')!.textContent = `#${c.id} ${c.name}`;
+      document.getElementById('card-summary')!.textContent =
+        `${c.status === 'implemented' ? '已实现' : '待实现'} · ${c.summary}`;
+      (document.getElementById('card-dialog') as HTMLDialogElement).showModal();
+    }),
+  );
+  bind('close-dialog', 'click', () =>
+    (document.getElementById('card-dialog') as HTMLDialogElement).close(),
+  );
+  bind('card-search', 'input', () => {
+    const el = document.getElementById('card-search') as HTMLInputElement;
+    search = el.value;
+    const pos = el.selectionStart;
+    render();
+    const next = document.getElementById('card-search') as HTMLInputElement;
+    next.focus();
+    next.setSelectionRange(pos, pos);
+  });
+}
+function value(id: string) {
+  return (document.getElementById(id) as HTMLInputElement | null)?.value ?? '';
+}
+function boardView() {
+  const s = session.state,
+    sp = SPACE[selectedSpace];
+  return `<div class="space-detail"><strong>${sp.nameZh}</strong><small>${esc(sp.name)}</small><span>人口 ${sp.population} · PV ${sp.politicalValue}</span><span>邻接：${sp.adjacent.map((x) => SPACE[x].nameZh).join('、')}</span><p>${
+    piecesAt(s, sp.id)
+      .map((p) =>
+        isUnit(p) ? unitLabel(p) : `${p.owner ?? ''} ${p.kind}${p.side ? ' / ' + p.side : ''}`,
+      )
+      .join('；') || '无部队及标记'
+  }</p></div>
+    <div class="table-scroll"><table><thead><tr><th>地区</th><th>人口</th><th>联盟</th><th>KPD</th><th>NSDAP</th><th>RC</th><th>PV</th><th>领导权</th><th>军事优势</th><th>议会</th></tr></thead><tbody>${SPACES.map((p) => `<tr data-space="${esc(p.id)}" class="${p.id === selectedSpace ? 'selected-row' : ''}" tabindex="0"><td><strong>${p.nameZh}</strong><small>${REGION_NAMES[p.region]}</small></td><td>${Object.values(s.influence[p.id]).reduce((a, b) => a + b, 0)}/${p.population}</td>${FACTIONS.map((f) => `<td><span class="cube ${f} ${s.influence[p.id][f] ? '' : 'zero'}">${s.influence[p.id][f]}</span></td>`).join('')}<td>${p.politicalValue}</td><td>${factionBadge(dominance(s, p.id))}</td><td>${factionBadge(supremacy(s, p.id))}</td><td>${factionBadge(s.pc[p.region].owner)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function catalogView() {
+  const filtered = CARDS.filter((c) =>
+    `${c.id} ${c.name} ${c.title} ${c.status === 'implemented' ? '已实现' : '待实现'}`
+      .toLowerCase()
+      .includes(search.toLowerCase()),
+  );
+  return `<div class="catalog-header"><input id="card-search" type="search" placeholder="搜索编号、名称或“已实现”" value="${esc(search)}" aria-label="搜索卡牌" /><span>${filtered.length} 张牌面 / ${IMPLEMENTED_CARDS.length} 种已实现</span></div><div class="catalog">${filtered.map((c) => `<article>${cardImage(c.id)}<strong>#${c.id} ${esc(c.name)}</strong><small class="${c.status === 'implemented' ? 'supported' : ''}">${c.status === 'implemented' ? '已实现' : '待实现'} · ${c.era}${c.mandatory ? ' · 强制' : ''}</small></article>`).join('')}</div>`;
+}
+function coverageView() {
+  return `<div class="coverage"><h2>三个时代全部牌效</h2><p>已实现危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151，另含3种选举牌面。共151个事件、154种可执行牌面。</p><h3>衰落时代能力</h3><ul><li>#117 提前选举：更新地区控制、国会议席及胜利结果，联盟胜出后回到当前回合，保留本轮已预约的普通选举。</li><li>#118 即时胜利；#122／132／146 按当前局面计算PV，不改变议会控制。</li><li>#119 永久移除第48条；#124 右翼国会议席每次选举周期可使用两次。</li><li>杠杆和影响力替换；#137 按实际移除SA的不同地区逐一给予补偿。</li><li>事件授予行动复用基础行动规则；跨阵营选择、战斗与归还结算后继续原流程。</li><li>流程中途可保存、撤销、重做和刷新重放；保留旧版自动存档。</li></ul><h3>如何测试</h3><p>顶部选择“牌效实验局”，选择 #1–151 的指定牌并新建对局。测试牌放在联盟手牌首位；可勾选预置前置事件。该模式使用教程地图和标准立场，用于牌效验证。黄金牌从1924年、衰落牌从1930年开始；测试事件时请选择允许第48条询问中的事件结算。</p><h3>规则口径</h3><p>#121 按英文原牌，在NSDAP持有momentum时移除2个不同地区各1个影响力，否则3个地区。#135 按6.0通则顺序执行：在巴伐利亚实际移除NSDAP影响力后，本行动步骤不能再在同地放置RC影响力。</p><h3>后续范围</h3><ul><li>完整时代切换、补牌和留牌惩罚，以及另外4个历史剧本。</li><li>机器人、联机、隐藏信息隔离和正式UI。</li></ul><p>教程模式按9.2固定立场并忽略卡牌前置。牌效实验局不是正式历史剧本，尚不执行完整时代切换。</p></div>`;
+}
+function combatView() {
+  const c = session.state.combat ?? session.state.lastCombat;
+  if (!c) return '';
+  const ongoing = !!session.state.combat;
+  return `<section class="combat-panel" aria-label="突击状态"><h3>${ongoing ? '正在突击' : '最近一次突击'} · ${esc(SPACE[c.space].nameZh)}</h3><p>${factionBadge(c.attacker)} → ${factionBadge(c.defender)} ${c.free ? ' · 免费突击' : ''}</p><p>${esc(c.stage)}</p>${c.dice.attacker ? `<div class="combat-results">${(['attacker', 'defender'] as const).map((side) => `<div><strong>${c[side]}</strong><span>强度 ${c.strength[side]} − 骰子 ${c.dice[side]} = <b>${c.hits[side]} 命中</b></span></div>`).join('')}</div>` : ''}<small>已移除 ${c.casualties.length} 个部队／罢工标记${c.ignored.length ? ` · ${c.ignored.length} 支国防军拒战` : ''}</small></section>`;
+}
+render();

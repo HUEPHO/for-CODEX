@@ -1,0 +1,46 @@
+﻿THE WEIMAR REPUBLIC
+Post-Publication Document — Clarifications, Errata, and Addendum
+Updated 16 October, 2026
+Changes since the last update are shown in red.
+Need help with something that isn’t addressed here? Please post to BGG The Weimar Republic.
+	Rulebook
+p. 10, 2.0 Setup Diagram
+Errata: The Coalition faction mat shows a Reform marker; it should show the Reformation marker.
+p. 12, 3.2 General Election Victory
+Clarification: The number of PV that RC must transfer to steal a General Election victory is half of the NSDAP’s PV before the transfer takes place.
+p. 13, 4.0 Sequence of Play, 4. Advance Timeline Step
+Clarification: When returning Assassination Markers to available boxes, the Momentum faction decides where each goes.
+p. 13, 4.0 Sequence of Play, 6. Held Card Penalty
+Errata: In scenarios that go through 1933, all factions pay the Held Card penalty to remove Influence.
+p. 22, 6.0 Limitations on Actions & Events
+Clarification: Both the Assault Action and the Place Assassinations Action may remove Influence cubes from spaces where Influence was placed in the same Acton step, and vice versa (i.e., order does not matter).
+Similarly, an Event that grants the Coalition a Place Influence Action is limited by the Economy track (5.5). However, an Event that allows the Colation to “place”, “add”, or “replace” Influence is not limited by the Economy track.
+p. 24, 6.1 Assaults, Apply Assault Hits
+Clarification: In Assaults against KPD, a single hit is not sufficient to remove an Uprising, and so is wasted and may not be applied to remove any KPD Influence in the Assault space.
+
+
+p. 29, 6.6 RC Actions, Place Leverage on a Track
+Errata: Disregard “, adjusting the latter if appropriate.” Placing Black Leverage on the Economy track does not adjust it.
+p. 33, 8.1 When Not the Active Faction and 8.2 Important Non-player Terms
+Clarification: When an NP faction is not the active faction and targets an opposing faction or requires an impulse space, draw one of its own NP cards.
+p. 34, 8.3 Non-player Victory
+Clarification: Only NP Coalition may win via a Sudden Victory [3.1], and only during the Golden Twenties or Decline era. All other NP factions may only win via a General Election [3.2], Event Card [3.3], or Scenario End [3.4] Victory.
+p. 34, 8.4 New Year Step
+Clarification: If the bot card used to determine the turn order for the upcoming year includes the Reshuffle Bot Deck instruction, reshuffle the bot deck.
+p. 43, Comprehensive Non-player Example of Play
+Errata: The graphic that shows Coalition influence being placed in a Pommern should show only one Coalition influence cube present already, not two.
+Playbook
+p. 14, Tutorial Scenario Setup
+Errata: The event card Berlin Riots, given to the Coalition Player, is card #27, not #24.
+p. 29, KPD Middle Class Sympathies
+Errata: The KPD Move Middle Class Sympathies action does not depend on the number of KPD Cadres on the map.
+Player Aid Cards
+PAC 1, New Era Step
+Errata: Disregard “(even if it must remove its own)” for the Held Card Penalty.
+Cards
+Card #10, Freikorps Demobilized
+Errata: This card is not a Lingering Event.
+Card #55, Schutzstaﬀel
+Errata: Text should read “NSDAP gains an additional +1 Assault strength during Assaults.”
+Card #93, Neue Sachlichkeit
+Clarification: Disregard the line “and placed on any track”. In other words, compare the total number of the listed markers currently in play to the Progress level.

@@ -1,0 +1,210 @@
+[
+  {
+    "id": "Schleswig-Holstein",
+    "name": "Schleswig-Holstein",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 3,
+    "politicalValue": 1
+  },
+  {
+    "id": "Mecklenburg",
+    "name": "Mecklenburg",
+    "region": "NorthernStates",
+    "kind": "NorthernStates",
+    "population": 4,
+    "politicalValue": 1
+  },
+  {
+    "id": "Pommern",
+    "name": "Pommern",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 4,
+    "politicalValue": 1
+  },
+  {
+    "id": "Posen-Westpreussen",
+    "name": "Posen-Westpreußen",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 2,
+    "politicalValue": 1
+  },
+  {
+    "id": "Ostpreussen",
+    "name": "Ostpreußen",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 5,
+    "politicalValue": 2
+  },
+  {
+    "id": "Oldenburg",
+    "name": "Oldenburg",
+    "region": "NorthernStates",
+    "kind": "NorthernStates",
+    "population": 2,
+    "politicalValue": 1
+  },
+  {
+    "id": "Provinz Hannover",
+    "name": "Provinz Hannover",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 7,
+    "politicalValue": 2
+  },
+  {
+    "id": "Provinz Sachsen",
+    "name": "Provinz Sachsen",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 6,
+    "politicalValue": 2
+  },
+  {
+    "id": "Brandenburg",
+    "name": "Brandenburg",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 6,
+    "politicalValue": 2
+  },
+  {
+    "id": "Provinz Westfalen",
+    "name": "Provinz Westfalen",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 10,
+    "politicalValue": 4
+  },
+  {
+    "id": "Waldeck and Lippe",
+    "name": "Waldeck & Lippe",
+    "region": "NorthernStates",
+    "kind": "NorthernStates",
+    "population": 2,
+    "politicalValue": 1
+  },
+  {
+    "id": "Braunschweig and Anhalt",
+    "name": "Braunschweig & Anhalt",
+    "region": "NorthernStates",
+    "kind": "NorthernStates",
+    "population": 3,
+    "politicalValue": 1
+  },
+  {
+    "id": "Sachsen",
+    "name": "Sachsen",
+    "region": "SouthernStates",
+    "kind": "SouthernStates",
+    "population": 5,
+    "politicalValue": 2
+  },
+  {
+    "id": "Niederschlesien",
+    "name": "Niederschlesien",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 6,
+    "politicalValue": 2
+  },
+  {
+    "id": "Oberschlesien",
+    "name": "Oberschlesien",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 4,
+    "politicalValue": 1
+  },
+  {
+    "id": "Rheinprovinz",
+    "name": "Rheinprovinz",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 14,
+    "politicalValue": 3
+  },
+  {
+    "id": "Hessenprovinz",
+    "name": "Hessenprovinz",
+    "region": "Preussen",
+    "kind": "Preussen",
+    "population": 5,
+    "politicalValue": 2
+  },
+  {
+    "id": "Thueringen",
+    "name": "Thüringen",
+    "region": "SouthernStates",
+    "kind": "SouthernStates",
+    "population": 4,
+    "politicalValue": 1
+  },
+  {
+    "id": "Hessen",
+    "name": "Hessen",
+    "region": "SouthernStates",
+    "kind": "SouthernStates",
+    "population": 4,
+    "politicalValue": 1
+  },
+  {
+    "id": "Baden",
+    "name": "Baden",
+    "region": "SouthernStates",
+    "kind": "SouthernStates",
+    "population": 6,
+    "politicalValue": 2
+  },
+  {
+    "id": "Wuerttemberg",
+    "name": "Württemberg",
+    "region": "SouthernStates",
+    "kind": "SouthernStates",
+    "population": 6,
+    "politicalValue": 2
+  },
+  {
+    "id": "Bayern",
+    "name": "Bayern",
+    "region": "Bayern",
+    "kind": "State",
+    "population": 14,
+    "politicalValue": 5
+  },
+  {
+    "id": "Hamburg",
+    "name": "Hamburg",
+    "region": "Hamburg",
+    "kind": "City",
+    "population": 4,
+    "politicalValue": 4
+  },
+  {
+    "id": "Berlin",
+    "name": "Berlin",
+    "region": "Berlin",
+    "kind": "City",
+    "population": 6,
+    "politicalValue": 6
+  },
+  {
+    "id": "Koeln",
+    "name": "Köln",
+    "region": "Koeln",
+    "kind": "City",
+    "population": 3,
+    "politicalValue": 3
+  },
+  {
+    "id": "Muenchen",
+    "name": "München",
+    "region": "Muenchen",
+    "kind": "City",
+    "population": 4,
+    "politicalValue": 4
+  }
+]

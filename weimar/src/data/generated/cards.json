@@ -1,0 +1,1234 @@
+[
+  {
+    "id": 1,
+    "title": "Demagoguery",
+    "era": "crisis",
+    "image": "/assets/cards/001.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 0
+  },
+  {
+    "id": 2,
+    "title": "Braun Coalition",
+    "era": "crisis",
+    "image": "/assets/cards/002.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 1
+  },
+  {
+    "id": 3,
+    "title": "Rathenau Murder",
+    "era": "crisis",
+    "image": "/assets/cards/003.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 2
+  },
+  {
+    "id": 4,
+    "title": "Friedrich Ebert",
+    "era": "crisis",
+    "image": "/assets/cards/004.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 3
+  },
+  {
+    "id": 5,
+    "title": "Kapp Putsch",
+    "era": "crisis",
+    "image": "/assets/cards/005.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 4
+  },
+  {
+    "id": 6,
+    "title": "Bayerische Räterepublik",
+    "era": "crisis",
+    "image": "/assets/cards/006.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 5
+  },
+  {
+    "id": 7,
+    "title": "Ruhrbesetzung",
+    "era": "crisis",
+    "image": "/assets/cards/007.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 6
+  },
+  {
+    "id": 8,
+    "title": "Ruhraufstand",
+    "era": "crisis",
+    "image": "/assets/cards/008.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 7
+  },
+  {
+    "id": 9,
+    "title": "Erzberger Murder",
+    "era": "crisis",
+    "image": "/assets/cards/009.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 8
+  },
+  {
+    "id": 10,
+    "title": "Freikorps Demobilization",
+    "era": "crisis",
+    "image": "/assets/cards/010.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 9
+  },
+  {
+    "id": 11,
+    "title": "Aufstände in Oberschlesien",
+    "era": "crisis",
+    "image": "/assets/cards/011.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 10
+  },
+  {
+    "id": 12,
+    "title": "Polnischer Korridor",
+    "era": "crisis",
+    "image": "/assets/cards/012.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 11
+  },
+  {
+    "id": 13,
+    "title": "Triumvirate",
+    "era": "crisis",
+    "image": "/assets/cards/013.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 12
+  },
+  {
+    "id": 14,
+    "title": "Hugo Stinnes",
+    "era": "crisis",
+    "image": "/assets/cards/014.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 13
+  },
+  {
+    "id": 15,
+    "title": "Dolchstoßlegende",
+    "era": "crisis",
+    "image": "/assets/cards/015.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 14
+  },
+  {
+    "id": 16,
+    "title": "\"Bloodhound Doctrine\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/016.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 15
+  },
+  {
+    "id": 17,
+    "title": "\"Treaty of Rapallo\": Bundesarchiv, Bild 183-R14433 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/017.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 16
+  },
+  {
+    "id": 18,
+    "title": "\"München Putsch\": Bundesarchiv, Bild 119-1486 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/018.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 17
+  },
+  {
+    "id": 19,
+    "title": "\"Mein Kampf Published\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/019.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 18
+  },
+  {
+    "id": 20,
+    "title": "\"Militarism\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/020.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 19
+  },
+  {
+    "id": 21,
+    "title": "\"Völkischer Beobachter\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/021.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 20
+  },
+  {
+    "id": 22,
+    "title": "\"48 Hour Week\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/022.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 21
+  },
+  {
+    "id": 23,
+    "title": "\"Organization Consul\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/023.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 22
+  },
+  {
+    "id": 24,
+    "title": "\"Feme Murders\": Bundesarchiv, Bild 119-1587A / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/024.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 23
+  },
+  {
+    "id": 25,
+    "title": "\"London Payment Plan\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/025.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 24
+  },
+  {
+    "id": 26,
+    "title": "\"USPD Party Splits\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/026.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 25
+  },
+  {
+    "id": 27,
+    "title": "\"Berlin Riots\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/027.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 26
+  },
+  {
+    "id": 28,
+    "title": "\"Cuno Strikes\": Bundesarchiv, Bild 102-00136 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/028.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 27
+  },
+  {
+    "id": 29,
+    "title": "\"Reich Youth Welfare Act\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/029.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 28
+  },
+  {
+    "id": 30,
+    "title": "\"Erfüllungspolitik\": Bundesarchiv, Bild 183-L40010 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/030.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 29
+  },
+  {
+    "id": 31,
+    "title": "\"NSDAP Banned\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/031.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 30
+  },
+  {
+    "id": 32,
+    "title": "\"White Terror\": Bundesarchiv, Bild 146-2004-0048 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/032.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 31
+  },
+  {
+    "id": 33,
+    "title": "\"Oswald Spengler\": Bundesarchiv, Bild 183-R06610 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/033.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 32
+  },
+  {
+    "id": 34,
+    "title": "\"Fürstenenteignung\": Bundesarchiv, Bild 102-00685 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/034.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 33
+  },
+  {
+    "id": 35,
+    "title": "\"Reichskunstwart\": Bundesarchiv, Bild 102-08205 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/035.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 34
+  },
+  {
+    "id": 36,
+    "title": "\"Saalschlacht\": Bundesarchiv, Bild 146-1973-026-43 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/036.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 35
+  },
+  {
+    "id": 37,
+    "title": "\"Schwarze Reichswehr\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/037.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 36
+  },
+  {
+    "id": 38,
+    "title": "\"Küstrin Putsch\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/038.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 37
+  },
+  {
+    "id": 39,
+    "title": "\"Artamanen Gesellschaft\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/039.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 38
+  },
+  {
+    "id": 40,
+    "title": "\"Hamburger Aufstand\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/040.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 39
+  },
+  {
+    "id": 41,
+    "title": "\"Thule Gesellschaft\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/041.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 40
+  },
+  {
+    "id": 42,
+    "title": "\"Expressionism\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/042.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 41
+  },
+  {
+    "id": 43,
+    "title": "\"Alldeutscher Verband\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/043.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 42
+  },
+  {
+    "id": 44,
+    "title": "\"Rationalization\": public domain image",
+    "era": "crisis",
+    "image": "/assets/cards/044.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 43
+  },
+  {
+    "id": 45,
+    "title": "\"Veterans\": Bundesarchiv, Bild 102-12630 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/045.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 44
+  },
+  {
+    "id": 46,
+    "title": "\"Corporatism\": Bundesarchiv, Bild 102-12331 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/046.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 45
+  },
+  {
+    "id": 47,
+    "title": "\"Party Politics\": Bundesarchiv, Bild 102-01154 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/047.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 46
+  },
+  {
+    "id": 48,
+    "title": "\"Crackdown\": Bundesarchiv, Bild 183-K0105-0601-004 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/048.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 47
+  },
+  {
+    "id": 49,
+    "title": "\"Class Traitors\": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/049.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 48
+  },
+  {
+    "id": 50,
+    "title": "\"Turncoats\": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/050.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 49
+  },
+  {
+    "id": 51,
+    "title": "\"Intellectuals\": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/051.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 50
+  },
+  {
+    "id": 52,
+    "title": "\"Mass Media\": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0",
+    "era": "crisis",
+    "image": "/assets/cards/052.webp",
+    "sourceSheet": "01_Crisis.png",
+    "sourceSlot": 51
+  },
+  {
+    "id": 53,
+    "title": "\"Rentenmark\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/053.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 0
+  },
+  {
+    "id": 54,
+    "title": "\"Gustav Stresemann\": Bundesarchiv, Bild 102-08490 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/054.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 1
+  },
+  {
+    "id": 55,
+    "title": "\"Schutzstaffel\": Bundesarchiv, Bild 146-1969-054-53A / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/055.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 2
+  },
+  {
+    "id": 56,
+    "title": "\"Strasserism\": Bundesarchiv, Bild 119-1721 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/056.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 3
+  },
+  {
+    "id": 57,
+    "title": "\"Paul von Hindenburg\": Bundesarchiv, Bild 183-U0618-0500 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/057.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 4
+  },
+  {
+    "id": 58,
+    "title": "\"Brownshirts\": Bundesarchiv, Bild 119-0779 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/058.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 5
+  },
+  {
+    "id": 59,
+    "title": "\"Stalinism\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/059.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 6
+  },
+  {
+    "id": 60,
+    "title": "\"Racial Theory\": Bundesarchiv, Bild 146-1969-067-10 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/060.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 7
+  },
+  {
+    "id": 61,
+    "title": "\"Barmat Scandal\": Bundesarchiv, Bild 102-05676 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/061.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 8
+  },
+  {
+    "id": 62,
+    "title": "\"Roter Frontkämpferbund\": Kille, CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/062.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 9
+  },
+  {
+    "id": 63,
+    "title": "\"Blutmai\": Bundesarchiv, Bild 102-08924 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/063.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 10
+  },
+  {
+    "id": 64,
+    "title": "\"Die Weltbühne\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/064.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 11
+  },
+  {
+    "id": 65,
+    "title": "\"Overseas Loans\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/065.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 12
+  },
+  {
+    "id": 66,
+    "title": "\"Jazz Culture\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/066.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 13
+  },
+  {
+    "id": 67,
+    "title": "\"School Reforms\": Bundesarchiv, Bild 102-12781 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/067.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 14
+  },
+  {
+    "id": 68,
+    "title": "\"Urban Crime\": Bundesarchiv, Bild 102-07741 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/068.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 15
+  },
+  {
+    "id": 69,
+    "title": "\"Dawes Plan\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/069.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 16
+  },
+  {
+    "id": 70,
+    "title": "\"Locarno Treaties\": Bundesarchiv, Bild 183-R03618 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/070.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 17
+  },
+  {
+    "id": 71,
+    "title": "\"League of Nations\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/071.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 18
+  },
+  {
+    "id": 72,
+    "title": "\"Ernst Jünger\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/072.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 19
+  },
+  {
+    "id": 73,
+    "title": "\"Carl Schmitt\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/073.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 20
+  },
+  {
+    "id": 74,
+    "title": "\"Bertold Brecht\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/074.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 21
+  },
+  {
+    "id": 75,
+    "title": "\"Berlin-Tempelhof\": Bundesarchiv, Bild 146-2008-0010 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/075.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 22
+  },
+  {
+    "id": 76,
+    "title": "\"Siedlungen der Moderne\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/076.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 23
+  },
+  {
+    "id": 77,
+    "title": "\"Frankfurt School\": CC-BY-SA-3.0",
+    "era": "golden",
+    "image": "/assets/cards/077.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 24
+  },
+  {
+    "id": 78,
+    "title": "\"Housing Reforms\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/078.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 25
+  },
+  {
+    "id": 79,
+    "title": "\"Bauhaus\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/079.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 26
+  },
+  {
+    "id": 80,
+    "title": "\"Young Plan\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/080.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 27
+  },
+  {
+    "id": 81,
+    "title": "\"Hindenburg Amnesties\": Bundesarchiv, Bild 183-C06886 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/081.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 28
+  },
+  {
+    "id": 82,
+    "title": "\"Referendum\": Bundesarchiv, Bild 102-01258 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/082.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 29
+  },
+  {
+    "id": 83,
+    "title": "\"RFB Banned\": Bundesarchiv, Bild 183-Z0127-305 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/083.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 30
+  },
+  {
+    "id": 84,
+    "title": "\"Stahlhelm\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/084.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 31
+  },
+  {
+    "id": 85,
+    "title": "\"Reichsbanner\": Bundesarchiv, Bild 102-05973 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/085.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 32
+  },
+  {
+    "id": 86,
+    "title": "\"DNVP Joins Government\": Bundesarchiv, Bild 102-00910 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/086.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 33
+  },
+  {
+    "id": 87,
+    "title": "\"Albert Einstein\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/087.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 34
+  },
+  {
+    "id": 88,
+    "title": "\"Konzerne\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/088.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 35
+  },
+  {
+    "id": 89,
+    "title": "\"Junker\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/089.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 36
+  },
+  {
+    "id": 90,
+    "title": "\"Mittelstand\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/090.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 37
+  },
+  {
+    "id": 91,
+    "title": "\"New Woman\": Chris Lebeau, CC-BY-SA 4.0",
+    "era": "golden",
+    "image": "/assets/cards/091.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 38
+  },
+  {
+    "id": 92,
+    "title": "\"Urbanization\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/092.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 39
+  },
+  {
+    "id": 93,
+    "title": "\"Neue Sachlichkeit\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/093.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 40
+  },
+  {
+    "id": 94,
+    "title": "\"Pragmatism\": Bundesarchiv, Bild 102-01121 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/094.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 41
+  },
+  {
+    "id": 95,
+    "title": "\"Thomas Mann\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/095.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 42
+  },
+  {
+    "id": 96,
+    "title": "\"Mass Culture\": Bundesarchiv, Bild 146-1988-035-15 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/096.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 43
+  },
+  {
+    "id": 97,
+    "title": "\"Ostjuden\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/097.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 44
+  },
+  {
+    "id": 98,
+    "title": "\"Lebensreform\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/098.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 45
+  },
+  {
+    "id": 99,
+    "title": "\"Entartete Kunst\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/099.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 46
+  },
+  {
+    "id": 100,
+    "title": "\"U-Bahn\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/100.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 47
+  },
+  {
+    "id": 101,
+    "title": "\"Babelsberg\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/101.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 48
+  },
+  {
+    "id": 102,
+    "title": "\"Funkturm Berlin\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/102.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 49
+  },
+  {
+    "id": 103,
+    "title": "\"Die Angestellten\": Bundesarchiv, Bild 102-13681 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/103.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 50
+  },
+  {
+    "id": 104,
+    "title": "\"Treaty of Berlin\": Bundesarchiv, Bild 102-12859 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/104.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 51
+  },
+  {
+    "id": 105,
+    "title": "\"Wirtschaftspartei\": Dahn, CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/105.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 52
+  },
+  {
+    "id": 106,
+    "title": "\"Ernst Niekisch\": public domain image",
+    "era": "golden",
+    "image": "/assets/cards/106.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 53
+  },
+  {
+    "id": 107,
+    "title": "\"Party Politics\": Bundesarchiv, Bild 102-01154 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/107.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 54
+  },
+  {
+    "id": 108,
+    "title": "\"Crackdown\": Bundesarchiv, Bild 102-01301 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/108.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 55
+  },
+  {
+    "id": 109,
+    "title": "\"Class Traitors\": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/109.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 56
+  },
+  {
+    "id": 110,
+    "title": "\"Turncoats\": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/110.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 57
+  },
+  {
+    "id": 111,
+    "title": "\"Intellectuals\": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/111.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 58
+  },
+  {
+    "id": 112,
+    "title": "\"Mass Media\": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0",
+    "era": "golden",
+    "image": "/assets/cards/112.webp",
+    "sourceSheet": "02_Golden_Twenties.png",
+    "sourceSlot": 59
+  },
+  {
+    "id": 113,
+    "title": "\"Franz von Papen Appointed\": Bundesarchiv, Bild 183-1988-0113-500 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/113.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 0
+  },
+  {
+    "id": 114,
+    "title": "\"Von Schleicher Appointed\": Bundesarchiv, Bild 102-14090 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/114.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 1
+  },
+  {
+    "id": 115,
+    "title": "\"Preußenschlag\": Bundesarchiv, Bild 102-13680 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/115.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 2
+  },
+  {
+    "id": 116,
+    "title": "\"Mass Meetings\": Bundesarchiv, Bild 183-S01000 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/116.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 3
+  },
+  {
+    "id": 117,
+    "title": "\"Hitler Sworn In\": Bundesarchiv, Bild 183-H28422 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/117.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 4
+  },
+  {
+    "id": 118,
+    "title": "\"Enabling Act\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/118.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 5
+  },
+  {
+    "id": 119,
+    "title": "\"Heinrich Brüning\": Bundesarchiv, Bild 183-1989-0630-504 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/119.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 6
+  },
+  {
+    "id": 120,
+    "title": "\"Osthilfe\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/120.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 7
+  },
+  {
+    "id": 121,
+    "title": "\"Gregor Strasser Resigns\": Bundesarchiv, Bild 119-1721 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/121.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 8
+  },
+  {
+    "id": 122,
+    "title": "\"Harzburg Front\": Bundesarchiv, Bild 146-2005-0129 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/122.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 9
+  },
+  {
+    "id": 123,
+    "title": "\"Creditanstalt Crash\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/123.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 10
+  },
+  {
+    "id": 124,
+    "title": "\"Hindenburg Runs Again\": Bundesarchiv, Bild 102-13227 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/124.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 11
+  },
+  {
+    "id": 125,
+    "title": "\"Stand\": Johann Schediwy, CC-BY-SA-3.0-DE",
+    "era": "decline",
+    "image": "/assets/cards/125.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 12
+  },
+  {
+    "id": 126,
+    "title": "\"Protestantism\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/126.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 13
+  },
+  {
+    "id": 127,
+    "title": "\"Reichstagsbrand\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/127.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 14
+  },
+  {
+    "id": 128,
+    "title": "\"Lausanne Conference\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/128.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 15
+  },
+  {
+    "id": 129,
+    "title": "\"SA Reforms\": Bundesarchiv, Bild 146-1982-159-21A / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/129.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 16
+  },
+  {
+    "id": 130,
+    "title": "\"Eiserne Front\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/130.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 17
+  },
+  {
+    "id": 131,
+    "title": "\"Der Jugendliche\": Bundesarchiv, Bild 183-R24553 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/131.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 18
+  },
+  {
+    "id": 132,
+    "title": "\"Blut und Boden\": Bundesarchiv, Bild 183-H1215-503-009 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/132.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 19
+  },
+  {
+    "id": 133,
+    "title": "\"Großraum\": Bundesarchiv, Bild 102-12084 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/133.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 20
+  },
+  {
+    "id": 134,
+    "title": "\"Psychoanalysis\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/134.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 21
+  },
+  {
+    "id": 135,
+    "title": "\"Erich Ludendorff\": Bundesarchiv, Bild 102-00344A / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/135.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 22
+  },
+  {
+    "id": 136,
+    "title": "\"Catholicism\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/136.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 23
+  },
+  {
+    "id": 137,
+    "title": "\"SA Banned\": Bundesarchiv, B 145 Bild-P049500 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/137.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 24
+  },
+  {
+    "id": 138,
+    "title": "\"Trotskyism\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/138.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 25
+  },
+  {
+    "id": 139,
+    "title": "\"Martin Heidegger\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/139.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 26
+  },
+  {
+    "id": 140,
+    "title": "\"Stennes Revolt\": Bundesarchiv, Bild 119-2608 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/140.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 27
+  },
+  {
+    "id": 141,
+    "title": "\"Schwarze Front\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/141.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 28
+  },
+  {
+    "id": 142,
+    "title": "\"IFS Burned Down\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/142.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 29
+  },
+  {
+    "id": 143,
+    "title": "\"Overcrowding\": Bundesarchiv, Bild 183-T0706-501 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/143.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 30
+  },
+  {
+    "id": 144,
+    "title": "\"Customs Union\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/144.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 31
+  },
+  {
+    "id": 145,
+    "title": "\"Murder of Horst Wessel\": Bundesarchiv, Bild 146-1978-043-14 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/145.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 32
+  },
+  {
+    "id": 146,
+    "title": "\"Erbgutpflege\": Bundesarchiv, Bild 183-1991-0904-505 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/146.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 33
+  },
+  {
+    "id": 147,
+    "title": "\"Altonaer Blutsonntag\": public domain image",
+    "era": "decline",
+    "image": "/assets/cards/147.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 34
+  },
+  {
+    "id": 148,
+    "title": "\"Class Traitors\": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/148.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 35
+  },
+  {
+    "id": 149,
+    "title": "\"Turncoats\": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/149.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 36
+  },
+  {
+    "id": 150,
+    "title": "\"Intellectuals\": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/150.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 37
+  },
+  {
+    "id": 151,
+    "title": "\"Mass Media\": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0",
+    "era": "decline",
+    "image": "/assets/cards/151.webp",
+    "sourceSheet": "03_Decline.png",
+    "sourceSlot": 38
+  },
+  {
+    "id": 152,
+    "title": "Election",
+    "era": "crisis",
+    "image": "/assets/cards/152.webp",
+    "sourceSheet": "05_Election_152.png",
+    "sourceSlot": 0
+  },
+  {
+    "id": 153,
+    "title": "Election",
+    "era": "golden",
+    "image": "/assets/cards/153.webp",
+    "sourceSheet": "06_Election_153.png",
+    "sourceSlot": 0
+  },
+  {
+    "id": 154,
+    "title": "Election",
+    "era": "decline",
+    "image": "/assets/cards/154.webp",
+    "sourceSheet": "07_Election_154.png",
+    "sourceSlot": 0
+  }
+]

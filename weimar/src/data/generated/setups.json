@@ -1,0 +1,496 @@
+{
+  "Tutorial": {
+    "Baden": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Bayern": {
+      "Coalition": 2,
+      "KPD": 3,
+      "NSDAP": 1,
+      "RC": 5
+    },
+    "Berlin": {
+      "Coalition": 2,
+      "KPD": 2,
+      "RC": 2
+    },
+    "Brandenburg": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Braunschweig and Anhalt": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Hamburg": {
+      "Coalition": 1
+    },
+    "Hessen": {
+      "Coalition": 1
+    },
+    "Hessenprovinz": {
+      "Coalition": 2
+    },
+    "Koeln": {
+      "Coalition": 1
+    },
+    "Mecklenburg": {
+      "Coalition": 1
+    },
+    "Muenchen": {
+      "Coalition": 1,
+      "KPD": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Niederschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oberschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oldenburg": {
+      "Coalition": 1
+    },
+    "Ostpreussen": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Pommern": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Posen-Westpreussen": {
+      "RC": 1
+    },
+    "Provinz Hannover": {
+      "Coalition": 2
+    },
+    "Provinz Sachsen": {
+      "Coalition": 2
+    },
+    "Provinz Westfalen": {
+      "Coalition": 4,
+      "KPD": 3
+    },
+    "Rheinprovinz": {
+      "Coalition": 5,
+      "KPD": 4
+    },
+    "Sachsen": {
+      "KPD": 2
+    },
+    "Schleswig-Holstein": {
+      "Coalition": 1
+    },
+    "Thueringen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Waldeck and Lippe": {
+      "Coalition": 1
+    },
+    "Wuerttemberg": {
+      "Coalition": 1,
+      "RC": 1
+    }
+  },
+  "Revolution": {
+    "Baden": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Bayern": {
+      "Coalition": 4,
+      "KPD": 2,
+      "RC": 3
+    },
+    "Berlin": {
+      "Coalition": 2,
+      "KPD": 2,
+      "RC": 1
+    },
+    "Brandenburg": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Braunschweig and Anhalt": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Hamburg": {
+      "Coalition": 1
+    },
+    "Hessen": {
+      "Coalition": 1
+    },
+    "Hessenprovinz": {
+      "Coalition": 2
+    },
+    "Koeln": {
+      "Coalition": 1
+    },
+    "Mecklenburg": {
+      "Coalition": 1
+    },
+    "Muenchen": {
+      "Coalition": 1,
+      "KPD": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Niederschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oberschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oldenburg": {
+      "Coalition": 1
+    },
+    "Ostpreussen": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Pommern": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Posen-Westpreussen": {
+      "RC": 1
+    },
+    "Provinz Hannover": {
+      "Coalition": 2
+    },
+    "Provinz Sachsen": {
+      "Coalition": 2
+    },
+    "Provinz Westfalen": {
+      "Coalition": 4,
+      "KPD": 2
+    },
+    "Rheinprovinz": {
+      "Coalition": 5,
+      "KPD": 3
+    },
+    "Sachsen": {
+      "KPD": 1
+    },
+    "Schleswig-Holstein": {
+      "Coalition": 1
+    },
+    "Thueringen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Waldeck and Lippe": {
+      "Coalition": 1
+    },
+    "Wuerttemberg": {
+      "Coalition": 1,
+      "RC": 1
+    }
+  },
+  "NewHope": {
+    "Baden": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Bayern": {
+      "Coalition": 4,
+      "KPD": 2,
+      "NSDAP": 1,
+      "RC": 2
+    },
+    "Berlin": {
+      "Coalition": 3,
+      "KPD": 2,
+      "RC": 1
+    },
+    "Brandenburg": {
+      "Coalition": 2,
+      "RC": 2
+    },
+    "Braunschweig and Anhalt": {
+      "Coalition": 1
+    },
+    "Hamburg": {
+      "Coalition": 1
+    },
+    "Hessen": {
+      "Coalition": 1
+    },
+    "Hessenprovinz": {
+      "Coalition": 2
+    },
+    "Koeln": {
+      "Coalition": 1
+    },
+    "Mecklenburg": {
+      "Coalition": 1
+    },
+    "Muenchen": {
+      "Coalition": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Niederschlesien": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Oberschlesien": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Oldenburg": {
+      "Coalition": 1
+    },
+    "Ostpreussen": {
+      "RC": 2
+    },
+    "Pommern": {
+      "RC": 1
+    },
+    "Posen-Westpreussen": {
+      "RC": 1
+    },
+    "Provinz Hannover": {
+      "Coalition": 2
+    },
+    "Provinz Sachsen": {
+      "Coalition": 2
+    },
+    "Provinz Westfalen": {
+      "Coalition": 3,
+      "KPD": 1
+    },
+    "Rheinprovinz": {
+      "Coalition": 4,
+      "KPD": 3
+    },
+    "Sachsen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Schleswig-Holstein": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Thueringen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Waldeck and Lippe": {
+      "Coalition": 1
+    },
+    "Wuerttemberg": {
+      "Coalition": 2,
+      "RC": 1
+    }
+  },
+  "BlackSun": {
+    "Baden": {
+      "Coalition": 2,
+      "RC": 2
+    },
+    "Bayern": {
+      "Coalition": 4,
+      "KPD": 1,
+      "NSDAP": 3,
+      "RC": 4
+    },
+    "Berlin": {
+      "Coalition": 3,
+      "KPD": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Brandenburg": {
+      "Coalition": 2,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Braunschweig and Anhalt": {
+      "Coalition": 1
+    },
+    "Hamburg": {
+      "Coalition": 1
+    },
+    "Hessen": {
+      "Coalition": 1
+    },
+    "Hessenprovinz": {
+      "Coalition": 2
+    },
+    "Koeln": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Mecklenburg": {
+      "Coalition": 1
+    },
+    "Muenchen": {
+      "Coalition": 2,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Niederschlesien": {
+      "Coalition": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Oberschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oldenburg": {
+      "Coalition": 1
+    },
+    "Ostpreussen": {
+      "RC": 2
+    },
+    "Pommern": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Posen-Westpreussen": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Provinz Hannover": {
+      "Coalition": 2
+    },
+    "Provinz Sachsen": {
+      "Coalition": 2
+    },
+    "Provinz Westfalen": {
+      "Coalition": 3,
+      "KPD": 2
+    },
+    "Rheinprovinz": {
+      "Coalition": 4,
+      "KPD": 3
+    },
+    "Sachsen": {
+      "Coalition": 1,
+      "KPD": 2
+    },
+    "Schleswig-Holstein": {
+      "Coalition": 1
+    },
+    "Thueringen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Waldeck and Lippe": {
+      "Coalition": 1
+    },
+    "Wuerttemberg": {
+      "Coalition": 2,
+      "RC": 2
+    }
+  },
+  "Fate": {
+    "Baden": {
+      "Coalition": 2,
+      "RC": 1
+    },
+    "Bayern": {
+      "Coalition": 4,
+      "KPD": 2,
+      "RC": 3
+    },
+    "Berlin": {
+      "Coalition": 2,
+      "KPD": 2,
+      "RC": 1
+    },
+    "Brandenburg": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Braunschweig and Anhalt": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Hamburg": {
+      "Coalition": 1
+    },
+    "Hessen": {
+      "Coalition": 1
+    },
+    "Hessenprovinz": {
+      "Coalition": 2
+    },
+    "Koeln": {
+      "Coalition": 1
+    },
+    "Mecklenburg": {
+      "Coalition": 1
+    },
+    "Muenchen": {
+      "Coalition": 1,
+      "KPD": 1,
+      "NSDAP": 1,
+      "RC": 1
+    },
+    "Niederschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oberschlesien": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Oldenburg": {
+      "Coalition": 1
+    },
+    "Ostpreussen": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Pommern": {
+      "Coalition": 1,
+      "RC": 1
+    },
+    "Posen-Westpreussen": {
+      "RC": 1
+    },
+    "Provinz Hannover": {
+      "Coalition": 2
+    },
+    "Provinz Sachsen": {
+      "Coalition": 2
+    },
+    "Provinz Westfalen": {
+      "Coalition": 4,
+      "KPD": 2
+    },
+    "Rheinprovinz": {
+      "Coalition": 5,
+      "KPD": 3
+    },
+    "Sachsen": {
+      "KPD": 1
+    },
+    "Schleswig-Holstein": {
+      "Coalition": 1
+    },
+    "Thueringen": {
+      "Coalition": 1,
+      "KPD": 1
+    },
+    "Waldeck and Lippe": {
+      "Coalition": 1
+    },
+    "Wuerttemberg": {
+      "Coalition": 1,
+      "RC": 1
+    }
+  }
+}

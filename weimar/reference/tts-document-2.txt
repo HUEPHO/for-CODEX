@@ -1,0 +1,3562 @@
+=== PAGE 1 ===
+PLA YBOOK
+TABLE OF CONTENTS
+ 9.0 Scenarios  2
+ 10.0 Tutorial  14
+ 11.0  Historical and Faction Notes  26
+ 12.0  Designer's Notes  32
+ 13.0  Event Card Notes  34
+  Credits  47
+GMT Games LLC © 2026
+
+=== PAGE 2 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+2
+9.0  Scenarios
+9.1  General Event Deck Preparation
+• Collect all the cards for the upcoming Era.
+•  Separate that Era’s Mandatory and Election cards, and 
+set them aside.
+•  Shuffle the remaining cards for that Era. Deal the num-
+ber of cards indicated below into a first stack and the 
+remaining cards into a second stack.
+◊ Crisis Era: 26 cards
+◊ Golden Twenties Era: 31 cards
+◊ Decline Era: 19 cards
+•  Shuffle the Mandatory and Election cards into the first 
+stack, and place these cards on top of the second stack. 
+This is the draw deck for the upcoming Era.
+•  At the start of the game, scenario setup instructions 
+will indicate the number of Event cards dealt to each 
+faction from the draw deck.
+•  Otherwise, deal each faction the number of Event cards 
+indicated by the Timeline:
+◊ Crisis Era: 7 cards each
+◊ Golden Twenties Era: 9 cards each
+◊ Decline Era: 6 cards each
+This is a short and simplified scenario for players to familiarize 
+themselves with core game rules and mechanics, before playing 
+more complex scenarios.
+Number of Rounds: 6
+Length: 1–2 hours
+SCENARIO SPECIAL RULES
+•  Ignore any “Requires _______” requirement listed 
+on an Event card.
+•  Set aside the Stance markers for KPD and NSDAP; 
+neither Stance track [1.3] is in play. All markers on 
+both the KPD and NSDAP faction mats are always 
+Available. Stances are treated as Pragmatic for all 
+Events.
+•  The Reaction level is not limited by the level of Prog-
+ress [5.7].
+SCENARIO VICTORY CONDITIONS
+•  If no faction has won a Sudden Victory [3.1] or Gen-
+eral Election Victory [3.2] by the end of the Late Y ear 
+round in 1923, immediately hold Regional Elections 
+followed by a General Election [7.0].
+The General Election winner wins the game [7.3].
+Reminder: NP Coalition may not win a Sudden Victory 
+during the Crisis Era [8.3].
+9.2  TUTORIAL SCENARIO (1921-1923)
+SCENARIO SETUP
+Event Deck Preparation:
+•  Prepare the Crisis deck as per the deck preparation 
+instructions [9.1].
+•  Each faction draws 5 Event cards as their opening 
+hand.
+Special Cards:
+• Article 48 card:  Coalition 
+•  Reichstag Seats card: Uncontrolled; set it aside until 
+the next General Election
+• All Parliamentary Control cards:  Coalition 
+Tracks:
+• Momentum:  Coalition 
+
+=== PAGE 3 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+3
+•  Economy: 2 boxes to the left of Stable (towards Hyper-
+inflation)
+◊ 2 Middle Class Sympathies, one in each box
+• Progress: 2 and Reaction: 3
+◊ 2 yellow Leverage in boxes 2 and 3
+◊ 2 black Leverage in boxes 2 and 3
+◊ 3 Middle Class Sympathies in boxes 3 – 5
+◊ 4 Reforms in boxes 2 – 5
+◊ 1 Assassinations in box 2
+◊ 1 NSDAP Cadre in box 4
+◊ 1 Conservative Clique in box 5
+• U.S. Deals: 1
+◊ 4 yellow Leverage in boxes 2 – 5
+◊ 3 Dollar Dependence in boxes 3 – 5
+• U.S.S.R. Deals: 2
+◊ 3 Reichswehr in boxes 1, 3, and 5
+◊ 2 KPD Cadres in boxes 4 and 5
+◊ 1 black Leverage in box 3
+◊ 1 yellow Leverage in box 4
+• Timeline:
+◊ Early Y ear, 1921
+Faction Mats:
+•  Coalition  : Unity is Sound, all remaining Coalition 
+Freikorps (unrevealed side up), 1 Reformation.
+•  KPD  : Stance is not in play, all remaining Worker 
+Militia, 2 KPD Cadres in boxes 1 and 2, 3 Strikes/Up-
+risings in boxes 2–4, 1 General Strike, 1 Revolution.
+•  NSDAP  : Stance is not in play, all remaining SA, 
+3 NSDAP Cadres in boxes 1–3, 1 Assassinations, 1 
+NSDAP Putsch.
+•  RC   : 1 black Leverage in box 4, 1 Conservative 
+Clique in box 2, 1 Assassinations, 1 RC Putsch, 2 Mid-
+dle Class Sympathies.
+Map Setup (see Graphic Guide A):
+•  Shuffle all Coalition Freikorps units and set up all 
+Coalition Freikorps units with their unrevealed side 
+showing.
+•  Place a Coalition marker in all Parliamentary Control 
+boxes on the map.
+• Set aside all faction PV markers for now.
+Final Setup Steps:
+•  Place all remaining units and pieces in their appropri-
+ate boxes on the faction mats.
+•  As the Momentum faction, the Coalition determines 
+the turn order for the upcoming Y ear. If the Coalition 
+is an NP faction, determine Turn Order for the start of 
+the scenario by revealing the top NP Coalition bot card. 
+Set Turn Order in the order listed, with NP Coalition 
+last [8.4].
+•  Begin the game in the Early Y ear round of 1921.
+9.2  REGIONS
+Mecklenburg:
+Oldenburg:
+Waldeck and Lippe:
+Schleswig-Holstein:
+Pommern:
+Ostpreußen:
+Niederschlesien:
+Brandenburg:
+Provinz Hannover:
+Provinz Sachsen:
+Posen-Westpreußen:
+Provinz Westfalen:
+Braunschweig and Anhalt:
+Sachsen:
+A
+
+=== PAGE 4 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+4
+9.2  CITIES
+Hessenprovinz:
+Oberschlesien:
+Rheinprovinz:
+Thüringen:
+Hessen:
+Baden:
+Württemberg:
+Bayern:
+Hamburg:
+Köln:
+Berlin:
+This is a short scenario that recreates the turbulent and violent 
+first five years of the Republic, suitable for experienced players.
+Number of Rounds: 10
+Length: 1.5–2 hours
+Will the future of Germany be decided on the streets or in parliament? 
+This question looms over the young Republic. Its inception is marked 
+not only by economic instability but also by spiraling political violence. 
+Disgruntled veterans flock to the well-armed militias of the far Right, 
+while workers and Left-leaning intellectuals are rapidly radicalized by 
+the Russian Revolution’s promises of a Communist world order. The 
+middle classes, still trying to grasp the reality of Germany’s humiliation 
+in the Great War, look on in shock and horror.
+Thus, the newly elected government is faced with a harsh dilemma: how 
+will it secure law and order and prevent the extremists from garnering 
+more popular support, while also staying true to the democratic prin-
+ciples of the new Republic? How far can the Republic go in its defense 
+of democracy and still remain a democracy?
+SCENARIO SPECIAL RULES
+•  The Reaction level is not limited by the level of Prog-
+ress [5.7].
+•  The Momentum faction may call an Extra Election 
+by playing either an Available Parliamentary Control 
+card or the Reichstag Seats card on their turn. That 
+card is now spent until reset during the next Regional 
+Election. Hold a full Election Cycle during the next 
+Election Step [7.0]. Only one Extra Election may be 
+called during the game. Calling an extra election does 
+not block another player from playing an Election 
+card this round, but if one is played, only hold a single 
+Election Cycle during the Election Step.
+SCENARIO VICTORY CONDITIONS
+•  If no faction has won a Sudden Victory [3.1] or Gen-
+eral Election Victory [3.2] by the end of the Late Y ear 
+round in 1923, immediately hold Regional Elections 
+followed by a General Election [7.0]. In addition to 
+the normal General Election modifiers [7.2], apply 
+the following additional modifiers to each faction’s 
+total PV:
+◊ Supremacy in Berlin: +5 PV
+◊ Supremacy in any other City: +3 PV each
+◊ Uprisings on the map (KPD only): +2 PV each
+◊  Assassinations on the map (Coalition only): –3 PV 
+each
+The General Election winner wins the game [7.3].
+Reminder: NP Coalition may not win a Sudden Victory 
+during the Crisis Era [8.3].
+9.3  A Time for Revolution? (1919–1923)
+München:
+
+
+=== PAGE 5 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+5
+SCENARIO SETUP
+Event Deck Preparation:
+•  Prepare the Crisis deck as per the deck preparation 
+instructions [9.1].
+•  Each faction draws 7 Event cards as their opening 
+hand.
+Special Cards:
+• Article 48 card:  Coalition 
+•  Reichstag Seats card: Uncontrolled; set it aside until 
+the next General Election
+• All Parliamentary Control cards: Coalition 
+Tracks:
+• Momentum: Coalition 
+• Economy: Stable
+◊ 2 Middle Class Sympathies, one in each box
+• Progress: 1 and Reaction: 2
+◊ no yellow Leverage
+◊ 1 black Leverage in box 2
+◊ 4 Middle Class Sympathies in boxes 2 – 5
+◊ 4 Reforms in boxes 2 – 5
+◊ 1 Assassinations in box 2
+◊ 2 NSDAP Cadres in boxes 3 – 4
+◊ 1 Conservative Clique in box 5
+• U.S. Deals: 1
+◊ 5 yellow Leverage in boxes 1 – 5
+◊ 3 Dollar Dependence in boxes 3 – 5
+• U.S.S.R. Deals: 1
+◊ 3 Reichswehr in boxes 1, 3, and 5
+◊ 2 yellow Leverage in boxes 2 and 4
+◊ 3 KPD Cadres in boxes 2, 4, and 5
+◊ 1 black Leverage in box 3
+• Timeline:
+◊ Early Y ear, 1919
+Faction Mats:
+•  Coalition  : Unity is Sound, all remaining Coalition 
+Freikorps (unrevealed side up), 1 Reformation.
+•   KPD  : Stance is 1 box to the left of Revolutionary, 
+all remaining Worker Militia, 2 KPD Cadres in boxes 
+1 and 2, 4 Strikes/Uprisings in boxes 1–4, 1 General 
+Strike, 1 Revolution.
+•  NSDAP  : Stance is Revolutionary, all SA, 3 NS-
+DAP Cadres in boxes 1–3, 1 Assassinations, 1 NSDAP 
+Putsch.
+•  RC   : All remaining RC Rogue Freikorps, 4 black 
+Leverage in boxes 1–4, 1 Conservative Clique in box 2, 
+1 Assassinations, 1 RC Putsch, 1 Middle Class Sympa-
+thies.
+Map Setup (see Graphic Guide B):
+•  Shuffle all Freikorps units. Set up all Coalition 
+Freikorps units with their unrevealed side showing.
+•  Place a Coalition marker in all Parliamentary Control 
+boxes on the map.
+• Set aside all faction PV markers for now.
+Final Setup Steps:
+•  Place all remaining units and pieces in their appropri-
+ate boxes on the faction mats.
+•  As the Momentum faction, the Coalition determines 
+the turn order for the upcoming Y ear. If the Coalition 
+is an NP faction, determine Turn Order for the start of 
+the scenario by revealing the top NP Coalition bot card. 
+Set Turn Order in the order listed, with NP Coalition 
+last [8.4].
+•  Begin the game in the Early Y ear round of 1919.
+9.3  REGIONS
+Mecklenburg:
+Oldenburg:
+Schleswig-Holstein:
+Pommern:
+Ostpreußen:
+Provinz Hannover:
+Provinz Sachsen:
+Posen-Westpreußen:
+B
+
+=== PAGE 6 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+6
+Waldeck and Lippe:
+Niederschlesien:
+Brandenburg:
+Provinz Westfalen:
+Braunschweig and Anhalt:
+9.3  CITIES
+Hessenprovinz:
+Oberschlesien:
+Rheinprovinz:
+Thüringen:
+Hessen:
+Baden:
+Württemberg:
+Bayern:
+Hamburg:
+Köln:
+Sachsen:
+München:
+Berlin:
+
+
+=== PAGE 7 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+7
+SCENARIO SETUP
+Event Deck Preparation:
+• Remove the Crisis Era cards from the game.
+•  Set aside the Decline Era cards until needed at the start 
+of 1930.
+•  Prepare the Golden Twenties deck as per the deck 
+preparation instructions [9.1].
+•  Each faction draws 9 Event cards as their opening 
+hand.
+This is a medium-length scenario, from the start of the Golden 
+Twenties Era to the end of the Decline Era, for players who wish 
+to experience the rise and collapse of the Republic.
+Number of Rounds: 20
+Length: 4–6 hours
+Emerging from the violence and chaos of its first few years, the young 
+German democracy has reached tentative stability. The economy is on 
+its feet again, and welfare reforms are well underway. American money 
+also brings American culture: jazz, night clubs, and hip fashion have 
+made Berlin the epitome of a modern metropolis.
+But while some celebrate, others lick their wounds and prepare for the 
+future. The old elites have not given up their dreams of a return to old 
+authoritarian ways, and extremists from both sides learned their lessons 
+during the crisis years. The Republic is here to stay—for now—and 
+its enemies must adapt their strategies to the democratic system and 
+its challenges. Will freedom and modernity prevail without providing 
+fertile ground for the enemies of democracy to flourish?
+SCENARIO VICTORY CONDITIONS
+•  If no faction has won a Sudden Victory [3.1], General 
+Election Victory [3.2], or Event Card Victory [3.3] by 
+the end of the Late Y ear round in 1933, the game will 
+end with either a full Election Cycle or a Coalition 
+victory:
+◊  If the Coalition (only) had any Held Cards Penalty 
+[4.0, Step 6] in the last round, immediately hold 
+Regional Elections followed by a General Election 
+[7.0]. The General Election winner wins the game 
+[7.3].
+◊ Otherwise, the Coalition wins the game.
+9.4  A New Hope (1924–1933) Special Cards:
+• Article 48 card:  Coalition 
+• Reichstag Seats card: Radical Conservatives  
+• All Parliamentary Control cards: Coalition 
+Tracks:
+• Momentum: Coalition  
+• Economy: Stable
+◊ 2 Middle Class Sympathies, one in each box
+• Progress: 2 and Reaction: 3
+◊ 2 yellow Leverage in boxes 2 and 3
+◊ 2 black Leverage in boxes 2 and 3
+◊ 2 Middle Class Sympathies in boxes 4 and 5
+◊ 4 Reforms in boxes 2 – 5
+◊ 1 Assassinations in box 2
+◊ 1 NSDAP Cadre in box 4
+◊ 1 Conservative Clique in box 5
+• U.S. Deals: 2
+◊ 3 yellow Leverage in boxes 3 – 5
+◊ 3 Dollar Dependence in boxes 3 – 5
+• U.S.S.R. Deals: 2
+◊ 2 Reichswehr in boxes 3 and 5
+◊ 2 yellow Leverage in boxes 2 and 4
+◊ 1 black Leverage in box 3
+◊ 2 KPD Cadres in boxes 4 and 5
+• Timeline:
+◊ Early Y ear, 1924
+Faction Mats:
+•  Coalition  : Unity is Strong, 1 Reformation, 1 Middle 
+Class Sympathies.
+•   KPD  : Stance is Pragmatic, all remaining Worker 
+Militia, 2 KPD Cadres in boxes 1 and 2, 4 Strikes/Up-
+risings in boxes 1–4, 1 General Strike, 1 Revolution.
+•  NSDAP  : Stance is Pragmatic, all remaining SA, 
+3 NSDAP Cadres in boxes 1–3, 1 Assassinations, 
+1 NSDAP Putsch.
+•  RC   : All remaining Rogue Freikorps (including 
+revealed Rogue Freikorps, see Map Setup below), 
+2 black Leverage in boxes 3 and 4, 1 Assassinations, 
+1 RC Putsch, 2 Middle Class Sympathies.
+
+=== PAGE 8 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+8
+Map Setup (see Graphic Guide C):
+•  Reveal all Coalition Freikorps. Remove 3 revealed 
+Rogue Freikorps and 3 loyal Freikorps from the game. 
+All remaining revealed Rogue Freikorps units belong to 
+the RC faction: place them on the RC faction mat.
+•  Place a Coalition marker in all Parliamentary Control 
+boxes on the map.
+• Set aside all faction PV markers for now.
+Final Setup Steps:
+•  Place all remaining units and pieces in their appropri-
+ate boxes on the faction mats.
+•  As the Momentum faction, the Coalition determines 
+the turn order for the upcoming Y ear. If the Coalition 
+is an NP faction, determine Turn Order for the start of 
+the scenario by revealing the top NP Coalition bot card. 
+Set Turn Order in the order listed, with NP Coalition 
+last [8.4].
+•  Begin the game by starting the first Early Y ear round of 
+1924.
+9.4  REGIONS
+Mecklenburg:
+Oldenburg:
+Schleswig-Holstein:
+Pommern:
+Ostpreußen:
+Provinz Hannover:
+Provinz Sachsen:
+Posen-Westpreußen:
+Waldeck and Lippe:
+Niederschlesien:
+Brandenburg:
+Provinz Westfalen:
+Braunschweig and Anhalt:
+Hessenprovinz:
+Oberschlesien:
+Rheinprovinz:
+Thüringen:
+Hessen:
+Baden:
+Württemberg:
+Bayern:
+Sachsen:
+9.4  CITIES
+Hamburg:
+Köln:
+München:
+C
+
+
+=== PAGE 9 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+9
+Berlin:
+This is a short and fast-moving scenario recreating the turbulent 
+final years of the Weimar Republic. Suitable for tournaments 
+or quick matches between experienced players.
+Number of Rounds: 12
+Length: 2–3 hours
+After a period of relative calm and stability, most Germans have almost 
+regained their trust in democracy. The 1928 Elections showed strong 
+support for the Coalition, though conservatives retain avid supporters 
+among the old elites and the Communists still dominate segments of 
+the working class. The National Socialists remain a fringe movement, 
+albeit with the sympathies of certain elements of the Mittelstand, the 
+German middle class.
+Yet dark clouds again loom on the horizon; in just a few years, the 
+Wall Street crash will plunge the entire Western world into economic 
+chaos. With its dependence on U.S. loans, the German economy is 
+inextricably tied to the American market and will be the first to suffer 
+major blows once the crisis goes global. What the Great Depression will 
+do to Germany’s political landscape is anyone’s guess, but there is no 
+doubt that liberal democracy is about to face its greatest challenge yet.
+SCENARIO SPECIAL RULES
+•  Set aside the Stance markers for KPD and NSDAP; 
+neither Stance track [1.3] is in play. All markers on 
+both the KPD and NSDAP faction mats are always 
+Available. Stances are treated as Pragmatic for all 
+Events.
+•  The Reaction level is not limited by the level of Prog-
+ress [5.7].
+SCENARIO VICTORY CONDITIONS
+•   If no faction has won a Sudden Victory [3.1], General 
+Election Victory [3.2], or Event Card Victory [3.3] by 
+the end of the Late Y ear round in 1933, the game will 
+end with either a full Election Cycle or a Coalition 
+victory:
+◊  If the Coalition (only) had any Held Cards Penalty 
+[4.0, Step 6] in the last round, immediately hold 
+Regional Elections followed by a General Election 
+[7.0]. The General Election winner wins the game 
+[7.3].
+◊ Otherwise, the Coalition wins the game.
+9.5  Black Sun Rising (1928–1933)
+
+=== PAGE 10 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+10
+SCENARIO SETUP
+Event Deck Preparation:
+•  Remove all Crisis Era cards and the Golden Twenties 
+Election cards from the game.
+•  Set aside the Decline Era cards until needed at the start 
+of 1930.
+•  Locate Lingering Event cards #54 Gustav Strese-
+mann and #57 Paul von Hindenburg. Both of these 
+Lingering Events start the scenario in effect.
+•  Locate all remaining Golden Twenties Era Lingering 
+Event cards. Shuffle these cards and draw 3 at random. 
+These 3 Lingering Events also start the scenario in 
+effect. Remove the remainder from the game.
+•  Shuffle the remaining Golden Twenties Event cards 
+(i.e., all cards except Lingering Events and Election 
+cards) to create the Event card deck.
+•  Each faction draws 3 Event cards as their opening 
+hand.
+Special Cards:
+• Article 48 card: Coalition 
+• Reichstag Seats card: Radical Conservatives  
+•  Köln Parliamentary Control card: Uncontrolled; set it 
+aside until the next Regional Election in Köln
+• All remaining Parliamentary Control cards: Coalition 
+Tracks:
+• Momentum: Coalition 
+• Economy: Stable
+◊ 2 Middle Class Sympathies, one in each box
+◊  2 Dollar Dependence markers, one each in the two 
+leftmost boxes
+• Progress: 4 and Reaction: 3
+◊ 3 yellow Leverage in boxes 2–4
+◊ 2 black Leverage in boxes 2 and 3
+◊ 2 Middle Class Sympathies in boxes 4 and 5
+◊ 4 Reforms in boxes 2–5
+◊ 1 Assassinations in box 2
+◊ 2 NSDAP Cadres in boxes 3 and 4
+◊ 1 Conservative Clique in box 5
+• U.S. Deals: 4
+◊ 2 yellow Leverage in boxes 4 and 5
+◊ 1 Dollar Dependence in box 5
+• U.S.S.R. Deals: 4
+◊ 1 Reichswehr in box 5
+◊ 1 yellow Leverage in box 4
+◊ 2 KPD Cadres in boxes 4 and 5
+• Timeline:
+◊ Early Y ear, 1928
+Faction Mats:
+•  Coalition  : Unity is Sound, 1 Reformation, 1 Middle 
+Class Sympathies.
+•  KPD  : Stance is not in play, all remaining Worker 
+Militia, 2 KPD Cadres in boxes 1 and 2, 4 Strikes/Up-
+risings in boxes 1 –4, 1 General Strike, 1 Revolution.
+•  NSDAP  : Stance is not in play, all remaining SA, 
+2 NSDAP Cadres in boxes 2 and 3, 1 Assassinations, 
+1 NSDAP Putsch, 1 Middle Class Sympathies.
+•  RC   : All remaining Rogue Freikorps (including 
+revealed Rogue Freikorps, see Map Setup below), 2 
+black Leverage in boxes 3 and 4, 1 Assassinations, 1 RC 
+Putsch, 1 Middle Class Sympathies.
+Map Setup (see Graphic Guide D):
+•  Reveal all Coalition Freikorps. Remove 3 revealed 
+Rogue Freikorps and 3 loyal Freikorps from the game. 
+All remaining revealed Rogue Freikorps units belong to 
+the RC faction: place them on the RC faction mat.
+•  Leave the Parliamentary Control box for Köln empty 
+and set aside its Control marker for now.
+•  Place a Coalition marker in all other Parliamentary 
+Control boxes on the map.
+• Set aside all faction PV markers for now.
+Final Setup Steps:
+•  Place all remaining units and pieces in their appropri-
+ate boxes on the faction mats.
+•  As the Momentum faction, the Coalition determines 
+the turn order for the upcoming Y ear. If the Coalition 
+is an NP faction, determine Turn Order for the start of 
+the scenario by revealing the top NP Coalition bot card. 
+Set Turn Order in the order listed, with NP Coalition 
+last [8.4].
+•  Begin the game by starting the first Early Y ear round of 
+1928.
+
+=== PAGE 11 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+11
+9.5  REGIONS
+Mecklenburg:
+Oldenburg:
+Schleswig-Holstein:
+Pommern:
+Ostpreußen:
+Provinz Hannover:
+Provinz Sachsen:
+Posen-Westpreußen:
+Brandenburg:
+Waldeck and Lippe:
+Niederschlesien:
+Provinz Westfalen:
+Braunschweig and Anhalt:
+Hessenprovinz:
+Oberschlesien:
+Rheinprovinz:
+Thüringen:
+Hessen:
+Baden:
+Württemberg:
+Bayern:
+Sachsen:
+9.5  CITIES
+Hamburg:
+Köln:
+München:
+Berlin:
+D
+
+
+=== PAGE 12 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+12
+This is the full campaign scenario, recreating the entire life 
+of the Weimar Republic in all its grime and glory, suitable for 
+experienced players.
+Number of Rounds: 30
+Length: 5–8 hours
+The Great War is over, and Germany has been brought to its knees. 
+After suffering a humiliating defeat at the hands of the Entente, the 
+former Great Power is now confronted with the death of millions of 
+citizens, severe economic crises, and political turmoil that threatens 
+to plunge the entire nation into civil war.
+But the first democratic elections have been held, and the old monarchy 
+is gone. The future of the fledgling Republic appears grim. No one can 
+tell whether democracy will prevail, or if any of the radical factions 
+rising out of the chaos will overthrow democracy and seize power for 
+themselves. But one thing is perfectly clear: the coming years will not 
+be remembered for peace and stability.
+SCENARIO VICTORY CONDITIONS
+•   If no faction has won a Sudden Victory [3.1], General 
+Election Victory [3.2], or Event Card Victory [3.3] by 
+the end of the Late Y ear round in 1933, the game will 
+end with either a full Election Cycle or a Coalition 
+victory:
+◊  If the Coalition (only) had any Held Cards Penalty 
+[4.0, Step 6] in the last round, immediately hold 
+Regional Elections followed by a General Election 
+[7.0]. The General Election winner wins the game 
+[7.3].
+◊ Otherwise, the Coalition wins the game.
+Reminder: NP Coalition may not win a Sudden Victory 
+during the Crisis Era [8.3].
+9.6  The Fate of the Republic (1919–1933)
+SCENARIO SETUP
+Event Deck Preparation:
+•  Set aside all Golden Twenties Era and Decline Era cards 
+until needed during the New Era steps for 1924 and 
+1930, respectively.
+•  Prepare the Crisis deck as per the deck preparation 
+instructions [9.1].
+• Each faction draws 7 Event cards as their opening hand.
+Special Cards:
+• Article 48 card: Coalition 
+•  Reichstag Seats card: Uncontrolled, set it aside until 
+the next General Election
+• All remaining Parliamentary Control cards: Coalition 
+Tracks:
+• Momentum: Coalition 
+• Economy: Stable
+◊ 2 Middle Class Sympathies, one in each box
+• Progress: 1 and Reaction: 2
+◊ no yellow Leverage
+◊ 1 black Leverage in box 2
+◊ 4 Middle Class Sympathies in boxes 2–5
+◊ 4 Reforms in boxes 2–5
+◊ 1 Assassinations in box 2
+◊ 2 NSDAP Cadres in boxes 3 and 4
+◊ 1 Conservative Clique in box 5
+• U.S. Deals: 1
+◊ 5 yellow Leverage in boxes 1–5
+◊ 3 Dollar Dependence in boxes 3–5
+• U.S.S.R. Deals: 1
+◊ 3 Reichswehr in boxes 1, 3, and 5
+◊ 2 yellow Leverage in boxes 2 and 4
+◊ 2 black Leverage in boxes 1 and 3
+◊ 3 KPD Cadres in boxes 2, 4, and 5
+• Timeline:
+◊ Early Y ear, 1919
+Faction Mats:
+•   Coalition  : Unity is Sound, all remaining Coalition 
+Freikorps (unrevealed side up), 1 Reformation.
+•  KPD  : Stance is 1 box to the left of Revolutionary, 
+all remaining Worker Militia, 2 KPD Cadres in boxes 
+1 and 2, 4 Strikes/Uprisings in boxes 1–4, 1 General 
+Strike, 1 Revolution.
+•  NSDAP  : Stance is Revolutionary, all SA, 3 NS-
+DAP Cadres in boxes 1–3, 1 Assassinations, 1 NSDAP 
+Putsch.
+•  RC   : All remaining RC Rogque Freikorps, Conser-
+vative Clique in box 2, 1 Assassinations, 1 RC Putsch, 
+3 black Leverage in boxes 2–4, 1 Middle Class Sympa-
+thies.
+
+=== PAGE 13 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+13
+Map Setup (see Graphic Guide E):
+•  Shuffle all Freikorps markers. Set up all Coalition 
+Freikorps units with their unrevealed side showing.
+•  Place a Coalition marker in all Parliamentary Control 
+boxes on the map.
+• Set aside all faction PV markers for now.
+Final Setup Steps:
+•  Place all remaining units and pieces in their appropri-
+ate boxes on the faction mats.
+•  As the Momentum faction, the Coalition determines 
+the turn order for the upcoming Y ear. If the Coalition 
+is an NP faction, determine Turn Order for the start of 
+the scenario by revealing the top NP Coalition bot card. 
+Set Turn Order in the order listed, with NP Coalition 
+last [8.4].
+•  Begin the game by starting the first Early Y ear round of 
+1919.
+9.6  REGIONS
+Mecklenburg:
+Oldenburg:
+Schleswig-Holstein:
+Pommern:
+Ostpreußen:
+Provinz Hannover:
+Provinz Sachsen:
+Posen-Westpreußen:
+E
+Waldeck and Lippe:
+Niederschlesien:
+Brandenburg:
+Provinz Westfalen:
+Braunschweig and Anhalt:
+Hessenprovinz:
+Oberschlesien:
+Rheinprovinz:
+Thüringen:
+Hessen:
+Baden:
+Württemberg:
+Bayern:
+Sachsen:
+9.6  CITIES
+Hamburg:
+Köln:
+München:
+Berlin:
+
+
+=== PAGE 14 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+14
+10.0  Tutorial
+This tutorial is intended to guide new players through one game 
+Y ear, consisting of an Early Y ear round and a Late Y ear round, 
+using examples of play to illustrate how the basic rules of The 
+Weimar Republic work. Since the tutorial uses the Tutorial 
+Scenario [9.2], a number of more complex rules are not in play:
+•  Ignore any “Requires _______” requirement to play 
+an Event card.
+•  Set aside the Stance markers for KPD and NSDAP; nei-
+ther Stance track [1.3] is in play. All markers on both 
+the KPD and NSDAP faction mats are always Available. 
+Stances are treated as Pragmatic for all Events.
+•  The Reaction level is not limited by the level of Prog-
+ress [5.7].
+•  The tutorial uses asterisks (*) to indicate situations in 
+which these rules would normally be in effect, with 
+cross references to the relevant rules sections.
+Once you are comfortable with the core mechanics, we strongly 
+recommend setting up a scenario using the full rules and playing 
+a few rounds, to familiarize yourself with the finer nuances of 
+political struggle in interwar Germany.
+Follow all setup instructions for the Tutorial Scenario [9.2]. 
+When drawing cards for each faction’s opening hand, instead 
+deal the following cards to each faction:
+•  Coalition  : #6 Bayerische Räterepublik, #13 
+Triumvirate, #23 Organization Consul, #24 Berlin 
+Riots , #47 Party Politics.
+•  KPD   : #11 Aufstände in Oberschlesien, #38 
+Küstrin Putsch, #46 Corporatism , #49 Class Trai-
+tors, #152 Crisis era Election card.
+•  NSDAP  : #7 Ruhrbesetzung, #10 Freikorps De-
+mobilization, #12 Polnischer Korridor, #24 Feme 
+Murders, #34 Fürstenenteignung.
+•  Radical Conservatives   : #2 Braun Coalition, #5 
+Kapp Putsch, #4 Friedrich Ebert, #26 USPD Party 
+Splits, #51 Intellectuals.
+10.1  Overview
+The Weimar Republic is all about the loyalty of the people. The 
+winning faction will be the one who manages to convince the 
+German public that it is best suited to rule the country. Even 
+though violent coups d'état are real possibilities, no faction will 
+succeed without enough popular support.
+In game terms, this means dominating regions and cities (col-
+lectively referred to as spaces [1.2]) through ideological and 
+political Influence [1.5]. By having more Influence cubes than 
+each other faction in a given space, that faction has Dominance 
+[5.9] in that space.
+Dominance is important both because it allows a faction a wider 
+variety of Actions [6.0] in a space, and because it will win that 
+faction Elections [7.0] and give them Parliamentary Control 
+[5.10]. But more about that later on.
+While propaganda, rallies, and public meetings are all very 
+important to shape the ideological landscape of the Weimar 
+Republic, armed struggle (or at least the threat thereof) could 
+prove to be just as vital to a faction’s success. That’s where each 
+faction’s units [1.4] come into play. The faction whose units 
+have the most Survival Value in a space has Supremacy  [5.9] 
+in that space, blocking opponents’ ability to remove their Influ-
+ence cubes. Supremacy is also part of several factions’ victory 
+conditions.
+There are also a number of faction-specific tools available. The 
+Coalition and the Radical Conservatives use Leverage [5.4], 
+representing economic influence over unions, businesses, land 
+owners, and industrialists, mainly to manipulate the Economy 
+track [5.5] (which may swing between Hyperinflation and Mass 
+Unemployment) and the Progress and Reaction tracks [5.7] 
+(both of which open up more tools and options as they rise). 
+The KPD can instigate Strikes [1.5], which in turn may spark 
+Uprisings [1.5]. KPD can also place propaganda infrastructure 
+in the form of Cadres [1.5], an ability they share with NSDAP . 
+Both the NSDAP and the Radical Conservatives have the ability 
+to Place Assassinations [1.5].
+Let’s take a look at how it all plays out by starting the Early Y ear 
+round in the first Y ear of the Tutorial Scenario, 1921.
+10.2  Early Y ear Round, 1921
+We join the fray at a time of crisis for the young Republic in 1921. 
+Berlin is highly contested, with no faction having Dominance or 
+Supremacy (but the Coalition has Parliamentary Control). Bayern 
+is dominated by the Radical Conservatives, and the industrial 
+regions in the west and south have strong KPD Presence. NSDAP 
+is still a fringe movement but has built a network of activists and 
+supporters in München. Militias and militants are amassing in 
+the streets of key cities. The economy is spiraling out of control, 
+heading towards Hyperinflation, and reactionary sentiments 
+among the public are spreading rapidly, with the middle classes 
+flocking to the conservative camp.
+First, the Coalition player needs to determine the Turn Order 
+[5.8] for the Y ear. Normally turn order would be determined at 
+the end of the Y ear, but the scenario setup instructions have the 
+Momentum faction (here, the Coalition) determine Turn Order 
+before the start of the game.
+The Coalition player decides that the turn order for 1921 will 
+
+=== PAGE 15 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+15
+be as follows: KPD–Radical Conservatives–NSDAP–Coalition.
+The reason for this is that it is often (but not always) beneficial 
+to go last in a round, and the Coalition player wishes to discern 
+which strategies the other factions will attempt to pursue. Adjust 
+the Turn Order track to reflect this. Note that this will be the Turn 
+Order for both the Early Y ear and the Late Y ear Rounds of 1921.
+Early Y ear Round, 1921: KPD Action Step
+The KPD goes first and now has three options: perform 1 Action, 
+play an Event card and perform 2 Actions, or Pass (which gives 
+them the option to discard 1 Event card and draw a replacement) 
+[6.0]. Had the KPD player possessed the Reichstag Seats card 
+[1.6] or any Parliamentary Control Card [1.6], they could have 
+used these as well (we’ll explain how those cards work later on).
+The KPD player decides to save their Event cards for whatever 
+the future may hold and performs just 1 Place Influence Action 
+[6.4], in order to increase the number of spaces in which they 
+have Dominance (which will be needed to place more Strikes 
+[1.5], which in turn may be flipped to become Uprisings that are 
+required for KPD Sudden Victory [3.1]). Reviewing the map, the 
+KPD player notes two spaces where they can achieve Dominance 
+with just 1 Action: Braunschweig/Anhalt and Thüringen. KPD 
+would love to add Influence to Berlin and München, but those 
+spaces have already reached their Population Limit and no new 
+Influence cubes may be placed there until some are removed first. 
+Both already have KPD Presence, which makes them eligible 
+for Influence placement, and only 1 more Influence is required 
+in each of them to achieve KPD Dominance (but KPD may still 
+only select one space for this Action).
+The KPD player decides to place 1 
+Influence cube in Thüringen, gain-
+ing Dominance there. If the KPD 
+maintains their Dominance in 
+Thüringen, it will also gain 1 Polit-
+ical Value in the Southern States 
+during the next Election Cycle 
+[7.0].
+Early Y ear Round, 1921: Radical Conservatives 
+Action Step
+It is now the Radical Conservatives’s turn. They have the same 
+three options as KPD: perform 1 Action, play an Event card and 
+perform 2 Actions, or Pass. The RC player opts to play an Event 
+card and perform 2 Actions, playing Event card #5 Kapp Putsch. 
+As the active faction, the Radical Conservatives choose whether 
+Event effects should be implemented before or after performing 
+Actions [6.1]. They choose the former.    
+Unless given an option, the active fac-
+tion must implement Event effects as 
+much as possible: Berlin now becomes 
+Uncontrolled, so the Coalition Parlia -
+mentary Control token is removed and 
+the Berlin Parliamentary Control card, 
+previously held by the Coalition player, 
+is placed beside the board. There are no 
+Available Rogue Freikorps on the Radical Conservatives player 
+mat, so that Event effect cannot be implemented. However, 
+there are Available Strikes on the KPD player mat*, so 1 Strike 
+must be placed in Berlin. The Coalition Unity track [5.3] is also 
+adjusted so that Coalition Unity becomes Strong. Lastly, the 
+icon indicates that Kapp Putsch is a Lingering Event [6.1], 
+place it in the Lingering Events box on the map.
+*Note: Normally the position of the KPD Stance track [5.3] 
+would determine whether any Strikes are Available; for this 
+Tutorial Scenario, all pieces on the KPD faction mat are always 
+Available.
+ 
+
+=== PAGE 16 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+16
+With Event effects implemented, the Radical Conservatives may 
+now perform any 2 Actions. Since RC Influence placement is often 
+tied to Conservative Cliques [1.5] and the number of Middle Class 
+Sympathies pawns [1.5] on the Radical Conservatives faction 
+mat [5.3], the RC player decides to focus on building a strong 
+infrastructure for future Influence placement. Now is also a good 
+opportunity, since the Radical Conservatives have one Available 
+Conservative Clique (due to the first two black Leverage already 
+having been removed from the Economic Influence track on their 
+faction mat [5.3]), and their Dominance in Posen-Westpreußen 
+makes it an attractive space due to its proximity to Berlin.
+Using their first Action, the RC faction chooses the Place Conser-
+vative Clique Action [6.6] and moves their Available Conservative 
+Clique from the RC faction mat to Posen-Westpreußen, which 
+gives the Radical Conservatives more flexibility when placing 
+Influence in the north-east.
+For their second Action, the Radical Conservatives player 
+wants to use this new reach to use their Place Influence Action 
+[6.6] to gain some Political Value [7.0]. With the Conservative 
+Clique in Posen-Westpreußen and 2 Middle Class Sympathies 
+on their faction mat, RC may now select a space within 2 spaces 
+of Posen-Westpreußen [6.6].
+Berlin would be the obvious target, but the Radical Conservatives 
+player does not place there for now, for one major reason: with 
+6 Influence cubes present in total, Berlin’s Population Number 
+[5.12] has been reached, meaning that the Radical Conservatives 
+would not be able to place any Influence of their own, only remove 
+an opponent’s Influence. Since both the KPD and the Coalition 
+will act before the Radical Conservatives’s next turn, that would 
+mean providing room for one of them to place an extra Influence 
+cube (which would in turn gain them Dominance) in Berlin.
+With this in mind, the Radical Conservatives decide to go for 
+Brandenburg instead, placing one black Influence Cube there. 
+They now have Dominance in that space and will gain 2 Political 
+Value in the Prussian Provinces during the next Election Cycle 
+[7.0] if they manage to hold onto their Dominance.
+Early Y ear Round, 1921: NSDAP Action Step
+The turn passes to the NSDAP . Like the KPD, the NSDAP decides 
+to only use 1 Action. They opt to steal a Middle Class Sympathies 
+pawn from the Radical Conservatives using a Move Middle Class 
+Sympathies Action [6.5], and move one Middle Class Sympathies 
+pawn from the RC faction mat to the NSDAP faction mat.
+This is an option unique to the 
+NSDAP—no other faction can 
+move Middle Class Sympathies 
+directly between faction mats, and 
+NSDAP is required to have at least 
+1 Cadre on map to perform it. Of 
+course, the NSDAP player wants 
+to use this advantage both to ham-
+per the Radical Conservatives’ 
+ability to place Influence (which 
+is directly tied to the number of 
+Middle Class Sympathies pawns 
+on the Radical Conservatives fac-
+tion mat), and to fulfill their own Sudden Victory conditions, 
+which require them to have more Middle Class Sympathies than 
+the Radical Conservatives [3.1].
+Early Y ear Round, 1921: Coalition Action Step
+Finally, it is the Coalition’s turn. Since there’s an urgent need 
+to fix the Economy (currently positioned two boxes to the left  
+of Stable, meaning that the Coalition may not place Influence 
+cubes [5.5], and set to move further towards Hyperinflation next 
+Y ear [4.0, Step 5]), the Coalition will need as many Actions as 
+possible to salvage their position.
+Said and done: the Coalition player chooses 
+to play an Event card and perform 2 
+Actions, playing Event card #27 Berlin 
+Riots . Like the Radical Conservatives, 
+the Coalition player chooses to implement 
+Event effects first. Two Worker Militia are 
+placed in Berlin; this doesn’t help the 
+Coalition at all, but they’re given no choice 
+here. The Coalition opts to use the second 
+Event effect (note that the word “may” gives the active faction 
+an option), first placing 1 Available Reichswehr unit in Berlin 
+(from the U.S.S.R. Deals track) and thus securing Supremacy 
+there with a total of 7 Survival Value against the Radical Con-
+servatives’ 4 and the KPD’s 4 [5.9]. Lastly, the Coalition will 
+Assault [6.2] in Berlin, targeting KPD.
+
+=== PAGE 17 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+17
+First off, the Coalition asks the Radical Conservatives player 
+whether the Rogue Freikorps units in Berlin may be used to 
+support the Coalition units in the Assault [6.2]. After some 
+consideration, the Radical Conservatives player refuses. They 
+would love to help crush the KPD—and they’re curious if either 
+of the unrevealed Freikorps in Berlin are secretly loyal to the 
+Conservatives—but they don’t want to risk losing any units in 
+Berlin. They briefly consider lending support to KPD, but decide 
+to let these two factions fight it out for now.
+The Coalition units stand alone, but as they are not fighting 
+Radical Conservatives units, they are not subject to any Loyalty 
+Checks [6.2]. Each faction calculates their own Assault Strength. 
+The Coalition has 1 Reichswehr and 2 Freikorps units, for a 
+total SV of 7. No modifiers apply to Coalition forces. KPD has 4 
+Worker Militia, for a total SV of 4. To this, they add +1 for the 
+Strike and +1 for the KPD Cadre, for a total Assault Strength of 6.
+Now, both sides subtract a die roll from their totals. The Coalition 
+rolls a 2; they have scored 7–2 = 5 Assault hits on KPD. KPD rolls 
+a 5; they score 6–5 = 1 Assault hit on the Coalition.
+As the attacker, the Coalition removes hits first. They must first 
+remove KPD units—the Worker Militia—for 1 hit each. Remov-
+ing all four leaves 1 hit left. Next, the Coalition removes the 
+Strike, spending their last hit. All units and pieces are returned 
+to their locations on the KPD Faction mat. KPD scored 1 hit, 
+which is not enough to remove any Coalition units. As units 
+must be removed first during an Assault, the KPD hit is lost.
+The Coalition scored the most hits and would become the 
+Momentum faction, but they are already the Momentum faction. 
+Also, since the Coalition retains Supremacy in Berlin, they do 
+not lose an Influence cube for being the attacker.*
+*Note: If the KPD Stance tracks [5.3] were in play, KPD Stance 
+would now move 1 box towards Revolutionary since they were the 
+Defending Faction [6.2].
+Now that the Assault is concluded, the Coalition must implement 
+the final effect of this Event card: KPD becomes the Momentum 
+faction if all their Worker Militia are removed by the Assault in 
+Berlin. Thus, despite their poor showing in the Assault, KPD 
+steals the Momentum from the Coalition! With all Event effects 
+carried out, it is now time for the Coalition to perform their 2 
+Actions.
+
+=== PAGE 18 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+18
+As previously mentioned, the German economy is currently in 
+dire straits. Each Y ear of the Crisis Era ends with the Economy 
+marker shifting 1 box towards Hyperinflation [4.0, Step 5], a state 
+of affairs highly problematic for the Coalition. If the Economy 
+marker reaches the Hyperinflation box, they are required to 
+remove 1 Influence every round (and this also makes an extra 
+Middle Class Sympathies Available). But even when the Economy 
+marker hasn’t yet reached Hyperinflation, things are looking 
+grim: no Coalition Influence can be placed until the economy 
+has been stabilized.
+The only way to do this is by placing Coalition Leverage [5.4] on 
+the Economy track. Not only do yellow Leverage markers keep 
+the Economy marker from moving further towards either end 
+of the track, they are also used to move the Economy marker 
+closer to Stable.
+Leverage markers are 
+made Available by the 
+position of both the 
+U.S. Deals and the 
+U.S.S.R. Deals tracks, 
+but currently neither 
+of these has any Avail-
+able Leverage. So as 
+their first Action, the 
+Coalition performs an Increase Deals Action [6.3], shifting the 
+U.S. Deals track 1 box to the right and thus making 1 Leverage 
+Available.
+As their second Action, the Coalition performs a Place Leverage 
+on a Track Action [6.3] and places this Leverage on the “Leverage 
+1” space on the Economy track (Leverage must be placed starting 
+with the lowest numbered unoccupied space). While this does 
+not immediately affect the track, as the Economy marker is not 
+currently positioned to the left of the newly placed Leverage 
+counter [5.4], it will block the Economy marker from moving 
+into Hyperinflation and also allow placement of another Leverage 
+counter in the “Leverage 2” space on a later turn.
+With their two Actions performed, the Coalition is now done 
+with their turn—although they are in possession of all Par -
+liamentary Control cards (except for Berlin), they opt to save 
+those for later use.
+Early Y ear Round, 1921: Sudden Victory Step
+There are no Sudden Victory markers on the Timeline, so this 
+step may be skipped [4.0, Step 2].
+Early Y ear Round, 1921: Elections Step
+No Election cards were played in the last round, so this step is 
+also skipped [4.0, Step 3].
+Early Y ear Round, 1921: Advance Timeline Step
+The General Strike marker 
+is not on the Timeline, 
+there are no Assassinations 
+markers on the map, and 
+the Economy marker is not at Hyperinflation, so these steps may 
+be skipped. The only change we need to make is to flip the Y ear 
+marker to its Late Y ear side [4.0, Step 4]. This concludes the first 
+half of 1921. As we are starting the Late Y ear round, the New 
+Y ear and New Era steps are skipped.
+ 10.3  Late Y ear Round, 1921
+Late Y ear Round, 1921: KPD Action Step
+The KPD is the Momentum faction and 
+the turn order remains the same: KPD–
+Radical Conservatives–NSDAP–Coali -
+tion. Going first, the KPD player decides 
+to play the Crisis Era’s sole Election Card 
+[1.6]. This card acts like a normal Event, 
+allowing the KPD faction to perform 2 
+Actions. However, except for granting 
+Momentum to the active faction (which 
+in this case is skipped because KPD is already the Momentum 
+faction), the Election Card has no direct Event effect. Instead it 
+means that an Election will be held in the current round, during 
+the Elections Step [4.0, Step 3]. Set the Election card aside for 
+now as a reminder for the end of the round.
+KPD may now perform 2 Actions. With an Election coming, it 
+is important to either secure Dominance in as many spaces as 
+possible or at least make sure that the other factions’ chances of 
+any Parliamentary gains are as small as possible. Unfortunately, 
+KPD is first in Turn Order this round; any strategic moves they 
+make this turn will likely be undone by the other factions. But 
+in Weimar Germany, you cannot always wait on optimal con-
+ditions before acting.
+Going for the latter option of trying to deny their opponents any 
+Parliamentary gains (and of course, also building Presence for 
+
+=== PAGE 19 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+19
+the future), the KPD player performs 2 Place Influence Actions 
+[6.4], placing 1 red Influence cube each in Köln and Hessen, 
+which are adjacent to KPD Influence already in Rheinprovinz. 
+KPD may only place 1 Influence cube with each Action because 
+of the current position of the Economy marker. 
+Köln is a City, so 
+the Regional Elec-
+tion here will only 
+count Influence in 
+this one space. By 
+matching the Coa-
+lition’s Influence 
+there, KPD threat-
+ens to deny the 
+Coalition an Elec-
+tion victory, which would cause them to lose their Parliamentary 
+Control card for Köln. Hessen, on the other hand, is a Southern 
+State; it is one of five such spaces. A Regional Election here will 
+count the Political Value of all Southern States. By matching the 
+Coalition’s Influence in Hessen, KPD also threatens the Coalition’s 
+Parliamentary Control over the entire Region.
+Late Y ear Round, 1921: RC Action Step
+The turn now passes to the Radical Con-
+servatives. They play Event card #51 
+Intellectuals and decide to perform 
+their two Actions first. They are not 
+overly concerned about the upcoming 
+Election because their strategy this early 
+tends more towards a violent seizure of 
+power. But they do need Middle Class 
+Sympathies, both to increase their reach 
+and for their Sudden Victory conditions. Unlike the NSDAP , 
+they may not steal Middle Class Sympathies directly from other 
+factions, so their first Action will be a Move Middle Class Sympa-
+thies Action [6.6]. With Reaction at 3, there is one Middle Class 
+Sympathies pawn Available on the Reaction track [5.1]. The RC 
+player moves it to their faction mat.
+ 
+For their next Action, the Radical Conservatives opt to kill two 
+birds with one stone and perform a Place Leverage on a Track 
+Action [6.6]. By removing 1 Available Leverage counter from the 
+Economic Influence track on their faction mat, they make their 
+Putsch Sudden Victory marker Available, and by placing it on the 
+next empty space on the Reaction track, they make it possible 
+to raise Reaction one additional box (*) in a future move [5.4].
+*Note: Normally the Reaction track would be limited by the 
+Progress track [5.7], but this rule is not in effect in the Tutorial 
+scenario.
+After performing their Actions, the Radical Conservatives per-
+form the Event, which forces them to draw a card from the Event 
+deck. They draw Event card #25 London Payment Plan. This 
+is not a bad card for them as it only hurts the Coalition, but since 
+they are not the Momentum faction, they may not choose to 
+discard it. The turn now passes to the NSDAP .
+Late year Round, 1921: NSDAP Action Step
+With an Election 
+com ing up, the 
+NSDAP shows their 
+true colors and 
+unleash a violent 
+offensive against 
+democracy. They 
+play Event card #24 
+Feme Murders and 
+choose to perform 
+their two Actions 
+first. As their first 
+Action, they perform a Place Assassinations Action [6.5], using 
+the one Assassinations marker that is Available to both NSDAP 
+and RC on the Reaction track [5.7]. They target the Coalition 
+and KPD in München, placing the Assassinations marker there 
+with its yellow/red side showing. The NSDAP player removes 
+1 Coalition and 1 KPD Influence cube from München. Those 
+factions are also now blocked from replacing their lost Influence 
+there while the Assassinations marker remains!
+
+=== PAGE 20 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+20
+Since there are 2 Conservative Cliques on the map, and there is 
+an Available Assassinations marker on the NSDAP faction map 
+(*because of the Tutorial Scenario’s special rule that all pieces on 
+the KPD and NSDAP faction mat are always Available), NSDAP 
+also takes advantage of an opportunity to strike at the Radical 
+Conservatives. They move the Assassinations marker — with its 
+black/brown side showing — from their faction mat to Bayern, 
+which is an eligible space because RC does not have Supremacy 
+there. They remove the Conservative Clique and return it to the 
+RC faction mat.
+The NSDAP’s second Action will be a Place Influence Action [6.5], 
+also in München. Note that although no faction may perform 
+both a Remove Influence and a Place Influence Action in the same 
+space on the same turn, the Coalition and KPD Influence cubes 
+were removed as the result of the Place Assassinations Action. 
+And although NSDAP may not use Place Influence in a space 
+with a brown/black Assassinations marker, the Assassinations 
+marker in München is on its red/yellow side. The NSDAP player 
+places 1 brown NSDAP Influence cube in München. With their 
+2 cubes against the Radical Conservatives 1, NSDAP now has 
+Dominance in München.
+ It is now time to implement Event effects. Event card #24 Feme 
+Murders, instructs the active faction to remove up to 3 total 
+Coalition and/or KPD Influence from any spaces for each yel-
+low/red Assassinations marker on the map. There is one such 
+Assassinations marker on map. The NSDAP player strikes at 
+the heart of the Republic and removes 2 KPD and 1 Coalition 
+Influence from Berlin. Note that Coalition Supremacy does 
+not protect their Influence here during Events, only during an 
+opponent’s Remove Influence Action. This move opens up a 
+major hole in the capital’s ideological landscape. The previous 
+stalemate in Berlin is gone, along with all KPD Presence there. 
+The Radical Conservatives now have Dominance with 2 cubes 
+against the Coalition’s 1.
+Having spread chaos across Germany, the NSDAP ends their turn.
+Late Y ear Round, 1921: Coalition Action Step
+After this severe attack on democracy, the turn finally passes to 
+the Coalition. They will have a hard time rebuilding what has 
+been lost, not least because the position of the Economy track 
+prevents them from placing any Influence [5.5].
+However, the Coalition 
+faction has some pow-
+erful tools, including 
+control over most 
+of Germany: they 
+possess all but one 
+Parliamentary  
+Control cards (all 
+except Berlin, lost 
+earlier to the Kapp 
+Putsch Event card). They decide to play their Köln 
+Parliamentary Control card, which gives them a free Action in 
+Köln. They use it to perform a Remove Influence Action [6.3] to 
+remove the last KPD Influence cube in Köln, returning Coalition 
+
+
+=== PAGE 21 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+21
+Dominance. The Parliamentary Control card then instructs 
+the active faction to conduct a Clean Slate [5.11] in Köln, but 
+since there are no Strikes, Assassinations, or Leverage markers 
+present, this has no effect.
+Then the Coalition plays Event card #47  
+Party Politics. This card gives the active 
+faction several options to choose from. 
+The Coalition player chooses the third 
+option. They remove 1 NSDAP Influence 
+from München, 1 Radical Conservatives 
+Influence from Berlin, and 1 KPD and 1 
+Coalition Influence from Rheinprovinz.
+This further changes the political landscape for the upcoming 
+Election, but the Coalition player is not done as they still have 
+2 Actions to perform.
+First, they perform a Place Reform Action [6.3], taking 1 Avail-
+able Reform marker from the Progress track and placing it in 
+Thüringen, which is allowed because the Coalition holds the 
+Parliamentary Control card for the Southern States.
+As their second Action, the Coalition chooses a Remove Influ-
+ence Action [6.3] to remove 1 KPD Influence from Thüringen. 
+While the Economy track currently blocks the Coalition from 
+placing Influence, they are always allowed to remove Influence.
+Late Y ear Round, 1921: Sudden Victory Step
+This step is once again skipped because there are no Sudden 
+Victory markers on the Timeline.
+
+=== PAGE 22 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+22
+Late Y ear Round, 1921: Elections Step
+An Election card was played this round, which means that both 
+Regional Elections and a General Election must now be held.
+Regional Elections are held in each City and Region in Germany 
+[7.1]. In Bayern and each City, the faction with Dominance gets 
+all of that space’s Political Value (or PV for short) and wins the 
+Election for that space. In Regions, the faction with Dominance 
+in any space in that Region gains that space’s PV . The faction 
+with the most total PV among all spaces in that Region wins the 
+Election for that Region. Factions that win an Election gain that 
+City’s or Region’s Parliamentary Control card, ready to be used 
+in upcoming rounds. And regardless of the outcomes of each 
+Regional Election, each faction retains any PV gained, which 
+will determine the outcome of the General Election.
+Each Regional Election is held in turn, Cities first, then Bayern 
+and each Region:
+•  In Hamburg, the Coalition has Dominance, and no 
+modifiers apply. It gains +4 PV , and wins the Parlia-
+mentary Control card for Hamburg.
+•  In München, there is no Regional Election this turn: 
+the Assassinations marker there cancels the Election 
+this round. No factions gain PV for München and 
+no faction takes control. Instead, the Coalition must 
+give up their Parliamentary Control card and the 
+Parliamentary Control marker is removed from the 
+München box on the map.
+•  In Köln, like Hamburg, the Coalition has Dominance. 
+They gain +3 PV and win the Parliamentary Control 
+card for Köln, face-up and Available to be used. The 
+Coalition moves their PV pawn to 7 on the PV track to 
+record their total PV gain (so far).
+•  In Berlin, no faction has Dominance. However, KPD 
+has 1 Cadre there, awarding KPD +2 PV and the Berlin 
+Parliamentary Control card. They add a KPD Control 
+marker to the Parliamentary Control box next to Berlin 
+and also add +2 PV to their running PV total on the 
+PV track.
+•  Bayern, like München, also has an Assassinations 
+marker, so the Election here is canceled. No factions 
+gain any PV for Bayern this turn. Bayern is now 
+Uncontrolled and the Coalition gives up the matching 
+Parliamentary Control card.
+•  In the Northern States, we need to calculate each space 
+in that Region one-by-one. The Coalition has Domi-
+nance in Oldenburg, Mecklenburg, and Waldeck/Lippe, 
+gaining +1 PV for each space. With 1 Coalition and 1 
+KPD Influence in Braunschweig/Anhalt, however, no 
+
+=== PAGE 23 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+23
+faction has Dominance and thus no faction gains its 
+PV . The Coalition has +3 PV total among the Northern 
+States—all other factions have 0—so the Coalition 
+wins the Election in the Northern States. They move 
+their PV total pawn +3 to 10 and keep the Parliamenta-
+ry Control card for the Northern States.
+•  In the Southern States, the Coalition gains +2 PV for 
+Dominance in Baden and +3 PV for the Reform mark-
+er in Thüringen, for a total of +5 PV for the Southern 
+States. KPD gains +2 PV for Dominance in Sachsen. 
+The Coalition wins the Election in the Southern States 
+and retains the matching Parliamentary Control card. 
+Both Coalition and the KPD adjust their PV pawns on 
+the PV track: the Coalition player to 15 and the KPD 
+player to 4.
+•  The final Regional Election is held among the 12 
+Prussian Provinces. The Coalition has Dominance 
+in Provinz Westfalen, Rheinprovinz, Schleswig-Hol-
+stein, Provinz Hannover, Hessenprovinz, and Provinz 
+Sachsen, for +14 PV . RC has Dominance in Branden-
+burg and Posen-Westpreußen for +3 PV . No faction 
+has Dominance in the remaining spaces. The Coalition 
+wins this Regional Election and keeps the Preußen 
+Parliamentary Control card. Both the Coalition and RC 
+adjust their PV pawns on the PV track: the Coalition to 
+29 and RC to 3.
+Now, the General Election is held [7.2]. First, we start with each 
+faction’s current PV total:
+• Coalition: 29
+• KPD: 4
+• NSDAP: 0
+• RC: 3
+Then, we modify each faction’s total for any applicable bonuses:
+•  Coalition: None; at 2, Progress is not high enough 
+to grant the Coalition any bonus PV for Influence in 
+Berlin.
+• KPD: gains +3 PV for being the Momentum faction.
+•  NSDAP: gains +2 PV for 1 Middle Class Sympathies 
+pawn on their faction mat.
+•  RC: gain +4 PV for 2 Middle Class Sympathies pawns 
+on their faction mat.
+The final PV tally for the General Election is:
+• Coalition: 29
+• KPD: 7
+• NSDAP: 2
+• RC: 7
+The Coalition is the clear winner. If any other faction had won 
+the General Election, they would have won a General Victory 
+and thus the game, but if the Coalition wins, the game continues 
+[3.2]. The Coalition keeps their Article 48 card. Now, we need 
+to determine the runner-up. Both KPD and RC are tied for second 
+place. The RC has more Middle Class Sympathies on their faction 
+mat, however, so they win the tie [7.2] and take the Reichstag 
+Seats  card, Available to use in the next Election cycle.
+With the General Election concluded, it is time for the Momen-
+tum faction to perform a Clean Slate [5.11] across all of Germany. 
+KPD removes Assassinations, Strikes, and Leverage from the 
+map (subject to the restrictions of [5.11]); they also get to choose 
+where each piece is returned, among appropriate, empty hold-
+ing boxes. The Assassinations marker in München is removed 
+and returned to the empty Assassinations holding box on the 
+Reaction track. The other Assassinations marker, in Bayern, is 
+returned to the empty holding box on the NSDAP faction mat. 
+The 2 black Leverage in Bayern, however, remain because RC has 
+Dominance there. The same goes for the KPD Strike in Sachsen: 
+KPD Dominance protects the Strike.
+
+
+=== PAGE 24 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+24
+Late Y ear Round, 1921: Advance Timeline Step
+As before, the General Strike marker is not on the Timeline, there 
+are no Assassinations markers on the map, and the Economy 
+marker is not at Hyperinflation, so these steps may be skipped. 
+We do flip the Y ear marker, and since we’re flipping it from Late 
+Y ear to Early Y ear, we also need to perform the New Y ear step.
+First, because the new year will be 1922, we need to shift the 
+Economy marker one box to the left, towards Hyperinflation. 
+Note that the yellow Leverage in the connected box means that 
+the Economy marker may not shift further left while the yellow 
+Leverage remains.
+Lastly, KPD as the Momentum faction must determine the Turn 
+Order for 1922. They shift things 
+around and decide to go last in the 
+next year: NSDAP–Radical 
+Conservatives–Coalition–KPD.
+Late Y ear Round, 1921: New Era Step
+A new Era won’t start until 1924, so we can skip this step. Instead, 
+we can move onto the Early Y ear Action Step of 1922, with 
+NSDAP taking the first turn.
+This concludes the tutorial.
+The Coalition retained control over most of Germany, but their 
+hold is slipping and the other factions have each carved out areas 
+of strength and influence. Y ou may keep playing from here into 
+1922 and beyond, or start a new game from scratch, drawing 
+fresh Event cards and exploring the various options for dominat-
+ing the political landscape of the Weimar Republic. Good luck!
+
+
+=== PAGE 25 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+25
+
+=== PAGE 26 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+26
+11.0  Historical and Faction Notes
+Historical notes by Gunnar Holmbäck and faction notes by Richard Hecker.
+This section gives a short introduction to each of the four fac-
+tions of The Weimar Republic. Our aim is to provide players 
+with a general idea of each faction’s historical background, their 
+strengths and weaknesses, and a few ideas for finding a working 
+strategy when starting out. Needless to say, there are many finer 
+strategic nuances and possible combinations that will not be 
+discussed here. In the end, optimizing strategies and finding a 
+path to victory are up to you.
+    The Democratic Coalition
+History of the Coalition
+Like several aspects of Weimar political life represented in The 
+Weimar Republic, the existence of a unified Democratic Coalition 
+throughout the Republic’s entire lifespan is an abstraction for 
+gameplay’s sake. While the Social Democrats (SPD), the German 
+Democratic Party (DDP), and the Center Party (Zentrum or Z) 
+wrote the democratic constitution together in 1919 and then 
+formed a strong unified front defending democracy during 
+the Republic’s first year, they soon lost much of their initial 
+support. With the three parties often having differing views 
+on issues like workers’ rights and capitalism in general, the 
+Coalition suffered from internal tensions and was often forced 
+to compromise their republican ideals. Striking parliamentary 
+deals with the conservative German People’s Party (DVP) was 
+frequently a necessity. As the Republic underwent its most severe 
+crisis in the early 1930s, when all democratic institutions were 
+under constant attack and gradually collapsed, the Coalition was 
+effectively disbanded. While its failures and shortcomings are 
+apparent in hindsight, the Coalition’s spirit of compromise and 
+democratic rule did survive through several crises and crucibles 
+that would have easily toppled weaker regimes, something that 
+must be considered a major achievement in itself.
+Overview of the Coalition Faction in The Weimar 
+Republic
+The Coalition has several strengths that it can use to offset their 
+many weaknesses. Through their play of Leverage, the Coalition 
+can influence the Economy track. Their Reichswehr units are 
+the strongest in the game, especially when supplemented with 
+Freikorps. And with Influence spread across Germany, they have 
+a strong position across the map at the start of most scenarios.
+However, the Coalition has several challenges to overcome. With 
+most of their Influence already placed, their ability to respond to 
+challenges in a given space is limited. Their Freikorps units will 
+gradually disperse as many turn Rogue and join the RC. And as 
+the natural target of all other factions, the Coalition will often 
+face the combined might of their opponents.
+Coalition Actions
+Playing seven Event cards across 10 rounds, each faction could 
+perform as many as 17 total Actions during the Crisis Era. The 
+Coalition also has access to extra Actions due to their eight 
+Parliamentary Control cards they hold in 1919. Successes by 
+other factions in Regional Elections will erode this lead, and 
+recognising which Regions and Cities will be contested is critical 
+to the Coalition’s success.
+The Coalition holds the levers of the Republic. They should limit 
+U.S.S.R. Deals to constrain the number of KPD Cadres and limit 
+the interference from RC’s black Leverage. Limiting U.S. Deals 
+may also be necessary to keep the Economy from slipping too far 
+towards Mass Unemployment during the Decline Era. Don’t push 
+the Progress track too far in order to restrict Reaction and tame 
+the backlash from the RC and NSDAP . But these choices have 
+a cost. Without Progress, Reform markers remain Unavailable, 
+which severely reduces the Coalition’s electoral position. Without 
+U.S. and U.S.S.R. Deals, the Coalition lacks economic leverage, 
+and without expansion of the Reichswehr, the Republic must rely 
+on unreliable Freikorps. The needs of the Republic will force the 
+Coalition’s hand, but the Coalition can control the selection and 
+the timing of unpalatable choices.
+Coalition Influence
+Most Coalition Influence cubes start on the board and only a 
+few remain for allocation. The temptation to rapidly strengthen 
+positions through Place Influence is strong, but there is no Action 
+that allows any Faction to voluntarily remove its own Influence; 
+a government that cannot promptly react to situations will 
+slowly wither. Worse, once the Economy marker shifts too far 
+towards Hyperinflation, the Coalition may not place any Influ-
+ence. Because of all this, Remove Influence can be an effective 
+tool to curb opposing factions’ expansion.
+Deals, Y ellow Leverage, and Progress
+Y ellow Leverage is an abstraction of the Coalition’s economic 
+efforts. They start the Fate of the Republic  scenario with one 
+yellow Leverage from U.S. Deals. and more become Available 
+through Increase Deals: U.S. Deals makes yellow Leverage Avail-
+able, while U.S.S.R. Deals makes both yellow Leverage and 
+Reichswehr units Available.
+During the Crisis and Decline Eras, when the economy drifts 
+toward Hyperinflation or Mass Unemployment, use Place Lever-
+age on a track to put yellow Leverage onto the Economy track to 
+limit the drift of the Economy marker. However, some Events in 
+the Crisis Era—such as #14 Hugo Stinnes and #25 London 
+Payment Plan—will accelerate economic woes. Of course the 
+
+=== PAGE 27 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+27
+RC will try to interfere by placing their own black Leverage on 
+the Economy track, or even use Remove Leverage to pull yellow 
+Leverage off. Enough yellow Leverage will eventually push the 
+Economy away from Hyperinflation toward Stable. Or perhaps 
+a Golden Twenties Event—such as #53 Rentenmark—will 
+help the Coalition stabilize the economy. Remember too that 
+no amount of yellow Leverage can overcome the hard limit 
+imposed by Dollar Dependence markers on the Economy track.
+An often overlooked use of Leverage is direct support to an area 
+through Place Leverage on the Map. Leverage in a space will aid 
+the Coalition during any Assault in the space, add a small but 
+useful Political Value bonus, and remove Strikes and KPD Cad-
+res. The first two effects give the Coalition some much needed 
+flexibility. The latter represents a direct appeal to moderates in 
+the KPD. Alas that the Coalition cannot reach the economic 
+self-interests of the far right to remove NSDAP Cadres as well!
+The Coalition’s main use of yellow Leverage is to place them on 
+the Progress track through Place Leverage on a Track, which 
+opens the door for a future Advance Progress Track Action. If 
+the Coalition achieves nothing else, advances in Progress are 
+themselves a good investment. Each advance on the Progress 
+track opens a Middle Class Sympathies pawn to the Coalition 
+and KPD, a Reform marker for the Coalition, and may grant the 
+Coalition a bonus in the General Election. Note that RC may 
+reduce Progress through their Remove Leverage Action, but of 
+course the RC won’t always want to reduce Progress—each time 
+Progress advances, so does the opportunity to increase Reaction.
+Coalition Units: Reichswehr and Freikorps
+As the legitimate government of Democratic Germany, the 
+Coalition controls the Reichswehr. Placement of a single 
+Reichswehr gains the Coalition Supremacy in a space unless 
+other factions match its SV with multiple units: the RC with 
+two Rogue Freikorps, the KPD with three Worker Militia, or the 
+NSDAP with three Sturmabteilung. A Coalition Assault backed 
+by Reichswehr will likely succeed, especially if opposing factions 
+have only one of their units in the space.
+But the Coalition can’t be everywhere at once, and their Move 
+Unit Actions have an opportunity cost. To increase the number 
+of Available Reichswehr units, the Coalition must use Increase 
+Deals to advance the U.S.S.R. Deals track, delighting both KPD 
+and RC. Their Freikorps are not as strong as Reichswehr, but 
+more than sufficient to keep a lid on the KPD and NSDAP , and 
+with up to nine Available Freikorps, that is more than enough 
+to limit unrest. Early on, when the Coalition has Parliamentary 
+Control in all regions, their Place Units Action will place both 
+Reichswehr and Freikorps units in any space without restriction.
+The Freikorps paramilitary formations don’t necessarily share 
+the Coalition’s worldview, however, and each Freikorps may be 
+revealed as Rogue Freikorps during Coalition vs. RC Assaults, 
+the RC Test Coalition Loyalty Action, and Events such as #20 
+Militarism  or #45 Veterans . In total, only a third of the Coa-
+lition’s Freikorps will remain loyal when all have been revealed!
+Middle Class Sympathies
+The Coalition has a limited need for Middle Class Sympathies. 
+Some Events benefit the Coalition when holding Middle Class 
+Sympathies, in a pinch they assist an Assault, the bonus in a 
+General Election is welcome, and repairing cracks in the Coa-
+lition through Increase Unity can be crucial.
+Coalition Victory: Reformation
+The Coalition’s Sudden Victory, Reformation, is anything but 
+sudden. To make a Reform Available, the Coalition needs to 
+place an Available yellow Leverage on the Progress track and 
+then use their Increase Progress Action. Once Reform becomes 
+Available, they can finally use their Place Reform Action, pro-
+vided that Unity is Sound or better. And they must run this 
+cycle at least three times (four if Unity is Sound) to qualify for 
+a Sudden Victory win.
+Against this difficult process, RC will interfere by Removing 
+Leverage from the Progress track, factions with Parliamentary 
+Control can remove a Reform there, and the play of Events and 
+Reichstag Seats may degrade the Coalition’s Unity to Frag-
+ile. This is a long, slow, vexing process. But do not despair. All 
+Reforms add to Political Value in Regional Elections, and when 
+the second Reform becomes Available on the Progress track, the 
+Coalition gains extra PV for Influence in Berlin.
+Even if victory through Reformation becomes infeasible, hold 
+the line, throw a bone to the opposition, keep street agitation 
+to an acceptable minimum, create arrangements with other 
+factions, monitor your opponents’ proximity to their own Sud-
+den Victory, and perhaps the Coalition may remain in power 
+to the end of 1933.
+    Kommunistische Partei Deutschlands 
+(KPD)
+History of the KPD
+Born from the ashes of the ultra-radical Spartacus movement, 
+and building on the legacy of recently murdered leaders Karl 
+Liebknecht and Rosa Luxemburg, the KPD (Kommunistische 
+Partei Deutschlands, “German Communist Party”) grew rap -
+idly in the bloody aftermath of the November Revolution in 
+1918–1919. Positioning themselves as a radical alternative to 
+the reformist SPD (Sozialdemokratische Partei Deutschlands, 
+“Social Democratic Party”), whom they later dubbed “Social 
+Fascists” , the German Communists envisaged a continuation 
+
+=== PAGE 28 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+28
+of the November Revolution that, according to them, had been 
+betrayed by the reformists. As the Party’s ideological stance and 
+political strategies gradually aligned with those of the Russian 
+Bolsheviks, this vision soon became synonymous with a German 
+Soviet State. To many industrial workers at the time, this was an 
+attractive prospect, while the middle classes and the conserva-
+tives, as well as many moderate leftists, perceived it as a major 
+threat to Germany. Consequently, the KPD had many enemies 
+but few allies. As the Republic and its democratic institutions 
+fell apart in the early 1930’s, the Communists faced a difficult 
+situation, not least because the NSDAP managed to attract huge 
+segments of the working classes. After Hitler’s rise to power in 
+1933, Communists became the prime target of persecution, 
+with many leading KPD members murdered or forced into exile.
+Overview of the KPD Faction in The Weimar 
+Republic
+The KPD has many specialist pieces: Strikes, Uprisings, and 
+Revolution, their Sudden Victory marker. KPD controls the 
+availability of all these pieces and does not rely on the actions of 
+the other factions. In addition, all of their Worker Militia units 
+are Available at the start of the game.
+However, KPD has no natural ally. Although the RC and NSDAP 
+will likely focus their attention on the Coalition first, they are 
+more than willing to turn against the KPD should an opportunity 
+to do so arise.
+KPD Influence
+In 1919, the KPD has presence in the Rheinland, central Germany, 
+Bayern, München, and Berlin. They hold a large reservoir of 
+Influence cubes, granting the KPD opportunities for flexibility 
+and growth unavailable to the Coalition.
+Unlike the Coalition, KPD may place more than one Influence 
+cube during Place Influence Actions. But this ability is closely 
+tied to the Economy track. Only when the Economy marker has 
+shifted towards Mass Unemployment does KPD gain additional 
+Influence cubes. Unfortunately the NSDAP also gains additional 
+cubes as the Economy shifts to the right.
+KPD Cadres
+The five red KPD Cadres are a nexus for KPD power and are 
+placed in a space through the Place Cadre Action in spaces where 
+KPD has established Dominance. Cadres generate additional 
+Political Value for the KPD. Several Cadres and Dominance over 
+a handful of spaces may be enough for KPD to win a Regional 
+Election and thus a Parliamentary Control card. Cadres also 
+allow KPD to use their Place Unit Action to add Worker Militia 
+units to spaces without KPD Dominance. And each Cadre aids 
+KPD during any Assault in their space.
+Cadres are resilient. An enemy’s Assault may scatter Worker 
+Militia, crush KPD Influence, break Strikes, and suppress Upris-
+ings, but Cadres cannot be removed during an Assault. Only the 
+Coalition’s Place Leverage on the Map and the NSDAP and RC’s 
+Place Assassinations Actions can remove KPD Cadres.
+At the start of The Fate of the Republic scenario in 1919, KPD 
+Cadres are not yet Available. As the Coalition increases the 
+U.S.S.R. Deals track to gain yellow Leverage and Reichswehr 
+units, it must accept the eventual release of up to three KPD 
+Cadres. And if the KPD cannot persuade the Coalition to treat 
+with Moscow, one response is for the KPD to change their Stance.
+KPD Stance
+The Stance marker on the KPD faction mat reflects the relative 
+balance between moderates and radicals in the Party. A Change 
+Stance Action shifts the marker by one box, unless Lingering 
+Event #59 Stalinism has been played, in which case the marker 
+shifts two boxes. One KPD Cadre becomes Available with only 
+two shifts towards Democratic; a third shift releases another 
+Cadre. Watchful opposing factions may choose to Assault KPD; 
+win or lose, defending during an Assault always shifts KPD 
+Stance towards Revolutionary. Of course, shift the KPD Stance 
+too far and they gain access to Strikes, the General Strike, and 
+Revolution—KPD’s Sudden Victory marker.
+Strikes, Uprisings, and the General Strike
+Placing a lone Strike in a space usually doesn’t concern the other 
+factions’ much, as a single Strike does little more than lend some 
+assistance to Worker Militia units during an Assault and slow all 
+factions’ units during Move Units Actions. However, once that 
+second Strike has been placed, expect some attention.
+Strikes are not very resilient. The Coalition can end a Strike with 
+a Place Leverage on the Map Action, though they would much 
+rather place their few Leverage markers on the Progress or Econ-
+omy track. A faction holding a Parliamentary Control card for 
+a Region or City with a Strike might choose to play it to remove 
+the Strike during the following Clean Slate. But Strikes in spaces 
+with KPD Dominance are safe, so KPD will want to maintain 
+Dominance in spaces where they have—or plan to place—a 
+Strike. Enemy factions may target a Strike during an Assault, 
+and unless protected by Worker Militia, they are vulnerable.
+Converting Strikes to Uprisings is a key part of the KPD’s Sudden 
+Victory requirements. Uprisings are much more resilient than 
+Strikes. Although they may also be targeted during Assault, it 
+takes 2 Assault hits to remove an Uprising, while it only takes 1 
+to remove a Strike. Uprisings are also not removed by the Coali-
+tion’s Place Leverage on the Map Action and are not affected by 
+the Clean Slate procedures. However, the KPD should be careful 
+not to place Uprisings without considering their long-term 
+
+=== PAGE 29 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+29
+impact: Regional Elections are canceled in Regions and Cities 
+with an Uprising. The KPD player who pursues a Sudden Victory 
+may be cutting themselves off from a General Election victory. 
+Choose wisely.
+Once there are three Strikes and/or Uprisings on the map, the 
+General Strike automatically occurs across Germany. Movement 
+is severely restricted, one Coalition Reform is removed from the 
+map, and all Leverage is removed from the map and the Economy 
+track (though any Leverage on the Progress and Reaction tracks 
+remain). The General Strike provides cover for KPD forces, and 
+of course can be lifted at the end of a round if KPD chooses—or 
+is convinced by the other factions—to remove a Strike or two.
+KPD Units: Worker Militia
+KPD Worker Militia, with only 1 SV , are weak and will need 
+support from KPD Cadres or Strikes to stand up to Coalition 
+Reichswehr and Freikorps Assaults. All nine Worker Militia are 
+always Available, however, giving KPD the opportunity to spread 
+KPD Supremacy widely, if thinly, across Germany.
+Middle Class Sympathies
+KPD’s Move Middle Class Sympathies Action is linked to the 
+number of KPD Cadres on the map, so it’s essential for KPD to 
+build their Cadres first. KPD’s access to Middle Class Sympathies, 
+however, is constrained by the extent to which the Coalition 
+has increased the Progress track. KPD gains benefits from their 
+Middle Class Sympathies pawns during Assaults, each General 
+Election, and via certain Events. And like other factions, KPD 
+can also remove Middle Class Sympathies from an opposing 
+faction’s mat, a key strategy for containing NSDAP and RC.
+KPD Victory: Revolution and General Election
+KPD can achieve a Sudden Victory by methodically upgrading 
+Strikes to Uprisings. Strikes—and thus Uprisings—become 
+Available as KPD Stance shifts towards Revolutionary. No other 
+faction competes for these markers, nor does their availability 
+rely on the Progress or Reaction tracks. Opposing factions that 
+overlook a second or third Strike in Germany run the risk of a 
+KPD Sudden Victory. With three Uprisings, KPD will need to 
+choose either to go for a fourth Uprising or Supremacy in Ber-
+lin—both challenging to achieve. Either way, KPD’s vulnerable 
+Worker Militia, Strikes, and Uprisings will need to be protected, 
+and the KPD player should place these key pieces carefully.
+It can be challenging for KPD to push for a General Election 
+victory. They have strength in the west and may be able to wrest 
+control of Köln and the Southern States from the Coalition, espe-
+cially if they are distracted fighting NSDAP and RC. A sneaky 
+KPD player may be able to build a strong enough presence, in 
+enough spaces, to win a surprise General Election victory.
+     Nationalsozialistische Deutsche 
+Arbeiterpartei (NSDAP)
+History of the NSDAP
+Originally a small splinter faction of a larger reactionary, nation-
+alist movement, the Nationalsozialistische Deutsche Arbeiter-
+partei (NSDAP) made a name for itself after the Beer Hall Putsch 
+in München, Hitler’s failed coup in 1923. While his political aims 
+always remained the same, Hitler changed his strategy after the 
+failed Putsch and spent the rest of the decade tirelessly working 
+to expand and solidify the movement within the democratic 
+framework of the Republic. Competing with conservatives for 
+middle class votes, and with the Communists for the working 
+classes, the NSDAP gradually positioned itself as a movement 
+for “all Germans” . While this position attracted a relatively small 
+but dedicated following during the 1920s, the combined effects 
+of the Great Depression and subsequent political crisis proved to 
+be the perfect storm that Hitler had waited for. As unemployment 
+soared and democracy appeared to fail its promises once again, 
+NSDAP’s message became attractive to many Germans. But 
+there would have been no Machtergreifung, or seizure of power, 
+without the support of conservative politicians who thought 
+they could use Hitler’s popular support for their own ends. Their 
+underestimation of “that Austrian Corporal, ” whom they con-
+sidered a vulgar demagogue without real political skills, proved 
+to be fatal not only to their own ambitions but to the Weimar 
+Republic, Europe, and the entire world as well. Many Germans 
+supported Hitler’s rise due to their own personal desires and 
+tolerated the scapegoating, hatred, and violence of the NSDAP . 
+This tacit approval eventually turned to explicit approval and 
+led directly to the horrors of World War II and the Holocaust.
+Overview of the NSDAP Faction in The Weimar 
+Republic
+NSDAP starts weak, but their power and reach grow over time. 
+They have a large stockpile of Influence cubes to spread across 
+Germany, and they can take advantage of aligned conserva-
+tive ideologies by placing NSDAP Influence in spaces with RC 
+Dominance. But this flexibility also means that NSDAP starts 
+every game with very little presence and needs to spend time 
+building their position.
+NSDAP Influence
+The NSDAP often starts with fewer Influence cubes on the map 
+than the other factions. But the NSDAP has a large reservoir of 
+Influence cubes and two tricks up their sleeve. The first is their 
+ability to use Place Influence wherever the RC has Dominance, so 
+NSDAP Influence cubes can rapidly appear from Bayern, without 
+relying on a slow expansion. The second is their ability to place 
+more Influence cubes as the Economy track shifts towards Mass 
+Unemployment, a trait shared with the KPD.
+
+=== PAGE 30 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+30
+NSDAP Cadres
+Five Cadres give the NSDAP similar advantages to the KPD. 
+Cadres generate PV during Elections, they allow NSDAP to place 
+SA units in spaces without NSDAP Dominance, they support 
+NSDAP forces during Assaults, and they allow NSDAP to move 
+multiple Middle Class Sympathies. They are also resilient: only 
+the RC’s Place Leverage on the Map can remove them.
+Cadres, however, are not initially Available to the NSDAP . Two 
+Cadres become Available as Reaction increases, but they must 
+rely on the RC to increase this track for them. Or, NSDAP can 
+take a softer approach, shifting their Stance towards Democratic 
+to gain access to the Cadres on their faction mat. Of course, this 
+also puts their Sudden Victory marker out of reach…
+NSDAP Stance
+The NSDAP Stance marker represents different strategies for 
+power seizure. Although labeled “democratic” , in this context 
+it does not mean that democratic values are actually embraced, 
+only that power can be seized using democratic means. A Change 
+Stance Action shifts the marker one box. Each advance towards 
+Democratic makes a brown Cadre Available. If this is unpalatable, 
+shifts towards Revolutionary to gain an Assassinations marker 
+and the Putsch marker, NSDAP's Sudden Victory marker.
+NSDAP Assassinations
+A single Assassinations marker on the Reaction track becomes 
+Available to both NSDAP and RC when Reaction reaches 2. 
+Another Assassinations marker, Available only to NSDAP , 
+becomes Available when the NSDAP Stance marker shifts suf-
+ficiently towards Revolutionary.
+The NSDAP Place Assassinations Action gives them more flex-
+ibility than their Remove Influence Action, neither requiring 
+nearby Presence nor blocked by the target faction’s Supremacy. 
+While the RC tend to use Assassinations rarely, for the NSDAP , 
+political terror is fundamental. A yellow/red Assassinations 
+marker may break Coalition or KPD Dominance in a space 
+or open a window for NSDAP Influence in spaces already at 
+their Population limit. Also, unlike Remove Influence, Place 
+Assassinations can be used to remove opposing Influence in the 
+same turn that Place Influence is used. Better still, the yellow/
+red Assassinations marker strikes fear in the local populace, 
+and neither the Coalition nor KPD may add Influence to that 
+space until it is removed. Placing a black/brown Assassinations, 
+to target the RC instead, can be used to crush a Conservative 
+Clique. When placed prior to an Election, Assassinations also 
+prevent Regional Elections, meaning that City or Region will 
+automatically become uncontrolled following the next Election 
+Cycle. But it also means that NSDAP is blocked from placing 
+Influence cubes there.
+Assassinations in spaces with Reichswehr or Coalition Freikorps 
+are removed at the end of each round, allowing NSDAP to reuse 
+them again and again. There is little the other factions can do to 
+counter a determined Assassinations campaign, though focusing 
+too much here will mean the NSDAP is not building an Influence 
+network, stealing Middle Class Sympathies, or building support 
+ahead of upcoming Elections. Targeted factions will likely retal-
+iate, and the RC can also Place Assassinations as well! Relying 
+only on violence will ultimately hurt the NSDAP: “Live by the 
+sword, die by the sword. ”
+NSDAP Units: Sturmabteilung
+NSDAP SA units individually are as weak as Worker Militia 
+and similarly need support from NSDAP Cadres to stand up to 
+Coalition forces. They fare much better against their KPD ene-
+mies; indeed these two factions automatically Assault each other 
+any time they are in the same space together. Like the KPD, the 
+NSDAP does not rely on opposing factions’ Actions to make their 
+units Available, and several Events directly benefit the NSDAP 
+SAs, including #55 Schutzstaffel, #58 Brownshirts, and 
+#129 SA Reforms.
+Middle Class Sympathies
+Like KPD, until at least one NSDAP Cadre is on the map, they 
+are unable to Move Middle Class Sympathies. And because both 
+NSDAP and RC must collect Middle Class Sympathies to achieve 
+a Sudden Victory, there will be tough competition for the few 
+Available Middle Class Sympathies pawns.
+But the NSDAP has an advantage here—they are the only fac-
+tion that can Move Middle Class Sympathies directly from an 
+opposing faction’s mat to their own, and only from the RC. If the 
+RC player allows too many NSDAP Cadres on the map, they will 
+find it difficult to hold onto any Middle Class Sympathies at all, 
+seriously risking any hope of an RC Sudden Victory.
+NSDAP Victory: NSDAP Putsch and General Election
+If the other factions aren’t careful, an NSDAP Sudden Victory 
+can appear quite suddenly indeed. If they have carefully built a 
+network of Influence, Cadres, and SA—and pushed the Econ-
+omy marker towards Mass Unemployment to improve their 
+Place Influence Actions—NSDAP can make a strong play for 
+a quick win.
+The NSDAP have other advantages, including several strong 
+Decline Era Event cards, such as #117 Hitler Sworn In and 
+#118 Enabling Act that can result in an instant NSDAP vic-
+tory. However, note that several Decline Era Events that benefit 
+the NSDAP also aid the other factions. The Coalition may resist 
+playing #119 Heinrich Brüning to retain their Article 48 
+card, but this Event also permits #137 SA Banned. The RC may 
+not wish to see #113 Franz von Papen Appointed played, 
+but it does permit #115 Preu ßenschlag.
+
+=== PAGE 31 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+31
+Such late-game advantages, and a clever NSDAP player, might 
+be enough to secure a General Election victory. But an even 
+cleverer RC player, working from the shadows, might just steal 
+victory by transferring their PV to the NSDAP at the last moment. 
+In the Weimar Republic, sometimes friends turn out to be the 
+worst enemies.
+     The Radical Conservatives
+History of the Radical Conservatives
+The RC faction is really made up of several factions: white col -
+lar workers, public servants, ex-military personnel, noblemen, 
+business owners, and politicians, united only by their wish to 
+destroy the Republic and return to autocratic rule. To understand 
+the nature of this heterogenous movement, abstracted into one 
+faction for gameplay purposes, one should consider the fact that 
+Germany, up until the 1918 November Revolution, had always 
+been ruled by elites who saw themselves as noblemen warriors. 
+This was true both before and after the unification of the Reich 
+in 1871. By default, the ruling classes were landed nobility with 
+deeply conservative, militaristic worldviews rooted in the Mid-
+dle Ages. For these old elites, the combined shocks of losing a 
+world war and being dethroned by democrats and socialists 
+caused wounds that could not heal. The result was a bottomless 
+hatred for the new Republic and the document that served as 
+its most iconic representation, the Treaty of Versailles. They also 
+idealized a fervent revanchism that, fused with contemporary 
+antisemitic and anti-communist ideas and the brutalization of a 
+whole generation in the trenches, led to political violence almost 
+on par with a civil war. While also participating in parliamentary 
+politics, mainly through the DNVP (Deutschnationale Volkspartei 
+or “German National People’s Party”), the explicit aim of the 
+Radical Conservatives was always democracy’s end, an end that 
+they ultimately achieved by facilitating Hitler’s rise to power.
+Overview of the RC Faction 
+in The Weimar Republic
+The RC at the start of The Fate of the Republic scenario has nearly 
+uncontested control over the spaces of eastern Germany and a 
+strong position in Bayern. Unlike the KPD and NSDAP , they 
+have strong Rogue Freikorps units that can go toe to toe with the 
+Coalition. They are also the only faction that competes directly 
+with the Coalition on the Economy and Progress/Reaction tracks.
+RC Influence
+The RC’s Place Influence Action can always place black Influence 
+cubes in Berlin, but to reach much beyond Berlin the RC will 
+need to build Conservative Cliques. Holding more than one 
+Middle Class Sympathies pawn allows them to Place Influence 
+two or more spaces away from their Conservative Cliques, which 
+gives them the flexibility they need to contest Dominance. They 
+will need to spread their limited Conservative Cliques across 
+Germany, within reach of both high-PV spaces and Cities, to 
+give themselves a solid position.
+But they must first prepare the ground, shifting black Leverage 
+from their faction mat to make their powerful Conservative 
+Cliques Available. And as Reaction increases, they can place 
+multiple Influence cubes with one Place Influence Action, a 
+powerful ability. Of course, these upper levels of Reaction are 
+only possible if the Coalition pushes up Progress; modernity 
+sows the seeds of its own destruction.
+Black Leverage and Reaction
+The RC’s primary source of black Leverage markers is their 
+faction mat. As black Leverage is placed, a second Conservative 
+Clique, an Assassination marker, and the RC Putsch Sudden 
+Victory markers become Available. The Coalition’s pursuit of 
+U.S.S.R. Deals also opens additional black Leverage markers.
+The RC’s black Leverage is a mirror image of the Coalition’s yellow 
+Leverage. Black Leverage placed on the Reaction track through 
+the Place Leverage on a Track Action allows for a future Advance 
+Reaction Action. As the Reaction level increases, more Middle 
+Class Sympathies pawns become Available to both the RC and 
+NSDAP , as well as extra NSDAP Cadres, enhancement of Place 
+Influence for the RC, and eventually a third Conservative Clique. 
+Furthermore, when Reaction exceeds Progress, the Coalition’s 
+unrevealed Freikorps units are subject to Loyalty Checks during 
+an Assault, and some Events advantage the RC. To gain all these 
+advantages, the RC must move quickly to Advance Reaction as 
+soon as the required black Leverage markers have been placed, 
+lest the Coalition use Remove Leverage to interrupt their plans—
+they have no desire to see Reaction increase.
+Black Leverage can also be placed on the Economy track through 
+the Place Leverage on a Track Action. Unlike yellow Leverage, 
+black Leverage does not push the Economy marker towards 
+Stable, it instead makes it harder for the Coalition to influence 
+the German Economy.
+Finally, black Leverage on the map aids RC during Assaults, adds 
+a small Election bonus, and removes both Assassinations and 
+NSDAP Cadres, representing the RC’s sway over reactionaries 
+with similar ideological convictions.
+RC Units: Rogue Freikorps
+The RC begins 1919 with three Rogue Freikorps. Two Rogue 
+Freikorps in a space can hold their own against one Coalition 
+Reichswehr, contesting the space for Supremacy. Additional 
+Rogue Freikorps must be revealed when testing Coalition 
+Loyalty, through the Test Coalition Loyalty Action, during an 
+Assault between RC and Coalition forces, or via Event card #37 
+Schwarze Reichswehr. Luckily for the RC, any revealed Rogue 
+Freikorps remain RC units for the rest of the game.
+
+=== PAGE 32 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+32
+Middle Class Sympathies
+The RC must have Middle Class Sympathies to secure a Sudden 
+Victory, like NSDAP . Holding more than one Middle Class Sympa-
+thies pawn also expands the RC’s ability to spread Influence.
+Each level on the Reaction track makes an additional Middle 
+Class Sympathies pawn Available to both RC and NSDAP . And 
+both extreme ends of the Economy track, Hyperinflation and 
+Mass Unemployment, make one Middle Class Sympathies pawn 
+Available each. Other factions—the Coalition especially—will 
+try to push the Economy marker towards Stable to keep these 
+pawns out of the RC’s hands.
+Middle Class Sympathies are also the main fault line between the 
+RC and NSDAP . The NSDAP needs more Middle Class Sympa-
+thies pawns than RC to reach their Sudden Victory conditions, 
+and they are the only faction that can use a Move Middle Class 
+Sympathies Action to steal a pawn from the RC faction mat and 
+move it to their own. During the early Crisis Era, the RC may 
+be willing to turn a blind eye to NSDAP expansion as a way to 
+distract the Coalition. But be wary not to let NSDAP grow too 
+strong: the parasite may come to kill its host.
+RC Assassinations
+One Assassinations marker, Available only to the RC, is on 
+the RC faction mat. Another, shared by both RC and NSDAP , 
+becomes Available when Reaction reaches level 2. The RC Place 
+Assassinations Action is much like the matching NSDAP Action: 
+useful to remove Influence, block Coalition and KPD Influence, 
+and cancel Elections.
+RC Victory: RC Putsch and General Election
+The RC’s Sudden Victory seems simple to achieve, but alert 
+opposing factions will keep their eyes on the number of Rogue 
+Freikorps around Berlin, especially once the RC holds two or 
+more Middle Class Sympathies. If the RC can build such a strong 
+position, they can snatch a quick victory with a Sudden Victory 
+Action, especially when they go last in a round. A sudden RC 
+Sudden Victory usually relies on distracting the other factions; 
+the RC works best from the shadows.
+Unlike the KPD and NSDAP , however, the RC usually scores well 
+in Elections and are best positioned to threaten the Coalition 
+with an upset General Election victory. Even if that fails, they 
+are likely to hold the Reichstag Seats card, which can be used 
+to grab the Momentum for a PV bonus heading into an Election 
+or to set the Turn Order for the next round. And if the NSDAP 
+positions itself for a strong General Election showing, the RC 
+can steal their victory by transferring their PV to the NSDAP 
+(if they have enough PV themselves).
+12.0  Designer’s Notes
+One of the major strengths of historical board games is that they 
+let players experience the joy of playing history and creating 
+counterfactual situations based on historically accurate prem-
+ises. Through exploration of the kinds of “what if?” scenarios 
+that readers of history delight in, and by allowing for different 
+versions and variants of these scenarios during each play ses-
+sion, historical board games offer a way of understanding and 
+reflecting on history that is both interactive and entertaining.
+Few historical events have been as thoroughly explored by the 
+boardgame medium as the two World Wars. This is not very 
+surprising, given that no other historical events have left such a 
+profound mark on current human civilization as these abysmal 
+catastrophes. But neither WWI nor WWII came out of nowhere. 
+They were the results of highly specific and complex circum -
+stances, and just as WWI resulted from a geopolitical situation 
+and an ideological outlook firmly rooted in the 19th century, 
+WWII erupted from the ashes of the 1920s and 1930s. Without 
+the Great War and its devastating effect on Germany, the Second 
+World War would never have been unleashed.
+To understand why the German Reich went from a vanquished 
+and broken country, torn asunder by war and poverty, to a total-
+itarian aggressor in just 20 years, one may certainly benefit from 
+a closer look at the brief period of interbellum democracy that 
+is often called the Weimar Republic. Born from the November 
+revolution of 1918, when the country abolished the monarchy, 
+signed the Versailles peace treaty, and almost plunged into civil 
+war, the Republic was a radical experiment in liberal ideals and 
+progressive reforms that never managed to fulfill its promises.
+This was in large part due to extreme fragmentation and lack 
+of national unity that plagued the country in the aftermath of 
+the Great War. Germany in the 1920s and 1930s was a hornets’ 
+nest of ideological strife and political violence, made worse by 
+severe economic crises and the ever-present memory of the 
+nation’s humiliation in the Great War. Not only had Germany lost 
+millions of citizens in a conflict that turned out to be pointless, 
+the survivors were also often brutalized and severely wounded, 
+both physically and psychologically.
+They came back to a country changed almost beyond recognition 
+by the poverty, social unrest, and hopelessness resulting from four 
+years of war. It was very difficult for the proponents of democracy 
+to create a functioning society out of the old monarchy’s rotting 
+corpse, and in the end the Republic was unable to withstand 
+the onslaught of totalitarianism. The attacks came from many 
+directions, but eventually found their most powerful form in 
+Adolf Hitler’s National Socialist movement.
+In hindsight, it may seem obvious that liberal democracy was 
+bound to fail. The Republic had an incredibly rough start, a 
+
+=== PAGE 33 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+33
+perpetually weak political and economic foundation, and a great 
+many extremely dedicated enemies. Actually, given the odds, 
+it’s surprising that democracy prevailed for as long as it did. 
+But even if one believes that the Weimar Republic was doomed 
+from the start, the manner of its demise and the nature of its 
+successor could hardly have been perceived in its conception. 
+In 1919, the embryo of the NSDAP was hidden deep within 
+the heterogenous far right, while Hitler was an obscure figure 
+known to few outside Bavaria’s ultra-radical nationalist circles. 
+Reactionary militarist forces, armed Bolsheviks, and a broken 
+economy presented much more acute threats to the Republic 
+during its fledgling years than National Socialism.
+What if things had taken another turn some time during the 20s? 
+What if the KPD, the Soviet-backed German Communist Party, 
+had obtained parliamentary control in key states, or launched a 
+successful revolution? What if the radical Right had managed to 
+gain broad popular support before Hitler outmaneuvred the old 
+reactionary elites and used them for his own purposes? What if 
+the democratic Coalition had managed to stay together, unite 
+the German people, and deliver the progressive, democratic 
+welfare state that was promised from the outset?
+These questions are not only historical in nature. Hitler’s seizure 
+of power in 1933 had enormous consequences for Germany, 
+Europe, and the entire world that still echo today. What would 
+our present situation be like if he had failed in his political aspi-
+rations, or if his ascension to power had come earlier? While The 
+Weimar Republic cannot provide any definitive answers to these 
+questions, it can at least pose them in a concrete and tangible 
+manner. It offers players an opportunity to reflect on the nature 
+of political change and hopefully to have some fun while at it.
+The importance of human agency, or why would 
+anyone want to play as Hitler?
+While The Weimar Republic is not primarily intended to be a 
+history lesson, it does allow players to explore a difficult and 
+complex period in European history, a period whose importance 
+becomes even more apparent when one ponders both its actual 
+and its potential outcomes. The most disturbing aspect of this 
+period is obviously the rise of Hitler, which is represented in the 
+game by the NSDAP faction.
+To most people today, the National Socialist movement has 
+come to represent the very epitome of evil. “The Nazis” are the 
+stereotypical go-to bad guys of history, and with the privilege 
+of hindsight it may seem strange that so many people once 
+chose to support their rise to power. With this in mind, taking 
+on the role of Adolf Hitler, actively trying to replace democracy 
+with a totalitarian dictatorship, could well be an uncomfortable 
+experience for many. Why would anyone want to do that in a 
+board game?
+The whole topic of The Weimar Republic can indeed be consid-
+ered controversial in this sense; why use a board game for such a 
+horrific subject as the fall of democracy and the rise of fascism?
+If you take the viewpoint that evil acts are exclusively committed 
+by evil people, these questions are hard to answer. But evil acts 
+are committed by all sorts of people. The National Socialists, 
+just like everyone who supported them, were indeed people. 
+Most of them were ordinary people with the same concerns 
+that ordinary people have had throughout history: they desired 
+security, prosperity, and dignity for themselves, their families, 
+and their country. All this the NSDAP promised to restore to 
+them, at a desperate time, when liberal democracy had failed 
+to deliver and options were becoming scarce. Even though both 
+racist and antisemitic sentiments were prolific in Germany long 
+before the NSDAP took over (sentiments that both Hitler and 
+others exploited to the best of their ability), few ordinary Ger-
+mans dreamed of another World War and genocide as they cast 
+their votes for the National Socialists in the early 1930s. Rather, 
+they wanted radical change and were out of credible alternatives.
+This was not the first time, and certainly not the last, that ordinary 
+people flocked to a movement that appealed to their basic desires 
+through the use of strong imagery and powerful rhetoric. In an 
+age of mass media, mass meetings, and mass culture, the mass 
+ideology of fascism—especially in the hands of a gifted dema-
+gogue like Hitler—was well-suited to the task. To understand 
+why, one has to contemplate the historical context in which he 
+rose to power. Ironically, the privilege of hindsight can some-
+times work to our disadvantage when attempting to do just that.
+While the spectre of totalitarianism is still present today, to most 
+people living in the 21st century, the appeal of 1930s fascism 
+is very small indeed. But to someone who just experienced the 
+humiliating cataclysm of the Great War and, in its wake, abys-
+mal poverty and starvation, socialist revolutions, and political 
+violence bordering on civil war, combined with severe inflation 
+followed by depression and mass unemployment, National 
+Socialism’s promises of restored order and national unity would 
+perhaps not appear too repugnant, especially as its worst crimes 
+had yet to be committed.
+If we reduce historical events to simply a question of good versus 
+evil, to a scene where heroes fight monsters, we tend to miss 
+one crucial aspect of all history: human agency. If we refuse to 
+recognize that the Nazis and their supporters were humans very 
+much like ourselves, albeit living under very different circum-
+stances and confronting very different problems, we will not 
+be well-equipped to understand why they did what they did, 
+nor how they managed to do it. We will also be more prone to 
+repeat history’s many mistakes and, in the long run, its most 
+hideous crimes.
+
+=== PAGE 34 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+34
+Board games are all about human agency. In a political board 
+game centered on winning the “hearts and minds” of the people, 
+removing human agency from one of the main factions would 
+render the narrative incomplete, even when the theme is as 
+serious as that of The Weimar Republic. Confronting the fact 
+that totalitarianism is driven not by abstract and impersonal 
+mechanisms, but by human emotions and desires, could well 
+be the toughest part of playing a game of “what ifs” . But history 
+is full of difficult and disturbing subjects. Do we treat them best 
+by shying away, or by confronting them with open eyes?
+13.0  Event Card Notes
+THE CRISIS ERA
+1. Demagoguery
+Hitler’s skill as an orator was 
+instrumental in bringing the 
+minuscule Deutsche Arbeiter -
+partei (“German Workers’ Party”) 
+out of obscurity. Fiery speeches 
+delivered at the Hofbräuhaus Beer 
+Hall in München drew the public’s attention and 
+served to boost the ranks of this ultra-radical 
+fringe party, which would soon change its name to Nationalso-
+zialistische Deutsche Arbeiterpartei—the NSDAP or Nazi Party.
+2. Braun Coalition
+Under Otto Braun’s Social Democratic leadership, Prussia became 
+one of Germany’s strongest democratic bastions, characterized by 
+major progressive reforms and staunch support for the Republic 
+among civil servants.
+3. Rathenau Murder
+The main force behind the Treaty of Rapallo, Jewish statesman 
+and businessman Walther Rathenau was murdered by members 
+of the right-wing death squad Organisation Consul in June 1922. 
+The murder outraged the public and fueled pro-republican 
+sentiments throughout the country.
+4. Friedrich Ebert
+As the first President of the Republic, Ebert shunned no means 
+in his efforts to maintain order and stall extremist movements, 
+especially those of the Left. His siding with conservative elements 
+against Communist uprisings made him a controversial figure, 
+not least within his own Social Democratic Party.
+5. Kapp Putsch
+In March 1920, rebel Reichswehr and rogue Freikorps forced the 
+democratic government to flee Berlin. Their aim was to over -
+throw the Republic and establish authoritarian rule, with civil 
+servant Wolfgang Kapp as head of state. However, since most of 
+Germany’s public sector refused to back the Putsch, and since 
+a general strike quickly broke out in support of the democratic 
+government, the coup attempt rapidly failed.
+6. Bayerische Räterepublik
+In the aftermath of the 1918 November Revolution, several 
+radical räte (“council” or “soviet”) movements took to arms in 
+efforts to establish Soviet-style Council Republics in Germany. 
+The short-lived Bavarian Soviet Republic was proclaimed in 
+April 1919 and supported by the Russian Bolsheviks, but failed 
+to sustain its initial momentum and was overthrown by the 
+government within a month.
+
+=== PAGE 35 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+35
+7. Ruhrbesetzung
+Germany’s inability to pay the enormous war reparations 
+demanded by the Treaty of Versailles eventually caused France 
+and Belgium to occupy the Ruhr, the country’s industrial heart-
+land and a strategically vital area, in January 1923. The gov -
+ernment called for passive resistance, which led to strikes and 
+public protests. When the occupation ended in 1925, 130 German 
+civilians had been killed.
+8. Ruhraufstand
+In the Ruhr, protests against the Kapp Putsch of 1920 escalated 
+into full-scale rebellion, with tens of thousands of workers tak-
+ing up arms and forming a makeshift “Red Ruhr Army. ” After 
+a brief occupation of Dortmund and several clashes with both 
+the Reichswehr and Freikorps, the uprising was brutally crushed 
+and followed by summary trials and mass executions.
+9. Erzberger Murder
+As the representative who signed the Armistice of 11 November 
+1918, Catholic center politician Matthias Erzberger had been a 
+target of right-wing hatred ever since the Great War ended. He 
+was murdered by members of the infamous death squad Organ-
+isation Consul in August 1921, causing massive public outrage.
+10. Freikorps Demobilization
+As the violent upheavals of 1919 and 1920 slowed to a trickle, and 
+all major Communist uprisings had been effectively crushed, the 
+unpredictable and unreliable Freikorps militia were becoming a 
+liability for both the Government and the regular army. Under 
+international pressure to deal with the issue, the government 
+withdrew funding and took measures to disarm the paramili-
+taries, many of whom eventually joined the SA, Der Stahlhelm, 
+or other right-wing groups.
+11. Aufstände in Oberschlesien
+Between 1919 and 1921, Polish nationalists in Upper Silesia 
+instigated a series of uprisings, demanding that the region be 
+transferred to the newly founded Polish Republic. The conflicts 
+ended in a ceasefire, with Germany ceding almost a third of 
+Upper Silesia to Poland.
+12. Polnischer Korridor
+After the huge losses of German territory following WWI, East 
+Prussia became a German enclave separated from the rest of 
+the Reich by the “Polish Corridor” , a term commonly used in 
+nationalist propaganda to stress how the unjust peace terms 
+had fractured Germany.
+13. Triumvirate
+Politicians Gustav Ritter von Kahr, chief of police Hans Ritter von 
+Seisser, and Reichswehr General Otto von Lossow gave ample 
+and explicit support to various right-wing groups in Bavaria, 
+effectively turning the state into a so-called Ordnungszelle (“Cell 
+of Order”).
+14. Hugo Stinnes
+Industrialist and conservative politician Hugo Stinnes, one of 
+the wealthiest men in Germany and the owner of many major 
+newspapers, used the galloping inflation of postwar Germany to 
+his advantage by borrowing vast sums of money and repaying 
+the loans later when inflation had made the Reichsmark nearly 
+worthless. This earned him the popular nickname Inflationskönig 
+(“Inflation King”).
+15. Dolchstoßlegende
+After Germany’s humiliating WWI defeat, a popular notion 
+arose that the German army had in fact lost because it had been 
+“stabbed in the back” by a conspiracy of Jews, Communists, and 
+democrats all coming together in the November Revolution to 
+create the democratic Republic. This notion gained considerable 
+traction during the early 1920s and fueled radical right-wing 
+propaganda.
+16. Bloodhound Doctrine
+As the Republic’s first Minister of Defense, SPD’s Gustav Noske 
+took it upon himself to be the party’s bloodhound against left-
+wing uprisings in the aftermath of the 1918 Revolution. On many 
+occasions, he used considerable force (in the form of Freikorps) 
+against Communist revolts, which alienated large segments of 
+the labor movement from the SPD.
+17. Treaty of Rapallo
+Signed in April 1922, the Treaty of Rapallo normalized Ger -
+man-Soviet relations and paved the way for future cooperation 
+between the states. The treaty infuriated the Western Allies, 
+who feared that Germany would now turn away from fulfilling 
+its Versailles Treaty obligations and also possibly be provided 
+with secret Soviet military aid (which was already happening 
+at this point).
+
+=== PAGE 36 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+36
+18. München Putsch
+Perhaps the most famous of the right-wing putsch attempts in the 
+1920s, Hitler’s “Beer Hall Putsch” of 1923 was a futile attempt at 
+a coup d'état, but it immediately made him a public figure, both 
+in Germany and abroad. The following trial, broadly covered 
+by most national newspapers, gave him ample opportunity to 
+spread his political message to a larger audience.
+19. Mein Kampf Published
+During his incarceration in Landsberg Prison following the 
+München Putsch, Hitler reevaluated his political strategy and 
+concluded that the most effective way of gaining power was not by 
+violent struggle but by legal means and propaganda. He devoted 
+most of his time in prison to his combined autobiography and 
+manifesto, published in July 1925 as Mein Kampf (“My Struggle”).
+20. Militarism
+Colonel-General Hans von Seeckt, commander in chief of the 
+Reichswehr, was committed to maintaining Germany’s milita-
+ristic traditions and keeping the remnants of the army, though 
+limited to 100,000 men by the Treaty of Versailles, up to high 
+standards. However, his loyalty to the Republic and its democratic 
+system was virtually non-existent: he routinely disobeyed orders 
+and strived to make the Reichswehr a politically independent 
+force, a “state within the state. ”
+21. Völkischer Beobachter
+Founded in 1920, the NSDAP’s newspaper saw a major increase 
+in circulation in 1923, at which time it also began to appear 
+daily. Völkischer Beobachter (“Völkisch Observer”) became an 
+important instrument for National Socialist propaganda during 
+the following decade.
+22. 48-Hour Week
+Reducing working hours was one of several major reforms carried 
+out by the government during the early days of the Republic. 
+Like most of the reforms devised by the Social Democrats, it was 
+highly unpopular among employers and industrialists.
+23. Organisation Consul
+Created by members of the Marinebrigade Ehrhardt Freikorps, 
+Organisation Consul was an ultra-nationalist and anti-demo -
+cratic terror group responsible for over 300 murders between 
+1919 and 1921. Like most Freikorps, it recruited mainly from 
+the ranks of war veterans, most of whom had been brutalized 
+by their wartime experiences and were no strangers to extreme 
+forms of violence.
+24. Feme Murders
+The murder squads of the far Right, targeting alleged spies and 
+enemies of the Reich, were inspired by the medieval vigilante 
+practice of Femegerichte (or “Feme”), in which the accused 
+were tried and executed in short order. Their organized terror 
+ran rampant in the early 1920s, mostly without consequences 
+for the responsible parties.
+25. London Payment Plan
+While the so-called “London Ultimatum” of 1921 had reduced 
+Germany’s war reparations by half, it also settled the war debt 
+issue (albeit temporarily, as time would prove) and forced the 
+German economy into crisis mode. In retrospect, the reparations 
+proved to be less of a burden than the perceived humiliation 
+that came to dominate the political landscape of the Republic 
+during its short lifespan.
+26. USPD Party Splits
+Originally a splinter faction of the Social Democratic Party, the 
+USPD—Unabhängige Sozialdemokratische Partei Deutsch -
+lands—advocated a more radical socialist policy than the SPD 
+and thus competed with the KPD for revolutionary elements 
+among the working classes. Its limited parliamentary success 
+eventually led to its own fracture, with most of its membership 
+going to either the SPD or the KPD.
+27. Berlin Riots
+The streets of the capital witnessed severe street violence on 
+numerous occasions throughout the early 1920s. With huge 
+neighborhoods totally dominated by Communists and others 
+controlled by Freikorps and other militant groups, the city was 
+a battleground, both ideologically and physically.
+28. Cuno Strikes
+In January 1923, a wildcat strike in Berlin rapidly spread to 
+other regions and eventually resulted in three and a half million 
+workers refusing to work. The situation escalated into a national 
+crisis and several leading figures in the Soviet Union called for a 
+German Revolution. However, the KPD leadership did not deem 
+the time ripe and the strikes fizzled out after the resignation of 
+Chancellor Wilhelm Cuno and his government.
+29. Reich Youth Welfare Act
+In an attempt to alleviate some of the worst effects of postwar 
+child poverty, the Government passed an “act for child protec-
+tion” in 1922.
+
+=== PAGE 37 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+37
+30. Erfüllungspolitik
+Weimar politicians advocated various strategies to lessen or 
+avoid the burden of the Versailles Treaty and the extreme war 
+reparations that it imposed on Germany. Universally hated by 
+the Right, the proponents of the “policy of fulfillment” argued 
+that the best way was to comply with the Treaty and gain the 
+Allies’ favor through a spirit of compromise.
+31. NSDAP Banned
+Following the failed Beer Hall Putsch, the NSDAP was for -
+mally banned in November 1923. The organization continued 
+operations under the name Deutsche Partei (“German Party”) 
+between 1924 and 1925, during which a considerable number of 
+supporters, particularly in the North, shifted towards the newly 
+founded Deutschvölkische Freiheitspartei (“German Völkisch 
+Freedom Party”).
+32. White Terror
+In the bloody aftermath of the Bavarian Soviet Republic’s demise, 
+many Communists and alleged Communists—including the 
+leaders of the short-lived rebellion—were arrested, summarily 
+tried, and executed by Freikorps and other militia.
+33. Oswald Spengler
+Conservative writer and historian Oswald Spengler became 
+famous when his 1918 book Der Untergang des Abendlandes (“The 
+Decline of the West”) became a bestseller. Spengler’s outlook 
+was authoritarian and nationalistic, but he distanced himself 
+from the National Socialist movement, advocating a “German 
+Socialism” partly inspired by Italian Fascism.
+34. Fürstenenteignung
+Attempts from the Left, particularly the KPD, to expropriate the 
+property of noble houses became a drawn out issue in Weimar 
+Germany. Culminating in 1926 with a referendum that failed to 
+garner enough support for expropriation, the question of noble 
+families’ property came to be yet another symbolic dividing line 
+in the public consciousness.
+35. Reichskunstwart
+The position of “Imperial Art Guardian” , given to Edwin Redslob 
+in 1920, was intended to safeguard the official aesthetics of the 
+Republic and promote its democratic ideals through currency, 
+stamps, and government architecture.
+36. Saalschlacht
+In November 1921, an NSDAP rally in München was attacked by 
+Communists. A small band of SA members violently dispersed 
+the opposition, after which the event went down in SA legend 
+as a defining moment in the movement’s history and boosted 
+its ranks during this early period.
+37. Schwarze Reichswehr
+Circumventing the prohibitions imposed by the Versailles 
+Treaty, prominent Reichswehr officers—supported by top 
+politicians—secretly armed and trained illegal paramilitary 
+formations whose loyalty rested firmly with the conservative 
+elements within the military. The soldiers were mainly drawn 
+from the Freikorps ranks but also from the SA, Der Stahlhelm, 
+and other militant organizations.
+38. Küstrin Putsch
+Led by Bruno Ernst Buchrucker, members of the Schwarze 
+Reichswehr tried to seize the garrison city of Küstrin in Octo-
+ber 1926. Their aim was to march on Berlin and overthrow 
+Chancellor Gustav Stresemann’s government, but the putsch 
+was averted by loyal Reichswehr units after only a few days.
+39. Artamanen Gesellschaft
+Formed in 1923, the Artaman League pushed an agrarian “Blut 
+und Boden” ideology that encouraged Germans to settle in 
+the east to expand the Lebensraum of the German people, in 
+opposition to the Slavs. The League’s strong nationalism and 
+antisemitic sentiments eventually led to its absorption by the 
+National Socialist movement.
+40. Hamburger Aufstand
+In October 1923, militant Communists from the KPD faction 
+KP Wasserkante in Hamburg took to arms, storming police 
+stations and killing police officers. The rebellion was rapidly 
+quenched, leaving about 100 people dead and several hundred 
+wounded.
+41. Thule-Gesellschaft
+Based in München and mainly interested in the study of race 
+and Germanic history, the occultist Thule Society attracted 
+many leading radical nationalists, as well as intellectuals and 
+artists. It had close ties to the Deutsche Arbeiterpartei (the 
+forerunner of the NSDAP) and its leader, Anton Drexler.
+42. Expressionism
+The Expressionist movement, begun as an avant-garde phe-
+nomenon in Germany before the war, encompassed painting, 
+film, literature, and theater. Its main focus was subjective 
+perception, rather than an objective portrayal of reality and 
+as such, the movement may be described as a precursor to 
+many of the modern art movements of the early 20th century.
+
+=== PAGE 38 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+38
+43. Alldeutscher Verband
+Founded in 1891, the “Pan-German League” became an import-
+ant ideological factor during the Great War. In the 1920s, the 
+League evolved into an increasingly racist and antisemitic orga-
+nization, claiming that German racial superiority warranted the 
+expulsion of Slavs from Germany and the re-annexation of the 
+lost territories of the “Polish Corridor” .
+44. Rationalization
+During the early 20th century, new technology and a deeper 
+theoretical understanding of logistics and organization led 
+to radically increased production as enormous factories with 
+thousands of employees became the norm. In many cases, this 
+also led to poor working conditions and a strictly economistic 
+view of human resources.
+45. Veterans
+The Great War had severely damaged an entire generation of 
+German men, and not only physically. Y oung men fortunate 
+enough to survive the war unhurt were nonetheless brutalized 
+and scarred mentally by their experiences. Many of them found 
+no purpose in the new Republic, instead joining militant groups 
+where their frontline background and capacity for violence were 
+appreciated and quickly put to use.
+46. Corporatism
+In their continuous efforts to decrease class antagonism and 
+lessen the impact of Communist propaganda, Coalition politi-
+cians generally advocated an economic policy based on coop-
+eration between the big labor unions and business owners, a 
+strategy that proved to be mostly a fair-weather solution.
+47. Party Politics
+The Weimar Republic’s Reichstag was a dynamic and chaotic 
+arena of competing parties, factions, and unholy alliances. While 
+this was perhaps an inevitable consequence of introducing par-
+liamentary democracy in a traditionally authoritarian society, 
+it was also detrimental to political stability and predictability, 
+and often led to locked positions, delayed promises, and fruitless 
+compromises.
+48. Crackdown
+On numerous occasions, the Government tried to hamstring 
+extremist groups through legislation and police crackdowns. 
+While both Communist and NSDAP street militants were tar-
+geted, the legal system was generally more lenient towards 
+“traditional” right-wing individuals and militias, even when 
+they were engaged in organized violent activities.
+49. Class Traitors
+As the 1920s progressed, it became apparent that the extreme 
+Left and the extreme Right often competed for the same target 
+audience: the disenfranchised working class who had lost hope 
+both in the Republic’s promises and the traditionalist, monarchist 
+rhetoric of the old elites.
+50. Turncoats
+Even though most members of the various political movements 
+during the Weimar era were strongly committed to their cause, 
+it was not uncommon for activists, street fighters, and sympa-
+thizers to change their allegiances—sometimes more than once.
+51. Intellectuals
+The growing importance of science and technology, as well as 
+the traditional German Bildungsideal, meant that intellectuals 
+and academics generally enjoyed a high status in society and 
+often kept at the forefront of public discourse. In the big cities, 
+and in Berlin in particular, intellectual and artistic life—often 
+overlapping with political life—was extremely busy during most 
+of the 1920s and the early 1930s.
+52. Mass Media
+The 1920s and 1930s witnessed a virtual explosion of new media 
+outlets, with radio and cinema becoming readily available to 
+huge new audiences and a plethora of newspapers and magazines 
+competing for attention. In this rapidly expanding landscape of 
+communication, getting your message across was as important 
+as it was challenging.
+THE GOLDEN 
+TWENTIES ERA
+53. Rentenmark
+When hyperinflation reached its 
+peak in 1923 (with one U.S. dollar 
+being worth 4,200,000,000 German 
+marks), serious efforts were made to 
+stabilize the economy. The introduction of a 
+new currency in November 1923 marked the 
+end of inflation once and for all.
+54. Gustav Stresemann
+Perhaps no other politician had greater influence on Weimar 
+parliamentary politics than liberal statesman Gustav Stresemann. 
+Acting first as Chancellor and then as Foreign Minister, Strese-
+mann stabilized the economy, negotiated several key treaties, 
+and normalized Germany’s relations with France, for which he 
+received the Nobel Peace Prize in 1926. His untimely death in 
+1929 left a political vacuum that accelerated the decline of the 
+Weimar Republic.
+
+=== PAGE 39 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+39
+55. Schutzstaffel
+As leader of the Schutzstaffel (“Protection Squadron”), Hein -
+rich Himmler developed what had originally served as a small 
+bodyguard unit for NSDAP leaders into a deadly paramilitary 
+organization. After the NSDAP power seizure in 1933, the SS 
+replaced the SA as the Party’s armed force, and eventually came 
+to play a key part in the Nazi regime’s genocidal policies.
+56. Strasserism
+The brothers Gregor and Otto Strasser were leading figures on 
+the NSDAP’s left wing, advocating a worker-oriented, anti-cap-
+italist form of National Socialism. Gregor Strasser displayed 
+an exceptional organizational talent and became an important 
+asset for the party, and at the same time a serious rival to Hitler.
+57. Paul von Hindenburg
+A hero of the Great War and perhaps the most important national 
+icon of interwar Germany, Generalfeldmarschall Paul von Hin-
+denburg received almost religious reverence from broad segments 
+of society. Elected President of the Republic for the first time in 
+1925, he was ever a strong proponent of military and conservative 
+ideals, although he despised the vulgar populism of the NSDAP 
+and its leader, “that Austrian corporal. ”
+58. Brownshirts
+By the end of the 1920s, the Sturmabteilung was one of the 
+largest paramilitary organizations in Germany, with hundreds 
+of thousands of members. Adopting military organizational 
+structures and a strong focus on aesthetics and identity, the 
+SA attracted many former members of the Freikorps and other 
+militant nationalist groups.
+59. Stalinism
+As the leader of the KPD from 1925 and onwards, Ernst Thäl-
+mann secured the party’s loyalty to—and dependence on—the 
+Soviet Union and its increasingly Stalinist doctrines. He directed 
+his main antagonism towards the SPD (whom he dubbed “social 
+fascists”) and even cooperated with the NSDAP in their attempt 
+to bring down the Social Democrats in Prussia.
+60. Racial Theory
+The founder of the Kampfbund für deutsche Kultur (“Militant 
+League of German Culture”) and the author on several works 
+outlining the “Jewish Question, ” Alfred Rosenberg formulated 
+much of the NSDAP’s racial and antisemitic ideology, which 
+built upon and expanded ideas that had been present in Europe 
+for decades.
+61. Barmat Scandal
+In late 1924, Russian Jewish merchant Julius Barmat, who had 
+engaged in several war profiteering ventures during the Great 
+War and then started an investment company in Germany, was 
+revealed to have close connections to several top members of 
+the SPD. The notion of Jewish influence over the government’s 
+policies fueled the already strong antisemitic sentiments within 
+the Right, who used the scandal to its advantage.
+62. Roter Frontkämpferbund
+The forming of the RFB (“ Alliance of Red Front-Fighters”) in 1924 
+was a response to the banning of the Proletarian Hundreds, the 
+KPD’s paramilitary wing. The RFB grew rapidly and engaged in 
+an increasing number of violent confrontations with political 
+opponents during the late 1920s.
+63. Blutmai
+The 1929 May Day demonstrations in Berlin escalated into 
+full-scale rioting, and police responded with brutal violence. 
+After three days of confrontations, 33 people were dead and 
+over a thousand detained. The event severely and permanently 
+damaged SPD-KPD relations.
+64. Die Weltbühne
+Originally founded in 1905 as a theater magazine, Die Weltbühne 
+(“The World Stage”) was one of the major organs for socialist 
+intellectual discourse during the Weimar period. A plethora 
+of contributors wrote for the magazine, which had a staunch 
+anti-militaristic viewpoint and also came to argue fiercely against 
+National Socialism in the late 1920s.
+65. Overseas Loans
+Substantial loans provided by the United States made it possible 
+for the German government to solve several of its economic 
+problems, at least temporarily. But this connection also made 
+the country extremely vulnerable to any fluctuations in the U.S. 
+economy.
+66. Jazz Culture
+American culture, with jazz music and dancing at the forefront, 
+was extremely fashionable during the German 1920s. Adored 
+by the young and trendy, and abhorred by conservatives and 
+the older generations, “ Americanization” was a divisive and 
+ever-present phenomenon during the entire decade.
+67. School Reforms
+The mid and late 1920s saw a number of reforms to the German 
+public school system, with the aim of providing children from 
+all segments of society with at least a basic education.
+
+=== PAGE 40 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+40
+68. Urban Crime
+While urbanization led to an explosion of modern culture, it 
+also fueled glaring social problems in the big cities, where crime, 
+prostitution, and drug abuse skyrocketed in the aftermath of 
+the economic crisis.
+69. Dawes Plan
+Penned by American banker and diplomat Charles G. Dawes, the 
+Dawes Plan of 1924 considerably eased the burden of German 
+war reparations through U.S. loans and proposed means for 
+restructuring and stabilizing the German economy. It also called 
+for the evacuation of French and Belgian troops from the Ruhr.
+70. Locarno Treaties
+The Locarno Treaties of 1925 were a set of agreements between 
+the Allied powers and the new states of Central and Eastern 
+Europe, securing post-war border settlements and normalizing 
+relations between former belligerents. The treaties also postulated 
+that Germany was never to take up arms again.
+71. League of Nations
+Although Germany had been excluded from the League of 
+Nations since the organization’s inception in 1920, a series of 
+deals and compromises—mostly engineered by Foreign Minister 
+Stresemann—finally led to German membership in September 
+1926.
+72. Ernst Jünger
+Decorated war hero Ernst Jünger was one of Germany’s most 
+distinguished and controversial authors and a prominent figure 
+in the intellectual circles of the radical Right during the 1920s 
+and 30s. A harsh critic of liberalism and democracy, he always 
+made a point of going his own way and actively distanced himself 
+from the NSDAP .
+73. Carl Schmitt
+A prominent jurist and political theorist, Carl Schmitt was part 
+of the radical conservative camp until he joined the NSDAP in 
+1933. His theories on power and authority remain influential 
+to this day.
+74. Bertolt Brecht
+The Threepenny Opera, written in collaboration with Kurt Weill, 
+brought Marxist playwright and poet Bertolt Brecht to inter -
+national fame. He remained a key figure in Weimar left-wing 
+cultural life until his exile in 1933.
+75. Berlin-Tempelhof
+The Tempelhof International Airport, built in 1923, was one of 
+Europe’s biggest and most modern airports at the time and an 
+important prestige project for the German government.
+76. Siedlungen der Moderne
+As part of the government’s drive to modernize Berlin, several 
+ultra-modern apartment blocks designed by avant garde archi-
+tects were built during the 1920s.
+77. Frankfurt School
+Founded in 1923 in Frankfurt am Main, the Institut für Sozial-
+forschung (“Institute for Social Research”) expanded Marxist 
+theory to the social and cultural fields. Several of its key thinkers 
+—among them Max Horkheimer, Theodor Adorno, and Herbert 
+Marcuse—remain hugely influential to this day.
+78. Housing Reforms
+The construction of modern tenement buildings for the working 
+classes was a vital part of the government’s ambition to mod-
+ernize German cities and remedy the increasing problems of 
+overcrowding and slums.
+79. Bauhaus
+Modernist architect Walter Gropius founded the Bauhaus art 
+school in 1919, but the school’s influence became most notable 
+during the mid 1920s. With its sleek, functionalistic aesthetics 
+and focus on industrial, mass-market techniques, Bauhaus came 
+to define the very essence of modernity.
+80. Young Plan
+By 1929, it had become apparent that Germany was neither will-
+ing nor able to repay the war reparations demanded by the Treaty 
+of Versailles, even after they had been subsequently reduced by 
+the Dawes Plan of 1924. The Y oung Plan reduced payments by 
+a further 20%, but between its agreement and its adoption, the 
+1929 Wall Street crash made its implementation impossible.
+81. Hindenburg Amnesties
+After Hindenburg was elected President in 1925, around 29,000 
+political prisoners, most of whom had been interned during the 
+1918–1919 crisis, were released. The amnesties benefited the 
+entire political spectrum, from NSDAP to KPD.
+82. Referendum
+The 1929 attempt by a number of right-wing organizations to 
+introduce a law “against the enslavement of the German people” 
+—effectively a suspension of the Versailles Treaty—met with 
+overwhelming support: 94% of those who voted in the refer -
+endum. However, since the turnout was only 15%, the attempt 
+ultimately failed.
+83. RFB Banned
+Following the exceptionally violent confrontations between 
+police and Communist militants on May Day 1929, the RFB was 
+banned and its assets confiscated. At the time, the organization 
+had almost 130,000 members.
+
+=== PAGE 41 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+41
+84. Der Stahlhelm
+Founded in 1918, Der Stahlhelm, Bund der Frontsoldaten (“The 
+Steel Helmet, League of Front-line Soldiers”) came to grow 
+into the largest paramilitary organization in Germany, with 
+1,500,000 members in 1933. It had close ties to the DNVP and 
+the so-called Black Reichswehr, but was fused into the SA after 
+Hitler’s power seizure.
+85. Reichsbanner
+As a response to increasing extremist violence, the paramilitary 
+Reichsbanner Schwarz-Rot-Gold (“Black-Red-Gold banner of the 
+Reich”) was founded by members from all parties of the Coalition 
+in 1924, but in reality came to function as SPD’s militant wing.
+86. DNVP Joins Government
+The Deutschnationale Volkspartei (“German National People’s 
+Party”) was the main nationalist and conservative party during 
+the 1920s. While starting out as an ultra-radical monarchist and 
+militarist organization, it gradually adopted a more pragmatic 
+line, even joining the government in 1926.
+87. Albert Einstein
+Einstein was awarded the 1921 Nobel Prize for Physics, which 
+cemented his position as one of the most influential scientists 
+of his generation. However, his Jewish background and explicit 
+socialist views made him controversial, not the least in his 
+country of birth.
+88. Konzerne
+While the German economy stabilized by the mid-1920s, the 
+tendency of big companies to fuse into market-dominating 
+cartels led to slow economic growth.
+89. Junker
+Originally a medieval term meaning “young lord” , the Junkers 
+of 19th and early 20th century Prussia were effectively the land-
+owning class, with or without noble status. With their close ties to 
+the military and the upper tiers of the public sector, the Junkers 
+had a strong influence on Weimar politics, especially in the east.
+90. Mittelstand
+When the crisis years of the early 1920s had passed, the middle 
+class began looking for political alternatives that could provide 
+security and a restoration of the old social order to which their 
+status and influence had been inextricably connected. Their 
+sympathies were originally democratic, albeit conservative, but as 
+the decade progressed and republican promises remained unful-
+filled, many of them were drawn towards National Socialism.
+91. New Woman
+During the consumerism boom of the mid to late 1920s, the 
+fashionable “New Woman”—the archetype of an independent 
+person who distanced herself from the feminine ideals of pre-
+vious generations—became an important symbolic figure. This 
+embodiment of urban, modern life was despised by Conservatives 
+and disliked by the Left, who saw it as a symbol of individualism 
+and decadent consumer culture.
+92. Urbanization
+While large parts of the country remained rural, the process of 
+urbanization was in full swing by the mid-1920s. People flocked 
+to the big cities, and especially to Berlin—to find work, but also 
+the entertainment and distractions that only urban life can 
+provide. The crowded, teeming city rapidly became the epitome 
+of modern mass culture.
+93. Neue Sachlichkeit
+“New Objectivity” emerged as a reaction to the Expressionist 
+ideals of the 1920s. A markedly modern movement, its propo-
+nents advocated a stronger focus on current events and on the 
+realm of Realpolitik, as opposed to the previous generation’s 
+subjective and emotionally tinged aesthetics.
+94. Pragmatism
+With his two terms in office (1923 to 1928), Centre Party poli-
+tician Wilhelm Marx was the longest-serving Chancellor of the 
+Weimar Republic. His policies were characterized by compromise 
+and moderation, generally attempting to bridge ideological 
+abysses created by extremist movements.
+95. Thomas Mann
+Prominent author Thomas Mann, who had been an ardent sup-
+porter of the German war effort during the Great War, stirred 
+controversy when his political views shifted towards a more 
+liberal perspective during the 1920s. He was strongly opposed 
+to National Socialism and went into exile in 1933.
+96. Mass Culture
+The interwar period ushered in a new era of mass-market prod-
+ucts and entertainment. The cinema became a pastime for mil-
+lions, new audio technology facilitated mass meetings on a 
+previously unknown scale, and factories started mass producing 
+a plethora of items that up until then had been both rare and 
+expensive.
+
+=== PAGE 42 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+42
+97. Ostjuden
+An influx of Jewish immigrants from Eastern Europe into Ger-
+many’s big cities was noted by many during the 1920s, and often 
+caused controversy. Berlin in particular saw the creation of 
+newly Jewish neighbourhoods, a transformation that was used 
+politically to fuel the already strong antisemitic sentiments in 
+German society.
+98. Lebensreform
+Originating in the late 19th century, the Lebensreform (“Life 
+Reform”) movement advocated a back-to-nature lifestyle in 
+which vegetarianism, nudism, and sexual liberation were key 
+ingredients. Several proponents of the movement emigrated to 
+the U.S. and laid the foundations of the later hippie movement, 
+while in Germany, Völkisch variants of Lebensreform gradually 
+fused with National Socialist ideals of a strong, healthy, and 
+physically fit German people.
+99. Entartete Kunst
+The view that modern art was deranged and decadent became 
+more prevalent as the 1920s progressed, with intellectuals like 
+Paul Schultze-Naumburg using the concept Entartete Kunst 
+(“Degenerate Art”) to advocate against all forms of culture that 
+they deemed non-German and corrupted by Jewish influence.
+100. U-Bahn
+Work on Berlin’s Untergrundbahn (“subway system”), which 
+first opened in 1902, was paused during the Great War, and then 
+stumbled along during the Republic’s first chaotic years. In 1923, 
+the first section of the North-South line was opened, followed by 
+extensions and additions during the rest of the decade. While 
+the project suffered from insufficient funds, it was a popular 
+addition to the city’s infrastructure.
+101. Babelsberg
+The film studio in Babelsberg was built outside Berlin in 1911 
+and saw a great many productions during the 1920s, including 
+Fritz Lang’s Metropolis and Josef von Sternberg’s The Blue Angel. 
+Cinema was one of the major forms of mass entertainment during 
+the period, making it an important arena for the exploration of 
+political and artistic ideals.
+102. Funkturm Berlin
+Constructed between 1924 and 1926, Berlin’s first broadcasting 
+tower rose 490 feet and was a distinctly modern addition to 
+the city’s skyline when it was erected. Radio was still a new 
+phenomenon at the time, but quickly became an important 
+part of daily life.
+103. Die Angestellten
+Rationalization and the increasing demand for administrative 
+work led to a rapidly expanding white collar sector during the 
+1920s, while at the same time the number of small businesses 
+exploded. As a result, Germany saw the birth of a new social 
+segment: the lower middle class, which had profound effects 
+on the labor market.
+104. Treaty of Berlin
+The German-Soviet Neutrality and Non-Aggression Pact of 
+1926, also known as the second Treaty of Berlin, built upon the 
+foundations of the Rapallo Treaty and guaranteed a neutral stance 
+between the two countries in the event of third-party aggression.
+105. Wirtschaftspartei
+Founded in 1920, Wirtschaftspartei des deutschen Mittelstandes 
+(“Economic Party of the German Middle Classes”) competed for 
+middle class votes with the conservative DNVP and the centrist 
+parties throughout the 1920s. Its popularity peaked in 1930, 
+after which its voter base was gradually absorbed by the NSDAP .
+106. Ernst Niekisch
+Originally a member of SPD and involved in the establishment 
+of the Bavarian Soviet Republic, politician Ernst Niekisch even-
+tually gravitated towards a more nationalistic and militaristic 
+outlook. He denounced the SPD’s pacifism and Hitler’s “catholic 
+spectacle” alike and became one of the leading German propo-
+nents of National Bolshevism, an amalgamation of totalitarian 
+Left-wing and Right-wing ideals.
+107. – 112.  See notes above for Event cards #47 – #52.
+The Decline Era
+113. Franz von Papen 
+Appointed
+Conservative nobleman and Gen-
+eral Staff officer Franz von Papen 
+served as Chancellor in a similar 
+vein as Heinrich Brüning: naïvely 
+hoping to use Hitler and the NSDAP for his 
+personal political aims and eventually paving 
+the way for the Republic’s demise.
+114. Von Schleicher Appointed
+General Kurt von Schleicher served as Minister of Defense under 
+Franz von Papen, but outmaneuvered and eventually succeeded 
+him, becoming the last Chancellor of the Weimar Republic. Like 
+von Papen, von Schleicher underestimated Hitler and hoped 
+to use the NSDAP to strengthen his own political position, a 
+misjudgment that led to the fall of the Republic and later to von 
+Schleicher’s murder during the Night of the Long Knives in 1934.
+
+=== PAGE 43 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+43
+115. Preußenschlag
+At the request of Chancellor Franz von Papen, President Hin-
+denburg invoked Article 48 to dissolve the legally elected Prus-
+sian government in July 1932. In its stead, von Papen ruled as 
+Reich Commissioner, together with his political rival Kurt von 
+Schleicher. The aim of the coup was to restore order to the Free 
+State of Prussia, which had seen increased street rioting under a 
+divided government. The move was also a first step to what von 
+Papen hoped would be a recentralization of the German Reich 
+and a return to monarchy.
+116. Mass Meetings
+Propaganda mastermind Joseph Goebbels became an important 
+asset for the NSDAP in his role as Gauleiter (District Leader) 
+of Berlin. His tactics of attracting attention through virulent 
+speeches, provocation, and instigation of violence proved very 
+efficient during the turbulent years of the early 1930s.
+117. Hitler Sworn In
+Adolf Hitler was appointed Reichskanzler (“Chancellor”) of 
+Germany by President Hindenburg on 30 January, 1933. The 
+event, often described as the Machtergreifung (“Power Seizure”), 
+was the result of extensive political maneuvering both by lead-
+ing conservatives and Hitler himself. While the former vainly 
+believed they could tame the National Socialist movement and 
+use it for their own ends, the latter began consolidating his power 
+almost immediately, rapidly dismantling the last remnants of 
+German democracy.
+118. Enabling Act
+After a fire scorched the Reichstag building in February 1933, 
+newly appointed Chancellor Hitler called for the Reichstag to 
+grant him emergency powers. The Ermächtigungsgesetz, or 
+Enabling Act, was passed on 23 March, 1933, and allowed the 
+Chancellor to bypass the Reichstag, the President, and the Con-
+stitution. While formally limited to four years, the Act effectively 
+spelled the definitive end of the Weimar Republic.
+119. Heinrich Brüning
+When Centre Party politician Heinrich Brüning was sworn in 
+as Chancellor in 1930, the Great Depression had just plunged 
+the country into the worst economic crisis since the Great War. 
+Brüning’s solution was a harsh policy of tight credit and lowered 
+wages, which made him extremely unpopular and lost him sup-
+port in the Reichstag. As a response, Brüning used presidential 
+emergency decrees to rule, effectively bypassing democracy and 
+undermining the legitimacy of the Republic.
+120. Osthilfe
+In 1926, the government decided to launch a program of financial 
+aid to bankrupted estates in the eastern provinces. Although a 
+risky enterprise due to the dire economic situation, the gov -
+ernment desperately needed the support of the eastern-landed 
+nobility, the Junkers.
+121. Gregor Strasser Resigns
+Strasser was a prominent NSDAP leader when he accepted the 
+role of Vice-Chancellor in December 1932, a position that Hitler 
+himself had been offered and declined earlier that year. After 
+Hitler became Chancellor in 1933, he forced his rival to resign all 
+political positions. Strasser, like several other prominent Nazis, 
+was later murdered during the Night of the Long Knives in 1934.
+122. Harzburg Front
+In an attempt to form a unified Right front against Heinrich 
+Brüning’s government, the NSDAP and the DNVP , as well as 
+several nationalist and conservative organizations, met in Bad 
+Harzburg in October 1931. However, as the two main factions 
+disagreed on fundamental issues, the front was effectively dead 
+on arrival and never accomplished any of its political aims.
+123. Creditanstalt Crash
+When Austrian bank Creditanstalt declared bankruptcy in May 
+1931, shockwaves of fear spread throughout Europe. Many saw 
+this as the first sign that financial collapse and severe economic 
+depression had crossed the Atlantic, which would indeed prove 
+to be the case.
+124. Hindenburg Runs Again
+Paul von Hindenburg reluctantly ran for a second term as Presi-
+dent in 1932. At the age of 84, he was still very much a symbol of 
+national unity and patriotism to the conservative right, but since 
+his main competitor for the office was Adolf Hitler, he was also 
+supported by left and center politicians. In the end, however, his 
+presidency would lead to Hitler’s power seizure and thus mark 
+the definitive end of the Weimar Republic.
+125. Stände
+The concept of Stände, fundamental social classes based on 
+landed rights, formed in medieval times and was prevalent in 
+German society well into the modern age. One consequence of 
+WWI and the Weimar years was that this concept was challenged 
+and oftentimes disrupted, with both economic and ideological 
+consequences, and the radicalization of the middle classes per-
+haps being the most disastrous consequence of the late Republic.
+
+=== PAGE 44 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+44
+126. Protestantism
+The Protestant faith, with its deep roots in north German society, 
+became an important part of the ideological landscape of the 
+interwar years. Ever a cornerstone of conservative identity, Prot-
+estantism was key to the reactionary opposition to the Republic. 
+During the late 20s and early 30s, German Protestantism was 
+divided by the growing spread of National Socialism as it strug-
+gled to balance the Nazis’ fundamentally pagan worldviews with 
+the need for popular support.
+127. Reichstagsbrand
+Dutch Communist Marinus van der Lubbe set fire to the Reichs-
+tag building on 27 February, 1933, providing the NSDAP the 
+excuse they needed to dismantle democracy’s last remnants in 
+Germany. Although no connection to German Communists could 
+be reliably established, Chancellor Hitler seized the opportunity 
+to target both the KPD and other Leftist organizations.
+128. Lausanne Conference
+In the wake of the Great Depression, representatives from France, 
+Great Britain, Belgium, and Italy met in Lausanne in June 1932. 
+At this conference, the creditor powers agreed to cancel all 
+German war reparation obligations.
+129. SA Reforms
+When Ernst Röhm, a long-time friend and ally of Hitler, accepted 
+Hitler’s offer to lead the SA in 1931, he brought radical reform 
+to the organization. Röhm was a controversial leader, not least 
+because he was a homosexual, but it was the SA ’s increasing 
+power and the resulting lack of Party control over the SA that 
+eventually led Hitler to remove his support for the organization, 
+whose membership had increased to over two million by 1933. 
+Röhm became a rival to Hitler and was murdered during the 
+Night of the Long Knives in 1934.
+130. Eiserne Front
+Originally founded as a response to the short-lived Harzburg 
+Front, the SPD sponsored the paramilitary organization Eiserne 
+Front (“Iron Front”) in 1931. It mainly targeted the NSDAP and 
+the KPD and had close ties to the Reichsbanner.
+131. Der Jugendliche
+The idealization of youth and the young played an important, 
+sometimes even mystical, role in the political landscape of the 
+Weimar Republic. Even though youth organizations had existed 
+since the 1800s, the interwar years saw membership swell in 
+groups that were increasingly political in nature, most notably 
+Hitler-Jugend, Bund deutscher Arbeiterjugend ("Hitler Y outh, 
+League of German Worker Y outh"), founded in 1926.
+132. Blut und Boden
+Romantic, nationalist notions of German racial identity grounded 
+in rural labor were popularized by right-wing ideologues in the 
+1920s and 1930s, most notably by prominent NSDAP leader 
+Richard Walther Darré, who stressed the importance of going 
+“back to the land” as well as German peasants’ crucial role in a 
+racially pure Reich.
+133. Großraum
+Heinrich Brüning’s chancellorship saw a radical shift in German 
+foreign policy towards aggressive self-assertion and the loosen-
+ing of international ties. While in part a result of the economic 
+crisis of the 1930s, this focus on reestablishing Germany as a 
+great European power within its own supranational space (or 
+Großraum) would only grow stronger as the decade progressed.
+134. Psychoanalysis
+The psychoanalytic movement, based on the works of Sigmund 
+Freud, had gained significant traction by the 1930s. The idea 
+that an individual was not necessarily a rational subject, making 
+autonomous decisions, but rather a conglomeration of subcon-
+scious drives and suppressed sexual desires, rocked the very 
+foundations of the rational worldview of the previous century.
+135. Erich Ludendorff
+Despite having been First Quartermaster-General, and thus the 
+effective ruler of the German military dictatorship during much 
+of the Great War, Erich Ludendorff never enjoyed the status of 
+national icon that was bestowed upon his wartime superior 
+Hindenburg. Spending most of the 1920s on political agitation, 
+he was a major proponent of the Dolchstoßlegende, an early 
+supporter of NSDAP , and participant in both the Kapp Putsch 
+and the München Putsch, as well as an NSDAP candidate in the 
+1925 presidential elections. By 1930, he had distanced himself 
+from politics and dedicated the rest of his life to military theory 
+and paganism. He died of natural causes in 1937.
+136. Catholicism
+The Catholic Church, with its strongest bastions in southern 
+Germany, was generally opposed to the NSDAP during the 
+movement’s ascension, not least because of National Socialism’s 
+explicitly anti-Catholic stance. However, as political realities 
+changed in the early 1930s, the Church found itself in an increas-
+ingly difficult position. As a sign of the times, the Catholic Centre 
+Party voted in favor of the 1933 Enabling Act.
+137. SA Banned
+In an attempt to stall the NSDAP’s advances, Chancellor Brüning 
+issued a ban on the SA in April 1932. The decision had severe 
+effects on Brüning’s already dismal popularity and enraged 
+the radical Right, who hoped to incorporate the SA into the 
+Reichswehr.
+
+=== PAGE 45 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+45
+138. Trotskyism
+The purge of the leading Bolshevik Leon Trotsky from the Soviet 
+Communist Party in 1927 marked the beginning of a major 
+split in the international Communist movement. Proponents 
+of Stalinism considered Trotsky and his followers dangerous 
+traitors, while the Trotskyists themselves argued that the Soviet 
+Union had failed to deliver on its initial promises and that Stalin’s 
+doctrine of “socialism in one country” was not compatible with 
+Marxism’s internationalist ideals. The schism only deepened after 
+Trotsky’s expulsion from the Soviet Union in 1929.
+139. Martin Heidegger
+Famous for his philosophical work Sein und Zeit (“Being and 
+Time”), Martin Heidegger was a major intellectual figure in 
+Germany when he joined the NSDAP in 1933. He became Rector 
+of Freiburg University the same year, and although his motives 
+for supporting Hitler may well have been as opportunistic as 
+they were ideological, his involvement with National Socialism 
+remains controversial to this day.
+140. Stennes Revolt
+Dissatisfaction with Hitler’s parliamentary strategy had been 
+brewing within the most revolutionary segments of the SA for 
+years, when Berlin district leader Walter Stennes launched an 
+all-out revolt against the NSDAP leadership in August 1930. 
+While the revolt was resolved without violence, Stennes ended 
+up expelled from the party.
+141. Schwarze Front
+After resigning from the NSDAP in 1930, Otto Strasser formed 
+the Kampfgemeinschaft Revolutionärer Nationalsozialisten 
+(“Combat League of Revolutionary National Socialists”), in an 
+attempt to return to what he perceived as the original, anti-capi-
+talist ethos of the National Socialist movement. The organization, 
+commonly known as Schwarze Front (“Black Front”), failed to 
+attract any substantial membership and Strasser was forced 
+into exile in 1933.
+142. IFS Burned Down
+The Institut für Sexualwissenschaft (“Institute for Sexology”) was 
+a privately run, progressive Berlin institute. A target of increased 
+NSDAP hostility as the party adopted a harsher stance against 
+homosexuality in the early 1930s, the institute was looted and 
+its archives burned in 1933.
+143. Overcrowding
+Old, poorly built, and severely neglected buildings had been a 
+problem in Germany’s big cities for years, but during the Great 
+Depression, poverty and overcrowding created a very real slum 
+problem that was exploited for political ends by both the Left  
+and the Right.
+144. Customs Union
+The planned customs union between Germany and Austria that 
+was announced in 1931 was met with alarm in neighboring 
+countries, who feared a future political alliance. As a result of 
+their pressure, the union was never realized.
+145. Murder of Horst Wessel
+Berlin SA Sturmführer Horst Wessel was murdered by Commu-
+nists after a rent dispute, and Joseph Goebbels wasted no time 
+turning him into a martyr. In NSDAP propaganda, Wessel was 
+soon hailed as a great hero of National Socialism, which served 
+both to boost the SA ranks and inspire existing members.
+146. Erbgutpflege
+Ideas concerning social hygiene and eugenics had been in vogue 
+since the 19th century, but became increasingly popular and 
+mainstream during the 1920s and 1930s. This trend was apparent 
+not only in nationalist or right-wing circles; much of the frame-
+work for German state-organized eugenics was first established 
+by Social Democratic Reichstag representative Alfred Grotjahn.
+147. Altonaer Blutsonntag
+In July 1932, brutal street fighting broke out in the city of Altona 
+(then part of Prussia, today part of Hamburg) when KPD sup-
+porters disrupted an NSDAP rally. The incident, subsequently 
+dubbed “Bloody Altona Sunday” , left 18 people dead, the city 
+in disarray, and represented a turn for the worse for the already 
+fractured political landscape in Germany. Chancellor von Papen 
+used the event soon after as an excuse to dissolve the elected 
+government of Prussia, the Preußenschlag.
+148. – 151.  See notes above for Event cards #49 – #52.
+152. – 159. Election
+Although Reichstag elections were scheduled for every four years, 
+the President could dissolve the assembly to force an early elec-
+tion. A total of nine elections took place between 1919 and 1933.
+Article 48
+Article 48 of the Weimar Constitution allowed the President to 
+issue emergency decrees without Reichstag approval. Its was 
+used from Republic's earliest years, becoming the norm by the 
+early 1930s. In 1933, Hitler pressured President Hindenburg into 
+using Article 48 frequently, enabling him to suppress opposition 
+and transform his chancellorship into a dictatorship through 
+legal means.
+Reichstag Seats
+Frequent elections, coupled with a proportional-representa -
+tion parliamentary system, resulted in a fractured and divided 
+Reichstag. No one party was ever strong enough to rule alone, 
+and even parties with few seats could have an outsized impact 
+on the stability of the government.
+
+=== PAGE 46 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+46
+1 "Demagoguery": Bundesarchiv, B 145 Bild-P046271 / Weinrother, Carl / CC-BY-SA 3.0
+2 "Braun Coloaition": Bundesarchiv, Bilder 102-13676 and 183-R11405 / CC-BY-SA 3.0
+3 "Rathenau Murder": Bundesarchiv, Bild 183-Z1117-502 / CC-BY-SA 3.0
+4 "Friedrich Ebert": Bundesarchiv, Bild 102-01111 / CC-BY-SA 3.0
+5 "Kapp Putsch": Bundesarchiv, Bild 119-1983-0007 / CC-BY-SA 3.0
+6 "Bayerische Räterepublik": public domain image
+7 "Ruhrbesetzung":Bundesarchiv, Bild 183-R09876 / CC-BY-SA 3.0
+8 "Ruhraufstand": public domain image
+9 "Erzberger Murder": public domain image
+10 "Freikorps Demobilization": public domain image
+11 "Aufstände in Oberschlesien": public domain image
+12 "Polnischer Korridor": public domain image
+13 "Triumvirate": public domain images
+14 "Hugo Stinnes": public domain image
+15 "Dolchstoßlegende": public domain image
+16. "Bloodhound Doctrine": public domain image
+17. "Treaty of Rapallo": Bundesarchiv, Bild 183-R14433 / CC-BY-SA 3.0
+18. "München Putsch": Bundesarchiv, Bild 119-1486 / CC-BY-SA 3.0
+19. "Mein Kampf Published": public domain image
+20. "Militarism": public domain image
+21. "Völkischer Beobachter": public domain image
+22. "48 Hour Week": public domain image
+23. "Organization Consul": public domain image
+24. "Feme Murders": Bundesarchiv, Bild 119-1587A / CC-BY-SA 3.0
+25. "London Payment Plan": public domain image
+26. "USPD Party Splits": public domain image
+27. "Berlin Riots": public domain image
+28. "Cuno Strikes": Bundesarchiv, Bild 102-00136 / CC-BY-SA 3.0
+29. "Reich Youth Welfare Act": public domain image
+30. "Erfüllungspolitik": Bundesarchiv, Bild 183-L40010 / CC-BY-SA 3.0
+31. "NSDAP Banned": public domain image
+32. "White Terror": Bundesarchiv, Bild 146-2004-0048 / CC-BY-SA 3.0
+33. "Oswald Spengler": Bundesarchiv, Bild 183-R06610 / CC-BY-SA 3.0
+34. "Fürstenenteignung": Bundesarchiv, Bild 102-00685 / CC-BY-SA 3.0
+35. "Reichskunstwart": Bundesarchiv, Bild 102-08205 / CC-BY-SA 3.0
+36. "Saalschlacht": Bundesarchiv, Bild 146-1973-026-43 / CC-BY-SA 3.0
+37. "Schwarze Reichswehr": public domain image
+38. "Küstrin Putsch": public domain image
+39. "Artamanen Gesellschaft": public domain image
+40. "Hamburger Aufstand": public domain image
+41. "Thule Gesellschaft": public domain image
+42. "Expressionism": public domain image
+43. "Alldeutscher Verband": public domain image
+44. "Rationalization": public domain image
+45. "Veterans": Bundesarchiv, Bild 102-12630 / CC-BY-SA 3.0
+46. "Corporatism": Bundesarchiv, Bild 102-12331 / CC-BY-SA 3.0
+47. "Party Politics": Bundesarchiv, Bild 102-01154 / CC-BY-SA 3.0
+48. "Crackdown": Bundesarchiv, Bild 183-K0105-0601-004 / CC-BY-SA 3.0
+49. "Class Traitors": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0
+50. "Turncoats": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0
+51. "Intellectuals": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0
+52. "Mass Media": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0
+53. "Rentenmark": public domain image
+54. "Gustav Stresemann": Bundesarchiv, Bild 102-08490 / CC-BY-SA 3.0
+55. "Schutzstaffel": Bundesarchiv, Bild 146-1969-054-53A / CC-BY-SA 3.0
+56. "Strasserism": Bundesarchiv, Bild 119-1721 / CC-BY-SA 3.0
+57. "Paul von Hindenburg": Bundesarchiv, Bild 183-U0618-0500 / CC-BY-SA 3.0
+58. "Brownshirts": Bundesarchiv, Bild 119-0779 / CC-BY-SA 3.0
+59. "Stalinism": public domain image
+60. "Racial Theory": Bundesarchiv, Bild 146-1969-067-10 / CC-BY-SA 3.0
+61. "Barmat Scandal": Bundesarchiv, Bild 102-05676 / CC-BY-SA 3.0
+62. "Roter Frontkämpferbund": Kille, CC-BY-SA 3.0
+63. "Blutmai": Bundesarchiv, Bild 102-08924 / CC-BY-SA 3.0
+64. "Die Weltbühne": public domain image
+65. "Overseas Loans": public domain image
+66. "Jazz Culture": public domain image
+67. "School Reforms": Bundesarchiv, Bild 102-12781 / CC-BY-SA 3.0
+68. "Urban Crime": Bundesarchiv, Bild 102-07741 / CC-BY-SA 3.0
+69. "Dawes Plan": public domain image
+70. "Locarno Treaties": Bundesarchiv, Bild 183-R03618 / CC-BY-SA 3.0
+71. "League of Nations": public domain image
+72. "Ernst Jünger": public domain image
+73. "Carl Schmitt": public domain image
+74. "Bertold Brecht": public domain image
+75. "Berlin-Tempelhof": Bundesarchiv, Bild 146-2008-0010 / CC-BY-SA 3.0
+76. "Siedlungen der Moderne": public domain image
+77. "Frankfurt School": CC-BY-SA-3.0
+78. "Housing Reforms": public domain image
+79. "Bauhaus": public domain image
+80. "Young Plan": public domain image
+81. "Hindenburg Amnesties": Bundesarchiv, Bild 183-C06886 / CC-BY-SA 3.0
+82. "Referendum": Bundesarchiv, Bild 102-01258 / CC-BY-SA 3.0
+83. "RFB Banned": Bundesarchiv, Bild 183-Z0127-305 / CC-BY-SA 3.0
+84. "Stahlhelm": public domain image
+85. "Reichsbanner": Bundesarchiv, Bild 102-05973 / CC-BY-SA 3.0
+86. "DNVP Joins Government": Bundesarchiv, Bild 102-00910 / CC-BY-SA 3.0
+87. "Albert Einstein": public domain image
+88. "Konzerne": public domain image
+89. "Junker": public domain image
+90. "Mittelstand": public domain image
+91. "New Woman": Chris Lebeau, CC-BY-SA 4.0
+92. "Urbanization": public domain image
+93. "Neue Sachlichkeit": public domain image
+94. "Pragmatism": Bundesarchiv, Bild 102-01121 / CC-BY-SA 3.0
+95. "Thomas Mann": public domain image
+96. "Mass Culture": Bundesarchiv, Bild 146-1988-035-15 / CC-BY-SA 3.0
+97. "Ostjuden": public domain image
+98. "Lebensreform": public domain image
+99. "Entartete Kunst": public domain image
+100. "U-Bahn": public domain image
+101. "Babelsberg": public domain image
+102. "Funkturm Berlin": public domain image
+Card Image Credits
+
+=== PAGE 47 ===
+The Weimar Republic • Playbook
+The Weimar Republic • Playbook
+© 2026 GMT Games, LLC
+47
+Credits
+DESIGNER
+Gunnar Holmbäck
+DEVELOPERS
+Jason Carr and Bruce Mansfield
+NON-PLAYER SYSTEM DESIGNER
+Joe Schmidt
+ART and LAYOUT
+Terry Leeds
+EDITING
+Liz Davidson and Bruce Mansfield
+HISTORICAL NOTES
+Richard Hecker
+PLAYTESTERS
+VPJ Arponen, Guillaume Bégin, Paul Denhup,
+Y ann Desjardins-Langlais, Peter Evans, Agustin Gonzalez,
+Cory Graham, Jeff Gringer, Richard Hecker, Michael Kirschner, 
+Thomas Knight, Pijus Kruminas, David Laufle, Aman Matthews, 
+Non-Breaking Space, Gordon Pueschner, Dave Rubin,
+Ton van der Velden, James Vitti, Pat Zuk
+PROOFREADERS
+Russell Brown, Peter van Dijkhuizen, H.C. Fraenkel,
+Charles Hasegawa, Niko Hornbruch, Allan Hurworth,
+Daniel Joly-DeMars, Hans Korting, Miquel Miralbes,
+Randy Monk, Michael Neubauer, John-Paul Pizzica,
+Marco Poutré, Joël Simoneau, Jordan V artanoff
+SPECIAL THANKS
+David Kurtz • Johan Sehlberg • Evan Yoak
+103. "Die Angestellten": Bundesarchiv, Bild 102-13681 / CC-BY-SA 3.0
+104. "Treaty of Berlin": Bundesarchiv, Bild 102-12859 / CC-BY-SA 3.0
+105. "Wirtschaftspartei": Dahn, CC-BY-SA 3.0
+106. "Ernst Niekisch": public domain image
+107. "Party Politics": Bundesarchiv, Bild 102-01154 / CC-BY-SA 3.0
+108. "Crackdown": Bundesarchiv, Bild 102-01301 / CC-BY-SA 3.0
+109. "Class Traitors": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0
+110. "Turncoats": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0
+111. "Intellectuals": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0
+112. "Mass Media": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0
+113. "Franz von Papen Appointed": Bundesarchiv, Bild 183-1988-0113-500 / CC-BY-SA 3.0
+114. "Von Schleicher Appointed": Bundesarchiv, Bild 102-14090 / CC-BY-SA 3.0
+115. "Preußenschlag": Bundesarchiv, Bild 102-13680 / CC-BY-SA 3.0
+116. "Mass Meetings": Bundesarchiv, Bild 183-S01000 / CC-BY-SA 3.0
+117. "Hitler Sworn In": Bundesarchiv, Bild 183-H28422 / CC-BY-SA 3.0
+118. "Enabling Act": public domain image
+119. "Heinrich Brüning": Bundesarchiv, Bild 183-1989-0630-504 / CC-BY-SA 3.0
+120. "Osthilfe": public domain image
+121. "Gregor Strasser Resigns": Bundesarchiv, Bild 119-1721 / CC-BY-SA 3.0
+122. "Harzburg Front": Bundesarchiv, Bild 146-2005-0129 / CC-BY-SA 3.0
+123. "Creditanstalt Crash": public domain image
+124. "Hindenburg Runs Again": Bundesarchiv, Bild 102-13227 / CC-BY-SA 3.0
+125. "Stand": Johann Schediwy, CC-BY-SA-3.0-DE
+126. "Protestantism": public domain image
+127. "Reichstagsbrand": public domain image
+128. "Lausanne Conference": public domain image
+129. "SA Reforms": Bundesarchiv, Bild 146-1982-159-21A / CC-BY-SA 3.0
+130. "Eiserne Front": public domain image
+131. "Der Jugendliche": Bundesarchiv, Bild 183-R24553 / CC-BY-SA 3.0
+132. "Blut und Boden": Bundesarchiv, Bild 183-H1215-503-009 / CC-BY-SA 3.0
+133. "Großraum": Bundesarchiv, Bild 102-12084 / CC-BY-SA 3.0
+134. "Psychoanalysis": public domain image
+135. "Erich Ludendorff": Bundesarchiv, Bild 102-00344A / CC-BY-SA 3.0
+136. "Catholicism": public domain image
+137. "SA Banned": Bundesarchiv, B 145 Bild-P049500 / CC-BY-SA 3.0
+138. "Trotskyism": public domain image
+139. "Martin Heidegger": public domain image
+140. "Stennes Revolt": Bundesarchiv, Bild 119-2608 / CC-BY-SA 3.0
+141. "Schwarze Front": public domain image
+142. "IFS Burned Down": public domain image
+143. "Overcrowding": Bundesarchiv, Bild 183-T0706-501 / CC-BY-SA 3.0
+144. "Customs Union": public domain image
+145. "Murder of Horst Wessel": Bundesarchiv, Bild 146-1978-043-14 / CC-BY-SA 3.0
+146. "Erbgutpflege": Bundesarchiv, Bild 183-1991-0904-505 / CC-BY-SA 3.0
+147. "Altonaer Blutsonntag": public domain image
+148. "Class Traitors": Bundesarchiv, Bild 183-S60769 / CC-BY-SA 3.0
+149. "Turncoats": Bundesarchiv, Bild 146-1970-051-65 / CC-BY-SA 3.0
+150. "Intellectuals": Bundesarchiv, Bild 102-10300 / CC-BY-SA 3.0
+151. "Mass Media": Bundesarchiv, Bild 102-00485 / CC-BY-SA 3.0
+
+=== PAGE 48 ===

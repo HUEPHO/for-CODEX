@@ -1,0 +1,14 @@
+{
+  "sourceSave": "C:\\Users\\LJ\\Downloads\\TS_Save_13.json",
+  "deckId": "2884",
+  "faceUrl": "https://steamusercontent-a.akamaihd.net/ugc/17652539236493119062/32F0E1C99A3C2F5E5757ECA68622751164909BE9/",
+  "retrieved": "2026-10-19",
+  "file": "tts-golden-english.png",
+  "sha256": "b1032e1102ea7e9250c76ce86324e13fe8d225313f38548fa3e1bddc931d7276",
+  "grid": {
+    "columns": 10,
+    "rows": 7,
+    "firstCard": 53
+  },
+  "note": "Reference data only; no TTS scripts executed."
+}

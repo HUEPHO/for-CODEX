@@ -1,0 +1,96 @@
+import raw from './generated/cards.json' with { type: 'json' };
+import text from './card-text.json' with { type: 'json' };
+import type { CardDefinition, Era } from '../engine/types.ts';
+
+const implemented: Record<number, [string, string]> = {
+  1: ['煽动民众', 'NSDAP 新获得地区领导权时，立即获得 momentum。'],
+  4: ['弗里德里希·艾伯特', '团结稳固时，可再次使用第48条；掷骰并移除联盟影响力。'],
+  17: ['拉帕洛条约', '苏联协定提升1；KPD 转向民主（教程中立场固定）。'],
+  20: ['军国主义', '持续效果：联盟进步须比反动至少高2，才能通过忠诚检定；黄金年代结束时移除。'],
+  34: ['王公财产没收', 'KPD 转向革命（教程中立场固定）；RC 获得 momentum。'],
+  35: ['国家艺术专员', '进步至少2时，联盟在任意两座城市各放置1影响力。'],
+  39: ['阿塔曼联盟', 'NSDAP 在东普鲁士、波森—西普鲁士、下西里西亚、上西里西亚各放置1影响力。'],
+  44: ['合理化改造', '掷骰不大于已部署 Leverage 总数时，经济向失业方向移动1格。'],
+  47: ['政党政治', '选择消耗国会议席、降低联盟团结，或从地图移除各阵营1影响力。'],
+  48: ['镇压', '按 momentum 清除暗杀、罢工或两者；不移除起义。'],
+  49: ['阶级叛徒', '目标阵营随机弃1牌；选举及强制事件保留。'],
+  50: ['变节者', '随机拿取对手1牌；拥有 momentum 时可弃掉该非强制、非选举牌。'],
+  51: ['知识分子', '抽1牌；拥有 momentum 时可弃掉该非强制、非选举牌。'],
+  52: ['大众媒体', '查看任意阵营手牌。'],
+  54: ['古斯塔夫·施特雷泽曼', '联盟团结最低为稳固；地图黄色 Leverage 的选举加成为4。'],
+  57: ['保罗·冯·兴登堡', 'RC 自由军团 SV 为3；地图黑色 Leverage 的选举加成为4。'],
+  59: ['斯大林主义', 'KPD Cadre 的选举加成为4；教程不启用立场轨道。'],
+  92: ['城市化', '全国选举：领导柏林额外+2 PV，领导其他城市各+1 PV。'],
+  152: ['危机时代选举', '在本轮选举阶段举行地区选举和全国选举。'],
+  153: ['黄金年代选举', '在本轮选举阶段举行地区选举和全国选举。'],
+  154: ['衰落时代选举', '在本轮选举阶段举行地区选举和全国选举。'],
+};
+const lasting: Record<number, Era | 'never'> = {
+  1: 'never',
+  4: 'crisis',
+  5: 'crisis',
+  6: 'crisis',
+  15: 'crisis',
+  16: 'crisis',
+  17: 'crisis',
+  18: 'crisis',
+  19: 'crisis',
+  20: 'golden',
+  54: 'golden',
+  55: 'never',
+  56: 'never',
+  57: 'golden',
+  58: 'never',
+  59: 'never',
+  60: 'never',
+  62: 'never',
+  80: 'golden',
+  92: 'never',
+  113: 'never',
+  116: 'never',
+  117: 'never',
+  119: 'never',
+  124: 'never',
+};
+const requirements: Record<number, number> = {
+  3: 17,
+  8: 5,
+  19: 18,
+  31: 18,
+  32: 6,
+  53: 54,
+  70: 54,
+  71: 54,
+  81: 57,
+  82: 80,
+  83: 62,
+  113: 119,
+  114: 113,
+  115: 113,
+  117: 124,
+  118: 117,
+  121: 56,
+  133: 119,
+  137: 119,
+};
+const cancellations: Record<number, number> = { 10: 16, 83: 62, 113: 119, 114: 113, 121: 56 };
+export const CARDS: CardDefinition[] = raw.map((c) => ({
+  id: c.id,
+  title: c.title,
+  name: (text as Record<number, { name: string }>)[c.id]?.name ?? implemented[c.id]?.[0] ?? c.title,
+  era: c.era as Era,
+  image: c.image,
+  status: c.id <= 151 || implemented[c.id] ? 'implemented' : 'pending',
+  mandatory: [4, 54, 57, 119].includes(c.id),
+  election: c.id >= 152,
+  lingering: c.id in lasting,
+  expires: lasting[c.id] && lasting[c.id] !== 'never' ? (lasting[c.id] as Era) : undefined,
+  requires: requirements[c.id],
+  cancels: cancellations[c.id],
+  summary:
+    c.id <= 151
+      ? (text as Record<number, { summary: string }>)[c.id].summary
+      : (implemented[c.id]?.[1] ?? '已导入原始牌面；事件效果尚未实现，不能作为已实现事件结算。'),
+}));
+export const CARD: Record<number, CardDefinition> = Object.fromEntries(CARDS.map((c) => [c.id, c]));
+export const IMPLEMENTED_CARDS = CARDS.filter((c) => c.status === 'implemented');

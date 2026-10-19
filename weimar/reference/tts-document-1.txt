@@ -1,0 +1,3258 @@
+=== PAGE 1 ===
+RULEBOOK
+TABLE OF CONTENTS
+ 1.0 Factions and Components  3
+ 2.0 Setup  10
+ 3.0  Victory  12
+ 4.0  Sequence of Play  13
+ 5.0  Game Concepts  14
+ 6.0  Action Step  20
+ 7 .0  Elections  30
+ 8.0  Non-player Factions  32
+   Index   46
+GMT Games LLC © 2026
+
+=== PAGE 2 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+2
+Game Contents
+The Weimar Republic  includes:
+•  1  game board (mounted)
+• 4  faction mats
+•  169 Cards (52 Crisis Event cards, 60 Golden Twenties 
+Event cards, 39 Decline Event cards, 8 Parliamentary 
+Control cards, 8 Election cards, 1 Article 48 card, and 
+1 Reichstag Seats card)
+• 36 bot cards used by Non-player factions
+•  150 Influence cubes  (45 yellow, 35 red, 35 brown, and 
+35 black)
+• 3  black Conservative Clique blocks
+• 7  white Middle Class Sympathies pawns
+• 1½  sheets of game markers
+• 4  six-sided dice
+• 2  8.5”x11” Player Aid cards
+• 4  11”x17” Faction Aid cards 
+• 1  11”x17” Non-player Aid card
+• 1  Rulebook
+• 1  Playbook
+Introduction
+The Weimar Republic  is a card-driven game of political struggle 
+in Germany during the interwar period, 1919 to 1933. Four 
+factions compete for dominance: the democratic Coalition 
+government of the Weimar Republic (“Coalition”), the Sovi -
+et-backed German Communist Party (Kommunistische Partei 
+Deutschlands, “KPD”), Hitler’s Nazi Party (Nationalsozialistische 
+Deutsche Arbeiterpartei, “NSDAP”), and the right-wing Radi-
+cal Conservatives (“RC”). Players use faction-specific abilities 
+to maneuver through the political landscape of the Republic, 
+attempting to dominate through a combination of propaganda, 
+parliamentary elections, street violence, economic influence, 
+and ideological zeal.
+Important!   We think the best way to learn to play The 
+Weimar Republic is to set up and play along with the 
+Tutorial, located in the Playbook.
+Each turn of The Weimar Republic  represents one year and is 
+divided into an Early Y ear and a Late Y ear round. During each 
+round, factions use unique sets of abilities to increase their influ-
+ence in Germany’s regions and major cities. The game progresses 
+through three distinct Eras, each with its own set of Event cards. 
+Players use card events and faction actions to establish and grow 
+their faction’s Influence on the board and to manipulate factors 
+like Momentum, the Economy, Middle Class Sympathies, and 
+Progress and Reaction levels. Each faction has a unique Sudden 
+Victory condition that can cause the game to end early if one 
+faction can pull away from the others. By manipulating these 
+parameters to their advantage, each faction can dramatically 
+shift the course of the game.
+
+=== PAGE 3 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+3
+1.0  Factions and Components
+This section outlines the factions and game components in The 
+Weimar Republic, with references to the sections of the rule -
+book where each concept is explained more fully. Each faction 
+is controlled by a player or, if there are fewer than four players, 
+any faction can be controlled by a Non-player “bot” [8.0].
+1.1  Players and Factions
+The Coalition represents the government of the 
+Weimar Republic at its inception in 1919. Made up 
+of the SPD (Social Democratic Party), DDP (Ger-
+man Democratic Party), and Zentrum (the Catholic 
+Center Party), the Coalition strived to maintain democracy and 
+republican government but rapidly lost popular support and was 
+continuously forced to rely on deals with both the Right and the 
+Left. Plagued by internal divisions and external enemies, the 
+parties of the Coalition managed to steer the Republic through 
+several serious crises until the democratic framework finally 
+crumbled in the wake of the 1929 Wall Street crash, leading to 
+the end of the Republic in 1933.
+The Kommunistische Partei Deutschlands 
+(KPD), the German Communist Party, was 
+founded in the bloody aftermath of the 1918 rev-
+olution. Gradually growing to become the largest 
+Communist party outside the U.S.S.R., and increasingly align-
+ing itself with the Soviet Union, the KPD contested Reichstag 
+elections while also participating in a number of uprisings and 
+revolts. In the later days of the Republic, the KPD came to view 
+Social Democracy as its main adversary, which hampered all 
+left-wing attempts to form a united front against fascism. The 
+party was banned after Hitler seized power in 1933.
+The Nationalsozialistische Deutsche Arbeiter -
+partei (NSDAP) was a far-right, nationalist, and 
+populist political party that started as a fringe 
+group in the broader reactionary movement but 
+soon moved in its own direction. Led by Adolf Hitler, the NSDAP 
+used revanchist, anti-semitic, and anti-communist propaganda 
+to agitate against the Weimar Republic and the Treaty of Ver-
+sailles. After failing to overthrow the government through violent 
+means in the early 1920s, Hitler shifted his strategy and worked 
+within the parliamentary system until the early 1930s, when he 
+managed to gain massive popular support during the economic 
+and political turmoil of the Great Depression and eventually 
+came to power in 1933.
+The Radical Conservatives (RC) represent a het-
+erogenous movement advocating for a return to 
+autocratic rule. Mainly consisting of old military 
+and economic élites and their followers, the RC 
+were a main proponent of the anti-semitic “stabbed in the back” 
+myth, the belief that the German Empire did not lose World War 
+I but was betrayed by democrats and Jewish elements in society. 
+As hope for the return of the Hohenzollern monarchy faded and 
+the movement failed to harness real popular support, the RC 
+attempted to use National Socialism’s growing popularity for its 
+own ends, which resulted in the appointment of Hitler as Chan-
+cellor in 1933 and ultimately the end of the Weimar Republic.
+Design Note: All of the factions in The Weimar Republic  can be 
+controlled by Non-player “bots” [8.0]. Included in the Playbook is 
+an essay outlining the reason for making each faction playable, as 
+well as some reflections on the alternative histories that are possi-
+ble (and impossible) within the sandbox of The Weimar Republic .
+1.2  The Game Board
+The game board depicts interwar Germany and contains the 
+spaces, tracks, and boxes that will be used to resolve the majority 
+of actions when playing The Weimar Republic .
+Spaces: The map contains 26 spaces. A space may be either a 
+State (yellow, orange, or gray rectangle), a Prussian Province 
+(blue rectangle), or a City (circle). Throughout the rules, “space” 
+only refers to spaces on the map, not on tracks or faction mats.
+All spaces, except Bayern and all Cities, are grouped into Regions: 
+Northern States, Southern States, and Preußen. Spaces in the 
+same Region share a color. Note that in game terms, Cities are 
+never part of any Region.
+Design Note: The Weimar Republic  uses “Preußen” and 
+“Prussian Province” interchangeably. Both terms refer to the 
+same Region.
+Spaces that are connected with lines are adjacent to each other. 
+Spaces that are overlapped by a City are adjacent to that City 
+and to all other spaces overlapped by that City.
+All spaces have a Population Number and 
+Political Value. The Population Number 
+is in the upper box and is the maximum 
+number of Influence cubes that a space 
+may hold [5.12]. A space’s Political Value 
+is in the lower box and is counted during 
+Elections [7.0] and certain Events and represents the parliamen-
+tary significance of the space as well as its position in Weimar 
+politics and economics.
+
+=== PAGE 4 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+4
+Parliamentary Control: A faction gains, 
+and may lose, Parliamentary Control 
+over Bayern, each Region, and each City 
+during Regional Elections [7.1]. A fac-
+tion that gains Parliamentary Control 
+takes the corresponding Parliamentary 
+Control card [1.6] from the current 
+holder or from beside the board. They 
+also mark control in the correspond -
+ing Parliamentary Control space on the 
+board as a reminder. If no faction has 
+Parliamentary Control, both the Parliamentary Control card 
+and corresponding Control marker are placed beside the board.
+Design Note: Parliamentary Control signifies that a faction has 
+obtained enough electoral support to exert significant control over 
+public authorities.
+Tracks: There are seven tracks on the board used during play: 
+Economy, U.S. Deals, U.S.S.R. Deals, Progress, Reaction, Momen-
+tum, and Turn Order. Each track includes a marker that deter-
+mines that track’s current level. In addition, tracks include boxes 
+where Available pieces are stored and where pieces are placed 
+(generally to have an effect on that track). Throughout the rules, 
+“box” only refers to boxes on tracks and faction mats, never to 
+spaces on the map.
+The Economy Track [5.5] shows the current state of the German 
+economy, either Stable or leaning towards Hyperinflation or 
+Mass Unemployment. The economy’s current state is tracked 
+by the Economy marker. Leverage markers are placed on this 
+track to shift the Economy marker or block opponent Leverage, 
+and Dollar Dependence markers are moved here when the U.S. 
+Deals marker moves into the 3, 4, or 5 box on the U.S. Deals 
+track. The current position of the Economy marker determines 
+the effectiveness of several Actions, as well as the availability of 
+the Middle Class Sympathies pawns at either end.
+Example: In this section of the map, Berlin is a City, Provinz 
+Sachsen and Brandenburg are both Prussian Provinces, 
+and Sachsen is a Southern State. Berlin is adjacent to both 
+Provinz Sachsen and Brandenburg, but not Sachsen. Provinz 
+Sachsen and Brandenburg are both adjacent to Berlin, 
+Sachsen, and because they overlap a City (Berlin), they are 
+adjacent to each other. Sachsen is adjacent to both Provinz 
+Sachsen and Brandenburg, but is not adjacent to Berlin.
+
+=== PAGE 5 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+5
+The U.S. Deals Track and U.S.S.R. Deals Track [5.6] indicate 
+levels of foreign investment in the Weimar Republic. Each track 
+holds a number of markers, such as Leverage, Reichswehr, and 
+Dollar Dependence, which become Available as the U.S. or 
+U.S.S.R. Deals marker shifts right on the track. Note that both 
+of these tracks may only be increased, never decreased.
+The Progress Track and Reaction Tracks [5.7] show the current 
+state of progressive reforms implemented by the Coalition and 
+corresponding reactionary developments, tracked by the Progress 
+and Reaction markers, respectively. They share Available Middle 
+Class Sympathies pawns that are made Available by the level 
+of the Progress track for the Coalition and KPD factions, and 
+the level of the Reaction track for the NSDAP and RC factions. 
+Coalition Reforms on the Progress track are made Available 
+by the position of the Progress marker. Likewise, two NSDAP 
+Cadres, a shared NSDAP/RC Assassinations marker, and an RC 
+Conservative Clique on the Reaction track are made Available 
+by the position of the Reaction marker.
+The position of the Progress marker may also grant a bonus to 
+the Coalition for their Influence cubes in Berlin during a Gen-
+eral Election [7.2], while the position of the Reaction marker 
+changes the effectiveness of the RC Place Influence and Remove 
+Influence Actions [6.6]. The relative positions of the Progress 
+and Reaction markers also determine the outcome of Loyalty 
+Checks during Assaults that involve Coalition and RC units [6.2], 
+and affect some Events.
+Along the top of the game board is the Timeline, which tracks 
+the current game year. It is divided into three eras: Crisis (1919-
+1923), Golden Twenties (1924-1929), and Decline (1930-1933). 
+A Turn marker indicates whether the current round is an Early 
+Y ear or Late Y ear round [4.0].
+At the bottom of the game board is the Political Value (PV)  
+track, used during Elections [7.0] to track each faction’s accu-
+mulated PV .
+Finally, the Momentum Track  and Turn Order Track  [5.8] 
+indicate the current Momentum faction and Turn Order.
+
+
+=== PAGE 6 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+6
+1.3  Faction Mats
+Each faction uses a separate faction mat that has boxes for that 
+faction’s Available units, any Middle Class Sympathies pawns it 
+has acquired, and a track which impacts that faction’s Actions 
+and Sudden Victory conditions [5.3].
+The Coalition Unity Track represents the Unity 
+between the various political parties making up the 
+Coalition, and its position determines whether the 
+Coalition may place Reforms and what conditions 
+are necessary to place the Reformation marker on the Timeline, 
+the Coalition’s Sudden Victory condition [3.1].
+The KPD Stance Track and NSDAP 
+Stance Track represent the tactics used 
+by each faction. Each faction’s Stance 
+marker shifts along a sliding scale 
+between participating in democratic processes and advocating 
+for revolutionary overthrow of the government.
+Design Note: Democratic, Pragmatic, and Revolutionary Stances 
+indicate specifically that faction’s willingness to use democratic 
+processes rather than violence or coercion, not its ideological senti-
+ments regarding democratic principles. All factions represented in 
+this game used violence and coercion to varying degrees during the 
+Weimar period.
+As the KPD Stance marker shifts towards Democratic, it can 
+promote political causes with its Cadres; as its Stance becomes 
+more Revolutionary, it can place Strike markers, cause a Gen-
+eral Strike, and attempt a Revolution, KPD’s Sudden Victory 
+condition [3.1].
+The NSDAP also has Cadres that become Available as its Stance 
+shifts towards Democratic. As it becomes more Revolution -
+ary, however, it can place Assassinations and attempt a Putsch, 
+NSDAP’s Sudden Victory condition [3.1].
+Finally, the RC’s Economic Influence Track shows 
+the pressure applied to the various tracks on the 
+board by the RC. As Leverage is taken from this 
+track to be placed elsewhere, two Conservative 
+Clique blocks and one Assassinations marker become Avail -
+able, and the RC can attempt a Putsch, RC’s Sudden Victory 
+condition [3.1].
+1.4  Units
+Each faction controls one or more types of armed units, which 
+are friendly to its own units and enemy to all others. Units 
+participate in Assaults [6.2] and are needed for a faction to 
+gain Supremacy in a space [5.9]. Each unit has a Survival Value 
+(SV) indicating its effectiveness in combat. A unit’s SV is also 
+the number of hits needed to remove it during Assaults [6.2].
+Types of Units
+Coalition Freikorps
+[SV 2]
+NSDAP Sturmabteilung (SA)
+[SV 1]
+Radical Conservatives Rogue Freikorps
+[SV 2]
+Coalition Reichswehr
+[SV 3]
+KPD Worker Militia
+[SV 1]
+Coalition Freikorps units are double-sided. They start most 
+scenarios loyal to the Coalition. But during Assault Actions 
+[6.2] (and due to certain Events), Freikorps may be flipped 
+to reveal their true loyalty. Disloyal units—revealed Rogue 
+Freikorps—fight for the RC faction for the rest of the game. 
+Note that unflipped Freikorps may never be examined before 
+flipped, and that flipped Freikorps are marked with a small .
+1.5  Other Pieces
+In addition to units, each faction uses a number of different 
+pieces to achieve its strategic goals.
+Influence Cubes represent a faction’s political influence and 
+ideological sway over the people of a space, as well as a faction’s 
+“street presence” and connections to influential local groups and 
+individuals. Influence is used by all factions and is represented 
+by Influence cubes. Each faction’s number of Influence cubes is 
+a strict limit; if none are Available, none may be placed.
+Each space has a Population Number that is the maximum 
+number of total Influence cubes that may be in that space [5.12].
+
+=== PAGE 7 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+7
+Generally, a faction may not both place and remove Influence 
+cubes in the same space in the same round [6.0].
+During Assaults, it takes one hit to remove an Influence cube [6.2].
+Middle Class Sympathies pawns represent the support 
+and attention of the German bourgeoisie. A Middle Class 
+Sympathies pawn on a faction mat is Available only to 
+that faction, although it may be moved by other factions 
+during a Move Middle Class Sympathies Action [6.3– 6.6].
+Middle Class Sympathies provide a modifier during the Assault 
+Action [6.2], affect RC Actions [6.6], provide Political Value 
+during Elections [7.0], and are a key element of the Sudden 
+Victory condition for both the NSDAP and RC factions [3.1].
+Leverage represents the ability of the Coalition 
+and RC factions to use economic pressure to create 
+favorable circumstances. Y ellow Leverage markers 
+belong to the Coalition, while black Leverage mark-
+ers belong to the RC.
+Leverage markers may be placed in an empty Leverage box on 
+the Economy, Progress, or Reaction tracks in order to influence 
+that track. Leverage may also be placed in map spaces to affect 
+Assault Actions [6.2] and Regional Elections [7.1].
+Cadres represent groups of leading individuals 
+and networks of loyalists, as well as propaganda 
+infrastructure such as printing houses and meeting 
+halls, and are available only to the KPD and NSDAP , 
+which have five Cadres each. Cadres affect Assault Actions [6.2], 
+several KPD and NSDAP Actions [6.4, 6.5], and Regional Elec-
+tions [7.1].
+No space may contain more than one Cadre, either KPD or 
+NSDAP .
+Conservative Cliques represent pow erful 
+and influential local right-wing groups, 
+available only to the RC. Conservative 
+Cliques affect the RC Place Influence and Remove Influence 
+Actions [6.6].
+Coalition Reform markers represent social and 
+economic reforms implemented by the democratic 
+Weimar government, are available only to the Coa-
+lition, and are a key part of its Sudden Victory 
+conditions [3.1].
+Strike! and Uprising! markers rep-
+resent organized labor movements 
+and are available only to the KPD. 
+They are used to remove Leverage 
+and block unit movement. No space may contain more than 
+one Strike or Uprising marker [5.12].
+A Strike marker may be flipped to become an Uprising by the 
+KPD’s Flip Strike to Uprising Action [6.4], which is a key part 
+of the KPD’s Sudden Victory conditions [3.1].
+Although Strikes and Uprisings may be removed during an 
+Assault, they have no SV value and do not contribute to KPD 
+Assault results. During Assaults, it takes one hit to remove a 
+Strike and two hits to remove an Uprising [6.2].
+When the third Strike or Uprising marker is placed on the map, 
+the General Strike marker (on the KPD faction mat) is auto -
+matically placed on the Timeline, which removes one Coalition 
+Reform from the map and all Leverage (of any color) from the 
+map and the Economy track (but not Progress/Reaction tracks). 
+As long as the General Strike is active, units may move no more 
+than one space during a Move Unit Action [6.3– 6.6].
+Assassinations represent waves of 
+organized violence against political 
+opponents and are available only to 
+the NSDAP and RC factions. Assas -
+sinations markers are double-sided: yellow/red on one side 
+and brown/black on the other. The color represents the faction 
+targeted by the violence. Y ellow/red Assassinations markers 
+remove and block Coalition and KPD Influence; brown/black 
+Assassinations markers remove and block NSDAP and RC Influ-
+ence [6.3– 6.6].
+Each faction has its own Sudden Victory marker:
+Coalition: Reformation
+KPD: Revolution
+NSDAP: Brown Putsch
+Radical Conservatives: Black Putsch
+A faction uses the Place Sudden Victory Marker Action [6.0] 
+to place its own marker on the Timeline, which indicates the 
+faction will check their unique victory conditions at the end of 
+the round. If a faction’s Sudden Victory marker is present on the 
+Timeline and their faction-specific requirements for a Sudden 
+Victory are met during the Sudden Victory Step, that faction 
+immediately wins the game [3.1].
+
+=== PAGE 8 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+8
+1.6  Cards
+The Weimar Republic  is a card-driven game, and most player 
+turns will involve the play of one or more cards. Some cards 
+are held in players’ hands—Event and Election cards—while 
+other are kept in front of the controlling faction—Article 48, 
+Reichstag Seats, and Parliamentary Control cards.
+Event Cards are broken into three differ-
+ent decks, which correspond to the three 
+different Eras of the game: Crisis, Golden 
+Twenties, and Decline. Event cards are 
+held in a player’s hand and new Event 
+cards are dealt during setup and at the 
+beginning of each new Era [2.0, 4.0]. A 
+faction still holding an Event card will 
+pay a Held Card Penalty during the New 
+Era step [4.0, Step 6].
+Lingering Events are a special type of 
+Event card marked with a  icon and 
+will remain in play throughout the cur -
+rent Era, possibly longer. Some Lingering 
+Events allow other Events to be played 
+later, while others modify gameplay to 
+benefit a specific faction. During the New 
+Era step, check each Lingering Event in 
+play to see if it is removed from the game 
+[4.0, Step 6].
+Mandatory Events are a special type of 
+Event card marked with an  icon. Man-
+datory Events may never be discarded. A 
+faction still holding a Mandatory Event 
+card will pay an additional Held Card 
+Penalty during the New Era step [4.0, Step 
+6]. Note: all Mandatory Event cards are 
+also Lingering Events.
+Election Cards are a special type of Event 
+card that trigger an Election during the 
+Election Step [7.0]. Only one Election 
+card may be played each round. A faction 
+left holding an Election card will pay an 
+additional Held Card Penalty during the 
+New Era step [4.0, Step 6].
+The Article 48 card is kept in front of 
+the Coalition faction and is 
+not part of the Coalition 
+player’s hand. It allows 
+the Coalition to cancel 
+the effects of an Event card 
+(other than Election and 
+Mandatory Events) once per 
+Election Period [7.0]. When it 
+is used, it is flipped face-down 
+until after the next General 
+Election. Some Event cards show 
+the  symbol. This is used to trigger 
+play of the Article 48 card when the Coalition is a Non-player faction. 
+Ignore this symbol if the Coalition is played by a human.
+Gameplay Note: This card represents control of the Reichstag 
+after a General Election. Only the Coalition may use it because 
+if the Coalition were to lose a General Election, the game imme-
+diately ends [7.3].
+The Reichstag Seats  
+card is given to the 
+runner-up of each 
+General Election and 
+is kept face-up in front 
+of that faction [7.3]; it 
+is not part of that play-
+er’s hand. It allows a 
+faction to become the 
+Momentum faction 
+and shift Coalition 
+Unity towards fragile. When it is used, it is flipped face-down 
+until the next General Election.
+Parliamentary Control  
+cards are gained or lost 
+when a faction gains or 
+loses control of the corre-
+sponding space or Region 
+during a Regional Elec -
+tion [7.1] or lost in Berlin 
+due to play of Event card 
+#5 Kapp Putsch. Each 
+Parliamentary Control 
+card is kept in front of its controlling faction and is not part of 
+that player’s hand of cards. Each one is flipped face-down when 
+used. The winner of each Regional Election takes the matching 
+Parliamentary Control card and flips it face-up.
+Parliamentary Control cards, the Article 48 card, and the 
+Reichstag Seats card are never part of a player’s hand.
+
+=== PAGE 9 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+9
+
+=== PAGE 10 ===
+FACTION MATS AT START
+CARD HANDS AT START
+A
+B
+C
+K
+S
+H
+I
+J
+F
+G
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+10
+2.0  Setup
+The Diagram to the right shows the setup for The Fate of the 
+Republic scenario, but these instructions apply to all scenarios.
+1.  Choose a scenario from the Playbook [9.0], and decide who 
+will play each faction. Lay the game board out and give each 
+player the faction mat for the faction they control. See [8.0] 
+if playing with any Non-player factions.
+2.  Give the Article 48 card to the Coalition faction and pass 
+out the Parliamentary Control cards and Reichstag Seats 
+card per the scenario setup instructions.
+3.  Separate the Event cards by Era and construct the initial deck 
+as specified by the scenario setup instructions [9.1].
+4.  Follow any remaining setup instructions in the Playbook for 
+the chosen scenario [9.2– 9.6].
+A Sequence of Play
+B Timeline
+C Map Key
+MAP KEY
+D City
+E Prussian Province
+F State
+
+=== PAGE 11 ===
+B
+L
+M
+N
+O
+Q
+P
+R
+D
+E
+F
+F
+Note: As the Momentum faction, the 
+Coalition player will determine the Turn 
+Order before starting the game.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+11
+G Regions
+H  Parliamentary Control Box
+I Population Number
+J Political Value
+K Lingering Events Box
+L U.S. Deals Track
+M U.S.S.R. Deals Track
+N Economy Track
+O Momentum Track
+P Turn Order Track
+Q Progress Track
+R Reaction Track
+S Political Value Track
+
+=== PAGE 12 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+12
+3.0  Victory
+There are four ways the game can end:
+Sudden Victory. The first faction that meets its Sudden Victory 
+requirements while its Sudden Victory marker is on the Timeline 
+during the Sudden Victory Step wins the game [3.1].
+General Election Victory. If KPD, NSDAP , or RC wins a General 
+Election, that faction wins the game [3.2, 7.3].
+Event Card Victory. Certain Event cards may cause KPD, NSDAP , 
+or RC (only) to win [3.3].
+Scenario End Victory. At the conclusion of the final turn of 
+the scenario, determine the winner per that scenario’s Victory 
+Conditions [3.4].
+3.1  Sudden Victory
+During the Sudden Victory Step [4.0, Step 2], each faction that 
+has placed its Sudden Victory marker on the Timeline checks 
+if they have met their faction-specific requirements for Sud -
+den Victory. Check each eligible faction in turn order. The first 
+faction to meet their requirements immediately wins (do not 
+check any following factions). If no faction has won, remove all 
+Sudden Victory markers from the Timeline and return them to 
+their faction mats.
+The Coalition wins a Sudden Victory if there are 4 Reform 
+markers on the map or there are 3 Reform markers on the map 
+and Coalition Unity is Strong.
+KPD wins a Sudden Victory if there are 4 Uprising markers on 
+the map or there are 3 Uprising markers on the map and KPD 
+has Supremacy in Berlin [5.9].
+NSDAP wins a Sudden Victory if it has more Middle Class 
+Sympathies pawns on its faction mat than the RC and  it has 
+either Supremacy in Berlin or Supremacy in any 2 Cities [5.9].
+RC wins a Sudden Victory if there are 4 or more Middle Class 
+Sympathies pawns on its faction mat or  there are 3 Middle 
+Class Sympathies pawns on its mat and it has Supremacy in 
+Berlin [5.9].
+3.2  General Election Victory
+During the Election step, either KPD, NSDAP , or RC may win 
+the game if it wins a General Election [7.3].
+However, if NSDAP won the General Election, but at least half 
+of its PV was transferred to NSDAP from the RC [7.3], the game 
+ends and RC is the overall winner. The election is lost but control 
+over Germany is stolen by a Conservative bloc!
+If the Coalition did not win the General Election, and RC did 
+not steal the Election from NSDAP , the faction that did win the 
+General Election is the overall game winner.
+If the Coalition won the General Election, the game continues 
+normally.
+An Election Cycle [7.0] is triggered when playing the A Time 
+for Revolution? scenario when the Momentum faction plays 
+an Available Parliamentary Control or Reichstag Seats card 
+[7.7, 9.3].
+Gameplay Note: The Coalition can never win the game via a 
+General Election but only via a Scenario End victory.
+3.3  Event Card Victory
+Play of certain Event cards may end the game and determine 
+a winner.
+Event Card #82 Referendum. When this card is played, as 
+long as RC is the Momentum faction, immediately conduct a 
+Special Election [7.4]. If RC (only) wins this election, the game 
+ends and RC is the winner.
+Event Card #117 Hitler Sworn In. When this card is played, 
+immediately conduct a Snap Election [7.5]. KPD, NSDAP , or RC 
+may win the game as a result, just like a normal General Election.
+Event Card #118  Enabling Act . When this card is played, 
+calculate NSDAP’s current PV [7.6]. If all of the following are 
+true, the game immediately ends and NSDAP is the winner:
+• NSDAP is the Momentum faction.
+• NSDAP holds the Reichstag Seats card.
+• NSDAP currently has 15 or more PV .
+3.4  Scenario End Victory
+If no faction has won through a Sudden Victory, General Election 
+victory, or Event Card victory by the end of the last year of the 
+scenario, the overall game winner is determined by the victory 
+conditions outlined in the scenario instructions [9.2– 9.6].
+
+=== PAGE 13 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+13
+4.0  Sequence of Play
+The Weimar Republic  is played in a series of game years until 
+one faction wins or until the completion of the final year speci-
+fied by the scenario. The turn order for each year is determined 
+by the Momentum faction at the start of each year. Each game 
+year consists of two rounds: an Early Y ear round and a Late Y ear 
+round. Each round follows this sequence:
+ Step 1. Action Step
+ Step 2. Sudden Victory Step
+ Step 3. Elections Step
+ Step 4. Advance Timeline Step
+Additionally, during Late Y ear rounds, perform:
+ Step 5. New Y ear Step
+During Late Y ear rounds in 1923 and 1929, also perform:
+ Step 6. New Era Step
+1. Action Step: In turn order, each faction has one opportunity 
+to either conduct one Action, play one Event card and conduct 
+two Actions, or pass and optionally discard and redraw one 
+Event card.
+See Section 6.0 for detailed instructions on playing Event cards 
+and taking Actions.
+2. Sudden Victory Step: In turn order, each faction that placed 
+their Sudden Victory marker on the Timeline during the Action 
+Step checks whether it has met its Sudden Victory requirements. 
+If a faction meets its faction-specific requirements, it immediately 
+wins the game and no further Sudden Victory checks are made. 
+If no faction meets its requirements, all Sudden Victory markers 
+are removed from the Timeline, returned to faction mats, and 
+the game continues.
+See Section 3.1  for detailed instructions on Sudden Victory 
+conditions.
+3. Elections Step: If an Election card 
+was played during the Action Step (or, if 
+playing A Time for Revolution? scenario, 
+an Extra Election was called), conduct 
+Regional Elections, followed by a General 
+Election [7.0].
+Unless the General Election ends the 
+game [3.2], following all elections, the 
+Momentum faction conducts a Clean Slate [5.11].
+See Section 7.0 for detailed instructions on all Elections.
+4. Advance Timeline Step: KPD may 
+remove any Strikes or Uprisings from 
+the map. Remove the General Strike 
+marker (if any) from the Timeline if 
+there are now fewer than 3 total Strike plus Uprising markers 
+on the map.
+Remove any Assassinations markers from spaces with Coalition 
+units (Reichswehr or Coalition Freikorps).
+If the Economy track is at Hyperinflation (i.e., all the way to 
+the left), the Momentum faction [5.8] removes one Coalition 
+Influence from any space.
+Flip the Turn marker. If the Turn marker is now on its Late Y ear 
+side, repeat steps 1-4 for the Late Y ear round. If it is now on 
+its Early Y ear side, advance the Timeline to the next year and 
+go to step 5, the New Y ear Step. If this was the last year of the 
+scenario, perform any end game instructions for this scenario, 
+then determine a winner [3.4]. Otherwise, if the Turn marker 
+advances into a new Era, complete the New Era Step after com-
+pleting the New Y ear Step.
+5. New Y ear Step [if applicable]: If the Turn marker just flipped 
+from Late Y ear to Early Y ear, perform the following steps:
+Adjust the Economy track. If the Turn marker 
+just entered 1920, 1921, 1922, or 1923 (i.e., within 
+the Crisis Era), shift the Economy marker one box 
+left towards Hyperinflation, unless prevented by 
+yellow Leverage [5.4].
+If the Turn marker just entered 1930 (the start of 
+the Decline Era), place the Economy marker below 
+the rightmost occupied Dollar Dependence box 
+(if any). The Momentum faction then removes all 
+Leverage from the Economy track and returns those markers 
+to empty holding boxes [5.2].
+If the Turn marker just entered 1931, 1932, or 1933 (i.e., within 
+the Decline Era), shift the Economy marker one box towards 
+Mass Unemployment, unless prevented by Leverage [5.4]. Note 
+that during the Decline Era, the Economy marker may not shift 
+farther left (i.e., closer to Hyperinflation) than the rightmost 
+Dollar Dependence marker.
+Adjust the Turn Order track. The Momentum 
+faction determines the turn order for the upcoming 
+year by placing each faction’s Turn Order marker 
+in the Turn Order display in any desired order.
+6. New Era Step [if applicable]: If the Turn marker just entered 
+1924 (the start of the Golden Twenties Era) or 1930 (the start of 
+the Decline Era), perform the following steps:
+
+=== PAGE 14 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+14
+Calculate Held Card Penalty. Each faction, in turn order, must 
+reveal any held Event cards (i.e., Event cards in hand that were not 
+played during the last Era; do not count Article 48, Reichstag 
+Seats , or any Parliamentary Control cards). For each Election 
+or Mandatory Event card that a faction holds, the Momentum 
+faction may remove up to two Influence cubes belonging to that 
+faction from any spaces on the map and that faction draws two 
+fewer Event cards during this New Era step.
+For each other held card, the Momentum faction may remove 
+one Influence cube belonging to that faction from the map 
+(even zero) and that faction draws one fewer card during this 
+New Era step.
+Design Note: Watch out! The penalty for holding a card or two 
+—especially a Mandatory or Election card—is brutal. If you draw 
+an Election card, it’s best to play it quickly in case another faction 
+also drew one and beats you to it.
+Also, when playing the A New Hope, Black Sun Rising, and The 
+Fate of the Republic scenarios, if the Coalition (only) had a Held 
+Card Penalty in the final round of the scenario, a full Election 
+Cycle will determine the outcome of the game [9.4– 9.6].
+Remove Lingering Events that are ending. Check the top of 
+each Lingering Event and remove it when instructed. Note that 
+some Lingering Events are never removed and thus remain in 
+effect all game.
+Draw New Cards. Remove the previous Era’s deck and discards 
+from play, including any held cards. Prepare the deck for the 
+next Era per general Event deck preparation instructions [9.1]. 
+In turn order, deal each faction 9 cards if starting the Golden 
+Twenties Era or 6 cards if starting the Decline Era (unless a 
+faction receives fewer cards due to a Held Card Penalty).
+Factions that held cards from the previous Era will receive fewer 
+cards. These factions draw two fewer cards for each held Election 
+plus Mandatory Event card, and one fewer card for each other 
+held Event card.
+Example: At the end of the Golden Twenties Era, the Coa-
+lition held one Election card and two other Event cards. 
+One of those Event cards was #57 Paul von Hindenburg, 
+which is a Mandatory card. Going into the Decline Era, the 
+Coalition will draw only 1 card (6 for the Decline Era minus 
+2 for the Election card, minus 2 for the held Mandatory card, 
+and minus 1 for the other held card). Ouch!
+Example: The U.S.S.R. Deals track holds three Coalition 
+Reichswehr units, two Coalition Leverage, two RC Leverage, 
+and three KPD Cadres. When the U.S.S.R. marker is at level 
+2, the KPD Cadre and the Coalition Leverage connected to 
+box 2 are Available, as are the RC Leverage and the Coalition 
+Reichswehr unit connected to box 1.
+5.0  Game Concepts
+5.1  Available, Unavailable, and Holding Boxes
+Many cards and Actions refer to Available pieces. Some pieces 
+—most units and all Influence cubes—are stored on or near 
+the owning faction’s mat and are freely Available at the start of 
+the scenario.
+Other pieces—Leverage, Assassinations, Strikes/Uprisings, Cad-
+res, Reforms, Middle Class Sympathies, Coalition Reichswehr 
+units, Conservative Cliques, and each faction’s Sudden Victory 
+markers—are stored in holding boxes on various tracks on the 
+board or on faction mats. Holding boxes are labeled “ Available” 
+and each one specifies the name of the piece or unit kept there. 
+Each holding box may only hold one piece. Every holding box 
+is also either numbered directly or linked to a numbered box 
+on its accompanying track. Generally, a piece is Available if 
+it is in a box connected to the current position of that track’s 
+marker or in any lower-numbered box. Note that the Available 
+Middle Class Sympathies pawns on the Progress and Reaction 
+tracks are available to all factions, depending on the position 
+of the Progress and the Reaction markers. The Progress marker 
+determines Availability of these pawns for the Coalition and KPD 
+factions, while the Reaction marker determines Availability for 
+the NSDAP and RC factions.
+Important! The one place where Availability is handled 
+differently is the Economic Influence track on the RC 
+faction mat. Here, the Leverage marker in the lowest-num-
+bered occupied box (i.e., the leftmost black Leverage) is 
+always Available. As each Leverage is used (from left to 
+right), the next one becomes Available. Both Conservative 
+Clique blocks, an Assassinations marker, and the RC Putsch 
+Sudden Victory marker become Available in turn when the 
+Leverage in each connected box is removed.
+Certain cards—Article 48 , Reichstag Seats , and all Par -
+liamentary Control cards—may be used only once between 
+Elections. Keep these cards face-up in front of the controlling 
+faction when unused; they are Available to be played [6.0]. After 
+using a card, flip it face-down until the next Election, when these 
+cards are flipped face-up to be Available again [7.3].
+
+=== PAGE 15 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+15
+All other pieces are Unavailable and may not be placed until 
+released by their connected track. Pieces that may have already 
+been placed are not affected when the track that governs their 
+Availability shifts.
+Actions and Events that allow a faction to place a unit or piece 
+may only be performed if that unit or piece is Available. If none 
+are Available, skip that instruction.
+Generally, pieces on a faction mat are only ever Available to 
+that faction. Middle Class Sympathies pawns on a faction’s mat, 
+however, are Available to other factions via the Move Middle 
+Class Sympathies Action [6.3– 6.6], though only NSDAP may 
+move a Middle Class Sympathy pawn directly from an opponent’s 
+faction mat to their own.
+Most other pieces are color-coded and can only be used by the 
+matching faction. Assassinations markers, however, are col -
+or-coded according to the faction targeted  by NSDAP and RC 
+Place Assassinations Actions.
+5.2    Placing and Returning Pieces to Holding 
+Boxes
+Whenever placing a piece on a track, place it in the lowest-num-
+bered empty box on that track. Note that Leverage may be placed 
+on one of two sides of the Economy track. In this case, place the 
+Leverage marker in the lowest-numbered empty box on the 
+chosen side (including the center box if the three boxes on the 
+chosen side are already occupied).
+Whenever returning a piece to a holding box, return it to any 
+track or faction mat that has at least one empty holding box of 
+the appropriate type (chosen by the active faction when there 
+are several options). When returning a piece to a track that has 
+more than one empty box, return it to the highest-numbered 
+empty holding box on that track or faction mat (i.e., in the reverse 
+order that the piece was removed).
+When instructions specify to remove “up to” a certain number, 
+a faction may choose to remove none.
+5.3  Faction Mats
+Each faction has a separate play mat that holds their Available 
+units, Middle Class Sympathies, and a track that contains other 
+pieces and reflects the internal state of that faction.
+The Coalition mat tracks 
+the Unity of the various 
+parties that constitute 
+the Coalition. The Coa-
+lition may not place a 
+Reform when Unity is 
+Fragile but may place a 
+Reform when Unity is 
+Sound or Strong. The 
+Unity track also changes 
+the Coalition’s Sudden Victory requirements [3.1].
+The KPD mat tracks 
+their internal Stance, 
+which ranges from uti -
+lizing Democratic pro -
+cesses to promoting a 
+Revolution. KPD Stance 
+determines which of the 
+Cadre, Strike, General 
+Strike, and Revolution 
+markers are Available to the KPD. Any markers located above 
+or below the Stance marker are Available to the KPD, as are 
+any markers above or below boxes between the Stance marker 
+and the Pragmatic box. The Strike above the Pragmatic box is 
+always Available. When a Cadre is returned to the KPD mat, 
+return it to the highest-numbered empty Available Cadre box. 
+When a Strike or Uprising is returned to the KPD mat, return 
+it to the highest-numbered empty Available Strike box, with its 
+Strike side showing.
+The NSDAP mat tracks 
+the Stance of the NSDAP , 
+which ranges from uti -
+lizing Democratic pro -
+cesses to promoting a 
+Revolution. Like KPD, 
+any markers below the 
+Stance marker, as well as 
+any markers below boxes 
+between the Stance marker and the Pragmatic box, are Available 
+to the NSDAP . When a Cadre is returned to the NSDAP mat, 
+return it to the highest-numbered empty Available Cadre box. 
+Return the Assassinations marker and the Putsch marker to 
+their own boxes.
+
+=== PAGE 16 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+16
+The RC mat tracks the 
+Economic Influence of 
+the Radical Conserva -
+tives. Leverage on the 
+Economic Influence 
+track becomes Avail -
+able from left to right in 
+turn; when the leftmost 
+Leverage is placed, the 
+new leftmost Leverage becomes immediately Available. Addi-
+tionally, any Conservative Clique, Assassinations, or Putsch 
+marker below an empty Leverage box is Available. When Leverage 
+is returned to the RC mat, return it to the highest-numbered 
+empty Available Leverage box.
+5.4  Leverage
+Leverage markers represent the Coali-
+tion and RC using their sway to change 
+the perception of the Weimar govern-
+ment, either positively or negatively. 
+Y ellow Coalition Leverage becomes Available through the U.S. 
+Deals and U.S.S.R. Deals tracks. Black RC Leverage becomes 
+Available through the U.S.S.R. Deals track and the Economic 
+Influence track on the RC faction mat. Leverage markers may 
+be placed on the Economy track, on the Progress (yellow only) 
+or Reaction (black only) tracks, or in spaces on the map.
+Both yellow Coalition and black RC Leverage markers may be 
+placed either on the left side (towards Hyperinflation) or on 
+the right side (towards Mass Unemployment) of the Economy 
+track. Place Leverage in the lowest-numbered, empty box on 
+either the left or right side (or in the center, if there are already 
+Leverage markers in the three boxes on a chosen side). In all 
+cases, the Coalition may only place a Leverage marker on a 
+given side if there are no black Leverage markers already on 
+that side of the track.
+Placing Y ellow Leverage on the Economy Track.
+The Coalition uses their Leverage markers to shift the Economy 
+marker. Whenever a yellow Leverage marker is placed on the 
+same side of the track as the Economy marker, check if the 
+Economy marker is farther along that side of the track than 
+the newly placed Leverage marker (i.e., the Economy marker 
+is closer to the Hyperinflation/Mass Unemployment box than 
+the new Leverage marker). If so, move the Economy marker to 
+the box that is directly above the newly placed Leverage (i.e., 
+Leverage “pulls” the Economy marker back toward Stable). If the 
+Economy marker is not closer to the end of the track than the 
+newly placed Leverage, or is on the other side of the Economy 
+track, do not shift it.
+Y ellow Leverage markers also serve to constrain the movement 
+of the Economy marker. On each side of the track, the Economy 
+marker may not move closer to the end of the track (i.e., toward 
+the Hyperinflation or Mass Unemployment boxes) than the 
+yellow Leverage closest to Stable on that side of the track.
+During the Decline Era, the Economy marker may also never 
+shift farther left than the rightmost Dollar Dependence marker, 
+regardless of Leverage.
+Placing Black Leverage on the Economy Track.
+RC uses their black Leverage markers to block the placement of 
+Coalition Leverage. Black RC Leverage markers are also placed 
+in the lowest-numbered, empty Leverage box on either the left  
+or right side. Unlike Coalition Leverage, RC Leverage does not 
+affect the Economy marker, nor does the presence of yellow 
+Leverage block placing black Leverage. Rather, the presence of 
+RC Leverage serves to block the placement of Coalition Leverage 
+on that side of the track.
+Example: It’s 1928, and the Coalition player wants to shift  
+the Economy track because currently it may not place Influ-
+ence cubes during Place Influence Actions. There are already 
+several Leverage markers on the Economy track: two yellow 
+Leverage on the Hyperinflation side and one yellow and one 
+black on the Mass Unemployment side. The Coalition may not 
+place a yellow Leverage marker on the Mass Unemployment 
+side; the black RC Leverage there blocks this move. And in 
+any case, the Economy marker is on the Hyperinflation side 
+of the track; placing Leverage on the Mass Unemployment 
+side would have no immediate effect on the Economy marker.
+The only box that the Coalition may place a yellow Leverage 
+in is the “Leverage 3” box on the Hyperinflation side. This 
+box is the lowest-numbered empty box on this side of the 
+track, and there is no black Leverage on this side of the track. 
+The Coalition places its yellow Leverage in the “Leverage 3” 
+box and shifts the Economy track marker right one box to 
+the box directly above the newly placed Leverage.
+Example continued on next page...
+
+
+=== PAGE 17 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+17
+Removing Leverage.
+Leverage markers are removed in reverse order, from the high-
+est-occupied Leverage box (active faction chooses the side of 
+the track) and returned to an empty Leverage holding box [5.2]. 
+Do not adjust the Economy marker when Leverage is removed.
+5.5  The Economy Track
+The position of the Economy marker on the Economy track 
+determines the number of Influence cubes that are placed or 
+removed by KPD and NSDAP Place Influence and Remove 
+Influence Actions [6.4, 6.5], whether the Coalition may place 
+Influence with its Place Influence Action [6.0, 6.3], and whether 
+the Coalition must remove Influence each time the Timeline 
+advances [4.0, Step 4].
+Placing Leverage on the Progress and Reaction Tracks.
+Y ellow Coalition Leverage is placed on the Progress track, and 
+black RC Leverage is placed on the Reaction track. Always place 
+Leverage markers in the lowest-numbered, empty box. Unlike 
+the Economy track, placing Leverage by itself does not shift the 
+Progress or Reaction markers. Rather, the position of Leverage on 
+the track limits how high the Progress and Reaction levels may 
+go. The Progress level may never be in a box above the highest 
+yellow Leverage marker. Likewise, the Reaction level may never 
+shift to a box above the highest black Leverage marker. 
+Placing Leverage in Map Spaces.
+Both yellow Coalition and black RC Leverage markers may be 
+placed in spaces on the map. Leverage on the map affects Assault 
+Actions [6.2] and Regional Elections [7.1]. Leverage in a space 
+may be removed due to a Clean Slate [5.11], Coalition and RC 
+Remove Leverage Actions [6.3, 6.6], the KPD Place Strike Action 
+[6.4], and some Events.
+It’s now 1929, and the Economy marker has since shifted to 
+the Mass Unemployment side of the track. There are also now 
+three Dollar Dependence markers on the Economy track. The 
+black Leverage marker still blocks the Coalition from plac-
+ing Leverage on the Mass Unemployment side of the track. 
+The Coalition would first need to use the Remove Leverage 
+Action to remove the black Leverage marker (returning it 
+to an empty black Leverage holding box), and then use the 
+Place Leverage on a Track Action to place a yellow Leverage 
+marker in the “Leverage 2” box, the one previously occupied 
+by the black Leverage. This would shift the Economy marker 
+one box to the left. If it were 1930, however—in the Decline 
+Era—even placing this new Leverage would not shift the 
+Economy marker. This is because during the Decline Era, 
+it may never move farther left than the rightmost Dollar 
+Dependence marker. Tough times for the Republic!
+Example: It’s 1925, and the Coalition faction would like to 
+increase Progress. Currently, Progress is at the same level 
+as the highest yellow Leverage marker, so Progress is not 
+eligible to be increased by any means. The Coalition faction 
+selects the Place Leverage on a Track Action first to place an 
+Available yellow Leverage in the next box (level 4). Then, the 
+Coalition can use the Advance Progress Track Action (or an 
+appropriate Event card) to increase Progress by one level— 
+which would also make another Coalition Reform Available.
+
+
+=== PAGE 18 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+18
+The Economy marker is shifted by yellow Leverage [5.4] and 
+some Events. When the Economy marker is in the center box, 
+the Economy is Stable. When it is in any of the boxes to the left 
+of Stable, it is moving towards Hyperinflation. Similarly, when it 
+is in any of the boxes to the right of Stable, it is moving towards 
+Mass Unemployment. The Economy marker is constrained by 
+yellow Leverage markers. It may not shift closer to the end of 
+either side of the track than any yellow Leverage also on that side.
+The Dollar Dependence boxes hold Dollar Depen-
+dence markers, which are placed in these boxes 
+from left to right as they are released from the 
+U.S. Deals track [5.6]. During the Decline Era, the 
+Economy marker may never shift farther left than the rightmost 
+Dollar Dependence marker.
+The Middle Class Sympathies pawns above the Hyperinflation 
+and Mass Unemployment boxes become Available to all factions 
+whenever the Economy marker occupies the connected box.
+5.6  U.S. Deals and U.S.S.R. Deals
+The U.S. Deals track and U.S.S.R. Deals track represent major 
+economic agreements between the German government and 
+the United States and Soviet Union, respectively. The U.S. and 
+U.S.S.R. Deals tracks are advanced by the Coalition Increase 
+Deals Action [6.3] or through play of Event cards.
+The Reichswehr, Leverage, and Cadre above and below the U.S. 
+and U.S.S.R. Deals markers become Available as each track 
+advances [5.1].
+Any time the U.S. Deals marker shifts into a box above a Dollar 
+Dependence marker, immediately place that Dollar Dependence 
+marker on the Economy track in the leftmost open box. During 
+the Decline Era (only), these markers limit shifts to the Economy 
+marker [5.5].
+Once advanced, Germany is committed to its deals with both the 
+U.S. and the U.S.S.R. Neither the U.S. nor U.S.S.R. Deals marker 
+may ever be moved to a lower value.
+5.7  Progress and Reaction
+The Progress and Reaction tracks show the current state of pro-
+gressive reforms implemented by the Coalition and correspond-
+ing reactionary developments. These are tracked by the Progress 
+and Reaction markers, respectively. Progress is increased via 
+the Coalition Advance Progress Track Action [6.3]. Reaction is 
+increased via the RC Advance Reaction Track Action [6.6]. Both 
+the Progress and Reaction tracks are also shifted by some Event 
+cards. The maximum level of each is determined by the number 
+of Leverage markers on each track. Y ellow Leverage markers set 
+the maximum level for Progress; black Leverage markers set the 
+maximum level for Reaction. In addition, Reaction may never 
+be more than one level higher than Progress.
+The Progress track holds four Reform markers and determines 
+whether the Coalition receives any PV bonus for having Influ-
+ence in Berlin during a General Election [7.2]. The Reaction 
+track holds an Assassinations marker, two NSDAP Cadres, and 
+a Conservative Clique, and it determines the amount of Influ-
+ence placed and removed by RC Place Influence and Remove 
+Influence Actions [6.6]. These pieces become Available as each 
+track advances [5.1].
+Between the two tracks are Middle Class Sympathies pawns, 
+one at each level. Pawns at or below the level of Progress are 
+
+=== PAGE 19 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+19
+Available to the Coalition and KPD. Those at or below the level 
+of Reaction are Available to the NSDAP and RC.
+When Leverage is removed from the Progress or Reaction track, 
+adjust the track as necessary so that the current Progress or 
+Reaction level is not higher than the highest Leverage marker on 
+that side. If removing Leverage from the Progress track results in 
+Reaction being two or more boxes above the new Progress level, 
+decrease Reaction so that it is one box above Progress. Pieces 
+previously made Available by the position of these markers do 
+not need to be returned as each marker decreases.
+5.8  Momentum and Turn Order
+One faction has Momentum at all times during the 
+game. This faction is referred to as the Momentum 
+faction. Record the current Momentum faction by 
+placing the Momentum marker in the box matching 
+the Momentum faction on the Momentum track. The Momentum 
+faction determines turn order at the start of the game and during 
+the New Y ear Step of the turn [4.0], performs each Clean Slate 
+[5.11], receives bonuses in General Elections [7.2], and sometimes 
+makes decisions when implementing Event cards. Momentum is 
+gained through successful Assaults [6.2], the Gain Momentum 
+Action [6.3– 6.6], play of the Article 48 and Reichstag Seats  
+cards, and some Event cards.
+Turn order is determined by the Momentum fac-
+tion during setup and during the New Y ear Step. 
+Record the current turn order by adjusting each 
+faction’s Turn Order marker on the Turn Order 
+track. After each faction takes their turn, their Turn Order marker 
+can be flipped to its back side to note that it has acted this round 
+(flip it face-up again during each Advance Timeline step).
+5.9  Presence, Dominance, and Supremacy
+Presence and Dominance measure political power and depend 
+on the number of Influence cubes in a space. Each faction with at 
+least one Influence cube in a space has 
+Presence in that space. The faction 
+with the highest number of Influence 
+cubes in the space has Dominance in 
+that space. If there is a tie for greatest number of Influence cubes 
+between several factions with the same number of Influence 
+cubes, no faction has Dominance there (but all factions with a 
+cube do have Presence). Presence and Dominance are necessary 
+to conduct some Actions [6.3– 6.6], and Dominance awards the 
+PV of the space to that faction during Regional Elections [7.1].
+While Presence and Dominance measure political 
+power, Supremacy is an indication of military 
+power. Total the Survival Value of each faction’s 
+units in a space (only: Cadres, Strikes, Uprisings, 
+and Conservative Cliques have no SV value). The faction with 
+the highest total SV has Supremacy in that space. If two or more 
+factions each have the same total SV , no faction has Supremacy. 
+While there is no marker for Presence or Dominance, players 
+may use a faction’s Supremacy marker in the space as a reminder.
+When determining Supremacy after an Assault [6.2], include 
+any Reichswehr that failed a Loyalty Check.
+Supremacy in Berlin is one pathway to Sudden Victory for KPD, 
+NSDAP , and RC factions [3.1]. Supremacy in a space also prevents 
+a faction from losing Influence for being the attacker in an Assault 
+[6.2], blocks an opponent’s Remove Influence Actions [6.3– 6.6], 
+and—for RC only—prevents an NSDAP Place Assassinations 
+Action from removing a Conservative Clique [6.5].
+5.10  Parliamentary Control
+The faction that gains the most Political Value (PV) in Bayern, a 
+City, or a Region during a Regional Election gains Parliamentary 
+Control there. They claim the matching Parliamentary Control 
+card, then mark the corresponding Parliamentary Control box 
+on the game board as a reminder. Parliamentary Control only 
+changes during Regional Elections [7.1], but it may be lost in 
+Berlin as a result of Event card #5 Kapp Putsch.
+Example: It’s 1928, and the RC faction wants to increase the 
+Reaction level to gain access to a Middle Class Sympathies 
+pawn. There are two black RC Leverage markers already on 
+the Reaction track. Currently at 2, Reaction is lower than 
+the highest black Leverage on the Reaction track and isn’t 
+already one higher than Progress, so Reaction is eligible 
+to be increased. RC selects the Advance Reaction Track 
+Action and shifts the Reaction marker up one box to level 
+3. This move makes several pieces Available: one Cadre is 
+now Available to NSDAP , and one Middle Class Sympathies 
+pawn is now Available to both NSDAP and RC (this pawn 
+was previously only Available to the Coalition and KPD due 
+to the level of Progress).
+
+
+=== PAGE 20 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+20
+5.11  Clean Slate
+After Elections and after play of the Article 48 or Reichstag 
+Seats  cards, the Momentum faction conducts a Clean Slate in 
+every map space. After play of a Parliamentary Control card, 
+the Momentum faction conducts a Clean Slate in the matching 
+space or Region.
+ To conduct a Clean Slate, the Momentum faction removes all 
+Strikes (only, do not remove any Uprisings), Assassinations, and 
+Leverage markers from the affected map spaces (only, do not 
+remove Leverage from any tracks), with the following exceptions:
+•  Do not remove Strikes from spaces with a KPD Cadre, 
+KPD Dominance, or KPD Parliamentary Control.
+•  Do not remove yellow Leverage markers from spaces 
+where the Coalition has Dominance or Parliamentary 
+Control.
+•  Do not remove black Leverage markers from spaces 
+where the RC has Dominance or Parliamentary Control.
+5.12  Limited Stacking
+Several pieces are limited in the number that may occupy any 
+given map space. These limits apply at all times.
+The total number of Influence cubes in any space may not exceed 
+that space’s Population Number [1.2]. A space can always have 
+at most one Strike, or one Uprising marker, not both. There may 
+only be one Cadre in any given space, either KPD or NSDAP . 
+Ignore any instruction to add one of these pieces to a space if 
+its maximum number has already been met.
+Each box on all tracks and faction mats may only ever hold one 
+piece (as listed in each box).
+There is no limit to the number of units (Coalition Freikorps 
+and Reichswehr, KPD Worker Militia, NSDAP SA, and RC Rogue 
+Freikorps) that may occupy any given map space.
+5.13  Deal Making
+Although players are free to negotiate with each other, such 
+agreements are not enforceable by the rules. Cards, units, pieces, 
+or other resources may not be traded or given away, with two 
+exceptions:
+During an Assault, a faction may loan any or all of their own 
+units in the Assault space to one of the participating factions. 
+The receiving faction treats these units as their own for the 
+duration of the Assault [6.2].
+During a General Election, the Momentum faction may transfer 
+up to half of their PV (round down) to another faction [3.2, 7.2].
+6.0  Action Step
+During the Action Step, each faction in Turn Order becomes the 
+active faction and must perform one of the following:
+• Take one Action.
+•  Play one Event card and then take two Actions, or take 
+two Actions and then play one Event card.
+•  Take no Actions and pass. A faction that passes may 
+discard an Event card from their hand and draw a 
+replacement. In the rare event that the draw deck is 
+empty, no faction may discard a card in this manner. 
+Mandatory cards and Election cards may never be 
+discarded.
+Optionally, the active faction (and possibly the Coalition) may 
+also perform one or more bonus operations:
+•  If holding the Reichstag Seats card, the active fac-
+tion may play it if Available [5.1].
+•  If holding one or more Parliamentary Control cards, 
+the active faction may play one if Available [5.1].
+•  The Coalition may play the Article 48 card to cancel 
+the effects of an Event card played by any faction, if it is 
+Available [5.1].
+Thus, any given faction’s Action Step may involve as many as 
+four separate operations: playing one Event card (that may be 
+canceled by Article 48), performing one or two Actions, playing 
+Reichstag Seats, and playing one Parliamentary Control card. 
+Regardless of the total number of operations in any given Action 
+Step, each operation must be completed in full before perform-
+ing another (if performing two Actions, both Actions must be 
+complete before starting the next operation). These operations 
+may be completed in any order, determined by the active player.
+Performing Actions
+See Sections 6.3 – 6.6 and the Player Aid Card for specific details 
+on the Actions available to that faction. Note that several factions 
+may share similar Actions, but the specific way those Actions 
+are performed often differ from faction to faction.
+A faction may choose any Action from their faction-specific list 
+of Actions, even if the Action would have no effect. If performing 
+two Actions during an Action Step, any combination of Actions 
+may be chosen (even the same Action twice, given the Limits on 
+Actions and Events [6.0]). Fully complete the first Action before 
+performing the second. Both Actions must be completed before 
+starting another operation (such as playing an Event card).
+Gameplay Note: A faction that selects both Place Influence 
+and Remove Influence may not perform those Actions in the 
+same space.
+
+=== PAGE 21 ===
+Example: It is the start of the Late Year round in 1933. KPD 
+is first in Turn Order and so will act first this Action Step. 
+KPD plans to play an Event card but decides to take both 
+Actions first. First they choose the Place Influence Action, 
+placing a KPD Influence cube in Rheinprovinz. Next, they 
+must perform their second Action before any other operation. 
+They select the Remove Influence Action. They would love 
+to further strengthen their position in Rheinprovinz, but a 
+faction may not both place and remove Influence from the 
+same space on the same faction’s turn. Instead, they strike 
+elsewhere, removing an NSDAP Influence from Bayern.
+Next, KPD plays Event card #124 Hindenburg Runs Again, 
+but the Coalition has been waiting for this moment. They 
+do not want this Lingering Event to go into effect. Not only 
+would it give KPD more opportunities to play its Reichstag 
+Seats  card, but it also allows later play of the dangerous 
+Hitler Sworn In card, and the Coalition would lose its 
+powerful Article 48 card! Normally, the order of actions 
+during the Action Step is determined by the active faction, 
+but the Coalition may interrupt to play Article 48. This 
+card fully cancels the played Event and Hindenburg Runs 
+Again is placed in the discard pile without any effect. Next, 
+the Coalition becomes the Momentum faction and conducts 
+a Clean Slate across the entire map. Finally, the Article 
+48 card is flipped face down as a reminder that it is not 
+Available again until after the next Election.
+Now play returns to KPD. Although their Event card was 
+canceled, their turn is not quite over. They decide to play their 
+Reichstag Seats card in order to become the Momentum 
+faction. They also shift the Coalition Unity marker one box 
+towards Fragile and conduct a Clean Slate across the entire 
+map. Then they flip the Reichstag Seats card face-down 
+to note its use; it will be Available again after the next Elec-
+tion. Note that the Hindenburg Runs Again Event card 
+also has the  symbol, which would trigger a Non-player 
+Coalition to play Article 48 to cancel it.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+21
+Playing Event Cards
+See Section 6.1 for details on playing Event cards (including 
+Election, Mandatory, and Lingering Events).
+Reichstag Seats
+The faction holding the Reichstag Seats card may play it if 
+Available during its own Action Step. When Reichstag Seats 
+is played:
+• Shift Coalition Unity one box towards Fragile.
+•  The active faction immediately becomes the Momen-
+tum faction [5.8].
+• Conduct a Clean Slate in every space of the map [5.11].
+The Reichstag Seats card may be used once during each Elec -
+tion Period [7.0]. When used, flip it face-down; flip it face-up 
+during the next Election Cycle [7.0], when it is given to the 
+runner-up faction in the General Election [7.2].
+Parliamentary Control Cards
+A faction holding one or more Parliamentary Control cards may 
+play one if Available at any point during their own Action Step. 
+Each faction may only play one Parliamentary Control card during 
+each Action Step. When played, perform the following steps:
+•  Perform one bonus Action in the space or Region 
+named on the Parliamentary Control card. 
+•  Optionally, remove one Coalition Reform from the 
+named space or Region.
+•  Conduct a Clean Slate in the space or Region named on 
+the card [5.11].
+If performing an Action, that Action is limited to the space or 
+spaces in the Region named on the Parliamentary Control card. 
+The selected Action must affect the select space in some way 
+(i.e., by adding, moving, or removing pieces to/from the space). 
+Follow all regular rules for the chosen Action. If performing a 
+Move Units Action, units may originate outside those spaces but 
+must end their movement within the named space(s).
+A Parliamentary Control card may be used once during each 
+Election Period. When used, flip it face-down; flip it face-up 
+during the next Election Cycle [7.0]. Parliamentary Control 
+cards are awarded to the faction that wins a Regional Election 
+in the named space or Region [7.1].
+Article 48
+After play of an Event card by any faction (including itself), the 
+Coalition may play the Article 48 card if Available in order 
+to cancel fully the text of that Event card—as long as the card 
+is not an Election or Mandatory Event. Article 48 must be 
+played before performing any instructions on the Event card. 
+When played, pause the active faction’s Action Step:
+•  Cancel all effects of the played Event’s text, including 
+any “Cancels ___” or Lingering Event instructions; 
+discard the Event card.
+• The Coalition becomes the Momentum faction [5.8].
+
+=== PAGE 22 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+22
+•  The Coalition (as the Momentum faction) immediately 
+conducts a Clean Slate in every space of the map [5.11].
+Though the played Event was blocked, the active faction may 
+still perform two Actions.
+The Article 48 card may be used once during each Election 
+Period. When used, flip it face-down; flip it face-up during the 
+next Election Cycle [7.0].
+Gameplay Note: Since the Article 48 card goes to the fac-
+tion that wins the General Election, only the Coalition will ever 
+hold it—if any other faction wins the General Election, they win 
+the game! Some Event cards show the  symbol. This is used 
+to trigger play of the Article 48 card when the Coalition is a 
+Non-player faction. Ignore this symbol if the Coalition is played 
+by a human.
+Limits on Actions and Events
+When resolving any Action or Event card (including when 
+performing any Actions allowed by an Event), the following 
+restrictions always apply:
+•  A space may never hold more Influence cubes than its 
+Population Number [1.2, 5.12].
+•  Influence cubes may not be both removed from and 
+placed in the same space during the same faction’s 
+Action Step.
+•  Influence cubes may not be placed in a space if there is 
+an Assassinations marker there that matches the color 
+of the placing faction.
+•  If the active faction performs two Assault Actions, each 
+Action must target a different space.
+•  The Coalition may not place Influence cubes if the 
+Economy marker is in any of the three left-most boxes 
+(i.e., towards Hyperinflation) [5.5].
+•  A space can always have at most one Strike, or one 
+Uprising marker, not both [5.12].
+•  There may never be more than either one KPD Cadre 
+or one NSDAP Cadre in any one space [5.12].
+•  The Economy marker may never shift closer to the end 
+of either side of the Economy track than any yellow 
+Leverage on the same side [5.4] (i.e., it can never shift 
+past any yellow Leverage).
+•  In addition, during the Decline Era, the Economy 
+marker may never shift farther left than the rightmost 
+Dollar Dependence marker [5.5], even when there is 
+a yellow Leverage marker to the left of the left of this 
+Dollar Dependence marker.
+•  Reaction can never shift more than one box higher 
+than Progress [5.7].
+•  If an Event allows a card to be discarded, Election and 
+Mandatory cards may never be discarded.
+•  In-play Lingering Events [1.6] may alter or block cer-
+tain Actions (even those granted by a just played Event 
+card).
+KPD and NSDAP: Sworn Enemies
+If any Event or Action causes a KPD Worker Militia to be placed 
+in a space with an NSDAP SA unit (or vice versa), the active 
+faction must immediately Assault the other faction in that space. 
+If the active faction is not KPD or NSDAP , however, the active 
+faction chooses which faction is the attacker and which is the 
+defender. This is a free Assault and does not count as an Action 
+for any faction.
+6.1  Playing Event Cards
+The active faction may play any Event card from its hand— 
+regardless of the faction(s) that may be affected by the Event. 
+Unless a specific faction is noted in the Event text, the active 
+faction makes all choices regarding Event instructions. Where 
+Events specify that an activity “may” be performed, the faction 
+performing that activity determines the extent to which it is 
+performed (including not at all). Otherwise, Event instructions 
+must be performed, although a non-Election/non-Mandatory 
+Event may be canceled by the Coalition’s use of the Article 48 
+card before any Event effects have been resolved.
+An Event card that would have no effect, because none of its 
+instructions can be resolved (including when canceled by Article 
+48), may still be played in order to gain two Actions this round. 
+After playing, place the Event card into a discard pile. The discard 
+pile is face-up and may be examined at any time.
+Gameplay Note: In order to gain two Actions (or avoid the 
+Held Card penalty), you may sometimes wish to play an Event 
+card that only benefits your opponents.
+Some Events are Lingering
+After an Event card has been played, check to see if it is a Lingering 
+Event [1.6]. If so, place it face-up in the Lingering Events box on 
+the board for future reference. If it is not a Lingering Event—or 
+if it was canceled by Article 48—place it in the discard pile.
+Some Events Cancel Lingering Events
+If the Event card includes the “Cancels ___” instruction, check 
+to see if the specified canceled card has already been played as 
+a Lingering Event. If so, discard the canceled card. There is no 
+effect if the canceled card has not been played yet or is played 
+during a later turn. If the Coalition plays Article 48 to cancel 
+this Event card, the “Cancels ___” instruction is also negated.
+
+=== PAGE 23 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+23
+Some Events Require Previous Play
+If the Event card includes the “Requires ____” instruction, event 
+instructions will only be implemented if the required Lingering 
+Event has already been played. If it has not yet been played, or 
+was played earlier but has since been canceled by a previous 
+Event card, then the Event is not resolved (nor will it become a 
+Lingering Event), but the card may still be played in order to gain 
+two Actions this round. Simply discard the card.
+Gameplay Note: If playing the Tutorial scenario [9.2], ignore 
+any “Requires ________” requirement listed on an Event card.
+6.2  Assault Action
+The Assault Action is common to all factions, though the way in 
+which it is performed may differ from faction to faction.
+Assault Procedure
+Select a space with active faction units and at least one opposing 
+faction unit, Strike, or Uprising. Each Assault Action targets only 
+one opposing faction. The active faction may only perform an 
+Assault Action in a given space once during each Action Step.
+A faction participating in an Assault may use some or all of 
+another faction’s units as its own—for this Assault only—with 
+the explicit permission of the loaning faction.
+This decision must be made before continuing with the Assault 
+procedure, attacker first. The faction taking control of the loaned 
+units treats them as their own, making all decisions related to 
+those units for the duration of this Assault. Units not loaned and 
+any other pieces belonging to the loaning faction in the Assault 
+space are not affected by the Assault.
+Testing Coalition Loyalty
+Any time that both Coalition and RC units oppose each other 
+in an Assault (even when loaned to another faction), perform 
+a Loyalty Check for all Coalition units first.
+•  If Progress is equal to or greater than Reaction [5.7], 
+all Coalition units pass the Loyalty Check, remain loyal 
+for this Assault, and participate normally. If Lingering 
+Event #20 Militarism is in effect, Progress must be 
+2 higher than Reaction for Coalition units to pass the 
+Loyalty Check.
+•  If Progress is less than Reaction, Coalition units fail 
+the Loyalty Check and may not fully participate in this 
+Assault:
+◊  Coalition Reichswehr units refuse to participate in 
+the Assault and are not included when calculating 
+Survival Value or removing losses.
+◊  Flip each unrevealed Coalition Freikorps unit in 
+the space to reveal its true loyalty. The backside of 
+each flipped unit will either show a yellow-bordered 
+loyal Coalition Freikorps, or a black-bordered RC 
+Rogue Freikorps. Revealed loyal Freikorps will 
+remain Coalition units for the rest of the game and 
+will participate in the upcoming Assault normally. 
+Revealed Rogue Freikorps units now belong fully 
+to the RC faction for the rest of the game and will 
+participate fully in this Assault in opposition to the 
+Coalition. Once flipped, a revealed Freikorps unit is 
+never returned to its unflipped side.
+If the Assault involved only Coalition units as either attacker or 
+defender, and no loyal Coalition units remain, cancel the Assault. 
+This still counts as a single Action for this round.
+In Assaults that do not involve RC units, Coalition Reichswehr 
+and Freikorps units participate fully, without the need for a 
+Loyalty Check.
+Calculate Assault Hits
+First, each faction calculates its own Assault strength by totaling 
+the Survival Value (SV) of its participating units. The Coalition 
+does not include any disloyal Reichswehr units.
+Next, each faction adds to its Assault strength any applicable 
+Assault modifiers for any of the following present in the Assault 
+space. The attacking faction calculates its modifiers first, followed 
+by the defending faction.
+• +2 for Parliamentary Control
+•  +2 if that faction moves a Middle Class Sympathies 
+pawn from its own faction mat to an empty Middle 
+Class Sympathies holding box [5.2]
+• +1 for a Strike (KPD only)
+• +2 for an Uprising (KPD only)
+• +1 for any yellow Leverage (Coalition only)
+• +1 for any black Leverage (RC only)
+• +1 for KPD Cadre (KPD only)
+• +1 for NSDAP Cadre (NSDAP only)
+•  +1 for Event #55 Schutzstaffel Lingering Event 
+(NSDAP only)
+Then, each faction subtracts one die roll from its own modified 
+Assault strength. The result is the total number of Assault hits 
+made by that faction. Treat any result less than 0 as 0.
+
+=== PAGE 24 ===
+Example: RC is the active faction and selects the Assault 
+Action. They may select any one space with both their own 
+and an opponent’s units; they choose Bayern. Both the Coa-
+lition and KPD have units in Bayern; as RC wants to gain 
+Supremacy here, they target the Coalition forces. Before the 
+Assault begins, the RC player asks the KPD player if the KPD 
+Worker Militia would be willing to join the fight against 
+a common enemy. The KPD player, looking to clear the 
+Coalition from Bayern, accepts; RC treats the KPD Worker 
+Militia unit as an RC unit for this Assault. Then, because 
+both Coalition and RC units are participating in the Assault, 
+the Coalition units must first undergo a Loyalty Check. 
+Unfortunately for the Coalition, Progress is currently 2 while 
+Reaction is 3—the Coalition units fail the Loyalty Check. The 
+Coalition Reichswehr unit in Bayern will be ignored for this 
+Assault. Neither of the two Coalition Freikorps units have 
+been tested yet, so they’re both flipped. One remains loyal 
+but the other is revealed to be a Rogue Freikorps; it belongs 
+to the RC faction for the rest of the game.
+Now, each side calculates their Assault strength. With the 
+newly revealed Rogue Freikorps, the RC’s three units have a 
+total SV of 6. To this they add +1 for the loaned KPD Worker 
+Militia for an Assault strength of 7. The Coalition is left with 
+one participating unit—their loyal Freikorps —for a total SV 
+of 2. To this they add +2 for Parliamentary Control in Bayern 
+and +1 for yellow Leverage, for an Assault strength of 5.
+Now, both sides roll a die. The RC die roll is 3. The total 
+Assault hits scored by RC units is 7–3 = 4. The Coalition 
+die roll is a 2. The total Assault hits scored by Coalition 
+units is 5–2 = 3.
+Now, these hits are applied to remove enemy pieces; RC as 
+attacker removes first. The Coalition Reichswehr unit is 
+ignored because it failed the Loyalty Check. Instead, RC 
+spends 2 hits to remove the loyal Coalition Freikorps unit and 
+uses their remaining 2 hits to remove both of the Coalition 
+Influence cubes from Bayern. The Coalition uses 2 of their 
+hits to remove one Rogue Freikorps—choosing to remove 
+the disloyal Freikorps in revenge!—and must use their last 
+hit to remove the KPD Worker Militia unit, because units 
+must be removed before Influence cubes.
+Example continued on next page...
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+24
+Apply Assault Hits
+Each faction—attacker first—applies all hits against the opposing 
+faction’s units and pieces (including any loaned Units). Hits are 
+applied to units first, one at a time. The number of hits needed 
+to remove a unit is equal to its SV . Factions must apply hits to 
+opposing units, but they may select the order that units are 
+removed (and thus may elect to remove Coalition Reichswehr 
+before Freikorps, even if this would “waste” a single hit). Return 
+all removed units to empty holding boxes [5.2].
+Once no units remain (ignoring any Reichswehr that have failed 
+a Loyalty Check), apply remaining hits to remove any Strike 
+or Uprising in the space if the KPD faction participated in the 
+Assault. It takes one hit to remove a Strike and two hits to remove 
+an Uprising.
+Finally, apply any remaining hits to remove Influence cubes, 
+one cube per hit. Do not remove Influence cubes belonging to 
+a faction that lent its units to the Assault. Once all of a faction’s 
+Influence cubes have been removed, any hits still remaining 
+are lost.
+UNIT/PIECE HITS TO 
+REMOVE
+Loyal Reichswehr
+(ignore disloyal Reichswehr) 3
+Coalition Freikorps
+RC Rogue Freikorps 2
+KPD Worker Militia
+NSDAP SA 1
+KPD Uprising 2
+KPD Strike 1
+Influence cube 1
+Final Assault Outcomes
+The faction (if any) with the highest modified Assault strength 
+minus die roll becomes the Momentum faction.
+Remove one Influence belonging to the attacking faction from 
+the Assault space (if any there) unless that faction now has 
+Supremacy in the Assault space [5.9].
+Finally, if either the KPD or NSDAP was the defending faction, 
+shift its Stance marker one box towards Revolutionary.
+
+=== PAGE 25 ===
+When the dust clears, RC now has 4 total SV in Bayern while 
+the Coalition has only 3—RC gains Supremacy in Bayern. 
+And because they now have Supremacy, RC does not need to 
+remove one of their Influence cubes for being the attacker in 
+an Assault; they now have Dominance in Bayern as well as 
+Supremacy. Finally, because they scored more hits than the 
+Coalition, RC becomes the Momentum faction. The Assault 
+Action is complete.
+Example: The Coalition is the active faction and selects the 
+Place Influence Action. First, they must check the Economy 
+Track to see if they are allowed to place Influence cubes on 
+the map. Luckily, the Economy marker is in a box that allows 
+the Coalition to place Influence (just barely!).
+Next, the Coalition looks to see where on the map they may 
+place an Influence cube. They would like to extend their Influ-
+ence in central Germany, but here their options are limited. 
+They may not place Influence in Thüringen because there 
+are no Coalition Influence cubes already in or adjacent to 
+that space. They may not place in Hessenprovinz because the 
+yellow/red Assassinations marker there blocks Coalition (and 
+KPD) Influence. Hessen, however, is eligible: it is adjacent 
+to a space with Coalition Presence—Hessenprovinz—and 
+does not contain a yellow/red Assassinations marker. The 
+Coalition places one yellow Influence cube in Hessen.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+25
+6.3  Coalition Actions
+Except for Assault, the Actions listed here are only available to 
+the Coalition faction.
+Advance Progress Track
+Increase the Progress track by one box only if there is yellow 
+Leverage in the box above the current Progress level [5.7].
+Assault
+See [6.2] for detailed Assault instructions.
+Gain Momentum
+The Coalition becomes the Momentum faction [5.8].
+Increase Deals Track
+Shift either the U.S. Deals or the U.S.S.R. Deals track one box 
+to the right [5.6].
+Increase Unity
+Must have a Middle Class Sympathies pawn on the Coalition 
+faction mat [5.2]. Move 1 Middle Class Sympathies pawn from 
+the Coalition mat to an empty holding box, then shift the Unity 
+track 1 box to the right [5.3].
+Move Middle Class Sympathies
+The Coalition may move one Available Middle Class Sympathies 
+pawn to the Coalition faction mat, or return a Middle Class 
+Sympathies pawn from any faction’s mat to an empty Middle 
+Class Sympathies holding box [5.2].
+Move Units
+Move up to three Coalition Freikorps and/or Reichswehr units. 
+Units move independently and may move into any adjacent space. 
+Units may move up to three spaces, unless there is a Strike or 
+Uprising in the unit’s origin space, or a General Strike marker on 
+the Timeline, in which case each unit may only move one space.
+Place Influence
+If allowed by the Economy track, place one Coalition Influence 
+cube in one space without a yellow/red Assassinations marker:
+• Berlin or one adjacent space, or
+•  One space with or adjacent to Coalition Presence.
+
+=== PAGE 26 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+26
+Place Leverage on the Map
+Only if the KPD General Strike marker is not on the Timeline. 
+Place one Available yellow Leverage in one space with Coalition 
+Presence. Remove any Strike (not Uprising) and/or KPD Cadre 
+from the selected space, and return them to empty holding 
+boxes [5.2].
+Place Leverage on a Track
+Place one Available yellow Leverage on either the Progress track 
+[5.7] or the Economy track [5.5]. Adjust the Economy track if 
+appropriate [5.5].
+Y ellow Leverage may not be placed on a side of the Economy 
+track that already contains a black Leverage marker.
+Place Reform
+Only if Unity is Sound or Strong. Place one Available Coalition  
+Reform marker in any one space with Coalition Parliamentary 
+Control and none of the following:
+• No Strike
+• No Uprising
+• No black Leverage
+• No Assassinations (of any color)
+• No Reform already present
+Place Sudden Victory Marker
+If Available, place the Coalition Reformation Sudden Victory 
+marker on the Timeline in the current Y ear box.
+Gameplay Note: You can place your marker on the Time-
+line even if you do not currently meet your Sudden Victory 
+conditions, as victory is not determined until the next Sud-
+den Victory Step.
+Place Unit
+Place one Available Coalition Freikorps or Reichswehr unit 
+in a space with Coalition Parliamentary Control or Coalition 
+Dominance.
+Remove Influence
+Remove one opposing faction’s Influence cube from one space 
+that does not have a yellow/red Assassinations marker, with or 
+adjacent to Coalition Presence. A faction may not be targeted 
+if it has Supremacy in that space.
+Remove Leverage
+Remove any one yellow or black Leverage marker from the map 
+or any track and return it to an empty Leverage holding box [5.2].
+6.4  KPD Actions
+Except for Assault, the Actions listed here are only available to 
+the KPD faction.
+Assault
+See [6.2] for detailed Assault instructions.
+Change Stance
+Shift the KPD Stance track one box in either direction [5.3].
+Flip Strike to Uprising
+Flip any one Strike marker on the map to its Uprising side.
+Gain Momentum
+KPD becomes the Momentum faction [5.8].
+Move Middle Class Sympathies
+KPD may move one Available Middle Class Sympathies pawn to 
+the KPD faction mat or return a Middle Class Sympathies pawn 
+from any faction’s mat to an empty Middle Class Sympathies 
+holding box [5.2].
+Move Units
+Move up to three KPD Worker Militia units. Units move inde-
+pendently and may move into any adjacent space. Units may 
+move up to three spaces, unless there is a Strike or Uprising in the 
+unit’s origin space, or a General Strike marker on the Timeline, 
+in which case each unit may only move one space.
+Then, if a KPD Worker Militia ends its move in a space with an 
+NSDAP SA unit, KPD must immediately conduct a free Assault 
+against NSDAP units in that space [Sworn Enemies, 6.0].
+Place Cadre
+Place one Available KPD Cadre in one space with KPD Domi-
+nance or Parliamentary Control that does not already contain 
+a Cadre (either KPD or NSDAP).
+Place Influence
+Place up to the number of Influence cubes indicated by the 
+Economy track in one space without a yellow/red Assassinations 
+marker:
+• Berlin or one adjacent space, or
+•  One space with or adjacent to KPD Presence, or
+• One space with a KPD Cadre.
+Place Strike
+Place one Available Strike in a space with KPD Dominance and/or 
+Parliamentary Control and no Strike or Uprising marker. Return 
+any Leverage from the selected space to an empty Leverage 
+holding box [5.2].
+If there are now at least three total Strike plus Uprising markers 
+
+=== PAGE 27 ===
+Example: It is KPD’s turn and they select the Place Strike 
+Action. On the KPD faction mat, KPD Stance is one box to the 
+left of Revolutionary, making both a Strike and the General 
+Strike markers Available (the other two Strike markers are 
+already on the map).
+KPD selects Rheinprovinz. It is a space where both KPD 
+has Dominance already (3 KPD Influence cubes to 2 Coali-
+tion) and there is no Strike or Uprising already. KPD places 
+the Strike marker in Rheinprovinz, removing the Leverage 
+marker there. Now that there are three Strike markers on the 
+map, Germany is rocked by a nationwide General Strike: KPD 
+places the General Strike marker on the Timeline, chooses 
+to remove the Coalition Reform marker from Rheinprovinz, 
+then removes all other Leverage markers from the map and 
+the Economy track.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+27
+on the map, place the General Strike marker on the Timeline, 
+if it is not already there. Then, if the General Strike marker was 
+placed on the Timeline, remove one Coalition Reform from the 
+map (if any), remove all Leverage (both yellow and black) from 
+spaces on the map and from the Economy track (only, not from 
+the Progress/Reaction tracks), returning them to empty Leverage 
+holding boxes [5.2].
+Place Sudden Victory Marker
+If Available, place the KPD Revolution Sudden Victory marker 
+on the Timeline in the current Y ear box.
+Gameplay Note: You can place your marker on the Time-
+line even if you do not currently meet your Sudden Victory 
+conditions, as victory is not determined until the next Sud-
+den Victory Step.
+Place Unit
+Place one Available Worker Militia unit in a space where KPD has 
+Dominance or Parliamentary Control, or there is a KPD Cadre.
+Then, if a Worker Militia unit was placed in a space with a SA 
+unit, KPD must immediately conduct a free Assault against 
+NSDAP units in that space [Sworn Enemies, 6.0].
+Remove Influence
+Remove up to the number of opposing Influence cubes indicated 
+by the Economy track from one space that does not have a yellow/
+red Assassinations marker, with or adjacent to KPD Presence 
+and/or a KPD Cadre.
+Multiple factions may be targeted. A faction may not be targeted 
+if it has Supremacy in that space.
+6.5  NSDAP Actions
+Except for Assault, the Actions listed here are only available to 
+the NSDAP faction.
+Assault
+See [6.2] for detailed Assault instructions.
+Change Stance
+Shift the NSDAP Stance track one box in either direction [5.3].
+Gain Momentum
+NSDAP becomes the Momentum faction [5.8].
+Move Middle Class Sympathies
+For each NSDAP Cadre on the map, NSDAP select one: move one 
+Available Middle Class Sympathies pawn to the NSDAP faction 
+mat, move one Middle Class Sympathies pawn from the RC 
+faction mat to the NSDAP faction mat, or return a Middle Class 
+Sympathies pawn from any faction’s mat to an empty Middle 
+Class Sympathies holding box [5.2].
+Move Units
+Move up to three NSDAP SA units. Units move independently 
+and may move into any adjacent space. Units may move up to 
+three spaces, unless there is a Strike or Uprising in the unit’s 
+origin space or a General Strike marker on the Timeline, in 
+which case each unit may move only one space.
+Then, if an NSDAP SA unit ends its move in a space with a KPD 
+Worker Militia, NSDAP must immediately conduct a free Assault 
+against KPD units in that space [Sworn Enemies, 6.0].
+
+=== PAGE 28 ===
+Example: NSDAP is the active faction and wants to take 
+advantage of two Available Assassinations markers and so 
+selects the Place Assassinations Action. First, they target the 
+Coalition and KPD cubes in Pommern, placing one Assas-
+sinations marker there on its yellow/red side. They remove 
+both the yellow and the red Influence cubes from Pommern 
+(NSDAP now has Dominance there). Then, because there 
+are already two Conservative Cliques on the map and there 
+is another Available Assassinations marker, NSDAP targets 
+Posen-Westpreußen. As there are no RC Units here, RC does 
+not have Supremacy and so its Conservative Clique is vulner-
+able. NSDAP places the second Assassinations marker here 
+on its brown/black side and removes the Conservative Clique.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+28
+Place Assassinations
+Target either the Coalition and KPD factions, or the RC faction.
+If targeting the Coalition and KPD, place one Available Assas-
+sinations marker with its yellow/red side showing in one space 
+with Coalition and/or KPD Presence. Remove up to two total 
+Coalition and/or KPD Influence cubes, in any combination, or 
+remove one Coalition Reform or one KPD Cadre.
+If targeting RC, place one Available Assassinations marker with 
+its brown/black side showing in one space with RC Presence. 
+Remove up to two RC Influence cubes from that space.
+Then, regardless of which factions were just targeted, if there 
+are two or more Conservative Cliques on the map and at least 
+one available Assassinations marker, place one Available Assas-
+sinations marker with its brown/black side showing in any one 
+space with a Conservative Clique and no RC Supremecy, and 
+then return one Conservative Clique from that space to an 
+empty  holding box.
+Place Cadre
+Place one available NSDAP Cadre in one space with NSDAP 
+Dominance or NSDAP Parliamentary Control that does not 
+already contain a Cadre (either KPD or NSDAP).
+Place Influence
+Place up to the number of Influence cubes indicated by the 
+Economy track in one space without a brown/black Assassina-
+tions marker:
+• München or Bayern,
+•  One space with or adjacent to NSDAP Presence, or
+• One space with an NSDAP Cadre, or
+• One space with RC Dominance.
+Gameplay Note: RC Dominance opens the door to more 
+radical elements, represented by NSDAP Influence.
+Place Sudden Victory Marker
+If Available, place the NSDAP Putsch Sudden Victory marker 
+on the Timeline in the current Y ear box.
+Gameplay Note: You can place your marker on the Time-
+line even if you do not currently meet your Sudden Victory 
+conditions, as victory is not determined until the next Sud-
+den Victory Step.
+Place Unit
+Place one Available SA unit in a space where NSDAP has Par -
+liamentary Control, Dominance, or there is an NSDAP Cadre.
+Then, if an NSDAP SA unit was placed in a space with a KPD 
+unit, NSDAP must immediately conduct a free Assault against 
+KPD units in that space [Sworn Enemies, 6.0].
+Remove Influence
+Remove up to the number of opposing Influence cubes indicated 
+by the Economy track from one space that does not have a 
+brown/black Assassinations marker, with or adjacent to NSDAP 
+Presence and/or an NSDAP Cadre.
+Multiple factions may be targeted. A faction may not be targeted 
+if it has Supremacy in that space.
+6.6  RC Actions
+Except for Assault, the Actions listed here are only available to 
+the RC faction.
+Advance Reaction Track
+Increase the Reaction track by one box only if there is black 
+Leverage in the box above the current Reaction level [5.7].
+The Reaction level can never exceed Progress by more than one 
+box. Therefore, this Action has no effect if Reaction is already 
+one box above Progress.
+Assault
+See [6.2] for detailed Assault instructions.
+
+=== PAGE 29 ===
+Example: RC is the active faction and selects the Remove 
+Influence Action. They would like to reduce Coalition Influ-
+ence in Berlin. Currently, Reaction is 3, so RC may remove 
+1 Influence cube. They also have 2 Middle Class Sympathies 
+pawns on their faction mat, so they may select any space 
+within 2 spaces of a Conservative Clique. Luckily, Berlin is 
+2 spaces away from the Conservative Clique in Posen-West-
+preußen. RC removes 1 yellow Influence cube from Berlin.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+29
+Gain Momentum
+RC becomes the Momentum faction [5.8].
+Move Middle Class Sympathies
+RC may move one Available Middle Class Sympathies pawn to 
+the RC faction mat or return a Middle Class Sympathies pawn 
+from any faction’s mat to an empty Middle Class Sympathies 
+holding box [5.2].
+Move Units
+Move up to three RC Rogue Freikorps units. Units move inde-
+pendently and may move into any adjacent space. Units may 
+move up to three spaces, unless there is a Strike or Uprising in the 
+unit’s origin space, or a General Strike marker on the Timeline, 
+in which case each unit may move only one space.
+Place Assassinations
+Target either the Coalition and KPD factions, or the NSDAP 
+faction.
+If targeting the Coalition and KPD, place one Available Assas-
+sinations marker with its yellow/red side showing in one space 
+with Coalition and/or KPD Presence. Remove up to two total 
+Coalition and/or KPD Influence cubes, in any combination, or 
+remove one Coalition Reform or one KPD Cadre.
+If targeting NSDAP , place one Available Assassinations marker 
+with its brown/black side showing in one space with NSDAP 
+Presence. Remove up to two NSDAP Influence cubes or one 
+NSDAP Cadre from that space.
+Place Conservative Clique
+Place one Available Conservative Clique in one space with RC 
+Dominance that does not contain a brown/black Assassinations 
+marker.
+Place Influence
+Place up to the number of Influence cubes indicated by the 
+Reaction track in one space without a brown/black Assassina-
+tions marker:
+• Berlin or one adjacent space, or
+•  One space that is within a number of spaces from a 
+Conservative Clique equal to the number of Middle 
+Class Sympathies pawns held by the RC faction (mini-
+mum 1).
+Place Leverage on the Map
+Only if the KPD General Strike marker is not on the Timeline. 
+Place one Available black Leverage in one space on the map with 
+RC Presence. Remove any Assassinations marker or NSDAP 
+Cadre from the selected space and return them to empty holding 
+boxes [5.2].
+Place Leverage on a Track
+Place one Available black Leverage on either the Reaction 
+track [5.7] or the Economy track [5.5], adjusting the latter if 
+appropriate.
+Place Sudden Victory Marker
+If Available, place the RC Putsch Sudden Victory marker on the 
+Timeline in the current Y ear box.
+Gameplay Note: You can place your marker on the Time-
+line even if you do not currently meet your Sudden Victory 
+conditions, as victory is not determined until the next Sud-
+den Victory Step.
+Place Unit
+Place one Available Rogue Freikorps unit in a space where RC 
+has Parliamentary Control or Dominance.
+Remove Influence
+Remove up to the number of opposing Influence cubes indicated 
+by the Reaction track from one space that is within a number of 
+spaces of a Conservative Clique equal to the number of Middle 
+Class Sympathies pawns held by the RC faction (minimum 1) 
+and that contains no brown/black Assassinations.
+Multiple factions may be targeted. A faction may not be targeted 
+if it has Supremacy in that space.
+Remove Leverage
+Remove any one yellow or black Leverage marker from the map 
+or any track and return it to an empty Leverage holding box [5.2].
+
+=== PAGE 30 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+30
+7.0    Elections
+Elections are held during the Election Step of each game round 
+in which an Election card has been played, during the Action 
+Step, as the result of certain Event cards, and after an Extra 
+Election has been called in the A Time for Revolution? scenario 
+[7.7]. A full Election Cycle consists of a round of Regional Elec-
+tions followed by a General Election. Regional Elections [7.1] 
+are held in Bayern, Cities, and Regions. The General Election 
+is held across Germany. An Election Period consists of all the 
+game rounds played between Elections.
+To begin, reset each faction’s PV total on the PV track to 0. Collect 
+the Reichstag Seats card, all Parliamentary Control markers 
+and Parliamentary Control cards, and set them aside face-up for 
+now, pending the outcome of each Regional Election.
+7.1   Regional Elections
+Regional Elections are held in Bayern, every City, and every 
+Region. However, if a space, or any space in a Region, contains 
+an Assassinations or Uprising marker, there will be no Regional 
+Election in that space (for Bayern and Cities) or in that Region 
+during this Election Cycle. In that case, Parliamentary Control 
+is not awarded and no faction earns PV for that space or Region 
+for this Election Cycle’s General Election; place its Parliamentary 
+Control card aside for now and leave the Parliamentary Control 
+box empty (it is now uncontrolled). Any bonus PV a faction 
+may otherwise have gained for that space or Region is also lost.
+Spaces and Regions listed below free of both Assassinations and 
+Uprising markers hold Regional Elections normally. Resolve 
+each space or Region in turn:
+• Hamburg
+• München
+• Köln
+• Berlin
+• Bayern
+• Northern States
+• Southern States
+• Prussian Provinces
+To conduct an election, first award PV for Dominance. In Bayern 
+or each City, the faction with Dominance there (if any) gains 
+all of that space’s PV . In each Region, a faction totals the PV 
+for each space in that Region where it has Dominance. If no 
+faction has Dominance in a given space, no faction gains the 
+PV for that space.
+Then, add bonus PV for additional pieces in that space or Region, 
+regardless of which faction (if any) has Dominance there:
+Test Coalition Loyalty
+In up to three spaces with unrevealed Coalition Freikorps units, 
+flip one in each space to reveal its true loyalty. Revealed loyal 
+Coalition Freikorps remain loyal for the rest of the game, whereas 
+revealed Rogue Freikorps units become RC units for the rest of 
+the game.
+
+=== PAGE 31 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+31
+• +1 PV to the Coalition for each yellow Leverage
+• +3 PV to the Coalition for each Reform
+• +1 PV to the RC faction for each black Leverage
+• +2 PV to the KPD faction for each KPD Cadre
+• +2 PV to the NSDAP faction for each NSDAP Cadre
+The faction with the highest total PV wins the Regional Election 
+in that space or Region. Award the winner its matching Parlia-
+mentary Control card and place that faction’s Parliamentary 
+Control marker in its Parliamentary Control box on the map. If 
+there is a tie, no faction wins the election in the space or Region; 
+place its Parliamentary Control card aside for now and leave 
+the Parliamentary Control box empty (it is now uncontrolled).
+Finally, each faction adds any PV gained from each space plus 
+bonus PV (if any) to their PV total on the Political Value track, 
+regardless of the outcome of this Regional Election.
+Continue until Regional Elections have been held in all listed 
+spaces and Regions free of both Assassinations and Uprising 
+markers. Then, proceed to the General Election.
+7.2   General Election Procedure
+To conduct a General Election, each faction checks their current 
+Political Value on the PV track and adds any applicable bonus PV:
+• +3 PV to the Momentum faction
+•  +2 PV to a faction for each Middle Class Sympathies 
+pawn on its faction mat
+•  +0 to +3 PV to the Coalition for each Coalition influ-
+ence in Berlin, as indicated by the Progress track
+After awarding bonuses, the Momentum faction—optionally— 
+may subtract up to half (round down) of its total PV and transfer 
+it to one other faction’s total.
+Gameplay Note: Why do this? The RC faction may use this 
+to transfer PV to the NSDAP faction in order to secure an RC 
+victory [3.2]. Factions may also use this to keep the Coalition 
+in power to prevent another faction from winning.
+The faction with the highest total PV wins the General Election. 
+The faction with the second highest total PV is the runner-up. 
+If there is a tie for either election winner or runner-up, the 
+tying faction with the most Middle Class Sympathies pawns is 
+the winner/runner-up. If still tied, select a winner/runner-up 
+at random.
+7 .3  General Election Outcomes
+If the Coalition wins the General Election, the game continues. 
+The Coalition takes the Article 48 card, face-up. The runner-up 
+faction takes the Reichstag Seats card, face-up. The Momen -
+tum faction conducts a Clean Slate in all map spaces (5.11).
+If any other faction wins the General Election, the game ends 
+and a winner is determined [3.2].
+7 .4  Special Election
+Event Card #82 Referendum. This Event card triggers a Spe-
+cial Election when played. First, set each faction’s total PV to 0. 
+Then, each faction adds PV for each space on the map where it 
+has Dominance, as long as that space is free of Assassinations 
+and Uprising markers and is not in a Region that contains any 
+Assassinations or Uprising markers. Do not add any bonus PV 
+that might apply to normal Regional Elections. Do not adjust 
+Parliamentary Control and leave any face-down Parliamentary 
+Control cards face-down.
+Each faction then adds General Election bonus PV as normal [7.2]. 
+If the RC is the overall winner of this Special Election, the game 
+ends immediately and the RC is the overall winner. Any other 
+outcome has no additional effect; continue the game as normal.
+7 .5  Snap Election
+Event Card #117 Hitler Sworn In. This Event card immediately 
+triggers a full Election Cycle [7.0] when played. Conduct Regional 
+Elections [7.1] and then a General Election [7.2], both normally.
+This card does not prevent the play of an Election card this round.
+7 .6  Calculate Current Political V alue
+Event Cards #118 Enabling Act, #122 Harzburg Front, #132 
+Blut und Boden, and #146 Erbgutpflege. When these Events 
+are played, perform a full Election Cycle [7.0] but only to check 
+the current total NSDAP and/or RC PV . Change no Parliamentary 
+Control and do not implement any General Election outcomes.
+After calculating PV for the specified factions, follow the specific 
+instructions on the Event card.
+These cards do not prevent the play of an Election card this round.
+7.7   Extra Election
+If playing the A Time for Revolution? scenario, the Momentum 
+faction may call an Extra Election by playing an available Par-
+liamentary Control card or the Reichstag Seats card on their 
+turn. That card is now spent until reset during the next Election 
+Cycle. Hold both Region Elections and a General Election during 
+the next Election Step. Only one Extra Election may be called 
+during the game [9.3]. Calling an extra election does not block 
+another player from playing an Election card this round, but 
+if one is played, only hold a single Election Cycle during the 
+Election Step.
+
+=== PAGE 32 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+32
+8.0   Non-player Factions
+The Non-player (NP) system allows play of The Weimar Republic 
+with fewer than four players. A programmed “bot” , using a deck 
+of cards and one Player Aid Card, can be used to control any 
+NP faction’s Actions. A faction controlled by the bot is called 
+a Non-player (or NP) faction. Generally, an NP faction makes 
+the same decisions that a player faction makes: it plays Event 
+cards, takes Actions, and moves its pieces among the map and 
+the game tracks.
+The Non-player system includes:
+•  A Non-player Aid Card that details the bot’s sequence 
+of play and other helpful reminders on one side and NP 
+faction-specific Bot Action aids on the other.
+•  A deck of 9 NP faction-specific bot cards for each NP 
+faction that provides guidance for selecting spaces and 
+Actions.
+Gameplay Note: While every effort has been made to create 
+bots that provide a challenging opponent, think of the bots as 
+“chaos engines” with the goal of disrupting Germany as much as 
+possible.
+The NSDAP bot is a chaos agent. The bot’s sole goal is to spread 
+Influence and make things difficult for the other three factions. 
+This makes taking care of the bot a responsibility that could 
+easily sink the strategies of players, unless they choose to just let 
+it run rampant.
+The KPD bot is focused heavily on Strikes and Uprisings. Their 
+ability to disrupt the electoral control of other players makes 
+them a dangerous opponent. Similar to the NSDAP bot, the 
+players must work to limit their spread.
+Think of the Coalition bot as a bureaucrat. Their goal is to 
+maintain order, fix problems, and win the game via Reforma-
+tion. The Coalition is the only bot in the game that can win via 
+Sudden Victory, so it is imperative for the players to keep their 
+eye on them.
+The RC bot’s focus is to grow and spread. Using their Cliques, 
+they will attempt to gain control via Influence and play a spoiler 
+role by causing chaos and mayhem using their Leverage mark-
+ers and the traitorous Rogue Freikorps. The bot is similar to the 
+NSDAP bot, but a bit less chaotic. Instead of rampant violence, 
+the bot will grow their Influence and create a more reactionary 
+public until they are either stopped or create enough chaos to 
+lead the Weimar Republic down the road to ruin.
+8.1  Non-player Golden Rules
+Bots Follow the Rules (Almost)
+NP factions abide by all normal game rules with some exceptions:
+•  NP Coalition may not win a Sudden Victory during the 
+Crisis Era [8.3].
+•  When a bot takes a Special Action, it may perform 
+multiple Actions [8.9].
+•  NP factions ignore any Held Card Penalty during each 
+New Era Step [4.0, Step 6].
+Skip Illegal Instructions
+The bot will only tell you what to do; it will not tell you how to 
+do it or even if its instructions constitute a legal move given the 
+state of the board and available pieces. Always carry out the bot’s 
+instructions as much as possible, but if the bot ever gives you 
+an instruction that cannot be carried out legally, just skip that 
+instruction and move onto the next.
+Implement All Instructions Literally
+Do not infer more to an instruction than what the text actually 
+specifies.
+No “Hand” of Cards
+An NP faction’s hand of cards is a shuffled stack of Event cards, 
+face-down. Whenever an NP faction reveals or discards a card, 
+take the top card off the stack. Whenever an NP faction takes a 
+card from another faction, shuffle it into their stack.
+If given a choice to keep or discard a drawn card, decide randomly 
+(after confirming the card is not Mandatory or an Election card).
+Ignore any Event that instructs an NP faction to “inspect any 1 
+faction’s hand of cards. ”
+If a player chooses to inspect an NP faction’s cards, they inspect 
+the NP faction’s stack of Event cards and then reshuffles the stack.
+When instructed by the “Reshuffle Bot Deck” additional instruc-
+tions, shuffle together all the bot deck cards for that deck to 
+create a new bot deck.
+If given a card, shuffle it into their stack of Event cards.
+Do Not Perform Move Units Actions
+NP factions do not perform Move Units Actions.
+Gameplay Note: Thus, if an NP faction performs Event card 
+#147 Altonaer Blutsonntag, skip the indicated Move Units 
+Action.
+
+=== PAGE 33 ===
+  Faction Order is used to select an opposing faction, 
+read left to right.
+  Impulse Space/Region is used when the bot needs to 
+select a space (for Events or Actions).
+  Action Step Summary indicates if the bot will play an 
+Event card and take two bot Actions, or instead take 
+only one bot Action.
+  Action Priority List provides a list of the Actions taken 
+by the bot, in order of priority.
+  Additional Instructions on some cards indicate if the 
+bot deck is to be reshuffled.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+33
+Never Loan Units, But Always Accept
+An NP faction will never offer to loan their units to another 
+faction during an Assault. An NP faction, however, will always 
+accept the loan of any units offered by another faction.
+Never Spend Middle Class Sympathies During 
+Assaults
+NP factions never choose to remove a Middle Class Sympathies 
+pawn during Assaults in order to gain an Assault bonus.
+When Not the Active Faction
+Non-active NP factions implement any Action granted by an 
+Event card played by another faction just like they would if they 
+were the active faction.
+When in Doubt, Randomize
+Whenever an NP Faction needs to select from among several 
+options and supplied instructions have been exhausted, select 
+one option at random.
+Gameplay Note: We suggest simply assigning probabilities 
+and rolling a die.
+8.2  Important Non-player Terms
+Bot Cards
+Each NP faction uses a special deck of nine bot cards that deter-
+mine faction, space, and Action selection.
+Bot Actions
+During Action Steps, NP factions will perform one or two bot 
+Actions, as instructed by the revealed bot deck card.
+Impulse Space & Impulse Region
+The Impulse Space is listed on the currently revealed bot card. 
+For NP Coalition, NP KPD, and NP NSDAP , the Impulse Space 
+will be a space or Region on the map.
+Some NP Coalition bot cards list an Impulse Region rather 
+than an Impulse space. In this case, every space in that Region 
+is considered when selecting a space [8.6, Section 4, Step E].
+For NP RC, the Impulse space is the space that currently contains 
+the listed Clique marker (A, B, or C). If the listed Clique marker 
+is not currently on the map, the NP RC Impulse space is Berlin.
+Gameplay Note: If the listed Clique marker is not yet on the 
+map, NP RC will attempt to place it as its first Action.
+Potential Assault Strength
+NP factions calculate Potential Assault Strength to determine if 
+they will Assault in a given space. To calculate Potential Assault 
+Strength for a faction, sum the SV of that faction’s units in that 
+space. Do not include Coalition Reichswehr and unrevealed 
+Freikorps units if Coalition units would fail a Loyalty Check. Do 
+include any modifiers that may apply to an Assault in that space, 
+but do not roll a die to subtract from Potential Assault Strength.
+Special Actions
+When instructed by a bot deck card to perform a Special Action, 
+roll on that NP faction’s Special Action table to determine the 
+Action(s) performed by the bot.
+Gameplay Note: Some NP factions’ Special Actions consist 
+of multiple Actions performed at the same time. Thus an NP 
+faction may end up performing more than two Actions during 
+an Action Step.
+
+=== PAGE 34 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+34
+8.3  Non-player Victory
+Generally, NP factions win or lose the game just like player 
+factions, with one exception:
+•  NP Coalition may not win a Sudden Victory [3.1] 
+during the Crisis Era (1919–1923). Starting with the 
+Golden Twenties Era, NP Coalition may win a Sudden 
+Victory normally.
+8.4    Non-player Scenario Setup and New 
+Yea r/New Era Steps NP Faction Setup
+Select any scenario and set up the game as normal [2.0]. Deter-
+mine which faction(s) will be controlled by the bot. The bot can 
+control as many factions as players desire.
+Set up each NP faction’s pieces as normal per the chosen scenario 
+instructions. Then, deal each NP faction its starting hand of 
+Event cards. Shuffle these cards, unseen, to form a stack of Event 
+cards for that NP faction. Keep these cards near the matching 
+NP faction mat.
+Shuffle the bot cards for each NP faction into their own deck, 
+face-down.
+If the Momentum faction is an NP faction, determine Turn Order 
+for the start of the scenario by revealing the top NP Coalition bot 
+card. Set Turn Order in the order listed, with NP Coalition last.
+If RC is an NP faction, place one lettered NP RC Clique marker 
+on top of each of the three RC Conservative Cliques. Place Clique 
+A on top of the Conservative Clique that starts each scenario in 
+Bayern. When playing scenarios A New Hope [9.4] or Black Sun 
+Rising [9.5], place Clique B on the Conservative Clique that starts 
+in Ostpreußen; otherwise, place Clique B  on the Conservative 
+Clique that starts in box 2 on the RC faction mat. Place Clique 
+C on the Conservative Clique that starts each scenario on the 
+Reaction Track. These Clique markers remain with their linked 
+Conservative Cliques for the rest of the game.
+New Year Step
+If an NP faction is the Momentum faction, determine Turn Order 
+for the upcoming Y ear by revealing that faction’s top bot card. 
+Set Turn Order in the order listed, with that NP faction last.
+New Era Step
+Discard any remaining cards from each NP faction’s Event card 
+stack. NP factions do not suffer any Held Card Penalty.
+Shuffle together all nine bot cards to create a new bot deck for 
+the upcoming Era.
+Deal the NP faction their hand of cards per the New Era Step 
+instructions. Shuffle together this new hand of cards into a new 
+Event card stack, face-down.
+8.5  Non-player Sequence of Play
+On their turn during the Action Step, an NP faction will reveal 
+the top bot card from their deck and:
+•  Draw and perform one Event card and then perform 
+two Bot Actions, OR
+• Perform one Bot Action
+Each step is explained in more detail below.
+Gameplay Note: Unlike player factions, NP factions always 
+perform an Event before performing Action, never afterwards.
+Reveal the Top Bot Deck Card
+Reveal the top card for the acting NP faction from its bot deck. 
+The Action Step Summary will instruct the bot to either play 
+an Event and perform two bot Actions or only perform one bot 
+Action. In addition, if a bot is instructed to play an Event, they 
+may also play Article 48, Reichstag Seats, or a Parliamentary 
+Control card (if holding any).
+Draw and Perform an Event Card
+If the currently revealed bot card’s Action Step Summary instructs 
+the bot to play an Event card, the active NP faction will reveal 
+the top card from their Event stack and perform the Event [8.7].
+Perform Bot Actions
+An NP faction will perform one or two Bot Actions, as instructed 
+by the currently revealed bot card and before [8.8] (and possibly 
+an extra Action if playing a Parliamentary Control card). Imple-
+ment the first Bot Action listed on the current bot card that will 
+have some effect. If performing a second Bot Action, continue 
+from there and implement the next Bot Action that will have 
+some effect (i.e., do not restart from the top of the current list 
+when implementing the second Bot Action).
+Use the guidelines in the Non-player Order of Operations [8.6] 
+and each NP faction’s specific list of instructions [8.9– 8.12] to 
+implement each performed Action.
+Additional Instructions
+At the end of the NP faction’s turn, check the current bot card 
+for the ‘Reshuffle Bot Deck’ instruction. If present, shuffle this 
+NP faction’s bot cards along with any discards to create a new 
+bot deck.
+8.6  Non-player Order of Operations
+Follow this order of operations each time an NP faction performs 
+an Event (played by any faction) or Action.
+
+=== PAGE 35 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+35
+1. Determine Which Options the Bot Will Implement
+When an Event or Action provides several options, NP factions 
+will only implement those that match their NP faction-specific 
+guidelines. When an NP faction faces several options, choose the 
+one closest to the top of each list first. If an Event ever grants an 
+NP faction an option that is not on their list first, just skip it. NP 
+factions perform a listed option to the maximum extent possible.
+NP Coalition always chooses to:
+• Remove opposing units and pieces.
+• Place Coalition units and pieces.
+• Gain Parliamentary Control.
+• Increase Progress.
+• Decrease Reaction.
+• Shift Unity to the right.
+•  Shift the Economy marker towards Stable (if shifting 
+multiple boxes, stop at Stable).
+• Move Middle Class Sympathies.
+• Place yellow Leverage.
+• Remove black Leverage.
+NP KPD always chooses to:
+• Remove opposing units and pieces.
+• Place KPD units and pieces.
+• Gain Parliamentary Control.
+• Decrease Progress.
+• Decrease Reaction.
+•  Shift the Economy marker towards Mass Unemploy-
+ment.
+• Move Middle Class Sympathies.
+NP NSDAP always chooses to:
+• Remove opposing units and pieces.
+• Move Middle Class Sympathies.
+• Place NSDAP units and pieces.
+• Gain Parliamentary Control.
+• Increase Reaction.
+• Decrease Progress.
+•  Shift the Economy marker towards Mass Unemploy-
+ment. 
+NP RC always chooses to:
+• Remove opposing units and pieces.
+• Move Middle Class Sympathies.
+• Gain Parliamentary Control.
+• Place RC units and pieces.
+• Increase Reaction.
+•  Decrease Progress if Reaction is not currently greater 
+than Progress.
+• Shift the Economy marker towards Hyperinflation.
+• Place black Leverage.
+• Remove yellow Leverage.
+2. Select a Target
+If the Event or Action being performed targets opposing factions’ 
+units or pieces, use the Faction Order on the currently revealed 
+bot card to select opposing factions in the order listed, left to 
+right.
+3. Select Affected Units and Pieces
+NP factions always choose to place or remove units [1.4] and 
+pieces [1.5] in this order:
+ 1.  Reform
+ 2.  Uprising
+ 3.    Middle Class Sympathies (from opposing faction’s 
+mat first)
+ 4.  Conservative Clique
+ 5.  Strike
+ 6.  Assassinations
+ 7.  Leverage
+ 8.  Cadre
+  9.    Unit (Reichswehr before Freikorps; revealed Freikorps 
+before unrevealed; Units loaned to a faction before 
+their own units)
+ 10. Influence cube
+4. Select One Eligible Space
+When selecting a space on the map, only choose from among 
+those spaces where the performed Event or Action would have 
+some effect (including against the selected opposing faction, if 
+relevant) and would be legal; such spaces are termed eligible 
+spaces. If an Event or Action can affect multiple spaces, continue 
+this process for each space to be selected.
+Among all eligible spaces, apply each listed guideline in order 
+until a single space has been selected. Perform the Action or 
+Event in that space.
+A. Follow any Special Action-specific instructions listed for 
+that NP faction [8.9– 8.12].
+
+=== PAGE 36 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+36
+B. If an Event or Action places, removes, or replaces Influence, 
+select one space to:
+ 1. Gain Dominance for the active NP faction, then
+ 2. Remove an opposing faction’s Dominance.
+C. If an Event or Action places, removes, or replaces units, 
+select one space to:
+ 1.  Gain Supremacy for the active NP faction in a space 
+with opposing units, then
+ 2. Remove an opposing faction’s Supremacy, then
+ 3.  Gain Supremacy for the active NP faction in a space 
+without units.
+D. If an Event or Action places or removes a unit or piece to/
+from a track, select a track before a space on the map, in this 
+order:
+ 1.  A faction mat, opposing faction’s in Faction Order 
+first, then
+ 2. The Progress or Reaction track, then
+ 3. The Economy track, then
+ 4. The U.S. Deals track, then
+ 5. The U.S.S.R. Deals track.
+ 6. A space on the map.
+E. If performing another Action type, or if more than one 
+eligible space remains, select:
+ 1.  The Impulse Space or one space in the Impulse Region, 
+then
+ 2.  The space closest to the Impulse Space or any space 
+in the Impulse Region, then
+ 3. The space with the most PV , then
+ 4. The space with the most Population, then
+ 5. One eligible space at random.
+Gameplay Note: If you’re playing solo, you may always over-
+ride the bot’s decision if it’s about to make a particularly stupid 
+move. It’s just cardboard, after all!
+8.7    Drawing and Performing Non-player 
+Events
+If the NP faction is instructed to play an Event from their hand 
+and if the current year is 1923, 1929, or 1933 (i.e., the last year 
+of each Era, either Early or Late Y ear round), first reveal all 
+unplayed Event cards in the active NP faction’s stack. If a Man-
+datory or Election card is revealed,  play it (select at random if 
+more than one). If no Mandatory or Election cards are revealed, 
+or an Election card was revealed and an Election card has already 
+been played this round, reshuffle the Event cards, place them 
+face-down, then reveal the top card.
+Gameplay Note: The purpose of this step is to make sure 
+that Mandatory and Election Event cards get played before the 
+end of an Era, even though NP factions do not suffer a Held 
+Card Penalty.
+If the current year is not 1923, 1929 or 1933, reveal the top card 
+from the NP faction’s stack of Event cards.
+Article 48
+First, check to see if the  symbol is present on the revealed 
+Event card. If so, and only if the Event would have some effect, 
+NP Coalition (even if not the active faction) will play the Article 
+48 card if it is Available.
+Reichstag Seats
+If the NP faction is not currently the Momentum faction, they 
+will play Reichstag Seats if it is Available.
+Parliamentary Control Cards
+If the NP faction holds one or more available Parliamentary 
+Control cards, they will play one before performing any Event 
+or Actions.
+First, NP KPD, NP NSDAP , and NP RC will play the Parliamentary 
+Control card that allows them to remove a Coalition Reform, 
+if possible.
+If a Coalition Reform is not removed, the NP faction will play 
+one Parliamentary Control card to perform one extra Action (in 
+addition to any granted by the current bot card) in a space listed 
+on one held Parliamentary Control card, if possible. Select the 
+Action as outlined in [8.8], but only select an Action that will 
+affect at least one space listed on any Parliamentary Control 
+card held by the NP faction. Once a space and an Action have 
+been selected, play the matching Parliamentary Control card.
+Gameplay Note: Selecting an Action first and then playing the 
+Parliamentary Control card gives the bot a chance to review the 
+entire map before making their play.
+Perform the Revealed Event Card
+If not canceled by Article 48, perform the Event to the max-
+imum extent possible.
+Where an Event allows an NP faction to perform an Action, use 
+the guidelines in Non-Player Order of Operations [8.6] to guide 
+the decisions made by the NP faction.
+
+=== PAGE 37 ===
+Example: NP Coalition rolls a 3: Political Actions. While 
+there is a Middle Class Sympathies pawn that they can move 
+to their faction mat, Unity is already Strong and thus may 
+not be moved. NP Coalition still performs this Special Action, 
+moving the Middle Class Sympathies pawn but ignoring the 
+“shift Unity” instruction as it would have no effect.
+Example: Lingering Event #16 Bloodhound Doctrine is 
+in effect. NP Coalition would attempt to perform an Assault 
+Action in two spaces rather than one.
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+37
+8.8  Performing Non-player Bot Actions
+An NP faction will perform either one or two bot Actions, per 
+the currently revealed bot card. An NP faction will attempt to 
+perform each bot Action in priority order:
+•  NP Coalition will always attempt to perform one Spe-
+cial Action first, then one Place Influence Action, then 
+one Remove Influence Action.
+•  NP KPD and NP NSDAP will always attempt to per-
+form one Place Influence Action first, then one Special 
+Action, then one Remove Influence Action.
+•  NP RC will always attempt to perform one Place Con-
+servative Clique Action first, then one Place Influence 
+Action, then one Special Action, then one Remove 
+Influence Action.
+Gameplay Note: The NP faction will only preform the third 
+or fourth listed option if the first options cannot be performed.
+Performing Place Influence Actions
+When an NP faction is directed to perform a Place Influence 
+Action, use the guidelines in Non-player Order of Operations 
+[8.6] to determine where to place cubes.
+Performing Remove Influence Actions
+When an NP faction is directed to perform a Remove Influence 
+Action, use the guidelines in Non-player Order of Operations 
+[8.6] to determine where to remove cubes.
+Performing Place Conservative Clique
+Only if the RC Impulse Clique letter on the current bot card is not 
+currently on the map and the matching Conservative Clique is 
+available. Perform a Place Conservative Clique Action to place 
+the Conservative Clique with the Clique letter that matches 
+the current NP RC bot card. Use the guidelines in Non-player 
+Order of Operations, Step E [8.6] to determine where to place 
+the Conservative Clique, and do not place a Clique in a space 
+that already contains one.
+Performing Special Actions
+To perform a Special Action, first roll a die to select a Special 
+Action category from the active NP faction’s Special Action list. 
+Attempt to perform one listed Special Action from that category, 
+starting with the first listed Actions . If a Special Action includes 
+more than one effect, perform all listed effects (if possible) and 
+perform that Special Action if any of the listed effects can be 
+performed.
+If none of the Special Actions in a selected category may be 
+performed (for any reason), move on to the next listed category 
+in order (loop back from 6 to 1, if needed).
+Selecting Spaces for Events and Actions
+When an NP faction needs to select one space for an Event or 
+Action, first check for any activity-specific instructions. The 
+NP Player Aid Card provides similar instructions for several 
+NP Actions.
+In all other cases, and when provided instructions are not suf-
+ficient to select a single space, use the guidelines in Selecting a 
+Map Space [8.6].
+Note that Lingering Events may impact one or more Special 
+Actions.
+Gameplay Note: Unlike player factions, NP factions may per-
+form multiple Actions when performing the one or two Actions 
+granted when playing an Event card.
+
+=== PAGE 38 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+38
+8.9  NP Coalition Special Actions
+NP Coalition selects from four Special Action categories. After 
+selecting the category, perform the first listed Special Action in 
+that category that will have an effect. If no Special Actions in that 
+category will have an effect, skip to the next category.
+DIE ROLL SPECIAL ACTION
+1-2 Reform Actions
+3 Political Actions
+4 Military Actions
+5-6 Economic Actions
+Die Roll 1–2: Reform Actions
+ 1. Place Sudden Victory Marker. Only if in the Golden Twenties 
+or Decline Era and the Coalition meets the requirements for a 
+Sudden Victory [3.1]. Perform a Place Sudden Victory Marker 
+Action.
+2. Place Reform. Only in a space or region that does not already 
+contain a Reform marker. Perform a Place Reform Action.
+3. Advance Progress. Perform an Advance Progress Track Action.
+4. Place Leverage & Remove Leverage. Perform a Place Leverage 
+on a Track Action. Then, perform a Remove Leverage Action.
+ 5. Increase Deals. Perform an Increase Deals Action to shift the 
+U.S. Deals track one box to the right.
+Die Roll 3: Political Actions
+1. Move Middle Class Sympathies & Increase Unity.  Perform 
+a Move Middle Class Sympathies Action. Move a pawn to the 
+Coalition faction mat first if possible, otherwise remove one 
+from an opposing faction’s mat.
+Then, shift Unity one box to the right.
+Die Roll 4: Military Actions
+1. Place Unit & Assault. Perform one Place Unit Action first.
+Then, check each opposing faction in turn, using the current 
+bot card’s Faction Order. The bot will Assault in the first eligible 
+space where Coalition Potential Assault Strength is greater than 
+the target’s Potential Assault Strength in that space [8.2].
+2. Increase Deals. Perform an Increase Deals Action to shift the 
+U.S.S.R. Deals track one box to the right.
+Die Roll 5–6: Economic Actions
+1. Remove Leverage & Place Leverage on a Track. Only perform 
+this Special Action if the Economy marker is at least two boxes 
+away from Stable or there is at least one black Leverage marker 
+on the Economy track. First, perform a Remove Leverage Action 
+to remove black Leverage from the Economy track.
+Then, perform a Place Leverage on a Track Action to place 
+an available yellow Leverage on the Economy track. For both 
+placement and removal, choose the side of the track with the 
+Economy marker first.
+2. Place Leverage on the Map. Perform a Place Leverage on the 
+Map Action. Select a space with a Strike first.
+3. Increase Deals. Perform an Increase Deals Action to shift the 
+U.S. Deals track one box to the right.
+8.10  NP KPD Special Actions
+NP KPD selects from five Special Action categories. After select-
+ing the category, perform the first listed Special Action in that 
+category that will have an effect. If no Special Actions in that 
+category will have an effect, skip to the next category.
+DIE ROLL SPECIAL ACTION
+1 Military Actions
+2 Stance Actions
+3-4 Strike Actions
+5 Cadre Actions
+6 Political Actions
+Die Roll 1: Military Actions
+1. Place Unit & Assault. First, Perform a Place Unit Action.
+Then, check each opposing faction in turn, using the current 
+bot card’s Faction Order. The bot will Assault in the first eligible 
+space where KPD Potential Assault Strength is greater than the 
+target’s Potential Assault Strength in that space.
+Die Roll 2: Stance Actions
+1. Perform a Change Stance Action. Roll a die and add the 
+number of KPD Cadres currently on the map. If the result is 4 
+or greater, shift KPD Stance one box to the right, towards Rev-
+olutionary. Otherwise, shift it to the left, towards Democratic.
+
+=== PAGE 39 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+39
+Gameplay Note: When playing the following scenarios, where 
+the Stance marker is not used, skip this Special Action and go 
+to the next:
+ • Tutorial Scenario [9.2]
+ • Black Sun Rising [9.5]
+Die Roll 3–4: Strike Actions
+1. Flip Strike. Only if the General Strike marker is on the Timeline.
+Perform a Flip Strike to Uprising Action.
+2. Place Strike. Perform a Place Strike Action.
+Die Roll 5: Cadre Actions
+1. Place Cadre. Perform a Place Cadre Action.
+Die Roll 6: Political Actions
+1. Move Middle Class Sympathies. Perform a Move Middle 
+Class Sympathies Action.
+8.11  NP NSDAP Special Actions
+NP NSDAP selects from five Special Action categories. After 
+selecting the category, perform the first listed Special Action 
+in that category that will have an effect. If no Special Actions 
+in that category will have an effect, skip to the next category.
+DIE ROLL SPECIAL ACTION
+1 Military Actions
+2 Stance Actions
+3-4 Assassination Actions
+5 Cadre Actions
+6 Political Actions
+Die Roll 1: Military Actions
+1. Place Unit & Assault. First, Perform a Place Unit Action.
+Then, check each opposing faction in turn, using the current 
+bot card’s Faction Order. The bot will Assault in the first eligible 
+space where NSDAP Potential Assault Strength is greater than 
+the target’s Potential Assault Strength in that space.
+Die Roll 2: Stance Actions
+1. Perform a Change Stance Action. Roll a die and add the 
+number of NSDAP Cadres currently on the map. If the result is 
+4 or greater, shift NSDAP Stance one box to the right, towards 
+Revolutionary. Otherwise, shift it to the left, towards Democratic.
+Gameplay Note: When playing the following scenarios, where 
+the Stance marker is not used, skip this Special Action and go 
+to the next:
+ • Tutorial Scenario [9.2]
+ • Black Sun Rising [9.5]
+Die Roll 3–4: Assassination Actions
+1. Place Assassinations. Only in a space that does not already have 
+an Assassinations marker. Perform a Place Assassinations Action.
+Die Roll 5: Cadre Actions
+1. Place Cadre. Perform a Place Cadre Action.
+Die Roll 6: Political Actions
+1. Move Middle Class Sympathies. Perform a Move Middle 
+Class Sympathies Action.
+8.12  NP RC Special Actions
+NP RC selects from five Special Action categories. After select-
+ing the category, perform the first listed Special Action in that 
+category that will have an effect. If no Special Actions in that 
+category will have an effect, skip to the next category.
+DIE ROLL SPECIAL ACTION
+1 Military Actions
+2 Cultural Leverage Actions
+3 Economic Leverage Actions
+4 Political Actions
+5-6 Agitation Actions
+Die Roll 1: Military Actions
+1. Place Unit or Test Coalition Loyalty & Assault. Perform one 
+Place Unit Action first. If there are no available RC Freikorps, 
+instead perform a Test Coalition Loyalty Action in spaces with 
+Rogue Freikorps first.
+Then, check each opposing faction in turn, using the current 
+bot card’s Faction Order. The bot will Assault in the first eligible 
+space where RC Potential Assault Strength is greater than the 
+target’s Potential Assault Strength in that space.
+
+=== PAGE 40 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+40
+Die Roll 2: Cultural Leverage Actions
+1. Place Leverage & Remove Leverage. Perform a Place Leverage 
+on a Track Action.
+Then, remove the highest yellow Leverage from the Progress 
+track.
+Die Roll 3: Economic Leverage Actions
+1. Remove Leverage & Place Leverage. First, remove one yellow 
+Leverage from the Economy track.
+Then, perform a Place Leverage on a Track Action to place an 
+available black Leverage on the Economy track. If during the 
+Crisis Era, place it on the Hyperinflation side of the track. Oth-
+erwise, place it on the Mass Unemployment side of the track.
+Die Roll 4: Political Actions
+1. Move Middle Class Sympathies. Perform a Move Middle 
+Class Sympathies Action.
+Die Roll 5–6: Agitation Actions
+1. Advance Reaction. Perform an Advance Reaction Track 
+Action.
+2. Place Assassinations. Only in a space that does not already 
+have an Assassinations marker. Perform a Place Assassinations 
+Action.
+
+=== PAGE 41 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+41
+
+=== PAGE 42 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+42
+Comprehensive Non-player Example of Play
+The Coalition is an NP faction, while all other factions are 
+player factions. It is the NP faction’s turn during the Action 
+Step of the Late Y ear round of 1931.
+First, reveal the top card of the NP Coalition’s bot deck: 
+card #5.
+Following the Action Step 
+Summary, the bot will 
+first perform an Event 
+and then take two Bot 
+Actions. Since the Year is 
+not 1933 (i.e., the final 
+year of this Era), we do 
+not need to check first if 
+NP Coalition has any 
+Election or Mandatory 
+cards in their “hand” 
+of Event cards. Instead, we reveal the top Event card 
+from their stack: Event card #120 Osthilfe. As this 
+card does not have the  symbol, NP Coalition will 
+not play its Article 48 card 
+to cancel this Event and will 
+instead perform the Event.
+As the Momentum faction, 
+NP Coalition will not play 
+Reichstag Seats. And 
+solely for the purposes of 
+this example of play, we 
+will not have the NP Coali-
+tion play a Parliamentary 
+Control card. Instead, we 
+check the text of this Event to 
+see if the bot needs to make any decisions when imple-
+menting it.
+“Place both 1 Available yellow Leverage and 1 Coa-
+lition Influence in any 1 of these spaces: Ostpreußen, 
+Posen-Westpreußen, Pommern, Niederschlesien, or 
+Oberschlesien (up to Population). ”
+First, note that neither of the effects of this Event card—
+place yellow Leverage and place Coalition Influence—
+are optional, so the bot must implement both effects. 
+Even if these card effects were optional, NP Coalition 
+would still choose to implement them because both 
+“Place yellow Leverage” and “Place Coalition Units 
+and Pieces” are on the list of options that NP Coalition 
+always chooses to implement [8.6, Section 1]. But the 
+bot does need to make two decisions: which avail -
+able yellow Leverage does it place, and in which listed 
+space will that Leverage and one Coalition Influence 
+be placed?
+First, NP Coalition must select one available yellow 
+Leverage. Currently, there is one available on the U.S. 
+Deals track and another on the U.S.S.R. Deals track. 
+The guidelines in Non-player Order of Operations [8.6, 
+Section 4, Step D] specify to select the U.S. Deals track 
+first, thus we take the yellow Leverage from the U.S. 
+Deals track.
+Now, we need to determine the space where NP Coa-
+lition will place both this Leverage and one Influence 
+cube. Since the Event card itself instructs us to place 
+these pieces in one of five listed spaces, that narrows 
+down our options quite a bit. Next, looking at the guide-
+lines in the Non-player Order of Operations [8.6], we see 
+
+=== PAGE 43 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+43
+that when placing Influence, NP factions always select 
+spaces to try to gain Dominance first. NP Coalition is 
+in luck: there are two spaces where the addition of a 
+single Coalition Influence will gain them Dominance 
+among the spaces listed on the Event card: Pommern and 
+Ostpreußen. We use the final space selection priorities 
+to select one space [8.6, Section 4, Step E].
+The first priority is to choose “the Impulse Space. ” For 
+the current bot card, the Impulse space is München, 
+so this doesn’t apply. The next priority is to choose the 
+“eligible space closest to the Impulse space. ” Pommern 
+is four spaces away from München while Ostpreußen 
+is five spaces away. Pommern is closer, so NP Coalition 
+places one yellow Leverage and one Coalition Influence 
+there. This concludes the bot’s play of the Event card.
+Next, NP Coalition will perform two Bot Actions. NP 
+Coalition will perform one Special Action and then one 
+Place Influence Action. We roll a die for the bot to select 
+their Special Action: a “4”, Place Unit and Assault.
+Following the instructions on the NP Coalition Player 
+Aid Card, we need to perform a Coalition Place Unit 
+Action first. NP Coalition performs this Action just like 
+a player faction: they may place either a Reichswehr or 
+Freikorps unit in any space with Coalition Dominance 
+or Coalition Parliamentary Control. We will use the 
+guidelines in the Non-player Order of Operations [8.6] 
+to direct the NP Coalition’s play.
+First, we check to see which effects of the Action the bot 
+will implement [8.6, Section 1]. In this case, NP Coa-
+lition (like all NP factions) always chooses to place its 
+own units on the map. We can skip Select a Target [8.6, 
+Section 2], because this Action does not affect opposing 
+factions. Next, we choose the one unit that NP Coalition 
+will place [8.6, Section 3]. Both types of units are cur-
+rently available—there are several available Freikorps 
+on the Coalition faction mat and 1 available Reichswehr 
+on the U.S.S.R. Deals track. In the priority list, we are 
+instructed to place Reichswehr units before Freikorps 
+units, so NP Coalition takes the Reichswehr unit from 
+the U.S.S.R. Deals track. Now, we select one eligible space 
+to place this unit [8.6, Section 4]. First, we look at NP 
+Coalition Special Actions [8.9] to see if there are any 
+Place Unit specific instructions for the bot [8.6, Section 
+4, Step A]. There are none. This Action does not place 
+or remove Influence, so we skip the next set of priorities 
+[8.6, Section 4, Step B]. The Action does place a unit, 
+and we’re instructed to select a space with opposing 
+units where NP Coalition could place a unit to gain 
+Supremacy [8.6, Section 4, Step C]. Reviewing the map, 
+the only space where this is possible is Pommern. NP 
+Coalition places the Reichswehr unit from the U.S.S.R. 
+Deals track in Pommern and gains Supremacy there.
+Next, this Special Action instructs the bot to Assault. 
+Note that, unlike player factions, NP factions sometimes 
+perform multiple Actions within a single Special Action. 
+Reviewing the Assault instructions [8.9], NP Coalition 
+targets each opposing faction in Faction Order, looking 
+for one space where the Coalition Potential Assault 
+strength is greater than that opponent’s Potentional 
+Assault strength. The first listed opponent on the current 
+NP Coalition bot card is KPD, but there are no spaces 
+with both Coalition and KPD units on the map. The 
+next listed faction is RC. There is one space on the map 
+with both Coalition and RC units—Pommern.
+
+=== PAGE 44 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+44
+Before performing an Assault here, however, we must 
+first check if NP Coalition will Assault here, since the 
+bot only Assaults in spaces where it has a good chance 
+of victory. We do a quick calculation to find the NP 
+Coalition’s Potential Assault Strength (i.e., possible 
+Assault strength before rolling the Assault die). Since 
+this Assault would involve both Coalition and RC units, 
+we first need to see if NP Coalition would pass a Loyalty 
+Check. Currently, Progress is 1 and Reaction is 2, so 
+Coalition units would fail the Loyalty Check. This means 
+we ignore both the newly placed Reichswehr as well as 
+the unrevealed Freikorps for this calculation. But the 
+already-revealed—and loyal—Freikorps is counted. NP 
+Coalition’s Potential Assault Strength is +2 for the loyal 
+Freikorps, +2 for having Parliamentary Control in the 
+Prussian Provinces, and +1 for the yellow Leverage = 
+5. RC’s Potential Assault Strength is +2 for each Rogue 
+Freikorps = 4. NP Coalition’s strength is greater, so it 
+will Assault RC in Pommern.
+The Potential Assault Strength calculations were only 
+temporary, to determine if NP Coalition would Assault 
+in this space. Now, we perform the Action for real. We 
+have already seen that the Coalition will fail a Loyalty 
+Check in this space, so we need to reveal the untested 
+Freikorps to see its true loyalty. Unfortunately for NP 
+Coalition, this unit is revealed to be a Rogue Freikorps! 
+Additionally, we will ignore the Reichswehr unit for the 
+entire Assault. NP Coalition’s final Assault strength is 
++2 for the loyal Freikorps, +2 for Parliamentary Con-
+trol, and +1 for the yellow Leverage = 5. NP Coalition 
+subtracts a roll of 3, for 2 total Assault hits on RC. RC’s 
+final Assault strength is +2 for each Rogue Freikorps 
+= 6. RC subtracts a roll of 3, for 3 total Assault hits on 
+the Coalition.
+As attacker, NP Coalition removes hits first. When remov-
+ing opposing faction’s units, NP factions choose revealed 
+Freikorps before unrevealed. NP Coalition spends all of 
+its 2 hits to remove the revealed Rogue Freikorps. RC is 
+forced to remove the loyal Coalition Freikorps; having 
+failed the Loyalty Check, the Reichswehr unit is ignored 
+for this Assault. The remaining 1 hit is spent to remove 
+1 Coalition Influence.
+Having scored more hits, RC becomes the Momentum 
+faction. RC—with 4 SV—also gains Supremacy in Pom -
+mern, eclipsing both the Coalition (3 SV remaining; 
+the Reichswehr unit is not ignored when determining 
+
+=== PAGE 45 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+45
+Supremacy) and NSDAP (1 SV). And now that the 
+Coalition no longer has Supremacy in Pommern, as 
+the Assault attacker they must lose one Influence cube, 
+their last here.
+When the dust finally settles, NP Coalition completes its 
+second and final Bot Action: a Place Influence Action. 
+The bot will try to select a space where this Action would 
+gain it Dominance first, if possible [8.6, Section 4, Step 
+B]. There are several such spaces across the map, so we 
+look to the final priorities list next [8.6, Section 4, Step 
+E]. NP Coalition already has Dominance in the Impulse 
+space, München. But it does not have Dominance in the 
+space closest to München, Bayern. This is an eligible 
+space for a Place Influence Action—the Coalition has 
+Presence here already and there is no Assassinations 
+marker—so NP Coalition selects Bayern and places 1 
+Influence there, gaining Dominance.
+NP Coalition’s turn is now complete.
+
+=== PAGE 46 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+46
+Index
+A
+Actions  20, 25, 26, 27, 28
+Action Step  20
+Adjacent  3
+Assault Action  23
+Available & Unavailable Pieces  14, 15
+C
+Cards  8
+Article 48  8, 21, 31, 36
+Election Cards  8
+Event Cards  8, 12, 22
+Held Card Penalty  14
+Lingering Events  8, 14, 22, 23
+Mandatory Events  8
+Parliamentary Control Cards  4, 8, 21, 31, 36
+Reichstag Seats  8, 21, 31, 36
+Cities  3
+Clean Slate  20, 31
+D
+Deal Making  20
+Dollar Dependence  18
+Dominance  19, 30
+E
+Election Cycle  12, 30
+Elections  30
+Extra Election  31
+General Election  12, 13, 31
+Regional Elections  13, 30
+Snap Election  31
+Special Election  31
+F
+Faction Mats  6, 15
+Factions  3
+H
+Holding Boxes  15
+M
+Momentum faction  13, 19, 25, 26, 29, 31
+N
+Non-player Factions (the “Bot”)  32
+Bot Cards  33
+Non-player Bot Actions  37
+Non-player Events  36
+Non-player Golden Rules  32
+Non-player Order of Operations  34
+Non-player Scenario Setup  34
+Non-player Sequence of Play  34
+Non-player Victory  34
+NP Coalition Special Actions  38
+NP KPD Special Actions  38
+NP NSDAP Special Actions  39
+NP RC Special Actions  39
+Potential Assault Strength  33
+Selecting Spaces for Events and Actions  37
+Special Actions  33
+P
+Parliamentary Control  4, 19
+Pieces  6, 15
+Assassinations  7, 28, 29, 30
+Cadres  7, 23, 26, 28, 31
+Conservative Cliques  7, 28, 29
+General Strike  7
+Influence Cubes  6, 19, 26, 28, 29
+Leverage  7, 16, 17, 23, 26, 29, 31
+Middle Class Sympathies  7, 23, 25, 26, 27, 29, 31
+Reform  7, 26, 31
+Strike!  7, 23, 24, 26
+Sudden Victory  26, 27, 28, 29
+Sudden Victory marker  7, 12
+Uprising!  7, 23, 24, 26, 30
+Political Value  3, 5, 30, 31
+Population Number  3
+Presence  19
+Prussian Province  3
+R
+Regions  3
+S
+Sequence of Play  13
+Setup  10
+Spaces  3
+Stacking  20
+States  3
+Supremacy  19, 24
+Sworn Enemies (KPD vs. NSDAP)  22
+
+=== PAGE 47 ===
+The Weimar Republic
+The Weimar Republic
+© 2026 GMT Games, LLC
+47
+T
+Timeline  5, 13
+Tracks  4
+Coalition Loyalty  6, 23, 30
+Coalition Unity Track  6
+Economy Track  4, 13, 16, 17, 26, 29
+KPD Stance Track  6
+Momentum Track  5
+NSDAP Stance Track  6
+Progress Track  5, 17, 18, 25, 26, 31
+RC Economic Influence Track  6
+Reaction Track  5, 17, 18, 28, 29
+Turn Order Track  5, 13
+U.S. Deals & U.S.S.R. Deals Tracks  5, 18, 25
+Turn marker  5
+Turn Order  19
+U
+Units  6, 19, 25, 26, 27, 28, 29
+Coalition Freikorps  6
+Coalition Reichswehr  6
+KPD Worker Militia  6
+NSDAP Sturmabteilung (SA)  6
+RC Rogue Freikorps  6
+Survival Value  6, 19, 23
+V
+Victory  12
+
+=== PAGE 48 ===
+(Setup Diagram for The Fate of the Republic scenario)
