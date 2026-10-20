@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": false,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": ".",
+    "outDir": "desktop-dist"
+  },
+  "include": ["desktop", "src/engine", "src/data", "src/multiplayer"],
+  "exclude": ["tests"]
+}

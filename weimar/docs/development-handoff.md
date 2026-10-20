@@ -1,15 +1,20 @@
-# 开发交接 · 0.7
+# 开发交接 · 0.8
 
-截至2026-10-20，本项目完成了三个时代的151个事件及3种选举牌面，以及四个历史剧本：共和国的命运、革命时代、新希望、黑日升起。使用同一流程引擎、领域操作和命令回放。当前421项规则测试通过，生产构建通过。UI仍是本机四方热座规则工作台，优先完成规则，不进行界面美化。
+截至2026-10-20，本项目完成了三个时代的151个事件及3种选举牌面，以及四个历史剧本：共和国的命运、革命时代、新希望、黑日升起。0.8新增Electron桌面版、Steam Lobby与可靠P2P、房主席位权限和私有状态投影。当前444项测试通过，其中23项为联机权限、保密及模拟SDK传输测试。UI仍以功能验证为主。
 
 ## 下一步范围
 
-完整时代切换、实体牌库、留牌惩罚和1933年结算已接通，见[campaign-0.6.md](campaign-0.6.md)。0.7完成另外三个历史剧本，详见[scenarios-0.7.md](scenarios-0.7.md)，复用现有生命周期。剩余主要范围为规则书第8章非玩家阵营机器人、联机及隐藏信息隔离、正式UI。下一批可先盘点第8章的决策范围和机器人牌，再接入能提交现有Command的自动决策层，保持事件与规则引擎单一；本批没有实现机器人。
+按用户要求暂缓机器人，优先联机。完整时代切换、实体牌库、留牌惩罚和1933年结算已接通，见[campaign-0.6.md](campaign-0.6.md)及[scenarios-0.7.md](scenarios-0.7.md)。
+
+下一步在两台安装并登录Steam的电脑上，使用两个账号完成真实建房、邀请、操作同步、断线重连和房主恢复验收。当前机器原生SDK返回`Could not determine Steam client install directory.`，所以不能把模拟传输测试或浏览器样例当成真实Steam联网成功。具体步骤、已验范围及限制见[steam-multiplayer-0.8.md](steam-multiplayer-0.8.md)。
 
 牌效实验局使用教程地图和标准立场，可指定#1–151并预置前置事件；黄金牌从1924年开始，衰落牌从1930年开始。它不代表正式历史开局。
 
 ## 常用位置
 
+- `desktop/main.ts`、`preload.cjs`、`steam-service.ts`：桌面入口、窄IPC接口、原生Steam Lobby／P2P。
+- `src/multiplayer/authority.ts`、`projection.ts`、`protocol.ts`：房主权威、席位、独立玩家视图和协议。
+- `tests/multiplayer.test.ts`、`steam-service.test.ts`：联机保密和模拟四客户端传输；`tests/fixtures/steam-ui.html`为明确标记的开发UI样例，不进入生产包。
 - `src/engine/card-programs.ts`：声明式事件模板。
 - `src/engine/flow/`：可暂停、可回放的事件流程及领域适配。
 - `src/engine/lifecycle.ts`、`decks.ts`：年末、时代和终局的队列续接，实体牌库分层洗牌。
@@ -31,7 +36,7 @@
 
 在仓库的`weimar`目录运行`pnpm install --frozen-lockfile`，然后`pnpm test`、`pnpm build`及`pnpm dev`。Node.js要求24或更新版本，pnpm锁定11.25.0。无需Python即可运行；只有重新导入原始TTS与图片文件时才需Python、Pillow和pypdf，并显式传入文件路径。
 
-0.7存档使用`weimar-session-v7`，保留v6及更早存储；四个`scenario`开局参数均可跨电脑导入。Fate保留0.6棋子ID和洗牌顺序，已用原0.6代码产生的328条战役命令验证完整状态一致。旧验证源代码副本和结果保存在忽略的`artifacts/compat-0.6*`，不是运行依赖。
+0.8继续使用本地存档格式`weimar-0.7.0`及`weimar-session-v7`，保留v6及更早存储；四个`scenario`开局参数均可跨电脑导入。联机格式为`weimar-steam-1`，包含原房主与席位SteamID，仅原房主可导出和恢复。自动存档在Electron用户数据目录的`steam-host-save.json`，不随Git同步。Fate保留0.6棋子ID和洗牌顺序，已用原0.6代码产生的328条战役命令验证完整状态一致。
 
 旧验证截图、构建产物、大幅参考图片、原始PDF和依赖目录不随Git上传，相关历史文档中的本地产物链接在新电脑上可能不存在；规则测试可重新运行。浏览器对局保存于本机localStorage，需通过页面导出／导入才能跨电脑继续同一对局。
 

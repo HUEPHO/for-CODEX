@@ -1,5 +1,8 @@
 node_modules/
 dist/
+desktop-dist/
+release/
+steam_appid.txt
 reference/*
 !reference/tts-document-1.txt
 !reference/tts-document-2.txt

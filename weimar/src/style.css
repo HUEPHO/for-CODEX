@@ -687,6 +687,50 @@ a:focus-visible {
     max-height: 600px;
   }
 }
+.toolbar[hidden] {
+  display: none;
+}
+.steam-panel {
+  margin: 16px 30px;
+  padding: 16px;
+  border: 1px solid #c4c8ba;
+  background: #f5f5ed;
+}
+.steam-panel h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+.steam-panel h2 small,
+.steam-panel small {
+  color: #697266;
+}
+.steam-connect {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+.steam-connect label {
+  display: grid;
+  gap: 6px;
+}
+.steam-panel button {
+  margin: 4px;
+}
+.steam-seats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.steam-seats > div {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d6d9cc;
+}
+.steam-error {
+  color: #922c2c;
+}
 @media (max-width: 820px) {
   header {
     padding: 18px;

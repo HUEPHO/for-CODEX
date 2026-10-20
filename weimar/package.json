@@ -1,15 +1,20 @@
 {
   "name": "weimar-digital",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "packageManager": "pnpm@11.25.0",
   "type": "module",
-  "description": "The Weimar Republic — local rules-engine workbench",
+  "main": "desktop-dist/desktop/main.js",
+  "description": "The Weimar Republic — rules engine and Steam multiplayer",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.ts",
     "build": "tsc --noEmit && vite build",
+    "desktop:build": "pnpm build && tsc -p tsconfig.desktop.json && node scripts/prepare-desktop.mjs",
+    "desktop": "pnpm desktop:build && electron .",
+    "desktop:pack": "pnpm desktop:build && electron-builder --win dir --x64",
+    "steam:check": "electron scripts/check-steam.cjs",
     "preview": "vite preview --host 127.0.0.1",
     "audit:cards": "node scripts/audit-card-scope.ts",
     "format": "prettier --write ."
@@ -19,8 +24,40 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "electron": "44.9.1",
+    "electron-builder": "26.15.3",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2",
     "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "steamworks.js": "0.4.0"
+  },
+  "build": {
+    "appId": "games.weimar.digital",
+    "productName": "WEIMAR",
+    "directories": {
+      "output": "release"
+    },
+    "electronDist": "node_modules/electron/dist",
+    "files": [
+      "dist/**/*",
+      "desktop-dist/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/steamworks.js/dist/**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "node_modules/steamworks.js/dist/win64/steam_api64.dll",
+        "to": "steam_api64.dll"
+      }
+    ],
+    "npmRebuild": false,
+    "win": {
+      "target": "dir",
+      "signAndEditExecutable": false
+    }
   }
 }

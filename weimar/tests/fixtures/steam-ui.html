@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WEIMAR 联机界面验收</title>
+  </head>
+  <body>
+    <section style="padding: 12px; background: #ffeaba">
+      <strong>仅联机界面验收 · 模拟Steam，不是真实联网</strong>
+      <label
+        >当前测试玩家<select id="fixture-peer">
+          <option value="1001">房主 / Coalition</option>
+          <option value="1002">玩家2 / KPD</option>
+          <option value="1003">玩家3 / NSDAP</option>
+          <option value="1004">玩家4 / RC</option>
+        </select></label
+      >
+      <button id="fixture-disconnect">切换玩家2在线状态</button>
+    </section>
+    <div id="app"></div>
+    <script type="module" src="./steam-ui.ts"></script>
+  </body>
+</html>
