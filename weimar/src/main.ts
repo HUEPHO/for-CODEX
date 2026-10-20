@@ -1,4 +1,5 @@
 import './style.css';
+import './ui/tabletop.css';
 import {
   GameSession,
   legalActions,
@@ -16,6 +17,7 @@ import { seatsUsesRemaining } from './engine/policies.ts';
 import { SCENARIOS, fixedStances } from './engine/scenarios.ts';
 import { steamPanel } from './multiplayer/panel.ts';
 import type { DesktopStatus, LobbySummary } from './multiplayer/protocol.ts';
+import { actionSpace, tabletop, selectedSpacePanel, reserveTrays } from './ui/tabletop.ts';
 
 const KEY = 'weimar-session-v7';
 const PREVIOUS_KEYS = [
@@ -47,7 +49,7 @@ let networkBusy = false;
 const networkView = () => desktop?.snapshot?.view;
 const gameState = () => networkView()?.state ?? session.state;
 let session = new GameSession({ scenario: 'fate' }),
-  tab: 'board' | 'map' | 'catalog' | 'coverage' = 'board',
+  tab: 'board' | 'map' | 'catalog' | 'coverage' = 'map',
   selectedSpace = 'Berlin',
   selectedCard = '',
   actionKind: Action['kind'] = 'gain-momentum',
@@ -113,7 +115,16 @@ function cardImage(n: number, extra = '') {
   return `<button class="card-image ${extra}" data-card-preview="${n}" title="查看 #${n} ${esc(CARD[n].name)}"><img src="${CARD[n].image}" alt="#${n} ${esc(CARD[n].name)}" loading="lazy" /></button>`;
 }
 
+let boardZoom = 1,
+  boardFocus = false,
+  gameMenuOpen = false,
+  boardScroll = { left: 0, top: 0 };
+let selectedTarget = '';
 function render() {
+  app.classList.toggle('tabletop-focus', boardFocus && tab === 'map');
+  const oldBoard = document.getElementById('board-viewport');
+  if (oldBoard) boardScroll = { left: oldBoard.scrollLeft, top: oldBoard.scrollTop };
+  const controlScroll = document.querySelector('.controls')?.scrollTop ?? 0;
   const online = !!desktop?.lobbyId;
   const view = networkView();
   if (online && !view) {
@@ -132,6 +143,14 @@ function render() {
     actionKind = kinds[0];
   }
   const targets = actions.filter((a) => a.action.kind === actionKind);
+  const savedTarget = targets.findIndex((a) => JSON.stringify(a.action) === selectedTarget);
+  const targetIndex =
+    savedTarget >= 0
+      ? savedTarget
+      : Math.max(
+          0,
+          targets.findIndex((a) => actionSpace(a.action) === selectedSpace),
+        );
   const pcCards = REGIONS.filter((r) => s.pc[r].owner === f && s.pc[r].available);
   if (!pcCards.includes(pcRegion)) pcRegion = pcCards[0] ?? 'Berlin';
   const pcActions =
@@ -150,10 +169,10 @@ function render() {
   const actionPairPending =
     ['event-first', 'event-last'].includes(s.turn.mode) && s.turn.actionsLeft === 1;
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.8</div></header>
-    ${steamPanel(desktop, lobbyResults, networkBusy)}
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.9</div></header>
+    <div class="utility-bar">${steamPanel(desktop, lobbyResults, networkBusy)}
     <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario ? `${SCENARIOS[s.scenario].name}：${SCENARIOS[s.scenario].startYear}—${SCENARIOS[s.scenario].endYear}，历史布局与剧本规则已接通。${s.scenario === 'black-sun' ? '立场固定务实；事件前置条件仍有效。' : ''}` : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
-    <div class="toolbar"${online ? ' hidden' : ''}>
+    <details id="game-menu" class="game-menu"${online ? ' hidden' : ''}${gameMenuOpen ? ' open' : ''}><summary>对局与存档 <span>剧本 · 牌效实验 · 撤销 · 导入导出</span></summary><div class="toolbar">
       <label>开局<select id="new-mode">${options(
         Object.entries(SCENARIOS).map(([value, scenario]) => ({
           value,
@@ -171,7 +190,7 @@ function render() {
       <label><input id="test-prerequisites" type="checkbox"${session.options.testPrerequisites !== false ? ' checked' : ''}/>预置前置事件</label>
       <label>随机种子<input id="new-seed" type="number" min="0" max="4294967295" value="${s.seed}" /></label><button id="new-game">新建对局</button>
       <div class="toolbar-spacer"></div><button id="undo"${disabled(!session.commands.length)}>撤销</button><button id="redo"${disabled(!session.redoCommands.length)}>重做</button><button id="export">导出存档</button><button id="import">导入存档</button><input id="import-file" hidden type="file" accept=".json,application/json" />
-    </div>
+    </div></details></div>
     ${status ? `<div role="alert" class="error">${esc(status)}</div>` : ''}
     <div class="timeline"><div><strong>${s.year}</strong> / ${s.half === 'early' ? '上半年' : '下半年'} <span class="pill">${s.year <= 1923 ? '危机时代' : s.year <= 1929 ? '黄金时代' : '衰落时代'}</span></div><div class="steps">${Object.entries(
       PHASES,
@@ -182,8 +201,8 @@ function render() {
     <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><span>${i + 1}. ${x}</span><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${view?.handCounts[x] ?? s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
     <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.KPD}</b></span><span>NSDAP 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${view?.deckCount ?? s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
     <main><div class="workspace"><nav>${[
-      ['board', '地区状态'],
-      ['map', '中文地图'],
+      ['map', '棋盘'],
+      ['board', '地区明细'],
       ['catalog', '卡牌库'],
       ['coverage', '实现范围'],
     ]
@@ -192,8 +211,22 @@ function render() {
           `<button data-tab="${k}" class="${tab === k ? 'selected' : ''}">${n}${k === 'catalog' ? ` <small>${CARDS.length}</small>` : ''}</button>`,
       )
       .join('')}</nav>
-    <div class="workspace-body">${tab === 'board' ? boardView() : tab === 'map' ? '<img class="map-image" src="/assets/board.webp" alt="中文游戏地图" /><p class="muted">地图供规则核对；交互操作使用地区状态表。</p>' : tab === 'catalog' ? catalogView() : coverageView()}</div></div>
-    <aside class="controls"><h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
+    <div class="workspace-body">${
+      tab === 'board'
+        ? boardView()
+        : tab === 'map'
+          ? tabletop(
+              s,
+              selectedSpace,
+              targets.map((a) => a.action),
+              boardZoom,
+              boardFocus,
+            )
+          : tab === 'catalog'
+            ? catalogView()
+            : coverageView()
+    }</div></div>
+    <aside class="controls">${tab === 'map' ? selectedSpacePanel(s, selectedSpace) : ''}<h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
     ${combatView()}
     ${
       s.winner
@@ -234,7 +267,10 @@ function render() {
           ? `<label>行动<select id="action-kind">${options(
               kinds.map((k) => ({ value: k, label: ACTION_LABELS[k] })),
               actionKind,
-            )}</select></label><label>合法目标<select id="action-target">${options(targets.map((a, i) => ({ value: String(i), label: a.label })))}</select></label><button id="execute-action" class="primary"${disabled(!targets.length)}>执行行动</button>`
+            )}</select></label><label>合法目标<select id="action-target">${options(
+              targets.map((a, i) => ({ value: String(i), label: a.label })),
+              String(targetIndex),
+            )}</select></label><button id="execute-action" class="primary"${disabled(!targets.length)}>执行行动</button>`
           : ''
       }
       ${s.turn.mode === 'event-last' && !s.turn.eventDone && s.turn.actionsLeft === 0 ? '<button id="play-event" class="primary">打出承诺的事件牌</button>' : ''}
@@ -264,6 +300,7 @@ function render() {
         .map((l) => `<li><small>${l.n}</small>${esc(l.text)}</li>`)
         .join('')}</ol></section>
     </aside></main>
+    ${reserveTrays(s)}
     ${(view?.factions ?? [f]).map(handView).join('')}
     ${s.lingering.length ? `<section class="hand"><h2>持续生效的事件</h2><div class="hand-cards">${s.lingering.map((c) => `<article>${cardImage(c.card)}<div>${esc(CARD[c.card].name)}</div></article>`).join('')}</div></section>` : ''}
     ${s.reveals.map((r) => `<section class="hand"><h2>${r.viewer} 查看 ${r.target} 的手牌</h2><div class="hand-cards">${r.cards.map((c) => `<article>${cardImage(c.card)}</article>`).join('')}</div></section>`).join('')}
@@ -271,6 +308,42 @@ function render() {
     <dialog id="card-dialog"><div class="dialog-top"><span id="card-title"></span><button id="close-dialog" aria-label="关闭牌面">关闭 ×</button></div><img id="card-large" alt="放大牌面" /><p id="card-summary"></p></dialog>
   `;
   bindSteam();
+  const controls = document.querySelector('.controls');
+  if (controls) controls.scrollTop = controlScroll;
+  bind('game-menu', 'toggle', (event) => {
+    gameMenuOpen = (event.target as HTMLDetailsElement).open;
+  });
+  const boardViewport = document.getElementById('board-viewport');
+  if (boardViewport) {
+    boardViewport.scrollLeft = boardScroll.left;
+    boardViewport.scrollTop = boardScroll.top;
+  }
+  bind('board-zoom-in', 'click', () => {
+    boardZoom = Math.min(2.5, boardZoom + 0.25);
+    render();
+  });
+  bind('board-zoom-out', 'click', () => {
+    boardZoom = Math.max(1, boardZoom - 0.25);
+    render();
+  });
+  bind('board-fit', 'click', () => {
+    boardZoom = 1;
+    render();
+    document.getElementById('board-viewport')?.scrollTo(0, 0);
+  });
+  bind('board-focus', 'click', () => {
+    boardFocus = !boardFocus;
+    render();
+    window.scrollTo(0, 0);
+  });
+  bind('action-target', 'change', () => {
+    const target = targets[Number(value('action-target'))];
+    if (target) {
+      selectedTarget = JSON.stringify(target.action);
+      selectedSpace = actionSpace(target.action) ?? selectedSpace;
+      render();
+    }
+  });
   bind('new-game', 'click', () => {
     if (online) return;
     try {
@@ -360,6 +433,7 @@ function render() {
   bind('pass-draw', 'click', () => send({ type: 'pass', actor: f, discardUid: selectedCard }));
   bind('action-kind', 'change', () => {
     actionKind = value('action-kind') as Action['kind'];
+    selectedTarget = '';
     render();
   });
   bind('execute-action', 'click', () => {
@@ -410,6 +484,7 @@ function render() {
   document.querySelectorAll<HTMLElement>('[data-space]').forEach((b) => {
     const select = () => {
       selectedSpace = b.dataset.space!;
+      selectedTarget = '';
       render();
     };
     b.addEventListener('click', select);
@@ -420,16 +495,24 @@ function render() {
       }
     });
   });
-  document.querySelectorAll<HTMLElement>('[data-card-preview]').forEach((b) =>
-    b.addEventListener('click', () => {
+  document.querySelectorAll<HTMLElement>('[data-card-preview]').forEach((b) => {
+    const openCard = () => {
       const c = CARD[Number(b.dataset.cardPreview)];
       (document.getElementById('card-large') as HTMLImageElement).src = c.image;
       document.getElementById('card-title')!.textContent = `#${c.id} ${c.name}`;
       document.getElementById('card-summary')!.textContent =
         `${c.status === 'implemented' ? '已实现' : '待实现'} · ${c.summary}`;
       (document.getElementById('card-dialog') as HTMLDialogElement).showModal();
-    }),
-  );
+    };
+    b.addEventListener('click', openCard);
+    if (b.namespaceURI === 'http://www.w3.org/2000/svg')
+      b.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openCard();
+        }
+      });
+  });
   bind('close-dialog', 'click', () =>
     (document.getElementById('card-dialog') as HTMLDialogElement).close(),
   );

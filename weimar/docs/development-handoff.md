@@ -1,16 +1,20 @@
-# 开发交接 · 0.8
+# 开发交接 · 0.9
 
-截至2026-10-20，本项目完成了三个时代的151个事件及3种选举牌面，以及四个历史剧本：共和国的命运、革命时代、新希望、黑日升起。0.8新增Electron桌面版、Steam Lobby与可靠P2P、房主席位权限和私有状态投影。当前444项测试通过，其中23项为联机权限、保密及模拟SDK传输测试。UI仍以功能验证为主。
+截至2026-10-20，本项目完成了三个时代的151个事件及3种选举牌面，以及四个历史剧本：共和国的命运、革命时代、新希望、黑日升起。0.8新增Electron桌面版、Steam Lobby与可靠P2P、房主席位权限和私有状态投影。当前448项测试通过，其中23项为联机权限、保密及模拟SDK传输测试。0.9按规则书末页改为原版中文底图＋独立SVG棋子，增加地图选区、行动目标联动、缩放和专注模式，详见[tabletop-ui-0.9.md](tabletop-ui-0.9.md)。
 
 ## 下一步范围
 
-按用户要求暂缓机器人，优先联机。完整时代切换、实体牌库、留牌惩罚和1933年结算已接通，见[campaign-0.6.md](campaign-0.6.md)及[scenarios-0.7.md](scenarios-0.7.md)。
+按用户要求暂缓机器人，推进联机并优化UI。2026-10-20用户反馈五子棋的同一Steam联机方案已实测可用；已核对其交接包，绑定0.4.0、AppID 480、Lobby与Reliable P2P调用均与WEIMAR一致，保留当前传输路线。五子棋使用Node＋本机浏览器，WEIMAR使用Electron；后续关注本项目四人席位、私有状态和恢复流程。完整时代切换、实体牌库、留牌惩罚和1933年结算已接通，见[campaign-0.6.md](campaign-0.6.md)及[scenarios-0.7.md](scenarios-0.7.md)。
 
 下一步在两台安装并登录Steam的电脑上，使用两个账号完成真实建房、邀请、操作同步、断线重连和房主恢复验收。当前机器原生SDK返回`Could not determine Steam client install directory.`，所以不能把模拟传输测试或浏览器样例当成真实Steam联网成功。具体步骤、已验范围及限制见[steam-multiplayer-0.8.md](steam-multiplayer-0.8.md)。
 
 牌效实验局使用教程地图和标准立场，可指定#1–151并预置前置事件；黄金牌从1924年开始，衰落牌从1930年开始。它不代表正式历史开局。
 
 ## 常用位置
+
+- `src/ui/board-layout.ts`：原版地图坐标和轨道锚点。
+- `src/ui/pieces.ts`：自绘SVG棋子、影响力方块、同类叠放；不读取未揭示忠诚。
+- `src/ui/tabletop.ts`、`tabletop.css`：动态棋盘、地区详情、库存与桌面布局。
 
 - `desktop/main.ts`、`preload.cjs`、`steam-service.ts`：桌面入口、窄IPC接口、原生Steam Lobby／P2P。
 - `src/multiplayer/authority.ts`、`projection.ts`、`protocol.ts`：房主权威、席位、独立玩家视图和协议。

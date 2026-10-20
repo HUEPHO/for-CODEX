@@ -1,6 +1,6 @@
 # The Weimar Republic · 电子版规则工作台
 
-当前版本 **0.8**，包含浏览器热座和Steam Lobby桌面联机。已实现 **危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151 全部牌效**，共151个事件、154种可执行牌面（含3种选举牌面），四个历史剧本均已接通。联机代码已完成模拟多客户端验证，真实Steam双机验收仍待进行。
+当前版本 **0.9**，包含浏览器热座和Steam Lobby桌面联机。已实现 **危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151 全部牌效**，共151个事件、154种可执行牌面（含3种选举牌面），四个历史剧本均已接通。联机代码已完成模拟多客户端验证，真实Steam双机验收仍待进行。
 
 换电脑继续开发请先看[仓库启动说明](../README.md)与[开发交接说明](docs/development-handoff.md)。克隆后安装依赖即可启动，运行素材已包含在仓库中。
 
@@ -26,6 +26,12 @@ pnpm audit:cards
 ```
 
 Steam联机需要安装并登录Steam，运行`pnpm desktop`打开桌面版。暂用测试AppID 480；建房、选阵营、准备和开始均在顶部Steam面板操作。`pnpm desktop:pack`生成Windows桌面包，`pnpm steam:check`单独诊断原生SDK初始化。详见[Steam联机说明](docs/steam-multiplayer-0.8.md)。
+
+## 棋盘界面
+
+默认打开原版中文棋盘，按规则书第48页的摆局形式叠加独立SVG棋子。26个地区的影响力和部队、轨道标记、议会控制与持续事件均随真实局面更新。点地区查看详情；进行有地区目标的行动时，点金色边框地区可选目标，再点击执行。支持适应窗口、100%–250%缩放和专注棋盘。
+
+对局、撤销及存档入口收进“对局与存档”；手牌在下方，库存放入可展开的玩家区。详见[棋盘UI说明](docs/tabletop-ui-0.9.md)。
 
 ## 完整战役
 
@@ -74,7 +80,7 @@ Steam联机需要安装并登录Steam，运行`pnpm desktop`打开桌面版。�
 | `tests/decline-batch.test.ts`                             | 49项衰落时代专项规则测试                 |
 | `src/main.ts`                                             | 轻量浏览器工作台                         |
 
-参阅[衰落时代实现说明](docs/batch-113-151.md)、[黄金时代后半部说明](docs/batch-83-112.md)、[前批规则解释](docs/batch-1-82.md)、[架构](docs/architecture.md)、[规则覆盖与验证](docs/rules-coverage.md)、[全牌需求清单](docs/card-scope.md)。当前444项测试通过；构建及界面验证范围见规则覆盖。
+参阅[衰落时代实现说明](docs/batch-113-151.md)、[黄金时代后半部说明](docs/batch-83-112.md)、[前批规则解释](docs/batch-1-82.md)、[架构](docs/architecture.md)、[规则覆盖与验证](docs/rules-coverage.md)、[全牌需求清单](docs/card-scope.md)。当前448项测试通过；构建及界面验证范围见规则覆盖。
 
 ## 来源
 
