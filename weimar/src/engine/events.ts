@@ -27,6 +27,7 @@ import { CARD_PROGRAMS } from './card-programs.ts';
 import { canAssault } from './combat.ts';
 import { finishReferendum, finishElection } from './elections.ts';
 import { returnDecider } from './policies.ts';
+import { resolveLifecycle } from './lifecycle.ts';
 
 const choice = (actor: Faction, prompt: string, options: ChoiceOption[]): Effect => ({
   type: 'choice',
@@ -201,6 +202,13 @@ export function resolveEffects(s: GameState) {
     const e = s.effects.shift()!;
     if (resolveFlowEffect(s, e)) continue;
     switch (e.type) {
+      case 'timeline-complete':
+      case 'new-year-ready':
+      case 'held-penalty':
+      case 'era-deal':
+      case 'campaign-finish':
+        resolveLifecycle(s, e);
+        break;
       case 'referendum-result':
         finishReferendum(s, e.transfer);
         break;

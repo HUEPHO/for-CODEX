@@ -110,7 +110,9 @@ export function finishElection(
       : s.scenarioEnding
         ? s.ruleset === 'tutorial-v1'
           ? '教程剧本终局选举'
-          : '牌效实验局结束选举'
+          : s.scenario === 'fate'
+            ? '共和国的命运：1933年最终选举'
+            : '牌效实验局结束选举'
         : '全国选举胜利';
     s.phase = 'finished';
     record(s, `${s.winner} 获胜：${s.winReason}`);

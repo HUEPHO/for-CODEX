@@ -4,7 +4,8 @@ export const FACTIONS = ['Coalition', 'KPD', 'NSDAP', 'RC'] as const;
 export type Faction = (typeof FACTIONS)[number];
 export type FactionValues = Record<Faction, number>;
 export type Era = 'crisis' | 'golden' | 'decline';
-export type Phase = 'order' | 'action' | 'sudden-victory' | 'election' | 'timeline' | 'finished';
+export type Phase =
+  'order' | 'action' | 'sudden-victory' | 'election' | 'timeline' | 'upkeep' | 'finished';
 export type PieceKind =
   | 'leverage'
   | 'cadre'
@@ -132,7 +133,14 @@ export type AssassinationEffect =
     }
   | { type: 'assassination-bonus'; actor: Faction; region?: string }
   | { type: 'assassination-place'; pieceId: string; space: string; side: 'left' | 'right' };
+export type LifecycleEffect =
+  | { type: 'timeline-complete'; inflationSpace?: string }
+  | { type: 'new-year-ready'; economy?: number }
+  | { type: 'held-penalty'; faction: Faction; remaining: number }
+  | { type: 'era-deal'; era: Era; penalties: FactionValues }
+  | { type: 'campaign-finish'; penalties: FactionValues };
 export type Effect =
+  | LifecycleEffect
   | MilitaryEffect
   | CombatEffect
   | AssassinationEffect
@@ -197,6 +205,10 @@ export interface ElectionResult {
 export interface GameState {
   schema: 1;
   ruleset: 'tutorial-v1' | 'standard-v1';
+  scenario?: 'fate';
+  /** Set during annual upkeep; resolve only after the new turn order is chosen. */
+  eraChange?: Era;
+  lastHeldPenalty?: FactionValues;
   stance: { KPD: number; NSDAP: number };
   pcLocked: string[];
   flow?: FlowState;
@@ -226,6 +238,7 @@ export interface GameState {
   hands: Record<Faction, CardInstance[]>;
   deck: CardInstance[];
   discard: CardInstance[];
+  removedCards?: CardInstance[];
   lingering: CardInstance[];
   pc: Record<string, { owner: Faction | null; available: boolean }>;
   article48: boolean;
@@ -293,6 +306,7 @@ export type Command =
   | { type: 'play-seats'; actor: Faction }
   | { type: 'play-pc'; actor: Faction; region: string; action?: Action; removeReform?: string };
 export interface NewGameOptions {
+  scenario?: 'fate';
   seed?: number;
   demo?: boolean;
   /** Dedicated card lab uses the tutorial map with standard stance/limits. */

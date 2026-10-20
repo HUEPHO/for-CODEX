@@ -2,7 +2,7 @@ import { createGame } from './setup.ts';
 import { dispatch } from './reducer.ts';
 import { ensure } from './rules.ts';
 import type { GameState, Command, NewGameOptions } from './types.ts';
-export const SAVE_VERSION = 'weimar-0.5.0';
+export const SAVE_VERSION = 'weimar-0.6.0';
 interface SaveFile {
   format: typeof SAVE_VERSION;
   options: NewGameOptions;
@@ -16,7 +16,8 @@ export class GameSession {
   constructor(options: NewGameOptions = {}) {
     this.options = {
       seed: options.seed ?? 1921,
-      demo: options.demo ?? true,
+      demo: options.scenario ? false : (options.demo ?? true),
+      ...(options.scenario ? { scenario: options.scenario } : {}),
       ...(options.testCard !== undefined
         ? { testCard: options.testCard, testPrerequisites: options.testPrerequisites ?? false }
         : {}),
@@ -76,6 +77,7 @@ export class GameSession {
       save &&
         [
           SAVE_VERSION,
+          'weimar-0.5.0',
           'weimar-0.4.0',
           'weimar-0.3.0',
           'weimar-tutorial-0.2.0',

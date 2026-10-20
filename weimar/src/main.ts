@@ -14,8 +14,8 @@ import { SPACES, SPACE, REGIONS, REGION_NAMES } from './data/board.ts';
 import { ACTION_LABELS } from './engine/actions.ts';
 import { seatsUsesRemaining } from './engine/policies.ts';
 
-const KEY = 'weimar-session-v5';
-const PREVIOUS_KEYS = ['weimar-session-v4', 'weimar-session-v3'];
+const KEY = 'weimar-session-v6';
+const PREVIOUS_KEYS = ['weimar-session-v5', 'weimar-session-v4', 'weimar-session-v3'];
 const LEGACY_KEY = 'weimar-tutorial-session-v1';
 const NAMES: Record<Faction, string> = {
   Coalition: '民主联盟',
@@ -29,10 +29,11 @@ const PHASES = {
   'sudden-victory': '即时胜利检查',
   election: '选举',
   timeline: '推进时间轴',
+  upkeep: '年末与时代结算',
   finished: '对局结束',
 };
 const app = document.querySelector<HTMLDivElement>('#app')!;
-let session = new GameSession(),
+let session = new GameSession({ scenario: 'fate' }),
   tab: 'board' | 'map' | 'catalog' | 'coverage' = 'board',
   selectedSpace = 'Berlin',
   selectedCard = '',
@@ -105,10 +106,10 @@ function render() {
     canAct && pcCards.length && !s.turn.pcUsed ? legalParliamentaryActions(s, pcRegion) : [];
   const election = previewElection(s);
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">本地热座 · 开发版 0.5</div></header>
-    <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'} 完整时代切换、补牌与历史剧本仍待实现。</div>
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">本地热座 · 开发版 0.6</div></header>
+    <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario === 'fate' ? '共和国的命运：1919—1933，包含三时代切换、留牌惩罚与最终结算。' : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
     <div class="toolbar">
-      <label>开局<select id="new-mode"><option value="demo"${s.demo && !session.options.testCard ? ' selected' : ''}>开发测试局</option><option value="tutorial"${!s.demo ? ' selected' : ''}>正式教程牌库</option><option value="cards"${session.options.testCard ? ' selected' : ''}>牌效实验局</option></select></label>
+      <label>开局<select id="new-mode"><option value="fate"${s.scenario === 'fate' ? ' selected' : ''}>共和国的命运 · 1919—1933</option><option value="demo"${s.demo && !session.options.testCard ? ' selected' : ''}>开发测试局</option><option value="tutorial"${!s.demo && !s.scenario ? ' selected' : ''}>正式教程牌库</option><option value="cards"${session.options.testCard ? ' selected' : ''}>牌效实验局</option></select></label>
       <label>实验局指定牌<select id="test-card">${options(
         CARDS.filter((c) => c.id <= 151).map((c) => ({
           value: String(c.id),
@@ -158,7 +159,9 @@ function render() {
               x,
             )}</select></label>`,
         )
-        .join('')}</div><button id="set-order" class="primary">确定顺序，开始行动</button>`
+        .join(
+          '',
+        )}</div><button id="set-order" class="primary">${s.eraChange ? '确定顺序，结算留牌惩罚' : '确定顺序，开始行动'}</button>`
             : s.phase === 'action'
               ? `
       <p class="muted">每方选择1次行动、事件＋2次行动，或跳过。两个行动须连续完成。</p>
@@ -195,7 +198,7 @@ function render() {
       }</details>`
               : s.phase === 'election'
                 ? `
-      <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是当前布局的结束选举，第一名直接获胜。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
+      <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是终局选举，按全国选举胜利规则决定赢家。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
       <label>${s.momentum} 可转让PV<select id="transfer-to"><option value="">不转让</option>${options(FACTIONS.filter((x) => x !== s.momentum).map((value) => ({ value, label: value })))}</select></label><input id="transfer-amount" type="number" min="0" max="${Math.floor(election.totals[s.momentum] / 2)}" value="0" /><button id="advance" class="primary">结算选举</button>`
                 : `
       ${s.phase === 'timeline' && s.tracks.economy === 1 ? `<label>恶性通胀：移除联盟影响力<select id="inflation-space">${options(SPACES.filter((p) => s.influence[p.id].Coalition > 0).map((p) => ({ value: p.id, label: p.nameZh })))}</select></label>` : ''}
@@ -217,7 +220,8 @@ function render() {
     try {
       session = new GameSession({
         seed: Number(value('new-seed')),
-        demo: value('new-mode') !== 'tutorial',
+        demo: !['tutorial', 'fate'].includes(value('new-mode')),
+        ...(value('new-mode') === 'fate' ? { scenario: 'fate' as const } : {}),
         ...(value('new-mode') === 'cards'
           ? {
               testCard: Number(value('test-card')),
@@ -394,7 +398,7 @@ function catalogView() {
   return `<div class="catalog-header"><input id="card-search" type="search" placeholder="搜索编号、名称或“已实现”" value="${esc(search)}" aria-label="搜索卡牌" /><span>${filtered.length} 张牌面 / ${IMPLEMENTED_CARDS.length} 种已实现</span></div><div class="catalog">${filtered.map((c) => `<article>${cardImage(c.id)}<strong>#${c.id} ${esc(c.name)}</strong><small class="${c.status === 'implemented' ? 'supported' : ''}">${c.status === 'implemented' ? '已实现' : '待实现'} · ${c.era}${c.mandatory ? ' · 强制' : ''}</small></article>`).join('')}</div>`;
 }
 function coverageView() {
-  return `<div class="coverage"><h2>三个时代全部牌效</h2><p>已实现危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151，另含3种选举牌面。共151个事件、154种可执行牌面。</p><h3>衰落时代能力</h3><ul><li>#117 提前选举：更新地区控制、国会议席及胜利结果，联盟胜出后回到当前回合，保留本轮已预约的普通选举。</li><li>#118 即时胜利；#122／132／146 按当前局面计算PV，不改变议会控制。</li><li>#119 永久移除第48条；#124 右翼国会议席每次选举周期可使用两次。</li><li>杠杆和影响力替换；#137 按实际移除SA的不同地区逐一给予补偿。</li><li>事件授予行动复用基础行动规则；跨阵营选择、战斗与归还结算后继续原流程。</li><li>流程中途可保存、撤销、重做和刷新重放；保留旧版自动存档。</li></ul><h3>如何测试</h3><p>顶部选择“牌效实验局”，选择 #1–151 的指定牌并新建对局。测试牌放在联盟手牌首位；可勾选预置前置事件。该模式使用教程地图和标准立场，用于牌效验证。黄金牌从1924年、衰落牌从1930年开始；测试事件时请选择允许第48条询问中的事件结算。</p><h3>规则口径</h3><p>#121 按英文原牌，在NSDAP持有momentum时移除2个不同地区各1个影响力，否则3个地区。#135 按6.0通则顺序执行：在巴伐利亚实际移除NSDAP影响力后，本行动步骤不能再在同地放置RC影响力。</p><h3>后续范围</h3><ul><li>完整时代切换、补牌和留牌惩罚，以及另外4个历史剧本。</li><li>机器人、联机、隐藏信息隔离和正式UI。</li></ul><p>教程模式按9.2固定立场并忽略卡牌前置。牌效实验局不是正式历史剧本，尚不执行完整时代切换。</p></div>`;
+  return `<div class="coverage"><h2>三个时代全部牌效</h2><p>已实现危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151，另含3种选举牌面。共151个事件、154种可执行牌面。</p><h3>衰落时代能力</h3><ul><li>#117 提前选举：更新地区控制、国会议席及胜利结果，联盟胜出后回到当前回合，保留本轮已预约的普通选举。</li><li>#118 即时胜利；#122／132／146 按当前局面计算PV，不改变议会控制。</li><li>#119 永久移除第48条；#124 右翼国会议席每次选举周期可使用两次。</li><li>杠杆和影响力替换；#137 按实际移除SA的不同地区逐一给予补偿。</li><li>事件授予行动复用基础行动规则；跨阵营选择、战斗与归还结算后继续原流程。</li><li>流程中途可保存、撤销、重做和刷新重放；保留旧版自动存档。</li></ul><h3>如何测试</h3><p>顶部选择“牌效实验局”，选择 #1–151 的指定牌并新建对局。测试牌放在联盟手牌首位；可勾选预置前置事件。该模式使用教程地图和标准立场，用于牌效验证。黄金牌从1924年、衰落牌从1930年开始；测试事件时请选择允许第48条询问中的事件结算。</p><h3>规则口径</h3><p>#121 按英文原牌，在NSDAP持有momentum时移除2个不同地区各1个影响力，否则3个地区。#135 按6.0通则顺序执行：在巴伐利亚实际移除NSDAP影响力后，本行动步骤不能再在同地放置RC影响力。</p><h3>完整战役</h3><p>“共和国的命运”按9.6从1919年开始，每方7张危机牌。1924年发9张黄金牌、1930年发6张衰落牌，均扣除留牌惩罚。换时代由新年度顺序结算；1933年终按官方勘误对所有阵营结算留牌，再决定联盟直接胜利或最终选举。实体牌库共159张：151张事件、1／3／4张各时代选举牌。</p><h3>后续范围</h3><ul><li>另外3个历史剧本：革命时代、新希望、黑日升起。</li><li>机器人、联机、隐藏信息隔离和正式UI。</li></ul><p>教程模式按9.2固定立场并忽略卡牌前置。牌效实验局不是正式历史剧本，尚不执行完整时代切换。</p></div>`;
 }
 function combatView() {
   const c = session.state.combat ?? session.state.lastCombat;

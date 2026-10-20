@@ -3,50 +3,48 @@ import { SPACES, REGIONS } from '../data/board.ts';
 import { CARD } from '../data/cards.ts';
 import { HOLDING } from '../data/holdings.ts';
 import { FACTIONS } from './types.ts';
-import type {
-  GameState,
-  NewGameOptions,
-  PieceKind,
-  Faction,
-  CardInstance,
-  TurnState,
-} from './types.ts';
-import { zeros, assertInvariants, integer, clampTracks } from './rules.ts';
+import type { GameState, NewGameOptions, PieceKind, Faction, CardInstance } from './types.ts';
+import { zeros, assertInvariants, integer, clampTracks, ensure } from './rules.ts';
 import { shuffle } from './random.ts';
-export const newTurn = (): TurnState => ({
-  mode: 'unselected',
-  actionsLeft: 0,
-  eventDone: false,
-  placed: [],
-  removed: [],
-  pcUsed: false,
-  assaulted: [],
-});
+import { newTurn } from './turn.ts';
+import { prepareEraDeck } from './decks.ts';
+export { newTurn } from './turn.ts';
 export function createGame(options: NewGameOptions = {}): GameState {
+  ensure(options.scenario === undefined || options.scenario === 'fate', '未知剧本');
+  ensure(!options.scenario || options.testCard === undefined, '正式剧本不能预置实验牌');
+  const campaign = options.scenario === 'fate';
   const seed = options.seed ?? 1921;
   integer(seed, 0, 4294967295, '种子必须是0至4294967295的整数');
   const s: GameState = {
     schema: 1,
-    ruleset: 'tutorial-v1',
-    stance: { KPD: 0, NSDAP: 0 },
+    ruleset: campaign ? 'standard-v1' : 'tutorial-v1',
+    ...(campaign ? { scenario: 'fate' as const, removedCards: [] } : {}),
+    stance: campaign ? { KPD: 2, NSDAP: 3 } : { KPD: 0, NSDAP: 0 },
     pcLocked: [],
-    demo: options.demo ?? true,
+    demo: campaign ? false : (options.demo ?? true),
     seed,
     rng: seed,
     revision: 0,
-    year: 1921,
+    year: campaign ? 1919 : 1921,
     half: 'early',
     phase: 'order',
     order: [...FACTIONS],
     activeIndex: 0,
     momentum: 'Coalition',
-    tracks: { economy: 3, progress: 2, reaction: 3, us: 1, ussr: 2, unity: 1, dollarDependence: 0 },
+    tracks: campaign
+      ? { economy: 5, progress: 1, reaction: 2, us: 1, ussr: 1, unity: 1, dollarDependence: 0 }
+      : { economy: 3, progress: 2, reaction: 3, us: 1, ussr: 2, unity: 1, dollarDependence: 0 },
     influence: Object.fromEntries(
       SPACES.map((sp) => [
         sp.id,
         {
           ...zeros(),
-          ...(setups.Tutorial as Record<string, Partial<ReturnType<typeof zeros>>>)[sp.id],
+          ...(
+            setups[campaign ? 'Fate' : 'Tutorial'] as Record<
+              string,
+              Partial<ReturnType<typeof zeros>>
+            >
+          )[sp.id],
         },
       ]),
     ),
@@ -68,8 +66,9 @@ export function createGame(options: NewGameOptions = {}): GameState {
     log: [
       {
         n: 1,
-        text:
-          options.demo === false
+        text: campaign
+          ? '共和国的命运 1919–1933：标准规则；危机时代每阵营7张，按正式剧本9.6开局。'
+          : options.demo === false
             ? '教程剧本 1921–1923；正式53张危机牌库，每阵营5张。'
             : '开发测试局：教程布局；固定的已实现牌序，每阵营3张。',
       },
@@ -91,64 +90,106 @@ export function createGame(options: NewGameOptions = {}): GameState {
         ...(side ? { side } : {}),
       });
   }
-  const occupied = [
-    '@progress:2',
-    '@progress:3',
-    '@reaction:2',
-    '@reaction:3',
-    ...['3', '4', '5'].map((n) => `@mcs:${n}`),
-    ...['2', '3', '4', '5'].map((n) => `@reform:${n}`),
-    '@reaction-assassination:2',
-    '@reaction-cadre:4',
-    '@reaction-clique:5',
-    ...['2', '3', '4', '5'].map((n) => `@us:${n}`),
-    '@ussr-army:1',
-    '@ussr-army:3',
-    '@ussr-army:5',
-    '@ussr-cadre:4',
-    '@ussr-cadre:5',
-    '@ussr-black:3',
-    '@ussr-yellow:4',
-    '@economy-mcs:1',
-    '@economy-mcs:9',
-    '@kpd-cadre:1',
-    '@kpd-cadre:2',
-    '@kpd-strike:2',
-    '@kpd-strike:3',
-    '@kpd-strike:4',
-    '@nsdap-cadre:1',
-    '@nsdap-cadre:2',
-    '@nsdap-cadre:3',
-    '@nsdap-assassination:1',
-    '@rc-economic:4',
-    '@rc-clique:2',
-    '@rc-assassination:1',
-  ];
+  const occupied = campaign
+    ? [
+        '@reaction:2',
+        ...[2, 3, 4, 5].map((n) => `@mcs:${n}`),
+        ...[2, 3, 4, 5].map((n) => `@reform:${n}`),
+        '@reaction-assassination:2',
+        '@reaction-cadre:3',
+        '@reaction-cadre:4',
+        '@reaction-clique:5',
+        ...[1, 2, 3, 4, 5].map((n) => `@us:${n}`),
+        ...[1, 3, 5].map((n) => `@ussr-army:${n}`),
+        ...[2, 4].map((n) => `@ussr-yellow:${n}`),
+        ...[1, 3].map((n) => `@ussr-black:${n}`),
+        ...[2, 4, 5].map((n) => `@ussr-cadre:${n}`),
+        '@economy-mcs:1',
+        '@economy-mcs:9',
+        '@kpd-cadre:1',
+        '@kpd-cadre:2',
+        ...[1, 2, 3, 4].map((n) => `@kpd-strike:${n}`),
+        ...[1, 2, 3].map((n) => `@nsdap-cadre:${n}`),
+        '@nsdap-assassination:1',
+        ...[2, 3, 4].map((n) => `@rc-economic:${n}`),
+        '@rc-clique:2',
+        '@rc-assassination:1',
+      ]
+    : [
+        '@progress:2',
+        '@progress:3',
+        '@reaction:2',
+        '@reaction:3',
+        ...['3', '4', '5'].map((n) => `@mcs:${n}`),
+        ...['2', '3', '4', '5'].map((n) => `@reform:${n}`),
+        '@reaction-assassination:2',
+        '@reaction-cadre:4',
+        '@reaction-clique:5',
+        ...['2', '3', '4', '5'].map((n) => `@us:${n}`),
+        '@ussr-army:1',
+        '@ussr-army:3',
+        '@ussr-army:5',
+        '@ussr-cadre:4',
+        '@ussr-cadre:5',
+        '@ussr-black:3',
+        '@ussr-yellow:4',
+        '@economy-mcs:1',
+        '@economy-mcs:9',
+        '@kpd-cadre:1',
+        '@kpd-cadre:2',
+        '@kpd-strike:2',
+        '@kpd-strike:3',
+        '@kpd-strike:4',
+        '@nsdap-cadre:1',
+        '@nsdap-cadre:2',
+        '@nsdap-cadre:3',
+        '@nsdap-assassination:1',
+        '@rc-economic:4',
+        '@rc-clique:2',
+        '@rc-assassination:1',
+      ];
   for (const id of occupied) {
     const h = HOLDING[id];
     add(h.kind, h.owner, id, 1, h.kind === 'strike' ? 'strike' : undefined);
   }
-  add('mcs', null, 'mat:RC', 2);
-  add('freikorps', 'Coalition', 'Bayern');
-  add('freikorps', 'Coalition', 'Berlin', 2);
-  add('freikorps', 'Coalition', 'Koeln');
-  add('freikorps', 'Coalition', 'Muenchen');
-  add('freikorps', 'Coalition', 'reserve:Coalition', 4);
-  add('freikorps', 'RC', 'Berlin', 2);
-  add('freikorps', 'RC', 'Muenchen');
-  add('militia', 'KPD', 'Bayern');
-  add('militia', 'KPD', 'Berlin', 2);
-  add('militia', 'KPD', 'Sachsen');
-  add('militia', 'KPD', 'reserve:KPD', 5);
-  add('sa', 'NSDAP', 'Muenchen');
-  add('sa', 'NSDAP', 'reserve:NSDAP', 8);
-  add('leverage', 'RC', 'Bayern', 2);
-  add('clique', 'RC', 'Bayern');
-  add('cadre', 'KPD', 'Berlin');
-  add('cadre', 'NSDAP', 'Muenchen');
-  add('strike', 'KPD', 'Sachsen', 1, 'strike');
+  if (campaign) {
+    add('mcs', null, 'mat:RC');
+    add('freikorps', 'Coalition', 'Berlin', 2);
+    add('freikorps', 'Coalition', 'Koeln');
+    add('freikorps', 'Coalition', 'Muenchen');
+    add('freikorps', 'Coalition', 'reserve:Coalition', 5);
+    add('freikorps', 'RC', 'Berlin');
+    add('freikorps', 'RC', 'reserve:RC', 2);
+    add('militia', 'KPD', 'Berlin');
+    add('militia', 'KPD', 'reserve:KPD', 8);
+    add('sa', 'NSDAP', 'reserve:NSDAP', 9);
+    add('clique', 'RC', 'Bayern');
+  } else {
+    add('mcs', null, 'mat:RC', 2);
+    add('freikorps', 'Coalition', 'Bayern');
+    add('freikorps', 'Coalition', 'Berlin', 2);
+    add('freikorps', 'Coalition', 'Koeln');
+    add('freikorps', 'Coalition', 'Muenchen');
+    add('freikorps', 'Coalition', 'reserve:Coalition', 4);
+    add('freikorps', 'RC', 'Berlin', 2);
+    add('freikorps', 'RC', 'Muenchen');
+    add('militia', 'KPD', 'Bayern');
+    add('militia', 'KPD', 'Berlin', 2);
+    add('militia', 'KPD', 'Sachsen');
+    add('militia', 'KPD', 'reserve:KPD', 5);
+    add('sa', 'NSDAP', 'Muenchen');
+    add('sa', 'NSDAP', 'reserve:NSDAP', 8);
+    add('leverage', 'RC', 'Bayern', 2);
+    add('clique', 'RC', 'Bayern');
+    add('cadre', 'KPD', 'Berlin');
+    add('cadre', 'NSDAP', 'Muenchen');
+    add('strike', 'KPD', 'Sachsen', 1, 'strike');
+  }
   const instance = (card: number): CardInstance => ({ uid: `card-${card}`, card });
-  if (s.demo) {
+  if (campaign) {
+    s.deck = prepareEraDeck(s, 'crisis');
+    for (const f of FACTIONS) s.hands[f] = s.deck.splice(0, 7);
+  } else if (s.demo) {
     s.hands.Coalition = [35, 17, 4].map(instance);
     s.hands.KPD = [49, 47, 152].map(instance);
     s.hands.NSDAP = [1, 39, 50].map(instance);

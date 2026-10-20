@@ -296,6 +296,7 @@ export function assertInvariants(s: GameState) {
   const allCards = [
     ...s.deck,
     ...s.discard,
+    ...(s.removedCards ?? []),
     ...s.lingering,
     ...FACTIONS.flatMap((f) => s.hands[f]),
     ...(s.electionCard ? [s.electionCard] : []),

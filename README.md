@@ -1,6 +1,6 @@
 # WEIMAR 电子版
 
-桌游 The Weimar Republic 的本地四方热座规则工作台。项目代码在 [`weimar/`](weimar/)，当前为0.5版：三个时代的151个事件和3种选举牌面已接入。
+桌游 The Weimar Republic 的本地四方热座规则工作台。项目代码在 [`weimar/`](weimar/)，当前为0.6版：三个时代的151个事件和3种选举牌面已接入，并支持“共和国的命运”1919—1933完整战役。
 
 ## 在另一台电脑继续开发
 
@@ -40,6 +40,7 @@ git push
 
 - [开发交接说明](weimar/docs/development-handoff.md)：当前进度、未完成范围和规则解释。
 - [项目说明](weimar/README.md)：代码入口、实验局和来源。
+- [完整战役实现说明](weimar/docs/campaign-0.6.md)：时代切换、留牌惩罚、最终结算与验证。
 - [衰落时代实现说明](weimar/docs/batch-113-151.md)：最新39张卡的实现与规则口径。
 
 游戏及素材权利归各自权利人。

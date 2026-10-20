@@ -10,12 +10,11 @@ import {
   ensure,
   inEffect,
   onMap,
-  piecesAt,
   record,
   returnEffects,
-  changeInfluence,
 } from './rules.ts';
-import { newTurn } from './setup.ts';
+import { newTurn } from './turn.ts';
+import { advanceTimeline, beginHeldPenalties } from './lifecycle.ts';
 import { applyAction } from './actions.ts';
 import { queueCard, resolveEffects } from './events.ts';
 import { checkSuddenVictory, finishElection } from './elections.ts';
@@ -47,52 +46,6 @@ function localAction(s: GameState, action: Action, region: string) {
   if (action.kind === 'remove-leverage')
     return SPACE[s.pieces.find((p) => p.id === action.pieceId)?.location ?? '']?.region === region;
   return false;
-}
-function advanceTimeline(s: GameState, c: Extract<Command, { type: 'advance' }>) {
-  const removed = c.removeStrikes ?? [];
-  ensure(Array.isArray(removed) && new Set(removed).size === removed.length, '罢工选择格式无效');
-  // Optional KPD choices belong to KPD, not the Momentum actor. A dedicated
-  // choice window is installed before the Momentum player's timeline action.
-  ensure(removed.length === 0, '通过 KPD 的时间轴选择窗口移除罢工');
-  s.turn = newTurn();
-  const assassinations = s.pieces.filter(
-    (p) =>
-      p.kind === 'assassination' &&
-      onMap(p) &&
-      piecesAt(s, p.location).some(
-        (u) => u.owner === 'Coalition' && ['freikorps', 'reichswehr'].includes(u.kind),
-      ),
-  );
-  s.effects.push(...returnEffects(s, assassinations, s.momentum));
-  if (s.tracks.economy === 1 && SPACES.some((p) => s.influence[p.id].Coalition > 0)) {
-    ensure(
-      c.inflationSpace && s.influence[c.inflationSpace]?.Coalition > 0,
-      '恶性通胀：momentum 阵营需要选择移除1个联盟影响力的地区',
-    );
-    changeInfluence(s, 'Coalition', c.inflationSpace, -1, true);
-  }
-  if (
-    s.year >= (s.ruleset === 'tutorial-v1' ? 1923 : s.year >= 1930 ? 1933 : 1929) &&
-    s.half === 'late'
-  ) {
-    s.scenarioEnding = true;
-    s.phase = 'election';
-    return;
-  }
-  if (s.half === 'early') {
-    s.half = 'late';
-    s.phase = 'action';
-  } else {
-    s.half = 'early';
-    s.year++;
-    s.tracks.economy--;
-    clampTracks(s);
-    s.phase = 'order';
-  }
-  s.activeIndex = 0;
-  s.turn = newTurn();
-  s.reveals = [];
-  record(s, `进入 ${s.year} ${s.half === 'early' ? '上半年' : '下半年'}。`);
 }
 // A single atomic command boundary. Failed commands never mutate input, history,
 // random state, card ownership or logs. Suitable for a future authoritative server.
@@ -130,6 +83,7 @@ export function dispatch(input: GameState, command: Command): DispatchResult {
           s.phase = 'action';
           s.turn = newTurn();
           record(s, `年度顺序：${c.order.join(' → ')}`);
+          if (s.eraChange) beginHeldPenalties(s, s.eraChange);
           break;
         case 'begin-turn': {
           turnOwner(s, c.actor);
