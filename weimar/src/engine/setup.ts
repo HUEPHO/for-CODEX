@@ -7,32 +7,33 @@ import type { GameState, NewGameOptions, PieceKind, Faction, CardInstance } from
 import { zeros, assertInvariants, integer, clampTracks, ensure } from './rules.ts';
 import { shuffle } from './random.ts';
 import { newTurn } from './turn.ts';
-import { prepareEraDeck } from './decks.ts';
+import { eraCards, prepareBlackSun, prepareEraDeck } from './decks.ts';
+import { SCENARIOS } from './scenarios.ts';
 export { newTurn } from './turn.ts';
 export function createGame(options: NewGameOptions = {}): GameState {
-  ensure(options.scenario === undefined || options.scenario === 'fate', '未知剧本');
+  ensure(options.scenario === undefined || Object.hasOwn(SCENARIOS, options.scenario), '未知剧本');
   ensure(!options.scenario || options.testCard === undefined, '正式剧本不能预置实验牌');
-  const campaign = options.scenario === 'fate';
+  const scenario = options.scenario ? SCENARIOS[options.scenario] : undefined;
   const seed = options.seed ?? 1921;
   integer(seed, 0, 4294967295, '种子必须是0至4294967295的整数');
   const s: GameState = {
     schema: 1,
-    ruleset: campaign ? 'standard-v1' : 'tutorial-v1',
-    ...(campaign ? { scenario: 'fate' as const, removedCards: [] } : {}),
-    stance: campaign ? { KPD: 2, NSDAP: 3 } : { KPD: 0, NSDAP: 0 },
+    ruleset: scenario ? 'standard-v1' : 'tutorial-v1',
+    ...(scenario ? { scenario: options.scenario, removedCards: [] } : {}),
+    stance: scenario ? { ...scenario.stance } : { KPD: 0, NSDAP: 0 },
     pcLocked: [],
-    demo: campaign ? false : (options.demo ?? true),
+    demo: scenario ? false : (options.demo ?? true),
     seed,
     rng: seed,
     revision: 0,
-    year: campaign ? 1919 : 1921,
+    year: scenario?.startYear ?? 1921,
     half: 'early',
     phase: 'order',
     order: [...FACTIONS],
     activeIndex: 0,
     momentum: 'Coalition',
-    tracks: campaign
-      ? { economy: 5, progress: 1, reaction: 2, us: 1, ussr: 1, unity: 1, dollarDependence: 0 }
+    tracks: scenario
+      ? { ...scenario.tracks }
       : { economy: 3, progress: 2, reaction: 3, us: 1, ussr: 2, unity: 1, dollarDependence: 0 },
     influence: Object.fromEntries(
       SPACES.map((sp) => [
@@ -40,7 +41,7 @@ export function createGame(options: NewGameOptions = {}): GameState {
         {
           ...zeros(),
           ...(
-            setups[campaign ? 'Fate' : 'Tutorial'] as Record<
+            setups[scenario?.setup ?? 'Tutorial'] as Record<
               string,
               Partial<ReturnType<typeof zeros>>
             >
@@ -55,7 +56,10 @@ export function createGame(options: NewGameOptions = {}): GameState {
     lingering: [],
     pc: Object.fromEntries(REGIONS.map((r) => [r, { owner: 'Coalition', available: true }])),
     article48: true,
-    seats: { owner: null, available: false },
+    seats:
+      scenario?.era === 'golden'
+        ? { owner: 'RC', available: true }
+        : { owner: null, available: false },
     electionCalled: false,
     victoryDeclared: [],
     generalStrike: false,
@@ -66,8 +70,10 @@ export function createGame(options: NewGameOptions = {}): GameState {
     log: [
       {
         n: 1,
-        text: campaign
-          ? '共和国的命运 1919–1933：标准规则；危机时代每阵营7张，按正式剧本9.6开局。'
+        text: scenario
+          ? options.scenario === 'fate'
+            ? '共和国的命运 1919–1933：标准规则；危机时代每阵营7张，按正式剧本9.6开局。'
+            : `${scenario.name} ${scenario.startYear}–${scenario.endYear}；每阵营${scenario.handSize}张起手牌。`
           : options.demo === false
             ? '教程剧本 1921–1923；正式53张危机牌库，每阵营5张。'
             : '开发测试局：教程布局；固定的已实现牌序，每阵营3张。',
@@ -90,31 +96,8 @@ export function createGame(options: NewGameOptions = {}): GameState {
         ...(side ? { side } : {}),
       });
   }
-  const occupied = campaign
-    ? [
-        '@reaction:2',
-        ...[2, 3, 4, 5].map((n) => `@mcs:${n}`),
-        ...[2, 3, 4, 5].map((n) => `@reform:${n}`),
-        '@reaction-assassination:2',
-        '@reaction-cadre:3',
-        '@reaction-cadre:4',
-        '@reaction-clique:5',
-        ...[1, 2, 3, 4, 5].map((n) => `@us:${n}`),
-        ...[1, 3, 5].map((n) => `@ussr-army:${n}`),
-        ...[2, 4].map((n) => `@ussr-yellow:${n}`),
-        ...[1, 3].map((n) => `@ussr-black:${n}`),
-        ...[2, 4, 5].map((n) => `@ussr-cadre:${n}`),
-        '@economy-mcs:1',
-        '@economy-mcs:9',
-        '@kpd-cadre:1',
-        '@kpd-cadre:2',
-        ...[1, 2, 3, 4].map((n) => `@kpd-strike:${n}`),
-        ...[1, 2, 3].map((n) => `@nsdap-cadre:${n}`),
-        '@nsdap-assassination:1',
-        ...[2, 3, 4].map((n) => `@rc-economic:${n}`),
-        '@rc-clique:2',
-        '@rc-assassination:1',
-      ]
+  const occupied = scenario
+    ? scenario.holdings
     : [
         '@progress:2',
         '@progress:3',
@@ -152,18 +135,10 @@ export function createGame(options: NewGameOptions = {}): GameState {
     const h = HOLDING[id];
     add(h.kind, h.owner, id, 1, h.kind === 'strike' ? 'strike' : undefined);
   }
-  if (campaign) {
-    add('mcs', null, 'mat:RC');
-    add('freikorps', 'Coalition', 'Berlin', 2);
-    add('freikorps', 'Coalition', 'Koeln');
-    add('freikorps', 'Coalition', 'Muenchen');
-    add('freikorps', 'Coalition', 'reserve:Coalition', 5);
-    add('freikorps', 'RC', 'Berlin');
-    add('freikorps', 'RC', 'reserve:RC', 2);
-    add('militia', 'KPD', 'Berlin');
-    add('militia', 'KPD', 'reserve:KPD', 8);
-    add('sa', 'NSDAP', 'reserve:NSDAP', 9);
-    add('clique', 'RC', 'Bayern');
+  if (scenario) {
+    for (const [kind, owner, location, count] of scenario.placements)
+      add(kind, owner, location, count);
+    if (options.scenario === 'black-sun') s.pc.Koeln = { owner: null, available: false };
   } else {
     add('mcs', null, 'mat:RC', 2);
     add('freikorps', 'Coalition', 'Bayern');
@@ -186,9 +161,11 @@ export function createGame(options: NewGameOptions = {}): GameState {
     add('strike', 'KPD', 'Sachsen', 1, 'strike');
   }
   const instance = (card: number): CardInstance => ({ uid: `card-${card}`, card });
-  if (campaign) {
-    s.deck = prepareEraDeck(s, 'crisis');
-    for (const f of FACTIONS) s.hands[f] = s.deck.splice(0, 7);
+  if (scenario) {
+    if (scenario.era === 'golden') s.removedCards!.push(...eraCards('crisis'));
+    if (options.scenario === 'black-sun') prepareBlackSun(s);
+    else s.deck = prepareEraDeck(s, scenario.era);
+    for (const f of FACTIONS) s.hands[f] = s.deck.splice(0, scenario.handSize);
   } else if (s.demo) {
     s.hands.Coalition = [35, 17, 4].map(instance);
     s.hands.KPD = [49, 47, 152].map(instance);
@@ -224,8 +201,8 @@ export function createGame(options: NewGameOptions = {}): GameState {
   ] as const);
   let loyaltyIndex = 0;
   for (const p of s.pieces.filter((p) => p.kind === 'freikorps')) {
-    p.revealed = p.owner === 'RC';
-    p.allegiance = p.revealed ? 'RC' : allegiances[loyaltyIndex++];
+    p.revealed = scenario?.era === 'golden' || p.owner === 'RC';
+    p.allegiance = p.revealed ? (p.owner as 'Coalition' | 'RC') : allegiances[loyaltyIndex++];
   }
   assertInvariants(s);
   if (options.testCard !== undefined) {

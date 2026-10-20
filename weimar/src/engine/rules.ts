@@ -1,3 +1,4 @@
+import { fixedStances, reactionLimited } from './scenarios.ts';
 import { SPACES, SPACE, distance } from '../data/board.ts';
 import { HOLDINGS, HOLDING, isDeployedTrack } from '../data/holdings.ts';
 import { FACTIONS } from './types.ts';
@@ -165,14 +166,14 @@ export function available(s: GameState, p: Piece, f: Faction): boolean {
   if (h.group === 'rc-clique') return !piecesAt(s, `@rc-economic:${h.level}`).length;
   if (h.group === 'rc-assassination') return f === 'RC' && !piecesAt(s, '@rc-economic:3').length;
   if (h.group === 'nsdap-assassination')
-    return f === 'NSDAP' && (s.ruleset === 'tutorial-v1' || s.stance.NSDAP >= 2);
-  if (s.ruleset !== 'tutorial-v1') {
+    return f === 'NSDAP' && (fixedStances(s) || s.stance.NSDAP >= 2);
+  if (!fixedStances(s)) {
     if (h.group === 'kpd-cadre') return s.stance.KPD <= -(h.level + 1);
     if (h.group === 'kpd-strike') return h.level === 1 || s.stance.KPD >= h.level - 1;
     if (h.group === 'nsdap-cadre') return s.stance.NSDAP <= -h.level;
   }
   if (h.track) return h.level <= s.tracks[h.track];
-  return true; // Tutorial: both extremist stance tracks are inactive (9.2).
+  return true; // Tutorial (9.2) and Black Sun (9.5) ignore stance-based availability.
 }
 export function returnOptions(s: GameState, p: Piece) {
   const candidates = HOLDINGS.filter(
@@ -198,8 +199,7 @@ export function clampTracks(s: GameState) {
     );
   s.tracks.progress = Math.min(highest('progress'), Math.max(1, s.tracks.progress));
   s.tracks.reaction = Math.min(highest('reaction'), Math.max(1, s.tracks.reaction));
-  if (s.ruleset !== 'tutorial-v1')
-    s.tracks.reaction = Math.min(s.tracks.reaction, s.tracks.progress + 1);
+  if (reactionLimited(s)) s.tracks.reaction = Math.min(s.tracks.reaction, s.tracks.progress + 1);
   s.tracks.unity = Math.min(2, Math.max(ruleValue(s, 'track.minimum', 0), s.tracks.unity));
   s.tracks.us = Math.min(5, Math.max(1, s.tracks.us));
   s.tracks.ussr = Math.min(5, Math.max(1, s.tracks.ussr));

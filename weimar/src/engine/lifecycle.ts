@@ -1,3 +1,4 @@
+import { SCENARIOS } from './scenarios.ts';
 import { CARD } from '../data/cards.ts';
 import { SPACES } from '../data/board.ts';
 import { FACTIONS } from './types.ts';
@@ -71,17 +72,16 @@ export function resolveLifecycle(s: GameState, e: LifecycleEffect) {
   switch (e.type) {
     case 'timeline-complete': {
       if (e.inflationSpace) changeInfluence(s, 'Coalition', e.inflationSpace, -1, true, true);
-      const finalYear =
-        s.scenario === 'fate'
-          ? 1933
-          : s.ruleset === 'tutorial-v1'
-            ? 1923
-            : s.year >= 1930
-              ? 1933
-              : 1929;
+      const finalYear = s.scenario
+        ? SCENARIOS[s.scenario].endYear
+        : s.ruleset === 'tutorial-v1'
+          ? 1923
+          : s.year >= 1930
+            ? 1933
+            : 1929;
       if (s.half === 'late' && s.year >= finalYear) {
         s.scenarioEnding = true;
-        if (s.scenario === 'fate') beginHeldPenalties(s);
+        if (s.scenario && SCENARIOS[s.scenario].endYear === 1933) beginHeldPenalties(s);
         else s.phase = 'election';
         break;
       }
@@ -94,7 +94,7 @@ export function resolveLifecycle(s: GameState, e: LifecycleEffect) {
       } else {
         s.half = 'early';
         s.year++;
-        if (s.scenario === 'fate' && (s.year === 1924 || s.year === 1930))
+        if (s.scenario && (s.year === 1924 || s.year === 1930))
           s.eraChange = s.year === 1924 ? 'golden' : 'decline';
         if (s.year >= 1920 && s.year <= 1923) s.tracks.economy--;
         if (s.year >= 1931 && s.year <= 1933) s.tracks.economy++;
@@ -179,7 +179,7 @@ export function resolveLifecycle(s: GameState, e: LifecycleEffect) {
         record(s, '1933年终：联盟存在留牌惩罚，进行最终地区与全国选举。');
       } else {
         s.winner = 'Coalition';
-        s.winReason = '共和国的命运：1933年终联盟没有留牌惩罚';
+        s.winReason = `${SCENARIOS[s.scenario!].name}：1933年终联盟没有留牌惩罚`;
         s.phase = 'finished';
         record(s, `Coalition 获胜：${s.winReason}。`);
       }

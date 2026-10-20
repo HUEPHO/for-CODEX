@@ -1,3 +1,4 @@
+import { fixedStances, reactionLimited } from './scenarios.ts';
 import { SPACE, SPACES } from '../data/board.ts';
 import { HOLDING, isDeployedTrack } from '../data/holdings.ts';
 import { FACTIONS } from './types.ts';
@@ -107,7 +108,7 @@ export function applyAction(s: GameState, actor: Faction, a: Action, region?: st
   switch (a.kind) {
     case 'change-stance':
       requireFaction(actor, ['KPD', 'NSDAP']);
-      ensure(s.ruleset !== 'tutorial-v1', '教程不使用立场轨道');
+      ensure(!fixedStances(s), '本剧本不使用立场轨道');
       integer(
         a.steps,
         -ruleValue(s, 'stance.max-steps', 1, actor),
@@ -229,7 +230,7 @@ export function applyAction(s: GameState, actor: Faction, a: Action, region?: st
       const progress = a.kind === 'advance-progress';
       requireFaction(actor, [progress ? 'Coalition' : 'RC']);
       const track = progress ? 'progress' : 'reaction';
-      if (!progress && s.ruleset !== 'tutorial-v1')
+      if (!progress && reactionLimited(s))
         ensure(s.tracks.reaction < s.tracks.progress + 1, '反动不能超过进步1格');
       ensure(
         piecesAt(s, `@${track}:${s.tracks[track] + 1}`).length,
@@ -379,7 +380,7 @@ export function applyAction(s: GameState, actor: Faction, a: Action, region?: st
       break;
     }
     case 'declare-victory':
-      if (s.ruleset !== 'tutorial-v1' && (actor === 'KPD' || actor === 'NSDAP'))
+      if (!fixedStances(s) && (actor === 'KPD' || actor === 'NSDAP'))
         ensure(s.stance[actor] === 3, '立场尚未释放即时胜利标记');
       ensure(!s.victoryDeclared.includes(actor), '本轮已放置即时胜利标记');
       ensure(
@@ -402,7 +403,7 @@ export function actionCandidates(s: GameState, f: Faction): { label: string; act
     out.push({ label: `${ACTION_LABELS[a.kind]}${detail ? ' · ' + detail : ''}`, action: a });
   add({ kind: 'gain-momentum' });
   add({ kind: 'declare-victory' });
-  if (s.ruleset !== 'tutorial-v1' && (f === 'KPD' || f === 'NSDAP'))
+  if (!fixedStances(s) && (f === 'KPD' || f === 'NSDAP'))
     for (let n = 1; n <= ruleValue(s, 'stance.max-steps', 1, f); n++)
       for (const direction of [-1, 1])
         add(

@@ -17,6 +17,7 @@ import {
 } from './rules.ts';
 import { shuffle } from './random.ts';
 import { ruleValue } from './policies.ts';
+import { SCENARIOS } from './scenarios.ts';
 
 export function previewElection(s: GameState): ElectionResult {
   const base = zeros();
@@ -55,6 +56,17 @@ export function previewElection(s: GameState): ElectionResult {
       const f = dominance(s, sp.id);
       if (f) totals[f] += sp.id === 'Berlin' ? 2 : 1;
     }
+  // 9.3 bonuses apply only to the scenario's terminal election, never an earlier
+  // ordinary/extra election. They are national PV and do not change regional PCs.
+  if (s.scenario === 'revolution' && s.scenarioEnding) {
+    for (const sp of SPACES.filter((sp) => sp.kind === 'City')) {
+      const f = supremacy(s, sp.id);
+      if (f) totals[f] += sp.id === 'Berlin' ? 5 : 3;
+    }
+    totals.KPD +=
+      2 * s.pieces.filter((p) => p.kind === 'strike' && p.side === 'uprising' && onMap(p)).length;
+    totals.Coalition -= 3 * s.pieces.filter((p) => p.kind === 'assassination' && onMap(p)).length;
+  }
   return {
     regions,
     base,
@@ -74,7 +86,7 @@ export function finishElection(
     integer(
       transfer.amount,
       0,
-      Math.floor(result.totals[s.momentum] / 2),
+      Math.max(0, Math.floor(result.totals[s.momentum] / 2)),
       '转让数最多为自身PV的一半（向下取整）',
     );
     result.totals[s.momentum] -= transfer.amount;
@@ -92,7 +104,10 @@ export function finishElection(
     s.discard.push(s.electionCard);
     delete s.electionCard;
   }
-  if (!snap) s.electionCalled = false;
+  if (!snap) {
+    s.electionCalled = false;
+    if (s.extraElectionPending) s.extraElectionPending = false;
+  }
   const winner = result.ranking[0];
   record(
     s,
@@ -110,8 +125,8 @@ export function finishElection(
       : s.scenarioEnding
         ? s.ruleset === 'tutorial-v1'
           ? '教程剧本终局选举'
-          : s.scenario === 'fate'
-            ? '共和国的命运：1933年最终选举'
+          : s.scenario
+            ? `${SCENARIOS[s.scenario].name}：${s.year}年最终选举`
             : '牌效实验局结束选举'
         : '全国选举胜利';
     s.phase = 'finished';
@@ -150,7 +165,7 @@ export function finishReferendum(s: GameState, transfer?: { to: Faction; amount:
   const result = previewReferendum(s);
   if (transfer) {
     ensure(FACTIONS.includes(transfer.to) && transfer.to !== s.momentum, '无效转让对象');
-    integer(transfer.amount, 0, Math.floor(result.totals[s.momentum] / 2));
+    integer(transfer.amount, 0, Math.max(0, Math.floor(result.totals[s.momentum] / 2)));
     result.totals[s.momentum] -= transfer.amount;
     result.totals[transfer.to] += transfer.amount;
     result.transfer = { from: s.momentum, ...transfer };
@@ -192,6 +207,6 @@ export function checkSuddenVictory(s: GameState) {
     }
   }
   s.victoryDeclared = [];
-  s.phase = s.electionCalled ? 'election' : 'timeline';
+  s.phase = s.electionCalled || s.extraElectionPending ? 'election' : 'timeline';
   record(s, '即时胜利检查完成，未有阵营获胜。');
 }

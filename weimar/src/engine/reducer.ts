@@ -146,6 +146,34 @@ export function dispatch(input: GameState, command: Command): DispatchResult {
           if (s.activeIndex === 3) s.phase = 'sudden-victory';
           else s.activeIndex++;
           break;
+        case 'call-extra-election': {
+          turnOwner(s, c.actor);
+          outsideActionPair(s);
+          ensure(s.scenario === 'revolution', '只有革命时代剧本可以召开额外选举');
+          ensure(c.actor === s.momentum, '只有 momentum 阵营可召开额外选举');
+          ensure(!s.extraElectionUsed, '本局额外选举机会已使用');
+          if (c.card === 'pc') {
+            ensure(
+              !s.turn.pcUsed && s.pc[c.region]?.owner === c.actor && s.pc[c.region].available,
+              '需要一张可用的本方议会控制牌，且本回合尚未使用议会牌',
+            );
+            s.pc[c.region].available = false;
+            s.turn.pcUsed = true;
+          } else {
+            ensure(
+              c.card === 'seats' && s.seats.owner === c.actor && s.seats.available,
+              '需要一张可用的本方国会议席牌',
+            );
+            s.seats.available = false;
+          }
+          s.extraElectionUsed = true;
+          s.extraElectionPending = true;
+          record(
+            s,
+            `${c.actor} 消耗${c.card === 'pc' ? c.region + '议会控制牌' : '国会议席牌'}，预约本轮额外选举（全局限一次）。`,
+          );
+          break;
+        }
         case 'play-seats':
           turnOwner(s, c.actor);
           outsideActionPair(s);

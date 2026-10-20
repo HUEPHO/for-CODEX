@@ -1,3 +1,4 @@
+import { fixedStances } from '../scenarios.ts';
 import { SPACE, SPACES } from '../../data/board.ts';
 import { HOLDINGS, HOLDING, isDeployedTrack } from '../../data/holdings.ts';
 import { FACTIONS } from '../types.ts';
@@ -156,7 +157,7 @@ export function gameHost(s: GameState): Host {
         case 'order.current':
           return [...s.order];
         case 'stance.value':
-          return s.ruleset === 'tutorial-v1' ? 0 : s.stance[a.faction as 'KPD' | 'NSDAP'];
+          return fixedStances(s) ? 0 : s.stance[a.faction as 'KPD' | 'NSDAP'];
         case 'pv.current':
           return previewElection(s).totals[a.faction as Faction];
         case 'mcs.count':

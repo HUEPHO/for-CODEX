@@ -4,6 +4,7 @@ export const FACTIONS = ['Coalition', 'KPD', 'NSDAP', 'RC'] as const;
 export type Faction = (typeof FACTIONS)[number];
 export type FactionValues = Record<Faction, number>;
 export type Era = 'crisis' | 'golden' | 'decline';
+export type ScenarioId = 'fate' | 'revolution' | 'new-hope' | 'black-sun';
 export type Phase =
   'order' | 'action' | 'sudden-victory' | 'election' | 'timeline' | 'upkeep' | 'finished';
 export type PieceKind =
@@ -205,7 +206,9 @@ export interface ElectionResult {
 export interface GameState {
   schema: 1;
   ruleset: 'tutorial-v1' | 'standard-v1';
-  scenario?: 'fate';
+  scenario?: ScenarioId;
+  extraElectionUsed?: boolean;
+  extraElectionPending?: boolean;
   /** Set during annual upkeep; resolve only after the new turn order is chosen. */
   eraChange?: Era;
   lastHeldPenalty?: FactionValues;
@@ -304,9 +307,12 @@ export type Command =
       inflationSpace?: string;
     }
   | { type: 'play-seats'; actor: Faction }
+  | ({ type: 'call-extra-election'; actor: Faction } & (
+      { card: 'seats' } | { card: 'pc'; region: string }
+    ))
   | { type: 'play-pc'; actor: Faction; region: string; action?: Action; removeReform?: string };
 export interface NewGameOptions {
-  scenario?: 'fate';
+  scenario?: ScenarioId;
   seed?: number;
   demo?: boolean;
   /** Dedicated card lab uses the tutorial map with standard stance/limits. */

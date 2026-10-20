@@ -6,16 +6,22 @@ import {
   previewElection,
   FACTIONS,
 } from './engine/index.ts';
-import type { Action, Command, Faction } from './engine/index.ts';
+import type { Action, Command, Faction, ScenarioId } from './engine/index.ts';
 import { active, dominance, mcs, piecesAt, supply, supremacy, isUnit } from './engine/rules.ts';
 import { unitLabel } from './engine/units.ts';
 import { CARDS, CARD, IMPLEMENTED_CARDS } from './data/cards.ts';
 import { SPACES, SPACE, REGIONS, REGION_NAMES } from './data/board.ts';
 import { ACTION_LABELS } from './engine/actions.ts';
 import { seatsUsesRemaining } from './engine/policies.ts';
+import { SCENARIOS, fixedStances } from './engine/scenarios.ts';
 
-const KEY = 'weimar-session-v6';
-const PREVIOUS_KEYS = ['weimar-session-v5', 'weimar-session-v4', 'weimar-session-v3'];
+const KEY = 'weimar-session-v7';
+const PREVIOUS_KEYS = [
+  'weimar-session-v6',
+  'weimar-session-v5',
+  'weimar-session-v4',
+  'weimar-session-v3',
+];
 const LEGACY_KEY = 'weimar-tutorial-session-v1';
 const NAMES: Record<Faction, string> = {
   Coalition: '民主联盟',
@@ -105,11 +111,25 @@ function render() {
   const pcActions =
     canAct && pcCards.length && !s.turn.pcUsed ? legalParliamentaryActions(s, pcRegion) : [];
   const election = previewElection(s);
+  const extraCards = [
+    ...(!s.turn.pcUsed
+      ? pcCards.map((r) => ({ value: `pc:${r}`, label: `${REGION_NAMES[r]}议会控制牌` }))
+      : []),
+    ...(s.seats.owner === f && s.seats.available ? [{ value: 'seats', label: '国会议席牌' }] : []),
+  ];
+  const actionPairPending =
+    ['event-first', 'event-last'].includes(s.turn.mode) && s.turn.actionsLeft === 1;
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">本地热座 · 开发版 0.6</div></header>
-    <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario === 'fate' ? '共和国的命运：1919—1933，包含三时代切换、留牌惩罚与最终结算。' : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>规则工作台</span></h1></div><div class="version">本地热座 · 开发版 0.7</div></header>
+    <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario ? `${SCENARIOS[s.scenario].name}：${SCENARIOS[s.scenario].startYear}—${SCENARIOS[s.scenario].endYear}，历史布局与剧本规则已接通。${s.scenario === 'black-sun' ? '立场固定务实；事件前置条件仍有效。' : ''}` : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
     <div class="toolbar">
-      <label>开局<select id="new-mode"><option value="fate"${s.scenario === 'fate' ? ' selected' : ''}>共和国的命运 · 1919—1933</option><option value="demo"${s.demo && !session.options.testCard ? ' selected' : ''}>开发测试局</option><option value="tutorial"${!s.demo && !s.scenario ? ' selected' : ''}>正式教程牌库</option><option value="cards"${session.options.testCard ? ' selected' : ''}>牌效实验局</option></select></label>
+      <label>开局<select id="new-mode">${options(
+        Object.entries(SCENARIOS).map(([value, scenario]) => ({
+          value,
+          label: `${scenario.name} · ${scenario.startYear}—${scenario.endYear}`,
+        })),
+        s.scenario,
+      )}<option value="demo"${s.demo && !session.options.testCard ? ' selected' : ''}>开发测试局</option><option value="tutorial"${!s.demo && !s.scenario ? ' selected' : ''}>正式教程牌库</option><option value="cards"${session.options.testCard ? ' selected' : ''}>牌效实验局</option></select></label>
       <label>实验局指定牌<select id="test-card">${options(
         CARDS.filter((c) => c.id <= 151).map((c) => ({
           value: String(c.id),
@@ -129,7 +149,7 @@ function render() {
       .map(([p, n]) => `<span class="${s.phase === p ? 'current' : ''}">${n}</span>`)
       .join('<i>→</i>')}</div><div>momentum ${factionBadge(s.momentum)}</div></div>
     <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><span>${i + 1}. ${x}</span><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
-    <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${s.stance.KPD}</b></span><span>NSDAP 立场 <b>${s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
+    <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.KPD}</b></span><span>NSDAP 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
     <main><div class="workspace"><nav>${[
       ['board', '地区状态'],
       ['map', '中文地图'],
@@ -187,6 +207,7 @@ function render() {
       ${s.turn.mode === 'event-last' && !s.turn.eventDone && s.turn.actionsLeft === 0 ? '<button id="play-event" class="primary">打出承诺的事件牌</button>' : ''}
       <button id="end-turn"${disabled(s.turn.actionsLeft > 0 || (['event-first', 'event-last'].includes(s.turn.mode) && !s.turn.eventDone))}>结束本阵营回合</button>`
       }
+      ${s.scenario === 'revolution' ? `<section class="extra-election"><p>额外选举：${s.extraElectionPending ? '已预约本轮选举' : s.extraElectionUsed ? '本局机会已使用' : '全局可用一次，由momentum消耗一张议会或议席牌召开'}</p>${!s.extraElectionUsed ? `<label>额外选举用牌<select id="extra-card">${options(extraCards)}</select></label><button id="call-extra-election"${disabled(f !== s.momentum || !extraCards.length || actionPairPending)}>消耗所选牌，预约额外选举</button>` : ''}</section>` : ''}
       <details><summary>议会牌与国会议席</summary><p>第48条：${s.article48Removed ? '永久移除' : s.article48 ? '可用' : '已消耗'}；符合条件时会自动询问联盟。</p><button id="play-seats"${disabled(s.seats.owner !== f || seatsUsesRemaining(s) === 0)}>使用国会议席（${s.seats.owner ?? '无人持有'} · 剩余${seatsUsesRemaining(s)}次）</button>
       ${
         pcCards.length && !s.turn.pcUsed
@@ -198,8 +219,8 @@ function render() {
       }</details>`
               : s.phase === 'election'
                 ? `
-      <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是终局选举，按全国选举胜利规则决定赢家。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
-      <label>${s.momentum} 可转让PV<select id="transfer-to"><option value="">不转让</option>${options(FACTIONS.filter((x) => x !== s.momentum).map((value) => ({ value, label: value })))}</select></label><input id="transfer-amount" type="number" min="0" max="${Math.floor(election.totals[s.momentum] / 2)}" value="0" /><button id="advance" class="primary">结算选举</button>`
+      <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是终局选举，按本剧本的全国选举胜利规则决定赢家。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
+      <label>${s.momentum} 可转让PV<select id="transfer-to"><option value="">不转让</option>${options(FACTIONS.filter((x) => x !== s.momentum).map((value) => ({ value, label: value })))}</select></label><input id="transfer-amount" type="number" min="0" max="${Math.max(0, Math.floor(election.totals[s.momentum] / 2))}" value="0" /><button id="advance" class="primary">结算选举</button>`
                 : `
       ${s.phase === 'timeline' && s.tracks.economy === 1 ? `<label>恶性通胀：移除联盟影响力<select id="inflation-space">${options(SPACES.filter((p) => s.influence[p.id].Coalition > 0).map((p) => ({ value: p.id, label: p.nameZh })))}</select></label>` : ''}
       <p>${s.phase === 'sudden-victory' ? '按当前行动顺序检查已放置的即时胜利标记。' : '清除受联盟部队保护地区的暗杀，处理经济并推进半年。'}</p><button id="advance" class="primary">${s.phase === 'timeline' ? '推进半年' : '执行胜利检查'}</button>`
@@ -218,10 +239,11 @@ function render() {
   `;
   bind('new-game', 'click', () => {
     try {
+      const mode = value('new-mode');
       session = new GameSession({
         seed: Number(value('new-seed')),
-        demo: !['tutorial', 'fate'].includes(value('new-mode')),
-        ...(value('new-mode') === 'fate' ? { scenario: 'fate' as const } : {}),
+        demo: !['tutorial', ...Object.keys(SCENARIOS)].includes(mode),
+        ...(Object.hasOwn(SCENARIOS, mode) ? { scenario: mode as ScenarioId } : {}),
         ...(value('new-mode') === 'cards'
           ? {
               testCard: Number(value('test-card')),
@@ -307,6 +329,14 @@ function render() {
   });
   bind('play-event', 'click', () => send({ type: 'play-event', actor: f }));
   bind('end-turn', 'click', () => send({ type: 'end-turn', actor: f }));
+  bind('call-extra-election', 'click', () => {
+    const card = value('extra-card');
+    send(
+      card === 'seats'
+        ? { type: 'call-extra-election', actor: f, card: 'seats' }
+        : { type: 'call-extra-election', actor: f, card: 'pc', region: card.slice(3) },
+    );
+  });
   bind('play-seats', 'click', () => send({ type: 'play-seats', actor: f }));
   bind('pc-region', 'change', () => {
     pcRegion = value('pc-region');
@@ -398,7 +428,7 @@ function catalogView() {
   return `<div class="catalog-header"><input id="card-search" type="search" placeholder="搜索编号、名称或“已实现”" value="${esc(search)}" aria-label="搜索卡牌" /><span>${filtered.length} 张牌面 / ${IMPLEMENTED_CARDS.length} 种已实现</span></div><div class="catalog">${filtered.map((c) => `<article>${cardImage(c.id)}<strong>#${c.id} ${esc(c.name)}</strong><small class="${c.status === 'implemented' ? 'supported' : ''}">${c.status === 'implemented' ? '已实现' : '待实现'} · ${c.era}${c.mandatory ? ' · 强制' : ''}</small></article>`).join('')}</div>`;
 }
 function coverageView() {
-  return `<div class="coverage"><h2>三个时代全部牌效</h2><p>已实现危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151，另含3种选举牌面。共151个事件、154种可执行牌面。</p><h3>衰落时代能力</h3><ul><li>#117 提前选举：更新地区控制、国会议席及胜利结果，联盟胜出后回到当前回合，保留本轮已预约的普通选举。</li><li>#118 即时胜利；#122／132／146 按当前局面计算PV，不改变议会控制。</li><li>#119 永久移除第48条；#124 右翼国会议席每次选举周期可使用两次。</li><li>杠杆和影响力替换；#137 按实际移除SA的不同地区逐一给予补偿。</li><li>事件授予行动复用基础行动规则；跨阵营选择、战斗与归还结算后继续原流程。</li><li>流程中途可保存、撤销、重做和刷新重放；保留旧版自动存档。</li></ul><h3>如何测试</h3><p>顶部选择“牌效实验局”，选择 #1–151 的指定牌并新建对局。测试牌放在联盟手牌首位；可勾选预置前置事件。该模式使用教程地图和标准立场，用于牌效验证。黄金牌从1924年、衰落牌从1930年开始；测试事件时请选择允许第48条询问中的事件结算。</p><h3>规则口径</h3><p>#121 按英文原牌，在NSDAP持有momentum时移除2个不同地区各1个影响力，否则3个地区。#135 按6.0通则顺序执行：在巴伐利亚实际移除NSDAP影响力后，本行动步骤不能再在同地放置RC影响力。</p><h3>完整战役</h3><p>“共和国的命运”按9.6从1919年开始，每方7张危机牌。1924年发9张黄金牌、1930年发6张衰落牌，均扣除留牌惩罚。换时代由新年度顺序结算；1933年终按官方勘误对所有阵营结算留牌，再决定联盟直接胜利或最终选举。实体牌库共159张：151张事件、1／3／4张各时代选举牌。</p><h3>后续范围</h3><ul><li>另外3个历史剧本：革命时代、新希望、黑日升起。</li><li>机器人、联机、隐藏信息隔离和正式UI。</li></ul><p>教程模式按9.2固定立场并忽略卡牌前置。牌效实验局不是正式历史剧本，尚不执行完整时代切换。</p></div>`;
+  return `<div class="coverage"><h2>三个时代全部牌效</h2><p>已实现危机时代 #1–52、黄金时代 #53–112、衰落时代 #113–151，另含3种选举牌面。共151个事件、154种可执行牌面。</p><h3>衰落时代能力</h3><ul><li>#117 提前选举：更新地区控制、国会议席及胜利结果，联盟胜出后回到当前回合，保留本轮已预约的普通选举。</li><li>#118 即时胜利；#122／132／146 按当前局面计算PV，不改变议会控制。</li><li>#119 永久移除第48条；#124 右翼国会议席每次选举周期可使用两次。</li><li>杠杆和影响力替换；#137 按实际移除SA的不同地区逐一给予补偿。</li><li>事件授予行动复用基础行动规则；跨阵营选择、战斗与归还结算后继续原流程。</li><li>流程中途可保存、撤销、重做和刷新重放；保留旧版自动存档。</li></ul><h3>如何测试</h3><p>顶部选择“牌效实验局”，选择 #1–151 的指定牌并新建对局。测试牌放在联盟手牌首位；可勾选预置前置事件。该模式使用教程地图和标准立场，用于牌效验证。黄金牌从1924年、衰落牌从1930年开始；测试事件时请选择允许第48条询问中的事件结算。</p><h3>规则口径</h3><p>#121 按英文原牌，在NSDAP持有momentum时移除2个不同地区各1个影响力，否则3个地区。#135 按6.0通则顺序执行：在巴伐利亚实际移除NSDAP影响力后，本行动步骤不能再在同地放置RC影响力。</p><h3>完整战役</h3><p>“共和国的命运”按9.6从1919年开始，每方7张危机牌。1924年发9张黄金牌、1930年发6张衰落牌，均扣除留牌惩罚。换时代由新年度顺序结算；1933年终按官方勘误对所有阵营结算留牌，再决定联盟直接胜利或最终选举。实体牌库共159张：151张事件、1／3／4张各时代选举牌。</p><h3>历史剧本</h3><p>革命时代：1919—1923，含全局一次额外选举与终局军事优势等PV修正。新希望：1924—1933独立历史布局。黑日升起：1928—1933，预置#54、#57及3张随机持续事件，移除其他黄金持续牌和选举牌，立场固定务实且保留事件前置。三个剧本均接通各自终局。</p><h3>后续范围</h3><ul><li>机器人、联机、隐藏信息隔离和正式UI。</li></ul><p>教程模式按9.2固定立场并忽略卡牌前置。牌效实验局不是正式历史剧本，尚不执行完整时代切换。</p></div>`;
 }
 function combatView() {
   const c = session.state.combat ?? session.state.lastCombat;

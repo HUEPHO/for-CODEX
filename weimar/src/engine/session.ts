@@ -2,7 +2,7 @@ import { createGame } from './setup.ts';
 import { dispatch } from './reducer.ts';
 import { ensure } from './rules.ts';
 import type { GameState, Command, NewGameOptions } from './types.ts';
-export const SAVE_VERSION = 'weimar-0.6.0';
+export const SAVE_VERSION = 'weimar-0.7.0';
 interface SaveFile {
   format: typeof SAVE_VERSION;
   options: NewGameOptions;
@@ -77,6 +77,7 @@ export class GameSession {
       save &&
         [
           SAVE_VERSION,
+          'weimar-0.6.0',
           'weimar-0.5.0',
           'weimar-0.4.0',
           'weimar-0.3.0',

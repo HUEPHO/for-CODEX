@@ -1,3 +1,4 @@
+import { fixedStances } from './scenarios.ts';
 import type { GameState, Faction, Era } from './types.ts';
 import type { RuleKey } from './flow/protocol.ts';
 
@@ -71,8 +72,14 @@ export function ruleValue(s: GameState, key: RuleKey, base: number, faction?: Fa
 }
 export function shiftStance(s: GameState, faction: Faction, steps: number) {
   if (faction !== 'KPD' && faction !== 'NSDAP') throw new Error('只有 KPD / NSDAP 有立场');
-  if (s.ruleset === 'tutorial-v1') {
-    s.log.push({ n: s.log.length + 1, text: '教程规则9.2：立场固定为务实，不移动立场标记。' });
+  if (fixedStances(s)) {
+    s.log.push({
+      n: s.log.length + 1,
+      text:
+        s.scenario === 'black-sun'
+          ? '黑日升起规则9.5：立场固定为务实，不移动立场标记。'
+          : '教程规则9.2：立场固定为务实，不移动立场标记。',
+    });
     return;
   }
   s.stance[faction] = Math.max(-3, Math.min(3, s.stance[faction] + steps));
