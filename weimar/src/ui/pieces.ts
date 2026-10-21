@@ -29,53 +29,38 @@ export function pieceName(p: Piece) {
   return `${p.owner ?? '中立'} ${p.kind === 'strike' && p.side === 'uprising' ? '起义' : PIECE_NAMES[p.kind]}${p.kind === 'freikorps' ? (p.revealed ? '（已揭示）' : '（未揭示）') : ''}${p.kind === 'assassination' && p.side ? `（${p.side === 'left' ? '左翼' : '右翼'}）` : ''}`;
 }
 
-/** Original vector drawings. Never inspect an unrevealed unit's allegiance. */
+/** Original TTS faces. Only the physical tile outline is clipped. */
+export function tokenArt(asset: string, round = false) {
+  return `<image href="/assets/tokens/${asset}.png" x="1" y="1" width="30" height="30" style="clip-path:${round ? 'circle(48% at 50% 50%)' : 'inset(1% round 8%)'}"/>`;
+}
+
+/** Never inspect an unrevealed unit's allegiance. */
 export function pieceArt(p: Pick<Piece, 'kind' | 'owner' | 'side' | 'revealed'>) {
-  const color = COLORS[p.owner ?? 'neutral'];
-  const ink = p.owner === 'RC' || p.owner === 'KPD' ? '#fff7dc' : '#202321';
-  const round = ['leverage', 'mcs', 'clique'].includes(p.kind);
-  const base = round
-    ? `<circle cx="16" cy="17" r="14" fill="#000" opacity=".28"/><circle cx="16" cy="15" r="13.5" fill="${color}" stroke="#faf3d8" stroke-width="1.6"/><circle cx="16" cy="15" r="11.3" fill="none" stroke="${ink}" stroke-width=".6"/>`
-    : `<rect x="2" y="3" width="29" height="29" rx="3" fill="#000" opacity=".28"/><rect x="1" y="1" width="29" height="29" rx="3" fill="${color}" stroke="#faf3d8" stroke-width="1.5"/><rect x="3.3" y="3.3" width="24.4" height="24.4" rx="1.5" fill="none" stroke="${ink}" stroke-width=".6"/>`;
-  const text = (label: string, y = 20, size = 13) =>
-    `<text x="15.5" y="${y}" text-anchor="middle" fill="${ink}" font-size="${size}" font-weight="800" font-family="Arial,Microsoft YaHei,sans-serif">${label}</text>`;
-  let icon: string;
   switch (p.kind) {
     case 'leverage':
-      icon = `<path d="M8 21L22 10M8 21h7M22 10v7M9 11h6" fill="none" stroke="${ink}" stroke-width="2.4"/>`;
-      break;
-    case 'mcs':
-      icon = `<g fill="${ink}"><circle cx="16" cy="10" r="3"/><circle cx="9" cy="13" r="2.5"/><circle cx="23" cy="13" r="2.5"/><path d="M11 23v-5q5-8 10 0v5zM5 22v-5q4-4 7 0v5zM20 22v-5q4-4 7 0v5z"/></g>`;
-      break;
-    case 'clique':
-      icon = `<g fill="none" stroke="${ink}" stroke-width="2"><circle cx="12" cy="13" r="4"/><circle cx="20" cy="13" r="4"/><circle cx="16" cy="20" r="4"/></g>`;
-      break;
+      return tokenArt(`leverage-${p.owner === 'RC' ? 'rc' : 'coalition'}`, true);
     case 'cadre':
-      icon = `<path d="M9 25V7h14l-4 5 4 5H10" fill="none" stroke="${ink}" stroke-width="2"/>`;
-      break;
+      return tokenArt(`cadre-${p.owner === 'NSDAP' ? 'nsdap' : 'kpd'}`, true);
     case 'reform':
-      icon = `<path d="M8 7h16v18H8zM11 11h10M11 15h10M11 19h7" fill="none" stroke="${ink}" stroke-width="1.6"/>`;
-      break;
-    case 'assassination':
-      icon = `<circle cx="16" cy="15" r="7" fill="none" stroke="${ink}" stroke-width="1.8"/><path d="M16 4v22M5 15h22" stroke="${ink}" stroke-width="1.5"/>`;
-      break;
+      return tokenArt('reform');
     case 'strike':
-      icon = text(p.side === 'uprising' ? '起' : '罢');
-      break;
+      return tokenArt(p.side === 'uprising' ? 'uprising' : 'strike');
+    case 'assassination':
+      return tokenArt(`assassination-${p.side === 'right' ? 'right' : 'left'}`);
     case 'freikorps':
-      icon = `<path d="M8 15q0-9 8-9t8 9H6v3h19v-3M16 7v8" fill="${ink}" stroke="${ink}" stroke-width="1.5"/>${text(p.revealed ? 'FK' : '?', 26, 9)}`;
-      break;
+      return tokenArt(
+        !p.revealed ? 'freikorps-hidden' : p.owner === 'RC' ? 'freikorps-rogue' : 'freikorps-loyal',
+      );
     case 'reichswehr':
-      icon = `<path d="M7 7h18v12H7zM7 7l18 12M25 7L7 19" fill="none" stroke="${ink}" stroke-width="1.6"/>${text('RW', 27, 8)}`;
-      break;
     case 'militia':
-      icon = `<path d="M9 8l13 14M22 8L9 22M6 9l4-4M21 5l5 5" stroke="${ink}" stroke-width="2.8"/>`;
-      break;
     case 'sa':
-      icon = `<path d="M10 6h12l-5 8h6L11 27l4-11H8z" fill="${ink}"/>`;
-      break;
+      return tokenArt(p.kind);
+    // These components have no printed face: match the physical pawn/block.
+    case 'mcs':
+      return `<g stroke="#777" stroke-width=".7"><path d="M12 12q-4 6-4 16q8 4 16 0q0-10-4-16z" fill="#eee"/><circle cx="16" cy="7" r="5" fill="#fff"/><path d="M19 14q3 5 3 13q-2 2-4 2" fill="none" stroke="#ccc" stroke-width="2"/></g>`;
+    case 'clique':
+      return `<g stroke="#1c1b1b" stroke-width=".7" stroke-linejoin="round"><path d="M2 12l8-6 20 4-8 6z" fill="#3a3839"/><path d="M2 12l20 4v12L2 24z" fill="#242223"/><path d="M22 16l8-6v12l-8 6z" fill="#4b4849"/></g>`;
   }
-  return base + icon;
 }
 export function cubeArt(faction: Faction) {
   return `<g stroke="#39352a" stroke-width=".65" stroke-linejoin="round"><path d="M1 5L6 1h10l-5 4z" fill="${COLORS[faction]}"/><path d="M1 5h10v11H1z" fill="${COLORS[faction]}"/><path d="M11 5l5-4v11l-5 4z" fill="${COLORS[faction]}"/><path d="M1 5L6 1h10l-5 4z" fill="white" opacity=".28"/><path d="M11 5l5-4v11l-5 4z" fill="black" opacity=".22"/></g>`;

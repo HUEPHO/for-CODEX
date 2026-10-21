@@ -169,7 +169,7 @@ function render() {
   const actionPairPending =
     ['event-first', 'event-last'].includes(s.turn.mode) && s.turn.actionsLeft === 1;
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.9</div></header>
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.9.1</div></header>
     <div class="utility-bar">${steamPanel(desktop, lobbyResults, networkBusy)}
     <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario ? `${SCENARIOS[s.scenario].name}：${SCENARIOS[s.scenario].startYear}—${SCENARIOS[s.scenario].endYear}，历史布局与剧本规则已接通。${s.scenario === 'black-sun' ? '立场固定务实；事件前置条件仍有效。' : ''}` : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
     <details id="game-menu" class="game-menu"${online ? ' hidden' : ''}${gameMenuOpen ? ' open' : ''}><summary>对局与存档 <span>剧本 · 牌效实验 · 撤销 · 导入导出</span></summary><div class="toolbar">

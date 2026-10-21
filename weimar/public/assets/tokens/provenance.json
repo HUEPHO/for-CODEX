@@ -1,0 +1,246 @@
+{
+  "source": "TS_Save_13.json",
+  "sourceSha256": "242c1bbab642a87063ba2fc329b0bf964616739fec89cf1226c227444e53ae51",
+  "processing": "Original image bytes; tile outlines clipped only at render time.",
+  "physicalPieces": "MCS: white pawn; conservative clique: black block; influence: colored cubes.",
+  "faces": [
+    {
+      "file": "cadre-kpd.png",
+      "guid": "12a96d",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/11073611819531488986/60533E4FC400F2CAA7A5287D0B9B77A8E5274C9D/",
+      "sha256": "87cce784c4ad3b909f504bf511020cafaf3381a553cb7130fc79e387d48d83a4"
+    },
+    {
+      "file": "cadre-nsdap.png",
+      "guid": "bc83a0",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/17235232961950812645/84E32535E7ECF6CC1B1888F1EDB2E746FE69EDDE/",
+      "sha256": "90ed20d9b6af7a3139b61dff8ef5a3b7e2844b192113778d80ebf6aad9cb03a6"
+    },
+    {
+      "file": "leverage-coalition.png",
+      "guid": "78ead5",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12180762837074729617/AAAF8901DD6F936BB82FB167E7FC636CE075435C/",
+      "sha256": "d53f918d088f7e7b8d6740853bc5b18f28da5dfe4fe45dbc61e1d6b6b6cc916a"
+    },
+    {
+      "file": "leverage-rc.png",
+      "guid": "1b7349",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/17322828065345166231/FF7645F66DECC61C93F5EA79E0DB544A7A606227/",
+      "sha256": "4581365f3b3afd7849e9bf3faee5121215b5ef8dd300c53876eac86a579f25c3"
+    },
+    {
+      "file": "reform.png",
+      "guid": "816ec2",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10933739641268052963/636ECC6BECCFFDAF386483E40ED3E8F87B641A76/",
+      "sha256": "c3af1377d233d9e511918893d3369c98abc4e8d60696537f5d952efca67d62d2"
+    },
+    {
+      "file": "strike.png",
+      "guid": "771586",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/13071613325745650299/ED2CB1F8B92DB9187685492FDC7992B1E26B0FF3/",
+      "sha256": "f8fc37b2634e2426feb0942116c1d5f0d79085c41247def681e30ba08aacffc3"
+    },
+    {
+      "file": "uprising.png",
+      "guid": "771586",
+      "face": "back",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/11021834736670798509/04CC21B611E8E2ACE6052D171BDD8A77373A3DDB/",
+      "sha256": "1c58fe8cfd78f5cf4741d8234b635ee46099e051a9ed94479b118723799f37e2"
+    },
+    {
+      "file": "assassination-left.png",
+      "guid": "018a9f",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/18339543969477562864/3F53E2C816737D03773B306E49CC0092FF57D93F/",
+      "sha256": "25071b4a08145e717b4fea98e901349c240c9b27520aa8dfd5f03f3d0e110879"
+    },
+    {
+      "file": "assassination-right.png",
+      "guid": "018a9f",
+      "face": "back",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12012031309537499038/AB8423F11B31854E9FAAB1D96170346F50DF8AF9/",
+      "sha256": "5e3622f9a2a81d6c5e743986af71213dc3d95fe001ddea1bb947661ca2be7952"
+    },
+    {
+      "file": "reichswehr.png",
+      "guid": "fba294",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14581299506584348474/2ADA2DBFA88B8031C00D6F65D1B719C0151E190B/",
+      "sha256": "3459f1eea4166c594f432a24a170b0dc998fa16d9a44b7202cf8e62b8ab0b4e4"
+    },
+    {
+      "file": "militia.png",
+      "guid": "ee854c",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/18194883815128936454/C08330AB846BFDA3BDAAA1352CF7F8364D8024D4/",
+      "sha256": "5a11d0a70c4043cd53dbcaae28e63b8796ac13700fb9f0137cc8d1710dbc514a"
+    },
+    {
+      "file": "sa.png",
+      "guid": "e182c9",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10474131889896003015/9162CEDFA245E4FE5156B3ED6A77322944D35195/",
+      "sha256": "6ff0714c9ac042d57cc79c1c4277fc315ca59a5d038b7d2646bcf6bbbfe2bea8"
+    },
+    {
+      "file": "freikorps-hidden.png",
+      "guid": "4c84aa",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14649685869822497869/A7CD078180C06F2B9844123F12C77610310AB790/",
+      "sha256": "e806cfade08b393339da2bf787b97941e7b590da544da1646efe7e570be343e1"
+    },
+    {
+      "file": "freikorps-loyal.png",
+      "guid": "385160",
+      "face": "back",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12381354453541438797/1E10AE98B555DB06CA3756AAF0350824C87C20C3/",
+      "sha256": "27fc6b9f2d1cd911f02790615d9f7966b204954e1859fb3c91f5f312b86dd33e"
+    },
+    {
+      "file": "freikorps-rogue.png",
+      "guid": "4c84aa",
+      "face": "back",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/9420291932963636525/C626C001E298E4C8964B3541662E69A6F94E2E57/",
+      "sha256": "e7da8a6bb5aa8ff1a836f8da6c54e7c07912b2ab57d0e83ed912e4cdae82c8f9"
+    },
+    {
+      "file": "progress.png",
+      "guid": "00c8af",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12025902910995302835/1F7FEC7CF62685E7A5E4B39FFA8962C1B123F150/",
+      "sha256": "89e0ab5372140a10507fe0e86d0d06077a6326183656e4d39f4f7361f6849a64"
+    },
+    {
+      "file": "reaction.png",
+      "guid": "21f231",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/13635908536519644358/31B3F60544D08E3B028A07F6DB3C0C69F0FEEEF0/",
+      "sha256": "94a55cbe89fd9c4c9b08afb287ca019eda2acd5431010c08a196ef46d8dde44e"
+    },
+    {
+      "file": "economy.png",
+      "guid": "690a91",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12027454324458058892/38DDEF37894DF29E87B4D6ABEBD84D2055B11CA1/",
+      "sha256": "18da5de7645590c3a34f6bf6a92c79126284b10957a674a677329067800eaf1e"
+    },
+    {
+      "file": "us.png",
+      "guid": "4a2c4f",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10503445644232825514/F922E1B53CC2586781844E1FE9BC61F647CD5EF5/",
+      "sha256": "f7b2955dcea6809d7cd448f290b8adc993ac083706bbb1d91010148063d604e9"
+    },
+    {
+      "file": "ussr.png",
+      "guid": "fa35d2",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14593593378897137076/94AAFA67D2563360EFD95557CB0190B16332B1B8/",
+      "sha256": "5378067a876d5d61096e075383bf27ab4fb35a4ae4819452d4c0c2f6f23614d3"
+    },
+    {
+      "file": "momentum.png",
+      "guid": "c2daca",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12686948072127442349/F8EE559303C6463D5BCFFED04A9995D2BC0C74B1/",
+      "sha256": "19d36c9e6a7831edc0c8ea671f49fb42fd247e346f788f80c5792c7cff3f5470"
+    },
+    {
+      "file": "year-early.png",
+      "guid": "185bfe",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/9593231098267528698/CA755FC7A2B51DF839AB492AA71D5D9C35C636FD/",
+      "sha256": "53103f7d571d7427bd08897f6f6f5b775f712374e28b704740fd723f19fc2dc8"
+    },
+    {
+      "file": "year-late.png",
+      "guid": "185bfe",
+      "face": "back",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12826720979034165456/0F57B7DB1FEBE326E97E950D7F8CC28B0B137638/",
+      "sha256": "18d1e9d34181d667b0bc019c348db7736db7c4bdcf0533b0d4afef43476c5dc7"
+    },
+    {
+      "file": "sequence.png",
+      "guid": "56a69d",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/16019221601435095941/D3BA3B916ACDA5D9CEE7CA54C9FB3227E5FF1594/",
+      "sha256": "9e8400534fadae6e07dd8fa33fe21294a6b8ed6eb5f96212f36d63a0e4cc53e6"
+    },
+    {
+      "file": "dollar-dependence.png",
+      "guid": "2ee95b",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12302126459607806607/290280E75D163A1B4D20C76B8E9CB18048A2B59A/",
+      "sha256": "c6143ed58127e15a2c99c4316f5cc486aa4ac2bbb5ea84d83f7f348269ad3f51"
+    },
+    {
+      "file": "general-strike.png",
+      "guid": "6e2fc3",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14220103906658378692/F3FA4E0C296978C8861728AC1C6981D9063A2B3C/",
+      "sha256": "43eaab2705566e9757c4e838567f817506184757a0781c42069809ef560d2f7b"
+    },
+    {
+      "file": "order-coalition.png",
+      "guid": "40cbce",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10714815604420167922/3A3F19F9B7E0AA2883CC38E4DF11F9A059E56687/",
+      "sha256": "5b3e87fbf765a0ed4d8d058cbece86fa4dea342471b711d05a6c6d45fd06f52b"
+    },
+    {
+      "file": "order-kpd.png",
+      "guid": "4b3aed",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12739413848301789077/440F703366BBFA22664B763B4F5045C9546895A6/",
+      "sha256": "30a4bbf95dcc52a69d81a5e8e989685216cacd61d5921f2afa91168b85848687"
+    },
+    {
+      "file": "order-nsdap.png",
+      "guid": "e91f6b",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10375006934124506408/6A9FC83DFFD48F48DEBF75CA8B302AF6A24AA97B/",
+      "sha256": "8286072d19b98fdcddb0c3e99c1e15d61b4a7d6fceb34b8641e43e1c56c34de7"
+    },
+    {
+      "file": "order-rc.png",
+      "guid": "f1ac0d",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/9306130760843154160/8858A29077237E30D840368BB46903E41F5730DF/",
+      "sha256": "17a9cd504ae9263344bcb5e51bf021d207636b6919c7c9b4fd40b6eab55ff1d2"
+    },
+    {
+      "file": "control-coalition.png",
+      "guid": "b89044",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/13538209660632513648/B95387A564E319889C823D1653767AD24043F951/",
+      "sha256": "3afd10e2aa79d187fc8a0e72217098ee6283025e25c062347d1f21a5aae06df1"
+    },
+    {
+      "file": "control-kpd.png",
+      "guid": "e077ef",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14226250728192563949/C9F9A8F95462122B884411B2D7F02C893351A7F4/",
+      "sha256": "cb6c69df8007efb13b21255515625f55e820202b4c690a59ddeb7dc9f3526481"
+    },
+    {
+      "file": "control-nsdap.png",
+      "guid": "c6c3aa",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10612742810494460934/B449B2645E7E0EBEA82D5D610A146E9B94DA0A1F/",
+      "sha256": "9472ebb471b2f337616a7fd10969df34d4fe034637931f99122e1d070ffffc87"
+    },
+    {
+      "file": "control-rc.png",
+      "guid": "a734ec",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/11483831148136502527/CB02B3B8F7FD1018E4B46566E23B74E0219E7D62/",
+      "sha256": "be1c9bbe83e95349ccda1bd89e3f3587ad2d4f8694cc834165656215b8d5adb5"
+    }
+  ]
+}

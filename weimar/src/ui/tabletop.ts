@@ -13,7 +13,6 @@ import {
   progressY,
 } from './board-layout.ts';
 import {
-  COLORS,
   PIECE_NAMES,
   counter,
   cubeArt,
@@ -21,6 +20,7 @@ import {
   html,
   pieceArt,
   pieceName,
+  tokenArt,
 } from './pieces.ts';
 
 export function actionSpace(action: Action): string | undefined {
@@ -30,8 +30,8 @@ export function actionSpace(action: Action): string | undefined {
       ? action.to
       : undefined;
 }
-function disc(label: string, x: number, y: number, color = '#eee6cb', radius = 17) {
-  return `<g class="board-marker"><circle cx="${x + 1}" cy="${y + 3}" r="${radius}" fill="#000" opacity=".3"/><circle cx="${x}" cy="${y}" r="${radius}" fill="${color}" stroke="#fff9dd" stroke-width="2"/><circle cx="${x}" cy="${y}" r="${radius - 3}" fill="none" stroke="#3e382a"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="${color === COLORS.RC || color === COLORS.KPD ? '#fff9dd' : '#29281f'}" font-size="11" font-weight="800">${html(label)}</text></g>`;
+function marker(asset: string, label: string, x: number, y: number, size = 34, round = false) {
+  return `<g class="board-marker" transform="translate(${x - size / 2} ${y - size / 2}) scale(${size / 32})"><title>${html(label)}</title>${tokenArt(asset, round)}</g>`;
 }
 function spaceLayer(s: GameState, id: string, selected: string, targets: Set<string>) {
   const area = BOARD_AREAS[id],
@@ -79,7 +79,7 @@ function trackLayer(s: GameState) {
     .map(([region, [x, y]]) => {
       const control = s.pc[region];
       if (!control.owner) return '';
-      return `<g opacity="${control.available ? 1 : 0.46}"><title>${html(REGION_NAMES[region])}：${control.owner} ${control.available ? '议会牌可用' : '议会牌已使用'}</title>${disc(control.owner === 'Coalition' ? '联盟' : control.owner, x, y, COLORS[control.owner], 19)}</g>`;
+      return `<g opacity="${control.available ? 1 : 0.46}"><title>${html(REGION_NAMES[region])}：${control.owner} ${control.available ? '议会牌可用' : '议会牌已使用'}</title>${marker(`control-${control.owner.toLowerCase()}`, control.owner, x, y, 38)}</g>`;
     })
     .join('');
   const columns = Math.max(1, Math.ceil(Math.sqrt(s.lingering.length * 2.4)));
@@ -93,7 +93,9 @@ function trackLayer(s: GameState) {
     )
     .join('');
   const turnOrder = s.order
-    .map((f, i) => disc(f === 'Coalition' ? '联' : f, 1596 + i * 46.5, 752, COLORS[f], 17))
+    .map((f, i) =>
+      marker(`order-${f.toLowerCase()}`, `${f} 行动顺序`, 1596 + i * 46.5, 752, 34, true),
+    )
     .join('');
   const phaseIndex = {
     action: 0,
@@ -105,16 +107,16 @@ function trackLayer(s: GameState) {
     finished: 2,
   }[s.phase];
   return `${pieces}${pc}${turnOrder}${events}
-    ${disc('经济', economyX(s.tracks.economy), 566)}
-    ${disc('美', dealsX(s.tracks.us), 795)}
-    ${disc('苏', dealsX(s.tracks.ussr), 987)}
-    ${disc('进', 1488, progressY(s.tracks.progress), '#e5c957', 15)}
-    ${disc('反', 1652, progressY(s.tracks.reaction), COLORS.RC, 15)}
-    ${disc('势', 1407 + FACTIONS.indexOf(s.momentum) * 45.5, 750, '#faf4df', 15)}
-    ${disc(s.half === 'early' ? '上' : '下', 629 + (s.year - 1919) * 69.5, 85, '#e8dbbc', 15)}
-    ${disc('阶段', 57 + phaseIndex * 50.5, 33, '#ece4cd', 16)}
-    ${s.tracks.dollarDependence ? disc(`$${s.tracks.dollarDependence}`, 1638, 518, '#e7cf75', 18) : ''}
-    ${s.generalStrike ? `<g><title>总罢工生效</title>${disc('总罢工', 1464, 647, '#d82f35', 27)}</g>` : ''}`;
+    ${marker('economy', '经济', economyX(s.tracks.economy), 566)}
+    ${marker('us', '美国交易', dealsX(s.tracks.us), 795)}
+    ${marker('ussr', '苏联交易', dealsX(s.tracks.ussr), 987)}
+    ${marker('progress', '进步', 1488, progressY(s.tracks.progress), 30)}
+    ${marker('reaction', '反动', 1652, progressY(s.tracks.reaction), 30)}
+    ${marker('momentum', '势头', 1407 + FACTIONS.indexOf(s.momentum) * 45.5, 750, 30, true)}
+    ${marker(`year-${s.half === 'early' ? 'early' : 'late'}`, s.half === 'early' ? '上半年' : '下半年', 629 + (s.year - 1919) * 69.5, 85, 30)}
+    ${marker('sequence', '阶段', 57 + phaseIndex * 50.5, 33, 32)}
+    ${s.tracks.dollarDependence ? `<g>${marker('dollar-dependence', `美元依赖 ×${s.tracks.dollarDependence}`, 1638, 518, 36)}<text x="1654" y="507" font-size="12" font-weight="800" stroke="#fff" stroke-width="3" paint-order="stroke">${s.tracks.dollarDependence}</text></g>` : ''}
+    ${s.generalStrike ? marker('general-strike', '总罢工生效', 1464, 647, 42) : ''}`;
 }
 export function tabletop(
   s: GameState,
@@ -136,11 +138,11 @@ export function tabletop(
     )
       .map(
         ([kind, name]) =>
-          `<span><svg viewBox="0 0 32 32" aria-hidden="true">${pieceArt({ kind: kind as keyof typeof PIECE_NAMES, owner: kind === 'mcs' ? null : 'Coalition' })}</svg>${name}</span>`,
+          `<span><svg viewBox="0 0 32 32" aria-hidden="true">${pieceArt({ kind: kind as keyof typeof PIECE_NAMES, owner: kind === 'mcs' ? null : ['cadre', 'strike', 'militia'].includes(kind) ? 'KPD' : kind === 'sa' ? 'NSDAP' : kind === 'clique' ? 'RC' : 'Coalition' })}</svg>${name}</span>`,
       )
       .join(
         '',
-      )}</div><p>同类棋子叠放时右上角显示数量；自由军团的“？”表示忠诚尚未揭示。底图保持原样，棋子与轨道随局面更新。</p></details>`;
+      )}</div><p>使用原版标记贴图；中产支持为白色棋子，保守派集团为黑色方块。同类叠放时右上角显示数量；自由军团正面不带 F，揭示后显示带 F 的忠诚面。棋子与轨道随局面更新。</p></details>`;
 }
 export function selectedSpacePanel(s: GameState, selected: string) {
   const sp = SPACE[selected],

@@ -7,6 +7,44 @@ import type { ScenarioId } from '../src/engine/types.ts';
 import { BOARD_AREAS, holdingPoint } from '../src/ui/board-layout.ts';
 import { actionSpace, tabletop, selectedSpacePanel, reserveTrays } from '../src/ui/tabletop.ts';
 import { RoomAuthority } from '../src/multiplayer/authority.ts';
+import { pieceArt } from '../src/ui/pieces.ts';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+
+test('token assets retain the original TTS bytes and every rendered face resolves locally', () => {
+  const root = new URL('../public/assets/tokens/', import.meta.url);
+  const provenance = JSON.parse(readFileSync(new URL('provenance.json', root), 'utf8'));
+  const files = new Set<string>();
+  for (const face of provenance.faces) {
+    const bytes = readFileSync(new URL(face.file, root));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), face.sha256, face.file);
+    files.add(face.file);
+  }
+  for (const scenario of Object.keys(SCENARIOS) as ScenarioId[]) {
+    const s = new GameSession({ scenario, seed: 48 }).state;
+    const rendered = tabletop(s, 'Berlin', [], 1) + reserveTrays(s);
+    for (const match of rendered.matchAll(/\/assets\/tokens\/([^" ]+)/g))
+      assert.ok(files.has(match[1]), match[1]);
+  }
+});
+
+test('original token faces follow public side and loyalty changes', () => {
+  assert.match(pieceArt({ kind: 'cadre', owner: 'KPD' }), /cadre-kpd.png/);
+  assert.match(pieceArt({ kind: 'cadre', owner: 'NSDAP' }), /cadre-nsdap.png/);
+  assert.match(pieceArt({ kind: 'strike', owner: 'KPD', side: 'strike' }), /\/strike.png/);
+  assert.match(pieceArt({ kind: 'strike', owner: 'KPD', side: 'uprising' }), /uprising.png/);
+  for (const side of ['left', 'right'] as const)
+    assert.ok(
+      pieceArt({ kind: 'assassination', owner: null, side }).includes(`assassination-${side}.png`),
+    );
+  for (const owner of ['Coalition', 'RC'] as const)
+    assert.match(pieceArt({ kind: 'freikorps', owner, revealed: false }), /freikorps-hidden.png/);
+  assert.match(
+    pieceArt({ kind: 'freikorps', owner: 'Coalition', revealed: true }),
+    /freikorps-loyal.png/,
+  );
+  assert.match(pieceArt({ kind: 'freikorps', owner: 'RC', revealed: true }), /freikorps-rogue.png/);
+});
 
 test('each historical board displays every placed piece and influence cube exactly once', () => {
   assert.deepEqual(Object.keys(BOARD_AREAS).sort(), SPACES.map((s) => s.id).sort());
