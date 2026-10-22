@@ -1,0 +1,151 @@
+.faction-mat-link {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-color: #b5aa91;
+  text-underline-offset: 3px;
+}
+.mat-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.mat-tabs button {
+  border-bottom: 3px solid var(--faction-color);
+  background: #f5efdf;
+  min-width: 100px;
+}
+.mat-tabs button.selected {
+  background: #fff9e9;
+  outline: 2px solid #716448;
+  outline-offset: 1px;
+}
+.mat-return {
+  margin-left: auto;
+  align-self: center;
+  font-size: 12px;
+  color: #655b45;
+}
+.player-mat-pane {
+  display: grid;
+  grid-template-columns: minmax(0, 700px) minmax(220px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.player-mat-pane[hidden] {
+  display: none;
+}
+.player-mat-surface {
+  position: relative;
+  line-height: 0;
+  width: 100%;
+  box-shadow: 0 2px 7px #0003;
+}
+.player-mat-surface > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+.player-mat-surface > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mat-locked {
+  opacity: 0.42;
+}
+.mat-available .physical-piece,
+.mat-marker {
+  filter: drop-shadow(1px 2px 1px #0005);
+}
+.mat-inventory {
+  background: #f8f3e6;
+  padding: 12px;
+  border: 1px solid #c9c0ab;
+  min-width: 0;
+}
+.mat-track-state {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 650;
+}
+.mat-cubes {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+.mat-cubes svg {
+  width: 24px;
+  height: 24px;
+}
+.mat-inventory h3 {
+  margin: 15px 0 6px;
+  font-size: 13px;
+}
+.mat-inventory h3 span {
+  font-weight: normal;
+  color: #827760;
+}
+.mat-inventory ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.mat-inventory li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 12px;
+}
+.mat-inventory li svg {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+}
+.mat-inventory li span {
+  flex: 1;
+}
+.mat-inventory li small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #80735e;
+}
+.mat-inventory li b {
+  flex-shrink: 0;
+}
+.mat-inventory details {
+  border: 0;
+  border-top: 1px solid #dbd1bb;
+  border-radius: 0;
+  margin: 12px 0 0;
+  padding: 8px 0 0;
+}
+.mat-inventory details p,
+.mat-victory-state,
+.mat-legend {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #75684e;
+}
+.mat-legend {
+  margin: 10px 0 0;
+}
+@media (max-width: 950px) {
+  .player-mat-pane {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .player-mat-surface {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+}

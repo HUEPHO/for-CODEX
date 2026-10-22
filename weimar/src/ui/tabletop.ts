@@ -1,9 +1,8 @@
 import { CARD } from '../data/cards.ts';
 import { SPACES, SPACE, REGION_NAMES } from '../data/board.ts';
-import { HOLDING } from '../data/holdings.ts';
 import { FACTIONS } from '../engine/types.ts';
-import type { Action, Faction, GameState } from '../engine/types.ts';
-import { available, dominance, piecesAt, supremacy } from '../engine/rules.ts';
+import type { Action, GameState } from '../engine/types.ts';
+import { dominance, piecesAt, supremacy } from '../engine/rules.ts';
 import {
   BOARD_AREAS,
   PC_ANCHORS,
@@ -106,7 +105,18 @@ function trackLayer(s: GameState) {
     order: 4,
     finished: 2,
   }[s.phase];
-  return `${pieces}${pc}${turnOrder}${events}
+  const declarations = s.victoryDeclared
+    .map((f, i) =>
+      marker(
+        `victory-${f.toLowerCase()}`,
+        `${f} 已声明即时胜利`,
+        597 + (s.year - 1919) * 69.5 + (i % 2) * 30,
+        120 + Math.floor(i / 2) * 30,
+        29,
+      ),
+    )
+    .join('');
+  return `${pieces}${pc}${turnOrder}${events}${declarations}
     ${marker('economy', '经济', economyX(s.tracks.economy), 566)}
     ${marker('us', '美国交易', dealsX(s.tracks.us), 795)}
     ${marker('ussr', '苏联交易', dealsX(s.tracks.ussr), 987)}
@@ -152,31 +162,4 @@ export function selectedSpacePanel(s: GameState, selected: string) {
     <details class="space-unit-list"><summary>部队与标记 · ${piecesAt(s, selected).length}枚</summary>${pieces.length ? pieces.map((group) => `<div><svg viewBox="0 0 32 32" aria-hidden="true">${pieceArt(group[0])}</svg><span>${html(pieceName(group[0]))}</span><b>×${group.length}</b></div>`).join('') : '<p>没有部队或功能标记</p>'}</details>
     <p class="space-control">领导权 ${dominance(s, selected) ?? '—'} · 军事优势 ${supremacy(s, selected) ?? '—'}<br/>议会 ${s.pc[sp.region].owner ?? '—'}</p></section>`;
 }
-export function reserveTrays(s: GameState) {
-  return `<details class="reserve-trays"><summary>玩家区 · 库存与待解锁棋子</summary><div class="reserve-grid">${FACTIONS.map(
-    (f) => {
-      const pieces = s.pieces.filter(
-        (p) =>
-          !SPACE[p.location] &&
-          !holdingPoint(p.location) &&
-          (p.owner === f ||
-            p.location === `mat:${f}` ||
-            (p.owner === null && HOLDING[p.location]?.group.startsWith(f.toLowerCase()))),
-      );
-      const visible = groupPieces(
-        pieces.filter((p) => p.location === `mat:${f}` || available(s, p, f)),
-      );
-      const locked = groupPieces(
-        pieces.filter((p) => p.location !== `mat:${f}` && !available(s, p, f)),
-      );
-      const draw = (groups: typeof visible) =>
-        groups
-          .map(
-            (g) =>
-              `<span title="${html(pieceName(g[0]))}"><svg viewBox="0 0 32 32" aria-hidden="true">${pieceArt(g[0])}</svg>×${g.length}</span>`,
-          )
-          .join('');
-      return `<section class="${f}"><h3>${f} ${s.victoryDeclared.includes(f) ? '· 已声明即时胜利' : ''}</h3><div>${draw(visible) || '—'}</div>${locked.length ? `<p>待解锁</p><div class="locked-pieces">${draw(locked)}</div>` : ''}</section>`;
-    },
-  ).join('')}</div></details>`;
-}
+export { reserveTrays } from './player-mats.ts';

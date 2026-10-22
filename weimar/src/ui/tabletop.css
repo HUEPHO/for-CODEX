@@ -347,43 +347,6 @@ nav button.selected {
 .reserve-trays summary {
   font-size: 11px;
 }
-.reserve-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
-.reserve-grid section {
-  border-top: 3px solid var(--faction-color);
-  background: #f4eedf;
-  padding: 8px;
-}
-.reserve-grid h3 {
-  margin: 0 0 8px;
-  font-size: 12px;
-}
-.reserve-grid section > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.reserve-grid span {
-  display: flex;
-  align-items: center;
-  font-size: 11px;
-}
-.reserve-grid svg {
-  width: 29px;
-  height: 29px;
-}
-.reserve-grid p {
-  font-size: 10px;
-  margin: 6px 0 3px;
-  color: #877e6b;
-}
-.locked-pieces {
-  opacity: 0.5;
-}
 .hand {
   margin: 12px 20px;
   padding: 12px;
@@ -463,9 +426,6 @@ details.steam-panel summary {
   }
   .board-tools {
     flex-wrap: wrap;
-  }
-  .reserve-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .hand,
   .reserve-trays {

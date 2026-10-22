@@ -241,6 +241,55 @@
       "face": "front",
       "url": "https://steamusercontent-a.akamaihd.net/ugc/11483831148136502527/CB02B3B8F7FD1018E4B46566E23B74E0219E7D62/",
       "sha256": "be1c9bbe83e95349ccda1bd89e3f3587ad2d4f8694cc834165656215b8d5adb5"
+    },
+    {
+      "file": "unity.png",
+      "guid": "fe96fc",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10487890008695063787/B6D0FCAB036527996944C963919E978739718BD2/",
+      "sha256": "8b0d1f0cfbf5b80f72bc88c7a17971dbf710f9be81da4389dd1f5f6e13520f27"
+    },
+    {
+      "file": "stance-kpd.png",
+      "guid": "1bee7d",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/9252786290788826910/6A6CF1290AD146A918E59FFC52B9697501910F0B/",
+      "sha256": "63f7d64842591200a73e477bcb9502321a881647d080d5afac9b7daa6d2fbbcf"
+    },
+    {
+      "file": "stance-nsdap.png",
+      "guid": "20376a",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/11676556881442523778/C6ADBEB284D4AC70BF8986C3EECA860149F65941/",
+      "sha256": "3b76ea967fd7f8f35adf951b6f564330e0fd1ea48407b9f9e406710e3ffb1eac"
+    },
+    {
+      "file": "victory-coalition.png",
+      "guid": "1a246c",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/12170289659063943980/6E690CCB699C6630BCC26C3998F2C161BAD22AF2/",
+      "sha256": "a66479cd6c17b0f7307ccc71f5335ec4496e15ef706d739591e4e0a2aea0b2d3"
+    },
+    {
+      "file": "victory-kpd.png",
+      "guid": "15ec8e",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/16490593721902014642/B179A629F9463754640094352100D6CC2041346E/",
+      "sha256": "ca2b625b473bc19f2dd7c36fb4cab4860c9223b0c74058c061cf01b585ced2a2"
+    },
+    {
+      "file": "victory-nsdap.png",
+      "guid": "412357",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/14966822035160720945/9D7BC3F84698CA1B827EEFC539B70E65423C5B80/",
+      "sha256": "e42da8fe5805423b10256c8948a66144ab59e1aeb883e0d859b16bdf77fdf38a"
+    },
+    {
+      "file": "victory-rc.png",
+      "guid": "c1483b",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/15344305678528191831/17F87F79EB4CE120DD21D117C79CF215F566EF10/",
+      "sha256": "efc5717c9051a194baaa253ceae89ae40978527e3ddfb1de00a143db2943a113"
     }
   ]
 }

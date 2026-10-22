@@ -1,5 +1,6 @@
 import './style.css';
 import './ui/tabletop.css';
+import './ui/player-mats.css';
 import {
   GameSession,
   legalActions,
@@ -119,12 +120,19 @@ let boardZoom = 1,
   boardFocus = false,
   gameMenuOpen = false,
   boardScroll = { left: 0, top: 0 };
+let playerAreaOpen = false;
+let selectedMat: Faction | null = null;
 let selectedTarget = '';
 function render() {
   app.classList.toggle('tabletop-focus', boardFocus && tab === 'map');
   const oldBoard = document.getElementById('board-viewport');
   if (oldBoard) boardScroll = { left: oldBoard.scrollLeft, top: oldBoard.scrollTop };
   const controlScroll = document.querySelector('.controls')?.scrollTop ?? 0;
+  const playerArea = document.getElementById('player-area') as HTMLDetailsElement | null;
+  if (playerArea) playerAreaOpen = playerArea.open;
+  const openMatDetails = [
+    ...document.querySelectorAll<HTMLDetailsElement>('.mat-inventory details[open]'),
+  ].map((el) => `${el.closest('[data-faction]')?.getAttribute('data-faction')}:${el.className}`);
   const online = !!desktop?.lobbyId;
   const view = networkView();
   if (online && !view) {
@@ -169,7 +177,7 @@ function render() {
   const actionPairPending =
     ['event-first', 'event-last'].includes(s.turn.mode) && s.turn.actionsLeft === 1;
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.9.1</div></header>
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.10</div></header>
     <div class="utility-bar">${steamPanel(desktop, lobbyResults, networkBusy)}
     <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario ? `${SCENARIOS[s.scenario].name}：${SCENARIOS[s.scenario].startYear}—${SCENARIOS[s.scenario].endYear}，历史布局与剧本规则已接通。${s.scenario === 'black-sun' ? '立场固定务实；事件前置条件仍有效。' : ''}` : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
     <details id="game-menu" class="game-menu"${online ? ' hidden' : ''}${gameMenuOpen ? ' open' : ''}><summary>对局与存档 <span>剧本 · 牌效实验 · 撤销 · 导入导出</span></summary><div class="toolbar">
@@ -198,7 +206,7 @@ function render() {
       .filter(([p]) => p !== 'finished')
       .map(([p, n]) => `<span class="${s.phase === p ? 'current' : ''}">${n}</span>`)
       .join('<i>→</i>')}</div><div>momentum ${factionBadge(s.momentum)}</div></div>
-    <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><span>${i + 1}. ${x}</span><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${view?.handCounts[x] ?? s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
+    <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><button class="faction-mat-link" data-open-mat="${x}" aria-label="查看${x}玩家垫板">${i + 1}. ${x}</button><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${view?.handCounts[x] ?? s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
     <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.KPD}</b></span><span>NSDAP 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${view?.deckCount ?? s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
     <main><div class="workspace"><nav>${[
       ['map', '棋盘'],
@@ -226,7 +234,7 @@ function render() {
             ? catalogView()
             : coverageView()
     }</div></div>
-    <aside class="controls">${tab === 'map' ? selectedSpacePanel(s, selectedSpace) : ''}<h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
+    <aside id="turn-controls" class="controls">${tab === 'map' ? selectedSpacePanel(s, selectedSpace) : ''}<h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
     ${combatView()}
     ${
       s.winner
@@ -300,7 +308,7 @@ function render() {
         .map((l) => `<li><small>${l.n}</small>${esc(l.text)}</li>`)
         .join('')}</ol></section>
     </aside></main>
-    ${reserveTrays(s)}
+    ${reserveTrays(s, selectedMat ?? view?.factions[0] ?? f, playerAreaOpen)}
     ${(view?.factions ?? [f]).map(handView).join('')}
     ${s.lingering.length ? `<section class="hand"><h2>持续生效的事件</h2><div class="hand-cards">${s.lingering.map((c) => `<article>${cardImage(c.card)}<div>${esc(CARD[c.card].name)}</div></article>`).join('')}</div></section>` : ''}
     ${s.reveals.map((r) => `<section class="hand"><h2>${r.viewer} 查看 ${r.target} 的手牌</h2><div class="hand-cards">${r.cards.map((c) => `<article>${cardImage(c.card)}</article>`).join('')}</div></section>`).join('')}
@@ -308,6 +316,32 @@ function render() {
     <dialog id="card-dialog"><div class="dialog-top"><span id="card-title"></span><button id="close-dialog" aria-label="关闭牌面">关闭 ×</button></div><img id="card-large" alt="放大牌面" /><p id="card-summary"></p></dialog>
   `;
   bindSteam();
+  document.querySelectorAll<HTMLButtonElement>('[data-open-mat]').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedMat = button.dataset.openMat as Faction;
+      const area = document.getElementById('player-area') as HTMLDetailsElement;
+      area.open = true;
+      render();
+      document.getElementById('player-area')?.scrollIntoView({ block: 'start' });
+      document
+        .querySelector<HTMLButtonElement>(`[data-mat-faction="${selectedMat}"]`)
+        ?.focus({ preventScroll: true });
+    });
+  });
+  document.querySelectorAll<HTMLDetailsElement>('.mat-inventory details').forEach((el) => {
+    el.open = openMatDetails.includes(
+      `${el.closest('[data-faction]')?.getAttribute('data-faction')}:${el.className}`,
+    );
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-mat-faction]').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedMat = button.dataset.matFaction as Faction;
+      render();
+      document
+        .querySelector<HTMLButtonElement>(`[data-mat-faction="${selectedMat}"]`)
+        ?.focus({ preventScroll: true });
+    });
+  });
   const controls = document.querySelector('.controls');
   if (controls) controls.scrollTop = controlScroll;
   bind('game-menu', 'toggle', (event) => {

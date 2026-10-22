@@ -45,6 +45,19 @@ FACES = {
     'control-kpd': ('e077ef', 'front'),
     'control-nsdap': ('c6c3aa', 'front'),
     'control-rc': ('a734ec', 'front'),
+    'unity': ('fe96fc', 'front'),
+    'stance-kpd': ('1bee7d', 'front'),
+    'stance-nsdap': ('20376a', 'front'),
+    'victory-coalition': ('1a246c', 'front'),
+    'victory-kpd': ('15ec8e', 'front'),
+    'victory-nsdap': ('412357', 'front'),
+    'victory-rc': ('c1483b', 'front'),
+}
+MATS = {
+    'coalition': ('d02177', 'front'),
+    'kpd': ('d28420', 'front'),
+    'nsdap': ('0cd382', 'front'),
+    'rc': ('ceabfc', 'front'),
 }
 
 
@@ -59,18 +72,13 @@ def walk(value):
             yield from walk(child)
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--tts', type=Path, required=True)
-    args = parser.parse_args()
-    source = args.tts.read_bytes()
-    images = dict(walk(json.loads(source.decode('utf-8-sig'))))
-    destination = ROOT / 'public/assets/tokens'
+def import_group(folder, faces, images, source, source_name):
+    destination = ROOT / 'public/assets' / folder
     cache = ROOT / 'reference/original-tokens'
     destination.mkdir(parents=True, exist_ok=True)
     cache.mkdir(parents=True, exist_ok=True)
     entries = []
-    for name, (guid, face) in FACES.items():
+    for name, (guid, face) in faces.items():
         key = 'ImageURL' if face == 'front' else 'ImageSecondaryURL'
         url = images[guid][key]
         cached = cache / f'{guid}-{face}.png'
@@ -82,12 +90,22 @@ def main():
         (destination / filename).write_bytes(data)
         entries.append(dict(file=filename, guid=guid, face=face, url=url,
                             sha256=hashlib.sha256(data).hexdigest()))
-    provenance = dict(source=args.tts.name, sourceSha256=hashlib.sha256(source).hexdigest(),
+    provenance = dict(source=source_name, sourceSha256=hashlib.sha256(source).hexdigest(),
                       processing='Original image bytes; tile outlines clipped only at render time.',
                       physicalPieces='MCS: white pawn; conservative clique: black block; influence: colored cubes.',
                       faces=entries)
     (destination / 'provenance.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'Imported {len(entries)} original token faces.')
+    print(f'Imported {len(entries)} original {folder} images.')
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--tts', type=Path, required=True)
+    args = parser.parse_args()
+    source = args.tts.read_bytes()
+    images = dict(walk(json.loads(source.decode('utf-8-sig'))))
+    import_group('tokens', FACES, images, source, args.tts.name)
+    import_group('mats', MATS, images, source, args.tts.name)
 
 
 if __name__ == '__main__':

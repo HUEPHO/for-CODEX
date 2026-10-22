@@ -21,7 +21,7 @@
 
 `src/main.ts`在地图选择后查找引擎／房主给出的合法行动。只更新选择，提交仍由用户确认；实际数量由引擎决定。UI变化不改变本地`weimar-0.7.0`存档格式或联机`weimar-steam-1`协议。
 
-原版图片位于`public/assets/tokens/`，直接复制TTS源文件字节，未重新设计图案；SVG仅按实物圆形／圆角轮廓裁切。`provenance.json`记录源GUID、正反面、URL和SHA-256。通过`python scripts/import-tokens.py --tts PATH/TS_Save_13.json`可重新导入；日常运行使用随Git和安装包提供的本地素材，无需连接Steam图片服务器。玩家垫板仍使用简化库存区。
+原版图片位于`public/assets/tokens/`，直接复制TTS源文件字节，未重新设计图案；SVG仅按实物圆形／圆角轮廓裁切。`provenance.json`记录源GUID、正反面、URL和SHA-256。通过`python scripts/import-tokens.py --tts PATH/TS_Save_13.json`可重新导入；日常运行使用随Git和安装包提供的本地素材，无需连接Steam图片服务器。0.10已将简化库存区替换为四张原版玩家垫板，见[player-mats-0.10.md](player-mats-0.10.md)。
 
 ## 联机参考
 

@@ -1,0 +1,36 @@
+{
+  "source": "TS_Save_13.json",
+  "sourceSha256": "242c1bbab642a87063ba2fc329b0bf964616739fec89cf1226c227444e53ae51",
+  "processing": "Original image bytes; tile outlines clipped only at render time.",
+  "physicalPieces": "MCS: white pawn; conservative clique: black block; influence: colored cubes.",
+  "faces": [
+    {
+      "file": "coalition.png",
+      "guid": "d02177",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/13644870051552668000/7E7F29FCA9ADBE524F7D44D724B261BCA8A23694/",
+      "sha256": "bbd4814cdb020a049a5ddbd49ece4af7eb33e9a02f32cb0fe0ebad39adeff5e8"
+    },
+    {
+      "file": "kpd.png",
+      "guid": "d28420",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10158561189348392872/351D4E7CF718DFBFBF142D377E0B5914CC2FBFC0/",
+      "sha256": "74b5e11d3e9a0fe1b1e0d1333a295d4ef967b087b6d0e58e2a06bebb039b726b"
+    },
+    {
+      "file": "nsdap.png",
+      "guid": "0cd382",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/11709608678953539351/682A3B9B1AE6E295B73C84597D9DDC81290C9625/",
+      "sha256": "f1e86f30ceb846cd37d81a4f233c98311527fe4baf4e4a1ebe6ed14014ddb9b0"
+    },
+    {
+      "file": "rc.png",
+      "guid": "ceabfc",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10860703449269839999/D9E31CB23DA48314BD48FBF85E1DA568159F5C8E/",
+      "sha256": "5467e942ad6c241de0fd85b5dbe9585070d354ce0b932ffe1e9e0a1a4bb3431c"
+    }
+  ]
+}
