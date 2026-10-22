@@ -195,6 +195,95 @@ nav button.selected {
   height: 100%;
   overflow: visible;
 }
+.pv-table {
+  fill: #34362e;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  filter: drop-shadow(0 2px 3px #28251b55);
+}
+.pv-table-paper {
+  fill: #f0e8d5;
+  stroke: #786c4d;
+  stroke-width: 1.5;
+}
+.pv-table-heading {
+  fill: #30392f;
+}
+.pv-table-title {
+  fill: #fff5da;
+  font-size: 17px;
+  font-weight: 750;
+}
+.pv-live-label {
+  fill: #d1d8bb;
+  font-size: 12px;
+  text-anchor: end;
+}
+.pv-column-headings {
+  font-size: 13px;
+  font-weight: 700;
+}
+.pv-row-background {
+  fill: #f8f2e4;
+}
+.pv-row:nth-of-type(even) .pv-row-background {
+  fill: #e8dfca;
+}
+.pv-national-row .pv-row-background {
+  fill: #d2d8bf !important;
+  stroke: #8d9879;
+  stroke-width: 0.6;
+}
+.pv-national-row {
+  font-weight: 750;
+}
+.pv-highest-fill {
+  fill: #e9c86e;
+  stroke: #a88634;
+  stroke-width: 0.5;
+}
+.pv-value {
+  text-anchor: middle;
+  font-size: 15px;
+}
+.pv-star {
+  text-anchor: middle;
+  font-size: 10px;
+  fill: #705512;
+}
+.pv-cell.is-highest .pv-value {
+  font-weight: 800;
+}
+.pv-blocked-row {
+  fill: #7f7868;
+}
+.pv-blocked-label {
+  font-size: 10px;
+  fill: #964a32;
+}
+.pv-table-note {
+  fill: #665f4c;
+  font-size: 11.5px;
+}
+.pv-score-pointer {
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+}
+.pv-score-marker image {
+  filter: drop-shadow(0 1px 1px #24201388);
+}
+.pv-overflow-value rect {
+  fill: #fff9e9;
+  stroke: #6d6249;
+  stroke-width: 0.6;
+}
+.pv-overflow-value text {
+  text-anchor: middle;
+  font-size: 11px;
+  font-weight: 800;
+  fill: #2b2d25;
+}
 .space-hit {
   fill: transparent;
   stroke: transparent;

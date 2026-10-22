@@ -4,6 +4,7 @@ import { FACTIONS } from '../engine/types.ts';
 import type { Action, GameState } from '../engine/types.ts';
 import { dominance, isUnit, piecesAt, supremacy, survival } from '../engine/rules.ts';
 import { pieceStatus } from './piece-status.ts';
+import { pvBoard } from './pv-board.ts';
 import {
   BOARD_AREAS,
   PC_ANCHORS,
@@ -189,6 +190,7 @@ export function tabletop(
     <svg class="board-overlay" viewBox="0 0 1800 1167.1875" aria-label="当前棋盘局面">
       ${SPACES.map((sp) => spaceLayer(s, sp.id, selected, spaces)).join('')}
       <g class="track-pieces">${trackLayer(s)}</g>
+      ${pvBoard(s)}
     </svg></div></div>
     <div class="board-key" aria-label="棋盘状态图例"><span><i class="legend-available"></i>绿框可用</span><span><i class="legend-half"></i>MCS 左进步 / 右反动</span><span><i class="legend-empty"></i>空余人口</span><span>阵营徽记＝领导者</span><span><i class="legend-occupation"></i>底边＝占据 · 白线＝军事优势</span></div>
     <details class="piece-legend"><summary>棋子图例与摆放说明</summary><div>${Object.entries(

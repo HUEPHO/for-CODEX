@@ -52,6 +52,10 @@ FACES = {
     'victory-kpd': ('15ec8e', 'front'),
     'victory-nsdap': ('412357', 'front'),
     'victory-rc': ('c1483b', 'front'),
+    'pv-coalition': ('414715', 'front'),
+    'pv-kpd': ('519a41', 'front'),
+    'pv-nsdap': ('44de27', 'front'),
+    'pv-rc': ('77c943', 'front'),
 }
 MATS = {
     'coalition': ('d02177', 'front'),

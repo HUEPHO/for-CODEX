@@ -290,6 +290,34 @@
       "face": "front",
       "url": "https://steamusercontent-a.akamaihd.net/ugc/15344305678528191831/17F87F79EB4CE120DD21D117C79CF215F566EF10/",
       "sha256": "efc5717c9051a194baaa253ceae89ae40978527e3ddfb1de00a143db2943a113"
+    },
+    {
+      "file": "pv-coalition.png",
+      "guid": "414715",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/13213873424049765244/0225FF4F3EF97423F7CE6EA6C190B1BEFB31E3CB/",
+      "sha256": "752861b237d5185ff36c9b0ca9b87e76edc01a0ee426b2bbc5b6befd1f7bf7ed"
+    },
+    {
+      "file": "pv-kpd.png",
+      "guid": "519a41",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/17458928592286392804/D9033D8626AA122CC4DD9D2C7767DAEB4966BFD1/",
+      "sha256": "62a32624c4582bf1ef18a280a872793e5da51e5f1d7c9148e781fa835cb5771c"
+    },
+    {
+      "file": "pv-nsdap.png",
+      "guid": "44de27",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/10654538140486844194/B73BB0D980DC87C63B925CDD47113D61D46AC379/",
+      "sha256": "61d157d62f948dc8fc84a26f2471987eda958bd57269618751d2e7c8357b80ad"
+    },
+    {
+      "file": "pv-rc.png",
+      "guid": "77c943",
+      "face": "front",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/18256928935399396689/DCBC7C51DB6BA13389515B846D45BF15A8F87B1B/",
+      "sha256": "25cc8ee98b126b8950702718ba9ed3b552e4354dbba84c1c134803146c0acd69"
     }
   ]
 }
