@@ -4,6 +4,7 @@ import { fixedStances } from '../engine/scenarios.ts';
 import { FACTIONS } from '../engine/types.ts';
 import type { Faction, GameState, Piece } from '../engine/types.ts';
 import { counter, cubeArt, groupPieces, html, pieceArt, pieceName, tokenArt } from './pieces.ts';
+import { pieceStatus } from './piece-status.ts';
 
 // Pixel centers on the unmodified 700 × 500 original faction mats.
 const MAT_HOLDINGS: Record<string, [number, number]> = {
@@ -73,19 +74,22 @@ export function playerMat(s: GameState, faction: Faction) {
         (faction === 'Coalition' ? 87 : 103) + (i % 5) * 87,
         94 + Math.floor(i / 5) * 85,
         64,
+        pieceStatus(s, g[0]),
       ),
     )
     .join('');
   const support = pieces.filter((p) => p.location === `mat:${faction}`);
   const supportLayer = support
-    .map((p, i) => counter([p], 550 + (i % 3) * 42, 93 + Math.floor(i / 3) * 42, 36))
+    .map((p, i) =>
+      counter([p], 550 + (i % 3) * 42, 93 + Math.floor(i / 3) * 42, 36, pieceStatus(s, p)),
+    )
     .join('');
   const holdingLayer = pieces
     .filter((p) => MAT_HOLDINGS[p.location])
     .map((p) => {
       const usable = matPieceAvailable(s, p, faction);
       const [x, y] = MAT_HOLDINGS[p.location];
-      return `<g data-mat-holding="${p.location}" data-available="${usable}" class="${usable ? 'mat-available' : 'mat-locked'}"><title>${html(HOLDING[p.location].label)} · ${usable ? '可用' : '待解锁'}</title>${counter([p], x, y, 62)}</g>`;
+      return `<g data-mat-holding="${p.location}" data-available="${usable}" class="${usable ? 'mat-available' : 'mat-locked'}"><title>${html(HOLDING[p.location].label)} · ${usable ? '可用' : '待解锁'}</title>${counter([p], x, y, 62, pieceStatus(s, p))}</g>`;
     })
     .join('');
   let track = '';
@@ -145,5 +149,5 @@ export function reserveTrays(s: GameState, selected: Faction = active(s), open =
   return `<details id="player-area" class="reserve-trays"${open ? ' open' : ''}><summary>玩家区 · 原版垫板与库存</summary>
     <div class="mat-tabs" role="group" aria-label="查看阵营垫板">${FACTIONS.map((f) => `<button type="button" class="${f}${selected === f ? ' selected' : ''}" data-mat-faction="${f}" aria-pressed="${selected === f}">${f === 'Coalition' ? '民主联盟' : f}${s.phase === 'action' && active(s) === f ? ' · 行动中' : ''}</button>`).join('')}<a class="mat-return" href="#turn-controls">返回行动面板 ↑</a></div>
     ${FACTIONS.map((f) => `<section class="player-mat-pane ${f}" data-faction="${f}" aria-label="${NAMES[f]}玩家区"${selected === f ? '' : ' hidden'}>${playerMat(s, f)}${inventory(s, f)}</section>`).join('')}
-    <p class="mat-legend">库存棋子：淡色待解锁，亮色可用。悬停可查看名称；团结、立场和胜利标记记录当前状态。</p></details>`;
+    <p class="mat-legend"><i class="legend-available"></i>绿框可用 · 淡色待解锁。悬停查看名称；团结、立场和胜利标记记录当前状态。</p></details>`;
 }

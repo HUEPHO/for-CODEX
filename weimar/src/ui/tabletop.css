@@ -199,7 +199,9 @@ nav button.selected {
   fill: transparent;
   stroke: transparent;
   stroke-width: 3;
-  transition: fill 0.12s;
+  transition:
+    fill 0.12s,
+    stroke 0.12s;
 }
 .map-space {
   cursor: pointer;
@@ -210,7 +212,7 @@ nav button.selected {
   stroke: #faf0cc;
 }
 .map-space.is-target .space-hit {
-  stroke: #bb8a16;
+  stroke: #ffcb55;
   stroke-width: 3;
   stroke-dasharray: 7 3;
 }
@@ -220,6 +222,106 @@ nav button.selected {
   stroke-width: 4;
   fill: #fff8d322;
   filter: drop-shadow(0 0 2px #222);
+}
+.map-space.is-selected.is-target .space-hit {
+  stroke: #ffcb55;
+  stroke-dasharray: none;
+}
+.availability-border {
+  fill: none;
+  stroke: #72ff91;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 1px #123c1c) drop-shadow(0 0 2.5px #5dff94c0);
+  pointer-events: none;
+}
+.availability-border > * {
+  vector-effect: non-scaling-stroke;
+}
+.track-pieces .physical-piece:hover,
+.player-mat-surface .physical-piece:hover {
+  filter: drop-shadow(0 1px 2px #2229);
+}
+.influence-empty rect {
+  fill: #fff5;
+  stroke: #fffd;
+  stroke-width: 1.1;
+  stroke-dasharray: 3 2;
+}
+.space-status {
+  pointer-events: none;
+}
+.leader-plate {
+  fill: #f7efd9;
+  stroke: #39352a88;
+  stroke-width: 0.7;
+}
+.leader-emblem {
+  opacity: 0.95;
+}
+.leader-value {
+  fill: white;
+  stroke: #161b19;
+  stroke-width: 2;
+  paint-order: stroke;
+  font-size: 12px;
+  font-weight: 850;
+  text-anchor: start;
+}
+.occupation-mark rect {
+  stroke: #f8f1db;
+  stroke-width: 0.7;
+  filter: drop-shadow(0 1px 1px #0008);
+}
+.occupation-mark path {
+  stroke: white;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.board-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 15px;
+  padding: 7px 12px;
+  background: #353d34;
+  color: #eee9d8;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.board-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend-available,
+.legend-half,
+.legend-empty,
+.legend-occupation {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #72ff91;
+  border-radius: 2px;
+  vertical-align: -2px;
+}
+.legend-available {
+  box-shadow: 0 0 4px #5dff9480;
+}
+.legend-half {
+  border-right-color: #ffffff25;
+  border-top-color: #ffffff25;
+  transform: rotate(45deg);
+  margin-inline: 2px;
+}
+.legend-empty {
+  background: #fff3;
+  border: 1px dashed #fffb;
+}
+.legend-occupation {
+  height: 5px;
+  border-color: #fff9;
+  background: #ecd13b;
 }
 .space-pieces {
   pointer-events: none;
@@ -306,6 +408,88 @@ nav button.selected {
 .space-influence svg {
   width: 20px;
   height: 20px;
+}
+.space-capacity {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  background: #696859;
+}
+.space-capacity i {
+  width: 12px;
+  height: 12px;
+  background: var(--cube-color);
+  border: 1px solid #fff8;
+  border-radius: 2px;
+  box-shadow:
+    inset 1px 1px #ffffff45,
+    1px 1px 2px #0003;
+}
+.space-capacity i.empty {
+  background: #fff3;
+  border: 1px dashed #fffc;
+  box-shadow: none;
+}
+.space-leadership {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #e9e1d0;
+  border-left: 3px solid var(--faction-color, #aaa08b);
+  border-radius: 3px;
+}
+.space-leadership > svg {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.space-leadership small {
+  display: block;
+  color: #796f5a;
+  font-size: 10px;
+  font-weight: 400;
+}
+.space-leadership strong {
+  font-size: 13px;
+}
+.space-leadership > b {
+  margin-left: auto;
+  text-align: center;
+  font-size: 21px;
+  line-height: 1.1;
+}
+.space-occupation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0;
+  font-size: 10px;
+}
+.occupation-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border: 1px solid #c6bca6;
+  border-bottom: 2px solid var(--faction-color);
+  border-radius: 3px;
+  background: #fff9e9;
+}
+.occupation-chip svg {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.occupation-chip small {
+  color: #516947;
+  font-size: 9px;
 }
 .space-unit-list {
   margin: 5px 0;

@@ -65,6 +65,26 @@ export function pieceArt(p: Pick<Piece, 'kind' | 'owner' | 'side' | 'revealed'>)
 export function cubeArt(faction: Faction) {
   return `<g stroke="#39352a" stroke-width=".65" stroke-linejoin="round"><path d="M1 5L6 1h10l-5 4z" fill="${COLORS[faction]}"/><path d="M1 5h10v11H1z" fill="${COLORS[faction]}"/><path d="M11 5l5-4v11l-5 4z" fill="${COLORS[faction]}"/><path d="M1 5L6 1h10l-5 4z" fill="white" opacity=".28"/><path d="M11 5l5-4v11l-5 4z" fill="black" opacity=".22"/></g>`;
 }
+/** Reuse the emblem portion of the original control token, without its caption. */
+export function factionEmblem(faction: Faction, x: number, y: number, size: number) {
+  return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="24 21 132 89" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="/assets/tokens/control-${faction.toLowerCase()}.png" width="179" height="179"/></svg>`;
+}
+export interface CounterStatus {
+  availability: 'none' | 'full' | 'left' | 'right';
+  label?: string;
+}
+export function availabilityBorder(availability: CounterStatus['availability'], round = false) {
+  if (availability === 'none') return '';
+  const shape =
+    availability === 'left'
+      ? '<path d="M16 -1H3Q-1 -1 -1 3V29Q-1 33 3 33H16"/>'
+      : availability === 'right'
+        ? '<path d="M16 -1H29Q33 -1 33 3V29Q33 33 29 33H16"/>'
+        : round
+          ? '<circle cx="16" cy="16" r="17"/>'
+          : '<rect x="-1" y="-1" width="34" height="34" rx="4"/>';
+  return `<g class="availability-border" data-availability="${availability}" aria-hidden="true">${shape}</g>`;
+}
 export function groupPieces(pieces: Piece[]) {
   const groups = new Map<string, Piece[]>();
   for (const p of pieces) {
@@ -73,7 +93,7 @@ export function groupPieces(pieces: Piece[]) {
   }
   return [...groups.values()];
 }
-export function counter(pieces: Piece[], x: number, y: number, size = 28) {
+export function counter(pieces: Piece[], x: number, y: number, size = 28, status?: CounterStatus) {
   const p = pieces[0];
-  return `<g class="physical-piece" transform="translate(${x - size / 2} ${y - size / 2}) scale(${size / 32})" data-pieces="${html(pieces.map((v) => v.id).join(' '))}"><title>${html(pieceName(p))} ×${pieces.length}</title>${pieceArt(p)}${pieces.length > 1 ? `<circle cx="28" cy="4" r="7" fill="#fff9e9" stroke="#292c30"/><text x="28" y="7" text-anchor="middle" font-size="10" font-weight="800" fill="#202321">${pieces.length}</text>` : ''}</g>`;
+  return `<g class="physical-piece" transform="translate(${x - size / 2} ${y - size / 2}) scale(${size / 32})" data-pieces="${html(pieces.map((v) => v.id).join(' '))}"><title>${html(pieceName(p))} ×${pieces.length}${status?.label ? ` · ${html(status.label)}` : ''}</title>${pieceArt(p)}${status ? availabilityBorder(status.availability, p.kind === 'cadre' || p.kind === 'leverage') : ''}${pieces.length > 1 ? `<circle cx="28" cy="4" r="7" fill="#fff9e9" stroke="#292c30"/><text x="28" y="7" text-anchor="middle" font-size="10" font-weight="800" fill="#202321">${pieces.length}</text>` : ''}</g>`;
 }
