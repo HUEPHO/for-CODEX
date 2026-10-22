@@ -251,22 +251,8 @@ nav button.selected {
 .space-status {
   pointer-events: none;
 }
-.leader-plate {
-  fill: #f7efd9;
-  stroke: #39352a88;
-  stroke-width: 0.7;
-}
 .leader-emblem {
   opacity: 0.95;
-}
-.leader-value {
-  fill: white;
-  stroke: #161b19;
-  stroke-width: 2;
-  paint-order: stroke;
-  font-size: 12px;
-  font-weight: 850;
-  text-anchor: start;
 }
 .occupation-mark rect {
   stroke: #f8f1db;

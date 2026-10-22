@@ -58,11 +58,13 @@ export function spaceStatus(s: GameState, id: string) {
 function controlLayer(s: GameState, id: string) {
   const { x, y, w, h, city, valueLeft } = BOARD_AREAS[id];
   const state = spaceStatus(s, id);
-  const vx = city ? x + w / 2 + 13 : x + (valueLeft ? 12 : w - 12);
-  const vy = city ? y + h * 0.46 : y + h - 16;
-  // The emblem sits behind the printed PV, which is redrawn for legibility.
+  // Keep the printed population and PV untouched: use the gap between them
+  // in provinces, and the empty area to the left of both values in cities.
+  const vx = city ? x + w * 0.23 : x + (valueLeft ? 12 : w - 12);
+  const vy = y + h * (city ? 0.46 : 0.54);
+  const badgeSize = city || h >= 100 ? 18 : 14;
   const leadership = state.leader
-    ? `<g class="space-leader" data-leader="${state.leader}"><title>领导权：${state.leader} · PV ${SPACE[id].politicalValue}</title><rect class="leader-plate" x="${vx - 14}" y="${vy - 17}" width="28" height="30" rx="4"/><g class="leader-emblem">${factionEmblem(state.leader, vx - 12, vy - 11, 24)}</g><text class="leader-value" x="${vx - 9}" y="${vy - 6}">${SPACE[id].politicalValue}</text></g>`
+    ? `<g class="space-leader" data-leader="${state.leader}"><title>领导权：${state.leader} · PV ${SPACE[id].politicalValue}</title><g class="leader-emblem">${factionEmblem(state.leader, vx - badgeSize / 2, vy - badgeSize / 2, badgeSize)}</g></g>`
     : '';
   const width = city ? w * 0.52 : w - 10;
   const occupation = state.occupiers
@@ -188,7 +190,7 @@ export function tabletop(
       ${SPACES.map((sp) => spaceLayer(s, sp.id, selected, spaces)).join('')}
       <g class="track-pieces">${trackLayer(s)}</g>
     </svg></div></div>
-    <div class="board-key" aria-label="棋盘状态图例"><span><i class="legend-available"></i>绿框可用</span><span><i class="legend-half"></i>MCS 左进步 / 右反动</span><span><i class="legend-empty"></i>空余人口</span><span>PV 底图＝领导者</span><span><i class="legend-occupation"></i>底边＝占据 · 白线＝军事优势</span></div>
+    <div class="board-key" aria-label="棋盘状态图例"><span><i class="legend-available"></i>绿框可用</span><span><i class="legend-half"></i>MCS 左进步 / 右反动</span><span><i class="legend-empty"></i>空余人口</span><span>阵营徽记＝领导者</span><span><i class="legend-occupation"></i>底边＝占据 · 白线＝军事优势</span></div>
     <details class="piece-legend"><summary>棋子图例与摆放说明</summary><div>${Object.entries(
       PIECE_NAMES,
     )
