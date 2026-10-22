@@ -145,6 +145,10 @@ function inventory(s: GameState, faction: Faction) {
     <p class="mat-victory-state">${s.victoryDeclared.includes(faction) ? '已声明即时胜利，标记位于时间轴。' : '即时胜利标记尚未声明。'}${faction === 'KPD' ? ` 总罢工${s.generalStrike ? '生效，标记在主棋盘' : '未生效'}。` : ''}</p></aside>`;
 }
 
+export function playerMatDetail(s: GameState, faction: Faction) {
+  return `<div class="player-mat-pane ${faction}" data-faction="${faction}">${playerMat(s, faction)}${inventory(s, faction)}</div>`;
+}
+
 export function reserveTrays(s: GameState, selected: Faction = active(s), open = false) {
   return `<details id="player-area" class="reserve-trays"${open ? ' open' : ''}><summary>玩家区 · 原版垫板与库存</summary>
     <div class="mat-tabs" role="group" aria-label="查看阵营垫板">${FACTIONS.map((f) => `<button type="button" class="${f}${selected === f ? ' selected' : ''}" data-mat-faction="${f}" aria-pressed="${selected === f}">${f === 'Coalition' ? '民主联盟' : f}${s.phase === 'action' && active(s) === f ? ' · 行动中' : ''}</button>`).join('')}<a class="mat-return" href="#turn-controls">返回行动面板 ↑</a></div>

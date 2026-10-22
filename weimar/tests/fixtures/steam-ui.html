@@ -3,9 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <title>WEIMAR 联机界面验收</title>
+    <style>
+      body {
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+      body > #app {
+        flex: 1;
+        height: auto;
+        min-height: 0;
+      }
+      .fixture-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 5px 12px;
+        background: #ffeaba;
+        font-size: 11px;
+      }
+      .fixture-toolbar label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .fixture-toolbar select {
+        width: auto;
+        margin: 0;
+        padding: 3px;
+      }
+    </style>
   </head>
   <body>
-    <section style="padding: 12px; background: #ffeaba">
+    <section class="fixture-toolbar">
       <strong>仅联机界面验收 · 模拟Steam，不是真实联网</strong>
       <label
         >当前测试玩家<select id="fixture-peer">

@@ -1,6 +1,7 @@
 import './style.css';
 import './ui/tabletop.css';
 import './ui/player-mats.css';
+import './ui/table-shell.css';
 import {
   GameSession,
   legalActions,
@@ -9,16 +10,19 @@ import {
   FACTIONS,
 } from './engine/index.ts';
 import type { Action, Command, Faction, ScenarioId } from './engine/index.ts';
-import { active, dominance, mcs, piecesAt, supply, supremacy, isUnit } from './engine/rules.ts';
+import { active, dominance, piecesAt, supremacy, isUnit } from './engine/rules.ts';
 import { unitLabel } from './engine/units.ts';
 import { CARDS, CARD, IMPLEMENTED_CARDS } from './data/cards.ts';
 import { SPACES, SPACE, REGIONS, REGION_NAMES } from './data/board.ts';
 import { ACTION_LABELS } from './engine/actions.ts';
 import { seatsUsesRemaining } from './engine/policies.ts';
-import { SCENARIOS, fixedStances } from './engine/scenarios.ts';
+import { SCENARIOS } from './engine/scenarios.ts';
 import { steamPanel } from './multiplayer/panel.ts';
 import type { DesktopStatus, LobbySummary } from './multiplayer/protocol.ts';
-import { actionSpace, tabletop, selectedSpacePanel, reserveTrays } from './ui/tabletop.ts';
+import { actionSpace, tabletop, selectedSpacePanel } from './ui/tabletop.ts';
+
+import { playerMatDetail } from './ui/player-mats.ts';
+import { cardCollections, cardPage, handRail, playerRail } from './ui/table-shell.ts';
 
 const KEY = 'weimar-session-v7';
 const PREVIOUS_KEYS = [
@@ -120,19 +124,19 @@ let boardZoom = 1,
   boardFocus = false,
   gameMenuOpen = false,
   boardScroll = { left: 0, top: 0 };
-let playerAreaOpen = false;
+let dockTab = 'action',
+  dockOpen = true;
+let handCollection = '',
+  handPage = 0,
+  lastDecision = '';
+let previewCard: number | null = null;
 let selectedMat: Faction | null = null;
+let networkMenuOpen = false;
 let selectedTarget = '';
 function render() {
   app.classList.toggle('tabletop-focus', boardFocus && tab === 'map');
   const oldBoard = document.getElementById('board-viewport');
   if (oldBoard) boardScroll = { left: oldBoard.scrollLeft, top: oldBoard.scrollTop };
-  const controlScroll = document.querySelector('.controls')?.scrollTop ?? 0;
-  const playerArea = document.getElementById('player-area') as HTMLDetailsElement | null;
-  if (playerArea) playerAreaOpen = playerArea.open;
-  const openMatDetails = [
-    ...document.querySelectorAll<HTMLDetailsElement>('.mat-inventory details[open]'),
-  ].map((el) => `${el.closest('[data-faction]')?.getAttribute('data-faction')}:${el.className}`);
   const online = !!desktop?.lobbyId;
   const view = networkView();
   if (online && !view) {
@@ -176,9 +180,25 @@ function render() {
   ];
   const actionPairPending =
     ['event-first', 'event-last'].includes(s.turn.mode) && s.turn.actionsLeft === 1;
+  const own = view?.factions ?? [s.pending?.actor ?? f];
+  const collections = cardCollections(s, own);
+  const decision = `${online ? desktop?.lobbyId : 'local'}:${s.year}:${s.half}:${s.phase}:${s.activeIndex}:${s.pending?.actor ?? ''}`;
+  if (decision !== lastDecision) {
+    dockTab = 'action';
+    dockOpen = true;
+    if (own.includes(f)) handCollection = f;
+    handPage = 0;
+    lastDecision = decision;
+  }
+  if (!collections.some((c) => c.id === handCollection)) handCollection = collections[0].id;
+  const shownCards = collections.find((c) => c.id === handCollection)!;
+  const pageSize = app.clientHeight < 640 ? 4 : app.clientHeight >= 900 ? 8 : 6;
+  handPage = cardPage(shownCards, handPage, pageSize).current;
+  const selectHand =
+    shownCards.owner === f && (!view || view.canAct) && canAct && s.turn.mode === 'unselected';
   app.innerHTML = `
-    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.12</div></header>
-    <div class="utility-bar">${steamPanel(desktop, lobbyResults, networkBusy)}
+    <header><div><div class="eyebrow">THE WEIMAR REPUBLIC / GMT</div><h1>WEIMAR <span>魏玛共和国</span></h1></div><div class="version">${online ? 'Steam联机' : '本地热座'} · 开发版 0.13</div></header>
+    <div class="utility-bar">${desktop ? `<details id="network-menu" class="network-menu"${networkMenuOpen ? ' open' : ''}><summary>Steam 联机${desktop.snapshot?.room.paused ? ' · 已暂停' : online ? ' · 已连接' : ''}</summary>${steamPanel(desktop, lobbyResults, networkBusy)}</details>` : steamPanel(desktop, lobbyResults, networkBusy)}
     <div class="notice"><strong>三个时代 #1–151 全部牌效已接通</strong> · ${s.scenario ? `${SCENARIOS[s.scenario].name}：${SCENARIOS[s.scenario].startYear}—${SCENARIOS[s.scenario].endYear}，历史布局与剧本规则已接通。${s.scenario === 'black-sun' ? '立场固定务实；事件前置条件仍有效。' : ''}` : session.options.testCard ? '牌效实验局：教程地图＋标准立场，可指定测试牌；不是历史剧本。' : s.demo ? '开发测试局：固定牌序，每方3张。' : '教程布局与53张危机牌库，每方5张，立场按教程固定。'}</div>
     <details id="game-menu" class="game-menu"${online ? ' hidden' : ''}${gameMenuOpen ? ' open' : ''}><summary>对局与存档 <span>剧本 · 牌效实验 · 撤销 · 导入导出</span></summary><div class="toolbar">
       <label>开局<select id="new-mode">${options(
@@ -205,10 +225,8 @@ function render() {
     )
       .filter(([p]) => p !== 'finished')
       .map(([p, n]) => `<span class="${s.phase === p ? 'current' : ''}">${n}</span>`)
-      .join('<i>→</i>')}</div><div>momentum ${factionBadge(s.momentum)}</div></div>
-    <div class="factions">${s.order.map((x, i) => `<section class="faction ${x} ${s.phase === 'action' && i === s.activeIndex ? 'is-active' : ''}"><div class="faction-title"><button class="faction-mat-link" data-open-mat="${x}" aria-label="查看${x}玩家垫板">${i + 1}. ${x}</button><small>${s.phase === 'action' ? (i < s.activeIndex ? '已行动' : i === s.activeIndex ? '当前行动' : '等待') : ''}</small></div><div class="faction-name">${NAMES[x]}</div><div class="stats"><span>手牌 <b>${view?.handCounts[x] ?? s.hands[x].length}</b></span><span>支持 <b>${mcs(s, x)}</b></span><span>库存 <b>${supply(s, x)}</b></span><span>PV预览 <b>${election.totals[x]}</b></span></div></section>`).join('')}</div>
-    <div class="tracks"><span>经济 <b>${s.tracks.economy}/9</b> ${s.tracks.economy === 5 ? '稳定' : s.tracks.economy < 5 ? '通胀侧' : '失业侧'}</span><span>进步 <b>${s.tracks.progress}</b></span><span>反动 <b>${s.tracks.reaction}</b></span><span>团结 <b>${['脆弱', '稳固', '强大'][s.tracks.unity]}</b></span><span>美国协定 <b>${s.tracks.us}</b></span><span>苏联协定 <b>${s.tracks.ussr}</b></span><span>总罢工 <b>${s.generalStrike ? '生效' : '无'}</b></span>${s.ruleset === 'standard-v1' ? `<span>KPD 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.KPD}</b></span><span>NSDAP 立场 <b>${fixedStances(s) ? '务实（固定）' : s.stance.NSDAP}</b></span>` : ''}<span>牌堆 <b>${view?.deckCount ?? s.deck.length}</b> / 弃牌 <b>${s.discard.length}</b></span></div>
-    <main><div class="workspace"><nav>${[
+      .join('<i>→</i>')}</div><div>牌堆 ${view?.deckCount ?? s.deck.length} · 弃牌 ${s.discard.length}</div><div>momentum ${factionBadge(s.momentum)}</div></div>
+    <main class="game-table">${handRail(collections, handCollection, handPage, pageSize, selectedCard, selectHand)}<section class="table-center"><div class="workspace"><nav>${[
       ['map', '棋盘'],
       ['board', '地区明细'],
       ['catalog', '卡牌库'],
@@ -234,8 +252,23 @@ function render() {
             ? catalogView()
             : coverageView()
     }</div></div>
-    <aside id="turn-controls" class="controls">${tab === 'map' ? selectedSpacePanel(s, selectedSpace) : ''}<h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
-    ${combatView()}
+    <section class="action-dock${dockOpen ? '' : ' is-collapsed'}" aria-label="行动与局面详情">
+      <div class="dock-heading"><div class="dock-tabs" role="group" aria-label="操作面板">${[
+        ['action', s.pending ? '待处理选择' : '行动'],
+        ['space', '地区'],
+        ['parliament', '议会'],
+        ['combat', '战斗'],
+        ['log', '记录'],
+      ]
+        .map(
+          ([id, label]) =>
+            `<button data-dock-tab="${id}" aria-pressed="${dockTab === id}" class="${dockTab === id ? 'selected' : ''}">${label}</button>`,
+        )
+        .join(
+          '',
+        )}</div><span class="dock-status">${s.pending ? `${s.pending.actor} 选择中` : s.phase === 'action' ? `${f} · 剩余 ${s.turn.actionsLeft} 行动` : PHASES[s.phase]}</span><div class="dock-tools"><button data-scroll-target=".dock-page:not([hidden])" data-scroll-direction="-1" aria-label="面板向上翻页">↑</button><button data-scroll-target=".dock-page:not([hidden])" data-scroll-direction="1" aria-label="面板向下翻页">↓</button><button id="dock-toggle" aria-expanded="${dockOpen}">${dockOpen ? '收起' : '展开'}</button></div></div>
+      <div class="dock-content"${dockOpen ? '' : ' hidden'}>
+        <section class="dock-page" data-dock-page="action"${dockTab === 'action' ? '' : ' hidden'}>    <aside id="turn-controls" class="controls"><h2>${s.pending ? '待处理选择' : s.phase === 'action' ? `${f} 的回合` : PHASES[s.phase]}</h2>
     ${
       s.winner
         ? `<div class="winner">${factionBadge(s.winner)}<h3>获胜</h3><p>${esc(s.winReason)}</p></div>`
@@ -284,16 +317,7 @@ function render() {
       ${s.turn.mode === 'event-last' && !s.turn.eventDone && s.turn.actionsLeft === 0 ? '<button id="play-event" class="primary">打出承诺的事件牌</button>' : ''}
       <button id="end-turn"${disabled(s.turn.actionsLeft > 0 || (['event-first', 'event-last'].includes(s.turn.mode) && !s.turn.eventDone))}>结束本阵营回合</button>`
       }
-      ${s.scenario === 'revolution' ? `<section class="extra-election"><p>额外选举：${s.extraElectionPending ? '已预约本轮选举' : s.extraElectionUsed ? '本局机会已使用' : '全局可用一次，由momentum消耗一张议会或议席牌召开'}</p>${!s.extraElectionUsed ? `<label>额外选举用牌<select id="extra-card">${options(extraCards)}</select></label><button id="call-extra-election"${disabled(f !== s.momentum || !extraCards.length || actionPairPending)}>消耗所选牌，预约额外选举</button>` : ''}</section>` : ''}
-      <details><summary>议会牌与国会议席</summary><p>第48条：${s.article48Removed ? '永久移除' : s.article48 ? '可用' : '已消耗'}；符合条件时会自动询问联盟。</p><button id="play-seats"${disabled(s.seats.owner !== f || seatsUsesRemaining(s) === 0)}>使用国会议席（${s.seats.owner ?? '无人持有'} · 剩余${seatsUsesRemaining(s)}次）</button>
-      ${
-        pcCards.length && !s.turn.pcUsed
-          ? `<label>议会控制牌<select id="pc-region">${options(
-              pcCards.map((value) => ({ value, label: REGION_NAMES[value] })),
-              pcRegion,
-            )}</select></label><label>奖励行动<select id="pc-action"><option value="none">不执行奖励行动，仅清场</option>${options(pcActions.map((a, i) => ({ value: String(i), label: a.label })))}</select></label><label>可选移除改革<select id="pc-reform"><option value="">不移除改革</option>${options(s.pieces.filter((p) => p.kind === 'reform' && SPACE[p.location]?.region === pcRegion).map((p) => ({ value: p.id, label: fmtLocation(p.location) })))}</select></label><button id="play-pc">使用议会控制牌</button>`
-          : '<p class="muted">没有可用议会牌，或本回合已使用。</p>'
-      }</details>`
+`
                 : s.phase === 'election'
                   ? `
       <p>地区计票后进行全国选举。${s.scenarioEnding ? '这是终局选举，按本剧本的全国选举胜利规则决定赢家。' : '联盟胜出则继续，其他阵营胜出则游戏结束。'}</p><div class="pv-list">${FACTIONS.map((x) => `<span>${x}<b>${election.totals[x]}</b></span>`).join('')}</div>
@@ -302,56 +326,117 @@ function render() {
       ${s.phase === 'timeline' && s.tracks.economy === 1 ? `<label>恶性通胀：移除联盟影响力<select id="inflation-space">${options(SPACES.filter((p) => s.influence[p.id].Coalition > 0).map((p) => ({ value: p.id, label: p.nameZh })))}</select></label>` : ''}
       <p>${s.phase === 'sudden-victory' ? '按当前行动顺序检查已放置的即时胜利标记。' : '清除受联盟部队保护地区的暗杀，处理经济并推进半年。'}</p><button id="advance" class="primary">${s.phase === 'timeline' ? '推进半年' : '执行胜利检查'}</button>`
     }
-      <section class="event-log"><h3>行动记录 <small>${s.log.length}</small></h3><ol>${s.log
-        .slice(-16)
-        .reverse()
-        .map((l) => `<li><small>${l.n}</small>${esc(l.text)}</li>`)
-        .join('')}</ol></section>
-    </aside></main>
-    ${reserveTrays(s, selectedMat ?? view?.factions[0] ?? f, playerAreaOpen)}
-    ${(view?.factions ?? [f]).map(handView).join('')}
-    ${s.lingering.length ? `<section class="hand"><h2>持续生效的事件</h2><div class="hand-cards">${s.lingering.map((c) => `<article>${cardImage(c.card)}<div>${esc(CARD[c.card].name)}</div></article>`).join('')}</div></section>` : ''}
-    ${s.reveals.map((r) => `<section class="hand"><h2>${r.viewer} 查看 ${r.target} 的手牌</h2><div class="hand-cards">${r.cards.map((c) => `<article>${cardImage(c.card)}</article>`).join('')}</div></section>`).join('')}
-    <footer>规则数据与素材来自所提供的 TTS 存档及中文图片包 · ${online ? '房主自动保存对局；此客户端仅接收自己有权查看的信息' : '状态在本机自动保存 · 共享此页面的操作者共同控制四个阵营'}</footer>
+</aside></section>
+        <section class="dock-page" data-dock-page="space"${dockTab === 'space' ? '' : ' hidden'}>${selectedSpacePanel(s, selectedSpace)}</section>
+        <section class="dock-page" data-dock-page="parliament"${dockTab === 'parliament' ? '' : ' hidden'}><div class="controls parliament-controls">${
+          s.phase === 'action' && !s.pending && !s.winner && (!view || view.canAct)
+            ? `      ${s.scenario === 'revolution' ? `<section class="extra-election"><p>额外选举：${s.extraElectionPending ? '已预约本轮选举' : s.extraElectionUsed ? '本局机会已使用' : '全局可用一次，由momentum消耗一张议会或议席牌召开'}</p>${!s.extraElectionUsed ? `<label>额外选举用牌<select id="extra-card">${options(extraCards)}</select></label><button id="call-extra-election"${disabled(f !== s.momentum || !extraCards.length || actionPairPending)}>消耗所选牌，预约额外选举</button>` : ''}</section>` : ''}
+      <p>第48条：${s.article48Removed ? '永久移除' : s.article48 ? '可用' : '已消耗'}；符合条件时会自动询问联盟。</p><button id="play-seats"${disabled(s.seats.owner !== f || seatsUsesRemaining(s) === 0)}>使用国会议席（${s.seats.owner ?? '无人持有'} · 剩余${seatsUsesRemaining(s)}次）</button>
+      ${
+        pcCards.length && !s.turn.pcUsed
+          ? `<label>议会控制牌<select id="pc-region">${options(
+              pcCards.map((value) => ({ value, label: REGION_NAMES[value] })),
+              pcRegion,
+            )}</select></label><label>奖励行动<select id="pc-action"><option value="none">不执行奖励行动，仅清场</option>${options(pcActions.map((a, i) => ({ value: String(i), label: a.label })))}</select></label><label>可选移除改革<select id="pc-reform"><option value="">不移除改革</option>${options(s.pieces.filter((p) => p.kind === 'reform' && SPACE[p.location]?.region === pcRegion).map((p) => ({ value: p.id, label: fmtLocation(p.location) })))}</select></label><button id="play-pc">使用议会控制牌</button>`
+          : '<p class="muted">没有可用议会牌，或本回合已使用。</p>'
+      }`
+            : '<p>当前没有可执行的议会操作。</p>'
+        }</div></section>
+        <section class="dock-page" data-dock-page="combat"${dockTab === 'combat' ? '' : ' hidden'}>${combatView() || '<p>尚无突击记录。</p>'}</section>
+        <section class="dock-page" data-dock-page="log"${dockTab === 'log' ? '' : ' hidden'}>      <section class="event-log"><h3>行动记录 <small>${s.log.length}</small></h3><ol>${s.log
+          .slice(-16)
+          .reverse()
+          .map((l) => `<li><small>${l.n}</small>${esc(l.text)}</li>`)
+          .join('')}</ol></section>
+</section>
+      </div>
+    </section></section>${playerRail(s, online ? own : [], view?.handCounts)}</main>
+    <dialog id="mat-dialog" class="mat-dialog"><div class="dialog-top"><strong>${selectedMat ? NAMES[selectedMat] : ''} · 原版玩家面板</strong><div><button data-scroll-target="#mat-dialog .mat-inventory" data-scroll-direction="-1" aria-label="库存向上翻页">↑</button><button data-scroll-target="#mat-dialog .mat-inventory" data-scroll-direction="1" aria-label="库存向下翻页">↓</button><button id="close-mat" aria-label="关闭玩家面板">关闭 ×</button></div></div>${selectedMat ? playerMatDetail(s, selectedMat) : ''}</dialog>
     <dialog id="card-dialog"><div class="dialog-top"><span id="card-title"></span><button id="close-dialog" aria-label="关闭牌面">关闭 ×</button></div><img id="card-large" alt="放大牌面" /><p id="card-summary"></p></dialog>
   `;
   bindSteam();
   document.querySelectorAll<HTMLButtonElement>('[data-open-mat]').forEach((button) => {
     button.addEventListener('click', () => {
       selectedMat = button.dataset.openMat as Faction;
-      const area = document.getElementById('player-area') as HTMLDetailsElement;
-      area.open = true;
+      previewCard = null;
       render();
-      document.getElementById('player-area')?.scrollIntoView({ block: 'start' });
-      document
-        .querySelector<HTMLButtonElement>(`[data-mat-faction="${selectedMat}"]`)
-        ?.focus({ preventScroll: true });
     });
   });
-  document.querySelectorAll<HTMLDetailsElement>('.mat-inventory details').forEach((el) => {
-    el.open = openMatDetails.includes(
-      `${el.closest('[data-faction]')?.getAttribute('data-faction')}:${el.className}`,
-    );
+  const matDialog = document.getElementById('mat-dialog') as HTMLDialogElement;
+  if (selectedMat) matDialog.showModal();
+  bind('close-mat', 'click', () => {
+    selectedMat = null;
+    matDialog.close();
   });
-  document.querySelectorAll<HTMLButtonElement>('[data-mat-faction]').forEach((button) => {
+  bind('mat-dialog', 'cancel', () => {
+    selectedMat = null;
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-hand-collection]').forEach((button) => {
     button.addEventListener('click', () => {
-      selectedMat = button.dataset.matFaction as Faction;
+      handCollection = button.dataset.handCollection!;
+      handPage = 0;
       render();
-      document
-        .querySelector<HTMLButtonElement>(`[data-mat-faction="${selectedMat}"]`)
-        ?.focus({ preventScroll: true });
     });
   });
-  const controls = document.querySelector('.controls');
-  if (controls) controls.scrollTop = controlScroll;
+  document.querySelectorAll<HTMLButtonElement>('[data-hand-select]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!selectHand || !hand.some((c) => c.uid === button.dataset.handSelect)) return;
+      selectedCard = button.dataset.handSelect!;
+      dockTab = 'action';
+      dockOpen = true;
+      render();
+    });
+  });
+  bind('hand-prev', 'click', () => {
+    handPage--;
+    render();
+  });
+  bind('hand-next', 'click', () => {
+    handPage++;
+    render();
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-dock-tab]').forEach((button) => {
+    button.addEventListener('click', () => {
+      dockTab = button.dataset.dockTab!;
+      dockOpen = true;
+      render();
+    });
+  });
+  bind('dock-toggle', 'click', () => {
+    dockOpen = !dockOpen;
+    render();
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-scroll-target]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = document.querySelector<HTMLElement>(button.dataset.scrollTarget!);
+      target?.scrollBy({
+        top: Number(button.dataset.scrollDirection) * target.clientHeight * 0.8,
+        behavior: 'smooth',
+      });
+    });
+  });
   bind('game-menu', 'toggle', (event) => {
     gameMenuOpen = (event.target as HTMLDetailsElement).open;
+  });
+  bind('network-menu', 'toggle', (event) => {
+    networkMenuOpen = (event.target as HTMLDetailsElement).open;
   });
   const boardViewport = document.getElementById('board-viewport');
   if (boardViewport) {
     boardViewport.scrollLeft = boardScroll.left;
     boardViewport.scrollTop = boardScroll.top;
   }
+  document.querySelectorAll<HTMLButtonElement>('[data-board-pan]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const area = document.getElementById('board-viewport')!;
+      const [x, y] = button.dataset.boardPan!.split(',').map(Number);
+      area.scrollBy({
+        left: x * area.clientWidth * 0.6,
+        top: y * area.clientHeight * 0.6,
+        behavior: 'smooth',
+      });
+    });
+  });
   bind('board-zoom-in', 'click', () => {
     boardZoom = Math.min(2.5, boardZoom + 0.25);
     render();
@@ -519,6 +604,9 @@ function render() {
     const select = () => {
       selectedSpace = b.dataset.space!;
       selectedTarget = '';
+      if (targets.some((a) => actionSpace(a.action) === selectedSpace)) dockTab = 'action';
+      else if (!s.pending) dockTab = 'space';
+      dockOpen = true;
       render();
     };
     b.addEventListener('click', select);
@@ -531,7 +619,8 @@ function render() {
   });
   document.querySelectorAll<HTMLElement>('[data-card-preview]').forEach((b) => {
     const openCard = () => {
-      const c = CARD[Number(b.dataset.cardPreview)];
+      previewCard = Number(b.dataset.cardPreview);
+      const c = CARD[previewCard];
       (document.getElementById('card-large') as HTMLImageElement).src = c.image;
       document.getElementById('card-title')!.textContent = `#${c.id} ${c.name}`;
       document.getElementById('card-summary')!.textContent =
@@ -547,9 +636,20 @@ function render() {
         }
       });
   });
-  bind('close-dialog', 'click', () =>
-    (document.getElementById('card-dialog') as HTMLDialogElement).close(),
-  );
+  bind('close-dialog', 'click', () => {
+    previewCard = null;
+    (document.getElementById('card-dialog') as HTMLDialogElement).close();
+  });
+  bind('card-dialog', 'cancel', () => {
+    previewCard = null;
+  });
+  if (previewCard !== null) {
+    const c = CARD[previewCard];
+    (document.getElementById('card-large') as HTMLImageElement).src = c.image;
+    document.getElementById('card-title')!.textContent = `#${c.id} ${c.name}`;
+    document.getElementById('card-summary')!.textContent = c.summary;
+    (document.getElementById('card-dialog') as HTMLDialogElement).showModal();
+  }
   bind('card-search', 'input', () => {
     const el = document.getElementById('card-search') as HTMLInputElement;
     search = el.value;
@@ -683,10 +783,12 @@ function bindSteam() {
       }),
   );
 }
-function handView(faction: Faction) {
-  const cards = gameState().hands[faction];
-  return `<section class="hand"><div class="section-top"><h2>${factionBadge(faction)} ${desktop?.lobbyId ? '你的手牌' : '当前行动方手牌'}</h2><span class="muted">点击牌面放大</span></div><div class="hand-cards">${cards.length ? cards.map((c) => `<article>${cardImage(c.card)}<div>#${c.card} ${esc(CARD[c.card].name)}</div><small>${CARD[c.card].mandatory ? '强制事件' : ''}</small></article>`).join('') : '<p class="muted">当前没有手牌。</p>'}</div></section>`;
-}
+
+let resizeTimer = 0;
+window.addEventListener('resize', () => {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(render, 100);
+});
 render();
 if (window.weimarSteam) {
   window.weimarSteam.subscribe((next) => {

@@ -184,7 +184,7 @@ export function tabletop(
   focus = false,
 ) {
   const spaces = new Set(targets.map(actionSpace).filter((id): id is string => !!id));
-  return `<div class="board-tools"><div><strong>游戏棋盘</strong><span>点地区查看 · 金框为行动目标</span></div><div class="zoom-tools"><button id="board-zoom-out" aria-label="缩小棋盘"${zoom <= 1 ? ' disabled' : ''}>−</button><span>${Math.round(zoom * 100)}%</span><button id="board-zoom-in" aria-label="放大棋盘"${zoom >= 2.5 ? ' disabled' : ''}>＋</button><button id="board-fit">适应窗口</button><button id="board-focus">${focus ? '返回全桌' : '专注棋盘'}</button></div></div>
+  return `<div class="board-tools"><div><strong>游戏棋盘</strong><span>点地区查看 · 金框为行动目标</span></div><div class="zoom-tools"><button id="board-zoom-out" aria-label="缩小棋盘"${zoom <= 1 ? ' disabled' : ''}>−</button><span>${Math.round(zoom * 100)}%</span><button id="board-zoom-in" aria-label="放大棋盘"${zoom >= 2.5 ? ' disabled' : ''}>＋</button><span class="board-pan"${zoom <= 1 ? ' hidden' : ''}><button data-board-pan="-1,0" aria-label="棋盘向左平移">←</button><button data-board-pan="1,0" aria-label="棋盘向右平移">→</button><button data-board-pan="0,-1" aria-label="棋盘向上平移">↑</button><button data-board-pan="0,1" aria-label="棋盘向下平移">↓</button></span><button id="board-fit">适应窗口</button><button id="board-focus">${focus ? '返回全桌' : '专注棋盘'}</button></div></div>
     <div class="board-viewport" id="board-viewport"><div class="board-surface" style="--board-zoom:${zoom}">
     <img class="original-board" src="/assets/board.webp" alt="原版中文游戏棋盘，独立棋子层显示当前局面" draggable="false" />
     <svg class="board-overlay" viewBox="0 0 1800 1167.1875" aria-label="当前棋盘局面">
