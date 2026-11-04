@@ -1,0 +1,24 @@
+import {aidAllies,aidPreview,swapRegions,swapTargets,swapPreview,beijingPreview} from './dd-asset-effects.js';
+import {AREAS} from './world.js';
+import {countryRegion} from './research.js';
+import {regimeTargets,regimePreview} from './regime-change.js';
+const names={US:'美国',CN:'中国',EU:'欧盟',RU:'俄罗斯'};
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function renderDDAssetStep(s,step,cards){
+ if(step.type==='regimeChange'){const targets=regimeTargets(s,step);return `<p>支付1服务、1待命军队和5资金，夺取${step.excludePlayers.map(id=>names[id]).join('、')}以外其他玩家的一个非初始1价值盟国。初始盟国及其升级版本不能夺取。清除该牌上的投资和基地，将其重整，再在当地添加1影响力。</p><div class="growth-choice-grid">${targets.map(x=>`<label class="growth-choice"><img src="${esc(cards[x.country]?.image)}" alt="${esc(cards[x.country]?.name)}" loading="lazy"><span><input type="radio" name="regime-target" data-regime-host="${x.host}" data-regime-country="${x.country}"> ${names[x.host]} · ${esc(cards[x.country]?.name)} · ${AREAS[countryRegion(x.country)].name}</span></label>`).join('')||'<p>没有符合条件的盟国。</p>'}</div><p id="sequence-dd-preview" aria-live="polite"></p><button id="sequence-resolve">支付并夺取盟国</button>`;}
+ if(step.type==='beijingConsensus')return `<p>按通常消费品费用提升一级繁荣，领取该级分数与资金奖励，再按提升后的繁荣等级获得外交。随后正常介入一个地区，可选择没有本方盟国的地区。</p><p id="sequence-dd-preview" aria-live="polite"></p><button id="sequence-resolve">支付并提升繁荣</button>`;
+ if(step.type==='aidAllies')return `<p>选择不同地区的两个未横置盟国。支付15资金和待命区2军队，横置这两个盟国，获得2外交；随后在各自地区添加1影响力。</p><fieldset><legend>选择两个盟国</legend>${aidAllies(s).map(id=>`<label><input type="checkbox" data-aid-ally="${id}"> ${esc(cards[id]?.name)} · ${AREAS[countryRegion(id)].name}</label>`).join('')||'<p>没有未横置盟国。</p>'}</fieldset><p id="sequence-dd-preview" aria-live="polite"></p><button id="sequence-resolve">支付并横置盟国</button>`;
+ if(step.type==='swapInfluence')return `<p>交换同一地区的本方临时影响力与另一玩家的永久影响力，保留原位置。${step.cost?.money?'支付'+step.cost.money+'资金。':'支付1服务。'}</p><label>地区<select id="sequence-swap-region">${swapRegions(s,step).map(region=>`<option value="${region}">${AREAS[region].name}</option>`).join('')||'<option value="">没有可交换的地区</option>'}</select></label><label>本方临时影响力<select id="sequence-swap-temp"></select></label><label>对方永久影响力<select id="sequence-swap-permanent"></select></label><p id="sequence-dd-preview" aria-live="polite"></p><button id="sequence-resolve">支付并交换</button>`;
+ return '';
+}
+export function readDDAssetStep(step){
+ if(step.type==='regimeChange'){const target=document.querySelector('[data-regime-country]:checked');return {host:target?.dataset.regimeHost,country:target?.dataset.regimeCountry};}
+ if(step.type==='aidAllies')return {allies:[...document.querySelectorAll('[data-aid-ally]:checked')].map(el=>el.dataset.aidAlly)};
+ if(step.type==='swapInfluence'){const target=document.querySelector('#sequence-swap-permanent')?.selectedOptions[0];return {region:document.querySelector('#sequence-swap-region')?.value,tempIndex:Number(document.querySelector('#sequence-swap-temp')?.value??NaN),permanentKind:target?.dataset.kind,permanentIndex:Number(target?.dataset.index??NaN)};}
+ return {};
+}
+function options(el,items){const old=el.value;el.innerHTML=items.join('');if([...el.options].some(x=>x.value===old))el.value=old;}
+export function updateDDAssetStep(s,step){const preview=document.querySelector('#sequence-dd-preview');if(!preview)return false;const button=document.querySelector('#sequence-resolve');
+ if(step.type==='swapInfluence'){const region=document.querySelector('#sequence-swap-region').value,r=s.regions[region];options(document.querySelector('#sequence-swap-temp'),(r?.temporary||[]).flatMap((owner,index)=>owner===s.current?[`<option value="${index}">临时轨第${index+1}个位置</option>`]:[]));options(document.querySelector('#sequence-swap-permanent'),swapTargets(s,region).map(x=>`<option value="${x.kind}:${x.index}" data-kind="${x.kind}" data-index="${x.index}">${names[x.player]} · ${x.kind==='permanent'?'永久槽':'额外永久'}第${x.index+1}个位置</option>`));}
+ try{const a=readDDAssetStep(step);if(step.type==='regimeChange'){const r=regimePreview(s,a,step);preview.textContent=`支付1服务、1待命军队和5资金，夺取${names[r.host]}的所选盟国，清除该牌投资与基地并重整；地区军队保留，随后在${AREAS[r.region].name}添加影响力。`;}else if(step.type==='beijingConsensus'){const r=beijingPreview(s);preview.textContent=`支付${r.cost}消费品，提升至${r.level}级繁荣，获得${r.vp}分、${r.money}资金与${r.diplomacy}外交（实际增加${r.receivedDiplomacy}）。`;}else if(step.type==='aidAllies'){const r=aidPreview(s,a);preview.textContent=`支付15资金和2待命军队，获得2外交；随后依次在${r.regions.map(id=>AREAS[id].name).join('、')}添加影响力。`;}else{const r=swapPreview(s,a,step);preview.textContent=`与${names[r.target.player]}交换所选影响力；双方不因交换获得放置分数。`;}button.disabled=false;}catch(error){preview.textContent=error.message;button.disabled=true;}return true;
+}

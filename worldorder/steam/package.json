@@ -1,0 +1,7 @@
+{
+  "name": "world-order-steam-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Optional native transport for the World Order desktop launcher",
+  "dependencies": { "steamworks.js": "0.4.0" }
+}

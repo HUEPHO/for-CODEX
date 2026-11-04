@@ -1,0 +1,25 @@
+/* Shared country identities and original TTS solid army markers. Load last. */
+.power-flag { display: inline-block; width: 1.5em; height: 1em; max-width: none; object-fit: contain; vertical-align: -.12em; border-radius: 1px; flex: none; }
+.game-client .client-power-mark { display: inline-flex; width: 28px; height: 19px; background: none; border-radius: 1px; }
+.game-client .client-power-mark .power-flag { width: 100%; height: 100%; }
+.room-flag .power-flag { width: 48px; height: 32px; }
+.client-event-power .power-flag { margin-right: .2em; width: 1.4em; height: .95em; }
+.client-event-power--short .power-flag { margin-right: 0; }
+.client-growth-ownership .power-flag { width: 16px; height: 11px; }
+.client-ally-token > small { padding: 1px; line-height: 0; border-color: #d9e8edaa; }
+.client-ally-token > small .power-flag { width: 14px; height: 9px; margin: 0; box-shadow: none; }
+
+/* CSS variables inherit from the nearest actual owner, including opponent and
+   foreign-army scopes. An explicit empty owner resets to the generic red token. */
+[data-army-owner] { --army-art: url('assets/token-army-CN.png'); }
+[data-army-owner="US"] { --army-art: url('assets/token-army-US.png'); }
+[data-army-owner="CN"] { --army-art: url('assets/token-army-CN.png'); }
+[data-army-owner="EU"] { --army-art: url('assets/token-army-EU.png'); }
+[data-army-owner="RU"] { --army-art: url('assets/token-army-RU.png'); }
+.resource-icon.resource-icon--army,
+.game-client .resource-icon.resource-icon--army { background-color: transparent; border-radius: 0; }
+.resource-icon.resource-icon--army::before,
+.game-client .resource-icon.resource-icon--army::before {
+ inset: 0; background: var(--army-art,url('assets/token-army-CN.png')) center / contain no-repeat;
+ mask: none; -webkit-mask: none;
+}

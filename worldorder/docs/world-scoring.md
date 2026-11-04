@@ -1,0 +1,15 @@
+# Map and aftermath checkpoint
+
+Grounding: supplied main-map image; base v1.0 pp.16 (placement/reset/conversion), 19 (FDI/Engage/threat), 20–21 (scoring, national abilities, majority tokens and victory ties), 22 (EU's initial African temporary influence); WIT v1.0 p.7 (SP majority).
+
+New tables use worldVersion=1. Region permanent slots have fixed positions; temporary influence is an ordered queue; conversion can create extra permanent influence outside printed slots. EU's starting African cube is temporary and awards no initial points. The prior total-count object is synchronized for other code. Legacy tables retain manual influence and aftermath, because historical slot/marker placement cannot be inferred safely.
+
+Ordinary permanent placement scores one immediately; temporary placement scores its printed position until full, when a new cube ejects the oldest and scores zero. Reset and conversion do not score. Removal is explicitly a manual card-effect operation and does not undo earlier earned points. These controls execute placement, NOT the action's costs or its authorization by a card.
+
+FDI markers are recorded on owned country cards, and Engage markers by player/region. Marking them does not execute an Invest or Engage action or pay any cost. Aftermath collects 2 × country value per recorded FDI and optionally 5 × allied-country count per withdrawn Engage token, once per player. Threat is also once per player, limited to printed interest regions, with military focus, US/EU NATO immunity, and optional one Engage token per region granting 2 defense per local ally.
+
+The scoring preview uses filled permanent slots to qualify regions. All influence counts; armies break regional influence ties, remaining ties receive the lowest occupied position. Black local influence participates as another competitor. Majority tokens use money 5/3/1, map armies 6/3/1, allied countries 7/4/2. National calculations include US regional influence leadership, RU military leadership within its interest regions (at least one army), and final CN FDI coverage. SP is a separate 5/3/1 step; objectives remain manual. Unused assets remain a once-only final +2 each. Final winners use VP, number of final first-place regional bonuses actually received, then total influence; remaining ties share victory.
+
+Regional/national/majority results are retained in scoringHistory; finalRegionWins preserves the final tie-break basis. National leadership comparisons are applied over all regions, including regions that do not qualify for regional points, following the separate national-ability wording. Special card modifications to threat, defense, influence/scoring and extra VP remain manual. This is not a complete card engine or a multiplayer room.
+
+Validated with the rulebook Middle East example (US14/EU7/RU10/CN1 regional points), NATO/military focus example, FDI income example, queue behavior, duplicate settlement prevention, atomic invalid marker withdrawal, save restoration, winner ties, SP ties, and the existing six-round smoke test. No browser QA performed.

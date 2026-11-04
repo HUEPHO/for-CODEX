@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-04",
+  "map": "dist/assets/map.webp",
+  "sources": [
+    {
+      "id": "army-US",
+      "file": "dist/assets/token-army-US.png",
+      "guid": "cf907f",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148694986/5BF18A1A0D28E89F0B2B3F6BC69D4CB8EE773304/",
+      "sha256": "60217e73d4c1c0fd95d6e1cfebc44367eccc4eed3abba02e0f49f4dcd7a7938d",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "army-CN",
+      "file": "dist/assets/token-army-CN.png",
+      "guid": "e99353",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148694417/B7262A67DAA23DCF934C3A0111D99ED727033136/",
+      "sha256": "c7391c4981769f85ef2a7cbaae4f20282523e53c744ea080ea67c54805e7bf88",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "army-EU",
+      "file": "dist/assets/token-army-EU.png",
+      "guid": "8a7257",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148694627/6323A52366CD41F1C8BA4BA1C7700C1C7A59B5FB/",
+      "sha256": "d4262c8a7a04b30f0ffac7c4435ad11e85f0228da87ee2487b60966e95008a46",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "army-RU",
+      "file": "dist/assets/token-army-RU.png",
+      "guid": "48b982",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148694779/C13B145FBB207D272AD283F060AA0A73171CC530/",
+      "sha256": "5a893da2233cf5b10c883dcd7892da44e4ed131819168d70a5ca0f4891c227f5",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "intervention-US",
+      "file": "dist/assets/token-intervention-US.png",
+      "guid": "2dda34",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849781185943/DF16E0F65FFD1F86BC9843C3FC6A36CB4EA01ADC/",
+      "sha256": "a11d444066af1c2ad7e248795aa4b98551e2012c19bb0a1072db9733118b29f6",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "intervention-CN",
+      "file": "dist/assets/token-intervention-CN.png",
+      "guid": "a308d9",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849781152642/CB7C3C8068B1014889E6A0E58DBD5CDB26403A1C/",
+      "sha256": "201d1ac676d845c5ce6030df38c1f7398338c56f99149696d7ddde439bc3b0c6",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "intervention-EU",
+      "file": "dist/assets/token-intervention-EU.png",
+      "guid": "1e62f0",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849781185231/283B51C63011E5A36A40B3F46C9D873376D57B62/",
+      "sha256": "ccb62aed0a99d35cd2d559eeb7ca797cc46247f1fae5f43521fe26cdabe3c00b",
+      "processing": "Original PNG bytes, no alterations"
+    },
+    {
+      "id": "intervention-RU",
+      "file": "dist/assets/token-intervention-RU.png",
+      "guid": "acc848",
+      "source": "references/TS_Save_12.json",
+      "field": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849781185522/259EFD14B75E2D0210BC51F7553A13E582B6AC40/",
+      "sha256": "a011becd42307ef751195b9dfd0b51c4f74f0fe27e7cbcc4a6155e042527ed92",
+      "processing": "Original PNG bytes, no alterations"
+    }
+  ]
+}

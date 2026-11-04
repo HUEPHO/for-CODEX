@@ -1,0 +1,51 @@
+/* PPT page 1: scrolling board at left, fixed cards/actions and player rail. */
+body.game-client.client-scroll{--client-command-width:320px;--client-toolbar-space:0px}
+.game-client.client-scroll #app{scroll-padding-top:12px}
+.game-client.client-scroll .game-table{width:calc(100% - var(--client-rail) - var(--client-command-width) - 34px);display:flex;flex-direction:column;gap:16px;padding:12px 12px 36px;min-width:0}
+.game-client.client-scroll .client-personal-area,.game-client.client-scroll .client-events-area,.game-client.client-scroll .client-market-area,.game-client.client-scroll .client-growth-area,.game-client.client-scroll .game-table>.stage{width:100%;min-width:0;flex:none}
+.game-client.client-scroll .client-personal-area{order:-1;display:flex;flex-direction:column;gap:12px}
+.game-client.client-scroll .client-own-board{width:100%;align-self:stretch}
+.game-client.client-scroll .client-executive-card .cardmeta{display:none}
+.game-client.client-scroll .client-practical{display:flex;flex-direction:column;gap:12px}
+.game-client.client-scroll .client-owned-cards{gap:14px}
+.game-client.client-scroll .client-owned-group--abilities{order:-1}
+.game-client.client-scroll .client-owned-group--abilities .client-owned-empty{margin:4px 0}
+.game-client.client-scroll .client-owned-group--abilities .client-owned-row:empty{display:none}
+.game-client.client-scroll .client-owned-group--abilities .client-executive-card{flex-basis:80px}
+.game-client.client-scroll .original-board-surface{min-width:0}
+.game-client.client-scroll .client-market-row{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.game-client.client-scroll .client-growth-area .growth-supply-grid{gap:8px}
+.game-client.client-scroll .client-command-dock{position:fixed;top:calc(var(--client-chrome) + 10px);right:calc(var(--client-rail) + 24px);bottom:10px;width:var(--client-command-width);display:flex;flex-direction:column;gap:10px;min-height:0;z-index:35}
+.game-client.client-scroll .client-command-dock>.tray{position:static;display:flex;flex-direction:column;flex:none;min-height:0;height:auto;padding:9px;overflow:visible;background:#142b3bf2;border:1px solid #526974;border-radius:5px}
+.game-client.client-scroll .client-command-dock .client-strategic-assets{padding:0 0 7px;margin:0 0 7px;border-bottom:1px solid #516c7c}
+.game-client.client-scroll .client-command-dock .client-strategic-assets>header{padding:0 0 5px}
+.game-client.client-scroll .client-command-dock .client-strategic-assets h2{font-size:12px}
+.game-client.client-scroll .client-command-dock .client-strategic-assets .client-owned-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.game-client.client-scroll .client-command-dock .client-strategic-assets .client-owned-card{width:100%;max-width:none;min-width:0}
+.game-client.client-scroll .client-command-dock .client-strategic-assets .cardbutton img{width:100%;height:90px;max-height:none;object-fit:contain}
+.game-client.client-scroll .client-command-dock .cardmeta{display:none}
+.game-client.client-scroll .client-command-dock .client-hand-heading{gap:5px;margin:0;font-size:11px}
+.game-client.client-scroll .client-command-dock .client-hand-heading nav{display:flex;gap:3px}
+.game-client.client-scroll .client-command-dock .client-hand-heading button{font-size:11px;padding:3px}
+.game-client.client-scroll .client-command-dock .client-hand-operator{margin-left:auto}
+.game-client.client-scroll .client-command-dock .client-hand-operator select{padding:2px;font-size:11px}
+.game-client.client-scroll .client-command-dock .hand{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:8px 0;min-height:0;max-height:none;overflow:visible}
+.game-client.client-scroll .client-command-dock .hand .cardbutton{width:100%;max-width:none;min-width:0;padding:0}
+.game-client.client-scroll .client-command-dock .hand .cardbutton img,.game-client.client-scroll .client-command-dock .hand .back{height:116px;max-height:none;width:100%;object-fit:contain}
+.game-client.client-scroll .client-command-dock .hand>[hidden]{display:none!important}
+.game-client.client-scroll .client-hand-pages{display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px}
+.game-client.client-scroll .client-hand-pages:empty{display:none}
+.game-client.client-scroll .client-hand-pages button{font-size:16px;padding:0 10px}
+.game-client.client-scroll .client-command-dock .client-hand-footer{gap:4px;font-size:10px}
+.game-client.client-scroll .client-command-dock .client-hand-footer button{font-size:10px;padding:4px}
+.game-client.client-scroll .client-command-dock>.action-workbench{position:static;inset:auto;flex:none;width:100%;height:auto;min-height:0;max-height:none;margin:0;overflow:visible;border:1px solid #927c52;border-radius:5px;background:#112736f7}
+.game-client.client-scroll .client-command-dock.has-action-form .client-strategic-assets{margin:0 0 3px;padding:0 0 3px}
+.game-client.client-scroll .client-command-dock.has-action-form .client-strategic-assets>header{display:none}
+.game-client.client-scroll .client-command-dock.has-action-form .client-strategic-assets .cardbutton img{height:32px}
+.game-client.client-scroll .client-command-dock.has-action-form .hand{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;padding:5px 0}
+.game-client.client-scroll .client-command-dock.has-action-form .hand .cardbutton img,.game-client.client-scroll .client-command-dock.has-action-form .hand .back{height:50px}
+.game-client.client-scroll .client-command-dock.has-action-form .client-owned-mark{display:none}
+.game-client.client-scroll .client-table-overlay{right:calc(var(--client-rail) + var(--client-command-width) + 32px);top:calc(var(--client-chrome) + 12px)}
+.game-client.client-scroll.client-setup .game-table>.tray{width:100%}
+@media(max-width:1280px){body.game-client.client-scroll{--client-command-width:280px}.game-client.client-scroll .client-command-dock .hand .cardbutton img,.game-client.client-scroll .client-command-dock .hand .back{height:103px}.game-client.client-scroll .client-command-dock .client-strategic-assets .cardbutton img{height:78px}}
+@media(max-height:800px){.game-client.client-scroll .client-command-dock .hand .cardbutton img,.game-client.client-scroll .client-command-dock .hand .back{height:89px}.game-client.client-scroll .client-command-dock .client-strategic-assets .cardbutton img{height:65px}.game-client.client-scroll .client-command-dock{gap:7px}.game-client.client-scroll .client-command-dock>.tray{padding:7px}}

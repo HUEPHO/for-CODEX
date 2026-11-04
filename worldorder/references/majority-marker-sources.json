@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-05",
+  "note": "Original four-player fronts; the 2/3/4 shown in the comparison screenshot are two-player backs, not player ranks.",
+  "sources": [
+    {
+      "id": "money",
+      "guid": "a532fe",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148689070/6D731BE0793D950BAE3B5D881120B28E5CE99F66/",
+      "sha256": "303925b2c907bb7d811000f77d6cbd3d1b2510c0efeff55299e0f10586e3650f",
+      "path": "dist/assets/majority-money.png",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL"
+    },
+    {
+      "id": "armies",
+      "guid": "abec28",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148689346/1099D7A1299AAB742E62243DF2EACE4B882AE47D/",
+      "sha256": "267a62529c2643d25e87bf075d020183cd760b6145aa693079be1e1657a75cd9",
+      "path": "dist/assets/majority-armies.png",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL"
+    },
+    {
+      "id": "allies",
+      "guid": "5b99a6",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148688829/01A94AEAA6BD97BDC34FFF8C598913B71BFAB4F5/",
+      "sha256": "4b2895b6a3d6d3b4186d6578845e2b78a82cefcca70906b45758f377ceb3d73a",
+      "path": "dist/assets/majority-allies.png",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL"
+    }
+  ]
+}

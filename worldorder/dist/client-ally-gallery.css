@@ -1,0 +1,65 @@
+/* Card gallery from the user's reference. Load after scroll and dialog styles. */
+.game-client.client-scroll .client-owned-group--allies .client-owned-allies,
+.client-public-allies,
+#viewer .client-public-allies {
+ display: grid; grid-template-columns: repeat(auto-fill,minmax(112px,1fr));
+ align-items: start; gap: 12px; padding: 7px 4px 10px; overflow: visible;
+}
+.game-client.client-scroll .client-owned-group--allies .client-owned-ally,
+.client-public-allies .client-owned-ally,
+#viewer .client-public-allies .client-owned-ally {
+ width: 100%; max-width: none; min-width: 0; margin: 0; padding: 0;
+ background: #0b141b; border: 1px solid #52697880; border-radius: 7px;
+ box-shadow: 0 3px 8px #0004; overflow: visible;
+}
+.game-client .client-owned-ally .client-ally-art,
+.client-public-allies .client-ally-art {
+ padding: 0; width: 100%;
+}
+.game-client.client-scroll .client-owned-ally .cardbutton,
+.client-public-allies .client-owned-ally .cardbutton { display: block; width: 100%; }
+.game-client.client-scroll .client-owned-ally .cardbutton img,
+.client-public-allies .client-owned-ally .cardbutton img,
+#viewer .client-public-allies .client-owned-ally .cardbutton img {
+ display: block; width: 100%; height: auto; max-height: none; max-width: 100%;
+ aspect-ratio: auto 486 / 745;
+ margin: 0; object-fit: contain; border-radius: 6px 6px 2px 2px;
+}
+.game-client.client-scroll .client-owned-ally .cardmeta,
+.client-public-allies .client-owned-ally .cardmeta,
+#viewer .client-public-allies .client-owned-ally .cardmeta { display: none; }
+.game-client.client-scroll .client-owned-ally .client-ally-underlay,
+.client-public-allies .client-owned-ally .client-ally-underlay,
+#viewer .client-public-allies .client-owned-ally .client-ally-underlay {
+ width: 100%; max-width: 100%; height: 100%; max-height: none; object-fit: contain;
+ top: calc(var(--underlay-index) * 3px); left: calc(50% + var(--underlay-index) * 3px);
+}
+.client-owned-ally.has-underlays { margin-right: 6px; }
+.client-ally-details { padding: 7px 8px 5px; text-align: left; line-height: 1.35; }
+.client-ally-details > strong { display: block; color: #f0efde; font-size: 14px; font-weight: 700; overflow-wrap: anywhere; margin-bottom: 3px; }
+.client-ally-details > span { display: block; color: #bac8cf; font-size: 11px; }
+.client-owned-ally .client-owned-marks { padding: 0 7px 6px; }
+.client-owned-ally .client-owned-marks:empty { display: none; }
+.client-owned-ally .client-owned-mark { font-size: 10px; }
+.client-owned-ally .client-owned-mark--fdi,
+.client-owned-ally .client-owned-mark--base { display: none; }
+/* The tokens never catch clicks: the existing ally button remains the target. */
+.client-ally-tokens {
+ position: absolute; z-index: 3; top: 42%; left: 6%; right: 6%;
+ display: flex; flex-wrap: wrap; align-items: start; justify-content: center;
+ gap: 3px; pointer-events: none;
+}
+.client-ally-token {
+ position: relative; display: inline-flex; justify-content: center; flex: 0 0 27%;
+ width: 27%; max-width: 36px; color: #fff; filter: drop-shadow(0 2px 2px #000b);
+}
+.client-ally-token > img { width: 100%; height: auto; object-fit: contain; }
+.client-ally-token > small {
+ position: absolute; right: -3px; bottom: -4px; background: #12212bee;
+ border: 1px solid var(--token-owner-color); color: var(--token-owner-color);
+ border-radius: 3px; padding: 0 2px; font-size: 8px; line-height: 1.4;
+}
+.client-ally-token > b {
+ position: absolute; top: -4px; right: -4px; padding: 0 2px; min-width: 14px;
+ border-radius: 4px; background: #102434; color: #fff3cf; font-size: 10px; line-height: 1.3;
+}

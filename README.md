@@ -1,3 +1,10 @@
+# 桌游电子版
+
+- [World Order HTML 网页版](worldorder/)：使用 Node.js 24，在 `worldorder` 目录运行 `node scripts/start-web.mjs`。最新界面记录见 [PPT 第一页布局](worldorder/docs/ui-page-one-2026-11-05.md)。
+- [WEIMAR 电子版](weimar/)：运行和开发说明见下文。
+
+---
+
 # WEIMAR 电子版
 
 桌游 The Weimar Republic 的电子版。项目代码在 [`weimar/`](weimar/)，当前为0.13版：三个时代的151个事件、3种选举牌面和四个历史剧本已接入；包含Steam Lobby桌面联机、玩家席位和私有手牌同步；界面使用原版棋盘与动态棋子，左侧为自己的手牌，右侧同时列出四张原版玩家垫板。保留浏览器热座、教程与牌效实验局。联机代码和模拟验证已完成，真实Steam双机验收待进行。

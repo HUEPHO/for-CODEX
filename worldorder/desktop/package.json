@@ -1,0 +1,8 @@
+{
+  "name": "world-order-desktop",
+  "productName": "World Order",
+  "version": "0.7.0",
+  "private": true,
+  "main": "main.cjs",
+  "description": "World Order Windows game client"
+}

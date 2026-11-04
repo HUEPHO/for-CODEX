@@ -1,0 +1,64 @@
+{
+  "handoff_date": "2026-09-16",
+  "project": "World Order four-player electronic table",
+  "base_commit": "24578a87a22068ead4a97eeddd7746e99d51ce38",
+  "base_commit_subject": "Record browser playthrough evidence and current automation limits",
+  "base_tracked_file_count": 520,
+  "last_existing_site_release": {
+    "label": "v26",
+    "url": "https://world-order-table.dtyppp.chatgpt.site",
+    "project_id": "appgprj_6aa685cfed148191a0adfd291d4cb2d5",
+    "version_id": "appgprj_6aa685cfed148191a0adfd291d4cb2d5~appgver_317a01d52f7c8191bedbb9fc76427fbf",
+    "deployment_id": "appgdep_6aa9ee53f7048191be5759c5eb749f6c",
+    "deployed_at": "2026-09-16T01:18:26.805180+00:00"
+  },
+  "base_is_deployed": true,
+  "handoff_additions_deployed": false,
+  "modified_existing_files": {
+    "package.json": "Add dev:local and test:local scripts; existing dependencies and scripts unchanged.",
+    "README.md": "Prepend updated handoff navigation; preserve original content."
+  },
+  "unchanged": "Every other tracked v26 source file is byte-identical, including all game/UI/assets/production-server/schema/check files, Vite config and package lock.",
+  "added_files": [
+    "AGENTS.md",
+    "CODEX_TASK.md",
+    "MANIFEST.sha256",
+    "SOURCE_REVISION.json",
+    "START_HERE.md",
+    "docs/ARCHITECTURE.md",
+    "docs/CONFIRMED_RULES.md",
+    "docs/HANDOFF_STATUS.md",
+    "docs/RUN_AND_DEPLOY.md",
+    "docs/VERIFICATION.md",
+    "references/README.md",
+    "references/TS_Save_12.json",
+    "references/World_Order_-_Diplomacy_&_Dominance_-_Rulebook_v1.0.pdf",
+    "references/World_Order_-_Rulebook_v1.0.pdf",
+    "references/World_Order_-_World_in_Turmoil_-_Rulebook_v1.0.pdf",
+    "scripts/check-local.mjs",
+    "scripts/dev-local.mjs"
+  ],
+  "excluded": [
+    "Git history/config",
+    "node_modules",
+    "dist/client",
+    "dist/server",
+    "dist/.openai",
+    "credentials / environment files",
+    "production room data",
+    "browser local saves",
+    "local development SQLite and test fixtures"
+  ],
+  "original_checkout_changed": false,
+  "original_import_audit_cache_available": false,
+  "new_package_checks": [
+    "portable HTTP/four seats/SQLite restart",
+    "520 source files retained and exact declared delta",
+    "388 card images present",
+    "4 original attachments exact",
+    "lockfile dependency consistency",
+    "archive paths/CRC/SHA-256 manifest"
+  ],
+  "verification_report": "docs/VERIFICATION.md",
+  "browser_record": "docs/browser-session-2026-09-16.md"
+}

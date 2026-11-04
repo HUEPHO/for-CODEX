@@ -1,0 +1,13 @@
+# First automatic action cards
+
+Sources: base rulebook v1.0 pp.12 (Pass),13 (Engage),14 (Invest); p.5 components (Engage limits US3/EU3/CN2/RU2); all nine supplied starter card faces were checked individually. EU Soft Power specifically discounts Europe, Middle East/North Africa and Central Asia by one diplomacy.
+
+BASIC_CARDS is an explicit ID allowlist of four Foreign Direct Investment, four Diplomatic Engagement and EU Soft Power cards. It is not inferred from research stats, which do not uniquely identify card effects. Other starter/market cards retain manual play. Country investment prices are imported from their supplied TTS metadata; the target's exact price and value are used, not user-entered amounts.
+
+Investment requires an owned ready country without FDI, pays printed money, exhausts it, places FDI and chosen influence, and scores the slot. Engage requires an ally in the target region, pays its printed diplomacy cost minus selected ready local allies' values, diplomatic focus -2 and the verified Soft Power discount; cost floors at zero. It places influence and an Engage token. Once supply is used, the player must select an existing token to relocate. Pass covers a chosen hand card if possible, awards ten money and ends the action; no hand is valid.
+
+These automatic card actions consume the hand card and advance exactly one turn. Current-turn manual plays are tracked to prohibit combining them with a second ordinary automatic action or Pass. Manual additional plays remain available for still-manual card effects. A returned manual card removes its current-turn record; cards from prior turns cannot be returned through this operation. The global Undo restores the prior whole state.
+
+Existing six-round saves acquire turn tracking at their next End Action; do not infer which already-played cards belong to an old in-progress turn. Automatic investment/Engage require worldVersion slot/marker records. No destructive migration. Legacy tables remain usable with manual card movement. Pass's covered cards are tracked separately and clear when that player's played cards are discarded at research.
+
+Optional SP follow-ups and special-card modifiers are not executed; these buttons perform only the verified basic effects. They are not a complete action-permission/card engine or networking implementation. Necessary checks cover money/FDI/exhaustion/influence atomicity, discount combinations, token relocation, invalid action rollback, turn advancement, repeated actions, empty-hand Pass and sixteen passes reaching research with only remaining hand bonuses.

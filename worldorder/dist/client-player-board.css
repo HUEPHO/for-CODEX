@@ -1,0 +1,158 @@
+/* Load after client-reference.css. Solid resource marker overrides load last. */
+.game-client .client-player { gap: 3px; padding: 7px 9px; }
+.game-client .client-player .resource-icon { width: 22px; height: 22px; min-width: 22px; min-height: 22px; background-color: #fffdf6; }
+.game-client .client-player-resources .resource-icon { width: 26px; height: 26px; min-width: 26px; min-height: 26px; background-size: 90% 90%; }
+.game-client .client-player .resource-icon--army { width: 30px; min-width: 30px; background-color: #fffdf6; --army-color: #e30613; --army-ground: #fffdf6; }
+.game-client .client-player .resource-icon--army::before { inset: 5% 2%; }
+.client-player-planline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px 6px; }
+.client-player-planline .client-player-growth { gap: 4px; }
+.client-player-planline .client-growth-level { min-width: 14px; height: 15px; font-size: 9px; }
+.client-player-planline .client-player-growth-levels { gap: 2px; }
+.client-player-planline .client-player-deals { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; color: #c6d7df; }
+.client-player-deals small, .client-player-commerce > small { font-size: 9px; color: #9bb1bd; }
+.client-player-deals b { font-size: 10px; font-weight: 500; }
+.client-player-deals em { font-size: 9px; font-style: normal; color: #e0c083; }
+.game-client .client-player-stock .client-resource-value { flex-direction: column; gap: 2px; font-size: 12px; }
+.game-client .client-player-resource-row { grid-template-columns: 20px repeat(7,minmax(0,1fr)); gap: 2px; }
+.game-client .client-player-resources { padding-top: 4px; gap: 3px; }
+.client-player-commerce { display: flex; align-items: center; gap: 5px; color: #d2e0e5; padding-top: 3px; border-top: 1px solid #7798ab33; }
+.client-commerce-goods { display: inline-flex; align-items: center; gap: 2px; font-size: 10px; }
+.client-commerce-goods > small { font-size: 8px; color: #8fa7b6; }
+.client-commerce-cards { display: inline-flex; gap: 3px; margin-left: auto; }
+.client-commerce-card { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 19px; font-style: normal; font-size: 10px; border: 1px solid #b0a777; border-radius: 2px; background: #4c684f; color: #f7f1d2; }
+.client-commerce-card.is-used { background: #273943; border-color: #687c89; color: #9fb0ba; }
+.client-commerce-card.is-unknown { background: #4d4431; }
+.client-player-commerce > b { font-size: 10px; font-weight: 550; }
+.game-client .client-commerce-goods .resource-icon { height: 19px; width: 19px; min-width: 19px; min-height: 19px; }
+
+.client-player-board { --board-ink: #eaf1f4; color: var(--board-ink); border: 1px solid color-mix(in srgb,var(--player-color) 80%,#35434a); border-radius: 11px; padding: 17px; background: linear-gradient(115deg,color-mix(in srgb,var(--player-color) 26%,#101d27),#111f2bf2); box-shadow: inset 0 0 60px #0002; }
+.client-player-board * { box-sizing: border-box; }
+.client-player-board h2,.client-player-board h3,.client-player-board p { margin: 0; }
+.client-player-board h2 { color: #fff; font-size: 25px; font-weight: 650; letter-spacing: .08em; }
+.client-player-board h3 { font-size: 16px; font-weight: 650; color: #fff; }
+.player-board-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 15px; }
+.player-board-heading > div > small { color: var(--player-color); font-size: 9px; letter-spacing: .2em; }
+.player-board-heading > span { color: #cee0e9; font-size: 12px; }
+.client-player-board .resource-icon { width: 25px; height: 25px; min-width: 25px; min-height: 25px; margin: 0; background-color: #fffdf6; background-size: 88% 88%; border-radius: 3px; vertical-align: middle; }
+.client-player-board .resource-icon--army { width: 34px; min-width: 34px; --army-color: #e30613; --army-ground: #fffdf6; }
+.client-player-board .resource-icon--army::before { inset: 5% 2%; }
+.player-board-primary { padding: 10px 12px 12px; border: 1px solid #b0c5cd55; border-radius: 3px; background: #07192344; }
+.player-board-primary > h3 { font-size: 14px; margin-bottom: 9px; }
+.player-board-primary > div { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.player-board-production { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.player-board-resource { display: inline-flex; align-items: center; justify-content: center; flex-direction: column; gap: 2px; flex: 0 0 34px; }
+.player-board-resource > small { font-size: 9px; color: #b8cbd4; white-space: nowrap; }
+.player-board-steps { display: flex; gap: 2px; flex: 1; min-width: 0; align-items: center; }
+.player-board-step { display: flex; align-items: center; justify-content: center; flex: 1; min-width: 17px; height: 33px; padding: 0 2px; font-size: 17px; font-weight: 700; background: #e8e9df; color: #273a44; clip-path: polygon(0 0,40% 0,44% 10%,58% 10%,62% 0,100% 0,100% 100%,62% 100%,58% 90%,44% 90%,40% 100%,0 100%); }
+.player-board-step.is-current { background: var(--player-color); color: #102331; box-shadow: inset 0 0 0 3px #fff9; }
+.player-board-production-value { color: var(--player-color); font-size: 15px; }
+.player-board-focuses { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin-top: 9px; }
+.player-board-focus { display: flex; flex-direction: column; gap: 8px; padding: 12px; min-width: 0; background: #07192366; border: 1px solid #90b0c355; border-radius: 3px; }
+.player-board-focus.is-current { border-color: var(--player-color); box-shadow: inset 0 0 0 1px var(--player-color); background: color-mix(in srgb,var(--player-color) 12%,#122431); }
+.player-board-focus > header { display: flex; gap: 5px; justify-content: space-between; align-items: center; }
+.player-board-focus > header > h3 { font-size: 20px; letter-spacing: .05em; }
+.player-board-focus-marker { color: var(--player-color); font-size: 28px; line-height: 1; }
+.player-board-ready { font-size: 12px; color: #d6e4eb; }
+.player-board-ready > small { font-size: 10px; }
+.player-board-focus-rules { font-size: 11px; line-height: 1.75; color: #b5cbd7; flex: 1; }
+.player-board-focus-rules .resource-icon { width: 17px; height: 17px; min-width: 17px; min-height: 17px; }
+.player-board-focus-tracks { display: grid; gap: 9px; margin-top: 7px; }
+.player-board-prosperity { padding: 12px; margin-top: 9px; border: 1px solid #b0c5cd55; background: #07192344; border-radius: 3px; }
+.player-board-prosperity > header { display: flex; align-items: center; gap: 12px; }
+.player-board-prosperity > header > strong { font-size: 22px; color: var(--player-color); }
+.player-board-prosperity > header > strong > small { font-size: 11px; color: #9bb4c1; }
+.player-board-prosperity > header > p { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 11px; }
+.player-board-prosperity > header .resource-icon { width: 20px; height: 20px; min-width: 20px; min-height: 20px; }
+.player-board-prosperity-track { display: grid; grid-template-columns: .6fr repeat(5,1fr); gap: 10px; margin-top: 10px; }
+.player-board-prosperity-step { display: flex; position: relative; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 8px 3px 5px; border: 1px solid #b0c5cd44; border-radius: 5px; background: #283e4977; min-height: 88px; }
+.player-board-prosperity-step.is-current { border-color: var(--player-color); box-shadow: inset 0 0 0 2px var(--player-color); background: color-mix(in srgb,var(--player-color) 18%,#172733); }
+.player-board-prosperity-step > b { font-size: 21px; color: #f5eedb; }
+.player-board-prosperity-step > small,.player-board-prosperity-step > b { display: flex; align-items: center; gap: 3px; }
+.player-board-prosperity-step > small { font-size: 11px; color: #c9d5d9; }
+.player-board-prosperity-step > em { position: absolute; top: 3px; left: 4px; font-size: 9px; font-style: normal; color: #adc0ca; }
+.player-board-prosperity-step .resource-icon { width: 19px; height: 19px; min-width: 19px; min-height: 19px; }
+.player-board-bonus { font-size: 11px; color: #e9d398; margin-top: 8px !important; }
+.player-board-trade { display: grid; grid-template-columns: 1fr 1.35fr; gap: 10px; margin-top: 11px; }
+.player-board-commerce,.player-board-agreements { padding: 12px; border: 1px solid #7999aa77; border-radius: 4px; background: #0c2433aa; }
+.player-board-commerce > header,.player-board-agreements > header { display: flex; justify-content: space-between; gap: 6px; align-items: center; margin-bottom: 10px; }
+.player-board-commerce header h3,.player-board-agreements header h3 { font-size: 14px; }
+.player-board-commerce header > span,.player-board-agreements header > span { font-size: 11px; color: #d3c18d; }
+.player-board-export-cards { display: flex; gap: 7px; }
+.player-board-export-card { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 5px; background: #375745; border: 1px solid #9bb395; border-radius: 4px; }
+.player-board-export-card > small { font-size: 10px; color: #becfc4; }
+.player-board-export-card > strong { font-size: 12px; color: #f0e7c7; }
+.player-board-export-goods { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; align-items: center; font-size: 14px; }
+.player-board-export-goods > small { font-size: 9px; color: #a8b8b0; }
+.player-board-export-card.is-used { background: repeating-linear-gradient(45deg,#23343d,#23343d 5px,#293b46 5px,#293b46 10px); border-color: #607583; }
+.player-board-export-card.is-used .player-board-export-goods { opacity: .55; }
+.player-board-export-card.is-used > strong { color: #9eafb8; }
+.player-board-export-card.is-unknown { background: #484334; }
+.player-board-commerce > p,.player-board-agreements > p { margin-top: 9px; font-size: 10px; color: #91adbd; line-height: 1.65; }
+.player-board-partners { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px; }
+.player-board-partner { display: flex; flex-direction: column; align-items: center; gap: 5px; background: #1d394c; padding: 7px 3px; border-radius: 3px; }
+.player-board-partner > b { font-size: 11px; }
+.player-board-partner > span { display: flex; justify-content: center; flex-wrap: wrap; gap: 3px; align-items: center; font-size: 12px; }
+.player-board-partner > span > small { font-size: 9px; }
+.player-board-partner .resource-icon { width: 21px; height: 21px; min-width: 21px; min-height: 21px; }
+.player-board-active-agreements { display: grid; gap: 5px; margin-top: 10px; }
+.player-board-active-agreements > article { border-top: 1px solid #90a6b344; padding-top: 7px; }
+.player-board-active-agreements article > div { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #decd9f; }
+.player-board-active-agreements article > div > span { color: #a1b8c5; font-size: 10px; white-space: nowrap; }
+.player-board-active-agreements article > p { font-size: 10px; color: #9cb5c3; line-height: 1.6; margin-top: 3px; }
+@media(max-width:1280px) {
+ .game-client .client-player-resources .resource-icon { width: 24px; height: 24px; min-width: 24px; min-height: 24px; }
+ .game-client .client-player-resources .resource-icon--army { width: 28px; min-width: 28px; }
+ .game-client .client-player-resource-row { grid-template-columns: 17px repeat(7,minmax(0,1fr)); gap: 1px; }
+ .game-client .client-player { padding-inline: 6px; }
+ .client-player-commerce { gap: 3px; }
+ .client-commerce-card { width: 12px; }
+}
+@media(max-height:800px) {
+ .game-client .client-player { gap: 2px; padding-block: 4px; }
+ .game-client .client-player-heading .resource-icon,.game-client .client-player-metrics .resource-icon { width: 18px; height: 18px; min-width: 18px; min-height: 18px; }
+ .game-client .client-player-metrics { min-height: 18px; }
+ .game-client .client-player-resources { padding-top: 2px; gap: 2px; }
+ .game-client .client-player-stock .client-resource-value { font-size: 10px; gap: 0; }
+ .game-client .client-player-resource-row > small { font-size: 8px; }
+ .client-player-commerce { padding-top: 2px; }
+}
+@media(max-width:800px) {
+ .client-player-board { padding: 10px; }
+ .player-board-heading { flex-wrap: wrap; }
+ .client-player-board h2 { font-size: 20px; }
+ .player-board-primary > div { gap: 7px; }
+ .player-board-production { gap: 4px; }
+ .player-board-focus { padding: 9px; }
+ .player-board-focus > header > h3 { font-size: 15px; }
+ .player-board-step { font-size: 14px; min-width: 13px; }
+ .player-board-trade { grid-template-columns: 1fr; }
+ .player-board-prosperity-track { gap: 5px; }
+}
+
+/* The artwork remains untouched; only its upper 714 / 1500 width is visible.
+   Token coordinates scale in the same container, including the 1072px EU art. */
+.client-player-board.client-player-board--printed,
+.game-client .client-player-board.client-player-board--printed { padding: 0; overflow: hidden; border-radius: 8px; background: #101d27; }
+.printed-board-crop { position: relative; width: 100%; overflow: hidden; isolation: isolate; container-type: inline-size; }
+.printed-board-crop > .printed-board-art { position: absolute; inset: 0 auto auto 0; display: block; width: 100%; height: auto; max-width: none; max-height: none; margin: 0; user-select: none; pointer-events: none; }
+.printed-board-production,.printed-board-focus,.printed-board-prosperity { position: absolute; display: block; transform: translate(-50%,-50%); aspect-ratio: 1; z-index: 1; }
+.printed-board-production { width: 3.0667%; }
+.printed-production-cube { display: grid; place-items: center; width: 100%; height: 100%; position: relative; border: .15cqw solid #fff7; border-radius: .18cqw; background: linear-gradient(135deg,color-mix(in srgb,var(--player-color) 55%,#fff) 0%,var(--player-color) 55%,color-mix(in srgb,var(--player-color) 58%,#10202c) 100%); color: #102431; font: 800 1.55cqw/1 system-ui,sans-serif; box-shadow: inset .18cqw .18cqw .12cqw #fff7,inset -.18cqw -.18cqw .12cqw #0005,.24cqw .28cqw .22cqw #0009; }
+.printed-production-cube::after { content: ''; position: absolute; inset: 12%; border: .07cqw solid #ffffff55; border-radius: .08cqw; pointer-events: none; }
+.printed-board-focus { width: 4.1333%; }
+.printed-focus-cylinder { display: block; position: absolute; width: 86%; height: 82%; left: 7%; top: 13%; border-radius: 50% / 18%; border: .1cqw solid #fff7; background: linear-gradient(90deg,color-mix(in srgb,var(--player-color) 55%,#0a1623),var(--player-color) 36%,color-mix(in srgb,var(--player-color) 70%,#fff) 52%,color-mix(in srgb,var(--player-color) 55%,#0a1623)); box-shadow: .22cqw .3cqw .24cqw #0009,inset 0 -.26cqw .1cqw #0005; }
+.printed-focus-cylinder > i { display: block; position: absolute; left: -.1cqw; right: -.1cqw; top: -10%; height: 36%; border-radius: 50%; border: .12cqw solid #fff9; background: radial-gradient(ellipse at 35% 25%,color-mix(in srgb,var(--player-color) 42%,#fff),var(--player-color) 80%); box-shadow: inset 0 .08cqw .14cqw #fff9,0 .1cqw .08cqw #0003; }
+.printed-board-prosperity { width: 6.4667%; }
+.printed-prosperity-ring { display: block; position: absolute; inset: 3%; border: .26cqw solid #fff6ce; border-radius: 50%; box-shadow: 0 0 0 .12cqw #3f3027,0 .14cqw .2cqw #0008,inset 0 0 .18cqw #0008; }
+.printed-prosperity-ring::after { content: ''; position: absolute; left: 50%; top: -.48cqw; width: .75cqw; height: .75cqw; transform: translateX(-50%) rotate(45deg); background: #fff6ce; border: .1cqw solid #675943; }
+.printed-board-production.is-unknown { top: 0; left: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.printed-board-status { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 5px 12px; padding: 9px 12px; color: #d5e2e7; background: #102431; border-top: 1px solid #65788766; font-size: 11px; line-height: 1.5; }
+.printed-board-status > span:first-child { color: #ead29a; }
+.printed-board-status .printed-board-bonus { flex: 1 0 100%; color: #e9d398; font-size: 10px; }
+.client-player-trade-info { color: #eaf1f4; }
+.client-player-trade-info * { box-sizing: border-box; }
+.client-player-trade-info h3,.client-player-trade-info p { margin: 0; }
+.client-player-trade-info .resource-icon { width: 25px; height: 25px; min-width: 25px; min-height: 25px; margin: 0; background-color: #fffdf6; background-size: 88% 88%; border-radius: 3px; vertical-align: middle; }
+.client-player-trade-info .resource-icon--army { width: 34px; min-width: 34px; --army-color: #e30613; --army-ground: #fffdf6; }
+.client-player-trade-info .resource-icon--army::before { inset: 5% 2%; }
+.client-player-trade-info .player-board-commerce > p,.client-player-trade-info .player-board-agreements > p { margin-top: 9px; }

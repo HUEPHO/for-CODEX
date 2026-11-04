@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createState,applyAction} from '../dist/engine.js';
+import {newFlow} from '../dist/flow.js';
+import {researchPreview,researchCost,countryValue} from '../dist/research.js';
+import {RESEARCH_DATA} from '../dist/research-data.js';
+const cards=JSON.parse(fs.readFileSync(new URL('../dist/cards.json',import.meta.url)));
+const find=notes=>cards.find(c=>c.notes===notes).id;
+let s=createState(cards);for(const p of Object.values(s.players)){p.openingChoices=null;p.assetChoices=null;p.objectiveChoices=null;}
+s.flow=newFlow(['US','RU','EU','CN']);s.flow.step='research';s.phase='研究';s.current='US';
+s.players.US.hand=[find('40C7'),find('21D'),find('41T7')];s.players.US.resources[5]=10;s.players.US.resources[6]=99;
+s.players.US.played=[find('13C')];s.players.US.allies=[find('Norway-10--E-1-E')];
+const preview=researchPreview(s);assert.equal(preview.total,12);assert.equal(preview.money,10);assert.equal(preview.armies,1);assert.equal(preview.lostDiplomacy,1);
+const money=s.players.US.money;s=applyAction(s,{type:'startResearch',research:999,bonusesConfirmed:false});
+assert.equal(s.flow.research.remaining,12);assert.equal(s.players.US.money,money+10);assert.equal(s.players.US.resources[5],10);assert.equal(s.players.US.resources[6],100);assert.equal(s.players.US.played.length,0);
+assert.throws(()=>applyAction(s,{type:'startResearch'}));
+s=JSON.parse(JSON.stringify(s));const id=find('36C4');s.market=[id];s.marketDeck=[];
+s=applyAction(s,{type:'researchBuy',id,cost:0});assert.equal(s.flow.research.remaining,8);assert.equal(s.players.US.deck[0],id);
+const ally=s.players.US.allies[0];s=applyAction(s,{type:'researchAlly',id:ally,value:999});assert.equal(s.flow.research.remaining,9);assert.throws(()=>applyAction(s,{type:'researchAlly',id:ally}));
+s.market=[find('40C7')];s.flow.research.remaining=1;const before=JSON.stringify(s);assert.throws(()=>applyAction(s,{type:'researchBuy',id:s.market[0],cost:0}));assert.equal(JSON.stringify(s),before);
+assert.equal(researchCost(find('40C7')),7);assert.equal(countryValue(find('Brazil-20---3-M')),3);assert.equal(Object.keys(RESEARCH_DATA).length,215);
+assert.throws(()=>researchCost('unknown'));assert.throws(()=>countryValue(find('13C')));
+console.log('Passed automatic research: real bonuses/costs, ten-money encoding, diplomacy cap, unlimited armies, ignored client values, save/restore and duplicate protection.');

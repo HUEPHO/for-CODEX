@@ -1,0 +1,1538 @@
+[
+  {
+    "id": "c35627e0bba08",
+    "name": "挪威",
+    "type": "startingCountry",
+    "cardId": 1910,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c4d2b5add5fd4",
+    "name": "白俄罗斯",
+    "type": "startingCountry",
+    "cardId": 1902,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c67140897200a",
+    "name": "亚美尼亚",
+    "type": "startingCountry",
+    "cardId": 1830,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "c5edff473d37a",
+    "name": "加拿大",
+    "type": "startingCountry",
+    "cardId": 1817,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "cb427f6dd4283",
+    "name": "墨西哥",
+    "type": "startingCountry",
+    "cardId": 1824,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "c5b14895e1f71",
+    "name": "伊拉克",
+    "type": "startingCountry",
+    "cardId": 1918,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c669f1bf5bc5f",
+    "name": "约旦",
+    "type": "startingCountry",
+    "cardId": 1921,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "cb617d12c21c0",
+    "name": "叙利亚",
+    "type": "startingCountry",
+    "cardId": 1926,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c77fa4750ee97",
+    "name": "尼日利亚",
+    "type": "startingCountry",
+    "cardId": 1810,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "c136d13172c98",
+    "name": "南非",
+    "type": "startingCountry",
+    "cardId": 1811,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "c5cc315dcb8bd",
+    "name": "印度",
+    "type": "startingCountry",
+    "cardId": 1932,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c3b8dd93d4f06",
+    "name": "老挝",
+    "type": "startingCountry",
+    "cardId": 1846,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "ce2df59690e60",
+    "name": "日本",
+    "type": "startingCountry",
+    "cardId": 1844,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "cd3e3a0f1fe94",
+    "name": "巴基斯坦",
+    "type": "startingCountry",
+    "cardId": 1937,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646134/93E4C4FB9C65097F3EE55B0932FEF9FA28B423F9/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782646217/DD2C309C24F29ED05FA129BA7B6F1CFC8250F8EF/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-0.png"
+  },
+  {
+    "id": "c73da57a51c66",
+    "name": "塔吉克斯坦",
+    "type": "startingCountry",
+    "cardId": 1837,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645602/54ADFF6855EC4E448783A9CE4C64BEC1822E7678/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782645713/B4D76A841D44C06830DFFA3C76D976EF7949688E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-1.png"
+  },
+  {
+    "id": "ca03520c27e87",
+    "name": "欧盟成员国",
+    "type": "startingCountry",
+    "cardId": 40406,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782639313/D6F09C95F734A58BB59ECBCFFB2C313DE44C8819/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782639375/5BACFE18A4F212F6C9BFFF31AC1E93615F027683/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-2.png"
+  },
+  {
+    "id": "c5bc763998f23",
+    "name": "冰岛",
+    "type": "startingCountry",
+    "cardId": 40515,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782639313/D6F09C95F734A58BB59ECBCFFB2C313DE44C8819/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/23184849782639375/5BACFE18A4F212F6C9BFFF31AC1E93615F027683/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-2.png"
+  },
+  {
+    "id": "ca627fdd439a2",
+    "name": "智利",
+    "type": "country",
+    "cardId": 13404,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "cb4eb4d5ab2b9",
+    "name": "巴西",
+    "type": "country",
+    "cardId": 13401,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c6b8383321370",
+    "name": "亚美尼亚",
+    "type": "country",
+    "cardId": 13301,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "ce3c745de13c1",
+    "name": "格鲁吉亚",
+    "type": "country",
+    "cardId": 13304,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "cc9a7e443adf4",
+    "name": "哈萨克斯坦",
+    "type": "country",
+    "cardId": 13305,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "cac28e94eec19",
+    "name": "阿塞拜疆",
+    "type": "country",
+    "cardId": 13303,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c6dedb633c722",
+    "name": "塔吉克斯坦",
+    "type": "country",
+    "cardId": 13308,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c7d6fffb49986",
+    "name": "土库曼斯坦",
+    "type": "country",
+    "cardId": 13310,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "cf58f6e021ef9",
+    "name": "阿富汗",
+    "type": "country",
+    "cardId": 13300,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c7ab5e63ef4c7",
+    "name": "乌兹别克斯坦",
+    "type": "country",
+    "cardId": 13311,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c2183dda72071",
+    "name": "吉尔吉斯斯坦",
+    "type": "country",
+    "cardId": 13306,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c4796301c5d0a",
+    "name": "蒙古",
+    "type": "country",
+    "cardId": 13307,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12418712002368045520/5519E5E587F27E998F4CBCE6F0576E80C93C85DE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16310663352261720277/27C51C4597731BB1CE5DA5F374E7530D70EDEDC4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-4.png"
+  },
+  {
+    "id": "c5b01c4f40686",
+    "name": "波斯尼亚和黑塞哥维那",
+    "type": "country",
+    "cardId": 13103,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "cebf787c1e1c0",
+    "name": "白俄罗斯",
+    "type": "country",
+    "cardId": 13101,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "cab608e57ef1f",
+    "name": "瑞士",
+    "type": "country",
+    "cardId": 13112,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "cb4cde4bb826f",
+    "name": "塞尔维亚",
+    "type": "country",
+    "cardId": 13111,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c07ef5e7f9a84",
+    "name": "阿尔巴尼亚",
+    "type": "country",
+    "cardId": 13100,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c54459f8226fa",
+    "name": "乌克兰",
+    "type": "country",
+    "cardId": 13113,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c168da92927e6",
+    "name": "摩尔多瓦",
+    "type": "country",
+    "cardId": 13108,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c5e5a30872c04",
+    "name": "冰岛",
+    "type": "country",
+    "cardId": 13106,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c8ec654f26579",
+    "name": "克罗地亚",
+    "type": "country",
+    "cardId": 13104,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c0bcc4a617152",
+    "name": "挪威",
+    "type": "country",
+    "cardId": 13109,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13740949832387119220/3D18FB8834DE68A68B1182A4024EC93D5F3A09EE/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/12403259776202773666/A2AE933721E6323357A8ACBD6AF1C328B8EA198B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-5.png"
+  },
+  {
+    "id": "c2dbb5cc7584f",
+    "name": "加拿大",
+    "type": "country",
+    "cardId": 13402,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "cc8a91b52484d",
+    "name": "哥伦比亚",
+    "type": "country",
+    "cardId": 13405,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c644d8da9e0d3",
+    "name": "秘鲁",
+    "type": "country",
+    "cardId": 16100,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/9647209793836308382/FC547023E069D30DBEB6B8ACF89C9DC5D0A5A926/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16936360564129721524/704BEB8E6CDE853F53185957CCFF1C522A08D410/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "atlas": "atlas-6.png"
+  },
+  {
+    "id": "cf4c10d366e4e",
+    "name": "阿根廷",
+    "type": "country",
+    "cardId": 13400,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "caa3cb3336c57",
+    "name": "洪都拉斯",
+    "type": "country",
+    "cardId": 13409,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c55a2a8d95002",
+    "name": "委内瑞拉",
+    "type": "country",
+    "cardId": 16000,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10068140508534963918/575C711EA70EA9CCD6DAB6AAE9EF6142A3E2D59B/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14372051678163705335/787548B5BC9F746818BCE1E1E4C686A7C6FB89BF/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "atlas": "atlas-7.png"
+  },
+  {
+    "id": "cdf3556dc3d98",
+    "name": "厄瓜多尔",
+    "type": "country",
+    "cardId": 13407,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c1ffd4842be68",
+    "name": "萨尔瓦多",
+    "type": "country",
+    "cardId": 13408,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c535cbd202a8d",
+    "name": "墨西哥",
+    "type": "country",
+    "cardId": 13411,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "cbbdbf51c1148",
+    "name": "古巴",
+    "type": "country",
+    "cardId": 13406,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/16848795946580430508/BBEDFB9B5DC79C97DFB65A68F7E45ACB1618BE97/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/18071841745970812139/B5CF1A88DEF8C16FC5F9487E98BD7B279DE66AD5/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-3.png"
+  },
+  {
+    "id": "c5c64061289cd",
+    "name": "苏丹",
+    "type": "country",
+    "cardId": 13513,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c62ddfb85cf57",
+    "name": "南非",
+    "type": "country",
+    "cardId": 13512,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "cf62b96419805",
+    "name": "马里",
+    "type": "country",
+    "cardId": 13507,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c7a73a97b7db2",
+    "name": "尼日尔",
+    "type": "country",
+    "cardId": 13508,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c663faca7acf4",
+    "name": "布基纳法索",
+    "type": "country",
+    "cardId": 13501,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c839c366d8d15",
+    "name": "埃塞俄比亚",
+    "type": "country",
+    "cardId": 13504,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c19ca2ee993e0",
+    "name": "安哥拉",
+    "type": "country",
+    "cardId": 13500,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c03315dd1d1b0",
+    "name": "赤道几内亚",
+    "type": "country",
+    "cardId": 13505,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c233299827257",
+    "name": "尼日利亚",
+    "type": "country",
+    "cardId": 13509,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c71ff41baf2f2",
+    "name": "吉布提",
+    "type": "country",
+    "cardId": 13503,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "cc3694eb07811",
+    "name": "肯尼亚",
+    "type": "country",
+    "cardId": 13506,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "cdbdcea711dd5",
+    "name": "中非共和国",
+    "type": "country",
+    "cardId": 13502,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/10307470231413978663/A68ABB4F10FA77CD0DF96776873B86293111475F/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/9358194777897616953/8A8B1495BA5CED356E3D25A949124DD321653E67/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-8.png"
+  },
+  {
+    "id": "c81fa1b6808c6",
+    "name": "斯里兰卡",
+    "type": "country",
+    "cardId": 40609,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "cc2ef36f51fd4",
+    "name": "尼泊尔",
+    "type": "country",
+    "cardId": 40706,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "c0989aedbfcb9",
+    "name": "马尔代夫",
+    "type": "country",
+    "cardId": 40804,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "ccdb347cccb6e",
+    "name": "不丹",
+    "type": "country",
+    "cardId": 40901,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "cf807619c5a7b",
+    "name": "缅甸",
+    "type": "country",
+    "cardId": 41005,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "cf9017c518b87",
+    "name": "巴基斯坦",
+    "type": "country",
+    "cardId": 41107,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "c3c908cfedc77",
+    "name": "孟加拉国",
+    "type": "country",
+    "cardId": 41200,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "c72267e12c089",
+    "name": "印度",
+    "type": "country",
+    "cardId": 41302,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15891363990154954303/8D1D76D13D49E8210BE1A3CBA10D9D5DBFBDE2E4/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15863620534251294477/E26FA62451FCF0680C862F034E7873DE479289BD/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-9.png"
+  },
+  {
+    "id": "ca9d839514542",
+    "name": "新西兰",
+    "type": "country",
+    "cardId": 41400,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12676536128311059313/06083A7CAB5EF81FB9841F0357FC43229072FFF0/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15050897267676895362/6DEAB1B85CE1E3947F03E6D9BBF3009F21B80298/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "atlas": "atlas-10.png"
+  },
+  {
+    "id": "cfdaebafe58bb",
+    "name": "韩国",
+    "type": "country",
+    "cardId": 13210,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c4e0165cde252",
+    "name": "越南",
+    "type": "country",
+    "cardId": 13213,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c6fe11afc7426",
+    "name": "新加坡",
+    "type": "country",
+    "cardId": 15700,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14685157406157908057/462B96D0D5C38B6A0651C616629D7D8CFE465731/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15315216153742601577/15188B6274D1EF43B8F5A9738F2FAA27392D6DE5/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "atlas": "atlas-12.png"
+  },
+  {
+    "id": "caa7ff0f8b8f4",
+    "name": "澳大利亚",
+    "type": "country",
+    "cardId": 15800,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14635306977709407316/F8DEFF5656E0DDB94F67D80A803499A4C7D5B7E1/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/10440819771136240997/B42D6AF894C1A737D555AC73DA3497ADEB362B37/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "atlas": "atlas-13.png"
+  },
+  {
+    "id": "c6013d4e910ac",
+    "name": "朝鲜",
+    "type": "country",
+    "cardId": 13207,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c770a32f3c5a6",
+    "name": "柬埔寨",
+    "type": "country",
+    "cardId": 13201,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c0409592e589f",
+    "name": "老挝",
+    "type": "country",
+    "cardId": 13205,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "cf04deb0c883b",
+    "name": "印度尼西亚",
+    "type": "country",
+    "cardId": 13202,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c9030e69c02e2",
+    "name": "菲律宾",
+    "type": "country",
+    "cardId": 13209,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "cf1f7a49b77e9",
+    "name": "泰国",
+    "type": "country",
+    "cardId": 13212,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c99daf8fee754",
+    "name": "日本",
+    "type": "country",
+    "cardId": 13203,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/15984389143108927115/D47F4B718D8D420B76BF59EB595E7D81A2CA23F2/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/15651354884215331671/268327474A6944B32090DB7BD86284BA7834AAEC/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-11.png"
+  },
+  {
+    "id": "c798ba4a7c20e",
+    "name": "卡塔尔",
+    "type": "country",
+    "cardId": 13009,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c23a6ad965702",
+    "name": "叙利亚",
+    "type": "country",
+    "cardId": 13011,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "ccb8b0ec00bb8",
+    "name": "埃及",
+    "type": "country",
+    "cardId": 13001,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "cded08a20d167",
+    "name": "伊朗",
+    "type": "country",
+    "cardId": 13002,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c06079787fb3a",
+    "name": "沙特阿拉伯",
+    "type": "country",
+    "cardId": 13010,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c3152a6b7e123",
+    "name": "阿尔及利亚",
+    "type": "country",
+    "cardId": 13000,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c819285622b50",
+    "name": "利比亚",
+    "type": "country",
+    "cardId": 13008,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "cfbb4c1629917",
+    "name": "约旦",
+    "type": "country",
+    "cardId": 13006,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c562e77763cd6",
+    "name": "阿联酋",
+    "type": "country",
+    "cardId": 13014,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c7bda5cbf58bb",
+    "name": "以色列",
+    "type": "country",
+    "cardId": 13005,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c834127a9eff4",
+    "name": "土耳其",
+    "type": "country",
+    "cardId": 13013,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "ca8517a78af2d",
+    "name": "伊拉克",
+    "type": "country",
+    "cardId": 13003,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/11296964445479077688/90FECCB82E9DD60B7658910306A2F30057066D27/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/11861117620511351342/62481DA46E5AF4956127167A3D3CBECB5787876E/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-14.png"
+  },
+  {
+    "id": "c11dd78abad1e",
+    "name": "朝鲜（2024）",
+    "type": "effect",
+    "cardId": 49802,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/17416855960715511315/93A8387DE5F9DCDD77439BC85C0D7454AFAEB386/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14200547601218164270/137E458BB363F42902D30384D8BFC4CC5B062334/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-15.png"
+  },
+  {
+    "id": "cf7c0ffc48316",
+    "name": "乌克兰（2014）",
+    "type": "effect",
+    "cardId": 49801,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/17416855960715511315/93A8387DE5F9DCDD77439BC85C0D7454AFAEB386/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14200547601218164270/137E458BB363F42902D30384D8BFC4CC5B062334/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-15.png"
+  },
+  {
+    "id": "c2172fd0f8650",
+    "name": "英国",
+    "type": "effect",
+    "cardId": 49800,
+    "deck": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/17416855960715511315/93A8387DE5F9DCDD77439BC85C0D7454AFAEB386/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14200547601218164270/137E458BB363F42902D30384D8BFC4CC5B062334/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    },
+    "atlas": "atlas-15.png"
+  }
+]

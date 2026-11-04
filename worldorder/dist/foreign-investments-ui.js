@@ -1,0 +1,12 @@
+import {foreignInvestmentTargets,foreignInvestmentPreview} from './foreign-investments.js';
+import {foreignInvestments,foreignInvestmentOwners} from './investment-tokens.js';
+import {investmentCost,countryValue,countryRegion} from './research.js';
+import {AREAS} from './world.js';
+import {resilienceControls,readResilience,updateResilience} from './growth-triggers-ui.js';
+const names={US:'美国',CN:'中国',EU:'欧盟',RU:'俄罗斯'};
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function renderForeignInvestmentStep(s,cards){return `<p>可按国家通常投资费用额外支付5资金，投资另一位玩家已有投资标记的盟国。已横置也可投资；国家归属保留，本方记录新增投资。</p><label>选择目标<select id="sequence-foreign-country">${foreignInvestmentTargets(s).map(x=>`<option value="${x.host}:${x.country}">${names[x.host]} · ${esc(cards[x.country]?.name)} · ${investmentCost(x.country)+5}资金</option>`).join('')}</select></label><label>添加影响力<select id="sequence-slot"><option value="permanent">永久槽</option><option value="temporary">临时槽</option></select></label>${resilienceControls(s,'sequence')}<p id="sequence-foreign-preview" aria-live="polite"></p><button id="sequence-resolve">支付并投资</button><button id="sequence-skip">不投资，完成本牌</button>`;}
+export function readForeignInvestment(){const [host,country]=(document.querySelector('#sequence-foreign-country')?.value||'').split(':');return {host,country,slot:document.querySelector('#sequence-slot')?.value,resilience:readResilience('sequence')};}
+export function updateForeignInvestment(s){const el=document.querySelector('#sequence-foreign-preview');if(!el)return false;const a=readForeignInvestment();if(a.country)updateResilience(s,countryRegion(a.country),a.slot,'sequence');try{const r=foreignInvestmentPreview(s,readForeignInvestment());el.textContent=`支付${r.cost}资金，在${AREAS[r.region].name}添加影响力、获得${r.vp}分；此投资目前每轮为本方带来${r.income}资金。`;document.querySelector('#sequence-resolve').disabled=false;}catch(error){el.textContent=error.message;document.querySelector('#sequence-resolve').disabled=true;}return true;}
+export function foreignInvestmentCaption(s,host,country){return foreignInvestmentOwners(s,host,country).map(x=>' · '+names[x.investor]+'投资×'+x.count).join('');}
+export function renderForeignInvestments(s,cards){const rows=foreignInvestments(s,s.current);return rows.length?`<details class="economy-tracks"><summary>对其他势力盟国的投资 · ${rows.length}</summary>${rows.map(x=>`<p>${esc(cards[x.country]?.name)} · 盟国属于${names[x.host]} · 本方每轮收益${countryValue(x.country)*2}资金</p>`).join('')}</details>`:'';}

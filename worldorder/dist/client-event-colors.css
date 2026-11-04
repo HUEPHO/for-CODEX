@@ -1,0 +1,24 @@
+/* Region tints come from the same pure palette as the seven board regions. */
+.game-client .client-event-row {
+  background: var(--client-event-background, #172b3b);
+  border: 1px solid color-mix(in srgb, var(--client-event-accent, #698598) 44%, transparent);
+  border-left: 3px solid var(--client-event-accent, #698598);
+  border-radius: 3px;
+  margin: 3px 0;
+  padding: 5px 6px;
+}
+.game-client .client-event-row:hover,
+.game-client .client-event-row:focus-visible {
+  background: var(--client-event-background, #172b3b);
+  border-color: var(--client-event-accent, #a3b8c8);
+  box-shadow: inset 0 0 0 1px #ffffff30;
+}
+.game-client .client-event-row:focus-visible { outline: 2px solid #d8b978; outline-offset: 1px; }
+.game-client .client-event-row.is-current { box-shadow: inset 0 0 0 1px #e8c98a; }
+.game-client .client-event-row.is-self .client-event-owner { font-weight: 700; }
+.game-client .client-event-meta { color: #c0ced7; }
+.game-client .client-event-power {
+  color: var(--client-event-power-color);
+  font-weight: 650;
+  text-shadow: 0 1px 2px #0009;
+}

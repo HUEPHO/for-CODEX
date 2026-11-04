@@ -1,0 +1,25 @@
+# World Order 项目约定
+
+先读 `START_HERE.md`、`CODEX_TASK.md`、`docs/HANDOFF_STATUS.md`、`docs/CONFIRMED_RULES.md`。这是现有项目的接手续作，不是从零生成游戏。
+
+- 用户使用中文。机制优先，之后再做接近 Steam《沙丘帝国》的界面；暂不进行框架迁移或全面美术重做。
+- 界面保持简洁：Avoid unnecessary secondary labels and descriptions. Let the layout do the explaining. 减少不必要的次级标签和说明，让布局本身表达用途。
+- 不要过度防御性编程。信任已有的数据契约和内部不变量，避免重复校验、无实际需求的兜底和静默吞错；只在实际输入边界及明确的兼容需求处保留必要处理。
+- 不做自动机、单人 AI、MARS 辅助牌。
+- 国家名称用中文；Middle East & North Africa 简称“中东”，Asia Pacific 简称“亚太”。资源在界面使用现有图标，保留悬停和无障碍文字。
+- 延续已确认规则。对确实无法确定、会改变玩法的问题集中列出并询问用户，不把假设写成已确认；优先核对附带规则书与实际牌图。
+- 每完成可独立运行的功能立即保存；有 Git 时做对应检查点。每批推进一个可实际使用的目标，不要求用户连续回复“继续”才能完成同一功能。
+- 只跑变更相关、能发现实际风险的必要检查。`npm test` 只是早期状态回归；先看 `docs/VERIFICATION.md` 和已完成的浏览器记录，不要为迁就旧断言倒退规则，也不重复把已完成验收当成主要开发成果。
+- 不把“有自动入口”称为全部牌面/整局完全自动。保留明确标示的手动结算与旧存档兼容，避免自动/手动重复发奖。
+- `dist/` 根目录及 `dist/assets/` 是跟踪的源文件；只有 `dist/client/`、`dist/server/`、`dist/.openai/` 是生成物。
+- 引擎完整状态经服务端校验后保存；各标签页得到脱敏视图。不要把客户端视图当完整状态回写，也不要取消他方回应、费用、席位或并发版本验证。
+- 待办责任人与动作准入统一走 `interaction-state.js`、`phase-state.js`、`action-policy.js`；界面不要另写一套许可清单。纯读取层不得导入结算器或UI，费用／目标校验仍由领域模块负责。涉及这些边界或模块依赖的修改运行 `node scripts/check-architecture.mjs`。
+- 持续收益优先通过 `event-income-rules.js` 注册选项、条件与计划，界面和执行器共用规则；保留既有存档状态标识。完整接入方法见 `docs/ARCHITECTURE.md`。
+- 整牌预检复用领域实际费用和目标校验，在打出／盖牌后的副本中寻找合法候选；生产与贸易优先用有限摘要筛选，不虚增资源或逐牌复制判断。当前适用范围见 `docs/sequence-complete-2026-09-17.md`。
+- 同类个人决策优先通过 `event-decision-rules.js` 配置费用、减免、奖励与后续步骤，使用共同模型和表单；只有新机制才扩展执行器，避免逐牌复制条件判断。当前覆盖和边界见 `docs/wit-decisions-2026-09-17.md`。
+- 生产入口是 `server/index.js`，依赖可信 Sites 身份及 D1 `DB`。`scripts/dev-local.mjs` 和 Vite 中间件的固定身份只用于开发，不得当生产登录方案。
+- 不覆盖原有云端房间、用户本地存档或已应用的数据库迁移。部署、换托管和公开访问需要按用户当时的明确要求处理。
+
+推荐便携命令：`npm run dev:local`；针对房间与流程的检查：`npm run test:local`、`npm run test:rooms`、`npm run test:room-game`、`npm run test:flow`。这些命令在 Node.js 24 下不依赖 npm 安装。Vite 开发入口 `npm run dev`、生产构建和 Drizzle 开发需要先 `npm ci`。
+
+本包基于已发布 v26；首次接手可以初始化本地 Git 保存基线，但包中的提交 SHA 是来源标识，不表示压缩包含 Git 历史。无需原云服务权限即可本地继续开发。

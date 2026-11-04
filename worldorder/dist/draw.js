@@ -1,0 +1,2 @@
+export function takeDeckCards(p,count,rng=Math.random){const ids=[];for(let i=0;i<count;i++){if(!p.deck.length&&p.discard.length){p.deck=[...p.discard];p.discard=[];for(let j=p.deck.length-1;j>0;j--){const k=Math.floor(rng()*(j+1));[p.deck[j],p.deck[k]]=[p.deck[k],p.deck[j]];}}if(!p.deck.length)break;ids.push(p.deck.shift());}return ids;}
+export function drawCards(p,count,rng=Math.random){const ids=takeDeckCards(p,count,rng);p.hand.push(...ids);return ids;}

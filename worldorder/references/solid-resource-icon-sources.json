@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-04",
+  "sources": [
+    {
+      "id": "energy",
+      "path": "dist/assets/icon-energy.png",
+      "guid": "b74107",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148695341/D63255BEBD3B46E124C60E8C0629C63446AE1A25/",
+      "width": 178,
+      "height": 238,
+      "sha256": "33b2bc10d12a812fc44d22bd8b66eecc43bd5bcc5f3e91e09eca48a8705abd73",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    },
+    {
+      "id": "raw",
+      "path": "dist/assets/icon-raw.png",
+      "guid": "d8ade7",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148696704/A7204E1C933B9DE0EF14F7E773D9197C90561BE0/",
+      "width": 194,
+      "height": 225,
+      "sha256": "6a15375a54560b1393fafb570aa420728abe8d85c37969f17222194da9397b9b",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    },
+    {
+      "id": "food",
+      "path": "dist/assets/icon-food.png",
+      "guid": "d4b807",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148695570/203BF02A79C5D6116075DB2CEA7AAA09647E1A80/",
+      "width": 150,
+      "height": 282,
+      "sha256": "6963ed1d264540e3a3d6e5cccf8101d0010bbb75928cb271efa32e872b8e18bf",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    },
+    {
+      "id": "goods",
+      "path": "dist/assets/icon-goods.png",
+      "guid": "a52c14",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148699617/9E0A7FC72F5A5674870C0FCF86EE0234B63EBA0C/",
+      "width": 214,
+      "height": 311,
+      "sha256": "11bcce7107e0f59edebf48399398706d0c24748ba8f611cd377f78f4f5445386",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    },
+    {
+      "id": "services",
+      "path": "dist/assets/icon-services.png",
+      "guid": "816aad",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148696913/923FD9EABB1C983B6EAC059EAC8B91A0A84D5712/",
+      "width": 213,
+      "height": 192,
+      "sha256": "d5d5b7e1a7342af99afdcf607207b7fb1e7fad6915c33e5141afcd49ea343e08",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    },
+    {
+      "id": "diplomacy",
+      "path": "dist/assets/icon-diplomacy.png",
+      "guid": "d03d68",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148695195/7017630705049166F3AE5E2F9EBEB9FCE5D67571/",
+      "width": 249,
+      "height": 236,
+      "sha256": "7a827d81a296be67abe1d7be90a12e745057f245423382a7c08117dd6a18d081",
+      "processing": "Original transparent PNG bytes, no resizing or redrawing"
+    }
+  ]
+}

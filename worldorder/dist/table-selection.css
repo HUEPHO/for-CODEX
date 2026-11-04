@@ -1,0 +1,18 @@
+/* Apply this class only while a visible table offers the same target choices.
+   Keep the real field for existing readers and assistive technology. */
+.table-direct-selection :is(
+  #basic-growth, #basic-country, #open-country, #sequence-ally,
+  #sequence-exhaust-ally, #sequence-foreign-country, #growth-ally,
+  #personal-country, #economic-country, #agreement-country, #bid-country
+):not(:focus-visible) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

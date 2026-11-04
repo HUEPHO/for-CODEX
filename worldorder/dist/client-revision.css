@@ -1,0 +1,149 @@
+/* September 26 reference: a persistent table, two card areas, compact actions. */
+body.game-client { --client-rail: clamp(244px,22vw,320px); --client-dock: clamp(350px,31vw,460px); --client-hand: clamp(245px,32vh,310px); }
+.game-client .game-table { grid-template-columns: var(--client-rail) minmax(0,1fr) var(--client-dock); grid-template-rows: minmax(0,1fr) var(--client-hand); }
+.game-client .client-player-rail { grid-row: 1 / -1; grid-template-rows: minmax(0,3fr) minmax(0,1fr); }
+.game-client .client-player-opponents { gap: 8px; }
+.game-client .client-player--self { gap: 3px; }
+.game-client .client-player--self .client-player-resources { padding-top: 4px; gap: 3px; }
+.game-client .client-player { justify-content: center; }
+.game-client .game-table > .tray { padding: 8px 10px; grid-template-rows: 30px minmax(0,1fr) 21px; }
+.client-hand-heading { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.client-hand-heading nav { display: flex; align-items: center; gap: 3px; }
+.game-client .client-hand-heading button { padding: 3px 6px; font-size: 10px; border: 0; background: transparent; white-space: nowrap; }
+.client-hand-heading button.active { color: #e9c985; box-shadow: inset 0 -2px #d1b36e; }
+.client-hand-operator { margin-left: auto; font-size: 9px; color: #9db0bf; }
+.client-hand-operator select { max-width: 68px; font-size: 10px; border: 1px solid #556e7e; padding: 2px; background: #162d3c; color: #d9e6eb; }
+.game-client .hand { grid-row: 2; padding: 5px 0; gap: 6px; min-height: 0; overflow-y: hidden; }
+.game-client .hand .cardbutton { width: clamp(62px,5.6vw,92px); flex-basis: clamp(62px,5.6vw,92px); }
+.game-client .hand .cardbutton img,.game-client .hand .back { height: clamp(120px,20vh,185px); }
+.client-hand-footer { display: flex; align-items: center; gap: 7px; font-size: 9px; color: #8ca5b4; }
+.client-hand-footer > span { margin-right: auto; white-space: nowrap; }
+.game-client .client-hand-footer button { font-size: 9px; padding: 2px 5px; border: 0; background: none; color: #b9c3bb; }
+.client-hand-footer button:disabled { display: none; }
+.client-right-dock { grid-column: 3; grid-row: 2; min-height: 0; min-width: 0; display: grid; grid-template-rows: 45px minmax(0,1fr); gap: 6px; }
+.client-dock-tools { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 5px; }
+.game-client .client-dock-tools > button { padding: 4px; border: 1px solid #7d886e; background: linear-gradient(120deg,#283a3c,#172d39); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+.client-dock-tools b { font-size: 12px; font-weight: 550; color: #e1c98e; }
+.client-dock-tools small { font-size: 9px; color: #a5b8be; }
+.client-dock-tools .active { outline: 1px solid #e8c678; }
+.game-client .client-owned-cards { grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: minmax(0,1fr) minmax(0,1fr); gap: 5px; }
+.client-owned-group--allies { grid-column: 1 / -1; }
+.client-owned-group--allies .client-owned-card { flex-basis: 56px; }
+.game-client .client-owned-card .cardbutton img { height: 60px; }
+.client-owned-group--assets .client-owned-card { flex-basis: 76px; }
+.client-owned-group--abilities .client-owned-card { flex-basis: 65px; }
+.game-client .client-owned-effects { font-size: 10px; }
+.game-client .client-owned-effects button { white-space: normal; }
+.game-client .client-owned-effects .event-effects > b { display: none; }
+.game-client .game-table > .action-workbench.is-collapsed { left: calc(var(--client-rail) + 32px); right: 25px; bottom: calc(var(--client-hand) + 18px); max-height: 37px; }
+.game-client .game-table > .action-workbench.is-collapsed .table-task { padding: 5px 10px; }
+.game-client .action-workbench.is-collapsed .table-task-heading { font-size: 11px; }
+.game-client .action-workbench.is-collapsed .table-task-heading button { padding: 2px 7px; }
+body.game-client.client-action-open { --client-hand: clamp(155px,21vh,200px); --client-action: clamp(150px,22vh,210px); }
+.game-client.client-action-open .game-table { grid-template-rows: minmax(0,1fr) var(--client-action) var(--client-hand); }
+.game-client.client-action-open .game-table > .tray,.game-client.client-action-open .client-right-dock { grid-row: 3; }
+.game-client.client-action-open .game-table > .stage { padding-bottom: 8px; }
+.game-client.client-action-open .game-table > .action-workbench { position: relative; left: auto; right: auto; top: auto; bottom: auto; grid-column: 2 / 4; grid-row: 2; height: 100%; max-height: none; overflow: auto; }
+.game-client.client-action-open .action-workbench .table-task { padding: 7px 10px; }
+.game-client.client-action-open .table-task-heading { margin-bottom: 6px; padding-bottom: 5px; font-size: 11px; }
+.game-client.client-action-open #table-task-body:has(>.table-action-card) { grid-template-columns: 90px minmax(0,1fr); gap: 7px; }
+.game-client.client-action-open .table-action-card { padding: 3px; position: sticky; top: 0; gap: 2px; }
+.game-client.client-action-open .table-card-portrait,.game-client.client-action-open .table-card-portrait img { width: 47px; }
+.game-client .table-action-card h2 { font-size: 11px; margin: 3px 0; }
+.game-client .table-action-card small { display: none; }
+.game-client .table-action-card button#cancel-table-card { font-size: 10px; padding: 3px 5px; }
+.game-client.client-action-open .flow-panel { padding: 8px; font-size: 11px; }
+.game-client.client-action-open .flow-panel p { margin: 4px 0; font-size: 10px; }
+.game-client.client-action-open .flow-panel select { font-size: 11px; padding: 3px; min-width: 105px; }
+.game-client.client-action-open #commit-basic { font-size: 12px; min-height: 29px; }
+.game-client.client-action-open .hand .cardbutton img,.game-client.client-action-open .hand .back { height: clamp(80px,12vh,110px); }
+.game-client.client-action-open .hand .cardbutton { flex-basis: 60px; width: 60px; }
+.game-client.client-action-open .client-right-dock { grid-template-rows: 35px minmax(0,1fr); }
+.game-client.client-action-open .client-owned-cards { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: minmax(0,1fr); }
+.game-client.client-action-open .client-owned-group--allies { grid-column: auto; }
+.game-client.client-action-open .client-owned-card { flex-basis: 47px; }
+.game-client.client-action-open .client-owned-card .cardbutton img { height: 45px; }
+.game-client.client-picking .game-table { --client-action: 88px; }
+.game-client.client-picking .action-workbench { overflow: hidden; }
+.game-client .board-region-state { flex: none; }
+.game-client.client-action-open .board-country img { max-height: 68px; }
+.game-client.client-action-open .board-country-name { display: none; }
+.game-client .client-table-overlay .growth-supply-grid .cardbutton img { height: clamp(72px,10vh,110px); }
+.game-client.client-setup .client-right-dock { visibility: hidden; }
+.game-client.client-setup .game-table>.tray { grid-area: auto; padding: 16px 22px; }
+.game-client .client-floating-dialog[open] { position: fixed; inset: auto; left: var(--dialog-x); top: var(--dialog-y); width: var(--dialog-w) !important; max-width: var(--dialog-w); max-height: var(--dialog-h); margin: 0; z-index: 50; overflow: auto; padding: 18px; border: 1px solid #b4a06d; box-shadow: 0 12px 45px #000c; background: #122838fa; }
+.game-client .client-floating-dialog .close { position: sticky; top: 0; float: right; z-index: 3; background: #334a58; border: 1px solid #8b947f; }
+.game-client .client-floating-dialog .viewerimage { max-height: min(42vh,330px); }
+.game-client .client-floating-dialog:has(.client-player-board) { padding: 12px; }
+.game-client .client-floating-dialog .public-stats,.game-client .client-floating-dialog .public-cards { gap: 7px; }
+.game-client #client-card-preview { right: 24px; top: 65px; z-index: 49; }
+.game-client #table-selection-banner,.game-client #region-selection-banner { position: static; max-height: 56px; overflow: auto; margin-bottom: 4px; padding: 3px 5px; background: #162f40f2; }
+.game-client #table-selection-banner:empty { display: none; }
+.game-client #region-selection-banner p { display: none; }
+.game-client .region-field-buttons { gap: 3px; }
+.game-client #region-selection-banner button { padding: 3px 6px; min-height: 24px; }
+.game-client .stage { position: relative; }
+.game-client .client-cover-selected-card { outline: 2px solid #e6c77c; outline-offset: 2px; }
+.game-client .action-workbench:has(.client-trade-form):not(.is-collapsed) { overflow: auto; backdrop-filter: none; }
+.game-client.client-action-open:not(.client-picking) .action-workbench .client-trade-form { position: fixed; z-index: 15; right: 24px; top: clamp(140px,22vh,220px); width: clamp(420px,37vw,560px); height: calc(100vh - clamp(140px,22vh,220px) - var(--client-hand) - 23px); max-height: calc(100vh - clamp(140px,22vh,220px) - var(--client-hand) - 23px); overflow: hidden; display: flex !important; flex-flow: column nowrap; align-items: stretch; gap: 0; box-shadow: 0 12px 36px #000a; border: 1px solid #bda16d; }
+.game-client .action-workbench #basic-form.client-trade-form > .client-trade-content { flex: 1 1 0; width: 100%; min-width: 0; min-height: 0; }
+.game-client .action-workbench:has(.client-trade-form) .table-pass-card { grid-column: 2; grid-row: 1; align-self: center; justify-self: start; white-space: normal; }
+.game-client .action-workbench:has(.client-trade-form) #table-task-body { max-width: calc(100% - clamp(420px,37vw,560px) - 10px); grid-template-columns: minmax(145px,1fr) minmax(0,1fr); }
+.game-client .action-workbench:has(.client-trade-form) .table-action-card { grid-column: 1; grid-row: 1; position: static; flex-direction: row; justify-content: flex-start; text-align: left; gap: 8px; border-right: 0; }
+.game-client .action-workbench:has(.client-trade-form) > .sidefoot { display: none; }
+.game-client:not(.client-picking) .action-workbench:has(.client-trade-form) .table-task-heading { max-width: calc(100% - clamp(420px,37vw,560px) - 10px); }
+.game-client .action-workbench .client-trade-grid { grid-template-rows: 25px 48px auto 64px auto 30px; column-gap: 3px; }
+.game-client .action-workbench .client-trade-column { padding: 4px 2px; }
+.game-client .action-workbench .client-trade-stepper { grid-template-columns: 17px minmax(18px,24px) 17px; gap: 1px; }
+.game-client .action-workbench .client-trade-stepper button { width: 17px; height: 25px; font-size: 14px; }
+.game-client .action-workbench .client-trade-stepper input { font-size: 14px; }
+.game-client .action-workbench .client-trade-resource .resource-icon { width: 28px; height: 28px; }
+.game-client .client-trade-quantity small .resource-icon { width: 12px; height: 12px; min-width: 12px; min-height: 12px; }
+.game-client .action-workbench .client-trade-footer { position: static; flex: none; background: #162c3df5; padding: 7px 0 0; border-top: 1px solid #8f8157; }
+.game-client .action-workbench .client-trade-footer .resource-icon { width: 14px; height: 14px; min-width: 14px; min-height: 14px; }
+@media(max-width:1280px) {
+ .game-client .action-workbench .client-trade-grid { grid-template-rows: 25px 54px auto 64px auto 30px; }
+ .game-client .action-workbench .client-trade-cap { font-size: 9px; column-gap: 2px; }
+ .game-client .action-workbench .client-trade-cap > b { font-size: 15px; }
+ .game-client .action-workbench .client-trade-quantity > small { font-size: 9px; }
+ .game-client .client-trade-form .client-trade-partners > summary { font-size: 9px; }
+}
+.game-client .client-floating-dialog #viewer-body > h2 { font-size: 18px; margin: 0 0 5px; }
+.game-client .client-floating-dialog #viewer-body > p { font-size: 11px; margin: 4px 0 10px; }
+.game-client .client-player-board { padding: 10px; }
+.game-client .client-player-board h2 { font-size: 18px; }
+.game-client .player-board-heading { margin-bottom: 7px; }
+.game-client .player-board-primary { padding: 6px 8px; }
+.game-client .player-board-primary > h3 { font-size: 11px; margin-bottom: 4px; }
+.game-client .player-board-step { height: 24px; font-size: 14px; }
+.game-client .player-board-resource { flex-basis: 24px; }
+.game-client .client-player-board .resource-icon { height: 20px; width: 20px; min-height: 20px; min-width: 20px; }
+.game-client .player-board-focus { padding: 7px; gap: 4px; }
+.game-client .player-board-focus > header > h3 { font-size: 15px; }
+.game-client .player-board-focus-marker { font-size: 19px; }
+.game-client .player-board-focus-tracks { gap: 4px; margin-top: 4px; }
+.game-client .player-board-focus-rules { font-size: 10px; line-height: 1.5; }
+.game-client .player-board-prosperity { padding: 7px; }
+.game-client .player-board-prosperity-track { gap: 5px; margin-top: 5px; }
+.game-client .player-board-prosperity-step { min-height: 65px; padding: 4px 2px; gap: 2px; }
+.game-client .player-board-prosperity-step > b { font-size: 17px; }
+@media(max-width:1280px) {
+ body.game-client { --client-rail: 244px; --client-dock: 350px; }
+ .game-client .hand .cardbutton { flex-basis: 65px; width: 65px; }
+ .client-hand-operator label { font-size: 0; }
+ .game-client .client-hand-heading button { padding-inline: 4px; font-size: 9px; }
+ .client-hand-heading { gap: 3px; }
+}
+@media(max-height:800px) {
+ .game-client .client-player { padding-block: 4px; gap: 2px; }
+ .game-client .client-player .resource-icon { width: 21px; height: 21px; min-width: 21px; min-height: 21px; }
+ .game-client .client-player-resources .resource-icon { width: 23px; height: 23px; min-width: 23px; min-height: 23px; }
+ .game-client .client-player-resources .resource-icon--army { width: 27px; min-width: 27px; }
+ .game-client .client-player-stock .client-resource-value { gap: 0; font-size: 10px; }
+ .game-client .hand .cardbutton img { height: 136px; }
+ .game-client.client-action-open .board-country img { max-height: 45px; }
+ .game-client.client-action-open .board-region-heading { min-height: 22px; }
+ .game-client.client-action-open .board-region-state { padding-block: 1px; gap: 0; }
+ .game-client.client-action-open .board-track+.board-track { margin-top: 0; }
+ .game-client.client-action-open .board-region-footer { min-height: 24px; }
+}

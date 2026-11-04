@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {createState} from '../dist/engine.js';import {newFlow} from '../dist/flow.js';import {actionPreview,resolveBasicCard,resolvePass} from '../dist/basic-actions.js';
+const cards=JSON.parse(fs.readFileSync(new URL('../dist/cards.json',import.meta.url)));
+function state(){const s=createState(cards);s.flow=newFlow(['US','EU','CN','RU']);s.flow.turnCards=[];s.actionTurns={index:0,completed:{US:0,CN:0,EU:0,RU:0}};s.current='US';return s;}
+let s=state();s.players.US.hand=['c3d2f62a981c8'];const target=s.players.US.allies[0],cash=s.players.US.money;
+const preview=actionPreview(s,{cardId:'c3d2f62a981c8',country:target,slot:'temporary'});resolveBasicCard(s,{cardId:'c3d2f62a981c8',country:target,slot:'temporary'});assert.equal(s.players.US.money,cash-preview.cost);assert.ok(s.players.US.fdi.includes(target));assert.ok(s.players.US.exhaustedAllies.includes(target));assert.equal(s.players.US.vp,preview.vp);assert.equal(s.players.US.played.length,1);
+s=state();s.current='EU';s.flow.order=['EU','US','CN','RU'];s.players.EU.hand=['cf560f1a1dd4d'];s.players.EU.focus='外交焦点';const norway=s.players.EU.allies.find(id=>cards.find(c=>c.id===id).originalName==='Norway');
+assert.equal(actionPreview(s,{cardId:'cf560f1a1dd4d',region:'E',slot:'permanent',exhaust:[norway]}).cost,1);
+s.regions.A.engage.EU=3;assert.throws(()=>actionPreview(s,{cardId:'cf560f1a1dd4d',region:'E',slot:'permanent'}));resolveBasicCard(s,{cardId:'cf560f1a1dd4d',region:'E',slot:'permanent',exhaust:[norway],moveFrom:'A'});assert.equal(s.regions.A.engage.EU,2);assert.equal(s.regions.E.engage.EU,1);
+s=state();const id=s.players.US.openingChoices[0][0];s.players.US.hand=[id];resolvePass(s,{cardId:id});assert.equal(s.players.US.money,40);assert.deepEqual(s.players.US.faceDownPlayed,[id]);assert.throws(()=>resolvePass(s,{}));
+console.log('Passed investment cost/FDI/exhaustion/influence, EU soft-power/focus/ally discounts, Engage relocation and pass card consumption.');
+const {applyAction}=await import('../dist/engine.js');
+function ready(){const s=state();for(const p of Object.values(s.players)){p.hand=[...p.openingChoices[0]];p.openingChoices=null;p.assetChoices=null;p.objectiveChoices=null;}return s;}
+s=ready();s.players.US.hand=['c3d2f62a981c8'];s.players.US.money=0;const before=JSON.stringify(s);assert.throws(()=>applyAction(s,{type:'playBasicCard',cardId:'c3d2f62a981c8',country:s.players.US.allies[0],slot:'permanent'}));assert.equal(JSON.stringify(s),before);
+s.players.US.money=100;const original=s;s=applyAction(s,{type:'playBasicCard',cardId:'c3d2f62a981c8',country:s.players.US.allies[0],slot:'permanent'});assert.equal(s.current,'EU');assert.equal(s.actionTurns.completed.US,1);assert.equal(original.current,'US');assert.equal(original.players.US.fdi.length,0);assert.throws(()=>applyAction(s,{type:'playBasicCard',cardId:'c3d2f62a981c8',country:s.players.US.allies[0],slot:'permanent'}));
+s=ready();const normal=s.players.US.hand[0];s=applyAction(s,{type:'play',id:normal});assert.throws(()=>applyAction(s,{type:'passTurn',cardId:s.players.US.hand[0]}));s=applyAction(s,{type:'return',id:normal});assert.equal(s.flow.turnCards.length,0);
+s=ready();for(let turn=0;turn<16;turn++){const actor=s.current;s=applyAction(s,{type:'passTurn',cardId:s.players[actor].hand[0]});assert.equal(s.actionTurns.index,turn+1);}assert.equal(s.phase,'研究');for(const p of Object.values(s.players)){assert.equal(p.hand.length,2);assert.equal(p.played.length,4);assert.equal(p.faceDownPlayed.length,4);}
+s=JSON.parse(JSON.stringify(s));const actor=s.current;s=applyAction(s,{type:'startResearch'});assert.equal(s.players[actor].faceDownPlayed.length,0);assert.equal(s.players[actor].played.length,0);
+s=ready();s.players.US.hand=[];s=applyAction(s,{type:'passTurn'});assert.equal(s.players.US.money,40);assert.equal(s.actionTurns.index,1);
+console.log('Passed atomic rollback, automatic turn advancement, duplicate/wrong-player rejection, manual-play/pass exclusion, 16 passes to research, face-down cleanup and empty-hand passing.');

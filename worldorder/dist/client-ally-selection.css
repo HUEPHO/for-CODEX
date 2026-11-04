@@ -1,0 +1,13 @@
+/* Pending choices decorate the existing cards. Only game settlement flips the
+   actual ally image to its exhausted side. */
+.game-client #basic-discounts.client-ally-discount-source { border: 0; padding: 0; margin: 0; min-width: 0; }
+.game-client .client-ally-discount-source > legend,
+.game-client .client-ally-discount-source .client-ally-discount-adapted { display: none; }
+.game-client .client-ally-discount-hint { display: block; color: #d9c897; font-size: 12px; line-height: 1.45; }
+.game-client .client-owned-ally .cardbutton.client-ally-discount-eligible { outline: 2px solid #caa453; outline-offset: 3px; cursor: pointer; }
+.game-client .client-owned-ally .cardbutton.client-ally-discount-selected { outline: 3px solid #ffe0a0; outline-offset: 3px; box-shadow: 0 0 0 5px #b68e3b55,0 5px 18px #0009; }
+.game-client .client-owned-ally .cardbutton.client-ally-discount-eligible:hover { outline-color: #ffdf98; }
+.game-client .client-owned-ally .cardbutton.client-ally-discount-disabled { cursor: default; }
+.game-client .client-ally-discount-mark { position: absolute; z-index: 4; top: 7px; left: 5px; right: 5px; padding: 5px 3px; border: 1px solid #d3b16b; border-radius: 3px; background: #302714ed; color: #ffe5af; text-align: center; font-size: 11px; line-height: 1.2; pointer-events: none; }
+.game-client .client-ally-discount-selected .client-ally-discount-mark { background: #e3bf73; color: #251b09; font-weight: 700; }
+.game-client .client-ally-discount-disabled .client-ally-discount-mark { opacity: .55; }

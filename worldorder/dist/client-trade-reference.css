@@ -1,0 +1,19 @@
+/* Original trade agreement and export cards, with public face/usage state. */
+.client-player-trade-info.player-board-trade { align-items: start; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); }
+.client-player-trade-info .player-board-commerce--printed,
+.client-player-trade-info .player-board-agreements--printed { min-width: 0; padding: 9px; }
+.player-board-commerce--printed > header,.player-board-agreements--printed > header { flex-wrap: wrap; margin-bottom: 8px; }
+.player-board-commerce--printed header h3,.player-board-agreements--printed header h3 { font-size: 12px; }
+.player-board-commerce--printed .player-board-export-cards { gap: 6px; align-items: start; }
+.player-board-commerce--printed .player-board-export-card { position: relative; flex: 1 1 0; min-width: 0; max-width: 100px; gap: 4px; padding: 0; background: transparent; border: 0; border-radius: 0; }
+.player-board-commerce--printed .player-board-export-card > img { display: block; width: 100%; height: auto; aspect-ratio: 485 / 745; object-fit: contain; border-radius: 5px; filter: drop-shadow(0 3px 3px #0006); }
+.player-board-commerce--printed .player-board-export-card > strong { font-size: 10px; line-height: 1.35; text-align: center; }
+.player-board-commerce--printed .player-board-export-card.is-used > strong { color: #bdc8ce; }
+.player-board-commerce--printed .player-board-export-card.is-unknown > img { opacity: .5; }
+.player-board-commerce-unknown { position: absolute; inset: 20% 10% auto; text-align: center; color: #fff; font-size: 28px; font-weight: 700; text-shadow: 0 2px 5px #000; }
+.player-board-agreements--printed .player-board-agreement-art { display: block; width: 100%; height: auto; aspect-ratio: 745 / 485; object-fit: contain; border-radius: 5px; filter: drop-shadow(0 3px 3px #0006); }
+.client-player-trade-info .player-board-commerce--printed > p { font-size: 10px; line-height: 1.5; }
+@media(max-width:800px) {
+ .client-player-trade-info.player-board-trade { grid-template-columns: minmax(0,1fr); }
+ .player-board-agreements--printed .player-board-agreement-art { max-width: 320px; }
+}

@@ -1,0 +1,79 @@
+/* Six resource columns retain the ordinary trade form's data and validation. */
+.game-client .client-trade-form { padding: 12px !important; }
+.game-client .client-trade-content { min-height: 0; flex: 1 1 auto; overflow: auto; overscroll-behavior: contain; padding-right: 3px; scrollbar-gutter: stable; }
+.game-client .client-trade-heading,
+.game-client .client-trade-instruction,
+.game-client .client-trade-footer { flex: none; }
+.game-client .client-trade-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+.game-client .client-trade-heading > b { color: #f0d394; font-size: 16px; }
+.game-client .client-trade-heading > span { color: #c6d6df; font-size: 11px; }
+.game-client .client-trade-form .client-trade-instruction { margin: 6px 0 10px; color: #b4c7d3; font-size: 11px; }
+.game-client .client-trade-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: 28px 57px auto 88px auto 40px; align-items: stretch; column-gap: 6px; }
+.game-client .client-trade-column { min-width: 0; display: grid; grid-template-rows: subgrid; grid-row: span 6; align-content: start; padding: 6px 4px; background: #0a1927d9; border: 1px solid #647c8959; border-radius: 5px; text-align: center; }
+.game-client .client-trade-cap { display: flex; justify-content: center; flex-wrap: wrap; align-content: center; align-items: baseline; column-gap: 5px; color: #bbcbd6; font-size: 11px; }
+.game-client .client-trade-cap > b { color: #f4d996; font-size: 17px; }
+.game-client .client-trade-cap > small { flex-basis: 100%; font-size: 10px; color: #819dac; }
+.game-client .client-trade-quantity { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 54px; gap: 4px; }
+.game-client .client-trade-quantity > small { max-width: 100%; color: #a9bfca; font-size: 10px; white-space: normal; line-height: 1.3; }
+.game-client .client-trade-stepper { display: inline-grid; grid-template-columns: 25px minmax(24px, 34px) 25px; gap: 2px; justify-content: center; align-items: center; }
+.game-client .client-trade-form .client-trade-stepper button { width: 25px; min-width: 0; height: 28px; min-height: 0; padding: 0; margin: 0; border-radius: 4px; background: #294759; border: 1px solid #526b77; color: #e3f2fa; font-size: 18px; font-weight: 700; }
+.game-client .client-trade-form .client-trade-stepper button:hover:not(:disabled) { border-color: #efd395; background: #3b6175; }
+.game-client .client-trade-form .client-trade-stepper button:disabled { opacity: .28; }
+.game-client .client-trade-stepper input { appearance: textfield; width: 100%; min-width: 0; height: 28px; margin: 0; padding: 1px 0; background: transparent; border: 0; color: #fff; text-align: center; font-size: 18px; font-variant-numeric: tabular-nums; }
+.game-client .client-trade-stepper input::-webkit-inner-spin-button,
+.game-client .client-trade-stepper input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+.game-client .client-trade-resource { align-self: center; display: grid; grid-template-columns: 1fr; justify-items: center; align-content: center; gap: 2px; }
+.game-client .client-trade-resource .resource-icon { width: 36px; height: 36px; margin: 0; background-size: contain; }
+.game-client .client-trade-resource .resource-icon--army { width: 42px; background-color: #fbf8ea; border-radius: 3px; }
+.game-client .client-trade-resource > b { font-size: 12px; color: #e5eaf0; }
+.game-client .client-trade-resource > small { color: #8fadb9; font-size: 10px; }
+.game-client .client-trade-unavailable { font-size: 25px; color: #617481; }
+.game-client .client-trade-form .client-trade-partners,
+.game-client .client-trade-form .client-trade-allocation { min-width: 0; width: 100%; margin: 0; padding: 0; border: 0; background: none; }
+.game-client .client-trade-partners { min-height: 27px; }
+.game-client .client-trade-no-partner { height: 27px; }
+.game-client .client-trade-form .client-trade-partners > summary,
+.game-client .client-trade-form .client-trade-allocation > summary { display: block; margin: 0; padding: 6px 2px; min-height: 27px; border: 1px solid #536779; border-radius: 3px; cursor: pointer; font-size: 10px; line-height: 1.25; color: #d5e6ef; background: #213a4d; list-style: none; }
+.game-client .client-trade-partners > summary::-webkit-details-marker,
+.game-client .client-trade-allocation > summary::-webkit-details-marker { display: none; }
+.game-client .client-trade-partners[open] > summary,
+.game-client .client-trade-allocation[open] > summary { color: #ffe2a1; border-color: #c1a36c; }
+.game-client .client-trade-partner-list { display: grid; gap: 8px; margin-top: 5px; padding: 6px 0; background: #112f42; border-radius: 3px; }
+.game-client .client-trade-partner { display: grid; justify-items: center; gap: 3px; }
+.game-client .client-trade-partner > b { font-size: 11px; }
+.game-client .client-trade-partner[data-partner="US"] > b { color: #83bfff; }
+.game-client .client-trade-partner[data-partner="CN"] > b { color: #f17b78; }
+.game-client .client-trade-partner[data-partner="EU"] > b { color: #ffcd71; }
+.game-client .client-trade-partner[data-partner="RU"] > b { color: #87c891; }
+.game-client .client-trade-partner > small { color: #a6bdca; font-size: 9px; line-height: 1.3; }
+.game-client .client-trade-allocation > div { display: grid; gap: 6px; padding-top: 5px; }
+.game-client .client-trade-form .client-trade-allocation label { display: grid; gap: 3px; justify-items: center; margin: 0; }
+.game-client .client-trade-allocation label[hidden] { display: none; }
+.game-client .client-trade-allocation label > span { display: flex; gap: 5px; font-size: 11px; }
+.game-client .client-trade-allocation label small { color: #a3b7c2; font-size: 10px; }
+.game-client .client-trade-form .client-trade-regions { margin: 10px 0 0; padding: 6px 8px 8px; border: 1px solid #6978668c; border-radius: 4px; }
+.game-client .client-trade-regions legend { padding: 0 5px; font-size: 11px; color: #d6c999; }
+.game-client .client-trade-form .client-trade-regions p { margin: 0 0 5px; font-size: 10px; color: #96aebc; }
+.game-client .client-trade-regions > div { display: flex; gap: 5px; flex-wrap: wrap; }
+.game-client .client-trade-form .client-trade-regions label { display: inline-flex; gap: 5px; align-items: center; margin: 0; padding: 4px 8px; border: 1px solid #466172; border-radius: 3px; font-size: 11px; cursor: pointer; }
+.game-client .client-trade-regions label:has(input:checked) { border-color: #e1ba68; background: #534626; color: #ffe3a6; }
+.game-client .client-trade-regions input { width: 13px; height: 13px; margin: 0; accent-color: #dfbd77; }
+.game-client .client-trade-form .client-trade-factory { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin: 10px 0 0; padding: 8px; background: #1e3745; border-radius: 4px; font-size: 12px; }
+.game-client .client-trade-factory small { display: block; color: #9bb3bd; font-size: 10px; margin-top: 2px; }
+.game-client .client-trade-footer { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: space-between; align-items: center; margin-top: 10px; }
+.game-client .client-trade-form #basic-preview { flex: 1 1 300px; margin: 0; line-height: 1.5; font-size: 12px; color: #e6dbc2; }
+.game-client .client-trade-form #commit-basic { flex-shrink: 0; margin: 0; min-height: 32px; padding: 7px 14px; background: #d5b779; color: #142535; font-weight: 700; }
+.game-client .client-trade-form #commit-basic:disabled { background: #46576a; color: #a9b2ba; }
+.game-client .client-trade-form .client-trade-rules { margin: 10px 0 0; padding-top: 7px; border: 0; border-top: 1px solid #5064738c; background: none; font-size: 11px; color: #a1bac9; }
+.game-client .client-trade-rules summary { cursor: pointer; width: fit-content; }
+.game-client .client-trade-rules .viewerimage { max-height: 240px; max-width: 100%; }
+@media (max-width: 1280px) {
+ .game-client .client-trade-form { padding: 9px !important; }
+ .game-client .client-trade-grid { column-gap: 4px; grid-template-rows: 25px 52px auto 78px auto 35px; }
+ .game-client .client-trade-column { padding: 4px 2px; }
+ .game-client .client-trade-resource .resource-icon { width: 30px; height: 30px; }
+ .game-client .client-trade-resource .resource-icon--army { width: 36px; }
+ .game-client .client-trade-stepper { grid-template-columns: 22px minmax(22px, 29px) 22px; gap: 1px; }
+ .game-client .client-trade-form .client-trade-stepper button { width: 22px; }
+ .game-client .client-trade-cap { font-size: 10px; column-gap: 3px; }
+}

@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-04",
+  "sources": [
+    {
+      "kind": "fdi",
+      "guid": "821522",
+      "path": "dist/assets/token-fdi.png",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849783140099/0499F03474A947359E3B2851EFF5391845ACF26B/",
+      "width": 260,
+      "height": 332,
+      "sha256": "bdda54ae92a88183eb517acf6e7dc6eff5ddae6e7861faf47fd351c220f4abb5",
+      "processing": "Original transparent PNG bytes, no redrawing or resizing"
+    },
+    {
+      "kind": "base",
+      "guid": "f26ced",
+      "path": "dist/assets/token-base.png",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceField": "CustomImage.ImageURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/2437103466148513548/20C0128ED810FB061547004E2391A3B22F9F4C16/",
+      "width": 297,
+      "height": 349,
+      "sha256": "49499065d63c532543df14f892fcf4ac0fa48c350bd86351db81d0732a2f454a",
+      "processing": "Original transparent PNG bytes, no redrawing or resizing"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>World Order</title><link rel="stylesheet" href="menu.css"></head>
+<body>
+  <div class="atlas" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="globe"><svg viewBox="0 0 800 800"><defs><radialGradient id="ocean" cx="30%" cy="30%" r="80%"><stop stop-color="#315066"/><stop offset=".65" stop-color="#132c3c"/><stop offset="1" stop-color="#070f18"/></radialGradient><clipPath id="sphere"><circle cx="400" cy="400" r="330"/></clipPath></defs><circle cx="400" cy="400" r="331" fill="url(#ocean)" stroke="#aa9360" stroke-width="1.5"/><g clip-path="url(#sphere)" fill="none" stroke="#7894a1" stroke-opacity=".25"><ellipse cx="400" cy="400" rx="240" ry="330"/><ellipse cx="400" cy="400" rx="120" ry="330"/><path d="M70 400h660M400 70v660"/><ellipse cx="400" cy="285" rx="310" ry="40"/><ellipse cx="400" cy="515" rx="310" ry="40"/><ellipse cx="400" cy="180" rx="240" ry="40"/><ellipse cx="400" cy="620" rx="240" ry="40"/></g><g clip-path="url(#sphere)" fill="#577078" stroke="#b8b18c" stroke-width="1" opacity=".72"><path d="M124 220l58-51 75-22 62 13 33 39-23 36-58 11-21 37-49 8-21 39-35-21-6-45-31-12zM229 321l21 20 13 46 31 14 8 22-32-12-15-31-19-20zM296 421l56 18 39 37-13 46-24 30-18 65-23 42-22-17-3-62-29-56-3-51zM371 175l27-43 43-2-12 64-26 22zM444 232l20-35 45-20 58 8 38-26 78 52 38 47 26 45-46 20-41-20-12 30-29-2-25-45-48-2-18 39-41-11-24-34-31-10zM439 316l46-12 50 26 24 37-9 38-28 29-23 63-32-6-9-63-38-39-2-47zM574 341l39 8 27 49-7 39-27-15-13-40zM617 503l58-26 57 34-5 50-51 21-55-31zM551 448l8 28-12 29-10-9zM661 441l12-8 38 13-9 13z"/></g><g fill="#edcc8d"><circle cx="211" cy="256" r="5"/><circle cx="466" cy="274" r="5"/><circle cx="580" cy="297" r="5"/><circle cx="570" cy="212" r="5"/></g><g fill="none" stroke="#edcc8d" stroke-opacity=".55"><path d="M211 256Q382 104 580 297M466 274Q484 189 570 212M211 256Q339 189 466 274"/><circle cx="211" cy="256" r="13"/><circle cx="466" cy="274" r="13"/><circle cx="580" cy="297" r="13"/><circle cx="570" cy="212" r="13"/></g></svg></div><div class="coordinate c1">40°43′ N &nbsp; 74°00′ W</div><div class="coordinate c2">DIPLOMACY · ECONOMY · POWER</div></div>
+  <header><span class="insignia">◎</span><span>WORLD ORDER<span class="edition">WINDOWS EDITION</span></span><button id="fullscreen" title="F11 / Alt+Enter">⛶ 全屏</button></header>
+  <main>
+    <p class="eyebrow"><span></span> 四种力量，一个世界</p>
+    <h1>WORLD<br><span>ORDER</span></h1>
+    <p class="subtitle">世界秩序</p>
+    <p class="intro">以外交改变格局，以经济积蓄力量。<br>在六个回合之间，书写你的世界秩序。</p>
+    <nav aria-label="主菜单">
+      <button class="primary" data-start="continue"><span>继续游戏<small>自动恢复上次模式与已保存的进度</small></span><b>↗</b></button>
+      <button data-start="local"><span>本机对局<small>同一台电脑，四位玩家轮流操作</small></span><b>01</b></button>
+      <button data-start="steam"><span>Steam 联机<small>创建房间，邀请其他三位玩家</small></span><b>02</b></button>
+      <div class="minor-actions"><button id="instructions">游戏说明</button><button id="quit">退出游戏</button></div>
+    </nav>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <aside class="world-caption"><span class="hairline"></span><b>塑造秩序</b><span>美国 / 中国 / 欧盟 / 俄罗斯</span></aside>
+  <footer><span>策略桌游 · 四人对局 · 自动保存</span><span>客户端预览版 0.7</span></footer>
+  <dialog id="help"><button class="close">×</button><p class="eyebrow">WORLD ORDER</p><h2>你的下一场对局</h2><p><b>本机对局</b>由四位真人共用这台电脑。左侧势力按钮打开实时玩家面板；用手牌左侧的“本机操作者”下拉框切换，也可按“切到当前操作方”或开局时的“下一位选牌”。首轮固定六张新手牌；目标与战略资产各点击一张弃置，再确认保留。</p><p><b>Steam 联机</b>需要每位玩家先登录 Steam，再打开客户端。房主创建房间，将数字房间号分享给另外三位玩家。目前使用测试 App ID 480，跨电脑四人联机仍待实测。</p><p>左侧查看四方资源、出口与协议；中央上排为美洲、欧洲、中亚、亚太，下排为非洲、中东、南亚和事件。下方保留手牌、盟国、战略资产与主动能力，盟国叠放和横置会显示标记。事件按地区着色，点击查看牌面；再次点击原入口可关闭浮层。</p><p>点击手牌选择行动，在棋盘上点选合法目标；使用资产时可点击手牌选择盖牌。贸易区按六类资源分列，选择进出口数量后确认结算。进度自动保存，F11 或 Alt+Enter 切换全屏。联机时房主需要保持游戏运行。</p><p class="note">包含基础版、外交与霸权、动荡世界。当前支持四位真人，未加入电脑对手。</p><button class="close-help">开始探索</button></dialog>
+  <script src="menu.js"></script>
+</body></html>

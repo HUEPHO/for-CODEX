@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-04",
+  "sources": [
+    {
+      "owner": "US",
+      "cardIndex": 0,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "8ccf40",
+      "sourceCardId": 39700,
+      "sourceField": "CustomDeck.397.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782593005/B9C7FED88770E29FAE9A3E0E5E622F76A697B348/",
+      "path": "dist/assets/commerce-US-1.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "fef12df489862e0af51682e628773354e4d8bb1653a80220fe5e26f802b33d0d",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "US",
+      "cardIndex": null,
+      "side": "Back",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "8ccf40",
+      "sourceCardId": 39700,
+      "sourceField": "CustomDeck.397.BackURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782593073/4EFD2A839B2248651307DAE4CF28481CABFE63F1/",
+      "path": "dist/assets/commerce-US-back.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "f25cb08a97c2768fea744363fcf688e54abf465e7d08ceea52d14de4035cbc84",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "CN",
+      "cardIndex": 0,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "34109e",
+      "sourceCardId": 9200,
+      "sourceField": "CustomDeck.92.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782589461/96FA291F00EB7F12EF308670BD8E3DB5095B82EA/",
+      "path": "dist/assets/commerce-CN-1.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "4e9e38b6128e313c0dfcd1a023174b294e9bb65b4699a90704a5faf693ecdc69",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "CN",
+      "cardIndex": null,
+      "side": "Back",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "34109e",
+      "sourceCardId": 9200,
+      "sourceField": "CustomDeck.92.BackURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782589585/525043D22D9831DBE6981793467B550517E9C3EE/",
+      "path": "dist/assets/commerce-CN-back.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "2929a925293962a00abb4948636cc965e2fcc802918256675e770453c2ef5394",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "EU",
+      "cardIndex": 0,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "49960b",
+      "sourceCardId": 39600,
+      "sourceField": "CustomDeck.396.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782594235/67952E204CAE769401BC7282756375B60EE12D98/",
+      "path": "dist/assets/commerce-EU-1.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "73511e4bf9a4448f61351da1abc93c827918e6f15f120b7fcf83a57a6bd36b3f",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "EU",
+      "cardIndex": null,
+      "side": "Back",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "49960b",
+      "sourceCardId": 39600,
+      "sourceField": "CustomDeck.396.BackURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782594337/EA20107497BE1148CA19F474FA67AD3263B9CB78/",
+      "path": "dist/assets/commerce-EU-back.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "fb2070ac239e5fb215e908aa2c7145337ff957d6d40ef939d515da33028d24ec",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "RU",
+      "cardIndex": 0,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "00d163",
+      "sourceCardId": 39800,
+      "sourceField": "CustomDeck.398.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782591543/AD849153D63FCCA20350C0FDCCF3DE4572AA287C/",
+      "path": "dist/assets/commerce-RU-1.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "c212a5cfb5956aabe56959c3a7037be433594585c0dc2ef5b9064ebcf8d0a5a2",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "RU",
+      "cardIndex": null,
+      "side": "Back",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "00d163",
+      "sourceCardId": 39800,
+      "sourceField": "CustomDeck.398.BackURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782591606/907BA0AC2274192BCBDEDF6813F5B99CDC5F6940/",
+      "path": "dist/assets/commerce-RU-back.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "03ba3dff57a325713c894820ee4102547e855510f9b97dc33859133df08e0cd7",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "RU",
+      "cardIndex": 1,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "1f9ac7",
+      "sourceCardId": 39900,
+      "sourceField": "CustomDeck.399.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/23184849782591780/4BC911CFFDC248D8D78419A31ED1AD55BF753FF0/",
+      "path": "dist/assets/commerce-RU-2.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "044751a579fe3b4827f8456cb111086c71ff488b1b024df87716d05e3aa2fb5d",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    },
+    {
+      "owner": "RU",
+      "cardIndex": 2,
+      "side": "Face",
+      "sourceFile": "references/TS_Save_12.json",
+      "sourceGuid": "2579b7",
+      "sourceCardId": 11900,
+      "sourceField": "CustomDeck.119.FaceURL",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/7423600164135523/23A0A7F2D0CD48E613793CEA688C69C75C43EFF4/",
+      "path": "dist/assets/commerce-RU-3.png",
+      "size": [
+        485,
+        745
+      ],
+      "sha256": "77de09f98b43f57c3cf2931fddd1a37f1847cdb149930915b42f7a86d5ba018d",
+      "processing": "Original single-card PNG bytes copied unchanged"
+    }
+  ]
+}

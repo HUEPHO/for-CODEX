@@ -1,0 +1,23 @@
+/* Source selects remain in place for the existing readers and update logic. */
+.game-client select.client-action-choice-source,
+.game-client select.client-cover-choice-source { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; clip-path: inset(50%); overflow: hidden; }
+.game-client .client-action-options { display: flex; flex-wrap: wrap; gap: 7px; width: 100%; margin: 6px 0 3px; }
+.game-client .client-action-options[hidden],
+.game-client .client-cover-choice[hidden] { display: none; }
+.game-client .client-action-options .client-action-option { flex: 1 1 145px; min-width: 0; min-height: 43px; margin: 0; padding: 9px 12px; background: #173449; border: 1px solid #526e80; border-radius: 5px; color: #d5e3ec; text-align: center; line-height: 1.35; font-size: 13px; }
+.game-client .client-action-options .client-action-option:hover:not(:disabled) { color: #fff0cd; border-color: #d7b978; background: #294b5d; }
+.game-client .client-action-options .client-action-option.is-selected { color: #ffe8b6; border-color: #e0bd75; box-shadow: inset 0 0 0 1px #a78c55; background: linear-gradient(135deg,#675235,#3b392e); }
+.game-client .client-action-options .client-action-option.is-selected::before { content: '✓ '; color: #f2ce82; }
+.game-client .client-action-options .client-action-option:disabled { opacity: .42; cursor: default; }
+.game-client .client-action-options .client-action-option:focus-visible { outline: 2px solid #fff0c1; outline-offset: 2px; }
+.game-client #sequence-panel label:has([data-sequence-choice]) { display: block; margin: 11px 0; color: #d7c197; font-size: 12px; }
+.game-client #sequence-panel [data-sequence-choice] + .client-action-options { padding-top: 3px; }
+.game-client .client-cover-choice { display: grid; gap: 8px; margin-top: 7px; padding: 10px 12px; border: 1px solid #c0a569; border-radius: 4px; background: #493e24c2; color: #eadbb8; }
+.game-client .client-cover-instruction { font-size: 12px; line-height: 1.5; }
+.game-client .client-cover-selected { display: block; font-size: 12px; color: #b6c7d1; }
+.game-client .client-cover-selected > b { color: #ffe1a1; font-size: 14px; }
+.game-client .client-cover-choice.is-disabled { opacity: .6; }
+@media (max-width: 1280px) {
+ .game-client .client-action-options { gap: 5px; }
+ .game-client .client-action-options .client-action-option { flex-basis: 115px; min-height: 36px; padding: 7px 9px; font-size: 12px; }
+}

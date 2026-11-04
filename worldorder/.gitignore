@@ -1,0 +1,11 @@
+.sites-runtime/
+node_modules/
+.env
+*.tar.gz
+dist/client/
+dist/server/
+dist/.openai/
+.local/
+.web/
+data/
+runtime/

@@ -1,0 +1,44 @@
+.client-owned-cards { min-width: 0; min-height: 0; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 5px; }
+.client-owned-group { min-width: 0; min-height: 0; display: flex; flex-direction: column; border: 1px solid #687b8c55; border-radius: 4px; background: #102532d9; overflow: hidden; }
+.client-owned-group > header { display: flex; align-items: center; gap: 6px; flex: none; padding: 3px 7px; color: #d7c59d; }
+.client-owned-group > header h2 { margin: 0; font-size: 10px; font-weight: 550; }
+.client-owned-group > header > span { margin-left: auto; font-size: 9px; color: #a0b3c1; }
+.client-owned-row { display: flex; flex: 1; align-items: flex-start; gap: 5px; min-width: 0; min-height: 0; overflow-x: auto; overflow-y: hidden; padding: 3px 6px 5px; scrollbar-width: thin; }
+.client-owned-card { position: relative; flex: 0 0 76px; min-width: 0; }
+.client-owned-card .cardbutton { width: 100%; min-width: 0; }
+.client-owned-card .cardbutton img { height: 56px; width: 100%; object-fit: contain; }
+.client-owned-card .cardmeta { display: none; }
+.client-owned-card.is-used .cardbutton img, .client-owned-card.is-future .cardbutton img { opacity: .6; }
+.client-ally-art { position: relative; isolation: isolate; padding: 4px 4px 5px; }
+.client-ally-art .cardbutton { position: relative; z-index: 1; }
+.client-owned-ally .cardbutton img { display: block; width: auto; max-width: 100%; margin: auto; border-radius: 4px; }
+.client-owned-ally.is-exhausted .cardbutton img { transform: none; opacity: 1; }
+.client-owned-card.has-underlays .cardbutton img { outline: 1px solid #e6c57b; box-shadow: 0 0 0 2px #674c28, 0 2px 5px #0009; }
+.client-ally-underlay { position: absolute; z-index: 0; top: calc(4px + var(--underlay-index) * 3px); left: calc(50% + var(--underlay-index) * 3px); transform: translateX(-50%); height: var(--client-ally-height,56px); width: auto; max-width: calc(100% - 8px); border: 1px solid #cbb57e; border-radius: 4px; pointer-events: none; }
+.game-client .client-ally-underlay { height: var(--client-ally-height,60px); }
+.game-client.client-action-open .client-ally-underlay { height: var(--client-ally-height,45px); }
+.client-owned-marks { display: flex; flex-wrap: wrap; gap: 2px; }
+.client-owned-mark { display: inline-block; padding: 0 3px; font-size: 8px; line-height: 1.4; color: #cdd9df; background: #0a1723da; border-radius: 2px; }
+.client-owned-mark--fdi { color: #f1cf83; }
+.client-owned-mark--base { color: #c1d5e4; }
+.client-owned-mark--stack { color: #ffe5a3; background: #65461e; border: 1px solid #ba9653; }
+.client-owned-mark--exhausted { color: #dce8f0; background: #394956; }
+.client-owned-empty { padding: 3px 7px; margin: 0; color: #8ba2b4; font-size: 9px; }
+.client-owned-group--abilities { overflow-y: auto; scrollbar-width: thin; }
+.client-owned-group--abilities .client-owned-row { flex: 0 0 auto; }
+.client-owned-growth:empty, .client-owned-effects:empty { display: none; }
+.client-owned-effects { padding: 3px 7px 5px; font-size: 9px; }
+.client-owned-effects .event-effects { font-size: inherit; margin: 0; }
+.client-owned-effects .event-effects > b { font-size: 9px; }
+.client-owned-effects p { margin: 3px 0; }
+.client-owned-effects button, .client-owned-effects select { padding: 2px 5px; font-size: 9px; }
+
+/* The same public ally stack in the player dialog, without dock sizing. */
+.client-public-allies { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; padding: 6px 3px 10px; }
+.client-public-allies .client-owned-card, #viewer .client-public-allies .client-owned-card { flex: 0 0 132px; width: 132px; }
+.client-public-allies .client-owned-card .cardbutton img, #viewer .client-public-allies .client-owned-card .cardbutton img { height: 110px; max-height: none; }
+.client-public-allies .client-ally-underlay, #viewer .client-public-allies .client-ally-underlay { height: 110px; max-height: none; }
+.client-public-allies .cardmeta { display: block; font-size: 10px; text-align: center; }
+.client-public-allies .client-owned-marks { margin-top: 4px; }
+.client-public-allies .client-owned-mark { font-size: 10px; }
+.client-public-allies .client-owned-empty { font-size: 11px; }

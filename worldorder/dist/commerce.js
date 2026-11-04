@@ -1,0 +1,4 @@
+export const TRADE_LIMITS={US:{exports:2,imports:2},EU:{exports:2,imports:2},CN:{exports:3,imports:3},RU:{exports:3,imports:2}};
+export const COMMERCE={US:{resources:[4],quantity:1,count:2},CN:{resources:[3],quantity:1,count:2},EU:{resources:[3,4],quantity:1,count:2},RU:{resources:[0,1],quantity:3,count:3}};
+export function initializeCommerce(s,ready=null){if(s.tradeVersion)throw Error('贸易记录已启用');for(const [id,p] of Object.entries(s.players)){const config=COMMERCE[id];if(ready&&(!Array.isArray(ready[id])||ready[id].length!==config.count||ready[id].some(x=>typeof x!=='boolean')))throw Error('请为各方确认所有贸易卡的正反面');p.commerce=Array.from({length:config.count},(_,i)=>({ready:ready?ready[id][i]:true}));}s.tradeVersion=1;}
+export function refreshCommerce(p,player,key){if(COMMERCE[player].resources.includes(key))for(const card of p.commerce||[])card.ready=true;}

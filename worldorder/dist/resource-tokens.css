@@ -1,0 +1,24 @@
+/* Original solid marker artwork. Load after the client layout overrides.
+   Fill the former 88–90% inset for a larger mark without squeezing counters. */
+.resource-icon:is(.resource-icon--energy,.resource-icon--raw,.resource-icon--food,.resource-icon--goods,.resource-icon--services,.resource-icon--diplomacy),
+.game-client .resource-icon:is(.resource-icon--energy,.resource-icon--raw,.resource-icon--food,.resource-icon--goods,.resource-icon--services,.resource-icon--diplomacy) {
+ background-color: transparent;
+ background-size: contain;
+ border-radius: 0;
+}
+.game-client.client-scroll .client-player-resources .resource-icon:not(.resource-icon--army) {
+ width: 28px; height: 28px; min-width: 28px; min-height: 28px;
+}
+.game-client.client-scroll .action-workbench .client-trade-resource .resource-icon:not(.resource-icon--army) {
+ width: 25px; height: 25px; min-width: 25px; min-height: 25px;
+}
+@media(max-width:1280px) {
+ .game-client.client-scroll .client-player-resources .resource-icon:not(.resource-icon--army) {
+  width: 26px; height: 26px; min-width: 26px; min-height: 26px;
+ }
+}
+@media(max-height:800px) {
+ .game-client.client-scroll .client-player-resources .resource-icon:not(.resource-icon--army) {
+  width: 23px; height: 23px; min-width: 23px; min-height: 23px;
+ }
+}
