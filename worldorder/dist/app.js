@@ -174,7 +174,6 @@ const regionTable=installRegionTable({
 function syncTableTargets(reveal=false){syncCardTargets(reveal);if(isGameClient){syncClientActionChoices();syncClientAllySelection();}const task=$('#table-task-body');regionTable.sync({reveal:reveal&&!!task&&!tableSelectionModel(task)});if(isGameClient)syncClientActionLayout();armyDeployment.sync();}
 function currentRollbackOptions(){return room?room.rollback||{step:{available:!!room.canUndo},phase:{available:false,reason:'当前房间没有阶段快照'},turn:{available:false,reason:'当前房间没有行动快照'}}:rollbackAvailability(localRollback,localUndoIdentity(),Date.now(),state);}
 const currentRestartRequest=()=>room?room.restartRequest:turnRestartRequestView(localRollback,localIdentity(),state);
-let pendingRollbackWarning=null;
 function updateRollbackControls(){
  if(!ready||!state)return;
  const options=currentRollbackOptions(),blocked=room&&(roomClient.busy?'上一步正在保存，请稍候':roomClient.status==='offline'?'房间离线，恢复连接后才能撤回':!room.state?'请先进入对局':'');
@@ -187,19 +186,19 @@ function updateRollbackControls(){
  $('#rollback-body').innerHTML=renderRollbackOptions(options,blocked||(request?'请在行动面板处理当前重开申请':''));
  const panel=$('#action-rollback');if(panel)panel.innerHTML=renderActionRollback(options,request,blocked);
 }
-async function rollbackAction(scope='step',warned=false){
+function showRollbackWarning(warning){
+ if(!warning)return;
+ $('#rollback-warning-detail').textContent=warning+'。撤回后这些信息仍然已经被看过。';
+ showGameDialog($('#rollback-warning'));
+}
+async function rollbackAction(scope='step'){
  const option=currentRollbackOptions()[scope];
  if(!option?.available){toast(option?.reason||'当前不能撤回');return;}
- if(option.warning&&!warned){
-  pendingRollbackWarning={scope,key:gameContext()};
-  $('#rollback-warning-detail').textContent=option.warning+'。撤回后这些信息仍然已经被看过。';
-  showGameDialog($('#rollback-warning'));return;
- }
- if(room){const result=await roomCommand(option.requiresConsent?'requestTurnRestart':'undo',{scope});if(result.ok){$('#rollback-dialog').close();if(option.requiresConsent)toast('已申请，等待对方同意');}return;}
+ if(room){const result=await roomCommand(option.requiresConsent?'requestTurnRestart':'undo',{scope});if(result.ok){$('#rollback-dialog').close();if(option.requiresConsent)toast('已申请，等待对方同意');showRollbackWarning(option.warning);}return;}
  if(roomClient.isSteam)return;
  try{
-  if(option.requiresConsent){localRollback=requestTurnRestart(localRollback,localIdentity(),{seat:option.approver,user:'local',token:'local:'+option.approver},state,String(++localRevision));persist();render();$('#rollback-dialog').close();toast('已申请，请切换到对方席位确认');return;}
-  const restored=restoreRollback(localRollback,localUndoIdentity(),scope,Date.now(),state);state=restored.state;localRollback=restored.rollback;localRevision++;stagedCard=null;taskVersion++;persist();render();$('#rollback-dialog').close();toast('已'+rollbackLabel(scope));
+  if(option.requiresConsent){localRollback=requestTurnRestart(localRollback,localIdentity(),{seat:option.approver,user:'local',token:'local:'+option.approver},state,String(++localRevision));persist();render();$('#rollback-dialog').close();toast('已申请，请切换到对方席位确认');showRollbackWarning(option.warning);return;}
+  const restored=restoreRollback(localRollback,localUndoIdentity(),scope,Date.now(),state);state=restored.state;localRollback=restored.rollback;localRevision++;stagedCard=null;taskVersion++;persist();render();$('#rollback-dialog').close();toast('已'+rollbackLabel(scope));showRollbackWarning(option.warning);
  }catch(error){toast(error.message);updateRollbackControls();}
 }
 async function restartResponse(response){
@@ -364,8 +363,6 @@ for(const dialog of document.querySelectorAll('dialog')){dialog.querySelector('.
 $('#undo').onclick=()=>rollbackAction('step');
 $('#rollback').onclick=()=>{updateRollbackControls();showGameDialog($('#rollback-dialog'));};
 $('#rollback-dialog').addEventListener('click',e=>{const button=e.target.closest('[data-rollback-scope]');if(button&&!button.disabled)rollbackAction(button.dataset.rollbackScope);});
-$('#rollback-warning-confirm').onclick=()=>{const pending=pendingRollbackWarning;$('#rollback-warning').close();if(!pending||pending.key!==gameContext()){toast('局面已更新，请重新选择撤回');return;}rollbackAction(pending.scope,true);};
-$('#rollback-warning').addEventListener('close',()=>{pendingRollbackWarning=null;});
 $('#newgame').onclick=()=>{if(!ready)return;if(room&&!room.isHost){toast('由房主重新布置房间');return;}$('#settings-copy').textContent=room?'重新布置当前房间；四个席位保留，四方重新选牌。':'四名真人，所有势力由你在本机切换操作。';$('#settings-warning').textContent=room?'这会替换当前房间的整盘游戏，回到大厅等待开始。':'这会清空当前本地桌面。';const config=room?.config||state.config;$('#dd').checked=config.dd;$('#wit').checked=config.wit;$('#executive').checked=!!config.executive;$('#growth-mode').value=config.growthMode||'families';showGameDialog($('#settings'))};
 $('#help').onclick=()=>showGameDialog($('#help-dialog'));
 $('#confirm-new').onclick=async()=>{if(room){const result=await roomCommand('reset',{config:{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value}});if(result.ok)$('#settings').close();return;}state=createState(data,{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value});localRollback=createRollback();localRevision++;side='board';tray='hand';hide=false;persist();render();$('#settings').close();toast('请选择各势力的开局卡牌；已按启用模块布置新局')};
