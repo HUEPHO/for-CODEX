@@ -2,6 +2,7 @@ import {isGameClient,syncGameClient,setGameClientPicking} from './game-client.js
 import {showGameDialog,closeClientDialogs} from './client-dialogs.js';
 import {composeClientScrollTable} from './client-scroll-layout.js';
 import {syncClientActionLayout} from './client-action-layout.js';
+import {installNumberCounters} from './client-number-counters.js';
 import {syncClientAllySelection,handleClientAllySelection} from './client-ally-selection.js';
 import {renderClientPlayerBoard} from './client-player-board.js';
 import {renderClientOwnedCards,renderClientAllies} from './client-owned-cards.js';
@@ -62,6 +63,7 @@ let room=null,uiRevision=0,localRevision=0,stagedCard=null,taskVersion=0,rendere
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
 const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
+if(isGameClient)installNumberCounters();
 const labels={starter:'起始能力',ability:'市场能力',growth:'发展牌',asset:'战略资产',event:'事件',objective:'目标',country:'国家',startingCountry:'起始盟国',effect:'效果牌',executive:'行政命令'};
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('#toast').classList.remove('show'),3200)}
 const localIdentity=()=>({seat:state.current,user:'local',token:'local:'+state.current});

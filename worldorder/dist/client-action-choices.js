@@ -1,6 +1,6 @@
 // These buttons are adapters for existing selects. Their options, ordering,
 // permissions and change handlers remain the only source of action choices.
-const choiceSelector='#basic-domestic,#basic-branch,[data-sequence-choice],#sequence-funding,#sequence-resource';
+const choiceSelector='#basic-domestic,#basic-branch,[data-sequence-choice],#sequence-resource';
 const coverSelector='#sequence-cover,#extra-asset-cover';
 const groups=new WeakMap(),sources=new WeakMap();
 const covers=new WeakMap();

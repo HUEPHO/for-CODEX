@@ -1,0 +1,11 @@
+.game-client .client-number-source{display:none!important}
+.game-client .client-number-counter{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;flex:none;min-width:42px;min-height:34px;margin:2px 3px;padding:3px 9px;border:1px solid #718a96;border-radius:5px;background:#203b4b;color:#e8e1cc;font:700 20px/1.2 system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;touch-action:manipulation;user-select:none}
+.game-client .client-number-counter.is-selected{border-color:#dfbb6b;background:#51452d;color:#ffe5ac;font-weight:800}
+.game-client .client-number-counter:disabled{opacity:.4;cursor:default}
+.game-client .client-number-counter:focus-visible{outline:2px solid #f3cf80;outline-offset:2px}
+.game-client .client-number-counter[hidden]{display:none!important}
+.game-client.client-scroll .client-command-dock .flow-panel .client-number-counter{font-size:20px;padding:3px 9px;min-height:32px}
+.game-client.client-scroll .client-command-dock .flow-panel fieldset>label:has(>.client-number-counter):not(:has(input[type=checkbox])){display:block;white-space:normal}
+.game-client .client-trade-stepper:has(>.client-number-counter){display:inline-flex}
+.game-client .client-trade-stepper:has(>.client-number-counter)>[data-trade-step]{display:none!important}
+.game-client #debug-dialog .debug-number .client-number-counter{width:64px;min-width:64px;min-height:32px;font-size:20px}

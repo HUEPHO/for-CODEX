@@ -6,7 +6,8 @@ import {renderGrowthPending} from './growth-active-ui.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {renderWorldAftermath,renderWinners} from './world-ui.js';
 import {renderFocus,renderProsperity} from './economy-ui.js';
-import {researchPreview} from './research.js';
+import {researchPreview,countryValue} from './research.js';
+import {ALLY_BACK_IMAGES} from './ally-card-art.js';
 import {ACTION_CARDS} from './basic-actions.js';
 import {currentActor as flowActor,aftermathSteps} from './phase-state.js';
 import {renderPhaseOverview,renderPhaseSettlement,renderSettlementJournal} from './phase-ui.js';
@@ -14,6 +15,12 @@ import {activeInteraction} from './interaction-state.js';
 import {renderIncomeEffects} from './event-income-ui.js';
 const names={US:'美国',CN:'中国',EU:'欧盟',RU:'俄罗斯'};
 const interactionRenderers={event:renderEventPanel,income:renderIncomeEffects,growth:renderGrowthPending,relation:renderOpenRelation,sequence:renderSequencePanel};
+const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function researchAllies(s,actor,cards,disabled){const p=s.players[actor];
+ return `<div class="research-allies" role="group" aria-label="消耗盟国获得研究力">${p.allies.map(id=>{const c=cards[id],value=countryValue(id),used=p.exhaustedAllies?.includes(id),label=`${c.name} · ${used?'已消耗':'消耗获得'+value+'研究力'}`;
+  return `<button type="button" class="research-ally${used?' is-exhausted':''}" data-card-action="researchAlly" data-id="${id}" title="${esc(label)}" aria-label="${esc(label)}" ${disabled||used?'disabled':''}><img src="${used?(ALLY_BACK_IMAGES[id]||c.image):c.image}" alt=""><span class="research-ally-value" aria-hidden="true">${value}</span></button>`;
+ }).join('')}</div>`;
+}
 export function renderFlow(s,cards={}){
  const f=s.flow;if(!f)return renderEventPanel(s,cards)||'<p class="board-caption">四方完成开局选牌后，开始六轮流程。</p>';
  const actor=flowActor(s),disabled=actor&&actor!==s.current?'disabled':'';
@@ -26,7 +33,7 @@ export function renderFlow(s,cards={}){
  if(f.step==='research'){
   body=`<b>轮到${names[actor]}研究（${f.index+1}/4）</b>`;
   if(!f.research){const preview=researchPreview(s,actor);body+=`<p>剩余手牌研究力 ${preview.base} + 内政焦点 ${preview.extra} = <strong>${preview.total}</strong></p><p>基础奖励：${preview.money}资金、${preview.diplomacy-preview.lostDiplomacy}外交、${preview.armies}军队。${preview.lostDiplomacy?'外交达到10，超出'+preview.lostDiplomacy+'点舍弃。':''}请勿再手动领取这些奖励。</p>${preview.incomeCount?`<fieldset ${disabled}><legend>收入优化 · 选择${preview.incomeCount}张手牌</legend><p>所选牌的上半部奖励再领取一次，不额外获得研究力。</p>${s.players[actor].hand.map(id=>`<label><input type="checkbox" data-income-card="${id}" ${s.players[actor].hand.length<=2?'checked':''}> ${ACTION_CARDS[id]?.name||'能力牌'} <button data-card="${id}" data-source="view">查看</button></label>`).join('')}</fieldset>`:''}<button id="start-research" ${disabled}>领取奖励并开始本人研究</button>`;}
-  else body+=`<p>剩余研究力 <strong>${f.research.remaining}</strong> · 已花费 ${f.research.spent}。点击市场卡购买，或点击盟国横置获得研究力；费用与国家价值按牌面自动计算。</p><button id="research-refresh" ${disabled||f.research.remaining<2?'disabled':''}>花2研究力刷新最右3张</button><button id="finish-research" ${disabled}>结束研究并弃置剩余手牌</button>`;
+  else body+=`<p class="research-balance">剩余研究力 <strong>${f.research.remaining}</strong> · 已花费 ${f.research.spent}</p>${researchAllies(s,actor,cards,disabled)}<button id="research-refresh" ${disabled||f.research.remaining<2?'disabled':''}>花2研究力刷新最右3张</button><button id="finish-research" ${disabled}>结束研究并弃置剩余手牌</button>`;
  }
  if(f.step==='events')body='<b>事件阶段 · 手动结算</b><p>依次处理公共事件（从右到左）、按行动顺序处理个人事件及连锁效果。</p><label><input id="flow-confirm" type="checkbox"> 所有事件已结算并记录资源、分数变化</label><button id="confirm-events">确认事件完成</button>';
  if(f.step==='aftermath'){const steps=aftermathSteps(s),step=steps[f.checks.length];body=`<b>余波 ${f.checks.length+1}/${steps.length} · ${step}</b><p>按规则为四方手动结算此项，并在玩家面板记录变化。${s.round===6?'未用战略资产每张2分将由程序在结束时统一追加，请勿重复加分。':''}</p><label><input id="flow-confirm" type="checkbox"> 四方此项已完成</label><button id="confirm-aftermath">确认${step}</button>`;}

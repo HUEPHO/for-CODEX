@@ -1,4 +1,4 @@
-/* The dock uses compact forms and resource tabs, never a nested scrollbar. */
+/* Keep forms compact; scroll the workbench only when it exceeds the viewport. */
 .game-client.client-scroll .client-command-dock .flow-panel fieldset.army-deployment{display:block}
 .flow-panel .trade-primary-choice{display:flex;gap:8px;padding:5px 7px;margin:4px 0;border:1px solid #516c7c;border-radius:4px}
 .flow-panel .trade-primary-choice label{display:inline-flex;align-items:center;gap:5px;padding:3px 6px;cursor:pointer;border:1px solid transparent;border-radius:3px}
@@ -6,12 +6,13 @@
 .flow-panel .trade-primary-choice input{width:13px;height:13px;margin:0;accent-color:#dfbd77}
 .flow-panel .trade-primary-choice .resource-icon{width:21px;height:23px;min-width:21px;min-height:23px}
 .game-client.client-scroll .client-command-dock.has-action-form>.tray{position:relative}
+.game-client.client-scroll .client-command-dock.has-action-form .hand>.empty{grid-column:1/-1;padding:8px;font-size:11px}
 .game-client.client-scroll .client-command-dock.has-action-form:has(.client-hand-pages:not(:empty)) .client-strategic-assets{padding-right:72px}
 .game-client.client-scroll .client-command-dock.has-action-form .client-hand-pages:not(:empty){position:absolute;top:10px;right:8px;gap:4px;font-size:10px;line-height:1}
 .game-client.client-scroll .client-command-dock.has-action-form .client-hand-pages button{font-size:14px;line-height:1;padding:1px 5px;min-height:20px}
 .game-client.client-scroll .client-command-dock [hidden]{display:none!important}
 .game-client.client-scroll .client-command-dock .action-workbench,
-.game-client.client-scroll .client-command-dock .action-workbench:not(.is-collapsed){position:static;inset:auto;flex:none;width:100%;height:auto;min-height:0;max-height:none;overflow:visible;margin:0;box-sizing:border-box}
+.game-client.client-scroll .client-command-dock .action-workbench:not(.is-collapsed){position:static;inset:auto;flex:0 1 auto;width:100%;height:auto;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#ab925d #102633;margin:0;box-sizing:border-box}
 .game-client.client-scroll .client-command-dock .table-task{padding:7px 8px;max-height:none;overflow:visible}
 .game-client.client-scroll .client-command-dock .table-task-heading{padding:0 0 5px;margin:0;gap:4px}
 .game-client.client-scroll .client-command-dock .table-task-heading>span{font-size:11px}

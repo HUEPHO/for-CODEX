@@ -7,7 +7,7 @@ const seenNotes=new WeakSet();
 export function syncClientActionLayout(){
  const dock=document.querySelector('.client-command-dock');if(!dock)return;
  const form=dock.querySelector('#basic-form');
- dock.classList.toggle('has-action-form',!!dock.querySelector('.table-action-card,#basic-form,#sequence-panel,#personal-event-form,.army-deployment,.industry-upgrades'));
+ dock.classList.toggle('has-action-form',!!dock.querySelector('.table-action-card,#basic-form,#sequence-panel,#event-submit,#personal-event-form,#resolve-threat,.research-allies,.army-deployment,.industry-upgrades'));
  const sequence=dock.querySelector('#sequence-panel');if(sequence){
   for(const notes of sequence.querySelectorAll(':scope>details'))if(!seenNotes.has(notes)){seenNotes.add(notes);notes.open=false;}
   sequence.classList.toggle('has-open-notes',!!sequence.querySelector(':scope>details[open]'));

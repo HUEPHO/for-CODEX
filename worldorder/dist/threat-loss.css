@@ -1,0 +1,12 @@
+.threat-loss-table{width:100%;table-layout:fixed;border-collapse:collapse;margin:7px 0;font-size:13px;font-variant-numeric:tabular-nums}
+.threat-loss-table th,.threat-loss-table td{height:28px;padding:3px;text-align:center;border-bottom:1px solid #50647466}
+.threat-loss-table th:first-child{width:42px;text-align:left;font-size:11px;font-weight:500;color:#bdd0d9}
+.threat-loss-table thead th{height:31px}
+.threat-loss-table .power-flag{width:25px;height:17px;object-fit:cover;vertical-align:middle}
+.threat-loss-table thead small{font-size:10px;margin-left:2px;color:#a4cbb5}
+.threat-loss-table .is-current{background:#d5ae4f16}
+.threat-loss-table thead .is-current{box-shadow:inset 0 -2px #e6bd65}
+.threat-loss-table .has-loss{color:#edb39a;font-weight:700;font-size:16px}
+.threat-loss-table .no-loss{color:#7e959e}
+.threat-loss-table tfoot th,.threat-loss-table tfoot td{border-top:1px solid #bfa26d;border-bottom:0;font-weight:700}
+.game-client.client-scroll .client-command-dock #resolve-threat{width:100%;margin:3px 0 0;padding:6px;font-size:12px}
