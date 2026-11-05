@@ -1,13 +1,14 @@
 import {RESOURCE_LABELS} from './economy.js';
 import {resourceIconPath} from './resource-icons.js';
+import {productionCosts} from './domestic-actions.js';
 
 const icons=['energy','raw','food','goods','services','diplomacy','army'];
 export function renderProductionMatrix(s,card){
  const p=s.players[s.current];
- return `<div class="domestic-production-matrix" aria-label="生产资源"><span class="production-row-label">产能</span><span class="production-row-label">库存</span><span class="production-row-label">生产</span>${icons.map((icon,k)=>{
+ return `<div class="domestic-production-matrix" aria-label="生产资源"><span class="production-row-label">产能</span><span class="production-row-label">库存</span><span class="production-row-label">生产</span><span class="production-row-label">消耗</span>${icons.map((icon,k)=>{
   const allowed=(card.fixedProductionKey===undefined||card.fixedProductionKey===k)&&(!card.allowedProductionKeys||card.allowedProductionKeys.includes(k)),max=allowed?p.production[k]:0;
-  return `<div class="production-column"><span class="production-cap">${p.production[k]}</span><button type="button" class="production-stock" data-production-clear="${k}" aria-label="清空${RESOURCE_LABELS[k]}生产" ${max?'':'disabled'}><span class="resource-icon resource-icon--${icon}" role="img" aria-label="${RESOURCE_LABELS[k]}" ${k===6?'':`style="background-image:url('${resourceIconPath(icon)}')"`}></span><small>${p.resources[k]}</small></button><input type="number" data-production-resource="${k}" min="0" max="${max}" value="0" hidden><button type="button" class="production-counter" data-production-counter="${k}" role="spinbutton" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="0" aria-label="生产${RESOURCE_LABELS[k]}" title="左键增加，右键减少" ${max?'':'disabled'}><span>+</span><strong>0</strong></button></div>`;
- }).join('')}</div>`;
+  return `<div class="production-column"><span class="production-cap">${p.production[k]}</span><button type="button" class="production-stock" data-production-clear="${k}" aria-label="清空${RESOURCE_LABELS[k]}生产" ${max?'':'disabled'}><span class="resource-icon resource-icon--${icon}" role="img" aria-label="${RESOURCE_LABELS[k]}" ${k===6?'':`style="background-image:url('${resourceIconPath(icon)}')"`}></span><small>${p.resources[k]}</small></button><input type="number" data-production-resource="${k}" min="0" max="${max}" value="0" hidden><button type="button" class="production-counter" data-production-counter="${k}" role="spinbutton" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="0" aria-label="生产${RESOURCE_LABELS[k]}" title="左键增加，右键减少" ${max?'':'disabled'}><span>+</span><strong>0</strong></button><span class="production-cost" data-production-cost="${k}">0</span></div>`;
+ }).join('')}</div><div class="production-money-cost">金钱消耗 <span class="resource-icon resource-icon--money" role="img" aria-label="资金" style="background-image:url('${resourceIconPath('money')}')"></span><strong data-production-money-cost>0</strong><span class="production-refund" hidden>折现 +<b data-production-refund>0</b></span></div>`;
 }
 export function readProductionMatrix(){return [...document.querySelectorAll('[data-production-resource]')].filter(el=>Number(el.value)>0).map(el=>({key:Number(el.dataset.productionResource),quantity:Number(el.value)}));}
 export function syncProductionMatrix(){
@@ -15,7 +16,12 @@ export function syncProductionMatrix(){
   const column=input.closest('.production-column'),button=column.querySelector('[data-production-counter]'),value=Number(input.value);
   column.classList.toggle('is-selected',value>0);button.querySelector('strong').textContent=value;button.setAttribute('aria-valuenow',String(value));
  }
+ const costs=productionCosts(readProductionMatrix());
+ for(const output of document.querySelectorAll('[data-production-cost]')){const n=costs.resources[Number(output.dataset.productionCost)];output.textContent=n?'−'+n:'0';output.classList.toggle('has-cost',n>0);}
+ const money=document.querySelector('[data-production-money-cost]');if(money)money.textContent=costs.money;
+ const refund=document.querySelector('.production-refund');if(refund)refund.hidden=true;
 }
+export function syncProductionPreview(preview){const refund=document.querySelector('.production-refund');if(!refund)return;refund.hidden=!preview.overflow;refund.querySelector('[data-production-refund]').textContent=preview.overflow;}
 function changeProduction(event,delta){
  const button=event.target.closest('[data-production-counter],[data-production-clear]');if(!button)return;
  event.preventDefault();if(button.disabled)return;

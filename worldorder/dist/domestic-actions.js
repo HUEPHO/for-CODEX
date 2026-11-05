@@ -4,9 +4,14 @@ import {refreshCommerce} from './commerce.js';
 import {gainResource,validateProduction,RESOURCE_LABELS} from './economy.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {drawCards} from './draw.js';
+export function productionCosts(steps){const resources=Array(7).fill(0);let money=0;
+ for(const {key,quantity} of steps){if(key===5)money+=quantity*3;else if(key>2)for(const k of key===3?[0,1]:key===4?[0,2]:[1,2])resources[k]+=quantity;}
+ return {resources,money};
+}
 export function productionPreview(s,steps,max=3){const p=structuredClone(s.players[s.current]);validateProduction(p,s.current);if(!Array.isArray(steps)||steps.length>max||new Set(steps.map(x=>x.key)).size!==steps.length)throw Error('请选择至多'+max+'种不同资源');let overflow=0;const lines=[];
  for(const step of [...steps.filter(x=>x.key<3),...steps.filter(x=>!(x.key<3))]){const k=step.key;if(!Number.isInteger(k)||k<0||k>6)throw Error('无效资源');const n=k<3?p.production[k]:step.quantity;if(!Number.isInteger(n)||n<1||n>p.production[k])throw Error('生产数量必须在1至当前产能之间');
-  if(k===5){if(p.money<n*3)throw Error('生产外交所需资金不足');p.money-=n*3;}else if(k>2){const needs=k===3?[0,1]:k===4?[0,2]:[1,2];if(needs.some(j=>p.resources[j]<n))throw Error('生产'+RESOURCE_LABELS[k]+'的初级资源不足');for(const j of needs)p.resources[j]-=n;}
+  const costs=productionCosts([{key:k,quantity:n}]);
+  if(k===5){if(p.money<costs.money)throw Error('生产外交所需资金不足');p.money-=costs.money;}else if(k>2){if(costs.resources.some((cost,j)=>p.resources[j]<cost))throw Error('生产'+RESOURCE_LABELS[k]+'的初级资源不足');for(const [j,cost] of costs.resources.entries())p.resources[j]-=cost;}
   overflow+=gainResource(p,k,n);lines.push({key:k,quantity:n});
  }
  return {name:'发展战略 · 生产',effect:'production',cost:0,vp:0,resources:p.resources,money:p.money,overflow,produced:lines};

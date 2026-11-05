@@ -8,6 +8,7 @@ import {resilienceControls,readResilience,updateResilience} from './growth-trigg
 import {smartControls,readSmartForm,updateSmartForm} from './smart-power-ui.js';
 import {renderTradeForm,readTradeForm,tradeSummary,updateTradeForm} from './trade-ui.js';
 import {renderDomesticForm,readDomesticForm,updateDomesticForm,domesticSummary} from './domestic-actions-ui.js';
+import {syncProductionPreview} from './domestic-production-ui.js';
 import {countryActionTarget,countryActionSummary} from './country-actions-ui.js';
 import {renderMilitaryForm,readMilitaryMoves,militarySummary} from './military-ui.js';
 import {ACTION_CARDS as BASIC_CARDS,ENGAGE_LIMIT,actionPreview,requireTurn} from './basic-actions.js';
@@ -45,7 +46,8 @@ export function updateBasicForm(s,cards,refreshDiscounts=false){const form=docum
    if(preview.influence!==false)throw error;
   }
   showBasicPlacement(form,!!preview.influence);
-  note.hidden=preview.effect==='relations'&&!preview.influence;
+  note.hidden=preview.effect==='production'||preview.effect==='relations'&&!preview.influence;
+  if(preview.effect==='production')syncProductionPreview(preview);
   document.querySelector('#basic-preview').textContent=preview.effect==='trade'?tradeSummary(s,preview):['production','growth'].includes(preview.effect)?domesticSummary(preview):preview.effect==='reinforce'?militarySummary(preview):['base','relations'].includes(preview.effect)?countryActionSummary(preview):`支付${preview.cost}${preview.effect==='invest'?'资金':'外交'}；在${AREAS[preview.region].name}放置影响力，获得${preview.vp}分。${preview.discount?'已减免'+preview.discount+'外交。':''}`;if(preview.preparation?.length)document.querySelector('#basic-preview').textContent=preview.preparation.join('，')+'；'+document.querySelector('#basic-preview').textContent;if(preview.smartCost)document.querySelector('#basic-preview').textContent+=' 消耗'+preview.smartCost+' SP。';button.disabled=false;
  }catch(error){document.querySelector('#basic-preview').textContent=error.message;button.disabled=true;}
 }
