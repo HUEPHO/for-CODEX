@@ -5,7 +5,7 @@ export const POWER_FLAGS=Object.freeze(Object.fromEntries(Object.keys(POWERS).ma
 export const powerFlagPath=owner=>POWER_FLAGS[owner]||null;
 export const armyMarkerPath=owner=>`assets/token-army-${Object.hasOwn(POWERS,owner)?owner:'CN'}.png`;
 
-/** Identity artwork only. Callers keep the original country name in sentences. */
+/** Identity artwork; country names remain in accessible labels and tooltips. */
 export function powerFlag(owner,{className='',decorative=false}={}){
  const src=powerFlagPath(owner);if(!src)return '';
  const label=POWERS[owner].name+'国旗';

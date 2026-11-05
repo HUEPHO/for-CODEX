@@ -41,6 +41,7 @@ import {sequenceStartIssue} from './card-sequence.js';
 import {readOpenRelation,updateOpenRelation} from './growth-triggers-ui.js';
 import {renderGrowthAbility,renderExtraAsset} from './growth-active-ui.js';
 import {installResourceIcons} from './resource-icons.js';
+import {installPowerLabels} from './power-labels-ui.js';
 import {renderCommerce,readCommerceSetup} from './trade-ui.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {ACTION_CARDS as BASIC_CARDS,requireTurn} from './basic-actions.js';
@@ -348,7 +349,7 @@ function readLocalState(){
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(valid(saved))return saved;}catch{}
  return createState(data);
 }
-async function init(){try{const response=await fetch('./cards.json');if(!response.ok)throw Error('卡牌资料暂时无法读取');data=await response.json();byId=Object.fromEntries(data.map(c=>[c.id,c]));state=readLocalState();ready=true;await roomClient.initialize();const params=new URL(location.href).searchParams,code=params.get('room'),seat=params.get('seat');
+async function init(){try{const response=await fetch('./cards.json');if(!response.ok)throw Error('卡牌资料暂时无法读取');data=await response.json();byId=Object.fromEntries(data.map(c=>[c.id,c]));installPowerLabels(data.map(title));state=readLocalState();ready=true;await roomClient.initialize();const params=new URL(location.href).searchParams,code=params.get('room'),seat=params.get('seat');
  if(roomClient.isSteam){render();}else if(code){try{await roomClient.connect(code);if(seat&&POWERS[seat]&&!room.seat)await roomClient.send('join',{seat});}catch(error){render();openRoomDialog(code);toast(error.message);}}else{persist();render();}registerTools();
  }catch(e){$('#app').innerHTML='';$('#error').hidden=false;$('#error').textContent=e.message+'。请刷新页面重试。'}}
 
