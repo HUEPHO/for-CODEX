@@ -1,3 +1,4 @@
+import {updateRegionalTradeForm,readRegionalTradeChoice} from './regional-trade-ui.js';
 import {eventTradeRegions} from './event-effects.js';
 import {renderEventEffects} from './event-effects-ui.js';
 import {AREAS} from './world.js';
@@ -17,10 +18,10 @@ export function readTradeForm(){
  const primary=document.querySelector('[data-trade-primary]:checked');
  const exports=[...document.querySelectorAll('[data-export-key]')].filter(el=>Number(el.value)!==0).map(el=>({key:Number(el.dataset.exportKey),quantity:Number(el.value)})),regional=new Map();
  for(const el of document.querySelectorAll('[data-export-region-key]')){const n=Number(el.value);if(n===0)continue;const key=Number(el.dataset.exportRegionKey),row=regional.get(key)||{key,quantity:0,regions:{}};row.quantity+=n;row.regions[el.dataset.exportRegion]=n;regional.set(key,row);}exports.push(...regional.values());
- return {...(primary?{primaryResource:Number(primary.value)}:{}),tradeRegions:[...document.querySelectorAll('[data-trade-region]:checked')].map(el=>el.dataset.tradeRegion),exports,imports:[...document.querySelectorAll('[data-import-country]')].map(el=>{const key=Number(el.dataset.importCountry);return {key,countryQuantity:Number(el.value),players:Object.fromEntries([...document.querySelectorAll(`[data-import-key="${key}"]`)].map(input=>[input.dataset.importPlayer,Number(input.value)]))};}).filter(row=>row.countryQuantity!==0||Object.values(row.players).some(n=>n!==0)),factoryGoods:Number(document.querySelector('#factory-goods')?.value||0)};
+ return {...readRegionalTradeChoice(),...(primary?{primaryResource:Number(primary.value)}:{}),tradeRegions:[...document.querySelectorAll('[data-trade-region]:checked')].map(el=>el.dataset.tradeRegion),exports,imports:[...document.querySelectorAll('[data-import-country]')].map(el=>{const key=Number(el.dataset.importCountry);return {key,countryQuantity:Number(el.value),players:Object.fromEntries([...document.querySelectorAll(`[data-import-key="${key}"]`)].map(input=>[input.dataset.importPlayer,Number(input.value)]))};}).filter(row=>row.countryQuantity!==0||Object.values(row.players).some(n=>n!==0)),factoryGoods:Number(document.querySelector('#factory-goods')?.value||0)};
 }
 export function readCommerceSetup(){return {type:'initializeCommerce',ready:Object.fromEntries(Object.keys(COMMERCE).map(id=>[id,[...document.querySelectorAll(`[data-commerce-ready="${id}"]`)].map(el=>el.checked)]))};}
-export function tradeSummary(s,r){return `${s.players[s.current].money}资金 → ${r.players[s.current].money}资金，外交 ${r.diplomacy?'√':'×'}${r.factoryGoods?'；生产'+r.factoryGoods+'消费品':''}${r.bonusRegions?.length?'；'+r.bonusRegions.map(id=>AREAS[id].name).join('、')+'影响力 +1':''}`;}
+export function tradeSummary(s,r){return `${s.players[s.current].money}资金 → ${r.players[s.current].money}资金\n外交 ${r.diplomacy?'√':'×'}${r.factoryGoods?'；生产'+r.factoryGoods+'消费品':''}${r.bonusRegions?.length?'；'+r.bonusRegions.map(id=>AREAS[id].name).join('、')+'影响力 +1':''}`;}
 export function renderCommerce(s){if(!s.tradeVersion)return '';const p=s.players[s.current],cfg=COMMERCE[s.current];return `<details class="economy-tracks"><summary>贸易卡 · ${p.commerce.filter(c=>c.ready).length}/${cfg.count}可用</summary><p>每张提供${cfg.resources.map(k=>cfg.quantity+' '+RESOURCE_LABELS[k]).join(' 或 ')}，共用正反面。生产其中一种资源即可恢复本方全部贸易卡。</p>${p.commerce.map((c,i)=>`<button data-commerce-index="${i}">${i+1} · ${c.ready?'可用':'已用'} · 手动翻面</button>`).join('')}<p class="minor">手动翻面仅用于尚未自动处理的卡牌或事件效果。</p></details>`;}
 
 export function updateTradeForm(s,card){if(!document.querySelector('[data-export-key], [data-export-region-key]'))return;const action=readTradeForm(),cap=tradeCapacity(s,s.current,card,action.tradeRegions,action.primaryResource),p=s.players[s.current];
@@ -28,5 +29,5 @@ export function updateTradeForm(s,card){if(!document.querySelector('[data-export
  for(const el of document.querySelectorAll('[data-export-region-key]')){const k=Number(el.dataset.exportRegionKey),region=el.dataset.exportRegion,n=cap.byRegion[region].exports[k];el.max=Math.min(p.resources[k],n);el.closest('[data-export-region-row]').hidden=n===0&&Number(el.value)===0;document.querySelector(`[data-regional-cap="${region}:${k}"]`).textContent=n;}
  for(const el of document.querySelectorAll('[data-import-country]')){const k=Number(el.dataset.importCountry);el.max=cap.imports[k];document.querySelector(`[data-import-cap="${k}"]`).textContent=cap.imports[k];}
  for(const el of document.querySelectorAll('.client-trade-form [data-export-cap]'))el.textContent=cap.exports[Number(el.dataset.exportCap)];
- updateClientTradeForm();
+ updateClientTradeForm();updateRegionalTradeForm(s,card,action,cap);
 }

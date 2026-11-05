@@ -37,7 +37,7 @@ import {controlCommand} from './control-command.js';
 import {renderForeignInvestments,foreignInvestmentCaption} from './foreign-investments-ui.js';
 import {SPECIAL_CARDS,ASSET_NAMES} from './special-data.js';
 import {readSequenceForm,updateSequencePanel} from './card-sequence-ui.js';
-import {sequenceStartIssue} from './card-sequence.js';
+import {sequenceStartIssue,sequenceStatus} from './card-sequence.js';
 import {readOpenRelation,updateOpenRelation} from './growth-triggers-ui.js';
 import {renderGrowthAbility,renderExtraAsset} from './growth-active-ui.js';
 import {installResourceIcons} from './resource-icons.js';
@@ -58,7 +58,7 @@ let data=[],byId={},state,side='board',tray='hand',region='E',hide=false,ready=f
 const KEY='world-order-table-m2-v2';
 const SESSION_KEY=KEY+'-session-v1';
 let localRollback=createRollback();
-let room=null,uiRevision=0,localRevision=0,stagedCard=null,taskVersion=0,renderedTaskKey=null,taskCollapsed=false;
+let room=null,uiRevision=0,localRevision=0,stagedCard=null,taskVersion=0,renderedTaskKey=null,renderedGameKey=null,taskCollapsed=false;
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
 const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
@@ -216,7 +216,12 @@ function render(){
  uiRevision++;
  const key=gameContext();
  if(stagedCard&&stagedCard.key!==key)stagedCard=null;
- if(renderedTaskKey!==key+':'+taskVersion)taskCollapsed=isGameClient&&!stagedCard&&state.flow?.step==='actions';
+ const resolution=state.flow?.cardResolution;
+ if(renderedGameKey!==key&&!stagedCard&&!state.flow?.pendingGrowth&&resolution?.steps[resolution.index]?.type==='effect'&&flowActor(state)===state.current&&!resolution.blocked&&sequenceStatus(state).status!=='unavailable'){
+  stagedCard={id:resolution.copiedCardId||resolution.cardId,source:'resolution',key};
+ }
+ renderedGameKey=key;
+ if(renderedTaskKey!==key+':'+taskVersion)taskCollapsed=isGameClient&&!stagedCard&&state.flow?.step==='actions'&&!resolution&&!state.flow?.pendingGrowth;
  const taskKey=key+':'+taskVersion,preservedTask=renderedTaskKey===taskKey?$('#table-task-body'):null;
  renderedTaskKey=taskKey;
  updateRoomHeader();
@@ -402,7 +407,7 @@ function handleFlowClick(b){
  if(b.id==='skip-open-relation'){act({type:'skipOpenDiplomacy'});return true;}
  if(b.hasAttribute('data-battlefield-asset')){act({type:'finishGrowthAbility',assetId:b.dataset.battlefieldAsset});return true;}
  if(b.id==='skip-battlefield-asset'){act({type:'finishGrowthAbility',skip:true});return true;}
- if(b.id==='finish-growth-choice'){act({type:'finishGrowthAbility',topOrder:[...document.querySelectorAll('[data-growth-order]')].map(el=>el.value),rewardTypes:[...document.querySelectorAll('[data-growth-reward]:checked')].map(el=>el.dataset.growthReward),cards:document.querySelector('[data-growth-keep]:checked')?[document.querySelector('[data-growth-keep]:checked').dataset.growthKeep]:[...document.querySelectorAll('[data-growth-choice]:checked')].map(el=>el.dataset.growthChoice)});return true;}
+ if(b.id==='finish-growth-choice'){act({type:'finishGrowthAbility',upgrades:[...document.querySelectorAll('[data-growth-upgrade]:checked')].map(el=>Number(el.dataset.growthUpgrade)),topOrder:[...document.querySelectorAll('[data-growth-order]')].map(el=>el.value),rewardTypes:[...document.querySelectorAll('[data-growth-reward]:checked')].map(el=>el.dataset.growthReward),cards:document.querySelector('[data-growth-keep]:checked')?[document.querySelector('[data-growth-keep]:checked').dataset.growthKeep]:[...document.querySelectorAll('[data-growth-choice]:checked')].map(el=>el.dataset.growthChoice)});return true;}
  if(b.id==='continue-extra-card'){act({type:'continueWithExtraCard'});return true;}
  if(b.id==='pass-empty'){act({type:'passTurn'});return true;}
 

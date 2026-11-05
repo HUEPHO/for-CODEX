@@ -1,17 +1,20 @@
 import {syncClientTradeMatrix,handleTradeCounter,syncTradeDirection,clearTradeResource,openTradeAllocation} from './client-trade-matrix.js';
+import {handleSmartPayment} from './smart-power-ui.js';
+import {syncRegionalTradeLayout} from './regional-trade-ui.js';
 const seenNotes=new WeakSet();
 // Compact trade controls retain the original inputs, reader and preview.
 // Opening extra options preserves all resource selections for one settlement.
 export function syncClientActionLayout(){
  const dock=document.querySelector('.client-command-dock');if(!dock)return;
  const form=dock.querySelector('#basic-form');
- dock.classList.toggle('has-action-form',!!dock.querySelector('.table-action-card,#basic-form,#sequence-panel,.army-deployment'));
+ dock.classList.toggle('has-action-form',!!dock.querySelector('.table-action-card,#basic-form,#sequence-panel,.army-deployment,.industry-upgrades'));
  const sequence=dock.querySelector('#sequence-panel');if(sequence){
   for(const notes of sequence.querySelectorAll(':scope>details'))if(!seenNotes.has(notes)){seenNotes.add(notes);notes.open=false;}
   sequence.classList.toggle('has-open-notes',!!sequence.querySelector(':scope>details[open]'));
  }
  if(!form?.classList.contains('client-trade-form'))return;
  syncClientTradeMatrix(form);
+ syncRegionalTradeLayout(form);
  for(const allocation of form.querySelectorAll('.client-trade-allocation'))syncAllocation(allocation);
 }
 
@@ -26,6 +29,7 @@ function syncAllocation(allocation){
 }
 
 document.addEventListener('click',event=>{
+ if(handleSmartPayment(event,1))return;
  if(handleTradeCounter(event,1))return;
  const clear=event.target.closest('[data-trade-clear]');if(clear){clearTradeResource(clear);return;}
  const target=event.target.closest('[data-trade-allocation]');if(target){
@@ -39,9 +43,11 @@ document.addEventListener('input',syncTradeDirection,true);
 document.addEventListener('contextmenu',event=>{
  if(document.body.classList.contains('game-client'))event.preventDefault();
  handleTradeCounter(event,-1);
+ handleSmartPayment(event,-1);
 });
 document.addEventListener('keydown',event=>{
  if(['ArrowUp','ArrowDown'].includes(event.key))handleTradeCounter(event,event.key==='ArrowUp'?1:-1);
+ if(['ArrowUp','ArrowDown'].includes(event.key))handleSmartPayment(event,event.key==='ArrowUp'?1:-1);
 });
 document.addEventListener('toggle',event=>{
  if(event.target.matches('.client-trade-allocation')){syncClientActionLayout();return;}

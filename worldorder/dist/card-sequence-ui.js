@@ -67,6 +67,7 @@ export function readSequenceForm(s){const step=sequenceStep(s),a={type:'resolveS
  if(step.type==='upgradeProduce')Object.assign(a,{key:Number(document.querySelector('#sequence-resource')?.value),quantity:Number(document.querySelector('#sequence-quantity')?.value)});return a;
 }
 export function updateSequencePanel(s){
+ if(s.flow?.pendingGrowth)return;
  if(s.flow?.cardResolution&&(s.flow.cardResolution.responder||s.flow.cardResolution.owner)!==s.current)return;
  if(s.flow?.cardResolution&&sequenceStatus(s).status==='unavailable')return;
  if(s.flow?.cardResolution&&updateDDAssetStep(s,sequenceParameters(s)))return;

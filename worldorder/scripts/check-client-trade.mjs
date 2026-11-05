@@ -72,16 +72,17 @@ input.disabled=false;button.disabled=true;handleTradeControl(event);assert.equal
 button.disabled=false;button.dataset.tradeStep='-1';handleTradeControl(event);assert.equal(input.value,'0');assert.equal(edits,2);
 assert.equal(prevented,4);assert.equal(form.querySelector('#trade-player-RU-0').value,'3');
 
-// Regional-influence cards retain explicit allocations rather than flattening
-// exports into a total and silently deciding which region earns influence.
+// Regional trade now selects totals first, then validates chosen reward regions
+// before the same authoritative settlement.
 const regional={name:'地区出口',effect:'trade',regionalInfluence:{requirements:{4:1}}};
 const capacity=tradeCapacity(state,'US',regional),region=Object.keys(capacity.byRegion).find(id=>capacity.byRegion[id].exports[4]>0);
 assert.ok(region);
 const regionalHtml=renderClientTradeForm(state,'regional-test',regional);
-assert.equal(regionalHtml.includes('data-export-key='),false);
-const allocation=read(regionalHtml,form=>{form.querySelector('#trade-export-'+region+'-4').value='1';}).action;
-assert.deepEqual(allocation.exports,[{key:4,quantity:1,regions:{[region]:1}}]);
-assert.deepEqual(tradePreview(state,allocation,regional).bonusRegions,[region]);
+assert.equal(regionalHtml.includes('data-export-region-key='),false);
+assert.ok(regionalHtml.includes('data-regional-next'));
+const allocation=read(regionalHtml,form=>{form.querySelector('#trade-export-4').value='1';}).action;
+assert.deepEqual(allocation.exports,[{key:4,quantity:1}]);
+assert.deepEqual(tradePreview(state,{...allocation,rewardRegions:[region]},regional).bonusRegions,[region]);
 
 // Clicking extra trade regions adds only a pending SP cost. Explicitly free
 // regions and cards that forbid player trades retain their existing scope.

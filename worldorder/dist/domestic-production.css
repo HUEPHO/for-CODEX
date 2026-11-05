@@ -1,0 +1,20 @@
+.game-client.client-scroll .client-command-dock .domestic-production-matrix{display:grid;grid-template-columns:30px repeat(7,minmax(0,1fr));grid-template-rows:22px 48px 28px;gap:4px 2px;align-items:center;margin:8px 0}
+.game-client.client-scroll .client-command-dock .production-row-label{grid-column:1;font-size:10px;text-align:right;padding-right:3px;color:#b9cbd4}
+.game-client.client-scroll .client-command-dock .production-row-label:nth-child(1){grid-row:1}
+.game-client.client-scroll .client-command-dock .production-row-label:nth-child(2){grid-row:2}
+.game-client.client-scroll .client-command-dock .production-row-label:nth-child(3){grid-row:3}
+.game-client.client-scroll .client-command-dock .production-column{display:grid;grid-template-rows:subgrid;grid-row:1/span 3;min-width:0;text-align:center;border:2px solid transparent;border-radius:4px}
+.game-client.client-scroll .client-command-dock .production-column.is-selected{border-color:#e6bd65;background:#d6ac4a12}
+.game-client.client-scroll .client-command-dock .production-cap{font-size:11px;color:#b9cbd4}
+.game-client.client-scroll .client-command-dock .production-stock{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;min-width:0;height:46px;margin:0;padding:2px 0;border:0;background:#132c3a}
+.game-client.client-scroll .client-command-dock .production-stock .resource-icon{width:21px;min-width:21px;height:21px;min-height:21px;background-size:contain}
+.game-client.client-scroll .client-command-dock .production-stock small{font-size:11px;line-height:14px;color:#e8eeed}
+.game-client.client-scroll .client-command-dock .production-counter{display:flex;align-items:center;justify-content:center;width:100%;min-width:0;height:26px;margin:0;padding:0;border:1px solid #627d8b;background:#233f50;color:#f4e9c9;border-radius:3px;touch-action:manipulation}
+.game-client.client-scroll .client-command-dock .production-counter>span,.game-client.client-scroll .client-command-dock .production-counter>strong{font-size:13px;line-height:18px;font-weight:600}
+.game-client.client-scroll .client-command-dock .is-selected .production-counter>span,.game-client.client-scroll .client-command-dock .is-selected .production-counter>strong{font-size:17px;font-weight:800}
+.game-client.client-scroll .client-command-dock .production-counter:disabled,.game-client.client-scroll .client-command-dock .production-stock:disabled{opacity:.4}
+.game-client.client-scroll .client-command-dock .industry-upgrades{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:8px 0}
+.game-client.client-scroll .client-command-dock .industry-upgrades label{display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:3px;padding:5px 2px;border:1px solid #627d8b;border-radius:4px;font-size:11px}
+.game-client.client-scroll .client-command-dock .industry-upgrades label:has(input:checked){border:2px solid #e6bd65;background:#584a2d}
+.game-client.client-scroll .client-command-dock .industry-upgrades input{width:13px;height:13px;margin:0}
+.game-client.client-scroll .client-command-dock .industry-upgrades .resource-icon{width:21px;min-width:21px;height:21px;min-height:21px}

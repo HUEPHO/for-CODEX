@@ -8,10 +8,10 @@
 .region-field-button.active,.region-field-button[aria-pressed="true"],.region-selection-fields button[aria-pressed="true"],.region-selection-options button[aria-pressed="true"]{background:#e9c879;color:#1d2530;border-color:#ffe0a1;box-shadow:0 0 0 2px #e9c87933}
 .region-field-button:focus-visible,.region-selection-fields button:focus-visible,.region-selection-options button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .board-region.region-target-eligible{box-shadow:0 0 0 2px #edd387,0 8px 20px #0004}
-.board-region.region-target-selected{box-shadow:0 0 0 3px #ffe4a3,0 8px 20px #0005}
+.board-region.region-target-selected{box-shadow:0 0 0 5px #f5ca64,0 8px 20px #0005}
 .board-region.region-target-eligible .board-region-heading{cursor:pointer}
 .board-region.region-target-blocked{opacity:.5}
 .board-slot.region-target-eligible{outline:2px solid #f0d087;outline-offset:2px;cursor:pointer}
-.board-slot.region-target-selected{outline:3px solid #fff1c9;outline-offset:2px;background:#785c26}
+.board-slot.region-target-selected{outline:5px solid #f5ca64;outline-offset:2px;background:#785c26}
 .board-slot.region-target-blocked{opacity:.35}
 .region-selection-active-field{outline:2px solid #e9c879;outline-offset:2px}

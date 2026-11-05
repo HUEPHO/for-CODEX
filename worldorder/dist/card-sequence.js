@@ -103,7 +103,7 @@ export function resolveSequence(s,a){
  const availability=sequenceStatus(s);if(availability.status==='unavailable'&&a.skip!==true&&a.accept!==false)throw Error(availability.reason);
  if(q.cardId==='ca58c2d75ac35'&&step.type==='regions'&&Array.isArray(a.regions)&&s.players[s.current].money<a.regions.length*20)throw Error('美国海军每个所选地区必须支付20资金并移动2支军队；当前资金不足以完成全部所选地区');
  resolveSequenceChoice(s,a);
- const issue=sequenceEntryIssue(s,q.steps.slice(q.index),q.context);if(issue)throw Error('此选择无法继续完成本牌：'+issue+'；本次选择未扣费或发奖');
+ const issue=s.flow.pendingGrowth?.effect==='industry'?'':sequenceEntryIssue(s,q.steps.slice(q.index),q.context);if(issue)throw Error('此选择无法继续完成本牌：'+issue+'；本次选择未扣费或发奖');
  const skipped=a.skip===true||a.accept===false||step.type==='chooseActions'&&a.choices?.length===1&&a.choices[0]==='skip';
  recordSequenceStep(s,q,step,before,skipped?'declined':'done',skipped?'玩家放弃可选效果；本段未支付费用或领取奖励':s.log[0]!==previousLog?s.log[0]:'选择已保存');
 }

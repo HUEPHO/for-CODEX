@@ -1,3 +1,4 @@
+import {RESOURCE_LABELS,ECONOMY} from './economy.js';
 import {renderBattlefieldPending} from './growth-battlefield-ui.js';
 import {renderCooperation,renderCooperationPending} from './growth-cooperation-ui.js';
 import {GROWTH_DATA} from './growth-data.js';
@@ -22,6 +23,7 @@ export function renderGrowthAbility(s,id,cards={}){
 export function renderGrowthPending(s,cards){
  const pending=s.flow?.pendingGrowth;if(!pending)return '';
  if(pending.owner!==s.current)return '<b>等待对方完成发展牌选择</b><p>候选牌仅本人可见；完成后继续原流程。</p>';
+ if(pending.effect==='industry'){const p=s.players[s.current];return `<b>产业发展 · 提升产能</b><div class="industry-upgrades">${RESOURCE_LABELS.map((name,k)=>`<label><input type="checkbox" data-growth-upgrade="${k}" ${p.production[k]>=ECONOMY[s.current].max[k]?'disabled':''}> ${name}<span>${p.production[k]} → ${Math.min(p.production[k]+1,ECONOMY[s.current].max[k])}</span></label>`).join('')}</div><button id="finish-growth-choice">确认提升产能</button>`;}
  if(pending.effect==='cooperation')return renderCooperationPending(s,cards);
  if(pending.effect==='battlefield')return renderBattlefieldPending(s,cards);
  return `<b>${GROWTH_DATA[pending.cardId].name} · 完成选牌</b><p>已抽${pending.drawn.length}张；选择${pending.choose}张手牌${pending.effect==='trim'?'移出游戏':'弃置'}。选择完成前暂停其他操作。</p><div class="growth-choice-grid">${s.players[pending.owner].hand.map(id=>`<label class="growth-choice"><img src="${esc(cards[id]?.image||'')}" alt="${esc(name(id,cards))}"><span><input type="checkbox" data-growth-choice="${id}" ${requiredGrowthCards(s).includes(id)?'disabled':''}> ${esc(name(id,cards))}${requiredGrowthCards(s).includes(id)?' · 必须保留':''}${pending.effect==='efficiency'?(TWO_TYPE_CHOICE.has(id)?' · 下方选择两种奖励':' · '+esc(rewardSummary(resourceEfficiencyPreview(id)))):''}${pending.drawn.includes(id)?' · 刚抽到':''}</span></label>`).join('')}</div>${pending.effect==='efficiency'&&s.players[pending.owner].hand.some(id=>TWO_TYPE_CHOICE.has(id))?`<fieldset><legend>若弃置战略再评估，选择两种奖励</legend>${['diplomatic','economic','military'].map(type=>`<label><input type="checkbox" data-growth-reward="${type}"> ${TYPE_REWARDS[type].name}：${rewardSummary([TYPE_REWARDS[type]])}</label>`).join('')}</fieldset>`:''}<button id="finish-growth-choice">确认所选手牌</button>`;

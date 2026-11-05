@@ -1,10 +1,11 @@
+import {industryEligible,validateIndustry} from './growth-industry.js';
 import {boxedAssets,beginBattlefield} from './growth-battlefield.js';
 import {refreshCommerce} from './commerce.js';
-import {ECONOMY,gainResource,validateProduction,RESOURCE_LABELS} from './economy.js';
+import {gainResource,validateProduction,RESOURCE_LABELS} from './economy.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {drawCards} from './draw.js';
 export function productionPreview(s,steps,max=3){const p=structuredClone(s.players[s.current]);validateProduction(p,s.current);if(!Array.isArray(steps)||steps.length>max||new Set(steps.map(x=>x.key)).size!==steps.length)throw Error('请选择至多'+max+'种不同资源');let overflow=0;const lines=[];
- for(const step of steps){const k=step.key;if(!Number.isInteger(k)||k<0||k>6)throw Error('无效资源');const n=k<3?p.production[k]:step.quantity;if(!Number.isInteger(n)||n<1||n>p.production[k])throw Error('生产数量必须在1至当前产能之间');
+ for(const step of [...steps.filter(x=>x.key<3),...steps.filter(x=>!(x.key<3))]){const k=step.key;if(!Number.isInteger(k)||k<0||k>6)throw Error('无效资源');const n=k<3?p.production[k]:step.quantity;if(!Number.isInteger(n)||n<1||n>p.production[k])throw Error('生产数量必须在1至当前产能之间');
   if(k===5){if(p.money<n*3)throw Error('生产外交所需资金不足');p.money-=n*3;}else if(k>2){const needs=k===3?[0,1]:k===4?[0,2]:[1,2];if(needs.some(j=>p.resources[j]<n))throw Error('生产'+RESOURCE_LABELS[k]+'的初级资源不足');for(const j of needs)p.resources[j]-=n;}
   overflow+=gainResource(p,k,n);lines.push({key:k,quantity:n});
  }
@@ -21,7 +22,8 @@ export function growthPreview(s,a,card={}){const p=s.players[s.current],g=GROWTH
  if(p.resources[3]<(g.goods||0)||p.resources[6]<(g.armies||0))throw Error('发展牌所需消费品或待命军队不足');
  const primary=g.primary?a.primary:[];if(g.primary&&(!Array.isArray(primary)||primary.length!==3||primary.some((n,k)=>!Number.isInteger(n)||n<0||n>p.resources[k])||primary.reduce((sum,n)=>sum+n,0)!==g.primary))throw Error('资源集约需支付合计5份能源、原料或粮食，不能超过库存');
  if(g.discard&&(!p.hand.includes(a.growthDiscard)||a.growthDiscard===a.cardId))throw Error('高层更替需弃置另一张现有手牌支付费用');
- if(g.effect==='industry'){validateProduction(p,s.current);const eligible=p.production.map((n,k)=>n<ECONOMY[s.current].max[k]?k:null).filter(k=>k!==null);if(!Array.isArray(upgrades)||new Set(upgrades).size!==upgrades.length||upgrades.length!==Math.min(2,eligible.length)||upgrades.some(k=>!eligible.includes(k)))throw Error('产业发展需选择两种未达上限的不同产能（不足两种时选全部可提升项）');}else if(upgrades.length)throw Error('这张发展牌不能提升产能');
- return {name:'发展战略 · '+g.name,effect:'growth',cost,vp:0,growthVP:g.effect==='dominance'?2*(s.round-1):g.vp,services,serviceMoney,primary,diplomacy:g.diplomacy,goods:g.goods||0,armies:g.armies||0,growthDiscard:g.discard?a.growthDiscard:null,growthId:a.growthId,growth:g,upgrades,active:g.effect==='battlefield'||s.round>=g.level};
+ const pendingIndustry=g.effect==='industry'&&Array.isArray(upgrades)&&upgrades.length===0&&industryEligible(s).length>0;
+ if(g.effect==='industry'){if(!pendingIndustry)validateIndustry(s,upgrades);}else if(upgrades.length)throw Error('这张发展牌不能提升产能');
+ return {name:'发展战略 · '+g.name,effect:'growth',cost,vp:0,growthVP:g.effect==='dominance'?2*(s.round-1):g.vp,services,serviceMoney,primary,diplomacy:g.diplomacy,goods:g.goods||0,armies:g.armies||0,growthDiscard:g.discard?a.growthDiscard:null,growthId:a.growthId,growth:g,upgrades,pendingIndustry,active:g.effect==='battlefield'||s.round>=g.level};
 }
-export function applyGrowth(s,result){const p=s.players[s.current];p.money-=result.cost;p.resources[4]-=result.services;p.resources[5]-=result.diplomacy;p.resources[3]-=result.goods||0;p.resources[6]-=result.armies||0;p.vp+=result.growthVP;for(const [k,n] of (result.primary||[]).entries())p.resources[k]-=n;if(result.growthDiscard){p.hand.splice(p.hand.indexOf(result.growthDiscard),1);p.discard.push(result.growthDiscard);}s.growth.splice(s.growth.indexOf(result.growthId),1);p.growth.push(result.growthId);p.automatedGrowth??=[];p.automatedGrowth.push(result.growthId);for(const k of result.upgrades)p.production[k]++;if(result.growth.effect==='battlefield')beginBattlefield(s,result.growthId);if(result.active&&result.growth.effect==='draw')result.drawn=drawCards(p,1);}
+export function applyGrowth(s,result){const p=s.players[s.current];p.money-=result.cost;p.resources[4]-=result.services;p.resources[5]-=result.diplomacy;p.resources[3]-=result.goods||0;p.resources[6]-=result.armies||0;p.vp+=result.growthVP;for(const [k,n] of (result.primary||[]).entries())p.resources[k]-=n;if(result.growthDiscard){p.hand.splice(p.hand.indexOf(result.growthDiscard),1);p.discard.push(result.growthDiscard);}s.growth.splice(s.growth.indexOf(result.growthId),1);p.growth.push(result.growthId);p.automatedGrowth??=[];p.automatedGrowth.push(result.growthId);for(const k of result.upgrades)p.production[k]++;if(result.pendingIndustry)s.flow.pendingGrowth={owner:s.current,cardId:result.growthId,effect:'industry'};if(result.growth.effect==='battlefield')beginBattlefield(s,result.growthId);if(result.active&&result.growth.effect==='draw')result.drawn=drawCards(p,1);}

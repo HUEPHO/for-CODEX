@@ -5,6 +5,12 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;
 const unavailable=node=>node.matches?.(':disabled,[aria-disabled="true"]');
 const selected=(option,model)=>option.selected??option.value===model.selectedValue;
 const projected=(option,model)=>!!(option.projected||model.projected);
+function placementPair(model){
+ const placements=model.fields.filter(field=>field.kind==='placement');
+ if(placements.length!==1)return null;
+ const placement=placements[0],region=model.fields.find(field=>field.kind==='region'&&field.id===placement.id.replace(/-slot$/,'-region'));
+ return region?{placement,region}:null;
+}
 
 // Placement chooses a track. Only the actual next visible position represents
 // that choice; clicking a later vacancy must not suggest arbitrary insertion.
@@ -69,7 +75,9 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
   let model=regionSelectionModel(task,context);
   if(model&&!model.activeFieldId){
    const regions=model.fields.filter(field=>field.kind==='region');
-   if(regions.length===1){activateRegionField(regions[0].id,task,context);model=regionSelectionModel(task,context);}
+   const pair=placementPair(model);
+   if(pair&&model.fields.length===2){activateRegionField(pair.placement.id,task,context);model=regionSelectionModel(task,context);}
+   else if(regions.length===1){activateRegionField(regions[0].id,task,context);model=regionSelectionModel(task,context);}
   }
   return {task,model};
  }
@@ -80,6 +88,8 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
    if(reveal&&model){showBoard?.();model=current().model;}
    const surface=getSurface(),banner=getBanner();clearTargets(surface);
    if(banner){banner.innerHTML=renderBanner(model,surface);banner.hidden=!model;}
+   const pair=model&&placementPair(model);
+   if(pair&&model.activeFieldId===pair.placement.id)paintTargets(surface,{...pair.region,activeFieldId:pair.region.id});
    paintTargets(surface,model);
   }finally{syncing=false;}
  }
@@ -104,7 +114,7 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
   }
   const surface=getSurface(),panel=target.closest('[data-board-region]');
   if(!panel||!surface?.contains(panel)||target.closest('[data-country-pile]'))return;
-  const {task,model}=current();if(!model)return;
+  let {task,model}=current();if(!model)return;
   const trade=model.activeFieldId==='trade-regions';
   if(trade){
    if(!target.closest('[data-trade-shop]')){stop(event);return;}
@@ -113,6 +123,15 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
   stop(event);
   if(!model.activeFieldId){message('请先选择要填写的出发地、目的地或影响力项目。');return;}
   const region=panel.dataset.boardRegion;
+  const pair=placementPair(model),clickedSlot=target.closest('[data-board-slot]');
+  if(pair&&[pair.region.id,pair.placement.id].includes(model.activeFieldId)){
+   if(!pair.region.options.some(option=>option.region===region&&!option.disabled)){message('这个地区不是当前项目的可选目标。');return;}
+   if(clickedSlot&&(unavailable(clickedSlot)||placementSlot(panel,clickedSlot.dataset.boardSlot)!==clickedSlot)){message('请点击首个可用永久空位或临时队尾。');return;}
+   activateRegionField(pair.region.id,task,context);
+   if(pair.region.selectedValue!==region)selectRegionTarget(region,{},task,context);
+   activateRegionField(pair.placement.id,task,context);model=regionSelectionModel(task,context);
+   if(!clickedSlot){sync();return;}
+  }
   let choice={};
   if(model.kind==='placement'||model.kind==='slot'){
    const slot=target.closest('[data-board-slot]');

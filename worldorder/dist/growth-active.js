@@ -1,3 +1,4 @@
+import {finishIndustry} from './growth-industry.js';
 import {finishBattlefield} from './growth-battlefield.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {drawCards} from './draw.js';
@@ -37,6 +38,7 @@ export function startGrowthAbility(s,a){
 }
 export function finishGrowthAbility(s,a){
  const pending=s.flow?.pendingGrowth;if(!pending||pending.owner!==s.current)throw Error('当前没有本方待完成的选牌');
+ if(pending.effect==='industry')return finishIndustry(s,a);
  if(pending.effect==='cooperation')return finishCooperation(s,a);
  if(pending.effect==='battlefield')return finishBattlefield(s,a);
  const p=s.players[s.current],ids=a.cards;

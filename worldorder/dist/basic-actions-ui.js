@@ -5,7 +5,7 @@ import {effectiveCard,preparedActionState} from './market-actions.js';
 import {preparationControls,branchControl,readMarketForm} from './market-actions-ui.js';
 import {availableGrowth} from './growth-triggers.js';
 import {resilienceControls,readResilience,updateResilience} from './growth-triggers-ui.js';
-import {smartControls,readSmartForm} from './smart-power-ui.js';
+import {smartControls,readSmartForm,updateSmartForm} from './smart-power-ui.js';
 import {renderTradeForm,readTradeForm,tradeSummary,updateTradeForm} from './trade-ui.js';
 import {renderDomesticForm,readDomesticForm,updateDomesticForm,domesticSummary} from './domestic-actions-ui.js';
 import {countryActionTarget,countryActionSummary} from './country-actions-ui.js';
@@ -34,6 +34,7 @@ export function updateBasicForm(s,cards,refreshDiscounts=false){const form=docum
  if(refreshDiscounts&&document.querySelector('#basic-discounts'))document.querySelector('#basic-discounts').innerHTML='<legend>横置当地盟国减费 · 可不选</legend>'+p.allies.filter(id=>countryRegion(id)===region&&!(p.exhaustedAllies||[]).includes(id)).map(id=>`<label><input type="checkbox" data-basic-exhaust="${id}"> ${esc(cards[id]?.name)}</label>`).join('');
  const face=document.querySelector('#basic-country-face'),country=cards[document.querySelector('#basic-country')?.value];if(face)face.innerHTML=country?`<img src="${esc(country.image)}" alt="${esc(country.name)}" style="max-height:240px;max-width:100%">`:'';
  showBasicPlacement(form,true);updateResilience(s,region,document.querySelector('#basic-slot')?.value);
+ updateSmartForm(prepared,effectiveCard(entry,readBasicForm()),readBasicForm());
  const button=document.querySelector('#commit-basic');try{
   const previewAction=form.dataset.sequence?sequencePreview:actionPreview,a=readBasicForm();let preview;
   try{preview=previewAction(s,a);}catch(error){

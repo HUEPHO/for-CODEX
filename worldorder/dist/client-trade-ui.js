@@ -1,3 +1,4 @@
+import {renderRegionalTradeChoice} from './regional-trade-ui.js';
 import {AREAS} from './world.js';
 import {resourceIconPath} from './resource-icons.js';
 import {COMMERCE,TRADE_LIMITS} from './commerce.js';
@@ -25,13 +26,8 @@ function partners(s,card,key){
 }
 function exports(s,card,cap,key){
  const stock=s.players[s.current].resources[key],maximum=Math.min(stock,cap.exports[key]);
- if(!card.regionalInfluence)return stepper('trade-export-'+key,`data-export-key="${key}"`,maximum,'出口'+RESOURCE_LABELS[key]);
- // These cards reward specific destinations. Keep allocation explicit instead
- // of silently choosing a destination when the player increases the total.
- return `<details class="client-trade-allocation"><summary>出口 <b data-trade-export-total="${key}">0</b> · 分配地区</summary><div>${regionOrder.map(region=>{
-  const n=cap.byRegion[region].exports[key];
-  return `<label data-export-region-row ${n?'':'hidden'}><span>${AREAS[region].name} <small>需求 <b data-regional-cap="${region}:${key}">${n}</b></small></span>${stepper('trade-export-'+region+'-'+key,`data-export-region="${region}" data-export-region-key="${key}"`,Math.min(n,stock),'向'+AREAS[region].name+'出口'+RESOURCE_LABELS[key])}</label>`;
- }).join('')}</div></details>`;
+ return stepper('trade-export-'+key,`data-export-key="${key}"`,maximum,'出口'+RESOURCE_LABELS[key]);
+
 }
 function explanation(card){
  const bonus=card.regionalInfluence;
@@ -39,7 +35,7 @@ function explanation(card){
   card.maxTradeTypes?'本段合计只能交易'+card.maxTradeTypes+'种资源，进口或出口任选。':'',
   card.tradeOnlyRegions?'本段仅使用'+card.tradeOnlyRegions.map(id=>AREAS[id].name).join('、')+'的盟国和展示国家。':'',
   card.virtualRegions?.length?'本段额外使用'+card.virtualRegions.map(id=>AREAS[id].name).join('、')+'展示国家的贸易符号。':'',
-  bonus?'按目的地区填写出口；同一资源分给多个地区仍算一次出口。'+(bonus.regions||Object.keys(AREAS)).map(id=>AREAS[id].name).join('、')+'各自满足'+(bonus.minimumRevenue?'出口收入至少'+bonus.minimumRevenue+'资金（不扣进口支出，不含其他奖励）':Object.entries(bonus.requirements||{}).map(([k,n])=>'至少'+n+RESOURCE_LABELS[k]).join('和'))+'后，在该地区添加1影响力。':'',
+  bonus?'先选择贸易数量，再选择奖励地区；同一份出口不能重复用于多个地区。'+(bonus.regions||Object.keys(AREAS)).map(id=>AREAS[id].name).join('、')+'各自满足'+(bonus.minimumRevenue?'出口收入至少'+bonus.minimumRevenue+'资金（不扣进口支出，不含其他奖励）':Object.entries(bonus.requirements||{}).map(([k,n])=>'至少'+n+RESOURCE_LABELS[k]).join('和'))+'后，在该地区添加1影响力。':'',
   card.doubleEnergy?'能源进出口符号均按双倍计算。':'',
   card.doublePrimary?'选择能源或原材料，只有所选资源的盟国进出口符号计算两次。':'',
   card.currencyBonus?'每进口一种资源，贸易结束后获得5资金。':'',
@@ -56,7 +52,7 @@ export function renderPrimaryTradeChoice(card){
 export function renderClientTradeForm(s,id,card){
  const p=s.players[s.current],cap=tradeCapacity(s,s.current,card,[],card.doublePrimary?0:undefined),limits=TRADE_LIMITS[s.current];
  const regions=s.config.wit&&!card.tradeOnlyRegions?regionOrder.filter(r=>!card.virtualRegions?.includes(r)&&!eventTradeRegions(s,s.current).includes(r)):[];
- return `<section id="basic-form" data-card-id="${esc(id)}" class="flow-panel client-trade-form" data-army-owner="${s.current}">
+ return `<section id="basic-form" data-card-id="${esc(id)}" class="flow-panel client-trade-form"${card.regionalInfluence?' data-regional-trade data-regional-stage="trade"':''} data-army-owner="${s.current}">
   <header class="client-trade-heading"><b>${esc(card.name)}</b><span>进口 ≤ ${limits.imports} 种 · 出口 ≤ ${limits.exports} 种${card.maxTradeTypes?' · 合计 ≤ '+card.maxTradeTypes+' 种':''}</span></header>
   ${renderPrimaryTradeChoice(card)}
   <p class="client-trade-instruction">每种资源选择进口或出口。先出口，再按下表从左到右进口。</p>
@@ -73,7 +69,8 @@ export function renderClientTradeForm(s,id,card){
   ${card.factory?`<label class="client-trade-factory"><span>贸易后生产消费品 <small>消耗等量能源和原料</small></span>${stepper('factory-goods','',2,'生产消费品')}</label>`:''}
   <details class="client-trade-rules"><summary>贸易规则与协定</summary><p>${esc(explanation(card))}</p><img class="viewerimage" src="assets/zh-CN/trade-${s.current}.webp" alt="${names[s.current]}贸易协定">${renderEventEffects(s,s.current,{textOnly:true})}</details>
   </div>
-  <footer class="client-trade-footer"><p id="basic-preview" aria-live="polite"></p><button id="commit-basic" data-card-action="playBasicCard" data-id="${esc(id)}">结算全部交易并结束行动</button></footer>
+  ${renderRegionalTradeChoice(card)}
+  <footer class="client-trade-footer"><p id="basic-preview" aria-live="polite"></p>${card.regionalInfluence?'<button type="button" data-regional-next>选择奖励地区 →</button>':''}<button id="commit-basic" data-card-action="playBasicCard" data-id="${esc(id)}"${card.regionalInfluence?' hidden':''}>结算全部交易并结束行动</button></footer>
  </section>`;
 }
 

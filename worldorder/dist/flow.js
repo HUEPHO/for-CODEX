@@ -56,6 +56,7 @@ export function handleFlow(s,a){
  case 'continueWithExtraCard':{requireStep(s,'actions');requireActor(s);if(f.extraCard||!offerExtraCard(s))throw Error('当前不能启用额外出牌');record(s,`${s.current} · 战略优势：请选择额外的一张牌，或结束行动`);break;}
  case 'useGrowthAbility':{const result=startGrowthAbility(s,a);record(s,`${s.current} · ${result.name}：${result.inspected?'查看'+result.inspected:'抽取'+result.drawn}张${result.choose?'；请完成手牌选择':'；本轮能力已使用'}`);break;}
  case 'finishGrowthAbility':{const actor=s.current,result=finishGrowthAbility(s,a);
+  if(result.industry){record(s,actor+' · 产业发展：'+result.upgrades.map(k=>['能源','原料','粮食','消费品','服务','外交','军队'][k]+'产能 +1').join('、'));afterCard(s);break;}
   if(result.battlefield){
    if(result.kept)record(s,actor+' · 战役优势：保留1张战略资产，获得牌面'+result.points+'分；请选择是否立即使用资产');
    else {if(result.useAsset)startBattlefieldAsset(s,result.useAsset);else record(s,actor+' · 战役优势：放弃即时使用资产');afterCard(s);}
@@ -75,7 +76,7 @@ export function handleFlow(s,a){
  case 'playBasicCard':{
   const actor=s.current,result=resolveBasicCard(s,a);if(a.openDiplomacy)startOpenDiplomacy(s,a,BASIC_CARDS[a.cardId]);const next=afterCard(s),extra=next==='extra';
   const details=result.effect==='trade'?`出口收入${result.revenue}资金，进口支出${result.expense}资金，获得${result.diplomacy}外交${result.currencyBonus?'、'+result.currencyBonus+'额外资金':''}${result.factoryGoods?'；生产'+result.factoryGoods+'消费品':''}`:result.effect==='production'?`生产${result.produced.map(x=>x.quantity+'份'+['能源','原料','粮食','消费品','服务','外交','军队'][x.key]).join('、')||'0种资源'}；超限折现${result.overflow}资金`:result.effect==='growth'?`支付${result.services}服务、${result.diplomacy}外交、${result.cost}资金${result.goods?"、"+result.goods+"消费品":""}${result.armies?"、"+result.armies+"待命军队":""}${result.primary?.length?"、"+result.primary.map((n,k)=>n+["能源","原料","粮食"][k]).join("、"):""}${result.growthDiscard?"，弃置1张手牌":""}，获得${result.growthVP}分${result.active?'':'；能力到第'+result.growth.level+'轮生效'}`:`支付${result.cost}${['invest','base','reinforce'].includes(result.effect)?'资金':'外交'}${result.moneyCost?'、'+result.moneyCost+'资金':''}，获得${result.vp}影响力槽位分${result.gainDiplomacy?'、'+result.gainDiplomacy+'外交':''}${result.gainArmies?'、'+result.gainArmies+'军队':''}${result.effect==='reinforce'?'；获得'+result.armyGain+'军队，移动'+result.moves.length+'次':''}`;
-  record(s,`${actor} · ${result.name}：${result.preparation?.length?result.preparation.join('，')+'；':''}${details}${result.smartCost?'；消耗'+result.smartCost+' SP':''}${f.pendingGrowth?'；请先完成战役优势的资产选择':f.pendingRelation?'；请选择开放外交的第二个国家':next==='sequence'?'；继续原卡牌后续效果':extra?'；'+(f.extraCard.name||'继续出牌')+'：'+(f.extraCard.required?'请继续打出一张牌':'可追加一张牌或结束行动'):'；行动结束'}`);break;
+  record(s,`${actor} · ${result.name}：${result.preparation?.length?result.preparation.join('，')+'；':''}${details}${result.smartCost?'；消耗'+result.smartCost+' SP':''}${f.pendingGrowth?'；请先完成'+(f.pendingGrowth.effect==='industry'?'产业发展的产能选择':'战役优势的资产选择'):f.pendingRelation?'；请选择开放外交的第二个国家':next==='sequence'?'；继续原卡牌后续效果':extra?'；'+(f.extraCard.name||'继续出牌')+'：'+(f.extraCard.required?'请继续打出一张牌':'可追加一张牌或结束行动'):'；行动结束'}`);break;
  }
  case 'passTurn':{const actor=s.current;resolvePass(s,a);handleFlow(s,{type:'endAction'});record(s,`${actor} · 放弃行动，盖放手牌（若有），获得10资金；行动结束`);break;}
  case 'endAction':{
