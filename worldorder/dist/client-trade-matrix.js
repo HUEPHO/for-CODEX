@@ -10,6 +10,11 @@ function counter(input,sign){
  if(input.dataset.importPlayer){button.classList.add('has-flag');button.style.setProperty('--trade-flag',`url('${powerFlagPath(input.dataset.importPlayer)}')`);}
  return button;
 }
+function counterValue(button,sign,value,max){
+ button.replaceChildren(node('span','client-trade-counter-sign',sign),node('span','client-trade-counter-value',value),node('span','client-trade-counter-limit','/'+max));
+ button.classList.toggle('is-selected',value>0);
+ button.classList.toggle('has-wide-count',value>=10||max>=10);
+}
 function createMatrix(form){
  const source=form.querySelector('.client-trade-grid');source.classList.add('client-trade-grid-source');
  const matrix=node('div','client-trade-matrix');matrix.setAttribute('aria-label','贸易数量，左键增加，右键减少');
@@ -66,13 +71,13 @@ export function syncClientTradeMatrix(form){
    column.allocation.hidden=column!==selected||optionView;
    const total=[...column.allocation.querySelectorAll('[data-export-region-key]')].reduce((n,input)=>n+Number(input.value),0);
    const maximum=column.column.querySelector('[data-trade-export-max]').textContent;
-   column.exports.textContent=`−${total}/${maximum}`;column.exports.setAttribute('aria-label',`分配${column.column.getAttribute('aria-label')}出口地区，已选 ${total}，上限 ${maximum}`);
+   counterValue(column.exports,'−',total,maximum);column.exports.setAttribute('aria-label',`分配${column.column.getAttribute('aria-label')}出口地区，已选 ${total}，上限 ${maximum}`);
    column.exports.disabled=[...column.allocation.querySelectorAll('input')].every(input=>input.disabled);
   }
  }
  for(const button of matrix.querySelectorAll('[data-trade-counter]')){
   const input=form.querySelector('#'+button.dataset.tradeCounter),value=Number(input.value),max=Number(input.max);
-  button.textContent=button.dataset.sign+value+'/'+max;
+  counterValue(button,button.dataset.sign,value,max);
   const name=input.getAttribute('aria-label');
   button.title=`${name}：${value} / ${max}。左键增加，右键减少；↑ / ↓ 也可调整。`;
   button.setAttribute('aria-label',`${name}，已选 ${value}，上限 ${max}`);button.setAttribute('aria-valuenow',String(value));button.setAttribute('aria-valuemax',String(max));
