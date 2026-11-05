@@ -11,3 +11,6 @@
 .game-client .client-ally-discount-mark { position: absolute; z-index: 4; top: 7px; left: 5px; right: 5px; padding: 5px 3px; border: 1px solid #d3b16b; border-radius: 3px; background: #302714ed; color: #ffe5af; text-align: center; font-size: 11px; line-height: 1.2; pointer-events: none; }
 .game-client .client-ally-discount-selected .client-ally-discount-mark { background: #e3bf73; color: #251b09; font-weight: 700; }
 .game-client .client-ally-discount-disabled .client-ally-discount-mark { opacity: .55; }
+.game-client.client-scroll .client-owned-ally .cardbutton.table-target-eligible { outline: 2px solid #bfa26d; outline-offset: 3px; cursor: pointer; }
+.game-client.client-scroll .client-owned-ally .cardbutton.table-target-selected { outline: 5px solid #f5ca64; box-shadow: 0 0 18px #d5ae4f55; }
+.game-client.client-scroll .client-owned-ally .cardbutton.table-target-eligible:hover { outline-color: #ffe2a2; }

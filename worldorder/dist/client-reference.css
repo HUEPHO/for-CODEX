@@ -179,6 +179,8 @@ body.game-client {
 .client-growth-ownership { display: block; color: #a1b4c0; font-size: 9px; line-height: 1.5; margin-top: 4px; }
 .game-client .table-supply-card.supply-empty > .cardbutton { opacity: .65; }
 .game-client .table-supply-card.supply-empty .supply-count { background: #25323c; color: #98aebc; border-color: #556b78; }
+/* Use the form's validated purchase state for the selected supply card. */
+.game-client.client-scroll:has(#table-task-body #commit-basic:enabled) .client-growth-area .table-target-selected img { outline: 4px solid #e6bd65; outline-offset: 3px; box-shadow: 0 0 18px #e3b95566; }
 .game-client #table-extra-targets { position: absolute; z-index: 3; left: 6px; right: 6px; bottom: 6px; max-height: 47%; overflow: auto; }
 .game-client .game-table > .action-workbench { left: calc(var(--client-rail) + 33px); right: 24px; bottom: calc(var(--client-hand) + 18px); max-height: calc(100% - var(--client-hand) - 75px); }
 .game-client .game-table > .action-workbench:not(.is-collapsed) { left: calc(var(--client-rail) + 51px); right: 42px; }

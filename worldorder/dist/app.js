@@ -142,10 +142,11 @@ function syncCardTargets(reveal=false){
  const allowed=new Map(model.options.map(o=>[o.id,o]));
  $('#table-extra-targets')?.remove();
  if(shown){
-  // Public allies and explicitly searched countries are offered by the real form;
-  // show them alongside the board when they are not in its public country market.
+  // Reuse allies already on the table; only add targets absent from both the
+  // public country market and the player's existing ally row.
   const selectionSurface=isGameClient&&model.kind==='growth'?$('.client-growth-area'):$('#table-surface');
   const displayed=new Set([...selectionSurface.querySelectorAll('[data-card]')].flatMap(el=>el.dataset.supplyIds?.split(',')||[el.dataset.card]));
+  if(isGameClient&&model.kind==='country')for(const el of document.querySelectorAll('.client-owned-cards .client-owned-ally [data-card]'))displayed.add(el.dataset.card);
   const extra=model.options.filter(o=>!displayed.has(o.id));
   if(extra.length){const box=document.createElement('section');box.id='table-extra-targets';box.innerHTML=`<h3>${esc(model.heading)}</h3><div class="table-target-gallery">${extra.map(o=>{const cid=byId[o.id]?o.id:o.id.split(':').at(-1),c=byId[cid];return `<button class="cardbutton" data-table-target="${esc(o.id)}" ${o.disabled?'disabled':''}>${c?`<img src="${c.image}" alt="${esc(title(c))}">`:''}<span class="cardmeta">${esc(o.label)}</span></button>`;}).join('')}</div>`;$('#table-surface').prepend(box);}
   task.classList.add('table-direct-selection');

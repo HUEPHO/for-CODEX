@@ -58,6 +58,12 @@
 .game-client.client-scroll .client-command-dock .region-field-button{font-size:10px;padding:3px 5px}
 .game-client.client-scroll .client-command-dock .table-pass-card{font-size:10px;min-height:24px;padding:3px 6px;white-space:normal}
 .game-client.client-scroll .client-command-dock:has(#sequence-panel) .phase-overview{display:none}
+.game-client.client-scroll .client-command-dock:has(#personal-invest-sp,#economic-invest-sp) .phase-overview,
+.game-client.client-scroll .client-command-dock:has(#personal-invest-sp,#economic-invest-sp) #table-selection-banner,
+.game-client.client-scroll .client-command-dock .flow-panel:has(#personal-invest-sp,#economic-invest-sp)>p{display:none}
+.game-client.client-scroll .client-command-dock .flow-panel:has(#personal-invest-sp,#economic-invest-sp){margin:0;padding:0}
+.game-client.client-scroll .client-command-dock .flow-panel:has(#personal-invest-sp,#economic-invest-sp) :is(#event-submit,#event-postpone){margin:0;padding:5px 7px;min-height:30px;font-size:11px}
+.game-client.client-scroll .client-command-dock #personal-event-form:has(#personal-invest-sp,#economic-invest-sp) p{margin:4px 0;line-height:1.4}
 .game-client.client-scroll .client-command-dock #sequence-panel.has-open-notes>:not(details):not(b){display:none}
 .game-client.client-scroll .client-command-dock #sequence-panel>details{margin-top:5px;font-size:11px}
 .game-client.client-scroll .client-command-dock #sequence-panel>details>summary{cursor:pointer;font-size:11px}
