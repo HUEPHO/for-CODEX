@@ -8,6 +8,14 @@ export const SEATS=Object.keys(POWERS);
 export const SETUP_ACTIONS=new Set(['chooseOpening','toggleAssetSelection','toggleObjectiveSelection','selectAssetDiscard','selectObjectiveDiscard','chooseAssets']);
 export const MANUAL_ACTIONS=new Set(['resource','adjustProduction','adjustEventProsperity','exhaustAlly','readyAlly','toggleFDI','toggleBase','toggleCommerce']);
 export const setupPending=p=>!!(p?.openingChoices||p?.assetChoices||p?.objectiveChoices||p?.setupPending);
+// Debug is an explicit host tool, independent of normal turn admission.
+export function debugModeIssue(room=null){
+ if(!room)return null;
+ if(!room.isHost)return '只有房主可以使用 Debug Mode';
+ if(!room.seat)return '请先入座再使用 Debug Mode';
+ if(room.status!=='playing')return '请先开始对局';
+ return null;
+}
 export function manualWindow(s,seat=s.current){
  if(inEventInteraction(s))return manualEventOpen(s,seat);
  const f=s.flow,settlement=settlementProgress(s);

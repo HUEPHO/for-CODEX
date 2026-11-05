@@ -2,8 +2,13 @@
 
 先读 `START_HERE.md`、`CODEX_TASK.md`、`docs/HANDOFF_STATUS.md`、`docs/CONFIRMED_RULES.md`。这是现有项目的接手续作，不是从零生成游戏。
 
-- 用户使用中文。机制优先，之后再做接近 Steam《沙丘帝国》的界面；暂不进行框架迁移或全面美术重做。
+- 固定 Git 仓库（用户 2026-11-05 指定）：https://github.com/HUEPHO/for-CODEX.git，远端 `origin`，默认同步分支 `main`，本项目位于仓库的 `worldorder/`。今后的 push / pull 均使用此仓库。用户链接中的 `876f92f1c68a6d6936fd128ddf9f0d9e21ca6e3b` 是本次同步基线，后续以最新 `origin/main` 为准。
+- 本地 Git 根目录是本项目的父目录；当前仅检出 `worldorder/` 及仓库根文件。同步前先检查本地改动并 fetch；pull 默认仅快进，提交仅包含本项目范围，保留同仓库其他项目。存档、运行时、临时构建和导出产物按 `.gitignore` 留在本机。
+
+- 用户使用中文。机制优先，之后再做接近 Steam《沙丘帝国》的界面【不要想着学沙丘了！】；暂不进行框架迁移或全面美术重做。
 - 界面保持简洁：Avoid unnecessary secondary labels and descriptions. Let the layout do the explaining. 减少不必要的次级标签和说明，让布局本身表达用途。
+- 如果有可能比用户命令更好的实现方案，可以提出。
+- 涉及可见 UI 的变动，交付时附上最新实际界面截图或可直接查看的预览，并在回复中直接展示，覆盖主要变动和必要的交互状态；不要只用文字说明或“测试通过”代替视觉交付。
 - 不要过度防御性编程。信任已有的数据契约和内部不变量，避免重复校验、无实际需求的兜底和静默吞错；只在实际输入边界及明确的兼容需求处保留必要处理。
 - 不做自动机、单人 AI、MARS 辅助牌。
 - 国家名称用中文；Middle East & North Africa 简称“中东”，Asia Pacific 简称“亚太”。资源在界面使用现有图标，保留悬停和无障碍文字。

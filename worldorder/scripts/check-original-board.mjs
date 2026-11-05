@@ -21,7 +21,8 @@ assert.match(html,/data-board-slot="permanent" data-slot-index="1" data-region="
 assert.match(html,/original-region original-region--selected/);
 for(const id of IDS){assert.match(html,new RegExp(`token-army-${id}.png`));assert.match(html,new RegExp(`data-score-owner="${id}"`));}
 assert.match(html,/欧洲 · 美国：2军队/);assert.match(html,/中东 · 俄罗斯：3介入标记/);
-assert.equal((html.match(/class="original-force original-army"/g)||[]).length,4);
+assert.equal((html.match(/class="original-force original-army"/g)||[]).length,28);
+assert.equal((html.match(/class="original-force original-army"[^>]* hidden /g)||[]).length,24,'Empty force anchors stay hidden until a draft places a tank');
 assert.equal((html.match(/class="original-force original-engage"/g)||[]).length,3);
 assert.match(html,/第1位：中国/);assert.match(html,/当前第4轮/);
 assert.doesNotMatch(html,/class="original-region-label"/,'Printed region labels stay unobstructed');
@@ -30,7 +31,7 @@ assert.equal((html.match(/data-majority=/g)||[]).length,3);
 assert.equal((html.match(/data-ranking-owner=/g)||[]).length,12);
 for(const key of ['money','armies','allies'])assert.match(html,new RegExp(`assets/majority-${key}.png`));
 assert.match(html,/data-card="a" data-source="regionCountry"/);assert.match(html,/data-card="b" data-source="regionCountry"/);
-assert.match(html,/data-pile="left" data-pile-count="3">3/);assert.match(html,/data-pile="right" data-pile-count="1">1/);
+assert.match(html,/data-pile="left" data-pile-count="3"[^>]*>3/);assert.match(html,/data-pile="right" data-pile-count="1"[^>]*>1/);
 assert.match(html,/original-engage[^>]*美国：1介入标记[^>]*><img[^>]+><\/span>/,'A single intervention token has no redundant count badge');
 assert.doesNotMatch(html,/隐藏国家|hidden.webp|0军队|0介入标记/);
 for(const [id,layout] of Object.entries(ORIGINAL_BOARD_REGIONS)){
@@ -56,5 +57,5 @@ for(const [key,rows] of Object.entries(standings))for(const {id,rank,vp} of rows
 for(const player of Object.values(state.players))player.money=0;
 assert.ok(majorityStandings(state).money.every(row=>!row.leading),'All-zero counters have no leading highlight');
 const legacy=renderOriginalBoard({...state,regions:{...state.regions,E:{...state.regions.E,countryPiles:undefined,available:['a']}}},cards);
-assert.match(legacy,/data-pile-count="unknown">\?/,'Missing legacy counts stay explicitly unknown');
+assert.match(legacy,/data-pile-count="unknown"[^>]*>\?/,'Missing legacy counts stay explicitly unknown');
 console.log('Original board passed: complete live geometry, flag markers, original majority artwork, public pile counts, standings/scoring parity, correct ties and no hidden identity access.');

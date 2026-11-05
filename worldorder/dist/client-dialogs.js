@@ -4,6 +4,7 @@ const layout=usesGameLayout();
 let opener=null,openerKey='';
 function key(node){
  if(!node)return '';
+ if(node.hasAttribute('data-country-pile'))return 'pile:'+node.dataset.pileRegion+':'+node.dataset.countryPile;
  const attributes=['data-client-player','data-client-event-id','data-client-supply','data-inspect-card','data-card','data-region','data-tray'];
  for(const name of attributes)if(node.hasAttribute(name))return name+':'+node.getAttribute(name)+(name==='data-card'?':'+(node.dataset.source||''):'');
  return node.id||node.getAttribute('aria-label')||node.textContent.trim();
@@ -18,8 +19,7 @@ export function showGameDialog(dialog){
  const rail=document.querySelector('.client-player-rail')?.getBoundingClientRect();
  const stage=document.querySelector('.stage')?.getBoundingClientRect();
  const scrolling=document.body.classList.contains('client-scroll');
- const toolbar=document.querySelector('.action-workbench')?.getBoundingClientRect();
- const top=scrolling?Math.max(58,(toolbar?.bottom||46)+10):Math.max(58,stage?.top||58),left=scrolling?18:(rail?.right||10)+14;
+ const top=scrolling?58:Math.max(58,stage?.top||58),left=scrolling?18:(rail?.right||10)+14;
  const contentRight=scrolling?(rail?.left||innerWidth)-14:innerWidth-18;
  let bounds={x:left,y:top,w:Math.max(280,contentRight-left),h:scrolling?innerHeight-top-18:Math.max(260,(stage?.bottom||innerHeight-18)-top)};
  const r=opener?.isConnected?opener.getBoundingClientRect():null;

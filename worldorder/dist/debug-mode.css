@@ -1,0 +1,14 @@
+#debug-mode.debug-active{border-color:#d6b46a;color:#f1d18e}
+#debug-dialog.client-floating-dialog{left:50%;top:62px;transform:translateX(-50%);width:min(960px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 80px);padding:20px;overflow:auto;background:#142937;border:1px solid #8a9eaa;color:#e4edf2}
+#debug-dialog .debug-heading{display:flex;align-items:center;gap:24px;padding-right:36px;margin-bottom:12px}
+#debug-dialog h2{margin:0;font-size:23px}#debug-dialog h3{margin:0 0 10px;font-size:16px}#debug-dialog h3 small{font-size:12px;font-weight:400;color:#a3b8c5}
+#debug-dialog .debug-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+#debug-dialog section,#debug-dialog form{min-width:0}#debug-dialog input,#debug-dialog select{background:#0d1d29;border:1px solid #637d8d;border-radius:4px;color:#eef4f7;padding:6px;font-size:13px;min-width:0}
+#debug-dialog select option{background:#102431;color:#eef4f7;padding:5px}
+#debug-dialog .debug-search{display:flex;gap:8px;margin-bottom:8px}#debug-dialog #debug-search{flex:1;width:0}#debug-dialog #debug-card{width:100%;height:218px}
+#debug-dialog [data-debug-preview]{display:flex;gap:14px;align-items:center;min-height:154px;margin:12px 0}#debug-dialog [data-debug-preview] img{width:110px;height:152px;object-fit:contain}#debug-dialog [data-debug-preview] p{font-size:12px;color:#aec0cb;line-height:1.6}
+#debug-dialog .debug-balances{display:flex;gap:9px;margin-bottom:12px}#debug-dialog .debug-balances label{flex:1;min-width:0;font-size:13px}#debug-dialog .debug-balances .debug-number{margin-top:7px}
+#debug-dialog table{width:100%;border-collapse:collapse;font-size:13px}#debug-dialog td,#debug-dialog th{padding:6px 4px;border-bottom:1px solid #ffffff16;text-align:center}#debug-dialog th:first-child{width:48px}
+#debug-dialog .debug-number{display:flex;align-items:center;justify-content:center;gap:3px}#debug-dialog .debug-number input{width:64px;text-align:center;-moz-appearance:textfield}#debug-dialog input::-webkit-inner-spin-button{appearance:none;margin:0}
+#debug-dialog .debug-number button{padding:3px;width:25px;min-width:25px;font-size:17px}#debug-dialog .debug-hint{font-size:11px;color:#a6bdcb;margin:12px 0}#debug-dialog [data-debug-status]{min-height:20px;margin:15px 0 0;padding-top:12px;border-top:1px solid #ffffff25;color:#c4dcb9;font-size:13px}#debug-dialog [data-debug-status].error{color:#ffb4a9}
+@media(max-width:760px){#debug-dialog .debug-columns{grid-template-columns:1fr}#debug-dialog .debug-heading{gap:12px;flex-wrap:wrap}#debug-dialog .debug-number input{width:74px}}

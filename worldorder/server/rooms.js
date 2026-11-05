@@ -1,4 +1,7 @@
 import {applyAction,createState} from '../dist/engine.js';
+import {applyDebugAction,DEBUG_ROLLBACK_REASON} from '../dist/debug-mode.js';
+import {debugModeIssue} from '../dist/action-policy.js';
+import {countryPileContents} from '../dist/country-pile-view.js';
 import {createRollback,recordRollback,restoreRollback,rollbackAvailability} from '../dist/rollback-state.js';
 import {SEATS,SETUP_ACTIONS,setupPending,assertRoomAction,roomActor} from '../dist/room-rules.js';
 
@@ -61,6 +64,15 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
    next.gameRevision++;
    for(const id of SEATS)next.seatRevisions[id]++;break;
   }
+  case 'debug':{
+   const issue=debugModeIssue({isHost:host,seat,status:room.status});
+   if(issue)throw new RoomError(issue,403);
+   if(command.gameRevision!==room.gameRevision)throw new RoomError('局面已更新，请重新读取后调整',409);
+   next.state=applyDebugAction(room.state,command.action,cards);
+   next.rollback=createRollback(DEBUG_ROLLBACK_REASON);next.gameRevision++;
+   for(const id of SEATS)next.seatRevisions[id]++;
+   break;
+  }
   case 'action':{
    if(room.status!=='playing')throw new RoomError('请等待房主开始对局');
    if(!seat)throw new RoomError('你的席位已离开或被接管，请重新入座',403);
@@ -105,6 +117,7 @@ export function playerView(source,seat){
  for(const key of ['marketDeck','eraDeck','era2Deck'])s[key]=hidden(s[key]);
  const searched=q?.owner===seat&&step?.type==='effect'?step.card.countrySearchRegion:null;
  for(const [id,r] of Object.entries(s.regions)){
+  r.publicCountryPiles=countryPileContents(source.regions[id]);
   const eventReward=s.flow?.eventResolution?.rewardQueue?.[0];
   if(id===searched||eventReward?.type==='bricsCountry'&&eventReward.owner===seat&&['N','A'].includes(id))continue;
   r.deck=hidden(r.deck);

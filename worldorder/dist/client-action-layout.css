@@ -1,4 +1,10 @@
 /* The dock uses compact forms and resource tabs, never a nested scrollbar. */
+.game-client.client-scroll .client-command-dock .flow-panel fieldset.army-deployment{display:block}
+.flow-panel .trade-primary-choice{display:flex;gap:8px;padding:5px 7px;margin:4px 0;border:1px solid #516c7c;border-radius:4px}
+.flow-panel .trade-primary-choice label{display:inline-flex;align-items:center;gap:5px;padding:3px 6px;cursor:pointer;border:1px solid transparent;border-radius:3px}
+.flow-panel .trade-primary-choice label:has(input:checked){border-color:#d8b66c;background:#51452a;color:#ffe3a6}
+.flow-panel .trade-primary-choice input{width:13px;height:13px;margin:0;accent-color:#dfbd77}
+.flow-panel .trade-primary-choice .resource-icon{width:21px;height:23px;min-width:21px;min-height:23px}
 .game-client.client-scroll .client-command-dock.has-action-form>.tray{position:relative}
 .game-client.client-scroll .client-command-dock.has-action-form:has(.client-hand-pages:not(:empty)) .client-strategic-assets{padding-right:72px}
 .game-client.client-scroll .client-command-dock.has-action-form .client-hand-pages:not(:empty){position:absolute;top:10px;right:8px;gap:4px;font-size:10px;line-height:1}
@@ -100,7 +106,32 @@
 .game-client.client-scroll .client-command-dock .client-trade-regions label{padding:3px;font-size:10px;flex:none}
 .game-client.client-scroll .client-command-dock .client-trade-factory{padding:4px;margin:4px 0;font-size:11px}
 .game-client.client-scroll .client-command-dock .client-trade-footer{position:static;display:flex;flex-flow:column;align-items:stretch;gap:4px;margin:4px 0 0;padding:0;border:0;max-height:none;overflow:visible}
+/* Compact resource-aligned trade controls from the user's small-window sketch. */
+.game-client.client-scroll .client-command-dock .client-trade-grid-source{display:none!important}
+.game-client.client-scroll .client-command-dock .client-trade-matrix{display:grid;position:relative;isolation:isolate;grid-template-columns:54px repeat(6,minmax(0,1fr));gap:4px 3px;align-items:center;margin:5px 0 3px;min-width:0}
+.game-client.client-scroll .client-command-dock .client-trade-matrix>*{z-index:1}
+.game-client.client-scroll .client-command-dock .client-trade-matrix>.client-trade-frame{z-index:0;align-self:stretch;border:2px solid #e6bd65;border-radius:5px;background:#d6ac4a12;margin:-2px;pointer-events:none}
+.game-client.client-scroll .client-command-dock .client-trade-matrix-label{grid-column:1;font-size:10px;line-height:1.3;color:#b9cbd4;text-align:right;padding-right:4px}
+.game-client.client-scroll .client-command-dock .client-trade-stock{display:flex;position:relative;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:48px;min-width:0;padding:3px 0;border:1px solid #4b6575;background:#132c3a;border-radius:4px}
+.game-client.client-scroll .client-command-dock .client-trade-stock[aria-pressed=true]{border-color:transparent;background:#584a2d}
+.game-client.client-scroll .client-command-dock .client-trade-stock .resource-icon{width:22px;height:22px;min-width:22px;min-height:22px}
+.game-client.client-scroll .client-command-dock .client-trade-stock small{font-size:11px;line-height:13px;color:#e8eeed}
+.game-client.client-scroll .client-command-dock .client-trade-counter{display:block;width:100%;min-width:0;height:27px;padding:1px 0;font:600 10px/1.2 system-ui,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;color:#f4e9c9;background:#233f50;border:1px solid #627d8b;border-radius:3px;cursor:pointer;touch-action:manipulation}
+.game-client.client-scroll .client-command-dock .client-trade-counter.has-flag{background-image:linear-gradient(#081a2450,#081a2450),var(--trade-flag);background-position:center;background-size:cover;text-shadow:0 1px 3px #000,0 0 2px #000;color:#fff}
+.game-client.client-scroll .client-command-dock .client-trade-counter:hover:not(:disabled){border-color:#e9ca80}
+.game-client.client-scroll .client-command-dock .client-trade-counter:disabled{opacity:.4;cursor:default}
+.game-client.client-scroll .client-command-dock .client-trade-counter.is-invalid{border-color:#f28277;color:#ffb5ab}
+.game-client.client-scroll .client-command-dock .client-trade-matrix .client-trade-unavailable{font-size:12px;text-align:center;color:#647e8b}
+.game-client.client-scroll .client-command-dock .client-trade-options-toggle{padding:3px 6px;font-size:10px;min-height:25px;margin-left:auto}
+.game-client.client-scroll .client-command-dock .client-trade-options-toggle[aria-pressed=true]{border-color:#e9ca80;background:#635032}
+.game-client.client-scroll .client-command-dock .client-trade-matrix-allocations:empty{display:none}
 @media(max-height:800px){
+ .game-client.client-scroll .client-command-dock .client-trade-matrix{--trade-row-height:24px;--trade-stock-height:44px}
+ .game-client.client-scroll .client-command-dock .client-trade-stock{height:44px}
+ .game-client.client-scroll .client-command-dock .client-trade-counter{height:23px}
+ .game-client.client-scroll .client-command-dock .flow-panel .trade-primary-choice{padding:2px 5px}
+ .game-client.client-scroll .client-command-dock .flow-panel .trade-primary-choice label{padding:1px 4px}
+ .game-client.client-scroll .client-command-dock .trade-primary-choice .resource-icon{height:18px;min-height:18px;width:18px;min-width:18px}
  .game-client.client-scroll .client-command-dock.has-action-form .client-hand-footer{display:none}
  .game-client.client-scroll .client-command-dock.has-action-form .client-strategic-assets .cardbutton img{height:24px}
  .game-client.client-scroll .client-command-dock.has-action-form .hand .cardbutton img,.game-client.client-scroll .client-command-dock.has-action-form .hand .back{height:42px}

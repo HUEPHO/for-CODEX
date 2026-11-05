@@ -1,3 +1,4 @@
+import {renderArmyDeployment,readDeploymentMoves} from './army-deployment-ui.js';
 import {AGREEMENT_EVENTS,agreementModel,agreementOffer,agreementRewardPreview,agreementCountryTargets} from './event-agreements.js';
 import {AREAS} from './world.js';
 import {ECONOMY,RESOURCE_LABELS} from './economy.js';
@@ -31,7 +32,7 @@ export function renderAgreementReward(s,q,cards={}){
  if(step.type==='bricsCountry')fields=`<p>检索埃及、埃塞俄比亚、伊朗、沙特或阿联酋。所选国家免费加入盟国，随后重洗该地区国家牌。</p><label>选择国家<select id="agreement-country">${agreementCountryTargets(s,step.owner).map(id=>`<option value="${id}">${esc(cards[id]?.name||id)}</option>`).join('')||'<option value="">没有可取得的指定国家</option>'}</select></label>`;
  else if(step.type==='convert')fields='<p>可将一枚临时影响力转为永久；永久槽已满时额外放置，不获得槽位分。</p>'+convertForm(s,step);
  else if(step.type==='nordstream')fields='<label>俄罗斯奖励<select id="agreement-choice"><option value="diplomacy">获得3外交</option><option value="convert">转换欧洲临时影响力</option></select></label>'+convertForm(s,step);
- else if(step.type==='move')fields=`<p>可正常付费移动至多2支军队，每支5资金。可各支付1 SP去往通常不允许的地区。</p>${[0,1].map(i=>`<fieldset><legend>第${i+1}次移动</legend><label>来源<select data-agreement-move-from="${i}"><option value="">不移动</option>${['reserve',...Object.keys(AREAS)].map(from=>`<option value="${from}">${from==='reserve'?'待命区':AREAS[from].name}（${from==='reserve'?p.resources[6]:s.regions[from].armies[step.owner]}支）</option>`).join('')}</select></label><label>目的地<select data-agreement-move-to="${i}">${Object.entries(AREAS).map(([id,r])=>`<option value="${id}">${r.name}</option>`).join('')}</select></label><label><input data-agreement-move-sp="${i}" type="checkbox">使用1 SP扩展目的地</label></fieldset>`).join('')}`;
+ else if(step.type==='move')fields='<p>每支5资金，通常目的地外每支另花1 SP。</p>'+renderArmyDeployment(s,{owner:step.owner,maxMoves:2});
  else if(step.type==='ttip'){
   const other=step.owner==='US'?'EU':'US',target=s.players[other],options=target.production.flatMap((n,key)=>n<ECONOMY[other].max[key]?[`<option value="${key}">${RESOURCE_LABELS[key]}（${n}→${n+1}）</option>`]:[]).join('');
   fields=`<label>TTIP牌面<select id="agreement-face"><option value="exchange">资源交换面 · 免费取得</option><option value="investment">投资面 · 支付25资金</option></select></label><div id="agreement-investment"><label>${names[other]}提升产能<select id="agreement-production">${options||'<option value="">所有产能已满，跳过提升</option>'}</select></label><label>${step.owner==='US'?'欧洲':'美洲'}影响力位置<select id="agreement-slot" data-region-value="${step.owner==='US'?'E':'M'}"><option value="permanent">永久槽</option><option value="temporary">临时槽</option></select></label></div>`;
@@ -40,7 +41,7 @@ export function renderAgreementReward(s,q,cards={}){
 }
 export function readAgreementReward(){
  const [region,index]=(document.querySelector('#agreement-convert')?.value||'').split(':'),production=document.querySelector('#agreement-production')?.value;
- return {country:document.querySelector('#agreement-country')?.value,region,index:Number(index),choice:document.querySelector('#agreement-choice')?.value,face:document.querySelector('#agreement-face')?.value,productionKey:production?Number(production):undefined,slot:document.querySelector('#agreement-slot')?.value,moves:[...document.querySelectorAll('[data-agreement-move-from]')].filter(el=>el.value).map(el=>({from:el.value,to:document.querySelector('[data-agreement-move-to="'+el.dataset.agreementMoveFrom+'"]')?.value,spendSP:!!document.querySelector('[data-agreement-move-sp="'+el.dataset.agreementMoveFrom+'"]')?.checked}))};
+ return {country:document.querySelector('#agreement-country')?.value,region,index:Number(index),choice:document.querySelector('#agreement-choice')?.value,face:document.querySelector('#agreement-face')?.value,productionKey:production?Number(production):undefined,slot:document.querySelector('#agreement-slot')?.value,moves:readDeploymentMoves(document.querySelector('#agreement-reward-form .army-deployment'))??[...document.querySelectorAll('[data-agreement-move-from]')].filter(el=>el.value).map(el=>({from:el.value,to:document.querySelector('[data-agreement-move-to="'+el.dataset.agreementMoveFrom+'"]')?.value,spendSP:!!document.querySelector('[data-agreement-move-sp="'+el.dataset.agreementMoveFrom+'"]')?.checked}))};
 }
 export function updateAgreementReward(s){
  const output=document.querySelector('#agreement-reward-preview');if(!output)return;

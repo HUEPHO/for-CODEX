@@ -43,15 +43,38 @@ if(layout){
   // A hover preview reveals the original printed art without shifting the hand.
   const preview=document.createElement('aside');preview.id='client-card-preview';preview.hidden=true;document.body.append(preview);
   let previewTimer;
+  const hidePreview=()=>{clearTimeout(previewTimer);preview.hidden=true;};
+  function showPreview(card){
+    const img=card.querySelector('img');if(!img||!card.isConnected||document.querySelector('dialog[open]'))return;
+    const copy=img.cloneNode();copy.removeAttribute('loading');preview.replaceChildren(copy);preview.style.removeProperty('left');preview.style.removeProperty('top');preview.style.removeProperty('right');
+    const anchored=card.matches('.draft-card');preview.classList.toggle('is-card-anchored',anchored);
+    if(anchored){
+      const box=card.getBoundingClientRect(),top=document.querySelector('.topbar').getBoundingClientRect().bottom+8;
+      copy.style.maxHeight=Math.min(500,innerHeight*.62,Math.max(80,box.top-top-26))+'px';
+      copy.style.maxWidth=Math.min(340,innerWidth-36)+'px';
+      preview.hidden=false;
+      const size=preview.getBoundingClientRect();
+      preview.style.left=Math.max(10,Math.min(innerWidth-size.width-10,box.left+(box.width-size.width)/2))+'px';
+      preview.style.top=Math.max(top,box.top-size.height-10)+'px';preview.style.right='auto';
+    }else preview.hidden=false;
+  }
   document.addEventListener('pointerover',event=>{
     const card=event.target.closest('.hand .cardbutton,.board-country,.table-gallery .cardbutton,.client-owned-cards .cardbutton,.draft-card');
     if(!card||event.pointerType==='touch'||document.querySelector('dialog[open]'))return;
+    if(card.contains(event.relatedTarget))return;
     clearTimeout(previewTimer);
-    previewTimer=setTimeout(()=>{const img=card.querySelector('img');if(!img||!card.isConnected)return;const copy=img.cloneNode();copy.removeAttribute('loading');preview.replaceChildren(copy);preview.hidden=false;},550);
+    previewTimer=setTimeout(()=>showPreview(card),550);
   });
-  const hidePreview=()=>{clearTimeout(previewTimer);preview.hidden=true;};
   document.addEventListener('pointerout',event=>{const card=event.target.closest('.cardbutton,.board-country');if(card&&!card.contains(event.relatedTarget))hidePreview();});
   document.addEventListener('pointerdown',hidePreview,true);document.addEventListener('keydown',hidePreview,true);
+  document.addEventListener('scroll',()=>{
+    hidePreview();
+    // Scrolling can move a draft card underneath a stationary pointer. Re-anchor
+    // after scrolling settles instead of leaving the preview at its old place.
+    const card=document.querySelector('.draft-card:hover');
+    if(card)previewTimer=setTimeout(()=>{if(card.matches(':hover'))showPreview(card);},550);
+  },true);
+  window.addEventListener('resize',hidePreview);
 }
 export function syncGameClient({key,setup,staged,collapsed}){
   if(!layout)return;

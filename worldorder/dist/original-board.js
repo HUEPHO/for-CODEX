@@ -41,9 +41,9 @@ function influence(region,r,layout){
 
 function forces(region,r,layout){
  const [left,top,right,bottom]=layout.forces,positions={EU:[left,top],RU:[right,top],US:[left,bottom],CN:[right,bottom]};
- const armies=IDS.filter(owner=>(r.armies?.[owner]||0)>0).map(owner=>{
-  const n=r.armies[owner],description=`${AREAS[region].name} · ${name(owner)}：${n}军队`;
-  return `<span class="original-force original-army" data-army-owner="${owner}" style="${at(...positions[owner],92,48)}" title="${description}" aria-label="${description}"><img src="assets/token-army-${owner}.png" alt="" draggable="false"><b>${n}</b></span>`;
+ const armies=IDS.map(owner=>{
+  const n=r.armies[owner],description=n?`${AREAS[region].name} · ${name(owner)}：${n}军队`:'';
+  return `<span class="original-force original-army" data-army-owner="${owner}" ${n===0?'hidden':''} style="${at(...positions[owner],92,48)}" title="${description}" aria-label="${description}"><img src="assets/token-army-${owner}.png" alt="" draggable="false"><b>${n}</b></span>`;
  }).join('');
  const engaging=IDS.filter(owner=>(r.engage?.[owner]||0)>0);
  const engage=engaging.map((owner,index)=>{
@@ -57,10 +57,10 @@ function countries(region,r,catalogue,layout){
  // Counts include each public top; the shared projection never reads the
  // identities behind it. A missing legacy count stays unknown, never invented.
  const available=publicCountrySupply(r);
- return `<section class="original-shop" style="${rect(...layout.shop)}" aria-label="${AREAS[region].name}国家商店"><h3>${AREAS[region].name}</h3><div class="original-shop-cards">${available.map(({id,pile,count})=>{
+ return `<section class="original-shop" data-trade-shop="${region}" style="${rect(...layout.shop)}" aria-label="${AREAS[region].name}国家商店"><h3>${AREAS[region].name}</h3><div class="original-shop-cards">${available.map(({id,pile,count})=>{
   const card=catalogue[id],title=card?.name||'公开国家牌';
   const stock=count===null?'剩余数量尚未记录':`含顶牌剩余 ${count} 张`;
-  return `<button type="button" class="board-country original-country" data-card="${esc(id)}" data-source="regionCountry" title="${esc(title)} · ${AREAS[region].name} · ${stock}" aria-label="查看${esc(title)} · ${AREAS[region].name}公开国家牌 · ${stock}"><span class="original-country-face">${card?.image?`<img src="${esc(card.image)}" alt="${esc(title)}" loading="lazy" decoding="async" draggable="false">`:'<span class="original-country-missing">国家牌</span>'}<span class="original-pile-count" data-pile="${pile||'unknown'}" data-pile-count="${count??'unknown'}">${count??'?'}</span></span><span class="board-country-name">${esc(title)}</span></button>`;
+  return `<div class="original-country-stack"><button type="button" class="board-country original-country" data-card="${esc(id)}" data-source="regionCountry" title="${esc(title)} · ${AREAS[region].name} · ${stock}" aria-label="查看${esc(title)} · ${AREAS[region].name}公开国家牌 · ${stock}"><span class="original-country-face">${card?.image?`<img src="${esc(card.image)}" alt="${esc(title)}" loading="lazy" decoding="async" draggable="false">`:'<span class="original-country-missing">国家牌</span>'}</span><span class="board-country-name">${esc(title)}</span></button><button type="button" class="original-pile-count" data-country-pile="${pile||'unknown'}" data-pile-region="${region}" data-pile="${pile||'unknown'}" data-pile-count="${count??'unknown'}" aria-label="查看${AREAS[region].name}${pile==='left'?'左':'右'}堆全部盟国">${count??'?'}</button></div>`;
  }).join('')||'<span class="original-shop-empty">已取完</span>'}</div></section>`;
 }
 

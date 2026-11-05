@@ -5,13 +5,23 @@ body.game-client.client-scroll{--client-command-width:320px;--client-toolbar-spa
 .game-client.client-scroll .client-personal-area,.game-client.client-scroll .client-events-area,.game-client.client-scroll .client-market-area,.game-client.client-scroll .client-growth-area,.game-client.client-scroll .game-table>.stage{width:100%;min-width:0;flex:none}
 .game-client.client-scroll .client-personal-area{order:-1;display:flex;flex-direction:column;gap:12px}
 .game-client.client-scroll .client-own-board{width:100%;align-self:stretch}
+.game-client.client-scroll .client-player-trade-info.player-board-trade{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);max-width:702px;align-items:stretch}
+.game-client.client-scroll .client-player-trade-info.has-executive{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr) minmax(90px,132px);max-width:none}
+.game-client.client-scroll .player-board-agreement-art{max-width:260px}
+.game-client.client-scroll .player-board-executive{min-width:0;padding:9px;border:1px solid #7999aa77;border-radius:4px;background:#0c2433aa}
+.game-client.client-scroll .player-board-executive>header{margin-bottom:8px}
+.game-client.client-scroll .player-board-executive h3{margin:0;font-size:12px}
+.game-client.client-scroll .player-board-executive .client-executive-card{width:100%;max-width:none}
+.game-client.client-scroll .player-board-executive .cardbutton img{width:100%;height:auto;max-height:none;object-fit:contain}
+.game-client.client-scroll .player-board-executive .client-executive-card:not(.is-used)>.client-owned-mark{display:none}
+.game-client.client-scroll .client-owned-group--allies .client-owned-allies{grid-template-columns:repeat(auto-fill,minmax(96px,104px));gap:10px}
+.game-client.client-scroll .client-owned-group--allies .client-owned-ally{background:none;border:0;box-shadow:none}
 .game-client.client-scroll .client-executive-card .cardmeta{display:none}
 .game-client.client-scroll .client-practical{display:flex;flex-direction:column;gap:12px}
 .game-client.client-scroll .client-owned-cards{gap:14px}
 .game-client.client-scroll .client-owned-group--abilities{order:-1}
 .game-client.client-scroll .client-owned-group--abilities .client-owned-empty{margin:4px 0}
 .game-client.client-scroll .client-owned-group--abilities .client-owned-row:empty{display:none}
-.game-client.client-scroll .client-owned-group--abilities .client-executive-card{flex-basis:80px}
 .game-client.client-scroll .original-board-surface{min-width:0}
 .game-client.client-scroll .client-market-row{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .game-client.client-scroll .client-growth-area .growth-supply-grid{gap:8px}

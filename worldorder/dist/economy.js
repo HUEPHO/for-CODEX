@@ -11,7 +11,7 @@ export const ECONOMY={
  RU:{max:[6,5,5,3,3,5,5],upgrade:6,ready:[1,4,2],vp:[3,4,5,7,10],money:[5,10,15,20,0]}
 };
 function integer(n){if(!Number.isInteger(n)||n<0)throw Error('数量必须为非负整数');return n;}
-export function validateProduction(p,id){if(!Array.isArray(p.production)||p.production.length!==7||p.production.some((n,k)=>!Number.isInteger(n)||n<1||n>ECONOMY[id].max[k]))throw Error('生产轨记录无效');}
+export function validateProduction(p,id){if(!Array.isArray(p.production)||p.production.length!==7||p.production.some((n,k)=>!Number.isSafeInteger(n)||n<0||!p.debugProduction&&(n<1||n>ECONOMY[id].max[k])))throw Error('生产轨记录无效');}
 export function gainResource(p,key,n){integer(n);if(!Number.isInteger(key)||key<0||key>6)throw Error('无效资源');if(key===6){p.resources[key]+=n;return 0;}const excess=Math.max(0,p.resources[key]+n-10);p.resources[key]=Math.min(10,p.resources[key]+n);const money=key===5?0:excess*(key<3?3:10);p.money+=money;return money;}
 export function producePrimary(s){let overflow=0;for(const [id,p] of Object.entries(s.players)){validateProduction(p,id);for(let k=0;k<3;k++){overflow+=gainResource(p,k,p.production[k]);refreshCommerce(p,id,k);}}return overflow;}
 export function focusOptions(id,focus,p=null,round=0){const index=FOCUSES.indexOf(focus);if(index<0)throw Error('无效焦点');return {ready:ECONOMY[id].ready[index]+(p&&hasGrowth(p,round,'ready')?1:0),upgrades:index===0?[0,1,2,3,4,5,6]:[index===1?5:6],maxUpgrades:id==='CN'&&index===0?2:1,produce:index===0?[3,4]:[index===1?5:6]};}

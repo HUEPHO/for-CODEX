@@ -93,6 +93,12 @@ assert.equal(scoped.includes('data-trade-region='),false);assert.equal(scoped.in
 const free=renderClientTradeForm(state,'free',{name:'地区贸易',effect:'trade',virtualRegions:['E']});
 assert.equal(free.includes('data-trade-region="E"'),false);
 
+const giantId='cee23aa848494',giantHtml=renderClientTradeForm(ready('RU'),giantId,BASIC_CARDS[giantId]);
+assert.equal(read(giantHtml).action.primaryResource,0);
+const rawChoice=read(giantHtml,form=>{for(const field of form.querySelectorAll('[data-trade-primary]'))field.checked=field.value==='1';}).action;
+assert.equal(rawChoice.primaryResource,1);
+assert.ok(!('primaryResource' in read(html).action));
+
 // The regular browser keeps its existing presentation, and native rendering is
 // selected without changing the public renderTradeForm call signature.
 const oldWindow=globalThis.window;

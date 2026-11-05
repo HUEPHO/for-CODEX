@@ -4,7 +4,14 @@ import {acquireCountry,acquireSearchedCountry,regionCountries} from './country-p
 import {upgradeInvestmentCountry} from './investment-tokens.js';
 export function countryInfo(id){const c=RESEARCH_DATA[id];if(!c?.countryName)throw Error('国家资料尚未录入');return c;}
 export function baseCountries(s,card={}){const p=s.players[s.current];return p.allies.filter(id=>countryInfo(id).basePowers.includes(s.current)&&!(p.exhaustedAllies||[]).includes(id)&&(p.bases||[]).filter(cid=>cid===id).length<(card.baseLimit??1));}
-export function basePreview(s,a,card={}){const p=s.players[s.current];if(!baseCountries(s,card).includes(a.country))throw Error('需要允许本方建基地、未横置且没有基地的盟国');const c=countryInfo(a.country),send=a.send,max=card.maxBaseArmies??c.countryValue;
+export function basePreview(s,a,card={}){const p=s.players[s.current];if(!baseCountries(s,card).includes(a.country))throw Error('需要允许本方建基地、未横置且没有基地的盟国');const c=countryInfo(a.country),max=card.maxBaseArmies??c.countryValue;
+ if(a.armyMoves){
+  if(!Array.isArray(a.armyMoves)||a.armyMoves.some(move=>move.to!==c.region))throw Error('临时取回的坦克必须重新派往基地所在地区');
+  const extra=a.armyMoves.filter(move=>move.from!=='reserve');
+  if(extra.length>1)throw Error('建基地最多用1 SP从其他地区追加1辆坦克');
+  a={...a,send:a.armyMoves.filter(move=>move.from==='reserve').length-(a.baseUseSP&&!extra.length?1:0),baseExtraFrom:extra[0]?.from||(a.baseUseSP?'reserve':'')};
+ }
+ const send=a.send;
  if(!Number.isInteger(send)||send<1||send>max)throw Error('派兵至少1，最多'+max+'支');if(p.resources[6]<send)throw Error('待命军队不足');const cost=5+(card.freeBaseDeployment?0:5*send);if(p.money<cost)throw Error('建基地及派兵所需资金不足');const extraFrom=a.baseExtraFrom||null,smartCost=validateSP(s,extraFrom?1:0);if(extraFrom){if(extraFrom==='reserve'){if(p.resources[6]-send<1)throw Error('正常派兵后没有可追加的待命军队');}else if(extraFrom===c.region||!s.regions[extraFrom]||s.regions[extraFrom].armies[s.current]<1)throw Error('请选择其他地区现有的本方军队');}return {region:c.region,cost,exhaust:[a.country],send,influence:true,smartCost,extraFrom};
 }
 export function applyBase(s,a,result){const p=s.players[s.current];p.money-=result.cost;p.resources[6]-=result.send;s.regions[result.region].armies[s.current]+=result.send;p.bases??=[];p.bases.push(a.country);if(result.extraFrom){if(result.extraFrom==='reserve')p.resources[6]--;else s.regions[result.extraFrom].armies[s.current]--;s.regions[result.region].armies[s.current]++;}}

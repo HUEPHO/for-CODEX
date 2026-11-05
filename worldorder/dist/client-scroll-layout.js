@@ -34,7 +34,13 @@ export function composeClientScrollTable(state,byId,card,{viewer=state.current,a
  if(assets&&!tray.querySelector('.asset-choice,.opening-group')){
   // Keep original command buttons when moving the public strategic assets.
   const executive=assets.querySelector('[data-source="executive"],[data-source="usedExecutive"]')?.closest('.client-owned-card');
-  if(executive){executive.classList.add('client-executive-card');owned.querySelector('.client-owned-growth').prepend(executive);owned.querySelector('.client-owned-group--abilities .client-owned-empty')?.remove();}
+  if(executive){
+   executive.classList.add('client-executive-card');
+   const executiveArea=section('player-board-executive','<header><h3>行政命令</h3></header>');
+   executiveArea.append(executive);
+   const trade=practical.querySelector('.client-player-trade-info');
+   trade.classList.add('has-executive');trade.append(executiveArea);
+  }
   assets.classList.add('client-strategic-assets');
   assets.querySelector('h2').textContent='战略资产';
   assets.querySelector('header>span').textContent=assets.querySelectorAll('.client-owned-card').length;

@@ -9,3 +9,5 @@ dist/.openai/
 .web/
 data/
 runtime/
+.ui-pptx-build/
+output/

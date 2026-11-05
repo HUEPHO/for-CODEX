@@ -50,11 +50,13 @@ body.game-client.client-scroll{--client-rail:250px;--client-toolbar-space:60px;-
 
 /* Four actions per power, followed by the existing five phase groups. */
 .game-client.client-scroll .client-round-status>.client-round-button{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px 8px;background:linear-gradient(125deg,#152826,#101d24);border-color:#7d7355;text-align:left}
-.game-client.client-scroll .client-round-heading{display:flex;align-items:center;justify-content:space-between;gap:5px}
-.game-client.client-scroll .client-round-actor{display:inline-flex;align-items:center;gap:4px;color:#becac7;white-space:nowrap}
-.game-client.client-scroll .client-round-actor .power-flag{width:20px;height:14px}
-.game-client.client-scroll .client-action-progress{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;color:#f0efe6}
-.game-client.client-scroll .client-action-progress>b{font-size:11px;white-space:nowrap;letter-spacing:0;font-weight:700}
+.game-client.client-scroll .client-round-top{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px}
+.game-client.client-scroll .client-round-heading{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.game-client.client-scroll .client-round-heading strong{white-space:nowrap}
+.game-client.client-scroll .client-round-order{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:3px;width:100%;max-width:132px;justify-self:end}
+.game-client.client-scroll .client-order-flag{display:flex;align-items:center;justify-content:center;min-width:0;padding:2px;border:2px solid transparent;border-radius:3px}
+.game-client.client-scroll .client-order-flag .power-flag{width:100%;height:auto;aspect-ratio:3/2;max-width:25px;object-fit:contain}
+.game-client.client-scroll .client-order-flag.is-current{border-color:#f1cf72;background:#cda84d22;box-shadow:0 0 5px #e6c77555}
 .game-client.client-scroll .client-action-dots{display:inline-flex;align-items:center;gap:5px;flex:none}
 .game-client.client-scroll .client-action-dot{display:block;width:13px;height:13px;border:1.5px solid #8b8060;border-radius:50%;background:transparent}
 .game-client.client-scroll .client-action-dot.is-current{background:#8fe3ac;border-color:#8fe3ac;box-shadow:0 0 10px #65d29666}
@@ -63,4 +65,4 @@ body.game-client.client-scroll{--client-rail:250px;--client-toolbar-space:60px;-
 .game-client.client-scroll .client-phase-pill.is-current{background:#e4ce97;border-color:#e4ce97;color:#17211f;font-weight:800}
 .game-client.client-scroll .client-phase-pill.is-skipped:not(.is-current){color:#7c817b;border-color:#3f4b45}
 .game-client.client-scroll .client-round-pending{font-size:10px;line-height:1.4;margin:0;color:#c7caba}
-@media(max-width:1280px),(max-height:800px){.game-client.client-scroll .client-round-status>.client-round-button{padding:8px 6px;gap:7px}.game-client.client-scroll .client-action-dot{width:11px;height:11px}.game-client.client-scroll .client-action-dots{gap:4px}.game-client.client-scroll .client-action-progress>b{font-size:10px}.game-client.client-scroll .client-phase-strip{gap:3px}}
+@media(max-width:1280px),(max-height:800px){.game-client.client-scroll .client-round-status>.client-round-button{padding:8px 6px;gap:7px}.game-client.client-scroll .client-action-dot{width:11px;height:11px}.game-client.client-scroll .client-action-dots{gap:4px}.game-client.client-scroll .client-phase-strip{gap:3px}}

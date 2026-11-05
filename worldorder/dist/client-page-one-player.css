@@ -5,10 +5,11 @@
 /* Publicly revealed events use their original faces, with only live state added. */
 .game-client.client-scroll .client-events-area .client-event-list {
  display: grid;
- grid-template-columns: repeat(auto-fit,minmax(min(100%,230px),1fr));
+ grid-template-columns: repeat(2,minmax(0,1fr));
  align-items: start;
  gap: 12px;
 }
+.game-client.client-scroll .client-events-area .client-event-empty { grid-column: 1 / -1; }
 .game-client.client-scroll .client-events-area .client-event-row--art {
  position: relative;
  display: flex;
@@ -33,3 +34,47 @@
 .game-client.client-scroll .client-event-row--art .client-event-status {
  display: block; width: 100%; padding: 4px 8px; font-size: 11px; line-height: 1.4; color: #ead7a7; background: #10232b;
 }
+
+/* Keep the whole four-player rail visible, including a longer setup status. */
+.game-client.client-scroll .client-player-rail {
+ display: grid;
+ grid-template-rows: auto repeat(4,minmax(0,1fr));
+ gap: 6px;
+ padding: 6px 2px 0;
+ overflow: clip;
+}
+.game-client.client-scroll .client-player-opponents { display: contents; }
+.game-client.client-scroll .client-player {
+ padding: 6px 7px;
+ gap: 3px;
+ justify-content: center;
+}
+.game-client.client-scroll .client-player-name b { font-size: 13px; }
+.game-client.client-scroll .client-player-resources { gap: 3px; padding-top: 3px; }
+.game-client.client-scroll .client-player-stock .client-resource-value { gap: 0; }
+.game-client.client-scroll .client-round-status>.client-round-button { padding: 7px 6px; gap: 5px; }
+.game-client.client-scroll .client-round-pending { line-height: 1.3; }
+@media(max-height:800px) {
+ .game-client.client-scroll .client-player { padding: 4px 6px; gap: 2px; }
+ .game-client.client-scroll .client-player-resources { padding-top: 2px; gap: 2px; }
+ .game-client.client-scroll .client-player .resource-icon,
+ .game-client.client-scroll .client-player-resources .resource-icon:not(.resource-icon--army) { width: 19px; height: 19px; min-width: 19px; min-height: 19px; }
+ .game-client.client-scroll .client-player .resource-icon--army { width: 25px; min-width: 25px; }
+ .game-client.client-scroll .client-player-stock .client-resource-value { font-size: 10px; }
+ .game-client.client-scroll .client-player-vp>b { font-size: 22px; }
+}
+@media(max-height:660px) {
+ .game-client.client-scroll .client-player-rail { gap: 4px; padding-top: 4px; }
+ .game-client.client-scroll .client-player { padding: 3px 5px; gap: 1px; }
+ .game-client.client-scroll .client-player-heading { height: 20px; }
+ .game-client.client-scroll .client-player .resource-icon,
+ .game-client.client-scroll .client-player-resources .resource-icon:not(.resource-icon--army) { width: 16px; height: 16px; min-width: 16px; min-height: 16px; }
+ .game-client.client-scroll .client-player .resource-icon--army { width: 22px; min-width: 22px; }
+ .game-client.client-scroll .client-player-resource-row { line-height: 1.1; }
+ .game-client.client-scroll .client-player-production .client-resource-value { line-height: 12px; }
+ .game-client.client-scroll .client-player-planline { flex-wrap: nowrap; }
+ .game-client.client-scroll .client-round-status>.client-round-button { padding: 5px 6px; gap: 3px; }
+ .game-client.client-scroll .client-round-status strong { font-size: 14px; }
+ .game-client.client-scroll .client-phase-pill { padding: 2px 0; }
+}
+.game-client #client-card-preview.is-card-anchored { z-index: 49; }

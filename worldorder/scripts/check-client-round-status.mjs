@@ -17,12 +17,20 @@ for(let index=0;index<16;index++){
  assert.equal(model.action,Math.floor(index/4)+1);assert.equal(model.actionOwner,state.current);
  assert.equal(model.phases.filter(p=>p.current).length,1);assert.equal(model.phases.find(p=>p.current).label,'行动');
  assert.equal((html.match(/client-action-dot is-current/g)||[]).length,1);
+ assert.deepEqual(model.order,ids);
+ assert.deepEqual([...html.matchAll(/data-order-player="(\w+)"/g)].map(match=>match[1]),ids);
+ assert.ok(html.includes(`class="client-order-flag is-current" data-order-player="${state.current}"`));
  assert.equal((html.match(/data-round-phase=/g)||[]).length,5);assert.match(html,/data-round-phase="事件"/);assert.doesNotMatch(html,/自动影响|\/ 16/);
  assert.equal(JSON.stringify(state),before,'Status rendering must not change saved workflow');
 }
 state.actionTurns={index:4,completed:{US:1,CN:1,EU:1,RU:1}};state.current='CN';
 state.flow.cardResolution={owner:'US',responder:'CN'};
-const responding=clientRoundStatusModel(state);assert.equal(responding.action,2);assert.equal(responding.actionOwner,'US');assert.equal(responding.actor,'CN');assert.equal(responding.detail,'等待被点名玩家回应');delete state.flow.cardResolution;
+const responding=clientRoundStatusModel(state);assert.equal(responding.action,2);assert.equal(responding.actionOwner,'US');assert.equal(responding.actor,'CN');assert.equal(responding.detail,'等待被点名玩家回应');
+assert.ok(renderClientRoundStatus(state).includes('class="client-order-flag is-current" data-order-player="US"'));
+delete state.flow.cardResolution;
+state.flow.order=['RU','EU','CN','US'];
+assert.deepEqual(clientRoundStatusModel(state).order,['RU','EU','CN','US']);
+assert.ok(renderClientRoundStatus(state).includes('class="client-order-flag is-current" data-order-player="RU"'));
 for(const [step,phase] of [['countries','准备'],['order','准备'],['production','准备'],['focus','准备'],['research','研究'],['events','事件'],['aftermath','结算'],['roundEnd','结算'],['ended','结算']]){
  state.flow={round:1,step,order:ids,index:0,checks:[],draft:{queue:ids}};state.actionTurns={index:16,completed:{US:4,CN:4,EU:4,RU:4}};
  const model=clientRoundStatusModel(state);assert.equal(model.phase,phase);assert.equal(model.action,null);assert.ok(!renderClientRoundStatus(state).includes('client-action-dot is-current'));

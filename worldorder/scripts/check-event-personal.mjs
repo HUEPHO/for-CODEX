@@ -77,7 +77,7 @@ const html=renderTradeForm(s,'c0297b4923ea2',{name:'世界工厂'});assert.match
 // Import symbols and unrelated allies retain their normal values.
 s=fixture(eaeu,s=>{s.players.RU.allies=[country('Belarus')];s.players.RU.countryUnderlays={[country('Belarus')]:[country('Belarus',true)]};});s=submit(s,{accept:true,slot:'temporary'});
 const base=tradeCapacity({...s,eventEffects:[]},'RU'),doubled=tradeCapacity(s,'RU');assert.deepEqual(doubled.exports,base.exports.map(n=>n*2));assert.deepEqual(doubled.imports,base.imports);
-const energyGiant=tradeCapacity(s,'RU',{doublePrimary:true});assert.deepEqual(energyGiant.exports,doubled.exports);assert.deepEqual(energyGiant.imports,base.imports.map((n,k)=>k<2?n*2:n));
+for(const primaryResource of [0,1]){const energyGiant=tradeCapacity(s,'RU',{doublePrimary:true},[],primaryResource);assert.deepEqual(energyGiant.exports,doubled.exports);assert.deepEqual(energyGiant.imports,base.imports.map((n,k)=>k===primaryResource?n*2:n));}
 s.players.RU.allies=[country('Iran')];s.players.RU.countryUnderlays={};assert.deepEqual(tradeCapacity(s,'RU'),tradeCapacity({...s,eventEffects:[]},'RU'));
 // Pivot: either lower influence or score qualifies; movements validate before
 // RNG, no move still queues a chain, and all three choices can be drawn.

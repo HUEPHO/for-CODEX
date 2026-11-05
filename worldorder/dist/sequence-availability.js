@@ -55,13 +55,13 @@ function *tradeActions(s,card){
  // All printed trade continuations either invest (cash only) or permit zero
  // production. Imports cannot improve cash here. For each SP spend, retain the
  // actual export plan with greatest revenue; six goods/seven regions are fixed.
- yield {exports:[],imports:[]};
+ yield {...(card.doublePrimary?{primaryResource:0}:{}),exports:[],imports:[]};
  const prepared=preparedActionState(s,{},card),p=prepared.players[s.current],regions=Object.keys(s.regions).filter(id=>!card.tradeOnlyRegions||card.tradeOnlyRegions.includes(id)),limit=Math.min(TRADE_LIMITS[s.current].exports,card.maxTradeTypes??Infinity),best=new Map();
- for(let count=0;count<=Math.min(s.config.wit?p.smart:0,regions.length);count++)for(const tradeRegions of combinations(regions,count)){
-  const capacity=tradeCapacity(prepared,s.current,card,tradeRegions),exports=[0,1,2,3,4,6].map(key=>({key,quantity:Math.min(p.resources[key],capacity.exports[key])})).filter(row=>row.quantity>0).sort((a,b)=>b.quantity*EXPORT_PRICE[b.key]-a.quantity*EXPORT_PRICE[a.key]).slice(0,limit),revenue=exports.reduce((sum,row)=>sum+row.quantity*EXPORT_PRICE[row.key],0);
+ for(let count=0;count<=Math.min(s.config.wit?p.smart:0,regions.length);count++)for(const tradeRegions of combinations(regions,count))for(const primaryResource of card.doublePrimary?[0,1]:[undefined]){
+  const capacity=tradeCapacity(prepared,s.current,card,tradeRegions,primaryResource),exports=[0,1,2,3,4,6].map(key=>({key,quantity:Math.min(p.resources[key],capacity.exports[key])})).filter(row=>row.quantity>0).sort((a,b)=>b.quantity*EXPORT_PRICE[b.key]-a.quantity*EXPORT_PRICE[a.key]).slice(0,limit),revenue=exports.reduce((sum,row)=>sum+row.quantity*EXPORT_PRICE[row.key],0);
   if(!revenue||revenue<=(best.get(count)?.revenue??-1))continue;
   if(card.regionalInfluence)for(const row of exports){let left=row.quantity;row.regions={};for(const region of Object.keys(s.regions)){const quantity=Math.min(left,capacity.byRegion[region].exports[row.key]);if(quantity)row.regions[region]=quantity;left-=quantity;}}
-  best.set(count,{revenue,action:{tradeRegions,exports,imports:[]}});
+  best.set(count,{revenue,action:{...(card.doublePrimary?{primaryResource}:{}),tradeRegions,exports,imports:[]}});
  }
  for(const {action} of best.values())yield action;
 }
@@ -75,7 +75,7 @@ function basicAvailability(s,card,next){
   return {...pending,actions:()=>productionActions(s,card,next)};
  }
  if(card.effect==='trade'){
-  try{effectPreview(s,{exports:[],imports:[]},card);}catch(error){return unavailable(error.message,false);}
+  try{effectPreview(s,{...(card.doublePrimary?{primaryResource:0}:{}),exports:[],imports:[]},card);}catch(error){return unavailable(error.message,false);}
   return {...pending,actions:()=>tradeActions(s,card)};
  }
  if(card.effect==='reinforce'){

@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createState,applyAction} from '../dist/engine.js';
+import {newFlow} from '../dist/flow.js';
+import {deploymentMoves} from '../dist/army-deployment.js';
+import {reinforcementPreview} from '../dist/military.js';
+import {baseCountries,basePreview,countryInfo} from '../dist/country-actions.js';
+import {countryPileContents} from '../dist/country-pile-view.js';
+import {playerView,newRoom,changeRoom} from '../server/rooms.js';
+import {RESEARCH_DATA} from '../dist/research-data.js';
+const cards=JSON.parse(fs.readFileSync(new URL('../dist/cards.json',import.meta.url),'utf8'));
+const s=createState(cards,{wit:true,dd:true},()=>.5);
+for(const p of Object.values(s.players)){p.openingChoices=p.assetChoices=p.objectiveChoices=null;p.money=100;p.smart=10;p.resources=Array(7).fill(5);}
+s.current='RU';s.flow=newFlow(['RU','US','CN','EU']);s.actionTurns={index:0,completed:{RU:0,US:0,CN:0,EU:0}};s.players.RU.hand=['c56dca820d8e0'];s.regions.E.armies.RU=2;
+const before=JSON.stringify(s);
+const draft=deploymentMoves({E:-1,C:2});
+assert.deepEqual(draft,[{from:'E',to:'C',spendSP:false},{from:'reserve',to:'C',spendSP:false}]);
+const projected=reinforcementPreview(s,{moves:draft});
+assert.equal(projected.reserve,5);assert.equal(projected.armies.E,1);assert.equal(projected.armies.C,s.regions.C.armies.RU+2);
+assert.equal(projected.cost,10);assert.equal(JSON.stringify(s),before);
+assert.throws(()=>reinforcementPreview(s,{moves:deploymentMoves({E:-1})}),/不能留回仓库/);
+assert.throws(()=>reinforcementPreview(s,{moves:deploymentMoves({E:-2,C:1})}),/不能留回仓库/);
+assert.deepEqual(deploymentMoves({E:0,C:0}),[]);
+const moved=applyAction(s,{type:'playBasicCard',cardId:'c56dca820d8e0',moves:draft});
+assert.equal(moved.players.RU.resources[6],5);assert.equal(moved.players.RU.money,90);
+const identity={user:'board-check',token:'RU'},room=newRoom('BOARD1',identity,cards,s.config);
+room.status='playing';room.seats={US:null,CN:null,EU:null,RU:identity};room.state=s;
+const roomBefore=JSON.stringify(room);
+assert.throws(()=>changeRoom(room,identity,{id:'reject-return',op:'action',gameRevision:room.gameRevision,action:{type:'playBasicCard',cardId:'c56dca820d8e0',moves:deploymentMoves({E:-1})}},cards),/不能留回仓库/);
+assert.equal(JSON.stringify(room),roomBefore,'Rejected return must not pay, play a card, or mutate room state');
+const country=baseCountries(s)[0],region=countryInfo(country).region,from=region==='E'?'C':'E';s.regions[from].armies.RU=2;
+const base=basePreview(s,{country,armyMoves:[{from:'reserve',to:region},{from,to:region}]});
+assert.equal(base.send,1);assert.equal(base.extraFrom,from);assert.equal(base.smartCost,1);
+assert.throws(()=>basePreview(s,{country,armyMoves:[{from,to:'reserve'}]}),/重新派往/);
+assert.throws(()=>basePreview(s,{country,armyMoves:[{from,to:region},{from,to:region},{from:'reserve',to:region}]}),/最多用1 SP/);
+const piles=s.regions.E.countryPiles||{left:[s.regions.E.available[0],...s.regions.E.deck],right:[s.regions.E.available[1]]};
+piles.right.push(...piles.left.splice(1,3));s.regions.E.countryPiles=piles;
+const snapshot=JSON.stringify(s),expected=countryPileContents(s.regions.E);
+for(const seat of ['RU','US','CN','EU']){
+ const view=playerView(s,seat),actual=countryPileContents(view.regions.E);
+ assert.deepEqual(actual,expected);assert.deepEqual(actual.right,piles.right);
+ assert.deepEqual(actual.left.map(id=>RESEARCH_DATA[id].countryValue),actual.left.map(id=>RESEARCH_DATA[id].countryValue).sort((a,b)=>a-b));
+ assert.ok(view.regions.E.countryPiles.left.slice(1).every(id=>id===null));
+ assert.ok(view.regions.E.countryPiles.right.slice(1).every(id=>id===null));
+ assert.equal(JSON.stringify(s),snapshot);
+}
+assert.deepEqual(countryPileContents({...s.regions.E,countryPiles:{left:piles.left.slice().reverse(),right:piles.right}}).left,expected.left,'Left contents must not encode draw order, including equal levels');
+console.log('Board interactions passed: net deployment, pending-return rejection, atomic room commit, base SP limits, and public pile contents/order without source mutation.');

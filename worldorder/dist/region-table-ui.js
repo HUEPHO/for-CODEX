@@ -14,6 +14,7 @@ function placementSlot(panel,kind){
  return empty||(kind==='temporary'?slots.at(-1):null);
 }
 function optionTargets(panel,option,kind){
+ if(kind==='trade')return [...panel.querySelectorAll('[data-trade-shop]')];
  if(kind==='region'||kind==='regions')return [panel];
  if(kind==='placement')return [placementSlot(panel,option.kind)].filter(Boolean);
  return Array.from(panel.querySelectorAll('[data-board-slot]')).filter(node=>!unavailable(node)&&node.dataset.boardSlot===option.kind&&Number(node.dataset.slotIndex)===option.index);
@@ -25,12 +26,13 @@ function paintTargets(surface,model){
  if(!surface||!model?.activeFieldId)return;
  const panels=Array.from(surface.querySelectorAll('[data-board-region]'));
  const byRegion=new Map(panels.map(panel=>[panel.dataset.boardRegion,panel]));
- const candidates=model.kind==='region'||model.kind==='regions'?panels:panels.flatMap(panel=>Array.from(panel.querySelectorAll('[data-board-slot]')));
+ const trade=model.activeFieldId==='trade-regions';
+ const candidates=trade?[...surface.querySelectorAll('[data-trade-shop]')]:model.kind==='region'||model.kind==='regions'?panels:panels.flatMap(panel=>Array.from(panel.querySelectorAll('[data-board-slot]')));
  candidates.forEach(node=>node.classList.add('region-target-blocked'));
  for(const option of model.options){
   const panel=byRegion.get(option.region);if(!panel||option.disabled)continue;
   if(projected(option,model))continue;
-  for(const node of optionTargets(panel,option,model.kind)){
+  for(const node of optionTargets(panel,option,trade?'trade':model.kind)){
    node.classList.remove('region-target-blocked');node.classList.add('region-target-eligible');
    if(selected(option,model))node.classList.add('region-target-selected');
   }
@@ -101,8 +103,12 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
    if(task&&model&&valueButtons(model,getSurface()).some(option=>option.value===value&&!option.disabled)&&selectRegionTarget(null,{value},task,context))sync();return;
   }
   const surface=getSurface(),panel=target.closest('[data-board-region]');
-  if(!panel||!surface?.contains(panel)||target.closest('[data-card],[data-table-target]'))return;
+  if(!panel||!surface?.contains(panel)||target.closest('[data-country-pile]'))return;
   const {task,model}=current();if(!model)return;
+  const trade=model.activeFieldId==='trade-regions';
+  if(trade){
+   if(!target.closest('[data-trade-shop]')){stop(event);return;}
+  }else if(target.closest('[data-card],[data-table-target]'))return;
   // While selecting a region, don't also open its legacy detail sidebar.
   stop(event);
   if(!model.activeFieldId){message('请先选择要填写的出发地、目的地或影响力项目。');return;}

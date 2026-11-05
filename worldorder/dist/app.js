@@ -13,7 +13,9 @@ import {growthSupplyGroups} from './growth-setup.js';
 import {renderOriginalBoard as renderInteractiveBoard} from './original-board.js';
 import {installCardDrag} from './card-drag.js';
 import {tableSelectionModel,selectTableTarget} from './table-selection.js';
+import {installArmyDeployment,readDeploymentMoves} from './army-deployment-ui.js';
 import {installRegionTable} from './region-table-ui.js';
+import {countryPileContents} from './country-pile-view.js';
 import {createRollback,recordRollback,rollbackAvailability,restoreRollback} from './rollback-state.js';
 import {renderRollbackOptions,rollbackLabel} from './rollback-ui.js';
 import {EVENT_EFFECTS} from './event-effects.js';
@@ -29,6 +31,8 @@ import {renderRoomEntry,renderRoomLobby,renderRoomFlow,recentRoomLinks} from './
 import {renderSteamAccount,renderSteamMembers,steamStatusText} from './steam-ui.js';
 import {setupPending,manualWindow} from './room-rules.js';
 import {actionAccess} from './action-policy.js';
+import {applyDebugAction,DEBUG_ROLLBACK_REASON} from './debug-mode.js';
+import {installDebugMode} from './debug-mode-ui.js';
 import {controlCommand} from './control-command.js';
 import {renderForeignInvestments,foreignInvestmentCaption} from './foreign-investments-ui.js';
 import {SPECIAL_CARDS,ASSET_NAMES} from './special-data.js';
@@ -42,7 +46,7 @@ import {GROWTH_DATA} from './growth-data.js';
 import {ACTION_CARDS as BASIC_CARDS,requireTurn} from './basic-actions.js';
 import {renderBasicForm,readBasicForm,updateBasicForm} from './basic-actions-ui.js';
 import {renderWorldRegion,threatSummary} from './world-ui.js';
-import {investmentPreview} from './world.js';
+import {investmentPreview,AREAS} from './world.js';
 import {renderEconomy} from './economy-ui.js';
 import {researchCost,countryValue,countryRegion} from './research.js';
 import {renderFlow} from './flow-ui.js';
@@ -55,6 +59,7 @@ const SESSION_KEY=KEY+'-session-v1';
 let localRollback=createRollback();
 let room=null,uiRevision=0,localRevision=0,stagedCard=null,taskVersion=0,renderedTaskKey=null,taskCollapsed=false;
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
+const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
 const labels={starter:'起始能力',ability:'市场能力',growth:'发展牌',asset:'战略资产',event:'事件',objective:'目标',country:'国家',startingCountry:'起始盟国',effect:'效果牌',executive:'行政命令'};
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('#toast').classList.remove('show'),3200)}
@@ -62,6 +67,11 @@ const localIdentity=()=>({seat:state.current,user:'local',token:'local:'+state.c
 const localUndoIdentity=()=>localRollback.owner||localIdentity();
 function persist(){if(room||roomClient.isSteam)return;try{localStorage.setItem(SESSION_KEY,JSON.stringify({version:1,state,rollback:localRollback}))}catch{toast('本机存储不可用；刷新将丢失本次操作')}}
 function act(a){if(room)return roomAct(a);if(roomClient.isSteam){toast('请先加入 Steam 房间并入座');return{ok:false,error:'尚未加入 Steam 对局'};}try{const next=applyAction(state,a);if(a.type!=='switch')localRollback=recordRollback(localRollback,state,next,{...localIdentity(),action:a});state=next;localRevision++;persist();render();if(a.type!=='switch')toast(state.log[0]);return{ok:true,current:state.current,round:state.round}}catch(e){toast(e.message);return{ok:false,error:e.message}}}
+async function debugAct(action){
+ if(room)return roomCommand('debug',{action});
+ try{state=applyDebugAction(state,action,data);localRollback=createRollback(DEBUG_ROLLBACK_REASON);localRevision++;persist();render();return {ok:true};}
+ catch(error){return {ok:false,error:error.message};}
+}
 function title(c){return c?.name||EVENT_EFFECTS[c?.id]?.name||GROWTH_DATA[c?.id]?.name||BASIC_CARDS[c?.id]?.name||`${labels[c?.type]||'卡牌'} ${String(c?.sourceCardId??'').slice(-2).padStart(2,'0')}`}
 function card(id,source='view',presentation={}){const c=byId[id];if(!c)return'';return`<button class="cardbutton" data-card="${id}" data-source="${source}" ${source==='hand'?'data-drag-card="'+id+'"':''} aria-label="查看${esc(title(c))}"><img src="${esc(presentation.image||c.image)}" alt="${esc(presentation.alt||title(c))}" loading="lazy" draggable="false"><span class="cardmeta">${esc(c.name||GROWTH_DATA[c.id]?.name||BASIC_CARDS[c.id]?.name||labels[c.type])}${source==='allies'&&(state.players[state.current].bases||[]).includes(id)?' · 基地×'+state.players[state.current].bases.filter(cid=>cid===id).length:''}${source==='allies'&&(state.players[state.current].fdi||[]).includes(id)?' · FDI×'+state.players[state.current].fdi.filter(cid=>cid===id).length:''}${source==='allies'?foreignInvestmentCaption(state,state.current,id):''}${source==='allies'&&(state.players[state.current].exhaustedAllies||[]).includes(id)?' · 已消耗':''}${['usedAsset','usedExecutive'].includes(source)?' · 已使用':''}${c.level?' · 等级 '+c.level:''}${source==='growth'?' · '+(GROWTH_DATA[id]?.effect==='battlefield'?'购入即结算':state.round>=c.level?'已生效':'第'+c.level+'轮生效'):''}${c.era?' · '+(c.era==='chain'?'连锁':'时代 '+c.era):''}</span></button>`}
 function gameContext(){return room?`${room.code}:${room.gameRevision}:${room.seatRevision}:${room.seat}`:`local:${localRevision}:${state?.current}`;}
@@ -154,12 +164,13 @@ function syncCardTargets(reveal=false){
  let note=$('#table-target-note');if(!note){note=document.createElement('div');note.id='table-target-note';task.append(note);}
  note.innerHTML=`<small>当前选择</small><p>${selectionText}</p><button data-show-table-targets>在桌面选择</button>${byId[model.selectedId]?`<button data-inspect-card="${model.selectedId}">放大所选卡牌</button>`:''}`;
 }
+const armyDeployment=installArmyDeployment({root:document,getTask:()=>$('#table-task-body'),getSurface:()=>$('#table-surface'),getState:()=>state,canEdit:()=>!room||room.actor===room.seat&&!roomClient.busy&&roomClient.status!=='offline',onMessage:toast});
 const regionTable=installRegionTable({
  root:document,getTask:()=>$('#table-task-body'),getSurface:()=>$('#table-surface'),getBanner:()=>$('#region-selection-banner'),countryRegion,
  showBoard:()=>{if(!['board','region'].includes(side)){side='board';$('#table-surface').innerHTML=renderTableSurface();for(const b of document.querySelectorAll('[data-side]'))b.classList.toggle('active',b.dataset.side==='board');syncCardTargets();}},
  onMessage:toast,
 });
-function syncTableTargets(reveal=false){syncCardTargets(reveal);if(isGameClient){syncClientActionChoices();syncClientAllySelection();}const task=$('#table-task-body');regionTable.sync({reveal:reveal&&!!task&&!tableSelectionModel(task)});if(isGameClient)syncClientActionLayout();}
+function syncTableTargets(reveal=false){syncCardTargets(reveal);if(isGameClient){syncClientActionChoices();syncClientAllySelection();}const task=$('#table-task-body');regionTable.sync({reveal:reveal&&!!task&&!tableSelectionModel(task)});if(isGameClient)syncClientActionLayout();armyDeployment.sync();}
 function currentRollbackOptions(){return room?room.rollback||{step:{available:!!room.canUndo},phase:{available:false,reason:'当前房间没有阶段快照'},turn:{available:false,reason:'当前房间没有行动快照'}}:rollbackAvailability(localRollback,localUndoIdentity());}
 function updateRollbackControls(){
  if(!ready||!state)return;
@@ -235,6 +246,12 @@ function openCard(id,source,{playIntent=false}={}){$('#viewer').classList.remove
 $('#app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
  if(isGameClient&&(handleTradeControl(e)||handleClientActionChoice(e)||handleClientAllySelection(e)))return;
  if(b.dataset.cardAction){commitCardAction(b);return;}
+ if(b.dataset.countryPile){
+  const pile=b.dataset.countryPile,area=b.dataset.pileRegion,ids=countryPileContents(state.regions[area])[pile]||[];
+  $('#viewer').classList.remove('board-viewer');
+  $('#viewer-body').innerHTML=`<h2>${AREAS[area].name} · ${pile==='left'?'左堆':'右堆'}</h2><div class="country-pile-gallery">${ids.map(id=>`<button type="button" data-inspect-card="${id}"><img src="${esc(byId[id]?.image)}" alt="${esc(byId[id]?.name)}"><span>${esc(byId[id]?.name)}</span></button>`).join('')||'<p>此堆已取完</p>'}</div>`;
+  showGameDialog($('#viewer'));return;
+ }
  if(b.dataset.clientPlayer){openPublicPlayer(b.dataset.clientPlayer);return;}
  if(b.dataset.clientEventId){openCard(b.dataset.clientEventId,'view');return;}
  if(b.dataset.clientSupply){closeClientDialogs();side=side===b.dataset.clientSupply?'board':b.dataset.clientSupply;render();setGameClientPicking(side!=='board'&&!!stagedCard);return;}
@@ -373,7 +390,7 @@ function handleFlowClick(b){
   const ready=[...document.querySelectorAll('[data-focus-ready]:checked')].map(el=>el.dataset.focusReady);
   const upgrades=[...document.querySelectorAll('[data-focus-upgrade]:checked')].map(el=>Number(el.dataset.focusUpgrade));
   const quantities=Array(7).fill(0);for(const el of document.querySelectorAll('[data-focus-quantity]'))quantities[Number(el.dataset.focusQuantity)]=el.value.trim()===''?NaN:Number(el.value);
-  const from=$('#quick-from')?.value,quickResponse=$('#quick-army')?.checked?{mode:'army'}:from?{mode:'move',from,to:$('#quick-to')?.value,spendSP:!!$('#quick-sp')?.checked}:undefined;
+  const quickMoves=readDeploymentMoves($('#quick-deployment'))||[],quickMove=quickMoves.find(move=>move.to==='reserve')||quickMoves[0],quickResponse=$('#quick-army')?.checked?{mode:'army'}:quickMove?{mode:'move',...quickMove}:undefined;
   act({type:'confirmFocus',ready,upgrades,quantities,quickResponse});return true;
  }
 
@@ -415,6 +432,7 @@ function onRoomUpdate(next,cause){
  if(previous?.seat&&!room?.seat&&room)toast('本标签页已离开席位或席位已被接管，请在大厅重新入座');
 }
 function updateRoomHeader(){
+ debugUI.sync();
  $('.mode').textContent=roomClient.isSteam?`Steam 联机 · ${roomClient.steamStatus?.name||'连接中'}${room?' · '+(room.seat?POWERS[room.seat].name:'等待入座'):''}`:room?`房间 ${room.code} · ${room.seat?POWERS[room.seat].name:'等待入座'} · ${room.status==='lobby'?'大厅':'共享对局'}`:'本地桌面 · 辅助结算';
  $('#rooms').textContent=room?'房间大厅':roomClient.isSteam?'Steam 房间':'创建／加入房间';
  $('#newgame').disabled=!!room&&!room.isHost||roomClient.isSteam&&!room;
@@ -423,6 +441,7 @@ function updateRoomHeader(){
  document.title=room?`${room.actor===room.seat&&room.seat?'轮到你 · ':''}${room.seat?POWERS[room.seat].name+' · ':''}房间 ${room.code} — World Order`:roomClient.isSteam?'World Order — Steam 联机':'World Order — 电子桌面';
 }
 function onRoomStatus(status,busy){
+ debugUI.sync();
  const text=roomClient.isSteam&&!['saving','connecting'].includes(status)?steamStatusText(roomClient.steamStatus):{online:'已同步',saving:'正在保存…',connecting:'正在连接…',offline:'连接中断 · 正在重连'}[status]||'正在同步';
  if(roomClient.isSteam){
   for(const el of document.querySelectorAll('[data-steam-account]'))el.innerHTML=renderSteamAccount(roomClient.steamStatus);
@@ -447,7 +466,7 @@ function applyRoomPermissions(){
  if(!room.state)return;
  const general=room.actor===room.seat&&!Object.values(state.players).some(setupPending),draft=setupPending(state.players[room.seat]);
  for(const el of $('#app').querySelectorAll('button,input,select')){
-  const readOnly=el.matches('[data-client-flow],[data-client-economy],[data-client-action-option],[data-client-player],[data-client-event-id],[data-client-supply],[data-client-pick],[data-client-return],[data-player],[data-card],[data-side],[data-tray],[data-region],[data-hand-page],[data-trade-tab],[data-allocation-page],#hidehand,#mapzoom,#playerboard,#go-opening,#cancel-table-card,#toggle-table-task,[data-inspect-card],[data-show-table-targets],#show-table-targets');
+  const readOnly=el.matches('[data-client-flow],[data-client-economy],[data-client-action-option],[data-country-pile],[data-client-player],[data-client-event-id],[data-client-supply],[data-client-pick],[data-client-return],[data-player],[data-card],[data-side],[data-tray],[data-region],[data-hand-page],[data-trade-tab],[data-allocation-page],#hidehand,#mapzoom,#playerboard,#go-opening,#cancel-table-card,#toggle-table-task,[data-inspect-card],[data-show-table-targets],#show-table-targets');
   if(readOnly)continue;
   const ownDraft=el.matches('[data-opening],[data-asset-select],[data-objective-select],[data-draft-discard],#confirm-assets');
   const command=controlCommand(el),allowed=command?actionAccess(state,command,room.seat).allowed:ownDraft?draft:general;

@@ -41,7 +41,7 @@ function explanation(card){
   card.virtualRegions?.length?'本段额外使用'+card.virtualRegions.map(id=>AREAS[id].name).join('、')+'展示国家的贸易符号。':'',
   bonus?'按目的地区填写出口；同一资源分给多个地区仍算一次出口。'+(bonus.regions||Object.keys(AREAS)).map(id=>AREAS[id].name).join('、')+'各自满足'+(bonus.minimumRevenue?'出口收入至少'+bonus.minimumRevenue+'资金（不扣进口支出，不含其他奖励）':Object.entries(bonus.requirements||{}).map(([k,n])=>'至少'+n+RESOURCE_LABELS[k]).join('和'))+'后，在该地区添加1影响力。':'',
   card.doubleEnergy?'能源进出口符号均按双倍计算。':'',
-  card.doublePrimary?'盟国的能源、原料进出口符号已按双倍计算。':'',
+  card.doublePrimary?'选择能源或原材料，只有所选资源的盟国进出口符号计算两次。':'',
   card.currencyBonus?'每进口一种资源，贸易结束后获得5资金。':'',
   card.playersTrade===false?'本段不能向玩家进口。':'向国家付款交给银行，向玩家付款交给对方。玩家先使用专供出口商品卡，耗尽后才使用库存。向玩家进口至多奖励1外交；俄罗斯的单项进口不足3不产生该奖励。'
  ].filter(Boolean).join('');
@@ -49,11 +49,16 @@ function explanation(card){
 
 /** Presentation of the existing trade form; its data attributes and action are
  * read and validated by the same trade/action modules as the browser form. */
+export function renderPrimaryTradeChoice(card){
+ if(!card.doublePrimary)return '';
+ return `<fieldset class="trade-primary-choice"><legend>盟国贸易符号 ×2</legend>${[0,1].map(key=>`<label><input type="radio" name="trade-primary" data-trade-primary="${key}" value="${key}"${key===0?' checked':''}><span class="resource-icon resource-icon--${icons[key]}" role="img" aria-label="${key===0?'能源':'原材料'}" title="${key===0?'能源':'原材料'}" style="background-image:url('${resourceIconPath(icons[key])}')"></span><span data-keep-resource-text>${key===0?'能源':'原材料'}</span></label>`).join('')}</fieldset>`;
+}
 export function renderClientTradeForm(s,id,card){
- const p=s.players[s.current],cap=tradeCapacity(s,s.current,card),limits=TRADE_LIMITS[s.current];
+ const p=s.players[s.current],cap=tradeCapacity(s,s.current,card,[],card.doublePrimary?0:undefined),limits=TRADE_LIMITS[s.current];
  const regions=s.config.wit&&!card.tradeOnlyRegions?regionOrder.filter(r=>!card.virtualRegions?.includes(r)&&!eventTradeRegions(s,s.current).includes(r)):[];
  return `<section id="basic-form" data-card-id="${esc(id)}" class="flow-panel client-trade-form" data-army-owner="${s.current}">
   <header class="client-trade-heading"><b>${esc(card.name)}</b><span>进口 ≤ ${limits.imports} 种 · 出口 ≤ ${limits.exports} 种${card.maxTradeTypes?' · 合计 ≤ '+card.maxTradeTypes+' 种':''}</span></header>
+  ${renderPrimaryTradeChoice(card)}
   <p class="client-trade-instruction">每种资源选择进口或出口。先出口，再按下表从左到右进口。</p>
   <div class="client-trade-content">
   <div class="client-trade-grid">${keys.map(key=>`<section class="client-trade-column" data-trade-resource="${key}" data-trade-stock="${p.resources[key]}" aria-label="${RESOURCE_LABELS[key]}">
@@ -64,7 +69,7 @@ export function renderClientTradeForm(s,id,card){
    <div class="client-trade-quantity client-trade-export"><small>出口 · ${EXPORT_PRICE[key]}资金 / 个</small>${exports(s,card,cap,key)}</div>
    <div class="client-trade-cap">可出口 <b data-trade-export-max="${key}">${Math.min(p.resources[key],cap.exports[key])}</b><small>国家需求 <span data-export-cap="${key}">${cap.exports[key]}</span></small></div>
   </section>`).join('')}</div>
-  ${regions.length?`<fieldset class="client-trade-regions"><legend>扩展贸易 · 可用 ${p.smart} SP</legend><p>额外使用所选地区展示国家的符号，每地区 1 SP；也可直接点击棋盘地区选择。</p><div>${regions.map(r=>`<label><input type="checkbox" data-trade-region="${r}"><span>${AREAS[r].name}</span></label>`).join('')}</div></fieldset>`:''}
+  ${regions.length?`<fieldset class="client-trade-regions"><legend>扩展贸易 · 可用 ${p.smart} SP</legend><p>额外使用所选地区展示国家的符号，每地区 1 SP；点击该地区盟国商店选择。</p><div>${regions.map(r=>`<label><input type="checkbox" data-trade-region="${r}"><span>${AREAS[r].name}</span></label>`).join('')}</div></fieldset>`:''}
   ${card.factory?`<label class="client-trade-factory"><span>贸易后生产消费品 <small>消耗等量能源和原料</small></span>${stepper('factory-goods','',2,'生产消费品')}</label>`:''}
   <details class="client-trade-rules"><summary>贸易规则与协定</summary><p>${esc(explanation(card))}</p><img class="viewerimage" src="assets/trade-${s.current}.webp" alt="${names[s.current]}贸易协定">${renderEventEffects(s,s.current,{textOnly:true})}</details>
   </div>
@@ -80,15 +85,19 @@ export function handleTradeControl(event){
  event.preventDefault();
  if(button.disabled||button.matches(':disabled,[aria-disabled="true"]'))return true;
  const input=form.querySelector('#'+button.dataset.tradeInput);
- if(!input||input.disabled||input.matches(':disabled,[aria-disabled="true"]'))return true;
- const current=Number(input.value),min=Number(input.min||0),max=input.max===''?999:Number(input.max),delta=Number(button.dataset.tradeStep);
- if(!Number.isFinite(current)||!Number.isFinite(min)||!Number.isFinite(max)||![-1,1].includes(delta))return true;
+ adjustTradeInput(input,Number(button.dataset.tradeStep));
+ return true;
+}
+
+export function adjustTradeInput(input,delta){
+ if(!input||input.disabled||input.matches(':disabled,[aria-disabled="true"]'))return;
+ const current=Number(input.value),min=Number(input.min||0),max=input.max===''?999:Number(input.max);
+ if(!Number.isFinite(current)||!Number.isFinite(min)||!Number.isFinite(max)||![-1,1].includes(delta))return;
  // Decreasing an amount after its capacity shrinks should preserve the other
  // selections; final feasibility still belongs to the shared preview.
- input.value=String(delta<0?Math.max(min,current-1):Math.min(max,current+1));
+ input.value=String(delta<0?Math.max(min,current-1):current>=max?current:current+1);
  const InputEvent=input.ownerDocument?.defaultView?.Event||globalThis.Event;
  input.dispatchEvent(new InputEvent('input',{bubbles:true}));
- return true;
 }
 
 export function updateClientTradeForm(root=document){

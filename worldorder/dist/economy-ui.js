@@ -1,7 +1,6 @@
+import {renderArmyDeployment} from './army-deployment-ui.js';
 import {RESOURCE_LABELS,ECONOMY,focusOptions,prosperityOffer} from './economy.js';
 import {hasGrowth} from './growth-effects.js';
-import {AREAS} from './world.js';
-import {militaryDestinations} from './military.js';
 const names={US:'美国',CN:'中国',EU:'欧盟',RU:'俄罗斯'};
 const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function renderEconomy(s){if(!s.economyVersion)return '<p class="minor">旧存档保留手动生产与繁荣；新桌面启用自动经济结算。</p>';const p=s.players[s.current];return `<details class="economy-tracks"><summary>产能与繁荣 · 繁荣 ${p.prosperity}/5</summary><p class="minor">产能不是库存。下列加减仅用于尚未自动实现的卡牌效果，费用需另行处理。</p>${s.eventVersion&&s.flow?.step==='events'&&s.flow.eventResolution?.mode==='manual'?'<p>人工事件繁荣登记（费用和奖励另行处理）：<button data-event-prosperity="-1">降低1级</button><button data-event-prosperity="1">提高1级</button></p>':''}<div class="resources">${p.production.map((n,k)=>`<div class="resource"><span>${RESOURCE_LABELS[k]}产能</span><strong>${n}/${ECONOMY[s.current].max[k]}</strong><button data-production="${k}" data-delta="-1" aria-label="减少${RESOURCE_LABELS[k]}产能">−</button><button data-production="${k}" data-delta="1" aria-label="增加${RESOURCE_LABELS[k]}产能">+</button></div>`).join('')}</div></details>`;}
@@ -12,7 +11,6 @@ export function renderFocus(s,cards={}){
 export function renderQuickResponse(s){
  const p=s.players[s.current];if(!hasGrowth(p,s.round,'quick'))return '';
  if(p.focus!=='军事焦点')return '<fieldset><legend>快速反应部队 · 可选</legend><label><input id="quick-army" type="checkbox"> 先花5资金获得1支待命军队，再结算焦点</label></fieldset>';
- const sources=[...(p.resources[6]>0?[['reserve','待命区']]:[]),...Object.entries(s.regions).filter(([,r])=>r.armies[s.current]>0).map(([id])=>[id,AREAS[id].name])],allowed=militaryDestinations(s);
- return `<fieldset><legend>快速反应部队 · 可选免费移动1支军队</legend><label>出发地<select id="quick-from"><option value="">不移动</option>${sources.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select></label><label>目的地<select id="quick-to">${Object.entries(AREAS).filter(([id])=>allowed.includes(id)||s.config.wit).map(([id,a])=>`<option value="${id}">${a.name}${allowed.includes(id)?'':'（需SP）'}</option>`).join('')}</select></label>${s.config.wit?'<label><input id="quick-sp" type="checkbox"> 花1 SP突破通常目的地限制</label>':''}<p>移动费为0；仍须有可移动军队，且出发地与目的地不同。</p></fieldset>`;
+ return renderArmyDeployment(s,{id:'quick-deployment',maxMoves:1});
 }
 export function renderProsperity(s){const id=s.flow.order[(s.flow.prosperityDone||[]).length],p=s.players[id],offer=prosperityOffer(p,id,s.round),disabled=s.current!==id?'disabled':'';return `<b>余波 · ${names[id]}选择繁荣提升</b><p>当前繁荣 ${p.prosperity}/5 · 消费品 ${p.resources[3]}</p><p>${offer?`支付${offer.cost}消费品，获得${offer.vp}分、${offer.money}资金。`:'已达到最高等级。'}每轮只能提升一格。</p><button id="improve-prosperity" ${disabled||!offer||p.resources[3]<offer.cost?'disabled':''}>提升一格</button><button id="skip-prosperity" ${disabled}>本轮跳过</button>`;}

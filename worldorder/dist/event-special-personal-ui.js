@@ -1,3 +1,4 @@
+import {renderArmyDeployment} from './army-deployment-ui.js';
 import {specialEventModel,specialEventPreview} from './event-special-personal.js';
 import {countryInfo} from './country-actions.js';
 import {REGIONS,POWERS} from './game-constants.js';
@@ -10,7 +11,7 @@ export function renderSpecialPersonalEvent(s,q,cards={}){
  else if(model.key==='afghan'){
   if(!model.present)body='<p>美欧均无中亚军队：双方各失去3 SP，不足部分扣分，中亚加入1中立影响力。确认后统一结算。</p>';
   else if(model.phase==='offer')body=`<p>美欧共同支付恰好30资金，可由任意一方全付；双方各得1 SP并保留中亚军队。未达成则不扣承诺资金，双方各失去1 SP，不足部分扣分，随后免费撤回全部中亚军队。</p>${Object.entries(q.submissions).map(([id,n])=>`<p>${POWERS[id].name}已承诺${n}资金。</p>`).join('')}<label>本方承诺资金<input id="special-amount" type="number" min="0" max="${Math.min(30,p.money)}" value="0"></label>`;
-  else body=`<p>必须将本方在中亚的全部${model.armies}支军队免费移至以下本方关注地区。</p>${model.destinations.map(region=>`<label>移至${REGIONS[region]}<input data-special-withdrawal="${region}" type="number" min="0" max="${model.armies}" value="0"></label>`).join('')}`;
+  else body=`<p>将中亚全部${model.armies}辆坦克免费重新派遣。</p>`+renderArmyDeployment(s,{id:'withdrawal-deployment',maxMoves:model.armies,destinations:model.destinations,normalDestinations:model.destinations,source:['C'],initial:{C:-model.armies}});
  }else if(model.key==='croatia'){
   body=`<p>${model.country?'已拥有克罗地亚':'尚未拥有克罗地亚'}；${model.improved?'已提升过繁荣':model.historyKnown?'尚未提升繁荣':'旧存档缺少完整繁荣历史'}。</p>`;
   if(model.country&&!model.historyKnown)body+='<label>确认本局繁荣历史<select id="special-prosperity-improved"><option value="">请选择</option><option value="yes">本局曾提升繁荣</option><option value="no">本局未提升繁荣</option></select></label>';
@@ -24,7 +25,7 @@ export function renderSpecialPersonalEvent(s,q,cards={}){
 }
 export function readSpecialPersonalEvent(){
  const conversion=document.querySelector('#special-convert')?.value||'',improved=document.querySelector('#special-prosperity-improved')?.value;
- return {accept:document.querySelector('#special-accept')?.value==='yes',payment:document.querySelector('#special-payment')?.value,amount:Number(document.querySelector('#special-amount')?.value||0),slot:document.querySelector('#special-slot')?.value,relate:document.querySelector('#special-relate')?.value==='yes',relationSP:Number(document.querySelector('#special-relation-sp')?.value||0),exhaust:[...document.querySelectorAll('[data-special-exhaust]:checked')].map(el=>el.dataset.specialExhaust),convert:conversion!=='',index:conversion===''?undefined:Number(conversion),prosperityImproved:improved?improved==='yes':undefined,moves:Object.fromEntries([...document.querySelectorAll('[data-special-armies]')].map(el=>[el.dataset.specialArmies,Number(el.value)])),withdrawals:Object.fromEntries([...document.querySelectorAll('[data-special-withdrawal]')].map(el=>[el.dataset.specialWithdrawal,Number(el.value)]))};
+ return {accept:document.querySelector('#special-accept')?.value==='yes',payment:document.querySelector('#special-payment')?.value,amount:Number(document.querySelector('#special-amount')?.value||0),slot:document.querySelector('#special-slot')?.value,relate:document.querySelector('#special-relate')?.value==='yes',relationSP:Number(document.querySelector('#special-relation-sp')?.value||0),exhaust:[...document.querySelectorAll('[data-special-exhaust]:checked')].map(el=>el.dataset.specialExhaust),convert:conversion!=='',index:conversion===''?undefined:Number(conversion),prosperityImproved:improved?improved==='yes':undefined,moves:Object.fromEntries([...document.querySelectorAll('[data-special-armies]')].map(el=>[el.dataset.specialArmies,Number(el.value)])),withdrawals:document.querySelector('#withdrawal-deployment')?Object.fromEntries(Object.entries(JSON.parse(document.querySelector('#withdrawal-deployment [data-army-delta]').value)).filter(([,n])=>n>0)):Object.fromEntries([...document.querySelectorAll('[data-special-withdrawal]')].map(el=>[el.dataset.specialWithdrawal,Number(el.value)]))};
 }
 export function updateSpecialPersonalEvent(s){
  if(s.flow?.eventResolution?.mode!=='special'||!document.querySelector('#personal-event-form'))return;

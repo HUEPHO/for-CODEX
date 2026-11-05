@@ -29,6 +29,12 @@ function pay(p,cost){
  p.money-=cost.money;p.resources[4]-=cost.services;p.resources[5]-=cost.diplomacy;
 }
 function selectedMoves(s,q,a,model){
+ if(a.deploymentMoves){
+  if(!Array.isArray(a.deploymentMoves)||a.deploymentMoves.some(move=>move.to==='reserve'))throw Error('临时取回的坦克必须重新派遣，不能留回仓库');
+  const targets=[...new Set(a.deploymentMoves.map(move=>move.to))];
+  if(targets.length>1)throw Error('本事件的军队必须派往同一地区');
+  a={...a,destination:targets[0]??a.destination,moves:a.deploymentMoves.reduce((counts,move)=>{counts[move.from]=(counts[move.from]||0)+1;return counts;},{})};
+ }
  const destination=a.destination??model.destinations[0];
  if(!model.destinations.includes(destination))throw Error('请选择事件允许的军队目的地');
  const quantities=a.moves??{};
