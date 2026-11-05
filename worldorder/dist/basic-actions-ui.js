@@ -35,7 +35,7 @@ export function updateBasicForm(s,cards,refreshDiscounts=false){const form=docum
  const face=document.querySelector('#basic-country-face'),country=cards[document.querySelector('#basic-country')?.value];if(face)face.innerHTML=country?`<img src="${esc(country.image)}" alt="${esc(country.name)}" style="max-height:240px;max-width:100%">`:'';
  showBasicPlacement(form,true);updateResilience(s,region,document.querySelector('#basic-slot')?.value);
  updateSmartForm(prepared,effectiveCard(entry,readBasicForm()),readBasicForm());
- const button=document.querySelector('#commit-basic');try{
+ const button=document.querySelector('#commit-basic'),note=document.querySelector('#basic-preview');note.hidden=false;try{
   const previewAction=form.dataset.sequence?sequencePreview:actionPreview,a=readBasicForm();let preview;
   try{preview=previewAction(s,a);}catch(error){
    // Switching from an upgrade to a new ally can leave an inapplicable optional
@@ -45,6 +45,7 @@ export function updateBasicForm(s,cards,refreshDiscounts=false){const form=docum
    if(preview.influence!==false)throw error;
   }
   showBasicPlacement(form,!!preview.influence);
+  note.hidden=preview.effect==='relations'&&!preview.influence;
   document.querySelector('#basic-preview').textContent=preview.effect==='trade'?tradeSummary(s,preview):['production','growth'].includes(preview.effect)?domesticSummary(preview):preview.effect==='reinforce'?militarySummary(preview):['base','relations'].includes(preview.effect)?countryActionSummary(preview):`支付${preview.cost}${preview.effect==='invest'?'资金':'外交'}；在${AREAS[preview.region].name}放置影响力，获得${preview.vp}分。${preview.discount?'已减免'+preview.discount+'外交。':''}`;if(preview.preparation?.length)document.querySelector('#basic-preview').textContent=preview.preparation.join('，')+'；'+document.querySelector('#basic-preview').textContent;if(preview.smartCost)document.querySelector('#basic-preview').textContent+=' 消耗'+preview.smartCost+' SP。';button.disabled=false;
  }catch(error){document.querySelector('#basic-preview').textContent=error.message;button.disabled=true;}
 }
