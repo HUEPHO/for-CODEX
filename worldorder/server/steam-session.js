@@ -7,7 +7,7 @@ const identity=id=>({user:'steam:'+id,token:'steam:'+id});
 const plain=value=>!!value&&typeof value==='object'&&!Array.isArray(value)&&Object.getPrototypeOf(value)===Object.prototype;
 const bytes=value=>{try{return Buffer.byteLength(JSON.stringify(value));}catch{return Infinity;}};
 const fail=(message,status=400,transient=false)=>Object.assign(new RoomError(message,status),{transient});
-const VIEW_KEYS=new Set(['code','revision','gameRevision','seatRevision','status','seat','isHost','config','actor','seats','canUndo','rollback','state']);
+const VIEW_KEYS=new Set(['code','revision','gameRevision','seatRevision','status','seat','isHost','config','actor','seats','canUndo','rollback','restartRequest','state']);
 const packetKeys=new Set(['v','lobbyId','hostId','epoch','type','requestId','command','room','ok','error','status','name','members']);
 const SEATS=['US','CN','EU','RU'];
 const revision=value=>Number.isSafeInteger(value)&&value>=0;

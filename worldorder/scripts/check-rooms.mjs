@@ -51,8 +51,11 @@ const stale=command('action',{action:{type:'resource',key:'money',delta:1}});
 act(actor,{type:'passTurn',cardId:room.state.players[actor].hand[0]});
 assert.equal(room.state.players[actor].money,initialMoney+10);assert.equal(room.state.actionTurns.index,1);
 assert.throws(()=>changeRoom(room,clients[actor],stale,cards),/局面已更新/);
-assert.equal(roomView(room,clients[actor]).canUndo,true);
-room=changeRoom(room,clients[actor],command('undo'),cards);
+assert.equal(roomView(room,clients[actor]).canUndo,false);
+assert.equal(roomView(room,clients[actor]).rollback.turn.requiresConsent,true);
+const nextActor=roomActor(room.state);
+room=changeRoom(room,clients[actor],command('requestTurnRestart'),cards);
+room=changeRoom(room,clients[nextActor],command('respondTurnRestart',{requestId:room.rollback.request.id,accept:true}),cards);
 assert.equal(room.state.actionTurns.index,0);assert.equal(room.state.players[actor].money,initialMoney);
 // Responder ownership interrupts the usual action order without changing any tab's seat.
 room.state.flow.cardResolution={owner:actor,responder:wrong,round:1,turnIndex:0,cardId:'test',index:0,steps:[{type:'response',player:wrong,upToMoney:10}],context:{}};

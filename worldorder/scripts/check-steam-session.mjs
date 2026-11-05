@@ -50,15 +50,14 @@ try{
  for(let i=0;i<4;i++){
   const view=sessions[i].getRoom();assert.equal(view.seat,seats[i]);assert.equal(view.state.current,seats[i]);
   for(const other of seats.filter(s=>s!==seats[i])){assert.ok(view.state.players[other].hand.every(x=>x===null));assert.equal(view.state.players[other].openingChoices,null);}
-  assert.ok(view.state.players[seats[i]].openingChoices);assert.equal(view.state.players[seats[i]].assetChoices,null);
+  assert.ok(view.state.players[seats[i]].assetChoices);assert.equal(view.state.players[seats[i]].openingChoices,null);
   assert.equal(view.history,undefined);assert.equal(view.receipts,undefined);assert.equal(view.host,undefined);
  }
  // Real simultaneous setup and the existing room rules remain authoritative.
- await Promise.all(sessions.map((s,i)=>act(i,{type:'chooseOpening',group:0})));
+ await Promise.all(sessions.map((s,i)=>act(i,{type:'selectAssetDiscard',id:s.getRoom().state.players[seats[i]].assetChoices[0].id})));
  for(let i=0;i<4;i++){
   const p=sessions[i].getRoom().state.players[seats[i]];
-  for(const c of p.assetChoices.slice(0,2))await act(i,{type:'toggleAssetSelection',id:c.id});
-  for(const id of p.objectiveChoices.slice(0,2))await act(i,{type:'toggleObjectiveSelection',id});
+  await act(i,{type:'selectObjectiveDiscard',id:p.objectiveChoices[0]});
   await act(i,{type:'chooseAssets'});
  }
  await flush();
@@ -76,7 +75,11 @@ try{
  await sessions[actor].command(first);assert.equal(sessions[actor].getRoom().gameRevision,revision);
  assert.equal(sessions[actor].getRoom().state.players[seats[actor]].money,money+10);
  await assert.rejects(sessions[wrong].command(stale),/局面已更新/);
- await send(actor,'undo',{scope:'turn'});assert.equal(sessions[actor].getRoom().state.players[seats[actor]].money,money);
+ await assert.rejects(send(actor,'undo',{scope:'turn'}),/对方同意/);
+ const approver=seats.indexOf(sessions[actor].getRoom().actor);
+ await send(actor,'requestTurnRestart');await flush();
+ await send(approver,'respondTurnRestart',{requestId:sessions[approver].getRoom().restartRequest.id,accept:true});await flush();
+ assert.equal(sessions[actor].getRoom().state.players[seats[actor]].money,money);
 
  // A successful durable write is the only point after which a result is sent.
  const before=sessions[actor].getRoom();storageFailure=true;

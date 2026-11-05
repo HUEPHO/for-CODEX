@@ -16,8 +16,8 @@ import {tableSelectionModel,selectTableTarget} from './table-selection.js';
 import {installArmyDeployment,readDeploymentMoves} from './army-deployment-ui.js';
 import {installRegionTable} from './region-table-ui.js';
 import {countryPileContents} from './country-pile-view.js';
-import {createRollback,recordRollback,rollbackAvailability,restoreRollback} from './rollback-state.js';
-import {renderRollbackOptions,rollbackLabel} from './rollback-ui.js';
+import {createRollback,recordRollback,rollbackAvailability,restoreRollback,requestTurnRestart,respondTurnRestart,cancelTurnRestart,turnRestartRequestView} from './rollback-state.js';
+import {renderRollbackOptions,renderActionRollback,rollbackLabel} from './rollback-ui.js';
 import {EVENT_EFFECTS} from './event-effects.js';
 import {readAgreementForm,readAgreementReward,updateAgreementForm,updateAgreementReward} from './event-agreements-ui.js';
 import {readSpecialPersonalEvent,updateSpecialPersonalEvent} from './event-special-personal-ui.js';
@@ -65,7 +65,7 @@ installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS
 const labels={starter:'起始能力',ability:'市场能力',growth:'发展牌',asset:'战略资产',event:'事件',objective:'目标',country:'国家',startingCountry:'起始盟国',effect:'效果牌',executive:'行政命令'};
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('#toast').classList.remove('show'),3200)}
 const localIdentity=()=>({seat:state.current,user:'local',token:'local:'+state.current});
-const localUndoIdentity=()=>localRollback.owner||localIdentity();
+const localUndoIdentity=()=>localIdentity();
 function persist(){if(room||roomClient.isSteam)return;try{localStorage.setItem(SESSION_KEY,JSON.stringify({version:1,state,rollback:localRollback}))}catch{toast('本机存储不可用；刷新将丢失本次操作')}}
 function act(a){if(room)return roomAct(a);if(roomClient.isSteam){toast('请先加入 Steam 房间并入座');return{ok:false,error:'尚未加入 Steam 对局'};}try{const next=applyAction(state,a);if(a.type!=='switch')localRollback=recordRollback(localRollback,state,next,{...localIdentity(),action:a});state=next;localRevision++;persist();render();if(a.type!=='switch')toast(state.log[0]);return{ok:true,current:state.current,round:state.round}}catch(e){toast(e.message);return{ok:false,error:e.message}}}
 async function debugAct(action){
@@ -172,21 +172,44 @@ const regionTable=installRegionTable({
  onMessage:toast,
 });
 function syncTableTargets(reveal=false){syncCardTargets(reveal);if(isGameClient){syncClientActionChoices();syncClientAllySelection();}const task=$('#table-task-body');regionTable.sync({reveal:reveal&&!!task&&!tableSelectionModel(task)});if(isGameClient)syncClientActionLayout();armyDeployment.sync();}
-function currentRollbackOptions(){return room?room.rollback||{step:{available:!!room.canUndo},phase:{available:false,reason:'当前房间没有阶段快照'},turn:{available:false,reason:'当前房间没有行动快照'}}:rollbackAvailability(localRollback,localUndoIdentity());}
+function currentRollbackOptions(){return room?room.rollback||{step:{available:!!room.canUndo},phase:{available:false,reason:'当前房间没有阶段快照'},turn:{available:false,reason:'当前房间没有行动快照'}}:rollbackAvailability(localRollback,localUndoIdentity(),Date.now(),state);}
+const currentRestartRequest=()=>room?room.restartRequest:turnRestartRequestView(localRollback,localIdentity(),state);
+let pendingRollbackWarning=null;
 function updateRollbackControls(){
  if(!ready||!state)return;
  const options=currentRollbackOptions(),blocked=room&&(roomClient.busy?'上一步正在保存，请稍候':roomClient.status==='offline'?'房间离线，恢复连接后才能撤回':!room.state?'请先进入对局':'');
- $('#undo').disabled=!!blocked||!options.step.available;$('#undo').title=options.step.available?'撤销上一步':options.step.reason||'还没有可以撤回的操作';
+ const request=currentRestartRequest();
+ $('#undo').disabled=!!blocked||!!request||!options.step.available;$('#undo').title=options.step.available?'撤回上一步':options.step.reason||'还没有可以撤回的操作';
  $('#rollback').disabled=!!room&&!room.state||roomClient.isSteam&&!room;
  if(roomClient.isSteam&&!room)$('#undo').disabled=true;
- const owner=room?.seat||localRollback.owner?.seat;
+ const owner=room?.seat||state.current;
  $('#rollback-owner').textContent=owner?'撤回对象：'+POWERS[owner].name+'最近的操作。':'';
- $('#rollback-body').innerHTML=renderRollbackOptions(options,blocked);
+ $('#rollback-body').innerHTML=renderRollbackOptions(options,blocked||(request?'请在行动面板处理当前重开申请':''));
+ const panel=$('#action-rollback');if(panel)panel.innerHTML=renderActionRollback(options,request,blocked);
 }
-async function rollbackAction(scope='step'){
- if(room){const result=await roomCommand('undo',{scope});if(result.ok)$('#rollback-dialog').close();return;}
+async function rollbackAction(scope='step',warned=false){
+ const option=currentRollbackOptions()[scope];
+ if(!option?.available){toast(option?.reason||'当前不能撤回');return;}
+ if(option.warning&&!warned){
+  pendingRollbackWarning={scope,key:gameContext()};
+  $('#rollback-warning-detail').textContent=option.warning+'。撤回后这些信息仍然已经被看过。';
+  showGameDialog($('#rollback-warning'));return;
+ }
+ if(room){const result=await roomCommand(option.requiresConsent?'requestTurnRestart':'undo',{scope});if(result.ok){$('#rollback-dialog').close();if(option.requiresConsent)toast('已申请，等待对方同意');}return;}
  if(roomClient.isSteam)return;
- try{const restored=restoreRollback(localRollback,localUndoIdentity(),scope);state=restored.state;localRollback=restored.rollback;localRevision++;stagedCard=null;taskVersion++;persist();render();$('#rollback-dialog').close();toast('已'+rollbackLabel(scope));}catch(error){toast(error.message);updateRollbackControls();}
+ try{
+  if(option.requiresConsent){localRollback=requestTurnRestart(localRollback,localIdentity(),{seat:option.approver,user:'local',token:'local:'+option.approver},state,String(++localRevision));persist();render();$('#rollback-dialog').close();toast('已申请，请切换到对方席位确认');return;}
+  const restored=restoreRollback(localRollback,localUndoIdentity(),scope,Date.now(),state);state=restored.state;localRollback=restored.rollback;localRevision++;stagedCard=null;taskVersion++;persist();render();$('#rollback-dialog').close();toast('已'+rollbackLabel(scope));
+ }catch(error){toast(error.message);updateRollbackControls();}
+}
+async function restartResponse(response){
+ const request=currentRestartRequest();if(!request)return;
+ if(room){const result=await roomCommand(response==='cancel'?'cancelTurnRestart':'respondTurnRestart',{requestId:request.id,accept:response==='accept'});if(result.ok)toast(response==='accept'?'已同意重开':response==='cancel'?'已取消申请':'已拒绝重开');return;}
+ try{
+  if(response==='cancel')localRollback=cancelTurnRestart(localRollback,localIdentity(),state,request.id);
+  else{const restored=respondTurnRestart(localRollback,localIdentity(),state,request.id,response==='accept');state=restored.state;localRollback=restored.rollback;}
+  localRevision++;stagedCard=null;taskVersion++;persist();render();
+ }catch(error){toast(error.message);}
 }
 installCardDrag({root:document,getCardStatus:handCardStatus,onDrop:id=>openTableCard(id),onCancel:(_id,reason)=>toast(reason)});
 function render(){
@@ -204,7 +227,7 @@ function render(){
  document.body.dataset.armyOwner=state.current;
  $('#app').setAttribute('aria-busy','false');$('#app').innerHTML=`<div class="layout game-table"><aside class="rail"><div class="rail-title"><h2>四个势力</h2><span>${room?'点击查看公开信息':'点击切换'}</span></div>${Object.entries(POWERS).map(([id,v])=>`<button class="player ${id===state.current?'active':''}" style="--pcolor:${v.color}" data-player="${id}" aria-pressed="${id===state.current}"><span class="pname"><span class="flag">${v.flag}</span>${v.name}${room&&room.actor===id?'<b class="room-turn"> · 当前</b>':''}</span><small><span>胜利分 <b class="score">${state.players[id].vp}</b></span><span>资金 ${state.players[id].money}</span></small><small><span>${state.players[id].focus}</span><span>${state.players[id].openingChoices?'待选起手':state.players[id].assetChoices?'待选资产':state.players[id].setupPending?'开局选牌':'手牌 '+state.players[id].hand.length}</span></small></button>`).join('')}<div class="roundbox"><span class="minor">${state.flow?'轮次 · 按流程推进':'轮次标记 · 手动切换'}</span><div class="rounds">${Array.from({length:6},(_,i)=>`<button data-round="${i+1}" ${state.flow?'disabled':''} class="${state.round===i+1?'on':''}" aria-label="第${i+1}轮">${i+1}</button>`).join('')}</div><select id="phase" ${state.flow?'disabled':''} class="phase" aria-label="阶段">${['准备','行动','研究',...(state.config.wit?['事件']:[]),'余波',...(state.phase==='结束'?['结束']:[])].map(x=>`<option ${x===state.phase?'selected':''}>${x}</option>`).join('')}</select></div></aside>
  <section class="stage"><div class="stagehead"><h1>世界桌面</h1><span>第 ${state.round} / 6 轮 · ${state.phase}</span><button id="mapzoom">放大地区 ⤢</button></div><nav class="table-view-tabs" aria-label="桌面区域">${[['board','地区总览'],['market','能力市场'],['growth','发展牌'],['events','事件']].map(([k,v])=>`<button data-side="${k}" class="${side===k||(k==='board'&&side==='region')?'active':''}" ${k==='events'&&!state.config.wit?'disabled':''}>${v}</button>`).join('')}</nav><div id="table-selection-banner" role="status"></div><div id="region-selection-banner" role="status"></div><div id="table-surface">${renderTableSurface()}</div></section>
- <section class="side action-workbench${taskCollapsed?' is-collapsed':''}" aria-label="中央操作区"><section class="table-task" data-army-owner="${flowActor(state)||state.current}"><div class="table-task-heading"><span>当前操作 · <b>${POWERS[flowActor(state)||state.current].name}</b></span><button id="toggle-table-task" aria-expanded="${!taskCollapsed}" aria-controls="table-task-body">${taskCollapsed?'展开操作':'收起操作'}</button></div><div id="table-task-body">${preservedTask?'':renderTableTask()}</div></section><div class="sidefoot"><details class="table-history" data-army-owner=""><summary>操作记录</summary>${state.log.slice(0,8).map(x=>`<p>${esc(x)}</p>`).join('')}</details>${side==='region'?'<details open><summary>'+REGIONS[region]+' · 地区详情</summary>'+renderSide()+'</details>':''}</div></section>
+ <section class="side action-workbench${taskCollapsed?' is-collapsed':''}" aria-label="中央操作区"><section class="table-task" data-army-owner="${flowActor(state)||state.current}"><div class="table-task-heading"><span>当前操作 · <b>${POWERS[flowActor(state)||state.current].name}</b></span><button id="toggle-table-task" aria-expanded="${!taskCollapsed}" aria-controls="table-task-body">${taskCollapsed?'展开操作':'收起操作'}</button></div><div id="action-rollback" aria-label="行动撤销"></div><div id="table-task-body">${preservedTask?'':renderTableTask()}</div></section><div class="sidefoot"><details class="table-history" data-army-owner=""><summary>操作记录</summary>${state.log.slice(0,8).map(x=>`<p>${esc(x)}</p>`).join('')}</details>${side==='region'?'<details open><summary>'+REGIONS[region]+' · 地区详情</summary>'+renderSide()+'</details>':''}</div></section>
  <section class="tray" style="--pcolor:${power.color}"><div class="trayhead"><h2>${power.flag} ${power.name} · 玩家面板</h2><select id="focus" aria-label="战略焦点" ${state.economyVersion&&(!state.flow||state.flow.step!=='focus'||state.current!==state.flow.order[state.flow.checks.length])?'disabled':''}>${['内政焦点','外交焦点','军事焦点'].map(f=>`<option ${p.focus===f?'selected':''}>${f}</option>`).join('')}</select><span class="minor">牌库 ${p.deck.length} · 弃牌 ${p.discard.length}</span><button class="boardbtn" id="playerboard">查看势力面板 ⤢</button></div><div class="resources">${[['money','资金',p.money],['vp','胜利分',p.vp],...RESOURCE_NAMES.map((n,i)=>[i,n,p.resources[i]]),...(state.config.wit?[['smart','SP',p.smart]]:[])].map(([k,n,v])=>`<div class="resource"><span class="resource-label">${n}</span><strong>${v}</strong><button data-res="${k}" data-delta="-1" aria-label="减少${n}">−</button><button data-res="${k}" data-delta="1" aria-label="增加${n}">+</button></div>`).join('')}</div><details class="table-dashboard"><summary>产能、贸易与持续能力</summary>${renderEconomy(state)}${renderCommerce(state)}${renderEventEffects(state,state.current)}${renderForeignInvestments(state,byId)}</details><div class="traynav">${[['hand','手牌',p.hand.length],['played','行动区',p.played.length],['allies','盟国',p.allies.length],['assets',state.config.executive?'资产／命令':'战略资产',p.assets.length+(p.executive&&!p.executiveUsed?1:0)],['growth','发展',p.growth.length],...(state.config.dd?[['objectives','目标',p.objectives.length]]:[])].map(([k,n,count])=>`<button data-tray="${k}" class="${tray===k?'active':''}">${n} ${count}</button>`).join('')}<div class="actions"><button id="hidehand">${hide?'显示手牌':'遮住手牌'}</button><button id="draw" ${state.flow&&state.flow.step!=='actions'?'disabled':''}>抽一张</button><button id="end-action" ${!state.actionTurns||state.actionTurns.index>=16||state.phase!=='行动'||state.current!==(state.flow?.order||state.initialOrder)[state.actionTurns.index%4]||(Array.isArray(state.flow?.turnCards)&&!state.flow.turnCards.length)?'disabled':''}>结束本次行动</button><button id="pass-empty" ${p.hand.length||state.flow?.step!=='actions'||state.current!==flowActor(state)||!Array.isArray(state.flow?.turnCards)||state.flow.turnCards.length?'disabled':''}>无手牌：放弃行动领10资金</button><button id="clear" ${!p.played.length?'disabled':''}>清空行动区</button></div></div>${!setupPending(p)?renderPlayArea():''}<div class="${p.openingChoices||p.assetChoices?'opening-area':'hand'}">${renderTray()}</div></section></div>`;
  if(isGameClient){
   $('.rail').outerHTML=renderClientPlayerSummary(state,byId,{viewer:room?.seat||state.current,actor:flowActor(state)});
@@ -246,6 +269,8 @@ function openImage(src,alt){$('#viewer').classList.remove('board-viewer');$('#vi
 function openCard(id,source,{playIntent=false}={}){$('#viewer').classList.remove('board-viewer');const c=byId[id];if(!c)return;$('#viewer-body').dataset.armyOwner=state.current;if(room&&room.actor!==room.seat&&!(manualWindow(state)&&source==='allies'))source='view';const actions={hand:[['play','手动出牌（效果自行结算）'],['discard','弃置']],played:[['return','拿回手牌']],market:[['market','拿到牌库顶 · 手动']],growthSupply:[['growth','拿取发展牌 · 手动']],regionCountry:[['ally','拿为盟国 · 手动']],assets:[['asset','标记已使用']],usedAsset:[['restoreAsset','恢复未使用']],event:[['event','移到已处理区']]};if(state.flow){actions.market=[];if(state.flow.step==='research'&&state.flow.research&&flowActor(state)===state.current){actions.market=[['researchBuy','支付并购入牌库顶']];actions.allies=(state.players[state.current].exhaustedAllies||[]).includes(id)?[['readyAlly','手动重置盟国']]:[['researchAlly','消耗盟国并获得研究力']];}else actions.allies=(state.players[state.current].exhaustedAllies||[]).includes(id)?[['readyAlly','手动重置盟国']]:[['exhaustAlly','手动消耗盟国']];}if(state.eventVersion)actions.event=[];if(playIntent)actions.hand=[];if(state.flow?.extraCard||SPECIAL_CARDS[id])actions.assets=[];if(!playIntent&&state.flow?.step==='actions'&&!state.flow.extraCard&&source==='hand')actions.hand.push(['passTurn','盖放此牌，放弃行动领10资金']);if(state.worldVersion&&source==='allies')actions.allies=[...(actions.allies||[]),['toggleFDI',(state.players[state.current].fdi||[]).includes(id)?'移除FDI标记 · 手动':'添加FDI标记 · 手动'],['toggleBase',(state.players[state.current].bases||[]).includes(id)?'移除基地标记 · 手动':'记录已建基地 · 手动（不扣费、不派兵）']];$('#viewer-body').innerHTML=`<h2>${esc(title(c))}</h2><img class="viewerimage" src="${c.image}" alt="${esc(title(c))}">${c.backImage?`<details><summary>查看另一面</summary><img class="viewerimage" src="${c.backImage}" alt="${esc(title(c))}另一面"></details>`:''}<div class="viewer-meta">${esc(labels[c.type])}${c.owner?' · '+POWERS[c.owner].name:''}${c.module==='dd'?' · Diplomacy & Dominance':c.module==='wit'?' · World in Turmoil':''}</div>${state.flow&&state.flow.step==='research'&&state.flow.research&&(source==='market'||source==='allies')?`<p class="viewer-meta">${source==='market'?'研究费用：'+researchCost(id)+' · 当前可用：'+state.flow.research.remaining+(researchCost(id)>state.flow.research.remaining?'（研究力不足）':''):'消耗可获得研究力：'+countryValue(id)}</p>`:''}${source==='allies'&&(state.players[state.current].countryUnderlays?.[id]||[]).length?'<details><summary>叠放的起始国家 · 仅保留贸易符号</summary>'+state.players[state.current].countryUnderlays[id].map(cid=>'<img class=viewerimage src='+byId[cid].image+' alt=起始国家>').join('')+'</details>':''}${source==='resolution'?renderBasicForm(state,id,byId,undefined,true):source==='hand'?renderBasicForm(state,id,byId):source==='growth'?renderGrowthAbility(state,id,byId):['assets','executive'].includes(source)?(SPECIAL_CARDS[id]?renderBasicForm(state,id,byId):renderExtraAsset(state,id,byId)):''}<div class="vieweractions">${(actions[source]||[]).map(([action,name])=>`<button class="gold" data-card-action="${action}" data-id="${id}" ${(action==='researchBuy'&&researchCost(id)>state.flow.research.remaining)||(['play','asset'].includes(action)&&sequenceStartIssue(state,id))?'disabled':''}>${name}</button>`).join('')}</div>${actions[source]?'<p class="viewer-meta">自动结算框处理其列出的费用与效果；未自动支持的牌面效果请手动处理。</p>':''}`;showGameDialog($('#viewer'));if($('#viewer #basic-form'))updateBasicForm(state,byId,true);applyRoomPermissions()}
 $('#app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
  if(isGameClient&&(handleTradeControl(e)||handleClientActionChoice(e)||handleClientAllySelection(e)))return;
+ if(b.dataset.rollbackScope){rollbackAction(b.dataset.rollbackScope);return;}
+ if(b.dataset.restartResponse){restartResponse(b.dataset.restartResponse);return;}
  if(b.dataset.cardAction){commitCardAction(b);return;}
  if(b.dataset.countryPile){
   const pile=b.dataset.countryPile,area=b.dataset.pileRegion,ids=countryPileContents(state.regions[area])[pile]||[];
@@ -339,6 +364,8 @@ for(const dialog of document.querySelectorAll('dialog')){dialog.querySelector('.
 $('#undo').onclick=()=>rollbackAction('step');
 $('#rollback').onclick=()=>{updateRollbackControls();showGameDialog($('#rollback-dialog'));};
 $('#rollback-dialog').addEventListener('click',e=>{const button=e.target.closest('[data-rollback-scope]');if(button&&!button.disabled)rollbackAction(button.dataset.rollbackScope);});
+$('#rollback-warning-confirm').onclick=()=>{const pending=pendingRollbackWarning;$('#rollback-warning').close();if(!pending||pending.key!==gameContext()){toast('局面已更新，请重新选择撤回');return;}rollbackAction(pending.scope,true);};
+$('#rollback-warning').addEventListener('close',()=>{pendingRollbackWarning=null;});
 $('#newgame').onclick=()=>{if(!ready)return;if(room&&!room.isHost){toast('由房主重新布置房间');return;}$('#settings-copy').textContent=room?'重新布置当前房间；四个席位保留，四方重新选牌。':'四名真人，所有势力由你在本机切换操作。';$('#settings-warning').textContent=room?'这会替换当前房间的整盘游戏，回到大厅等待开始。':'这会清空当前本地桌面。';const config=room?.config||state.config;$('#dd').checked=config.dd;$('#wit').checked=config.wit;$('#executive').checked=!!config.executive;$('#growth-mode').value=config.growthMode||'families';showGameDialog($('#settings'))};
 $('#help').onclick=()=>showGameDialog($('#help-dialog'));
 $('#confirm-new').onclick=async()=>{if(room){const result=await roomCommand('reset',{config:{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value}});if(result.ok)$('#settings').close();return;}state=createState(data,{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value});localRollback=createRollback();localRevision++;side='board';tray='hand';hide=false;persist();render();$('#settings').close();toast('请选择各势力的开局卡牌；已按启用模块布置新局')};
@@ -467,7 +494,7 @@ function applyRoomPermissions(){
  if(!room.state)return;
  const general=room.actor===room.seat&&!Object.values(state.players).some(setupPending),draft=setupPending(state.players[room.seat]);
  for(const el of $('#app').querySelectorAll('button,input,select')){
-  const readOnly=el.matches('[data-client-flow],[data-client-economy],[data-client-action-option],[data-country-pile],[data-client-player],[data-client-event-id],[data-client-supply],[data-client-pick],[data-client-return],[data-player],[data-card],[data-side],[data-tray],[data-region],[data-hand-page],[data-trade-tab],[data-allocation-page],#hidehand,#mapzoom,#playerboard,#go-opening,#cancel-table-card,#toggle-table-task,[data-inspect-card],[data-show-table-targets],#show-table-targets');
+  const readOnly=el.matches('[data-rollback-scope],[data-restart-response],[data-client-flow],[data-client-economy],[data-client-action-option],[data-country-pile],[data-client-player],[data-client-event-id],[data-client-supply],[data-client-pick],[data-client-return],[data-player],[data-card],[data-side],[data-tray],[data-region],[data-hand-page],[data-trade-tab],[data-allocation-page],#hidehand,#mapzoom,#playerboard,#go-opening,#cancel-table-card,#toggle-table-task,[data-inspect-card],[data-show-table-targets],#show-table-targets');
   if(readOnly)continue;
   const ownDraft=el.matches('[data-opening],[data-asset-select],[data-objective-select],[data-draft-discard],#confirm-assets');
   const command=controlCommand(el),allowed=command?actionAccess(state,command,room.seat).allowed:ownDraft?draft:general;

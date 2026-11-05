@@ -9,7 +9,7 @@
     "db:generate": "drizzle-kit generate",
     "test:setup": "node scripts/check-setup-stock.mjs",
     "test:rooms": "node scripts/check-rooms.mjs",
-    "test:rollback": "node scripts/check-rollback.mjs",
+    "test:rollback": "node scripts/check-rollback.mjs && node scripts/check-action-rollback.mjs",
     "test:region-selection": "node scripts/check-region-selection.mjs",
     "dev": "vite",
     "test:flow": "node scripts/check-flow.mjs",

@@ -28,7 +28,7 @@ function avail(r,seat){return roomView(r,who[seat]).rollback;}
 // first reveals them after A/B is committed. The draft may be edited; the
 // already-informed player cannot go back and select another opening group.
 let setup=newRoom('SETUP2',who.US,cards,{dd:true,wit:false});setup.status='playing';setup.seats={...who};
-// Legacy A/B drafts still need the first-reveal barrier. New fixed-hand drafts
+// Legacy A/B drafts still need the first-reveal warning. New fixed-hand drafts
 // are exercised with selectAssetDiscard in check-opening-ui.mjs.
 delete setup.state.openingHandVersion;
 for(const p of Object.values(setup.state.players)){p.openingChoices=[[...p.hand],[...p.deck]];p.hand=[];p.deck=[];}
@@ -38,8 +38,8 @@ assert.equal(concealedSetup.seats.US.setupDone,false);assert.equal(concealedSetu
 setup=act(setup,'US',{type:'chooseOpening',group:0});
 assert.deepEqual(roomView(setup,who.US).state.players.US.assetChoices,setup.state.players.US.assetChoices);
 assert.deepEqual(roomView(setup,who.US).state.players.US.objectiveChoices,setup.state.players.US.objectiveChoices);
-assert.equal(avail(setup,'US').step.available,false);assert.equal(avail(setup,'US').phase.available,false);
-assert.throws(()=>undo(setup,'US','step'),/资产与目标卡已经揭示/);
+assert.equal(avail(setup,'US').step.available,true);assert.equal(avail(setup,'US').phase.available,true);
+assert.match(avail(setup,'US').step.warning,/资产与目标卡已经揭示/);assert.doesNotThrow(()=>undo(setup,'US','step'));
 setup=act(setup,'US',{type:'toggleAssetSelection',id:setup.state.players.US.assetChoices[0].id});
 assert.equal(avail(setup,'US').phase.available,true);assert.equal(avail(setup,'US').turn.available,false);
 setup=undo(setup,'US','phase');assert.equal(setup.state.players.US.openingChoices,null);assert.deepEqual(setup.state.players.US.assetSelection,[]);
@@ -59,16 +59,20 @@ assert.equal(r.state.players.US.money,100);assert.equal(r.gameRevision,beforeUnd
 assert.equal(changeRoom(r,who.US,undoCommand,cards),r);
 assert.throws(()=>changeRoom(r,who.US,{...cmd(r,'undo'),gameRevision:beforeUndo},cards),/局面已更新/);
 
-// A full action includes its end, but ceases to be available as soon as the
-// next player actually commits an operation.
+// A completed action requires the next player's explicit consent.
 r=act(r,'US',{type:'passTurn',cardId:domestic});
 assert.equal(r.state.actionTurns.index,1);assert.equal(avail(r,'US').turn.available,true);
-r=undo(r,'US','turn');assert.equal(r.state.actionTurns.index,0);assert.equal(r.state.players.US.money,100);
+assert.equal(avail(r,'US').turn.requiresConsent,true);
+assert.throws(()=>undo(r,'US','turn'),/需要对方同意/);
+r=changeRoom(r,who.US,cmd(r,'requestTurnRestart'),cards);
+r=changeRoom(r,who.CN,cmd(r,'respondTurnRestart',{requestId:r.rollback.request.id,accept:true}),cards);
+assert.equal(r.state.actionTurns.index,0);assert.equal(r.state.players.US.money,100);
 r=act(r,'US',{type:'passTurn',cardId:domestic});
 r=act(r,'CN',{type:'passTurn',cardId:domestic});
 assert.equal(avail(r,'US').turn.available,false);
 assert.throws(()=>undo(r,'US','turn'),/其他玩家/);
-r=undo(r,'CN','turn');assert.equal(r.state.actionTurns.index,1);
+r=changeRoom(r,who.CN,cmd(r,'requestTurnRestart'),cards);
+r=changeRoom(r,who.EU,cmd(r,'respondTurnRestart',{requestId:r.rollback.request.id,accept:true}),cards);assert.equal(r.state.actionTurns.index,1);
 assert.equal(avail(r,'US').turn.available,false);
 
 // Retain the stage/action start even when the short single-step ring fills.
@@ -80,19 +84,18 @@ r=JSON.parse(JSON.stringify(r));assert.equal(avail(r,'US').turn.available,true);
 const wire=JSON.stringify(roomView(r,who.US));assert.ok(!wire.includes('private-'));assert.ok(!wire.includes('nextId'));assert.ok(!wire.includes('phaseKey'));
 r=undo(r,'US','turn');assert.equal(r.state.players.US.money,100);
 
-// Actual draws seal all earlier checkpoints. Safe later operations may be
-// stepped back, while a whole action cannot cross its draw.
+// Draws warn on earlier checkpoints; later safe steps need no warning.
 r=roomFixture();r=act(r,'US',{type:'resource',key:'money',delta:1});r=act(r,'US',{type:'draw'});
-assert.equal(avail(r,'US').step.available,false);assert.equal(avail(r,'US').turn.available,false);
-assert.throws(()=>undo(r,'US','turn'),/新信息/);
-r=act(r,'US',{type:'resource',key:'money',delta:1});assert.equal(avail(r,'US').step.available,true);assert.equal(avail(r,'US').turn.available,false);
+assert.equal(avail(r,'US').step.available,true);assert.equal(avail(r,'US').turn.available,true);
+assert.match(avail(r,'US').turn.warning,/隐藏信息/);assert.doesNotThrow(()=>undo(r,'US','turn'));
+r=act(r,'US',{type:'resource',key:'money',delta:1});assert.equal(avail(r,'US').step.available,true);assert.equal(avail(r,'US').step.warning,null);assert.equal(avail(r,'US').turn.available,true);
 r=undo(r,'US','step');assert.equal(r.state.players.US.money,101);assert.equal(r.state.players.US.hand.length,3);
 
-// Real country acquisition reveals the replacement top card and is sealed.
+// Real country acquisition warns and requires consent after the handoff.
 r=roomFixture();const country=r.state.regions.M.available[0];
 r=act(r,'US',{type:'playBasicCard',cardId:ally,country,slot:'temporary'});
-assert.equal(r.state.players.US.allies.includes(country),true);assert.equal(avail(r,'US').turn.available,false);
-assert.match(avail(r,'US').turn.reason,/国家牌/);
+assert.equal(r.state.players.US.allies.includes(country),true);assert.equal(avail(r,'US').turn.available,true);
+assert.match(avail(r,'US').turn.warning,/国家牌/);assert.equal(avail(r,'US').turn.requiresConsent,true);
 
 // Seat replacement never inherits another tab's checkpoints; legacy history
 // without the new disclosure metadata is intentionally not trusted.

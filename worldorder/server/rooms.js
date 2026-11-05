@@ -2,7 +2,7 @@ import {applyAction,createState} from '../dist/engine.js';
 import {applyDebugAction,DEBUG_ROLLBACK_REASON} from '../dist/debug-mode.js';
 import {debugModeIssue} from '../dist/action-policy.js';
 import {countryPileContents} from '../dist/country-pile-view.js';
-import {createRollback,recordRollback,restoreRollback,rollbackAvailability} from '../dist/rollback-state.js';
+import {createRollback,recordRollback,restoreRollback,rollbackAvailability,requestTurnRestart,respondTurnRestart,cancelTurnRestart,turnRestartRequestView} from '../dist/rollback-state.js';
 import {SEATS,SETUP_ACTIONS,setupPending,assertRoomAction,roomActor} from '../dist/room-rules.js';
 
 export class RoomError extends Error{
@@ -18,7 +18,7 @@ export function newRoom(code,identity,cards,config,now=Date.now()){
   host:{...identity},seats,status:'lobby',state:createState(cards,config),rollback:createRollback(),history:[],receipts:[],createdAt:now,updatedAt:now};
 }
 function ensureFresh(room,seat,command){
- if(SETUP_ACTIONS.has(command.action?.type)){
+ if(command.op==='action'&&SETUP_ACTIONS.has(command.action?.type)){
   if(command.seatRevision!==room.seatRevisions[seat])throw new RoomError('本方选牌已更新，请查看最新选择后重试',409);
  }else if(command.gameRevision!==room.gameRevision)throw new RoomError('局面已更新，本次操作未执行，请查看最新局面后重试',409);
 }
@@ -59,10 +59,25 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
   case 'undo':{
    if(!seat)throw new RoomError('你的席位已离开或被接管，请重新入座',403);
    ensureFresh(room,seat,command);
-   try{const restored=restoreRollback(room.rollback,{seat,...identity},command.scope||'step',now);next.state=restored.state;next.rollback=restored.rollback;}
+   try{const restored=restoreRollback(room.rollback,{seat,...identity},command.scope||'step',now,room.state);next.state=restored.state;next.rollback=restored.rollback;}
    catch(error){throw new RoomError(error.message);}
    next.gameRevision++;
    for(const id of SEATS)next.seatRevisions[id]++;break;
+  }
+  case 'requestTurnRestart':case 'respondTurnRestart':case 'cancelTurnRestart':{
+   if(room.status!=='playing'||!seat)throw new RoomError('请先进入对局并入座',403);
+   ensureFresh(room,seat,command);
+   const actor={seat,...identity};
+   if(command.op==='requestTurnRestart'){
+    const target=rollbackAvailability(room.rollback,actor,now,room.state).turn.approver;
+    next.rollback=requestTurnRestart(room.rollback,actor,room.seats[target]?{seat:target,...room.seats[target]}:null,room.state,command.id,now);
+   }else if(command.op==='cancelTurnRestart')next.rollback=cancelTurnRestart(room.rollback,actor,room.state,command.requestId,now);
+   else{
+    const restored=respondTurnRestart(room.rollback,actor,room.state,command.requestId,command.accept,now);
+    next.state=restored.state;next.rollback=restored.rollback;
+    if(command.accept){next.gameRevision++;for(const id of SEATS)next.seatRevisions[id]++;}
+   }
+   break;
   }
   case 'debug':{
    const issue=debugModeIssue({isHost:host,seat,status:room.status});
@@ -130,10 +145,10 @@ export function playerView(source,seat){
  s.current=seat;return s;
 }
 export function roomView(room,identity){
- const seat=seatFor(room,identity),rollback=rollbackAvailability(room.rollback,{seat,...identity});
+ const seat=seatFor(room,identity),rollback=rollbackAvailability(room.rollback,{seat,...identity},Date.now(),room.state);
  return {code:room.code,revision:room.revision,gameRevision:room.gameRevision,seatRevision:seat?room.seatRevisions[seat]:0,
   status:room.status,seat,isHost:isHost(room,identity),config:room.state.config,actor:roomActor(room.state),
   seats:Object.fromEntries(SEATS.map(id=>[id,{occupied:!!room.seats[id],mine:room.seats[id]?.user===identity.user,setupDone:!setupPending(room.state.players[id])}])),
-  canUndo:!!seat&&rollback.step.available,rollback,
+  canUndo:!!seat&&rollback.step.available,rollback,restartRequest:turnRestartRequestView(room.rollback,{seat,...identity},room.state),
   state:room.status==='playing'&&seat?playerView(room.state,seat):null};
 }

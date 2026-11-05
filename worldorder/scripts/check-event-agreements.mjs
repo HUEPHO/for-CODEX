@@ -40,7 +40,7 @@ s=agree(s,{US:{accept:true,money:20,diplomacy:1},EU:{accept:true,money:0,diploma
 let before=JSON.stringify(s);assert.match(agreementRewardPreview(s,s.flow.eventResolution,{region:'E',index:0}),/转为永久/);assert.equal(JSON.stringify(s),before);s=reward(s,{region:'E',index:0});assert.deepEqual(s.regions.E.extraPermanent,['EU']);assert.equal(s.players.EU.vp,0);
 s=agree(fixture('imec'),{US:{accept:true,money:10,diplomacy:1},EU:{accept:true,money:10,diplomacy:2}});assert.equal(s.flow.eventResolution.agreement.success,false);assert.equal(s.players.US.money,100);
 // BRICS uses contribution order, can search buried eligible cards, and grants
-// only cards still on the board. Search/reveal is recorded for the undo barrier.
+// only cards still on the board. Search/reveal is recorded for the undo warning.
 const egypt=country('Egypt'),ethiopia=country('Ethiopia'),iran=country('Iran');
 s=fixture('brics',s=>{s.regions.N.countryPiles={left:[country('Iraq'),egypt,iran],right:[country('Qatar')]};s.regions.N.available=[country('Iraq'),country('Qatar')];s.regions.N.deck=[egypt,iran];s.regions.A.countryPiles={left:[ethiopia],right:[]};s.regions.A.available=[ethiopia];s.regions.A.deck=[];});
 s=agree(s,{RU:yes(2),CN:yes(3)});assert.equal(s.current,'CN');assert.equal(s.players.CN.smart,3);assert.equal(s.players.RU.smart,2);assert.ok(agreementCountryTargets(s,'CN').includes(egypt));
@@ -86,7 +86,7 @@ room.state=agree(fixture('brics',s=>{s.regions.N.countryPiles={left:[country('Ir
 assert.equal(playerView(room.state,'CN').regions.N.countryPiles.left[1],egypt);assert.equal(playerView(room.state,'RU').regions.N.countryPiles.left[1],null);assert.ok(agreementCountryTargets(playerView(room.state,'CN'),'CN').includes(egypt));
 for(const [owner,chosen] of [['CN',egypt],['RU',ethiopia]]){
  room=changeRoom(room,identity[owner],{op:'action',id:'search-'+owner,gameRevision:room.gameRevision,action:{type:'resolveEventReward',cardId:id.brics,country:chosen}},cards);
- assert.equal(roomView(room,identity[owner]).canUndo,false);assert.throws(()=>changeRoom(room,identity[owner],{op:'undo',id:'undo-'+owner,gameRevision:room.gameRevision},cards),/随机事件/);
+ assert.equal(roomView(room,identity[owner]).canUndo,true);assert.ok(roomView(room,identity[owner]).rollback.step.warning);assert.doesNotThrow(()=>changeRoom(room,identity[owner],{op:'undo',id:'undo-'+owner,gameRevision:room.gameRevision},cards));
 }
 assert.equal(room.state.flow.eventResolution.agreementRandom,2);
 console.log('Passed 10 shared agreements: public promises, contribution eligibility, exact/minimum totals, no NPP caps, conditional payment, military supply, SP/failure, effects, reward ownership, TTIP faces, BRICS search, reload, legacy manual saves and room retries.');

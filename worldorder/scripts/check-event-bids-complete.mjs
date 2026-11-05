@@ -71,13 +71,13 @@ s=fixture(asia);s=roll(0,()=>bids(s,{RU:{moneyUnits:3},CN:{moneyUnits:3}}));asse
 // Real room authority, secrecy, persistence and replay of an optional, repeated free investment.
 const who=Object.fromEntries(ids.map(id=>[id,{user:'complete-bids',token:id}]));let room=newRoom('BDC444',who.US,cards,{wit:true});room.state=fixture(asia,x=>{ally(x,'RU',kazakhstan);});room.status='playing';room.seats=structuredClone(who);let serial=0;
 function send(owner,type,fields={}){const command={id:String(++serial),op:'action',gameRevision:room.gameRevision,action:{type,cardId:asia,...fields}};room=changeRoom(room,who[owner],command,cards);return command;}
-send('CN','submitEvent');assert.deepEqual(playerView(room.state,'RU').flow.eventResolution.submissions,{});roll(0,()=>send('RU','submitEvent',{moneyUnits:3}));assert.equal(roomView(room,who.CN).actor,'RU');assert.equal(roomView(room,who.RU).canUndo,false);
+send('CN','submitEvent');assert.deepEqual(playerView(room.state,'RU').flow.eventResolution.submissions,{});roll(0,()=>send('RU','submitEvent',{moneyUnits:3}));assert.equal(roomView(room,who.CN).actor,'RU');assert.equal(roomView(room,who.RU).canUndo,true);assert.ok(roomView(room,who.RU).rollback.step.warning);
 assert.throws(()=>send('CN','resolveEventReward',{skip:true}),/等待/);room=JSON.parse(JSON.stringify(room));const command=send('RU','resolveEventReward',{country:kazakhstan,slot:'temporary',investSP:'after'}),snapshot=JSON.stringify(room);
 room=changeRoom(room,who.RU,command,cards);assert.equal(JSON.stringify(room),snapshot);assert.ok(!(room.state.players.RU.exhaustedAllies||[]).includes(kazakhstan));assert.equal(room.state.players.RU.smart,2);
-// Searching Georgia reshuffles a hidden country deck; a resolved search cannot be undone to reroll it.
+// Searching Georgia reshuffles a hidden country deck; a resolved search warns before undoing it.
 let gRoom=newRoom('BDG444',who.US,cards,{wit:true});gRoom.state=fixture(georgia);gRoom.status='playing';gRoom.seats=structuredClone(who);
 for(const owner of [...gRoom.state.flow.eventResolution.participants])gRoom=changeRoom(gRoom,who[owner],{id:'bid-'+owner,op:'action',gameRevision:gRoom.gameRevision,action:{type:'submitEvent',cardId:georgia,services:owner==='RU'?1:0}},cards);
 const take={id:'georgia',op:'action',gameRevision:gRoom.gameRevision,action:{type:'resolveEventReward',cardId:georgia,slot:'temporary'}};gRoom=changeRoom(gRoom,who.RU,take,cards);
-assert.equal(roomView(gRoom,who.RU).canUndo,false);assert.throws(()=>changeRoom(gRoom,who.RU,{id:'undo-search',op:'undo',gameRevision:gRoom.gameRevision},cards),/随机/);
+assert.equal(roomView(gRoom,who.RU).canUndo,true);assert.ok(roomView(gRoom,who.RU).rollback.step.warning);assert.doesNotThrow(()=>changeRoom(gRoom,who.RU,{id:'undo-search',op:'undo',gameRevision:gRoom.gameRevision},cards));
 const taken=JSON.stringify(gRoom);gRoom=changeRoom(gRoom,who.RU,take,cards);assert.equal(JSON.stringify(gRoom),taken);
 console.log('Remaining bids passed: Ukraine caps/free Europe movement/repeat and both victories; tech additive modifiers and highest-tie rewards; Georgia service bidding, transfer and cleanup; three-sided Central Asia random tie, repeated free investment, masked room response and replay.');

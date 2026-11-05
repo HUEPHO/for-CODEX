@@ -78,7 +78,7 @@ export class RoomClient{
   const rollbackChanged=this.room?.canUndo!==next.canUndo||['step','phase','turn'].some(scope=>{
    const old=this.room?.rollback?.[scope],current=next.rollback?.[scope];return old?.available!==current?.available||old?.reason!==current?.reason;
   });
-  const changed=!this.room||this.room.code!==next.code||this.room.revision!==next.revision||this.room.seat!==next.seat||rollbackChanged;
+  const changed=!this.room||this.room.code!==next.code||this.room.revision!==next.revision||this.room.seat!==next.seat||rollbackChanged||this.room.restartRequest?.id!==next.restartRequest?.id;
   this.room=next;this.setStatus(this.isSteam?this.steamConnection():'online');if(changed)this.onChange(next,cause);
  }
  async request(path,command){
