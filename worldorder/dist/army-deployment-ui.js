@@ -1,6 +1,7 @@
 import {AREAS} from './world.js';
 import {militaryDestinations} from './military.js';
 import {deploymentMoves} from './army-deployment.js';
+import {bidArmyDeploymentModel} from './event-bid-deployment.js';
 import {RESEARCH_DATA} from './research-data.js';
 import {POWERS} from './game-constants.js';
 const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -28,7 +29,7 @@ export function readDeploymentMoves(root){
 export function installArmyDeployment({root=document,getTask,getSurface,getState,canEdit,onMessage}){
  function plan(){return [...(getTask()?.querySelectorAll('.army-deployment')||[])].find(el=>!el.closest('[hidden],fieldset[disabled]'));}
  function model(){
-  const el=plan();if(!el)return null;
+  const el=plan();if(!el)return bidArmyDeploymentModel(getTask(),getState());
   const s=getState(),{options,input,delta}=data(el),player=s.players[options.owner];
   const initial=player.resources[6]+options.gain+Number(options.production?document.querySelector(options.production)?.value||0:0);
   return {el,input,delta,options,s,initial,reserve:initial-Object.values(delta).reduce((sum,n)=>sum+n,0)};
@@ -37,6 +38,7 @@ export function installArmyDeployment({root=document,getTask,getSurface,getState
   const m=model(),surface=getSurface(),s=getState();
   for(const panel of surface?.querySelectorAll('[data-board-region]')||[]){
    const region=panel.dataset.boardRegion;
+   panel.classList.toggle('army-bid-target',!!m?.bid);
    panel.classList.toggle('army-deployment-target',!!m&&m.options.destinations.includes(region));
    for(const piece of panel.querySelectorAll('.original-army')){
     const owner=piece.dataset.armyOwner,n=s.regions[region].armies[owner]+(m?.options.owner===owner?m.delta[region]||0:0);
@@ -51,6 +53,13 @@ export function installArmyDeployment({root=document,getTask,getSurface,getState
    stock.classList.toggle('army-stock-pending',pending);stock.title=`仓库坦克：${n}${pending?'（派遣预览）':''}`;stock.setAttribute('aria-label',stock.title);
   }
   if(!m)return;
+  if(m.bid){
+   const max=m.reserve+Number(m.input.value),unavailable=max===0;
+   if(m.input.max!==String(max))m.input.max=max;
+   if(m.input.hasAttribute('data-room-disabled'))m.input.dataset.roomDisabled=String(unavailable);
+   else m.input.disabled=unavailable||!!m.el.closest('fieldset[disabled]')||!!getTask().querySelector('#event-submit')?.disabled;
+   return;
+  }
   m.el.querySelector('.army-deployment-status').textContent=`仓库 ${m.reserve}（派遣前 ${m.initial}）`;
   const moves=readDeploymentMoves(m.el);
   m.el.querySelector('.army-deployment-routes').innerHTML=moves.map(move=>`<span>${move.from==='reserve'?'仓库':AREAS[move.from].name} → ${move.to==='reserve'?'仓库（待重新派遣）':AREAS[move.to].name}${move.spendSP?' · 1 SP':''}</span>`).join('');
@@ -62,8 +71,19 @@ export function installArmyDeployment({root=document,getTask,getSurface,getState
   // Influence slots remain selectable when a deployment also adds influence.
   if(event.target.closest('[data-board-slot]'))return;
   event.preventDefault();event.stopImmediatePropagation();
-  if(!canEdit()||m.input.disabled)return;
+  if(!canEdit()||m.el.closest('fieldset[disabled]')||(!m.bid&&m.input.disabled))return;
   const region=target.dataset.boardRegion,change=event.type==='contextmenu'?-1:1,current=m.delta[region]||0;
+  if(m.bid){
+   if(getTask().querySelector('#event-submit')?.disabled||m.input.hasAttribute('data-room-disabled'))return;
+   const piece=event.target.closest('.original-army');if(piece&&piece.dataset.armyOwner!==m.options.owner)return;
+   if(change>0){
+    if(current>=0){onMessage('只能左键原地区放回本次取回的军队。');return;}
+    if(m.reserve<1){onMessage('请先减少移动出价，再把军队放回原地区。');return;}
+   }else if(m.s.regions[region].armies[m.options.owner]+current<1)return;
+   m.delta[region]=current+change;
+   m.el.dataset.bidArmyReturns=JSON.stringify(Object.fromEntries(Object.entries(m.delta).filter(([,n])=>n<0).map(([id,n])=>[id,-n])));
+   sync();m.input.dispatchEvent(new Event('change',{bubbles:true}));return;
+  }
   if(change>0){
    if(!m.options.destinations.includes(region)){onMessage('本次不能派遣到此地区。');return;}
    if(m.reserve<1){onMessage('仓库没有可派遣的坦克。');return;}

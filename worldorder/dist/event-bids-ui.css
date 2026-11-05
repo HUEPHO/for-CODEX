@@ -1,0 +1,15 @@
+.event-bid-form{width:100%;min-width:0;box-sizing:border-box}
+.event-bid-modifiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 10px;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid #365361}
+.event-bid-modifier{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:12px}
+.event-bid-modifier .power-flag{width:24px;height:16px;object-fit:contain}
+.event-bid-modifier b{font-size:15px;font-variant-numeric:tabular-nums}
+.event-bid-modifier.is-current b{color:#f3cf80}
+.event-bid-fields{display:grid;gap:4px}
+.game-client.client-scroll .client-command-dock .flow-panel .event-bid-row{display:grid;grid-template-columns:minmax(0,1fr) 60px;align-items:center;gap:8px;font-size:13px}
+.event-bid-row>span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.event-bid-row .resource-icon{width:24px;height:24px;min-width:24px;min-height:24px}
+.event-bid-army{width:32px;height:23px;object-fit:contain}
+.game-client.client-scroll .client-command-dock .flow-panel .event-bid-row .client-number-counter{width:54px;margin:0;min-height:32px}
+.event-bid-details{margin-top:7px;font-size:11px}
+.event-bid-details summary{cursor:pointer;color:#a9bdc6}
+.original-region.army-bid-target .original-army{pointer-events:auto}

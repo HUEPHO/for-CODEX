@@ -5,7 +5,8 @@ const selector='input[type="number"],select';
 const isQuantitySelect=field=>field.id==='sequence-funding'||field.tagName==='SELECT'&&field.options.length>0&&[...field.options].every(o=>/^\d+(?:\.\d+)?$/.test(o.value)&&/^\d+(?:\.\d+)?$/.test(o.textContent.trim()));
 const eligible=field=>!field.hidden&&!field.closest('.client-trade-grid')&&(field.tagName==='INPUT'||isQuantitySelect(field));
 const disabled=field=>field.matches(':disabled')||field.readOnly||!!field.closest('[inert]');
-const numberValue=field=>field.id==='sequence-funding'?String(Number(field.value)*10):field.value;
+const numberScale=field=>field.id==='sequence-funding'?10:Number(field.dataset.numberScale||1);
+const numberValue=field=>field.value===''?'':numberScale(field)===1?field.value:String(Number(field.value)*numberScale(field));
 function label(field){
  const own=field.getAttribute('aria-label');if(own)return own;
  const node=field.labels?.[0]||field.closest('label');if(!node)return '数量';
@@ -21,7 +22,8 @@ function refresh(field,button){
  const selected=field.value!==''&&Number(field.value)!==0;
  if(button.classList.contains('is-selected')!==selected)button.classList.toggle('is-selected',selected);
  let min=field.min||null,max=field.max||null;
- if(field.tagName==='SELECT'){const choices=[...field.options].filter(o=>!o.disabled&&!o.hidden);min=choices[0]?.value??null;max=choices.at(-1)?.value??null;if(field.id==='sequence-funding'){min=Number(min)*10;max=Number(max)*10;}}
+ if(field.tagName==='SELECT'){const choices=[...field.options].filter(o=>!o.disabled&&!o.hidden);min=choices[0]?.value??null;max=choices.at(-1)?.value??null;}
+ if(numberScale(field)!==1){if(min!==null)min=Number(min)*numberScale(field);if(max!==null)max=Number(max)*numberScale(field);}
  attribute(button,'aria-valuemin',min);attribute(button,'aria-valuemax',max);
  attribute(button,'aria-valuenow',field.value===''?null:numberValue(field));
  attribute(button,'aria-valuetext',field.value===''?'未填写':field.id==='sequence-funding'?numberValue(field)+'资金':numberValue(field));
@@ -32,7 +34,7 @@ export function syncNumberCounters(root=document.body){
   if(!button&&!eligible(field))continue;
   if(!button||!button.isConnected){
    button=field.ownerDocument.createElement('button');button.type='button';button.className='client-number-counter';button.setAttribute('role','spinbutton');button.setAttribute('data-number-counter','');
-   button.setAttribute('aria-label',label(field));button.title='左键增加，右键减少；↑ / ↓ 也可调整';if(field.id)button.dataset.numberFor=field.id;
+   button.setAttribute('aria-label',label(field));button.title=field.title||'左键增加，右键减少；↑ / ↓ 也可调整';if(field.id)button.dataset.numberFor=field.id;
    controls.set(field,button);sources.set(button,field);field.insertAdjacentElement('afterend',button);field.classList.add('client-number-source');field.tabIndex=-1;
   }
   refresh(field,button);

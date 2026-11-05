@@ -10,7 +10,8 @@ export function renderWorldRegion(s,region){const r=s.regions[region],a=AREAS[re
 }
 export function threatSummary(s,player,defend=[]){
  const reports=Object.fromEntries(IDS.map(id=>[id,s.flow?.threatResults?.[id]||threatPreview(s,id,id===player?defend:[])]));
- const cell=(id,loss,region)=>`<td data-threat-player="${id}"${region?` data-threat-region="${region}"`:''} class="${id===player?'is-current ':''}${loss?'has-loss':'no-loss'}">${loss?'−'+loss:'0'}</td>`;
+ const baseline=defend.length&&!s.flow?.threatResults?.[player]?threatPreview(s,player):null;
+ const cell=(id,loss,region)=>{const changed=id===player&&baseline&&loss!==(region?baseline.rows.find(row=>row.region===region)?.loss||0:baseline.total);return `<td data-threat-player="${id}"${region?` data-threat-region="${region}"`:''} class="${id===player?'is-current ':''}${loss?'has-loss':'no-loss'}${changed?' is-changed':''}">${loss?'−'+loss:'0'}</td>`;};
  return `<table class="threat-loss-table" aria-label="各国地区扣分"><thead><tr><th scope="col">地区</th>${IDS.map(id=>`<th scope="col" class="${id===player?'is-current':''}">${powerFlag(id)}${s.flow?.threatDone?.includes(id)?'<small title="已结算" aria-label="已结算">✓</small>':''}</th>`).join('')}</tr></thead><tbody>${Object.entries(AREAS).map(([region,area])=>`<tr><th scope="row">${area.name}</th>${IDS.map(id=>cell(id,reports[id].rows.find(row=>row.region===region)?.loss||0,region)).join('')}</tr>`).join('')}</tbody><tfoot><tr><th scope="row">合计</th>${IDS.map(id=>cell(id,reports[id].total)).join('')}</tr></tfoot></table>`;
 }
 export function renderWorldAftermath(s,step){const f=s.flow;

@@ -9,4 +9,5 @@
 .threat-loss-table .has-loss{color:#edb39a;font-weight:700;font-size:16px}
 .threat-loss-table .no-loss{color:#7e959e}
 .threat-loss-table tfoot th,.threat-loss-table tfoot td{border-top:1px solid #bfa26d;border-bottom:0;font-weight:700}
+.threat-loss-table .is-changed{color:#8ee4b5;font-size:18px;font-weight:800}
 .game-client.client-scroll .client-command-dock #resolve-threat{width:100%;margin:3px 0 0;padding:6px;font-size:12px}

@@ -392,7 +392,7 @@ function handleFlowClick(b){
  if(b.hasAttribute('data-income-effect')){act({type:'resolveIncomeEffect',effectId:b.dataset.incomeEffect,choice:b.dataset.incomeChoice});return true;}
  if(b.id==='event-submit'&&state.flow.eventResolution?.mode==='personal'){act({type:'submitEvent',cardId:state.flow.eventResolution.cardId,...readPersonalEvent(state)});return true;}
  if(b.id==='event-reward'||b.id==='event-reward-skip'){act({type:'resolveEventReward',cardId:state.flow.eventResolution.cardId,...(state.flow.eventResolution?.agreementVersion?readAgreementReward(state):readBidReward()),skip:b.id==='event-reward-skip'});return true;}
- if(b.id==='event-submit'&&state.flow.eventResolution?.bidVersion){act({type:'submitEvent',cardId:state.flow.eventResolution.cardId,...readBidForm()});return true;}
+ if(b.id==='event-submit'&&state.flow.eventResolution?.bidVersion){try{act({type:'submitEvent',cardId:state.flow.eventResolution.cardId,...readBidForm()});}catch(error){toast(error.message);}return true;}
  if(b.hasAttribute('data-event-prosperity')){act({type:'adjustEventProsperity',delta:Number(b.dataset.eventProsperity)});return true;}
  if(b.hasAttribute('data-keep-event')){act({type:'choosePersonalEvent',cardId:b.dataset.keepEvent});return true;}
  if(b.id==='event-reveal'){act({type:'resolveEventReveal',moves:[...document.querySelectorAll('[data-event-army]')].map(el=>el.value).filter(Boolean)});return true;}
