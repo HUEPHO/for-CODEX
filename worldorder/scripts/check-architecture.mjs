@@ -166,7 +166,7 @@ s=fixture();s.phase='余波';s.flow=newFlow(['EU','US','RU','CN'],4);s.flow.step
 for(const p of Object.values(s.players))p.fdi=[];
 grantEventEffect(s,'CN',CEE,'c0e00a3125aa7');grantEventEffect(s,'CN',IRAN,'c2885a67a8cb7');
 room=roomFor(s);
-for(const seat of ['EU','US','RU','CN'])room=send(room,seat,{type:'resolveInvestments'});
+room=send(room,'EU',{type:'resolveInvestments'});
 assert.deepEqual(room.state.flow.investmentDone,['EU','US','RU']);
 assert.deepEqual(activeInteraction(room.state),{kind:'income',actor:'CN',owner:'CN',shared:true,label:'完成持续事件收益'});
 checkViews(room.state,'income owner selection');

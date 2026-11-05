@@ -6,7 +6,7 @@ import {renderFlow} from './flow-ui.js';
 import {renderSequenceReport} from './card-sequence-ui.js';
 import {roomActor,manualWindow} from './room-rules.js';
 import {roomLink} from './room-client.js';
-import {renderPhaseOverview,renderSettlementJournal} from './phase-ui.js';
+import {renderPhaseOverview} from './phase-ui.js';
 import {renderSteamEntry,renderSteamLobby} from './steam-ui.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function renderRoomEntry(config={},code='',{steam}={}){
@@ -27,7 +27,7 @@ export function renderRoomFlow(s,cards){
  if(!s.flow)return '<section class="flow-panel"><b>四方开局选牌</b><p>在下方完成本方选择；四方确认后自动确定首轮顺序。</p></section>';
  if(actor&&actor!==s.current){
   const interaction=activeInteraction(s),response=interaction&&interaction.actor!==interaction.owner;
-  return `${renderPhaseOverview(s)}<section class="flow-panel room-waiting" aria-live="polite"><b>${response?'等待玩家回应':'等待其他玩家'} · ${powerFlag(actor)} ${POWERS[actor].name}</b><p>第${s.round}轮 · ${s.phase}。${response?'当前卡牌暂停，等待该势力完成选择后继续。':'完成后会自动同步到你的标签页。'}</p>${manualWindow(s)?'<p>此阶段可在下方补记本方资源与产能，流程确认由当前玩家完成。</p>':'<p>你可以查看自己的手牌、盟国和公共市场。</p>'}${renderSequenceReport(s)}${renderSettlementJournal(s)}</section>`;
+  return `${renderPhaseOverview(s)}<section class="flow-panel room-waiting" aria-live="polite"><b>${response?'等待玩家回应':'等待其他玩家'} · ${powerFlag(actor)} ${POWERS[actor].name}</b><p>第${s.round}轮 · ${s.phase}。${response?'当前卡牌暂停，等待该势力完成选择后继续。':'完成后会自动同步到你的标签页。'}</p>${manualWindow(s)?'<p>此阶段可在下方补记本方资源与产能，流程确认由当前玩家完成。</p>':'<p>你可以查看自己的手牌、盟国和公共市场。</p>'}${renderSequenceReport(s)}</section>`;
  }
  return renderFlow(s,cards);
 }

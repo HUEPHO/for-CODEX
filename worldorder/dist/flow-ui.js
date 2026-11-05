@@ -10,15 +10,15 @@ import {researchPreview,countryValue} from './research.js';
 import {ALLY_BACK_IMAGES} from './ally-card-art.js';
 import {ACTION_CARDS} from './basic-actions.js';
 import {currentActor as flowActor,aftermathSteps} from './phase-state.js';
-import {renderPhaseOverview,renderPhaseSettlement,renderSettlementJournal} from './phase-ui.js';
+import {renderPhaseOverview,renderPhaseSettlement} from './phase-ui.js';
 import {activeInteraction} from './interaction-state.js';
 import {renderIncomeEffects} from './event-income-ui.js';
 const names={US:'美国',CN:'中国',EU:'欧盟',RU:'俄罗斯'};
 const interactionRenderers={event:renderEventPanel,income:renderIncomeEffects,growth:renderGrowthPending,relation:renderOpenRelation,sequence:renderSequencePanel};
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function researchAllies(s,actor,cards,disabled){const p=s.players[actor];
- return `<div class="research-allies" role="group" aria-label="消耗盟国获得研究力">${p.allies.map(id=>{const c=cards[id],value=countryValue(id),used=p.exhaustedAllies?.includes(id),label=`${c.name} · ${used?'已消耗':'消耗获得'+value+'研究力'}`;
-  return `<button type="button" class="research-ally${used?' is-exhausted':''}" data-card-action="researchAlly" data-id="${id}" title="${esc(label)}" aria-label="${esc(label)}" ${disabled||used?'disabled':''}><img src="${used?(ALLY_BACK_IMAGES[id]||c.image):c.image}" alt=""><span class="research-ally-value" aria-hidden="true">${value}</span></button>`;
+ return `<div class="research-allies" role="group" aria-label="消耗盟国获得研究力">${p.allies.map(id=>{const c=cards[id],value=countryValue(id),used=p.exhaustedAllies?.includes(id),undo=used&&s.flow.research.consumedAllies?.includes(id),label=`${c.name} · ${undo?'右键取消消耗，退回'+value+'研究力':used?'研究前已消耗':'左键消耗，获得'+value+'研究力'}`;
+  return `<button type="button" class="research-ally${used?' is-exhausted':''}${undo?' can-undo':''}" ${undo?`data-command="undoResearchAlly" data-research-undo="${id}"`:'data-card-action="researchAlly"'} data-id="${id}" title="${esc(label)}" aria-label="${esc(label)}" ${disabled||used&&!undo?'disabled':''}><img src="${used?(ALLY_BACK_IMAGES[id]||c.image):c.image}" alt=""><span class="research-ally-value" aria-hidden="true">${value}</span></button>`;
  }).join('')}</div>`;
 }
 export function renderFlow(s,cards={}){
@@ -32,7 +32,7 @@ export function renderFlow(s,cards={}){
  }
  if(f.step==='research'){
   body=`<b>轮到${names[actor]}研究（${f.index+1}/4）</b>`;
-  if(!f.research){const preview=researchPreview(s,actor);body+=`<p>剩余手牌研究力 ${preview.base} + 内政焦点 ${preview.extra} = <strong>${preview.total}</strong></p><p>基础奖励：${preview.money}资金、${preview.diplomacy-preview.lostDiplomacy}外交、${preview.armies}军队。${preview.lostDiplomacy?'外交达到10，超出'+preview.lostDiplomacy+'点舍弃。':''}请勿再手动领取这些奖励。</p>${preview.incomeCount?`<fieldset ${disabled}><legend>收入优化 · 选择${preview.incomeCount}张手牌</legend><p>所选牌的上半部奖励再领取一次，不额外获得研究力。</p>${s.players[actor].hand.map(id=>`<label><input type="checkbox" data-income-card="${id}" ${s.players[actor].hand.length<=2?'checked':''}> ${ACTION_CARDS[id]?.name||'能力牌'} <button data-card="${id}" data-source="view">查看</button></label>`).join('')}</fieldset>`:''}<button id="start-research" ${disabled}>领取奖励并开始本人研究</button>`;}
+  if(!f.research){const preview=researchPreview(s,actor);if(preview.incomePending)body+=`<fieldset ${disabled}><legend>收入优化 · 选择${preview.incomeCount}张手牌</legend><p>所选牌的上半部奖励再领取一次，不额外获得研究力。</p>${s.players[actor].hand.map(id=>`<label><input type="checkbox" data-income-card="${id}"> ${ACTION_CARDS[id]?.name||'能力牌'} <button data-card="${id}" data-source="view">查看</button></label>`).join('')}</fieldset><button id="start-research" ${disabled}>确认选择并开始研究</button>`;}
   else body+=`<p class="research-balance">剩余研究力 <strong>${f.research.remaining}</strong> · 已花费 ${f.research.spent}</p>${researchAllies(s,actor,cards,disabled)}<button id="research-refresh" ${disabled||f.research.remaining<2?'disabled':''}>花2研究力刷新最右3张</button><button id="finish-research" ${disabled}>结束研究并弃置剩余手牌</button>`;
  }
  if(f.step==='events')body='<b>事件阶段 · 手动结算</b><p>依次处理公共事件（从右到左）、按行动顺序处理个人事件及连锁效果。</p><label><input id="flow-confirm" type="checkbox"> 所有事件已结算并记录资源、分数变化</label><button id="confirm-events">确认事件完成</button>';
@@ -54,5 +54,5 @@ export function renderFlow(s,cards={}){
  const interaction=activeInteraction(s);
  if(interaction)body=interactionRenderers[interaction.kind](s,cards)||body;
  if(f.battlefieldReturn)body='<p>战役优势的即时资产结算中；完成后继续原行动。</p>'+body;
- return `${renderPhaseOverview(s)}<section class="flow-panel" aria-label="回合流程" aria-live="polite">${body}${renderSequenceReport(s)}${renderSettlementJournal(s)}</section>`;
+ return `${renderPhaseOverview(s)}<section class="flow-panel" aria-label="回合流程" aria-live="polite">${body}${renderSequenceReport(s)}</section>`;
 }

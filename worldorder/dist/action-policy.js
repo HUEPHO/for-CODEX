@@ -36,6 +36,7 @@ export function gameActionIssue(s,a,seat=s.current){
  if(settlementProgress(s)?.done.some(entry=>entry.player===seat)&&a.type!=='switch')return '本方已确认当前结算，不能继续改动；如需更正请撤销尚未被接续的一步';
  if(s.flow&&['round','phase','market','refreshMarket'].includes(a.type))return '请使用阶段流程面板操作';
  if(s.flow&&s.flow.step!=='actions'&&['play','draw','discard','return','clearPlayed'].includes(a.type))return '当前阶段由流程自动管理手牌';
+ if(s.flow?.step==='research'&&['readyAlly','exhaustAlly'].includes(a.type))return '研究阶段请通过研究盟国操作消耗或取消消耗';
  return null;
 }
 export function roomActionIssue(s,seat,a){

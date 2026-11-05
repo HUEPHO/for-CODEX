@@ -14,6 +14,7 @@ import {newFlow,handleFlow,acquireCountry} from './flow.js';
 import {sequenceStartIssue} from './card-sequence.js';
 import {recordSettlementAction} from './settlement-journal.js';
 import {recordObjectiveProgress} from './objective-progress.js';
+import {advanceAutomaticFlow} from './automatic-flow.js';
 import {buildGrowthSupply,growthMode} from './growth-setup.js';
 import {beginnerOpening} from './opening-hand.js';
 export function shuffle(a,rng=Math.random){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -44,7 +45,7 @@ export function determineInitialOrder(state){
  return Object.keys(POWERS).sort((a,b)=>state.players[b].vp-state.players[a].vp||POWERS[a].money-POWERS[b].money);
 }
 export function applyAction(state,action){
- const next=applyGameAction(state,action);recordObjectiveProgress(state,next);return next;
+ const next=applyGameAction(state,action);recordObjectiveProgress(state,next);return action.type==='switch'?next:advanceAutomaticFlow(next);
 }
 function applyGameAction(state,action){
  const issue=gameActionIssue(state,action);if(issue)throw Error(issue);

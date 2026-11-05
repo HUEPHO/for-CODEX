@@ -2,10 +2,13 @@ import {RESEARCH_DATA} from './research-data.js';
 import {hasGrowth} from './growth-effects.js';
 export function researchCost(id){const cost=RESEARCH_DATA[id]?.cost;if(!Number.isInteger(cost))throw Error('该牌的研究费用尚未录入');return cost;}
 export function countryValue(id){const value=RESEARCH_DATA[id]?.countryValue;if(!Number.isInteger(value))throw Error('该国家的价值尚未录入');return value;}
+export function researchIncomeChoicesRequired(s,player=s.current){return hasGrowth(s.players[player],s.round,'income')&&s.players[player].hand.length>2;}
+export function researchCanAutoStart(s){const f=s.flow;return !!(f?.step==='research'&&!f.research&&!researchIncomeChoicesRequired(s,f.order[f.index]));}
 export function researchPreview(s,player=s.current,incomeCards){
  const p=s.players[player],result={base:0,extra:p.focus==='内政焦点'?2:0,money:0,diplomacy:0,armies:0};
  for(const id of p.hand){const c=RESEARCH_DATA[id];if(!c?.bonus||!Number.isInteger(c.research))throw Error('手牌含有尚未录入研究奖励的卡牌');result.base+=c.research;result[c.bonus.type]+=c.bonus.amount;}
  result.incomeCount=hasGrowth(p,s.round,'income')?Math.min(2,p.hand.length):0;
+ if(incomeCards===undefined&&result.incomeCount&&p.hand.length<=2)incomeCards=[...p.hand];
  result.incomePending=result.incomeCount>0&&incomeCards===undefined;
  if(incomeCards!==undefined){
   if(!Array.isArray(incomeCards)||incomeCards.length!==result.incomeCount||new Set(incomeCards).size!==incomeCards.length||incomeCards.some(id=>!p.hand.includes(id)))throw Error('收入优化需选择'+result.incomeCount+'张不同的研究手牌');

@@ -71,7 +71,7 @@ export function rollbackRevealReason(before,after,action={}){
   if(hasNew(p.hand,known)||hasNew(p.assetChoices?.map(c=>c.id),old.assetChoices?.map(c=>c.id))||hasNew(p.objectiveChoices,old.objectiveChoices))return INFO_BARRIER;
   // A redraw can contain exactly the same cards. Drawing still warns,
   // including the automatic new-round draw for all four players.
-  if(old.deck?.length>p.deck?.length||action.type==='draw'&&id===before.current||action.type==='nextRound'&&p.hand.length>0)return INFO_BARRIER;
+  if(old.deck?.length>p.deck?.length||action.type==='draw'&&id===before.current||(action.type==='nextRound'||after.round>before.round)&&p.hand.length>0)return INFO_BARRIER;
  }
  if(hasNew(after.market,before.market))return '能力市场已补充新牌';
  for(const [id,r] of Object.entries(after.regions)){

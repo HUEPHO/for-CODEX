@@ -21,5 +21,6 @@
 .research-allies .research-ally:hover:not(:disabled),.research-allies .research-ally:focus-visible{border-color:#f5ca64;box-shadow:0 0 0 1px #f5ca64}
 .research-allies .research-ally:disabled{cursor:default;opacity:.45;border-color:#627784}
 .research-allies .research-ally.is-exhausted .research-ally-value{display:none}
+.research-allies .research-ally.can-undo{cursor:context-menu;border-color:#bfa26d}
 .game-client.client-scroll .client-command-dock .research-balance{margin:6px 0;font-size:12px}
 .game-client.client-scroll .client-command-dock .research-balance strong{font-size:23px}

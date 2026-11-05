@@ -5,10 +5,11 @@
 /* Publicly revealed events use their original faces, with only live state added. */
 .game-client.client-scroll .client-events-area .client-event-list {
  display: grid;
- grid-template-columns: repeat(2,minmax(0,1fr));
+ grid-template-columns: repeat(4,minmax(0,1fr));
  align-items: start;
- gap: 12px;
+ gap: 6px;
 }
+.game-client.client-scroll .client-events-area .client-event-section { min-height: 0; }
 .game-client.client-scroll .client-events-area .client-event-empty { grid-column: 1 / -1; }
 .game-client.client-scroll .client-events-area .client-event-row--art {
  position: relative;
@@ -29,10 +30,10 @@
 }
 .client-event-art { display: block; width: 100%; height: auto; aspect-ratio: 650 / 465; object-fit: contain; }
 .game-client.client-scroll .client-event-row--art .client-event-owner {
- display: block; padding: 4px 8px; font-size: 12px; background: #10232b;
+ display: block; padding: 2px 4px; font-size: 10px; background: #10232b;
 }
 .game-client.client-scroll .client-event-row--art .client-event-status {
- display: block; width: 100%; padding: 4px 8px; font-size: 11px; line-height: 1.4; color: #ead7a7; background: #10232b;
+ display: block; width: 100%; padding: 2px 4px; font-size: 9px; line-height: 1.4; color: #ead7a7; background: #10232b;
 }
 
 /* Keep the whole four-player rail visible, including a longer setup status. */

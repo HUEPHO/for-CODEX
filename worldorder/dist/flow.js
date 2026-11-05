@@ -22,6 +22,13 @@ export {currentActor as flowActor,aftermathSteps} from './phase-state.js';
 const IDS=['US','CN','EU','RU'];
 export function newFlow(order,round=1){return {round,order:[...order],step:'actions',turnCards:[],index:0,research:null,checks:[],draft:null};}
 function record(s,text){s.log=[text,...s.log].slice(0,30);}
+function startResearch(s,incomeCards){
+ const owner=currentActor(s),p=s.players[owner],preview=researchPreview(s,owner,incomeCards),{base,extra}=preview;
+ if(preview.incomePending)throw Error('请先为收入优化选择两张研究手牌');
+ grantResearchBonuses(p,preview);p.discard.push(...p.played);p.played=[];p.faceDownPlayed=[];
+ s.flow.research={remaining:base+extra,initial:base+extra,spent:0,bonuses:preview,consumedAllies:[]};
+ record(s,`${owner} · 开始研究：手牌合计${base} + 内政焦点${extra}；自动领取${preview.money}资金、${preview.diplomacy-preview.lostDiplomacy}外交、${preview.armies}军队${preview.lostDiplomacy?'（外交超限损失'+preview.lostDiplomacy+'）':''}`);
+}
 function finishAftermath(s,step){const f=s.flow,steps=aftermathSteps(s);f.checks.push(step);s.current=f.order[0];if(f.checks.length===steps.length){if(s.round===6){s.finalAwards={};for(const id of IDS){const assets=2*s.players[id].assets.length,executive=availableExecutive(s,id)?3:0;s.players[id].vp+=assets+executive;s.finalAwards[id]={assets,executive};}f.step='ended';s.phase='结束';record(s,'六轮结束；未使用战略资产每张已自动加2分。'+(s.config.executive?'未使用行政命令已自动加3分。':''));}else f.step='roundEnd';}}
 function requireAftermath(s,step){requireStep(s,'aftermath');if(!s.worldVersion||aftermathSteps(s)[s.flow.checks.length]!==step)throw Error('当前不在该结算步骤');}
 function finishInvestment(s,actor){const f=s.flow;f.investmentDone.push(actor);if(f.investmentDone.length===4)finishAftermath(s,'投资回报');else s.current=f.order[f.investmentDone.length];}
@@ -37,7 +44,7 @@ function afterCard(s){
  if(resumeAfterBattlefield(s))return afterCard(s);
  handleFlow(s,{type:'endAction'});return 'end';
 }
-const TYPES=['startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
+const TYPES=['startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','undoResearchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
 export function handleFlow(s,a){
  if(!s.flow||!TYPES.includes(a.type)&&a.type!=='settlePhaseTask')return false;
  const f=s.flow,p=s.players[s.current];
@@ -90,10 +97,7 @@ export function handleFlow(s,a){
  }
  case 'startResearch':{
   requireStep(s,'research');requireActor(s);if(f.research)throw Error('本人的研究已经开始');
-  const preview=researchPreview(s,s.current,a.incomeCards),{base,extra}=preview;if(preview.incomePending)throw Error('请先为收入优化选择两张研究手牌（不足两张时全选）');grantResearchBonuses(p,preview);
-  p.discard.push(...p.played);p.played=[];p.faceDownPlayed=[];
-  f.research={remaining:base+extra,initial:base+extra,spent:0,bonuses:preview};
-  record(s,`${s.current} · 开始研究：手牌合计${base} + 内政焦点${extra}；自动领取${preview.money}资金、${preview.diplomacy-preview.lostDiplomacy}外交、${preview.armies}军队${preview.lostDiplomacy?'（外交超限损失'+preview.lostDiplomacy+'）':''}`);break;
+  startResearch(s,a.incomeCards);break;
  }
  case 'researchBuy':{
   requireStep(s,'research');requireActor(s);if(!f.research)throw Error('请先开始本人的研究');
@@ -112,7 +116,15 @@ export function handleFlow(s,a){
   requireStep(s,'research');requireActor(s);if(!f.research)throw Error('请先开始本人的研究');
   if(!p.allies.includes(a.id)||(p.exhaustedAllies||[]).includes(a.id))throw Error('盟国不属于你或已横置');
   const value=countryValue(a.id);p.exhaustedAllies??=[];p.exhaustedAllies.push(a.id);f.research.remaining+=value;
+  f.research.consumedAllies??=[];f.research.consumedAllies.push(a.id);
   record(s,`${s.current} · 横置盟国，按牌面价值获得${value}研究力`);break;
+ }
+ case 'undoResearchAlly':{
+  requireStep(s,'research');requireActor(s);
+  if(!f.research?.consumedAllies?.includes(a.id)||!p.allies.includes(a.id)||!p.exhaustedAllies?.includes(a.id))throw Error('只能取消本次研究中消耗的盟国');
+  const value=countryValue(a.id);if(f.research.remaining<value)throw Error(`剩余研究力不足${value}，无法取消该盟国的消耗；已购买的牌不会退回。`);
+  f.research.remaining-=value;f.research.consumedAllies=f.research.consumedAllies.filter(id=>id!==a.id);p.exhaustedAllies=p.exhaustedAllies.filter(id=>id!==a.id);
+  record(s,`${s.current} · 取消本次研究的盟国消耗，退回${value}研究力`);break;
  }
  case 'finishResearch':{
   requireStep(s,'research');requireActor(s);if(!f.research)throw Error('请先结算手牌奖励并开始研究');
