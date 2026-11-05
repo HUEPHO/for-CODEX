@@ -1,0 +1,1626 @@
+{
+  "approved": "2026-11-05",
+  "imported": [
+    {
+      "name": "挪威",
+      "side": "正面",
+      "source": "assets/c35627e0bba08.webp",
+      "target": "assets/zh-CN/c35627e0bba08.webp",
+      "review": "素材/c35627e0bba08.zh-CN.png",
+      "reviewSHA256": "8865df0ea2bccb7588aac22c5a220ef63e291c4cfb4964dc50eded6748552784",
+      "sha256": "0be5d79739c20f5333e600a3fd6e3484b5afc7ac6d3c513b5cc4810b30aa1c4c"
+    },
+    {
+      "name": "白俄罗斯",
+      "side": "正面",
+      "source": "assets/c4d2b5add5fd4.webp",
+      "target": "assets/zh-CN/c4d2b5add5fd4.webp",
+      "review": "素材/c4d2b5add5fd4.zh-CN.png",
+      "reviewSHA256": "abd5a8c41fa6b36baff5f64ab6b8e56a2997d722d73c24b72ae5e1dabc16bc0f",
+      "sha256": "7bb5bba2fa44d932a7dc9ad29db9d41a6b09761e0a8c44e1259a9a8eee7d341a"
+    },
+    {
+      "name": "亚美尼亚",
+      "side": "正面",
+      "source": "assets/c67140897200a.webp",
+      "target": "assets/zh-CN/c67140897200a.webp",
+      "review": "素材/c67140897200a.zh-CN.png",
+      "reviewSHA256": "a85bbdd5fe098bb431c8911f3dc89bf5f0ec24fb3e6c8b791976bb2fe5517404",
+      "sha256": "586c05e4ef6eb50a51cabdc1e6da39cd695d16b8a42d26ec7972bdce2d0f1f7b"
+    },
+    {
+      "name": "加拿大",
+      "side": "正面",
+      "source": "assets/c5edff473d37a.webp",
+      "target": "assets/zh-CN/c5edff473d37a.webp",
+      "review": "素材/c5edff473d37a.zh-CN.png",
+      "reviewSHA256": "048c9b4ce99080a23f6e534d8cc541c8e8d4adcc44220b85e03b23ba3c9c09a4",
+      "sha256": "8cf469aa39d6c1036df77cbce5cf38d8066c312ad81d5b4d069c0217f5b30550"
+    },
+    {
+      "name": "墨西哥",
+      "side": "正面",
+      "source": "assets/cb427f6dd4283.webp",
+      "target": "assets/zh-CN/cb427f6dd4283.webp",
+      "review": "素材/cb427f6dd4283.zh-CN.png",
+      "reviewSHA256": "fa9e12dbc6f036737e1b41c8f9485232aed7e3553895481149b8270ff0381560",
+      "sha256": "d8cfba59c08fbb370ceb6fdc1a07a7286304c9d325d0c00e63a404f61818f69b"
+    },
+    {
+      "name": "伊拉克",
+      "side": "正面",
+      "source": "assets/c5b14895e1f71.webp",
+      "target": "assets/zh-CN/c5b14895e1f71.webp",
+      "review": "素材/c5b14895e1f71.zh-CN.png",
+      "reviewSHA256": "98a6e2287c072c75a316ca9059dc6935077f718888f29cc583255571f8700712",
+      "sha256": "98c710390b698a65d1ba58e4ebbb37f8ff8702332b5ceda2056321a7bb050eed"
+    },
+    {
+      "name": "约旦",
+      "side": "正面",
+      "source": "assets/c669f1bf5bc5f.webp",
+      "target": "assets/zh-CN/c669f1bf5bc5f.webp",
+      "review": "素材/c669f1bf5bc5f.zh-CN.png",
+      "reviewSHA256": "77695e1596471a6c7c11d291593e3699789a81036c5786014b0b3b2c70120808",
+      "sha256": "712618b81a8e121aa02b2b1d5384768bf456983f80343c37a1f080bbd9bde517"
+    },
+    {
+      "name": "叙利亚",
+      "side": "正面",
+      "source": "assets/cb617d12c21c0.webp",
+      "target": "assets/zh-CN/cb617d12c21c0.webp",
+      "review": "素材/cb617d12c21c0.zh-CN.png",
+      "reviewSHA256": "eb3db3d7b27c291d45577e4d3241f8970bc45fd0d175b4af96bbce0abcb1192b",
+      "sha256": "689bb0dde57643a79312d2a20ab78520c68ce647473e45fcc491751ed3173e9e"
+    },
+    {
+      "name": "尼日利亚",
+      "side": "正面",
+      "source": "assets/c77fa4750ee97.webp",
+      "target": "assets/zh-CN/c77fa4750ee97.webp",
+      "review": "素材/c77fa4750ee97.zh-CN.png",
+      "reviewSHA256": "70cf4bb37e4f4d05c9312486d6a6e542962cf4086b5d607b61dd1a43e2cc0eba",
+      "sha256": "dacb9f7f714aa151e71d29f19b49da859cfa5b47c1b9c181d3650c971802aa60"
+    },
+    {
+      "name": "南非",
+      "side": "正面",
+      "source": "assets/c136d13172c98.webp",
+      "target": "assets/zh-CN/c136d13172c98.webp",
+      "review": "素材/c136d13172c98.zh-CN.png",
+      "reviewSHA256": "46dbdc332f1e9d273e40f7860a9f633edf613a74549f0640e858eb0da9f5ed3e",
+      "sha256": "cea813d24a49fe7babb3228681c2b4439a3edaed50d5ac3657b4869e18292eb3"
+    },
+    {
+      "name": "印度",
+      "side": "正面",
+      "source": "assets/c5cc315dcb8bd.webp",
+      "target": "assets/zh-CN/c5cc315dcb8bd.webp",
+      "review": "素材/c5cc315dcb8bd.zh-CN.png",
+      "reviewSHA256": "bbfd122cfa595a37ef1e1eeb055bda5e1b590061543faab5af209203148c6894",
+      "sha256": "b4d8a5a07c6593c2d332ff4bfa937b018cb08ffdf26487acb9b6966244c31840"
+    },
+    {
+      "name": "老挝",
+      "side": "正面",
+      "source": "assets/c3b8dd93d4f06.webp",
+      "target": "assets/zh-CN/c3b8dd93d4f06.webp",
+      "review": "素材/c3b8dd93d4f06.zh-CN.png",
+      "reviewSHA256": "215629822ec411baa737e2c1078c03fa97fb4b68a14334eae173294114e9a585",
+      "sha256": "76b63ae794ca7256aa6daa2e83887cf423ab41fffbe82089c9acd74a66033ef4"
+    },
+    {
+      "name": "日本",
+      "side": "正面",
+      "source": "assets/ce2df59690e60.webp",
+      "target": "assets/zh-CN/ce2df59690e60.webp",
+      "review": "素材/ce2df59690e60.zh-CN.png",
+      "reviewSHA256": "faeb7279df5db2d885f842af81743d65e265664d17c0f71a2e4c97a2bd14f0dd",
+      "sha256": "b606c90d7aac30e8138af08520ee20c82e80c7c3602c00210de7385159fb40bf"
+    },
+    {
+      "name": "巴基斯坦",
+      "side": "正面",
+      "source": "assets/cd3e3a0f1fe94.webp",
+      "target": "assets/zh-CN/cd3e3a0f1fe94.webp",
+      "review": "素材/cd3e3a0f1fe94.zh-CN.png",
+      "reviewSHA256": "b4bee793fa14c0e7948b334a96cf5d3a709cb725397965618675a33a2496cfea",
+      "sha256": "6aa9aa47efb2c3d3ca6743a0d0e15c4367100b59c198d68c57e76b8e76ff8796"
+    },
+    {
+      "name": "塔吉克斯坦",
+      "side": "正面",
+      "source": "assets/c73da57a51c66.webp",
+      "target": "assets/zh-CN/c73da57a51c66.webp",
+      "review": "素材/c73da57a51c66.zh-CN.png",
+      "reviewSHA256": "cfe169bcf566590467d1a7f435fa696f9ee3c1329df52f454baa9d05b1189917",
+      "sha256": "dbcbd523d6215b16f88b37b8bceabac03505789e7edeb9123b0e834346fe0c33"
+    },
+    {
+      "name": "欧盟成员国",
+      "side": "正面",
+      "source": "assets/ca03520c27e87.webp",
+      "target": "assets/zh-CN/ca03520c27e87.webp",
+      "review": "素材/ca03520c27e87.zh-CN.png",
+      "reviewSHA256": "b09e4a67f9b999be7886b05485393936a30d98939e7176a207c66f846142c0ea",
+      "sha256": "e57d105e1269cb5ef7feca6ea44ddfc29dcfc1e3085060ef20d0b34e14641557"
+    },
+    {
+      "name": "冰岛",
+      "side": "正面",
+      "source": "assets/c5bc763998f23.webp",
+      "target": "assets/zh-CN/c5bc763998f23.webp",
+      "review": "素材/c5bc763998f23.zh-CN.png",
+      "reviewSHA256": "242f0394f4cbe31b27d50e45391909f02a30f565611386845bf5ebfd78fc3d05",
+      "sha256": "ecaec7f1d73392196c8bde22cb2985536e6b60b84a17e62f648752fb4e9ff339"
+    },
+    {
+      "name": "智利",
+      "side": "正面",
+      "source": "assets/ca627fdd439a2.webp",
+      "target": "assets/zh-CN/ca627fdd439a2.webp",
+      "review": "素材/ca627fdd439a2.zh-CN.png",
+      "reviewSHA256": "a2a902802ba6e2ed91a7ea4b03f0f2192bb575a842d7abe8e303918fa36327cd",
+      "sha256": "eb8cf21945c4843f4ec1e7704ce230b3d4342842052775c158350444ad9f58d3"
+    },
+    {
+      "name": "智利",
+      "side": "背面",
+      "source": "assets/ca627fdd439a2-back.webp",
+      "target": "assets/zh-CN/ca627fdd439a2-back.webp",
+      "review": "素材/ca627fdd439a2-back.zh-CN.png",
+      "reviewSHA256": "0221606f42e1c620f843a78f74324c48158df5dd1f2f73c512d4eac78faa3f65",
+      "sha256": "96418a8fbcbd1d065ff2996c3fa5998edbd97b6f551c99ca2cca104a2a25155a"
+    },
+    {
+      "name": "巴西",
+      "side": "正面",
+      "source": "assets/cb4eb4d5ab2b9.webp",
+      "target": "assets/zh-CN/cb4eb4d5ab2b9.webp",
+      "review": "素材/cb4eb4d5ab2b9.zh-CN.png",
+      "reviewSHA256": "fa3038bfe7bb9e45a48e8e9b07ac67dc696a1f6962560a8d16bf54fa6956d860",
+      "sha256": "8d0a637fe87a2f15ec5ffed8e9c93e021e37c9384f72ea848d6de284970a2c61"
+    },
+    {
+      "name": "巴西",
+      "side": "背面",
+      "source": "assets/cb4eb4d5ab2b9-back.webp",
+      "target": "assets/zh-CN/cb4eb4d5ab2b9-back.webp",
+      "review": "素材/cb4eb4d5ab2b9-back.zh-CN.png",
+      "reviewSHA256": "b7b1703a4de5325661bfa71085ec09ff921e57416f48683b943cef25ce0e5a2d",
+      "sha256": "9c2c52e1cfee5efccd5fcd4700119d03f4481bcce31fbc9022ce0119e1ee44f7"
+    },
+    {
+      "name": "亚美尼亚",
+      "side": "正面",
+      "source": "assets/c6b8383321370.webp",
+      "target": "assets/zh-CN/c6b8383321370.webp",
+      "review": "素材/c6b8383321370.zh-CN.png",
+      "reviewSHA256": "ed0457628839cd2dbe710ab94d358f3fe207b7c93146317d6c2b0442f2446fea",
+      "sha256": "5ad639a6d50bac25c5db60d56b66b7e0f3de081ebba0a7b8594fb75a819f9645"
+    },
+    {
+      "name": "亚美尼亚",
+      "side": "背面",
+      "source": "assets/c6b8383321370-back.webp",
+      "target": "assets/zh-CN/c6b8383321370-back.webp",
+      "review": "素材/c6b8383321370-back.zh-CN.png",
+      "reviewSHA256": "cf49ee83e5a646f9047dbc8738057f42a0884a21f929ac761ff0d4a0db47c560",
+      "sha256": "a37d6ab8dcc344884d9b48a9e7de00093eeea95bf1b19a95c88b154d1e1a145d"
+    },
+    {
+      "name": "格鲁吉亚",
+      "side": "正面",
+      "source": "assets/ce3c745de13c1.webp",
+      "target": "assets/zh-CN/ce3c745de13c1.webp",
+      "review": "素材/ce3c745de13c1.zh-CN.png",
+      "reviewSHA256": "88d5ad545995c13efabd1c86c0503703033226df014099191d171bb6813e364b",
+      "sha256": "2c02e3318e29cf195df332d26c20b4e9a7cf774f531db36a2e4db66655ccdaf7"
+    },
+    {
+      "name": "格鲁吉亚",
+      "side": "背面",
+      "source": "assets/ce3c745de13c1-back.webp",
+      "target": "assets/zh-CN/ce3c745de13c1-back.webp",
+      "review": "素材/ce3c745de13c1-back.zh-CN.png",
+      "reviewSHA256": "e67ff304767724ee510720b78fea03b294d3b3c01f34ec493a11315f86581cfc",
+      "sha256": "637fc4a0c6368964246343be040420a58e342ec3c7ed95a41cccb2e15b109b53"
+    },
+    {
+      "name": "哈萨克斯坦",
+      "side": "正面",
+      "source": "assets/cc9a7e443adf4.webp",
+      "target": "assets/zh-CN/cc9a7e443adf4.webp",
+      "review": "素材/cc9a7e443adf4.zh-CN.png",
+      "reviewSHA256": "3d16a086a19f22a039e41634af4b817be60fffd8fef513b5cd4d4d078ee282b8",
+      "sha256": "063c7c03d19af849e47982ae7fa55061e07f55db61fab55fc055631360736081"
+    },
+    {
+      "name": "哈萨克斯坦",
+      "side": "背面",
+      "source": "assets/cc9a7e443adf4-back.webp",
+      "target": "assets/zh-CN/cc9a7e443adf4-back.webp",
+      "review": "素材/cc9a7e443adf4-back.zh-CN.png",
+      "reviewSHA256": "5558a76117f4c08a42ef0265cadd5b602de5560c3ac585eb85945c31f003ba7b",
+      "sha256": "c2c1c24b30775dbcba0c5357517d4c4448dea0c43c5c433aa1dfc285b96897d4"
+    },
+    {
+      "name": "阿塞拜疆",
+      "side": "正面",
+      "source": "assets/cac28e94eec19.webp",
+      "target": "assets/zh-CN/cac28e94eec19.webp",
+      "review": "素材/cac28e94eec19.zh-CN.png",
+      "reviewSHA256": "cad808052869d24a42c3aa29f0cef192e89730bc7e99a697c5b2eb5c0c86ad8c",
+      "sha256": "083c82153aa19a75f19f74f104a4d2e0ad4b5cd3147f3069b57c5a95fb662ca3"
+    },
+    {
+      "name": "阿塞拜疆",
+      "side": "背面",
+      "source": "assets/cac28e94eec19-back.webp",
+      "target": "assets/zh-CN/cac28e94eec19-back.webp",
+      "review": "素材/cac28e94eec19-back.zh-CN.png",
+      "reviewSHA256": "74e2245936fbfdd9cf727e4afdf34b57301d7b8d4789c741433d4425c4cefc71",
+      "sha256": "49baf6e88469954c9f0fda7a5ff061f13337c4eca9705093cc2d47300728aa94"
+    },
+    {
+      "name": "塔吉克斯坦",
+      "side": "正面",
+      "source": "assets/c6dedb633c722.webp",
+      "target": "assets/zh-CN/c6dedb633c722.webp",
+      "review": "素材/c6dedb633c722.zh-CN.png",
+      "reviewSHA256": "c5dd74c7dc04a9e157b288bf78e959fe9b2515fda6013aa0209bc379d6464b40",
+      "sha256": "dc155ba57f13d24723ef168cf93d47c1e88154dffbc1f27d49a0462993b9e794"
+    },
+    {
+      "name": "塔吉克斯坦",
+      "side": "背面",
+      "source": "assets/c6dedb633c722-back.webp",
+      "target": "assets/zh-CN/c6dedb633c722-back.webp",
+      "review": "素材/c6dedb633c722-back.zh-CN.png",
+      "reviewSHA256": "8d1cecb9069fac275d4373a94e89d3df68aafe9a1c182830ac36da2b495b6489",
+      "sha256": "708da918cae5c1e26aee33a0afaa434e9ed3127d31248cfb0964d2f9b2fd3ced"
+    },
+    {
+      "name": "土库曼斯坦",
+      "side": "正面",
+      "source": "assets/c7d6fffb49986.webp",
+      "target": "assets/zh-CN/c7d6fffb49986.webp",
+      "review": "素材/c7d6fffb49986.zh-CN.png",
+      "reviewSHA256": "b37d769e8514ed210bccdfe2be003146daf47a24d93db65216b748c28df479d3",
+      "sha256": "2282a654c9e4f31c0cad892efcee1ec80130e3bfc59fafa5295c3a94ec881d62"
+    },
+    {
+      "name": "土库曼斯坦",
+      "side": "背面",
+      "source": "assets/c7d6fffb49986-back.webp",
+      "target": "assets/zh-CN/c7d6fffb49986-back.webp",
+      "review": "素材/c7d6fffb49986-back.zh-CN.png",
+      "reviewSHA256": "2760120234e19140ef23b57b635922aa56e90d36c47f697be7dbc828ab1e72a1",
+      "sha256": "8198f86dcc73d5f33b02959dc00e1da596db6bad866da6419fc13ecb28a6503e"
+    },
+    {
+      "name": "阿富汗",
+      "side": "正面",
+      "source": "assets/cf58f6e021ef9.webp",
+      "target": "assets/zh-CN/cf58f6e021ef9.webp",
+      "review": "素材/cf58f6e021ef9.zh-CN.png",
+      "reviewSHA256": "2c67cbeef7f253668672c8dfc3e5ee585a878afe271e98e0afe3ced8aa35730d",
+      "sha256": "621a0a5fa01054c821399dc8e993da438b73bd989c829a5a44e2086c55cac540"
+    },
+    {
+      "name": "阿富汗",
+      "side": "背面",
+      "source": "assets/cf58f6e021ef9-back.webp",
+      "target": "assets/zh-CN/cf58f6e021ef9-back.webp",
+      "review": "素材/cf58f6e021ef9-back.zh-CN.png",
+      "reviewSHA256": "58fdcce84c13f537cb630436994c8593e7951508c997373260fb06a30dc38bed",
+      "sha256": "c3427e49a31cfc39acb6167f6a2d4a0a1858a6d36b7991d9f9daa0e13e88e96c"
+    },
+    {
+      "name": "乌兹别克斯坦",
+      "side": "正面",
+      "source": "assets/c7ab5e63ef4c7.webp",
+      "target": "assets/zh-CN/c7ab5e63ef4c7.webp",
+      "review": "素材/c7ab5e63ef4c7.zh-CN.png",
+      "reviewSHA256": "95d2eeb473d2bf309db13ce2045b8ac2679a4c0826f62cfe4ea08d4c65438272",
+      "sha256": "41353b9961e27623f5edc30e7e147a062359d9c14ed00e5af5d245fe924c57b2"
+    },
+    {
+      "name": "乌兹别克斯坦",
+      "side": "背面",
+      "source": "assets/c7ab5e63ef4c7-back.webp",
+      "target": "assets/zh-CN/c7ab5e63ef4c7-back.webp",
+      "review": "素材/c7ab5e63ef4c7-back.zh-CN.png",
+      "reviewSHA256": "2b10c18d8ee6ff95e15fb45a6685eb321e2bd99b15ecb328c1bc30c8f3924b17",
+      "sha256": "a8d246ab6d491051f9ad6eeb49251e9d2c59c8ccd31be72c9307a92c8014022f"
+    },
+    {
+      "name": "吉尔吉斯斯坦",
+      "side": "正面",
+      "source": "assets/c2183dda72071.webp",
+      "target": "assets/zh-CN/c2183dda72071.webp",
+      "review": "素材/c2183dda72071.zh-CN.png",
+      "reviewSHA256": "ff9dd7216ece2b87b6e716cf5088fca1968d6b8b812a75d6ff6a0b2c31fe44c4",
+      "sha256": "bc6ddf4b04931c6ef9973aa5b1b7ce6cdb015bce26f6b623374ee5eb78c72180"
+    },
+    {
+      "name": "吉尔吉斯斯坦",
+      "side": "背面",
+      "source": "assets/c2183dda72071-back.webp",
+      "target": "assets/zh-CN/c2183dda72071-back.webp",
+      "review": "素材/c2183dda72071-back.zh-CN.png",
+      "reviewSHA256": "37d1a35ad11e2dadff0db9ba5e7a968f103dd0a85d9d2a98c7410968786356b5",
+      "sha256": "5df63c230fdf0d0c1a9a1f61471262b8849a0e2f9ca6c46b1919070a3af3d585"
+    },
+    {
+      "name": "蒙古",
+      "side": "正面",
+      "source": "assets/c4796301c5d0a.webp",
+      "target": "assets/zh-CN/c4796301c5d0a.webp",
+      "review": "素材/c4796301c5d0a.zh-CN.png",
+      "reviewSHA256": "ea7fb906b04e347472cdc5f776b521ea946185413d1dd3f83c7d1c4699c8c130",
+      "sha256": "522277ac369c99624f69fffef0208f575b00a68ea542bc4b7993ccd4bcb463d1"
+    },
+    {
+      "name": "蒙古",
+      "side": "背面",
+      "source": "assets/c4796301c5d0a-back.webp",
+      "target": "assets/zh-CN/c4796301c5d0a-back.webp",
+      "review": "素材/c4796301c5d0a-back.zh-CN.png",
+      "reviewSHA256": "fabfde351edd1ab1dc89c4b229419b25066719738c55485bad9b0bea5f5c75a0",
+      "sha256": "1e1d48f6cb59a0808e47ed4829a6bdb455d4d22cf56d8404615c6aef980ee968"
+    },
+    {
+      "name": "波斯尼亚和黑塞哥维那",
+      "side": "正面",
+      "source": "assets/c5b01c4f40686.webp",
+      "target": "assets/zh-CN/c5b01c4f40686.webp",
+      "review": "素材/c5b01c4f40686.zh-CN.png",
+      "reviewSHA256": "3cdd75f066b81118e695b5b59953527459344a5f1d5d1f5da711b6327401fc36",
+      "sha256": "af8cddce556fa211aaffa06de877922b6856c6c8f31c756d1d1ab9b247b5c146"
+    },
+    {
+      "name": "波斯尼亚和黑塞哥维那",
+      "side": "背面",
+      "source": "assets/c5b01c4f40686-back.webp",
+      "target": "assets/zh-CN/c5b01c4f40686-back.webp",
+      "review": "素材/c5b01c4f40686-back.zh-CN.png",
+      "reviewSHA256": "ab531faa510fb687c66f83d03da0e66dd0442dda1a17d0f40b8f998530c57f0d",
+      "sha256": "d49dba30898c902b4dbc3c5be19fbb2ce24b095d7643c3585d91bf8f97902533"
+    },
+    {
+      "name": "白俄罗斯",
+      "side": "正面",
+      "source": "assets/cebf787c1e1c0.webp",
+      "target": "assets/zh-CN/cebf787c1e1c0.webp",
+      "review": "素材/cebf787c1e1c0.zh-CN.png",
+      "reviewSHA256": "eb3f9c760ae6b32ab6961070dfaaf99ec4df266b156ea12fbe328f183adfede2",
+      "sha256": "f2ec787ba62740857155b3ed2d387b261462c43a8c115a1703ae09e415b24449"
+    },
+    {
+      "name": "白俄罗斯",
+      "side": "背面",
+      "source": "assets/cebf787c1e1c0-back.webp",
+      "target": "assets/zh-CN/cebf787c1e1c0-back.webp",
+      "review": "素材/cebf787c1e1c0-back.zh-CN.png",
+      "reviewSHA256": "5b770ae479b54426fb366441f3f93ffde3e6e35f1231f20b380395449d411a5a",
+      "sha256": "60b3f4707ceb82e46987de5a2bb5ff4253f6ae2f292c76857b7588eef159acfb"
+    },
+    {
+      "name": "瑞士",
+      "side": "正面",
+      "source": "assets/cab608e57ef1f.webp",
+      "target": "assets/zh-CN/cab608e57ef1f.webp",
+      "review": "素材/cab608e57ef1f.zh-CN.png",
+      "reviewSHA256": "4dde6f60ec7879c2092986e387e7d2b3d3adf420117e9532230f71d5e0bbe546",
+      "sha256": "c0eff262ebd6cbcc15e7aaaecc9c4baa44bbbc32ddeaab15a3c72d6130e3b3a0"
+    },
+    {
+      "name": "瑞士",
+      "side": "背面",
+      "source": "assets/cab608e57ef1f-back.webp",
+      "target": "assets/zh-CN/cab608e57ef1f-back.webp",
+      "review": "素材/cab608e57ef1f-back.zh-CN.png",
+      "reviewSHA256": "bf33b96f531dcbabc6f009aa82fb399c6c1f8c35db7aa96ec1b0ab48e23c2f7f",
+      "sha256": "dd40a159fb9125822922b70449450aa42030a50db027ee70e3bb852f8d2aee9f"
+    },
+    {
+      "name": "塞尔维亚",
+      "side": "正面",
+      "source": "assets/cb4cde4bb826f.webp",
+      "target": "assets/zh-CN/cb4cde4bb826f.webp",
+      "review": "素材/cb4cde4bb826f.zh-CN.png",
+      "reviewSHA256": "e346825a9e7431b8664c34ade0995eaf8eba481a3547fbc432faa066242d4fab",
+      "sha256": "cf5300876ce72920bdf44b73eeafe187cd1a7667644901d7b82cc5d9d4239c28"
+    },
+    {
+      "name": "塞尔维亚",
+      "side": "背面",
+      "source": "assets/cb4cde4bb826f-back.webp",
+      "target": "assets/zh-CN/cb4cde4bb826f-back.webp",
+      "review": "素材/cb4cde4bb826f-back.zh-CN.png",
+      "reviewSHA256": "eb2554ba9b2d42931754f51c8eca0260b631159b18d3b4a6f59be75697b5eb56",
+      "sha256": "b556f5b0695034fc01f54207e1a66257c29862493e4904c4ca969c3458f1ad2c"
+    },
+    {
+      "name": "阿尔巴尼亚",
+      "side": "正面",
+      "source": "assets/c07ef5e7f9a84.webp",
+      "target": "assets/zh-CN/c07ef5e7f9a84.webp",
+      "review": "素材/c07ef5e7f9a84.zh-CN.png",
+      "reviewSHA256": "f6c05b3d744e0b77a15b3fbe96b942122e72adfe8ec34b76eef3ecdae404a46a",
+      "sha256": "9e15383ffaf5f63b989c161440582d263719980bf167ec16ccaf9b95ca6416ab"
+    },
+    {
+      "name": "阿尔巴尼亚",
+      "side": "背面",
+      "source": "assets/c07ef5e7f9a84-back.webp",
+      "target": "assets/zh-CN/c07ef5e7f9a84-back.webp",
+      "review": "素材/c07ef5e7f9a84-back.zh-CN.png",
+      "reviewSHA256": "4ea59600b84fe93bf68f0e4329cc3ab41d4fcad2c49138ecaf686b3f4c42e314",
+      "sha256": "67d9f80e50e937e4254b6f25868b547cd8cfe644fbed0329c252db51524be115"
+    },
+    {
+      "name": "乌克兰",
+      "side": "正面",
+      "source": "assets/c54459f8226fa.webp",
+      "target": "assets/zh-CN/c54459f8226fa.webp",
+      "review": "素材/c54459f8226fa.zh-CN.png",
+      "reviewSHA256": "104dc33feeabac7c612445c6188f779562ca6d3254c036642c419d346dbbdc7b",
+      "sha256": "fec3b87799a00f7c38e78661e61138e0038883bce13c8b0654e3c56caf0e84bc"
+    },
+    {
+      "name": "乌克兰",
+      "side": "背面",
+      "source": "assets/c54459f8226fa-back.webp",
+      "target": "assets/zh-CN/c54459f8226fa-back.webp",
+      "review": "素材/c54459f8226fa-back.zh-CN.png",
+      "reviewSHA256": "920a064e9ba70f88c71da859e12b361a803c70e5430248992cc8754b4cacf802",
+      "sha256": "e231641ebe5c7e76e456536eb28ee638ed8a96faf6d739f359e1bd7b18db25c4"
+    },
+    {
+      "name": "摩尔多瓦",
+      "side": "正面",
+      "source": "assets/c168da92927e6.webp",
+      "target": "assets/zh-CN/c168da92927e6.webp",
+      "review": "素材/c168da92927e6.zh-CN.png",
+      "reviewSHA256": "a598b696ebd7f0f162dd42e067ea5554c3218837454cedb59a4d3cfa174e8503",
+      "sha256": "1c1b98431c60c21611355045d33eaa22b94eac985c8d891797770eb39bf7ed70"
+    },
+    {
+      "name": "摩尔多瓦",
+      "side": "背面",
+      "source": "assets/c168da92927e6-back.webp",
+      "target": "assets/zh-CN/c168da92927e6-back.webp",
+      "review": "素材/c168da92927e6-back.zh-CN.png",
+      "reviewSHA256": "f191cc23d167e7d321069729c57e448555855b4e11bb1c79324efcd90c7b6636",
+      "sha256": "dbc3ec18a481ec958d9da21c41e9e2c83b3d689e796d07a4e47faa31eda98335"
+    },
+    {
+      "name": "冰岛",
+      "side": "正面",
+      "source": "assets/c5e5a30872c04.webp",
+      "target": "assets/zh-CN/c5e5a30872c04.webp",
+      "review": "素材/c5e5a30872c04.zh-CN.png",
+      "reviewSHA256": "1b7358ba19ebf2a8f6104cdc6c16d004df299f0b165f5c7ef7f3024226af8fa2",
+      "sha256": "835b1a91e7999c219ff59d78caeb4c3caaf42a86068cd69c1530b1bd3d83cb95"
+    },
+    {
+      "name": "冰岛",
+      "side": "背面",
+      "source": "assets/c5e5a30872c04-back.webp",
+      "target": "assets/zh-CN/c5e5a30872c04-back.webp",
+      "review": "素材/c5e5a30872c04-back.zh-CN.png",
+      "reviewSHA256": "6e30d57a25548d3a759ee86541fa6c85f53c1c3b6a6cb58a36be86803d876e5f",
+      "sha256": "bdde6255b484e2dd5bb82319ad5ec391636175457cce7f086d5a1c183002c506"
+    },
+    {
+      "name": "克罗地亚",
+      "side": "正面",
+      "source": "assets/c8ec654f26579.webp",
+      "target": "assets/zh-CN/c8ec654f26579.webp",
+      "review": "素材/c8ec654f26579.zh-CN.png",
+      "reviewSHA256": "190392447d596434a757b7b4b9463133a76796604dc455549190e754490590ee",
+      "sha256": "def7d849f0da3f6ab98b917ca21349686afef45a4255726d8123d88216cfcf5b"
+    },
+    {
+      "name": "克罗地亚",
+      "side": "背面",
+      "source": "assets/c8ec654f26579-back.webp",
+      "target": "assets/zh-CN/c8ec654f26579-back.webp",
+      "review": "素材/c8ec654f26579-back.zh-CN.png",
+      "reviewSHA256": "afc08b860f95e02cf74d8dc2b6d74ec805b10ba4558a48fb1f8fcba8532fdd08",
+      "sha256": "0da67e2ae38a01279737dadc8caee686b6af25c595810998ab8d8193b3de7bed"
+    },
+    {
+      "name": "挪威",
+      "side": "正面",
+      "source": "assets/c0bcc4a617152.webp",
+      "target": "assets/zh-CN/c0bcc4a617152.webp",
+      "review": "素材/c0bcc4a617152.zh-CN.png",
+      "reviewSHA256": "e5d7a14ff931f6f2e7768465df9b2bb1dc5d3c89f85e8433d12e92f2d83e01f4",
+      "sha256": "422fd28758c526f89bc4c63fc3bbff20dfb0b8784141c96aa469a474321e3cea"
+    },
+    {
+      "name": "挪威",
+      "side": "背面",
+      "source": "assets/c0bcc4a617152-back.webp",
+      "target": "assets/zh-CN/c0bcc4a617152-back.webp",
+      "review": "素材/c0bcc4a617152-back.zh-CN.png",
+      "reviewSHA256": "e492361002d426e2775e4b4fa5a90e6e01e2850822227919b75944e51e134981",
+      "sha256": "7189d5aa289c9fe24105dec3d0779139175f80afebd76d25eb2f6cf5a43009ae"
+    },
+    {
+      "name": "加拿大",
+      "side": "正面",
+      "source": "assets/c2dbb5cc7584f.webp",
+      "target": "assets/zh-CN/c2dbb5cc7584f.webp",
+      "review": "素材/c2dbb5cc7584f.zh-CN.png",
+      "reviewSHA256": "c3cd69cc882d5fa63e207716f9df1dae504ef25fe2ac4bc3abfb7a6eca39e5a6",
+      "sha256": "e9263c009a6d2b5979c84280e83e483de110bd42fd931c1fae177e401c5d81b8"
+    },
+    {
+      "name": "加拿大",
+      "side": "背面",
+      "source": "assets/c2dbb5cc7584f-back.webp",
+      "target": "assets/zh-CN/c2dbb5cc7584f-back.webp",
+      "review": "素材/c2dbb5cc7584f-back.zh-CN.png",
+      "reviewSHA256": "e784fcba7fdb01c9d85b3481ea793368175be03aed7f38a68d5775a555bad504",
+      "sha256": "d53bf0b8f3a8abd590c8393fde6e164f507907c59583f9ef149e2bd3e192b569"
+    },
+    {
+      "name": "哥伦比亚",
+      "side": "正面",
+      "source": "assets/cc8a91b52484d.webp",
+      "target": "assets/zh-CN/cc8a91b52484d.webp",
+      "review": "素材/cc8a91b52484d.zh-CN.png",
+      "reviewSHA256": "c6faee92a22f88d04bdaa434066399311857fd4d61c422e04d358abd9539a1f5",
+      "sha256": "6503dda9ab3e41cf1318f0689bb7140b2a3d1a72c625a688687c9eda7ad1cbf0"
+    },
+    {
+      "name": "哥伦比亚",
+      "side": "背面",
+      "source": "assets/cc8a91b52484d-back.webp",
+      "target": "assets/zh-CN/cc8a91b52484d-back.webp",
+      "review": "素材/cc8a91b52484d-back.zh-CN.png",
+      "reviewSHA256": "48c5de8c32b37c324247e8bcac27bdd51d72ff2780b1ad0bb0c997e6ce59266a",
+      "sha256": "a6f2ea6eefe9a6aca9b1878d1a371723cd4af0036d489990e6f2dd378e543182"
+    },
+    {
+      "name": "秘鲁",
+      "side": "正面",
+      "source": "assets/c644d8da9e0d3.webp",
+      "target": "assets/zh-CN/c644d8da9e0d3.webp",
+      "review": "素材/c644d8da9e0d3.zh-CN.png",
+      "reviewSHA256": "3131c05d0974ccd4bc3eed6c917cace6fc4c22da2d190d96d3d17b2d1e13eaef",
+      "sha256": "17c6c2b4e4ed47850328625e87d16e4fe195a9354d3e7563c08195869bb5aba6"
+    },
+    {
+      "name": "秘鲁",
+      "side": "背面",
+      "source": "assets/c644d8da9e0d3-back.webp",
+      "target": "assets/zh-CN/c644d8da9e0d3-back.webp",
+      "review": "素材/c644d8da9e0d3-back.zh-CN.png",
+      "reviewSHA256": "be767899bf9b2dada3fe705011623ef86fde3156523eb275e18ba9087c143aa3",
+      "sha256": "7bf94b6f6dcb9257d6bffb1797bc99a79847c46648742409e8c503c1ef307cc3"
+    },
+    {
+      "name": "阿根廷",
+      "side": "正面",
+      "source": "assets/cf4c10d366e4e.webp",
+      "target": "assets/zh-CN/cf4c10d366e4e.webp",
+      "review": "素材/cf4c10d366e4e.zh-CN.png",
+      "reviewSHA256": "2f46e20dd88bbdee98ee74d2ce796c7a24f3e92dfcf91536e998d4702e82f3f9",
+      "sha256": "7d3e892160e4308f063aac687f5be44d10194dbefe61b1e4abd3e86384f9e70c"
+    },
+    {
+      "name": "阿根廷",
+      "side": "背面",
+      "source": "assets/cf4c10d366e4e-back.webp",
+      "target": "assets/zh-CN/cf4c10d366e4e-back.webp",
+      "review": "素材/cf4c10d366e4e-back.zh-CN.png",
+      "reviewSHA256": "7d953b68a96120fc1fcefe2f892681a8932606d7b1546a6acfb23cc267df3730",
+      "sha256": "d3911d341eccafbf4d6e3c86cbaa5af5bd70807acaacf0b9f3a8c9c7a11b6872"
+    },
+    {
+      "name": "洪都拉斯",
+      "side": "正面",
+      "source": "assets/caa3cb3336c57.webp",
+      "target": "assets/zh-CN/caa3cb3336c57.webp",
+      "review": "素材/caa3cb3336c57.zh-CN.png",
+      "reviewSHA256": "0a5114ed2c1269be274649a45a1a6fc76e5d776d9d808184dbd4fc5b0f976676",
+      "sha256": "66a30e9d5359d29250b798b6745dc201197e76922cf8bd16c586227845d5eb76"
+    },
+    {
+      "name": "洪都拉斯",
+      "side": "背面",
+      "source": "assets/caa3cb3336c57-back.webp",
+      "target": "assets/zh-CN/caa3cb3336c57-back.webp",
+      "review": "素材/caa3cb3336c57-back.zh-CN.png",
+      "reviewSHA256": "990794dfe05fcb4424980be0ab27eca8787eaf67850fa35ed7233b98b2869b29",
+      "sha256": "afcb01a1a83e841d097db01c0c34a74f88cccbe6b7a05970029e388e0f830e1d"
+    },
+    {
+      "name": "委内瑞拉",
+      "side": "正面",
+      "source": "assets/c55a2a8d95002.webp",
+      "target": "assets/zh-CN/c55a2a8d95002.webp",
+      "review": "素材/c55a2a8d95002.zh-CN.png",
+      "reviewSHA256": "0d2fd76005e9f1ec52175b9e58cddeb3c49ce0731cce744a407dd865a1451474",
+      "sha256": "06e2648acb7069ca41638292faec0d83cf3f0f87aaa5b38334ecb8fd8c51a65c"
+    },
+    {
+      "name": "委内瑞拉",
+      "side": "背面",
+      "source": "assets/c55a2a8d95002-back.webp",
+      "target": "assets/zh-CN/c55a2a8d95002-back.webp",
+      "review": "素材/c55a2a8d95002-back.zh-CN.png",
+      "reviewSHA256": "807def472d287c1a21ec62e2e2bc8c09ccc0b2c826b17bfb78c43639e47034ce",
+      "sha256": "f5bbb9558ea31151ff3af350a3f02b883ccd48f3a3630bdd6141dcc4e5c00569"
+    },
+    {
+      "name": "厄瓜多尔",
+      "side": "正面",
+      "source": "assets/cdf3556dc3d98.webp",
+      "target": "assets/zh-CN/cdf3556dc3d98.webp",
+      "review": "素材/cdf3556dc3d98.zh-CN.png",
+      "reviewSHA256": "f48f0cec36f2d02dac93bc2452c8634788a497ffb79f66cd7b377d9d53f31038",
+      "sha256": "44a83788520720e202704dd42b5ed4823b83d5ee9e5479ff813c51baf9db07d8"
+    },
+    {
+      "name": "厄瓜多尔",
+      "side": "背面",
+      "source": "assets/cdf3556dc3d98-back.webp",
+      "target": "assets/zh-CN/cdf3556dc3d98-back.webp",
+      "review": "素材/cdf3556dc3d98-back.zh-CN.png",
+      "reviewSHA256": "6190a60808c7348b51c4abbbb80ee45efd3593be3b3e5c84378a59bf06913af8",
+      "sha256": "f0cd2fea163379a9d116c1fa58ba346ba3c3b05088ae8057f5eeed7a684b1f2d"
+    },
+    {
+      "name": "萨尔瓦多",
+      "side": "正面",
+      "source": "assets/c1ffd4842be68.webp",
+      "target": "assets/zh-CN/c1ffd4842be68.webp",
+      "review": "素材/c1ffd4842be68.zh-CN.png",
+      "reviewSHA256": "013e4551381a3d45f597e67031adffb49e3a34deef87aabeb7c49b8e92f0e643",
+      "sha256": "9bdb0231dceadb726781ecd91ee8827ce98e81b51ea69031b97b77c6a6e9f315"
+    },
+    {
+      "name": "萨尔瓦多",
+      "side": "背面",
+      "source": "assets/c1ffd4842be68-back.webp",
+      "target": "assets/zh-CN/c1ffd4842be68-back.webp",
+      "review": "素材/c1ffd4842be68-back.zh-CN.png",
+      "reviewSHA256": "690d8a3c083b65ed13336122b3b27b3543c8e371a6723b40debdad618c9ff036",
+      "sha256": "ca3f3fbc585a4f1b336eb5ee469b574f23209bd6de69fdea7072f0f5af6237c0"
+    },
+    {
+      "name": "墨西哥",
+      "side": "正面",
+      "source": "assets/c535cbd202a8d.webp",
+      "target": "assets/zh-CN/c535cbd202a8d.webp",
+      "review": "素材/c535cbd202a8d.zh-CN.png",
+      "reviewSHA256": "485e0d24293ea81b86306dde3bdd81a1b8a36c540119c04945e35337622d9272",
+      "sha256": "4142b8a3a3f96371b8f7bcd5e80b7f4633fa5c9ccc521401daf21b39a9ed3db4"
+    },
+    {
+      "name": "墨西哥",
+      "side": "背面",
+      "source": "assets/c535cbd202a8d-back.webp",
+      "target": "assets/zh-CN/c535cbd202a8d-back.webp",
+      "review": "素材/c535cbd202a8d-back.zh-CN.png",
+      "reviewSHA256": "cb134d9559066f6f323a95812d0b0a83e39896d49ec5b682db230eac26ab3ef4",
+      "sha256": "2468de144043d3241d4fd311fdd3b6ef2cc98f3269dd453b6ad412c7aadb92dd"
+    },
+    {
+      "name": "古巴",
+      "side": "正面",
+      "source": "assets/cbbdbf51c1148.webp",
+      "target": "assets/zh-CN/cbbdbf51c1148.webp",
+      "review": "素材/cbbdbf51c1148.zh-CN.png",
+      "reviewSHA256": "c96264379c3ba045be6aaf8c470c819950a69bcd9e21f0d91bbf064ac9821667",
+      "sha256": "001b1b47d071402e624c573f012d30620f94a56e7ca6bcaa1be2592571bb1ce2"
+    },
+    {
+      "name": "古巴",
+      "side": "背面",
+      "source": "assets/cbbdbf51c1148-back.webp",
+      "target": "assets/zh-CN/cbbdbf51c1148-back.webp",
+      "review": "素材/cbbdbf51c1148-back.zh-CN.png",
+      "reviewSHA256": "24c789ad73fc7c017d83cab503f9b6813143257436ca154c922a0e75bb958633",
+      "sha256": "98c2d7f7dc328ba5fc1aed8f5e71a956cbfb068c705221525c657850f0c45db1"
+    },
+    {
+      "name": "苏丹",
+      "side": "正面",
+      "source": "assets/c5c64061289cd.webp",
+      "target": "assets/zh-CN/c5c64061289cd.webp",
+      "review": "素材/c5c64061289cd.zh-CN.png",
+      "reviewSHA256": "ab07bf3f9a3b1912cbb6d816afd048a39fc50d82dba78775c952a731106840e2",
+      "sha256": "df7d2f60f8a946df78e7666d2ec6ebb62884382dd2f1ac87fe24f1ea16dca77f"
+    },
+    {
+      "name": "苏丹",
+      "side": "背面",
+      "source": "assets/c5c64061289cd-back.webp",
+      "target": "assets/zh-CN/c5c64061289cd-back.webp",
+      "review": "素材/c5c64061289cd-back.zh-CN.png",
+      "reviewSHA256": "2026266eb2c768fee383d15126d1e3130bd396f30eedb23e24c2c09c267722c7",
+      "sha256": "deab0c185bd1306847c5df4b422f23160fb66687654dbcd8100c8de00c3dab85"
+    },
+    {
+      "name": "南非",
+      "side": "正面",
+      "source": "assets/c62ddfb85cf57.webp",
+      "target": "assets/zh-CN/c62ddfb85cf57.webp",
+      "review": "素材/c62ddfb85cf57.zh-CN.png",
+      "reviewSHA256": "4b44b67fe9a675ede584e656b94960e98fa0267c378e1cad20418a0e6a9ae00d",
+      "sha256": "9f0753ea33b628d558d6674cc0e48bf7ceaa0d9c75c5eb056b50ccefb8129da4"
+    },
+    {
+      "name": "南非",
+      "side": "背面",
+      "source": "assets/c62ddfb85cf57-back.webp",
+      "target": "assets/zh-CN/c62ddfb85cf57-back.webp",
+      "review": "素材/c62ddfb85cf57-back.zh-CN.png",
+      "reviewSHA256": "21137929d015f04bd2a1a35c1f4f1d01280c1e32573d5bc7537891bafdf84e05",
+      "sha256": "820088ecab21868136aa13997435ed3d76bbf6a6e484958d8fcf81a0540441ca"
+    },
+    {
+      "name": "马里",
+      "side": "正面",
+      "source": "assets/cf62b96419805.webp",
+      "target": "assets/zh-CN/cf62b96419805.webp",
+      "review": "素材/cf62b96419805.zh-CN.png",
+      "reviewSHA256": "e6ed28f8298661ef7011965e4f6e11d438389b2f38e1d77878d88def617277f6",
+      "sha256": "70de3183fdfb15fe9990ecb9fbe4748e006ac72cd4a0caa7440c8cfe9c884fbf"
+    },
+    {
+      "name": "马里",
+      "side": "背面",
+      "source": "assets/cf62b96419805-back.webp",
+      "target": "assets/zh-CN/cf62b96419805-back.webp",
+      "review": "素材/cf62b96419805-back.zh-CN.png",
+      "reviewSHA256": "3d497375275df66e4be19ae26285c6b88ad07d08be72cd6e66d60189cb7be978",
+      "sha256": "4bc1ffe699c00bd92de4b0a7135420df1f0bf33f13f65dc6733d149e34931d28"
+    },
+    {
+      "name": "尼日尔",
+      "side": "正面",
+      "source": "assets/c7a73a97b7db2.webp",
+      "target": "assets/zh-CN/c7a73a97b7db2.webp",
+      "review": "素材/c7a73a97b7db2.zh-CN.png",
+      "reviewSHA256": "46c4b0b2f2a9343aed8dea0c2133d9162a55a369ccbd4306c5a458ea0ce2f11c",
+      "sha256": "ee742cb67044f8fb745008d2c9358247ac3d4aeb431b24be2f6b8b777841e495"
+    },
+    {
+      "name": "尼日尔",
+      "side": "背面",
+      "source": "assets/c7a73a97b7db2-back.webp",
+      "target": "assets/zh-CN/c7a73a97b7db2-back.webp",
+      "review": "素材/c7a73a97b7db2-back.zh-CN.png",
+      "reviewSHA256": "15e984f70f4ff2675926b8c363d23866d6edd28376095412ace83bebb531982d",
+      "sha256": "f096c949c4a44c652387ece4d4cf27805c827d1edb5c16bb3fd3c70e1f7ea37d"
+    },
+    {
+      "name": "布基纳法索",
+      "side": "正面",
+      "source": "assets/c663faca7acf4.webp",
+      "target": "assets/zh-CN/c663faca7acf4.webp",
+      "review": "素材/c663faca7acf4.zh-CN.png",
+      "reviewSHA256": "d304db0b6fa0a71a297999445a840c62008c182e7a696330c836536a3f64b301",
+      "sha256": "76ec6a69bbc87a431397c461eccff9b5cf7ad4be6a2944aade411e20c7e4289b"
+    },
+    {
+      "name": "布基纳法索",
+      "side": "背面",
+      "source": "assets/c663faca7acf4-back.webp",
+      "target": "assets/zh-CN/c663faca7acf4-back.webp",
+      "review": "素材/c663faca7acf4-back.zh-CN.png",
+      "reviewSHA256": "b548448aa22e1c3c45e7f5d73612404f5e10428ac4e37bf7e8c1ef752c386450",
+      "sha256": "3212e27184a10b589eb8abbba2e0becfb6fc6adb8c2edf3b0fb413a232f883c1"
+    },
+    {
+      "name": "埃塞俄比亚",
+      "side": "正面",
+      "source": "assets/c839c366d8d15.webp",
+      "target": "assets/zh-CN/c839c366d8d15.webp",
+      "review": "素材/c839c366d8d15.zh-CN.png",
+      "reviewSHA256": "4612dc97b56b08f2ce7b22679e70bd4785f857a81238a1a061bb8f4edebe143c",
+      "sha256": "a3b29fb1ebc4f1860a66d65e28aa2953f119ebf537e2d5930823aeda111ef669"
+    },
+    {
+      "name": "埃塞俄比亚",
+      "side": "背面",
+      "source": "assets/c839c366d8d15-back.webp",
+      "target": "assets/zh-CN/c839c366d8d15-back.webp",
+      "review": "素材/c839c366d8d15-back.zh-CN.png",
+      "reviewSHA256": "9d5c765e53066fdd4918d51e4891ed4c29ffb1470c4a24fb1a9155c456ae46d8",
+      "sha256": "8a7dc0e0a8b3f261bfdafa25fa01a28808e633025fe6fb6ac65f138eac041c8a"
+    },
+    {
+      "name": "安哥拉",
+      "side": "正面",
+      "source": "assets/c19ca2ee993e0.webp",
+      "target": "assets/zh-CN/c19ca2ee993e0.webp",
+      "review": "素材/c19ca2ee993e0.zh-CN.png",
+      "reviewSHA256": "39d250cc844f410e8ef8e6a1791a250751efe4ce552f4a03c8a011f5fbadaf8e",
+      "sha256": "0b8c890fae93b9cce6d4febf7f2d199ab7e09c80449943f5ee283fedebfd52ba"
+    },
+    {
+      "name": "安哥拉",
+      "side": "背面",
+      "source": "assets/c19ca2ee993e0-back.webp",
+      "target": "assets/zh-CN/c19ca2ee993e0-back.webp",
+      "review": "素材/c19ca2ee993e0-back.zh-CN.png",
+      "reviewSHA256": "e1a54c164796c7bfa52696309aea617635a02bda0c3c9e352ecfbd316e0d2b45",
+      "sha256": "d1c2646d9894692ca6bf3e2a390db832ba4de722deb37833de9120c9e66b7103"
+    },
+    {
+      "name": "赤道几内亚",
+      "side": "正面",
+      "source": "assets/c03315dd1d1b0.webp",
+      "target": "assets/zh-CN/c03315dd1d1b0.webp",
+      "review": "素材/c03315dd1d1b0.zh-CN.png",
+      "reviewSHA256": "6fe35481e45a5ab701e5fa24d4a4fd1a80a9423ca3c56d6709dc72935ec665b1",
+      "sha256": "57baf592f417c6be7944205fa984fd84dba5a792c8ac3f07cc207576f3f45103"
+    },
+    {
+      "name": "赤道几内亚",
+      "side": "背面",
+      "source": "assets/c03315dd1d1b0-back.webp",
+      "target": "assets/zh-CN/c03315dd1d1b0-back.webp",
+      "review": "素材/c03315dd1d1b0-back.zh-CN.png",
+      "reviewSHA256": "e4de19d13186d2a3ac7db2acdfb45818b02c725d76a5c4bed6c78e933e4332d0",
+      "sha256": "08a5d506f1344909fd65502e50fc7b42fc73f30d378a82b68bf6708ffad5e9f3"
+    },
+    {
+      "name": "尼日利亚",
+      "side": "正面",
+      "source": "assets/c233299827257.webp",
+      "target": "assets/zh-CN/c233299827257.webp",
+      "review": "素材/c233299827257.zh-CN.png",
+      "reviewSHA256": "bb92af8cd6b343436a10d7a33e719ba1e1ebb898130c25e94b7220966fbbc73c",
+      "sha256": "9b7148a7963a619072cb134687d1b328faf758e62a6474142a041e2306a903ca"
+    },
+    {
+      "name": "尼日利亚",
+      "side": "背面",
+      "source": "assets/c233299827257-back.webp",
+      "target": "assets/zh-CN/c233299827257-back.webp",
+      "review": "素材/c233299827257-back.zh-CN.png",
+      "reviewSHA256": "09233b10c12b2933bbfb6094648916f6bad21bd83ebfe8411a04e2cd7ce5dd7d",
+      "sha256": "e62eaa710d6173d9e3c419ddbe1d5918a8f75649f16b6b86a7700573f1ee1f10"
+    },
+    {
+      "name": "吉布提",
+      "side": "正面",
+      "source": "assets/c71ff41baf2f2.webp",
+      "target": "assets/zh-CN/c71ff41baf2f2.webp",
+      "review": "素材/c71ff41baf2f2.zh-CN.png",
+      "reviewSHA256": "92185759e7b9d44f1af02f6c450596909b5b1202069653847400861173354d50",
+      "sha256": "f8f4933153fa3721e38d16e37f4ee3bd7a51f954b5f994e4685a65bb96dd9b8c"
+    },
+    {
+      "name": "吉布提",
+      "side": "背面",
+      "source": "assets/c71ff41baf2f2-back.webp",
+      "target": "assets/zh-CN/c71ff41baf2f2-back.webp",
+      "review": "素材/c71ff41baf2f2-back.zh-CN.png",
+      "reviewSHA256": "b2b8e21ba5e5c745a1c310f858396d29c02545de2a7df66224a036de57ca2677",
+      "sha256": "c62805c8de7cca1154fda785120bf91499afc9fa1fdc720405a974176329668a"
+    },
+    {
+      "name": "肯尼亚",
+      "side": "正面",
+      "source": "assets/cc3694eb07811.webp",
+      "target": "assets/zh-CN/cc3694eb07811.webp",
+      "review": "素材/cc3694eb07811.zh-CN.png",
+      "reviewSHA256": "dcf7a11848293959eaf4403486f67856b9d1c289aa5257c9f092ca0dc1c3a5d9",
+      "sha256": "be9f200afcb50476db490ad2b0543fa682c16f96190527cfc58751d643ab4f99"
+    },
+    {
+      "name": "肯尼亚",
+      "side": "背面",
+      "source": "assets/cc3694eb07811-back.webp",
+      "target": "assets/zh-CN/cc3694eb07811-back.webp",
+      "review": "素材/cc3694eb07811-back.zh-CN.png",
+      "reviewSHA256": "30887002c688ef375022e221a5ee0ebfbf0cc456b54a302cbfbfa856873dd571",
+      "sha256": "72bba8eb30b4cc09062619cdc2d91984e12d786d87b8cc48a0d5579238471f09"
+    },
+    {
+      "name": "中非共和国",
+      "side": "正面",
+      "source": "assets/cdbdcea711dd5.webp",
+      "target": "assets/zh-CN/cdbdcea711dd5.webp",
+      "review": "素材/cdbdcea711dd5.zh-CN.png",
+      "reviewSHA256": "970c18d0f65953d42c9313ea37ec19e33a0b659c7a777c0d34a87d84dff826b4",
+      "sha256": "d6c6439e9f98468f5ca8a3f2f03b83d6afd8569dcef0571fa681d3a0f64c4ee7"
+    },
+    {
+      "name": "中非共和国",
+      "side": "背面",
+      "source": "assets/cdbdcea711dd5-back.webp",
+      "target": "assets/zh-CN/cdbdcea711dd5-back.webp",
+      "review": "素材/cdbdcea711dd5-back.zh-CN.png",
+      "reviewSHA256": "f66a8a8dd186a11469cd25590508a90e358bec832a394cdf6504339de67166ac",
+      "sha256": "e8cf8bab3780e2445209ca930c7e75c75e8637c63bf3e8e44be9955deca8fd98"
+    },
+    {
+      "name": "斯里兰卡",
+      "side": "正面",
+      "source": "assets/c81fa1b6808c6.webp",
+      "target": "assets/zh-CN/c81fa1b6808c6.webp",
+      "review": "素材/c81fa1b6808c6.zh-CN.png",
+      "reviewSHA256": "63b66c7854475b58b05586f34b16e7142948a07a5efafd43cfb4416e8a69f2e9",
+      "sha256": "c9907732a85bc7bfffec20c1efd79f93f55d65bdc4cbe66764e6ceba7eae0dfb"
+    },
+    {
+      "name": "斯里兰卡",
+      "side": "背面",
+      "source": "assets/c81fa1b6808c6-back.webp",
+      "target": "assets/zh-CN/c81fa1b6808c6-back.webp",
+      "review": "素材/c81fa1b6808c6-back.zh-CN.png",
+      "reviewSHA256": "15da219b8b83db721c041921811a3b19586174b4cc7f2a1a61bc51a9292fa1dc",
+      "sha256": "9f5c2470e2bdcc50fc022f3f2812cd7e17f46821362a17c488ec1b5708fcbc56"
+    },
+    {
+      "name": "尼泊尔",
+      "side": "正面",
+      "source": "assets/cc2ef36f51fd4.webp",
+      "target": "assets/zh-CN/cc2ef36f51fd4.webp",
+      "review": "素材/cc2ef36f51fd4.zh-CN.png",
+      "reviewSHA256": "09b8013b4375a4c1a36415629e67257e4446f531a0757f669d21b9008eb2cc42",
+      "sha256": "fc0fed3e91ea5eb034697eba7dc544349fb3f116dcecd27b1c337d3bf0eb3ab8"
+    },
+    {
+      "name": "尼泊尔",
+      "side": "背面",
+      "source": "assets/cc2ef36f51fd4-back.webp",
+      "target": "assets/zh-CN/cc2ef36f51fd4-back.webp",
+      "review": "素材/cc2ef36f51fd4-back.zh-CN.png",
+      "reviewSHA256": "7f5a23210620f0cbf0867bd9115ebccdcf6bb0921232687bf2e6cc7bf691682f",
+      "sha256": "f3207eef31448092d40140520566f69ceaf007c346f500eebf000865a5d8b9ca"
+    },
+    {
+      "name": "马尔代夫",
+      "side": "正面",
+      "source": "assets/c0989aedbfcb9.webp",
+      "target": "assets/zh-CN/c0989aedbfcb9.webp",
+      "review": "素材/c0989aedbfcb9.zh-CN.png",
+      "reviewSHA256": "a6f4994d89d899c458d8d6aa8aa5d06c967bd67b8872a3e5812eafbae39a4280",
+      "sha256": "fba0136ce43d8d5b336b1b9bf0b2bfd8ee80dc23e59ac954e603e44b933e1365"
+    },
+    {
+      "name": "马尔代夫",
+      "side": "背面",
+      "source": "assets/c0989aedbfcb9-back.webp",
+      "target": "assets/zh-CN/c0989aedbfcb9-back.webp",
+      "review": "素材/c0989aedbfcb9-back.zh-CN.png",
+      "reviewSHA256": "d8730f9a375d9ee2597e4475b1de9e7befd4ab70dd8c68f1f67486228b9b231d",
+      "sha256": "12c1bd60265be3d5d6d342f8da22029d77e46e2441eb7d52e9202a8ed08e7cff"
+    },
+    {
+      "name": "不丹",
+      "side": "正面",
+      "source": "assets/ccdb347cccb6e.webp",
+      "target": "assets/zh-CN/ccdb347cccb6e.webp",
+      "review": "素材/ccdb347cccb6e.zh-CN.png",
+      "reviewSHA256": "0b2d6a81e96be148dfcaa3a7a94eb901f3266755f8b0b32142bc03febedec468",
+      "sha256": "6203635118de45da0eeed4a1b019cf0e6528d553b0c543b632338b557ad7f3d3"
+    },
+    {
+      "name": "不丹",
+      "side": "背面",
+      "source": "assets/ccdb347cccb6e-back.webp",
+      "target": "assets/zh-CN/ccdb347cccb6e-back.webp",
+      "review": "素材/ccdb347cccb6e-back.zh-CN.png",
+      "reviewSHA256": "b84938c9e74e04f298e1b9c5d3fb3aef955034bb80650423a01620478a1ea164",
+      "sha256": "9f84a66e1849cb09692a45c73a00d6aabb7c4ade7b00a1f1c86c720e867c5cf7"
+    },
+    {
+      "name": "缅甸",
+      "side": "正面",
+      "source": "assets/cf807619c5a7b.webp",
+      "target": "assets/zh-CN/cf807619c5a7b.webp",
+      "review": "素材/cf807619c5a7b.zh-CN.png",
+      "reviewSHA256": "82515e2b2baa2411a99e0262c7a8d18e3abeafe3f608afb9708bbf4b5e182698",
+      "sha256": "faf11daa62de60aa6324a94ae33573d4a9fb4478d622ba86d19f01eea377b966"
+    },
+    {
+      "name": "缅甸",
+      "side": "背面",
+      "source": "assets/cf807619c5a7b-back.webp",
+      "target": "assets/zh-CN/cf807619c5a7b-back.webp",
+      "review": "素材/cf807619c5a7b-back.zh-CN.png",
+      "reviewSHA256": "0e6ae2a8845cc9d2116504140706a113e26a664703b2b5e791e841968b053b83",
+      "sha256": "574bc1ebfe7f58d8d535f4b3b78a22edbf3099a9a91215797ab583ee605253c9"
+    },
+    {
+      "name": "巴基斯坦",
+      "side": "正面",
+      "source": "assets/cf9017c518b87.webp",
+      "target": "assets/zh-CN/cf9017c518b87.webp",
+      "review": "素材/cf9017c518b87.zh-CN.png",
+      "reviewSHA256": "d52b7a2fc36352ada71876efc65e64e553b5e062c310334a1cc04ba32a9e4f46",
+      "sha256": "4a3896df0771ebc249a6033b4a2a2a7906d12027b44d2e5d7ab9e46dbb28702a"
+    },
+    {
+      "name": "巴基斯坦",
+      "side": "背面",
+      "source": "assets/cf9017c518b87-back.webp",
+      "target": "assets/zh-CN/cf9017c518b87-back.webp",
+      "review": "素材/cf9017c518b87-back.zh-CN.png",
+      "reviewSHA256": "a0efbeb5787dff2b1cd9641b4001b02782f72b397069a3a744780ded72ddd453",
+      "sha256": "95fd0d88aa5dfc4b6d25167bbcfa27d3f617e568f553bd252c904f7a5f2f3847"
+    },
+    {
+      "name": "孟加拉国",
+      "side": "正面",
+      "source": "assets/c3c908cfedc77.webp",
+      "target": "assets/zh-CN/c3c908cfedc77.webp",
+      "review": "素材/c3c908cfedc77.zh-CN.png",
+      "reviewSHA256": "713cc8587b3d443120edd9c4b859e3c5a375326e85ed707a6c966f2725f61615",
+      "sha256": "c760c54614be252a59c9b12c4d172c1573dd7b5572fc9171e7cde57488f0efa8"
+    },
+    {
+      "name": "孟加拉国",
+      "side": "背面",
+      "source": "assets/c3c908cfedc77-back.webp",
+      "target": "assets/zh-CN/c3c908cfedc77-back.webp",
+      "review": "素材/c3c908cfedc77-back.zh-CN.png",
+      "reviewSHA256": "987544bc78c170d73e2063bba9f921a21c64ffe56589e66f3edc4db3821fb89a",
+      "sha256": "eaeb1637b3d05b72f0e76d23ffc0417dbaf88427fdcf43e41834887c743ef102"
+    },
+    {
+      "name": "印度",
+      "side": "正面",
+      "source": "assets/c72267e12c089.webp",
+      "target": "assets/zh-CN/c72267e12c089.webp",
+      "review": "素材/c72267e12c089.zh-CN.png",
+      "reviewSHA256": "2cd2388e566eb1b46457cc0ac86e9b6461641bcc8454d22d194e896450aab5a1",
+      "sha256": "c1655168a18f32decbbae5590ea06ee60323e07cf767616124ee49e866191277"
+    },
+    {
+      "name": "印度",
+      "side": "背面",
+      "source": "assets/c72267e12c089-back.webp",
+      "target": "assets/zh-CN/c72267e12c089-back.webp",
+      "review": "素材/c72267e12c089-back.zh-CN.png",
+      "reviewSHA256": "c315ee1e01b5334486d3cc3a0711a8827ed9bb87fbd37fac33ee91852cdf9379",
+      "sha256": "2ddc62b75849c353c829b8d5cafa99527e2bbebd7b80ae5ea596d1abfe2d03c9"
+    },
+    {
+      "name": "新西兰",
+      "side": "正面",
+      "source": "assets/ca9d839514542.webp",
+      "target": "assets/zh-CN/ca9d839514542.webp",
+      "review": "素材/ca9d839514542.zh-CN.png",
+      "reviewSHA256": "579e753227e5f68e7e60eac2091be1f5851ddc2711c04ec1b5fed5c7a77f15fc",
+      "sha256": "874440e0aaa9fbd58ce07142329ba2bf7185c412bb119c4be6032264b673b425"
+    },
+    {
+      "name": "新西兰",
+      "side": "背面",
+      "source": "assets/ca9d839514542-back.webp",
+      "target": "assets/zh-CN/ca9d839514542-back.webp",
+      "review": "素材/ca9d839514542-back.zh-CN.png",
+      "reviewSHA256": "da9d465bd6bc4087edaa45ac0abee63ab94271f79616ab866ad1e49c87f90ae9",
+      "sha256": "177471ba047b40f5a51ac2e42502b242b0ba4a874eef0f4b0522df9d8c4e83f2"
+    },
+    {
+      "name": "韩国",
+      "side": "正面",
+      "source": "assets/cfdaebafe58bb.webp",
+      "target": "assets/zh-CN/cfdaebafe58bb.webp",
+      "review": "素材/cfdaebafe58bb.zh-CN.png",
+      "reviewSHA256": "a921b385beebaa7b54c23b4f651390ba5b4405d0344b2b1328d274c58a019987",
+      "sha256": "e36ce8a44157c08528b52a9cb743a96362ce2138bfa82a8693444e6dffd477c2"
+    },
+    {
+      "name": "韩国",
+      "side": "背面",
+      "source": "assets/cfdaebafe58bb-back.webp",
+      "target": "assets/zh-CN/cfdaebafe58bb-back.webp",
+      "review": "素材/cfdaebafe58bb-back.zh-CN.png",
+      "reviewSHA256": "82a9aa3c746ffeb88e0e02095d7daa7e72db319a5a5862f80c669e738f9c90f3",
+      "sha256": "8537fb3626c88f7bbd102bd17fd6f21acae320056efee4be6dbe03f0991ff808"
+    },
+    {
+      "name": "越南",
+      "side": "正面",
+      "source": "assets/c4e0165cde252.webp",
+      "target": "assets/zh-CN/c4e0165cde252.webp",
+      "review": "素材/c4e0165cde252.zh-CN.png",
+      "reviewSHA256": "dd7bc336f9dc624d97fdbd9a0d483ec1a0b455a84d79af6edcb0c08f82f993cb",
+      "sha256": "929c1937732abfd5a3242d85316d296dc779639eab1b93dd5519c8d75e38d30f"
+    },
+    {
+      "name": "越南",
+      "side": "背面",
+      "source": "assets/c4e0165cde252-back.webp",
+      "target": "assets/zh-CN/c4e0165cde252-back.webp",
+      "review": "素材/c4e0165cde252-back.zh-CN.png",
+      "reviewSHA256": "a4b5230d6e514108afbc955ea59f0e6c0c5612f14ecbf5145e8bcb96b6549e67",
+      "sha256": "42a95ad1b971342b0784aafba6f3ab9668d4ff210955fc4f0ce4eb4beca59771"
+    },
+    {
+      "name": "新加坡",
+      "side": "正面",
+      "source": "assets/c6fe11afc7426.webp",
+      "target": "assets/zh-CN/c6fe11afc7426.webp",
+      "review": "素材/c6fe11afc7426.zh-CN.png",
+      "reviewSHA256": "c276487687856985f91cc9177d7d6c2ac4632dfe6a3cc4a3ca67286b454bcb34",
+      "sha256": "b77d6b60074dfdab43bdf3be36fa5e9ccef90df076179d6b64a2a00b31fb0236"
+    },
+    {
+      "name": "新加坡",
+      "side": "背面",
+      "source": "assets/c6fe11afc7426-back.webp",
+      "target": "assets/zh-CN/c6fe11afc7426-back.webp",
+      "review": "素材/c6fe11afc7426-back.zh-CN.png",
+      "reviewSHA256": "413dcb5038411ab47ed3f585101d11fc05a0cbac44c14050c321b3ba89a7b160",
+      "sha256": "956d5b4b29b0d600e6c68386e0f9994c2d8dd3c933b93a2ce5d8192f1717153e"
+    },
+    {
+      "name": "澳大利亚",
+      "side": "正面",
+      "source": "assets/caa7ff0f8b8f4.webp",
+      "target": "assets/zh-CN/caa7ff0f8b8f4.webp",
+      "review": "素材/caa7ff0f8b8f4.zh-CN.png",
+      "reviewSHA256": "43b32a5495af9b006b465fc99013de9bb8db75d92cc34b9568d79a667b177f01",
+      "sha256": "90d63635f148738725c4c879dd975306e0be1827ad7061357eb8bfa3f8e00d9e"
+    },
+    {
+      "name": "澳大利亚",
+      "side": "背面",
+      "source": "assets/caa7ff0f8b8f4-back.webp",
+      "target": "assets/zh-CN/caa7ff0f8b8f4-back.webp",
+      "review": "素材/caa7ff0f8b8f4-back.zh-CN.png",
+      "reviewSHA256": "0b68e725e5700d560a4f2dd69091268ec4ff5167b7f03fee6be1f20fd2df9c23",
+      "sha256": "d167ae3f34721d709d726729459e4fd7652f5ee3681a8779f14568c3bd09d34e"
+    },
+    {
+      "name": "朝鲜",
+      "side": "正面",
+      "source": "assets/c6013d4e910ac.webp",
+      "target": "assets/zh-CN/c6013d4e910ac.webp",
+      "review": "素材/c6013d4e910ac.zh-CN.png",
+      "reviewSHA256": "ec121ae34b8645fc2027d93e4bf1ddf4ad77ed84e393b67c2e739e9f16ad2c06",
+      "sha256": "2e8081c267f9ec6432f788f3c90d5808b21b5a5306316d89e1dcf6463913ca82"
+    },
+    {
+      "name": "朝鲜",
+      "side": "背面",
+      "source": "assets/c6013d4e910ac-back.webp",
+      "target": "assets/zh-CN/c6013d4e910ac-back.webp",
+      "review": "素材/c6013d4e910ac-back.zh-CN.png",
+      "reviewSHA256": "385bb794f124ed3fdf28cdf72bbd212603b7a1e4ff4e74be372958cba89c67b4",
+      "sha256": "81d1a679fb300c92fd63ef138feb2b3c96784af67a780bc510298eaa196c7dac"
+    },
+    {
+      "name": "柬埔寨",
+      "side": "正面",
+      "source": "assets/c770a32f3c5a6.webp",
+      "target": "assets/zh-CN/c770a32f3c5a6.webp",
+      "review": "素材/c770a32f3c5a6.zh-CN.png",
+      "reviewSHA256": "50a3cc85894a397e419e1616ffb281fafcc49b29a0e6abfe28e829b664b02b81",
+      "sha256": "002f06ad680c315d17fd025a67a33c93a6dd3d5b85141163b1bb3ed1af1531a7"
+    },
+    {
+      "name": "柬埔寨",
+      "side": "背面",
+      "source": "assets/c770a32f3c5a6-back.webp",
+      "target": "assets/zh-CN/c770a32f3c5a6-back.webp",
+      "review": "素材/c770a32f3c5a6-back.zh-CN.png",
+      "reviewSHA256": "37ba000d012668d3263c5c2eb9b0866fdfaadfe145240472cd3453ba726e0869",
+      "sha256": "f0e3412976c77b5a407add990cef1b0a2d46189a58a0f8b23a3c6d75cc4ba526"
+    },
+    {
+      "name": "老挝",
+      "side": "正面",
+      "source": "assets/c0409592e589f.webp",
+      "target": "assets/zh-CN/c0409592e589f.webp",
+      "review": "素材/c0409592e589f.zh-CN.png",
+      "reviewSHA256": "63f3cd52122c5cc9a47e3cccc1548103ecc20fabe28b95e70ce2fd465660d7fb",
+      "sha256": "5f60d69a01adf5bc412bdb674a736b72b9a6cd58ca528c8c5ab7f29e335f5699"
+    },
+    {
+      "name": "老挝",
+      "side": "背面",
+      "source": "assets/c0409592e589f-back.webp",
+      "target": "assets/zh-CN/c0409592e589f-back.webp",
+      "review": "素材/c0409592e589f-back.zh-CN.png",
+      "reviewSHA256": "18deffbff12b948632064e158474dab4bb3d73dcd9f31692151f7ad837465759",
+      "sha256": "e34709b3a251eb7068626ba48a2d4eefbd14c8616fc3e45d8d64e4450e10e83a"
+    },
+    {
+      "name": "印度尼西亚",
+      "side": "正面",
+      "source": "assets/cf04deb0c883b.webp",
+      "target": "assets/zh-CN/cf04deb0c883b.webp",
+      "review": "素材/cf04deb0c883b.zh-CN.png",
+      "reviewSHA256": "a77b9aaceca74a70e77f2550ac9b724bd72adc87b05cc4bad181b18cfcd671be",
+      "sha256": "0164ea8f4ff5728f2690853a87654469bfabd2e7bd2ed820da6e80adf0803044"
+    },
+    {
+      "name": "印度尼西亚",
+      "side": "背面",
+      "source": "assets/cf04deb0c883b-back.webp",
+      "target": "assets/zh-CN/cf04deb0c883b-back.webp",
+      "review": "素材/cf04deb0c883b-back.zh-CN.png",
+      "reviewSHA256": "21f62ee4e284b5f78978b95b22c17d2619343b7f278fb0c3a594d41b827adf73",
+      "sha256": "4b8e2212750f04b9e80d902ce6f21c364c47414ae5324527472fc66249279346"
+    },
+    {
+      "name": "菲律宾",
+      "side": "正面",
+      "source": "assets/c9030e69c02e2.webp",
+      "target": "assets/zh-CN/c9030e69c02e2.webp",
+      "review": "素材/c9030e69c02e2.zh-CN.png",
+      "reviewSHA256": "5664297b06a1bb01b7f631d256de9e6118d5e71fbccecbc4496f288e4aa71531",
+      "sha256": "3f639bbf2d3cd0945e791ce5ac22ae6d9af184b3a9860d206cf640c2e756c852"
+    },
+    {
+      "name": "菲律宾",
+      "side": "背面",
+      "source": "assets/c9030e69c02e2-back.webp",
+      "target": "assets/zh-CN/c9030e69c02e2-back.webp",
+      "review": "素材/c9030e69c02e2-back.zh-CN.png",
+      "reviewSHA256": "d3e2e7f5bad236822536ba65849efb9cac1d38d755aad791a42d5aca463dd194",
+      "sha256": "f169f72c15697143747c15944d9f5eb0b90165a3b083dcf9666fb14cc1d8117e"
+    },
+    {
+      "name": "泰国",
+      "side": "正面",
+      "source": "assets/cf1f7a49b77e9.webp",
+      "target": "assets/zh-CN/cf1f7a49b77e9.webp",
+      "review": "素材/cf1f7a49b77e9.zh-CN.png",
+      "reviewSHA256": "3d4d381c7ac23e003d021143510b154af182e56a541daacf015b7ac6e0f9b082",
+      "sha256": "289ba959517ba5a80a0d411d953ca6b639daa2d9e7e7627acad99094086e0e83"
+    },
+    {
+      "name": "泰国",
+      "side": "背面",
+      "source": "assets/cf1f7a49b77e9-back.webp",
+      "target": "assets/zh-CN/cf1f7a49b77e9-back.webp",
+      "review": "素材/cf1f7a49b77e9-back.zh-CN.png",
+      "reviewSHA256": "fb6cb8ec170625d3b871e8776b48f88232077aa272ded5b41a2d2633465563c2",
+      "sha256": "8118adf9afe7c9e33acd6a3c89ff9bc3f62946fbfb8078c9170664af83879a77"
+    },
+    {
+      "name": "日本",
+      "side": "正面",
+      "source": "assets/c99daf8fee754.webp",
+      "target": "assets/zh-CN/c99daf8fee754.webp",
+      "review": "素材/c99daf8fee754.zh-CN.png",
+      "reviewSHA256": "135e8edd1ba4c2f7808e8372c86b4aa87edd2451b75c85f7a14fc9ef1e91cdee",
+      "sha256": "e3499ba7d6fbab46508ffb6653c4ea3e4a626d4c1461576f7e30ccbed4961be4"
+    },
+    {
+      "name": "日本",
+      "side": "背面",
+      "source": "assets/c99daf8fee754-back.webp",
+      "target": "assets/zh-CN/c99daf8fee754-back.webp",
+      "review": "素材/c99daf8fee754-back.zh-CN.png",
+      "reviewSHA256": "a2d5dc1a2f8c0a71d34d775cd0835973839dabeed6c96d1d2c189672943d9403",
+      "sha256": "1ba0484629c95512bc755028a8a8854d0f3b16293cfce3b025d0066aa85133ed"
+    },
+    {
+      "name": "卡塔尔",
+      "side": "正面",
+      "source": "assets/c798ba4a7c20e.webp",
+      "target": "assets/zh-CN/c798ba4a7c20e.webp",
+      "review": "素材/c798ba4a7c20e.zh-CN.png",
+      "reviewSHA256": "b1618ba8096787e37eb34aa91993c5980cf3a9e84cc810ad363c0dbcdc984c21",
+      "sha256": "3d237c60e916d9fd8fe9743bcc10790f2cb03ffae92a5f147abae17016635166"
+    },
+    {
+      "name": "卡塔尔",
+      "side": "背面",
+      "source": "assets/c798ba4a7c20e-back.webp",
+      "target": "assets/zh-CN/c798ba4a7c20e-back.webp",
+      "review": "素材/c798ba4a7c20e-back.zh-CN.png",
+      "reviewSHA256": "999d9b1d7823d30ca424b71b2ff9ef268082e8edc4c61f107a4a2fc546c4cebc",
+      "sha256": "26c350008f85a2a901f699f4c6eeb0a26c95558c7129d5729cb5cbffd7cd11c9"
+    },
+    {
+      "name": "叙利亚",
+      "side": "正面",
+      "source": "assets/c23a6ad965702.webp",
+      "target": "assets/zh-CN/c23a6ad965702.webp",
+      "review": "素材/c23a6ad965702.zh-CN.png",
+      "reviewSHA256": "ed8abda495dc8a8f378df0391991b7de62ecd03badf7ff3a649bff32935ff2b4",
+      "sha256": "6859e9d81cdd3dbcf400001e171e0d511cd50649ef00877d271a0a65d1e9afaa"
+    },
+    {
+      "name": "叙利亚",
+      "side": "背面",
+      "source": "assets/c23a6ad965702-back.webp",
+      "target": "assets/zh-CN/c23a6ad965702-back.webp",
+      "review": "素材/c23a6ad965702-back.zh-CN.png",
+      "reviewSHA256": "bdeb4294f09835a427840062e734240f8487f8352e45a9fbe006f2a7925693d3",
+      "sha256": "b16df89975e57c3fe03246960ce50fa513c9a49213f46c9633c8d0cd732bed2e"
+    },
+    {
+      "name": "埃及",
+      "side": "正面",
+      "source": "assets/ccb8b0ec00bb8.webp",
+      "target": "assets/zh-CN/ccb8b0ec00bb8.webp",
+      "review": "素材/ccb8b0ec00bb8.zh-CN.png",
+      "reviewSHA256": "bf229fc9ea5449c3b29c91a8be6e4031a9b0744eed3768f206f70584aa6e983c",
+      "sha256": "3003e28af73a1362d86643e9dc4bc5808a1e55d6ea4e97ce931efcafb1b7a3ea"
+    },
+    {
+      "name": "埃及",
+      "side": "背面",
+      "source": "assets/ccb8b0ec00bb8-back.webp",
+      "target": "assets/zh-CN/ccb8b0ec00bb8-back.webp",
+      "review": "素材/ccb8b0ec00bb8-back.zh-CN.png",
+      "reviewSHA256": "28cf0778a12f012fb3c439d231b83b61166480465b5289c1925ae6f9c94aeb74",
+      "sha256": "3be1c0d1508a0aab685a635251ebddff574c09e68de1c60257e4921415dfd905"
+    },
+    {
+      "name": "伊朗",
+      "side": "正面",
+      "source": "assets/cded08a20d167.webp",
+      "target": "assets/zh-CN/cded08a20d167.webp",
+      "review": "素材/cded08a20d167.zh-CN.png",
+      "reviewSHA256": "a41e062dc8d5c3eb7d0ada66920ef8f7b089685ef152badda3b7810464d8e36b",
+      "sha256": "2316da66a6a567c37a3b4ea70e750f11726e2144848f53f7dd8de7fb9f4a9ad8"
+    },
+    {
+      "name": "伊朗",
+      "side": "背面",
+      "source": "assets/cded08a20d167-back.webp",
+      "target": "assets/zh-CN/cded08a20d167-back.webp",
+      "review": "素材/cded08a20d167-back.zh-CN.png",
+      "reviewSHA256": "116b251ca772f420db31a51a20c75c98cebe75af658f779fe16a8be61342c193",
+      "sha256": "8e8ad42447c8a8f18b647cbe4920be5a0361bd14d10de0a85eb6876443784709"
+    },
+    {
+      "name": "沙特阿拉伯",
+      "side": "正面",
+      "source": "assets/c06079787fb3a.webp",
+      "target": "assets/zh-CN/c06079787fb3a.webp",
+      "review": "素材/c06079787fb3a.zh-CN.png",
+      "reviewSHA256": "ed962d6601e9ddaab20e021414caf261a1df487a41c6ebaac5768bb23b460048",
+      "sha256": "489be0247080ed4a455b94d8235645f1c384d4e3949b17daf4cce5045e952c49"
+    },
+    {
+      "name": "沙特阿拉伯",
+      "side": "背面",
+      "source": "assets/c06079787fb3a-back.webp",
+      "target": "assets/zh-CN/c06079787fb3a-back.webp",
+      "review": "素材/c06079787fb3a-back.zh-CN.png",
+      "reviewSHA256": "201b4e0890003cac292dfb47b2b33695ee531e7a99a51495b90faf326a075108",
+      "sha256": "131a3c3556f0a3a827a70ad70952f52dcdfe08a17f743b1a8040342aa59b8b70"
+    },
+    {
+      "name": "阿尔及利亚",
+      "side": "正面",
+      "source": "assets/c3152a6b7e123.webp",
+      "target": "assets/zh-CN/c3152a6b7e123.webp",
+      "review": "素材/c3152a6b7e123.zh-CN.png",
+      "reviewSHA256": "a75fdccd60116144d16decc34341dfdc41e5c5bd202dd750739200fb68d9db25",
+      "sha256": "ded264ab9a8ba6ee5446ef22142f7a115c96206ebb0e70e0df342bf4973eedb7"
+    },
+    {
+      "name": "阿尔及利亚",
+      "side": "背面",
+      "source": "assets/c3152a6b7e123-back.webp",
+      "target": "assets/zh-CN/c3152a6b7e123-back.webp",
+      "review": "素材/c3152a6b7e123-back.zh-CN.png",
+      "reviewSHA256": "0252e1d3f7b1f8131bf6e3cf77f33ed1abb2740b735a36c2a1d3ce1c28f15b53",
+      "sha256": "9e4e7bfe5c03467dbfcd9141a9cf46e65e6e143e414a273dc57f7fef38c623f4"
+    },
+    {
+      "name": "利比亚",
+      "side": "正面",
+      "source": "assets/c819285622b50.webp",
+      "target": "assets/zh-CN/c819285622b50.webp",
+      "review": "素材/c819285622b50.zh-CN.png",
+      "reviewSHA256": "82d7fa0c538cd5bc540513c217fe90ef13f3d0d6637c8f8702f52accda563e18",
+      "sha256": "f189ec9d6e26267c252bc040bd64e6480d8018afdd485de1f312313e748bae59"
+    },
+    {
+      "name": "利比亚",
+      "side": "背面",
+      "source": "assets/c819285622b50-back.webp",
+      "target": "assets/zh-CN/c819285622b50-back.webp",
+      "review": "素材/c819285622b50-back.zh-CN.png",
+      "reviewSHA256": "34f673eb9dece495dcc381baf4dbedc53e4924102d804e36a3bf6bb412524acf",
+      "sha256": "415f928374dffbd92d9a7f8a6aa63402c89ef62a9c4eb86383a2db2241c3b984"
+    },
+    {
+      "name": "约旦",
+      "side": "正面",
+      "source": "assets/cfbb4c1629917.webp",
+      "target": "assets/zh-CN/cfbb4c1629917.webp",
+      "review": "素材/cfbb4c1629917.zh-CN.png",
+      "reviewSHA256": "30ad084e6e654a1f26f5ab11e2825a2e4852d0de93b761f86d2c4c9507b1d078",
+      "sha256": "0bb1c1f73b6579f3755582f098ed95cad5e6201b74458cb0be3f0f4a878cd57f"
+    },
+    {
+      "name": "约旦",
+      "side": "背面",
+      "source": "assets/cfbb4c1629917-back.webp",
+      "target": "assets/zh-CN/cfbb4c1629917-back.webp",
+      "review": "素材/cfbb4c1629917-back.zh-CN.png",
+      "reviewSHA256": "8d21f2a1e2b36a2d595df37515cfa7ebdf1bab8730934d833b7b45263c540c6d",
+      "sha256": "26a83b2d07bf24ad3ac0c2cd38d153a2d9fe3cecb1f222b89ef29d909e7eaa8c"
+    },
+    {
+      "name": "阿联酋",
+      "side": "正面",
+      "source": "assets/c562e77763cd6.webp",
+      "target": "assets/zh-CN/c562e77763cd6.webp",
+      "review": "素材/c562e77763cd6.zh-CN.png",
+      "reviewSHA256": "9613ab772fb7ed5d7e82876fce8e6dfccd690e0809db4dca28b59034d9da7a5d",
+      "sha256": "69925141633219d9538be0661a62f47d35ee394708ae75d81ce1e9b01032e42f"
+    },
+    {
+      "name": "阿联酋",
+      "side": "背面",
+      "source": "assets/c562e77763cd6-back.webp",
+      "target": "assets/zh-CN/c562e77763cd6-back.webp",
+      "review": "素材/c562e77763cd6-back.zh-CN.png",
+      "reviewSHA256": "188ef22957f8648ad7b0dc53036268abd58b36e65638fca220a07db55df1219b",
+      "sha256": "d085070c7accd8b88f85e8b500f764402faf1d8ab9cb2c5538922a2089f4a3ba"
+    },
+    {
+      "name": "以色列",
+      "side": "正面",
+      "source": "assets/c7bda5cbf58bb.webp",
+      "target": "assets/zh-CN/c7bda5cbf58bb.webp",
+      "review": "素材/c7bda5cbf58bb.zh-CN.png",
+      "reviewSHA256": "09fc76a7de039a80279652f62ee473ad4ea8952808c8f2d21e5ce462ff39f42b",
+      "sha256": "1b21f4cadf4a1f649593c74131971a8b56f6981ea5de35474328f6a802a998bc"
+    },
+    {
+      "name": "以色列",
+      "side": "背面",
+      "source": "assets/c7bda5cbf58bb-back.webp",
+      "target": "assets/zh-CN/c7bda5cbf58bb-back.webp",
+      "review": "素材/c7bda5cbf58bb-back.zh-CN.png",
+      "reviewSHA256": "95cb84ba6ace052e295b90d153853d71870ecb78033a4fb218385f3633ebabea",
+      "sha256": "482891b824d65691685d42a2c4481c62e8ac7103c09999e57e28abda441ef27a"
+    },
+    {
+      "name": "土耳其",
+      "side": "正面",
+      "source": "assets/c834127a9eff4.webp",
+      "target": "assets/zh-CN/c834127a9eff4.webp",
+      "review": "素材/c834127a9eff4.zh-CN.png",
+      "reviewSHA256": "31eb5d696f96948bd4bb7e4d9200bbe530eaf806f3f6ee35b7d3906f1b2227dd",
+      "sha256": "9b8977cd00cfe9ce490a53ac9860b420f96220bed52ae4d37bb8b1f2417ba03d"
+    },
+    {
+      "name": "土耳其",
+      "side": "背面",
+      "source": "assets/c834127a9eff4-back.webp",
+      "target": "assets/zh-CN/c834127a9eff4-back.webp",
+      "review": "素材/c834127a9eff4-back.zh-CN.png",
+      "reviewSHA256": "fbfb383b2666ff6439556b69d18cb7a9c226e0674d0f17899801358ef847efef",
+      "sha256": "9c866ec76ade8c735ab1363e0dc5804744413688105d44a1bbcf9f48ae58d502"
+    },
+    {
+      "name": "伊拉克",
+      "side": "正面",
+      "source": "assets/ca8517a78af2d.webp",
+      "target": "assets/zh-CN/ca8517a78af2d.webp",
+      "review": "素材/ca8517a78af2d.zh-CN.png",
+      "reviewSHA256": "3f5364e643b7b0991ffb8fe5dea3ff01794653fc148a5bcadcedc50acc6ec820",
+      "sha256": "ee2835beba29dab78d0226a5d53777066d1c3b64ac2f181c1415f23b2ac905a3"
+    },
+    {
+      "name": "伊拉克",
+      "side": "背面",
+      "source": "assets/ca8517a78af2d-back.webp",
+      "target": "assets/zh-CN/ca8517a78af2d-back.webp",
+      "review": "素材/ca8517a78af2d-back.zh-CN.png",
+      "reviewSHA256": "7c4a4f876d6050f336ffe2e3e385cd0709f3dae5aa247853f912ee998d70db1f",
+      "sha256": "1da0b45ac6a30654e4ef3827403570fe6ea317f2a56496ffdc5b6b815ab8167b"
+    },
+    {
+      "name": "朝鲜（2024）",
+      "side": "正面",
+      "source": "assets/c11dd78abad1e.webp",
+      "target": "assets/zh-CN/c11dd78abad1e.webp",
+      "review": "素材/c11dd78abad1e.zh-CN.png",
+      "reviewSHA256": "179638c3c9e9298c4a143b05e14051307c7ff80d71487344ba1c1acd3e17b990",
+      "sha256": "fa89fab2f0b9b90c7e14ac12191ae16b31001ecb01cd3926fa37de6d4050e1bb"
+    },
+    {
+      "name": "朝鲜（2024）",
+      "side": "背面",
+      "source": "assets/c11dd78abad1e-back.webp",
+      "target": "assets/zh-CN/c11dd78abad1e-back.webp",
+      "review": "素材/c11dd78abad1e-back.zh-CN.png",
+      "reviewSHA256": "bcfd6fe6c4d692556621e5b5a9be1f2260d3a3c6cb73027576c2a476a1f5f8c5",
+      "sha256": "ae99d0bcb13cdaa02b96d2c12098a1df0e3b3af0ff05293533e692c7066c9a80"
+    },
+    {
+      "name": "乌克兰（2014）",
+      "side": "正面",
+      "source": "assets/cf7c0ffc48316.webp",
+      "target": "assets/zh-CN/cf7c0ffc48316.webp",
+      "review": "素材/cf7c0ffc48316.zh-CN.png",
+      "reviewSHA256": "5476dd9184c5f15ace02dbf413a7d1781521a73f182bbc9285bca8d85c633fc8",
+      "sha256": "dd767a2aae15bc818d7ba55fa343af9f9e2c5633bb465553d6fc85da5f099e2a"
+    },
+    {
+      "name": "乌克兰（2014）",
+      "side": "背面",
+      "source": "assets/cf7c0ffc48316-back.webp",
+      "target": "assets/zh-CN/cf7c0ffc48316-back.webp",
+      "review": "素材/cf7c0ffc48316-back.zh-CN.png",
+      "reviewSHA256": "cc859fb2314cd6f3fe2579421794935030575b64b75a84911dbb6145f59336f4",
+      "sha256": "05e20b49e0b342c349c26f4662c37ff0862d723f496395b53f976ec734ee181d"
+    },
+    {
+      "name": "英国",
+      "side": "正面",
+      "source": "assets/c2172fd0f8650.webp",
+      "target": "assets/zh-CN/c2172fd0f8650.webp",
+      "review": "素材/c2172fd0f8650.zh-CN.png",
+      "reviewSHA256": "7d667e5386337c254a266d04088155fb55014d0ecac55510cdd51870d2d50c11",
+      "sha256": "423779cf20ebe83dcb24022a7acd925720abf995b8a3c804ecd571103c4e450c"
+    },
+    {
+      "name": "英国",
+      "side": "背面",
+      "source": "assets/c2172fd0f8650-back.webp",
+      "target": "assets/zh-CN/c2172fd0f8650-back.webp",
+      "review": "素材/c2172fd0f8650-back.zh-CN.png",
+      "reviewSHA256": "294c2d2dc2308024acda75760ecb885e81d0113b283156d154fb7ad60384097e",
+      "sha256": "d0e33cdff8217269e78e29d5d277f66a2e7af224fcfe7819e3f48709bd45bddf"
+    },
+    {
+      "name": "贸易协定 · 美国",
+      "side": "正面",
+      "source": "assets/trade-US.webp",
+      "target": "assets/zh-CN/trade-US.webp",
+      "review": "素材/trade-US.zh-CN.png",
+      "reviewSHA256": "4d2af3a9c4d0675778457bfa0991e57138e49fe1759790b216921cc83853ee36",
+      "sha256": "1b58703a20eecdf3a1934dee15d898a824ce39f127c3b9166bde8aa6b6c8d483"
+    },
+    {
+      "name": "贸易协定 · 中国",
+      "side": "正面",
+      "source": "assets/trade-CN.webp",
+      "target": "assets/zh-CN/trade-CN.webp",
+      "review": "素材/trade-CN.zh-CN.png",
+      "reviewSHA256": "d91c486e88dd43fb3ff933d40a528edad419f43199e0f567c93afe65c689687e",
+      "sha256": "8ec7f5ab6bc15846eecc8cfa3670bd81bce86fb479e7b9aad4254b02f36959c3"
+    },
+    {
+      "name": "贸易协定 · 欧盟",
+      "side": "正面",
+      "source": "assets/trade-EU.webp",
+      "target": "assets/zh-CN/trade-EU.webp",
+      "review": "素材/trade-EU.zh-CN.png",
+      "reviewSHA256": "90706410028582077e9d3acd8aec0cb57d051779a68732dcfca8af19be8b78fe",
+      "sha256": "86f0024f69f6402b2347e1a50f8801b632038e1ceaea45a530c596877d7ed232"
+    },
+    {
+      "name": "贸易协定 · 俄罗斯",
+      "side": "正面",
+      "source": "assets/trade-RU.webp",
+      "target": "assets/zh-CN/trade-RU.webp",
+      "review": "素材/trade-RU.zh-CN.png",
+      "reviewSHA256": "b00460c0421c83e6aa128af4c1f4b7639f957ce892bb76dfa469c9dfd856507b",
+      "sha256": "fb57b3c084b6c9715fc8bd60459bc4ea778d4f3ecff17ad280299016179ca0d3"
+    }
+  ],
+  "variants": [
+    {
+      "name": "美国贸易协定：出口2／进口3",
+      "source": "assets/zh-CN/trade-US.webp",
+      "target": "assets/zh-CN/trade-US-import3.webp",
+      "review": "素材/trade-US-import3.zh-CN.png",
+      "default": false,
+      "sha256": "b4854b4b698f1f235856a32266cafcfba35ccb5151df71ad9d906c475f588928"
+    }
+  ]
+}

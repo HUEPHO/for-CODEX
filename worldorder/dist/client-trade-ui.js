@@ -71,7 +71,7 @@ export function renderClientTradeForm(s,id,card){
   </section>`).join('')}</div>
   ${regions.length?`<fieldset class="client-trade-regions"><legend>扩展贸易 · 可用 ${p.smart} SP</legend><p>额外使用所选地区展示国家的符号，每地区 1 SP；点击该地区盟国商店选择。</p><div>${regions.map(r=>`<label><input type="checkbox" data-trade-region="${r}"><span>${AREAS[r].name}</span></label>`).join('')}</div></fieldset>`:''}
   ${card.factory?`<label class="client-trade-factory"><span>贸易后生产消费品 <small>消耗等量能源和原料</small></span>${stepper('factory-goods','',2,'生产消费品')}</label>`:''}
-  <details class="client-trade-rules"><summary>贸易规则与协定</summary><p>${esc(explanation(card))}</p><img class="viewerimage" src="assets/trade-${s.current}.webp" alt="${names[s.current]}贸易协定">${renderEventEffects(s,s.current,{textOnly:true})}</details>
+  <details class="client-trade-rules"><summary>贸易规则与协定</summary><p>${esc(explanation(card))}</p><img class="viewerimage" src="assets/zh-CN/trade-${s.current}.webp" alt="${names[s.current]}贸易协定">${renderEventEffects(s,s.current,{textOnly:true})}</details>
   </div>
   <footer class="client-trade-footer"><p id="basic-preview" aria-live="polite"></p><button id="commit-basic" data-card-action="playBasicCard" data-id="${esc(id)}">结算全部交易并结束行动</button></footer>
  </section>`;

@@ -63,7 +63,7 @@ async function writeAsset({source,file,name,english,region,side,kind,translated,
 try{
  for(const c of cards){
   for(const side of ['正面','背面']){
-   const back=side==='背面',source=back?ALLY_BACK_IMAGES[c.id]:`assets/${c.id}.webp`;
+   const back=side==='背面',source=back?ALLY_BACK_IMAGES[c.id].replace('assets/zh-CN/','assets/'):`assets/${c.id}.webp`;
    const translated=!(back&&c.type==='startingCountry');
    await writeAsset({source,file:`${c.id}${back?'-back':''}.zh-CN.png`,name:c.name,english:c.originalName,region:REGIONS[c.region],side,kind:'country',translated,
     build:async(raw,w,h)=>{

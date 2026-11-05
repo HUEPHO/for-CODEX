@@ -108,7 +108,7 @@ function commerce(model){
 function agreements(model){
  const t=model.trade;
  const partners=t.partners.map(p=>`${POWERS[p.owner].name}：${p.resources.map(key=>p.quantity+' '+RESOURCE_NAMES[key]).join('或')}`).join('；');
- return `<section class="player-board-agreements player-board-agreements--printed"><header><h3>贸易协定</h3><span>出口 ${t.exports} 种 · 进口 ${t.imports} 种</span></header><img class="player-board-agreement-art" src="assets/trade-${model.owner}.webp" alt="${POWERS[model.owner].name}贸易协定，出口 ${t.exports} 种、进口 ${t.imports} 种；玩家进口额度：${partners}" title="玩家进口额度：${partners}" draggable="false">${t.agreements.length?`<div class="player-board-active-agreements">${t.agreements.map(a=>`<article data-board-agreement="${a.id}"><div><b>${esc(a.name)}</b><span>${esc(a.status)}</span></div><p>${esc(a.description)}</p></article>`).join('')}</div>`:''}</section>`;
+ return `<section class="player-board-agreements player-board-agreements--printed"><header><h3>贸易协定</h3><span>出口 ${t.exports} 种 · 进口 ${t.imports} 种</span></header><img class="player-board-agreement-art" src="assets/zh-CN/trade-${model.owner}.webp" alt="${POWERS[model.owner].name}贸易协定，出口 ${t.exports} 种、进口 ${t.imports} 种；玩家进口额度：${partners}" title="玩家进口额度：${partners}" draggable="false">${t.agreements.length?`<div class="player-board-active-agreements">${t.agreements.map(a=>`<article data-board-agreement="${a.id}"><div><b>${esc(a.name)}</b><span>${esc(a.status)}</span></div><p>${esc(a.description)}</p></article>`).join('')}</div>`:''}</section>`;
 }
 
 /** Trade information can sit in the public practical-information area. */
