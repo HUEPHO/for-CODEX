@@ -25,6 +25,12 @@ body.game-client.client-scroll{--client-command-width:320px;--client-toolbar-spa
 .game-client.client-scroll .original-board-surface{min-width:0}
 .game-client.client-scroll .client-market-row{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .game-client.client-scroll .client-growth-area .growth-supply-grid{gap:8px}
+.game-client.client-scroll .client-history-area{width:100%;min-width:0;flex:none;padding:14px;border:1px solid #526974;border-radius:5px;background:#142b3bc9}
+.game-client.client-scroll .client-history-list{list-style:none;margin:0;padding:0;overflow:visible}
+.game-client.client-scroll .client-history-list li{padding:9px 0;border-top:1px solid #6f879333;color:#cbd9e0;font-size:12px;line-height:1.65;overflow-wrap:anywhere}
+.game-client.client-scroll .client-history-list li:first-child{border-top:0;padding-top:0;color:#ecdbb5}
+.game-client.client-scroll .client-history-list li:last-child{padding-bottom:0}
+.game-client.client-scroll .client-history-list .client-history-empty{color:#8ea7b6}
 .game-client.client-scroll .client-command-dock{position:fixed;top:calc(var(--client-chrome) + 10px);right:calc(var(--client-rail) + 24px);bottom:10px;width:var(--client-command-width);display:flex;flex-direction:column;gap:10px;min-height:0;z-index:35}
 .game-client.client-scroll .client-command-dock>.tray{position:static;display:flex;flex-direction:column;flex:none;min-height:0;height:auto;padding:9px;overflow:visible;background:#142b3bf2;border:1px solid #526974;border-radius:5px}
 .game-client.client-scroll .client-command-dock .client-strategic-assets{padding:0 0 7px;margin:0 0 7px;border-bottom:1px solid #516c7c}

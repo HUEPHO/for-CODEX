@@ -52,7 +52,11 @@ export function composeClientScrollTable(state,byId,card,{viewer=state.current,a
  const market=section('client-market-area',`<div class="client-market-cards"><header class="client-section-title"><h2>能力卡牌商店</h2><span>新牌在左 · 余 ${state.marketDeck.length} 张</span></header><div class="client-market-row">${state.market.map(id=>card(id,'market')).join('')}</div></div>`);
  const growth=section('client-growth-area',renderClientGrowthCatalogue(state,byId,card));
  growth.querySelector('h2').textContent='发展卡商店';growth.setAttribute('aria-label','发展卡商店');
- table.append(personal,events,market,growth);
+ const history=section('client-history-area','<header class="client-section-title"><h2>操作记录</h2></header><ol class="client-history-list"></ol>');
+ history.setAttribute('aria-label','操作记录');
+ for(const message of state.log){const entry=document.createElement('li');entry.textContent=message;history.querySelector('ol').append(entry);}
+ if(!state.log.length)history.querySelector('ol').innerHTML='<li class="client-history-empty">暂无操作记录</li>';
+ table.append(personal,events,market,growth,history);
  const task=table.querySelector('.action-workbench');task?.setAttribute('aria-label','行动操作区');
  const dock=section('client-command-dock','');
  if(tray.querySelector('.asset-choice,.opening-group')){dock.append(task);}else{dock.append(tray,task);paginateHand(tray,viewer);}
