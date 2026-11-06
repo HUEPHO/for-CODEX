@@ -1,85 +1,93 @@
 # World Order · HTML 网页版
 
-使用 Node.js 24，在本目录运行：
+《World Order》电子桌面，支持基础版、《外交与霸权》（D&D）和《世界动荡》（WIT），提供本机桌面、共享房间，以及基础／高级自动机。当前说明更新于 **2026-11-06**。
+
+项目位于 [HUEPHO/for-CODEX](https://github.com/HUEPHO/for-CODEX) 仓库的 `worldorder/`，默认分支为 `main`。
+
+## 启动
+
+Windows 双击本目录的 **`Start-Local.bat`**。它优先使用 `runtime/node.exe`，没有附带运行时时使用系统 Node.js。
+
+已安装 Node.js 24 的环境也可以在本目录运行：
 
 ```sh
-node scripts/start-web.mjs
+npm run dev:local
 ```
 
-打开终端显示的地址（默认 `http://127.0.0.1:8787`）。无需安装依赖；同一网页支持本机桌面和四人联机房间。服务运行时保持终端开启。房间数据保存在本地 `.web/`，不包含在仓库中。
+无需先安装 npm 依赖。打开终端显示的地址，默认是 `http://127.0.0.1:8787`；保持服务窗口运行。页面通过 HTTP 加载，不能直接双击 `dist/index.html`。
 
-界面与运行说明见 [网页版说明](docs/web-package-readme.txt)，开发交接见 [START_HERE.md](START_HERE.md)。以下保留早期记录，当前状态以交接入口顶部的最新更新为准。
+启动器会打印当前源码和实际房间存档路径；同目录服务可复用，其他目录或旧服务占用端口时会明确提示，避免误开旧版本。`runtime/` 不进入 Git，仅克隆仓库时需自行准备 Node.js 24。
 
----
+更新服务端或引擎代码后，先停止原服务，再重新启动并刷新网页。
 
-# 最新交接入口 · v26 · 2026-09-16
+## 房间与开局
 
-请先读 [START_HERE.md](START_HERE.md)。Node.js 24 下运行 `npm run dev:local` 即可启动四人房间，无需先安装依赖。
+首页是房间大厅，可创建房间、按房号加入、查看最近创建的房间，或进入本机对局。创建时选择扩展、自动机模式，以及四个势力分别由真人还是自动机控制。
 
-当前状态见 [HANDOFF_STATUS.md](docs/HANDOFF_STATUS.md)，接手任务见 [CODEX_TASK.md](CODEX_TASK.md)，已确认规则见 [CONFIRMED_RULES.md](docs/CONFIRMED_RULES.md)。实际四标签页已走到第二轮行动，六轮房间程序验证通过；第三/六轮计分与终局的浏览器实操仍待补齐。
+| 开局模式 | 真人数量 | 其余势力 |
+| --- | --- | --- |
+| 无自动机 | 4 | 全部真人 |
+| 基础自动机 | 2或3 | 基础版非玩家势力 |
+| 高级自动机 | 1至3 | 一扩高级自动机，普通／困难难度 |
 
-下方保留原项目 README 及历史检查点，早期限制由后续记录覆盖。请勿按历史待办重复实现已经完成的功能。
+基础双人局需从美国／欧盟中选一方，再从中国／俄罗斯中选一方。两类自动机不混用，模式在布置新对局时确定；旧存档保留原配置。
 
----
+创建后在房间等待页确认席位，使用席位链接邀请其他真人入座，再由房主开始游戏。自动机不占真人席位。对局顶部的 **“返回房间大厅”** 只切换页面，保留席位和存档；返回对局可继续操作。
 
-> **2026-09-16：按整局路径继续开发。** 已补齐实际浏览器开发入口，修复本地 HTTP 加载失败、空回合误结束、研究不足额购买提示及终局状态文案。四标签页完成开局、跨玩家资产与首轮到第二轮行动循环；基础/扩展完整六轮房间命令检查通过。浏览器晚期计分复核受确认窗口连接超时影响未完成，详见 [本次记录](docs/browser-session-2026-09-16.md)。
+本机入口可用多个标签页验证真人席位。`127.0.0.1` 链接仅供本机访问，其他电脑加入需使用下文的独立网页服务及局域网地址。
 
-# World Order electronic table — M2
+## 当前功能与操作
 
-Current release supports four-player server-backed rooms alongside the original local hotseat table. One account can play all four powers in separate browser tabs; create a room from the header and open the other three seat links from its lobby. See ROOMS.md for room storage, seat authority and reconnect behavior. Core round/economy/scoring, all 48 starter-card base actions, all 66 base market cards, all 20 base strategic assets, all 12 D&D strategic assets, all 8 D&D market cards, and the four optional executive orders now have automatic resolution entry points; unsupported or partially executable effects remain manual. The current priority is completing rules mechanisms; remaining card/phase automation and visual upgrades remain deferred.
+- 六轮准备、行动、研究、事件与结算流程；基础及扩展卡牌已有自动结算入口。无需选择的确定性步骤自动推进，遇到真人选择或明确标示的人工结算才停下。
+- 自动机相关面板、行动方块、牌图、盟国及公开状态集中在对应玩家的信息窗口。裁军、撤军／增援、转永久、北溪、TTIP及金砖国家等自动机事件选择由脚本处理，旧存档的相关待办可自动继续。
+- 数量统一左键增加、右键减少；是否选择统一左键选中、右键取消，重复左键保持选中。地区选择以整块金框表示状态。
+- 贸易面板同时展示各类资源，保存结束后即可操作，无需先点击“扩展”。主板提供六格公共效果区。
+- 轮到本席行动或回应时播放 BGA 同款提示音。首次点击或按键后启用，刷新、大厅和重复同步不会重复提醒。
+- 抽牌、掷骰或查看隐藏信息后仍可撤回，点击即执行并提示“这不太好哟”；进入下一位玩家回合后，重开上一回合需要对方同意。
+- 协议公开实时出资。含真人时，全部确认但不足额仍等待补足或达到拒绝门槛；完全由自动机参与时，出资不足直接失败。费用和拒绝条件按对应协议执行。
 
-Implemented: supplied board and card imagery, four player views, hand/play/discard/deck transfers, market replacement, country acquisition, growth and event trays, resource counters, focus/round markers, local restore, undo, configuration for D&D and WIT. Starting hands now use two groups of six: each power selects one complete group; the other is shuffled into its deck. All four must choose before manual play. Existing local saves are preserved; use reset to start this flow. Strategic assets now draw three and keep two; pending checkboxes persist, confirmation computes starting VP from the two retained cards. Gameplay is blocked until all four players complete both selections. Legacy states remain untouched; reset starts the new draft. With D&D enabled, three objectives are drawn and two retained alongside the asset choice, using one atomic confirmation. Objectives award no starting VP. Without D&D the objective draft is skipped. Event setup is still a demonstration. Automa, solo play, and MARS helper cards are excluded.
+自动入口不代表全部牌面组合或整局完全自动；保留人工结算和旧存档兼容。高级自动机的自由选择策略见[实现说明](docs/non-player-decisions-2026-11-06.md)，不作为新增印刷规则。当前不包含 MARS 辅助牌。
 
-`dist/` is authored static source and must remain Git-tracked. The room release adds a Worker build: npm run build creates ignored dist/client and dist/server outputs plus D1 migrations. `dist/engine.js` holds pure state transitions; `dist/app.js` is the UI adapter. `node scripts/check-state.mjs` verifies relevant state invariants. No browser QA was requested or performed. WebMCP integration is feature-detected; supported-context validation was unavailable.
+## 存档与运行入口
 
-The import script accepts the original audit directory and TTS save, exports cards and boards, and retains source GUID/CardID references. Its external inputs remain in the user's original supplied files and M1 audit. Country duplicates are deduplicated for regional display by name. The 17 imported starting-country faces and growth quantities still require final v1.0 reconciliation before a formal game engine can claim rules-complete setup.
+推荐本机入口 `Start-Local.bat`／`npm run dev:local` 使用 `scripts/launch-local.mjs`，默认房间库为 `.local/rooms.sqlite`。若 `.local/launch-config.json` 配置了 `dataDirectory`，或设置了 `WORLD_ORDER_DATA`，则使用指定目录；以启动时打印的路径为准。保留已有配置即可继续使用原房间。
 
-Important next work: expansion growth and objectives/events, partial-effect resolution, and expanded replay/history. Server-backed room state, seat control, per-player views, command versioning/idempotency and reconnection are now implemented. Local state is stored under world-order-table-m2-v2 and is specific to this prototype.
+本机单桌进度保存在浏览器本地存储中；房间完整状态由服务端校验并保存，各席只获得对应的脱敏视图。备份房间时先停止服务并复制整个实际数据目录，或使用 SQLite 在线备份。
 
-## Historical checkpoints (later entries supersede earlier limitations)
+独立访客网页入口为 `node scripts/start-web.mjs`，默认数据目录是 `.web/`，使用独立访客身份。它与本机开发入口的身份和默认存档目录不同，切换入口不会自动迁移房间。局域网运行参数见[网页包说明](docs/web-package-readme.txt)的“同一局域网四台电脑”部分；该文档的旧界面说明以本 README 和最新交接记录为准。
 
-Visual pass: top four-power HUD, central board, right card supply and bottom hand dock. Smaller screens place the hand above the supply; logs are collapsible in the supply footer. This pass changes presentation only, not game rules.
+本机开发入口使用固定开发身份，仅用于本机使用和验证。生产入口 `server/index.js` 依赖可信 Sites 身份及 D1 `DB`；本仓库不会自动部署或创建公网地址。Steam 通道已有实现，真实四账号跨网络联机仍待实测。
 
-Mechanics priority: defer further visual upgrades until mechanisms are complete. Initial round order is established once after all setup choices: descending VP, then ascending fixed starting money. View switches to the first player and order is preserved across later manual resource/VP edits. Legacy completed saves are not re-ranked from potentially changed scores; reset to opt in. New tables now track the first round: End action advances to the next power, and after four turns each (16 total), enters Research. Playing extra cards does not advance the turn. Only the active power can end its turn. Research resolution and later-round ordering remain manual/unimplemented; legacy completed saves need reset to enable the counter.
+## 开发与验证
 
+接手前依次阅读 [START_HERE.md](START_HERE.md)、[CODEX_TASK.md](CODEX_TASK.md)、[HANDOFF_STATUS.md](docs/HANDOFF_STATUS.md)、[CONFIRMED_RULES.md](docs/CONFIRMED_RULES.md)，并遵守 [AGENTS.md](AGENTS.md)。这是现有项目的续作，较早阶段记录中的限制和待办以最新确认内容为准。
 
-Six-round flow (new tables): all six action rounds rotate through four turns per power. Research is skipped in round six. Research records manually entered hand research, adds Domestic Focus +2, checks purchase/refresh affordability, puts acquisitions on deck top, exhausts allied countries for manually entered value, and clears unused research plus remaining hand at completion. Upper card bonuses, card costs and country values are NOT yet normalized in cards.json; these are explicitly manual inputs, not automatic printed-rule validation. A refresh discards the three rightmost market cards for 2 research; discarded market cards are not recycled.
+| 位置 | 用途 |
+| --- | --- |
+| `dist/` 根目录、`dist/assets/` | 跟踪的前端、引擎源文件与素材，不是可整体删除的构建目录 |
+| `server/`、`drizzle/` | 房间服务、存储及数据库迁移 |
+| `scripts/` | 启动、构建与专项验证 |
+| `docs/` | 规则、架构、功能交接和验证记录 |
+| `dist/client/`、`dist/server/`、`dist/.openai/` | 生成物 |
 
-Events and Aftermath use ordered manual-confirmation steps; confirmations do NOT execute their effects. Aftermath includes investment, prosperity, threat, and round 3/6 scoring (with expansion reminders). Final completion adds 2 VP per unused strategic asset exactly once; other scoring and victory tie breaks remain manual. Executive Orders are not enabled. Next-round preparation draws six (reshuffling the discard when needed), updates two country piles, lets players draft turn slots by VP/current money/starting money, then confirms manual primary production and focus effects. Countries remain exhausted until explicitly readied by a card effect; they are not auto-refreshed each round. New country-pile tracking retains buried cards. Existing completed local saves preserve the prior manual mode; reset to opt into the new workflow.
+Node.js 24 下，以下房间和流程检查无需先安装依赖，按变更范围选择运行：
 
-Validation: `node scripts/check-state.mjs` and `node scripts/check-flow.mjs`. The latter runs complete six-round state simulations with/without expansions, payment/refresh rejection, card conservation, save/restore, country-pile updates, turn-slot selection and once-only final bonuses. No browser QA was performed.
+```sh
+npm run test:local
+npm run test:rooms
+npm run test:room-game
+npm run test:flow
+```
 
+自动机、导航和提示音另有专项：`scripts/check-non-player.mjs`、`scripts/check-automa-core.mjs`、`scripts/check-automa-integration.mjs`、`scripts/check-automa-events.mjs`、`scripts/check-non-player-decisions.mjs`、`scripts/check-room-navigation.mjs`、`scripts/check-local-launcher.mjs`、`scripts/check-turn-notification.mjs`。
 
-Research automation update: 122 ability-card research/upper-bonus records and 93 country values are generated from TTS metadata in `research-data.js`. All 24 distinct ability bonus/cost patterns were visually checked against representative card faces, including the 40C7 encoding (4 research, 10 money, 7 cost). `research.js` calculates remaining-hand bonuses and Domestic Focus +2, grants money/diplomacy/armies once, discards played cards, and uses fixed card costs/country values; client-supplied amounts are ignored. Diplomacy above 10 is lost, armies are uncapped (base p.15). Existing in-progress research keeps its recorded balance to avoid granting bonuses twice; subsequent research starts use automatic values. No reset is needed for existing six-round saves. The pre-research screen previews awards and explicitly tells players not to grant them manually. Full action effects remain manual.
+修改模块依赖或动作准入边界时运行 `npm run test:architecture`。`npm test` 仅是早期状态回归，不能代表当前全部功能验收；先查看 [VERIFICATION.md](docs/VERIFICATION.md)，选择能覆盖本次实际风险的检查。
 
-Checkpoint validation: `node scripts/check-research.mjs` verifies actual card examples, the 10-money encoding, diplomacy overflow, army counts above 99, tampered client amounts, duplicate awards/exhaustion, and saved balances. The six-round smoke test was updated for automatic research rather than arbitrary manual amounts.
+Vite 开发、生产构建及 Drizzle 工具需要先运行 `npm ci`，再按需执行 `npm run dev`、`npm run build` 或 `npm run db:generate`。存档、便携运行时、临时构建和截图按 `.gitignore` 留在本机。
 
-Economy automation checkpoint: new tables now initialize seven production tracks and a prosperity track. Primary production executes once in preparation; focus choices ready selected allies, charge optional upgrades, apply country-specific limits and costs, and pay for selected secondary production. Overflow converts to money except diplomacy (lost); armies remain unlimited. Prosperity is a per-player once-per-round decision with automatic goods payment, VP and money. This replaces manual production/focus/prosperity confirmations for new tables. Legacy saves remain readable in the prior manual mode because their historical tracks are unknown; start a new table to opt in. Full details and remaining special-card limitations: docs/economy.md. Completed checkpoints were committed independently before UI integration; failed transactions and duplicate actions were checked.
+## 最近更新与记录
 
-Map/aftermath automation checkpoint: new tables distinguish permanent positions, ordered temporary influence, and extra permanent cubes from conversion. Placements grant their printed immediate points; full temporary tracks eject the oldest cube without points, reset/conversion score nothing, and the EU's initial African cube is correctly temporary. Record FDI on allied cards and Engage markers in regions after manually resolving the relevant action. Investment income, optional Engage withdrawal income, threat with NATO/military focus/Engage defense, regional/majority/national scoring, SP majority, and final victory tie-breaks now have automated preview/settlement. Special card modifiers and objectives remain manual. Old saves preserve their manual map/aftermath; use a new table for accurate initial slots and marker tracking. See docs/world-scoring.md for boundaries and rule references. Changes were saved in separate calculation and integration checkpoints, with necessary rule-example checks and a six-round smoke run.
-
-Automatic action-card checkpoint: nine explicitly verified starting cards (four investments, four engagement cards, EU Soft Power) now expose target/slot selection and payment preview in the card viewer. Confirmation pays printed costs, exhausts selected allies, places the appropriate marker/influence, scores placement and advances one turn atomically. Engage respects national token supply and relocation. Pass now covers a chosen card, pays ten money and advances; empty hands are supported. Current-turn manual plays prevent stacking a normal automatic action or Pass. Existing map-enabled saves enable this after their next End Action, preserving their current turn; older tables remain manual. Other ability effects and optional SP extras remain manual. See docs/basic-actions.md. Calculation and integration were saved separately with focused checks.
-
-军事增援：四国起始牌可自动获得1军队并选择0–2次付费移动；自动检查利益地区/已记录基地、可用军队和资金，完成后自动轮转。目前共13张起始牌支持基础自动结算。盟国卡可手动记录已建基地，建基地本身仍手动处理。详见 docs/military-actions.md。
-
-2026-09-15 批量更新：48张起始能力牌均已有基础自动操作入口，新增建基地、结盟（含起始国家升级）、生产、18张基础发展牌购入与部分被动能力，以及完整起始贸易牌结算。93张国家牌的界面名称全部中文化，地区简称为中东、亚太。原始卡图保留。未完成的主动发展能力、其他能力牌与扩展效果仍明确保留手动。全球货币已由用户确认在整次贸易结束后领取奖励。详见 docs/automation-progress.md。
-
-2026-09-15 后续更新：六类SP增强、技术转让/缩减官僚的可恢复抽弃牌选择、战略优势首回合额外出牌已接入；资源栏和费用改为图标，名称保留悬停与无障碍标签。开放外交、区域韧性及研究期间主动抽牌仍手动，联网尚未接入。以 docs/automation-progress.md 最新检查点为准。
-
-后续检查点：开放外交追加结盟与区域韧性前后转换已接入起始牌及追加结盟操作；两步保存、费用预览、每轮使用限制和战略优势衔接见 docs/automation-progress.md。
-
-市场能力首批：11种效果、22张牌自动结算，基础市场66张牌全部补充中文名称。强权游戏满永久槽放置0分已按用户确认实现。当前自动入口覆盖48起始能力＋22市场能力；其余牌面保留手动。
-
-多段卡牌批次：基础市场自动入口60/66张（30种），新增第二次投资/建基地、逐段保存与恢复、抽弃牌和移除、免费研究后指定出牌、连续牌链、生产发展与复合行动。未自动的基础牌为改善后勤、建立新大使馆、建设性谈判；联网与资产/事件等仍待后续。最新规则边界见 docs/automation-progress.md。
-
-外交市场补全批次：基础市场自动入口64/66张（32种）。建立新大使馆支持可选减免1外交及限定地区的可选影响力重置；建设性谈判支持先重整盟国、可选整地区检索、正常结盟及余牌重洗。仅改善后勤的2张仍待确认派兵规则后接入。详见 docs/automation-progress.md。
-
-一次性卡牌批次：改善后勤已按用户确认接入，基础市场66张全部登记；四国行政命令完整接入开局选项、盖牌、8选1、一次性使用及终局3分。新增16/20张基础战略资产自动结算，20张基础资产均已补中文名。其余4张基础资产、12张扩展资产与事件等仍手动，详见 docs/automation-progress.md。
-
-地区互动批次：美国海军已按用户确认以每支总计10资金结算；金砖国家支持可恢复的俄罗斯回应。欧洲品牌、新能源市场按真实出口地区独立核对奖励，基础资产20/20张现有自动入口。《外交与霸权》外交缓和、金融颠覆各2张已接入；其他玩家盟国上的投资独立记录归属、收益与国家升级。扩展市场全部8张补中文名，其中力量展示、情报窃取仍待规则澄清后自动化。详见 docs/automation-progress.md 最新章节。
-
-扩展市场互动补全：力量展示让其他玩家依次各选当地一个未横置盟国横置；情报窃取先查看指定玩家，再复制其手牌或正面已出能力牌，由本方支付费用与选择目标。复制优化官僚机构时，移除本方打出的情报窃取，对方原牌保留。两类牌各2张已接入，扩展市场自动入口达到8/8。等待回应、复制步骤与指定研究后出牌可保存恢复。详见 docs/automation-progress.md 最新章节。
-
-扩展战略资产首批：新增8/12张自动入口，覆盖经济巨头、全球门户倡议、全球制造中心、贸易顺差、俄罗斯金砖国家、核子试爆、经济与军事援助、中央情报局。12张扩展资产均补全中文界面名；按地区出口收入、指定资源生产、供应军队与原位影响力交换已接入。北京共识、共同外交与安全政策及两张政权更迭等待规则澄清。详见 docs/automation-progress.md 最新章节。
-
-扩展战略资产补全：北京共识按用户确认正常支付消费品、领取繁荣奖励并按新等级获得外交；共同外交与安全政策先横置欧盟成员国，再按通常产能和费用生产外交/军队，随后介入或建基地。两国政权更迭均排除初始盟国及其升级版本，包含旧存档未记录升级底牌的情况；合法夺取会清除该牌投资和基地、重整盟国并继续当地影响力。扩展资产12/12张、基础资产20/20张已有自动入口。详见 docs/automation-progress.md 最新章节。
+- [第11页批注](docs/page-eleven-2026-11-06.md)：贸易灰显、金框选择、公共效果区、提示音及自动机事件选择。
+- [房间大厅与启动入口](docs/room-lobby-2026-11-06.md)：模式配置、真人／自动机席位、返回大厅和源码路径核对。
+- [高级自动机](docs/advanced-automa-2026-11-06.md)与[基础非玩家](docs/non-player-2026-11-06.md)：规则覆盖、界面及验证范围。
+- [架构说明](docs/ARCHITECTURE.md)与[早期自动化记录](docs/automation-progress.md)：模块边界和历史开发过程；更早的 README 可从 Git 历史查看。
