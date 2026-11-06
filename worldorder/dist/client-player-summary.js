@@ -3,6 +3,7 @@ import {powerFlag} from './power-identity.js';
 import {resourceIconPath} from './resource-icons.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {clientPlayerTradeModel} from './client-player-board.js';
+import {renderAutoInfluenceSummary} from './non-player-ui.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const seats=Object.keys(POWERS);
@@ -42,7 +43,7 @@ function tradeSummary(state,id){
 }
 
 function playerSummary(state,byId,id,{viewer,actor}){
- if(state.players[id].nonPlayer){const armies=Object.values(state.regions).reduce((n,r)=>n+r.armies[id],0),influence=Object.values(state.regions).reduce((n,r)=>n+r.influence[id],0);return `<section class="client-player client-player--${id} client-player--non-player" data-army-owner="${id}" style="--player-color:${POWERS[id].color}"><span>${powerFlag(id)} 基础自动机</span><span class="npp-forces">影响力 ${influence} ${icon('army','版图军队')} ${armies}</span></section>`;}
+ if(state.players[id].nonPlayer){const armies=Object.values(state.regions).reduce((n,r)=>n+r.armies[id],0),influence=Object.values(state.regions).reduce((n,r)=>n+r.influence[id],0);return `<button type="button" class="client-player client-player--${id} client-player--non-player" data-client-player="${id}" data-army-owner="${id}" style="--player-color:${POWERS[id].color}" aria-haspopup="dialog" aria-label="查看${POWERS[id].name}自动机的全部自动影响力卡牌"><span>${powerFlag(id)} 基础自动机</span><span class="npp-forces">影响力 ${influence} ${icon('army','版图军队')} ${armies}</span>${renderAutoInfluenceSummary(state,id)}</button>`;}
  const p=state.players[id],power=POWERS[id],self=id===viewer,acting=id===actor;
  const focus=typeof p.focus==='string'?p.focus:'';
  const heading=`<span class="client-player-heading"><span class="client-player-name"><span class="client-power-mark" aria-hidden="true">${powerFlag(id,{decorative:true})}</span>${self?'<small class="client-player-you">你</small>':''}${acting?'<span class="client-player-turn" title="当前操作方" aria-label="当前操作方">●</span>':''}</span><span class="client-player-vp" title="胜利分：${number(p.vp)}">${icon('vp','胜利分')}<b>${number(p.vp)}</b></span><span class="client-player-hand" title="手牌数量：${count(p.hand)}张"><small>手牌</small><b>${count(p.hand)}</b></span></span>`;

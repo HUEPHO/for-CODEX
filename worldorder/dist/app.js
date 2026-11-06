@@ -1,5 +1,5 @@
 import {humanPlayers} from './player-configuration.js';
-import {renderPlayerConfiguration,readPlayerConfiguration,readNonPlayerChoice} from './non-player-ui.js';
+import {renderPlayerConfiguration,readPlayerConfiguration,readNonPlayerChoice,renderAutoInfluence} from './non-player-ui.js';
 import {isGameClient,syncGameClient,setGameClientPicking} from './game-client.js';
 import {showGameDialog,closeClientDialogs} from './client-dialogs.js';
 import {composeClientScrollTable} from './client-scroll-layout.js';
@@ -462,6 +462,7 @@ function openPublicPlayer(id){
  const p=state.players[id],power=POWERS[id];if(!p||(!room?.state&&!isGameClient))return;
  const self=id===(room?.seat||state.current);$('#viewer').classList.remove('board-viewer');
  $('#viewer-body').dataset.armyOwner=id;
+ if(p.nonPlayer){$('#viewer-body').innerHTML=renderAutoInfluence(state,id);showGameDialog($('#viewer'));return;}
  const stats=[['胜利分',p.vp],['资金',p.money],['繁荣',p.prosperity],...(state.config.wit?[['SP',p.smart]]:[]),...RESOURCE_NAMES.map((name,i)=>[name,p.resources[i]])];
  const section=(label,list)=>`<h3>${label}</h3><div class="public-cards">${list.map(cid=>cid?card(cid,'view'):'<div class="public-back">盖放的能力牌</div>').join('')||'<p class="minor">暂无卡牌</p>'}</div>`;
  const summary=`<h2>${power.name} · ${self?'我的信息':'公开信息'}</h2><p>胜利分 ${p.vp} · 资金 ${p.money} · 手牌 ${p.hand.length} 张</p>`;

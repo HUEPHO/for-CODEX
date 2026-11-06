@@ -10,9 +10,18 @@ export function renderPlayerConfiguration(config={}){
  return `<fieldset class="player-configuration"><legend>参与势力</legend>${POWER_IDS.map(id=>`<label>${powerFlag(id)}<select data-human-seat="${id}" aria-label="${POWERS[id].name}控制方式"><option value="human"${humans.includes(id)?' selected':''}>玩家</option><option value="auto"${humans.includes(id)?'':' selected'}>基础自动机</option></select></label>`).join('')}</fieldset>`;
 }
 export function readPlayerConfiguration(root){return [...root.querySelectorAll('[data-human-seat]')].filter(el=>el.value==='human').map(el=>el.dataset.humanSeat);}
-export function renderAutoInfluence(s){
- if(!s.autoInfluence)return '';
- return `<section class="auto-influence"><header><h2>自动影响力</h2><span>${s.autoInfluence.history.at(-1)?.round===s.round?(s.round<6?'下轮研究后结算':'末轮已结算'):'本轮研究后结算'}</span></header><div class="auto-influence-cards">${s.autoInfluence.faceUp.map(id=>`<article data-auto-influence-card="${id}"><img src="assets/auto-influence/${id}.webp" alt="自动影响力牌 ${id+1}"><div>${AUTO_INFLUENCE_CARDS[id].rows.filter(row=>isNonPlayer(s,row.owner)).map(row=>`<p>${powerFlag(row.owner)}<b>${AREAS[row.region].name}</b>${row.army?'<span class="resource-icon resource-icon--army" aria-label="放置1支军队" title="放置1支军队"></span>':''}${row.trade&&!isNonPlayer(s,row.trade)?`<span class="auto-trade">${powerFlag(row.trade)} +10</span>`:''}</p>`).join('')}</div></article>`).join('')}</div></section>`;
+function autoInfluenceRow(s,id,owner){
+ const row=AUTO_INFLUENCE_CARDS[id].rows.find(row=>row.owner===owner);
+ return `<b>${AREAS[row.region].name}</b>${row.army?'<span class="resource-icon resource-icon--army" aria-label="放置1支军队" title="放置1支军队"></span>':''}${row.trade&&!isNonPlayer(s,row.trade)?`<span class="auto-trade">${powerFlag(row.trade)} +10</span>`:''}`;
+}
+export function renderAutoInfluenceSummary(s,owner){
+ return `<span class="npp-auto-cards">${s.autoInfluence.faceUp.map(id=>`<span class="npp-auto-card"><img src="assets/auto-influence/${id}.webp" alt="自动影响力牌 ${id+1}"><span>${autoInfluenceRow(s,id,owner)}</span></span>`).join('')}</span>`;
+}
+export function renderAutoInfluence(s,owner){
+ const current=s.autoInfluence.faceUp,settled=s.autoInfluence.history.at(-1)?.round===s.round,timing=settled?(s.round<6?'下轮研究后结算':'末轮已结算'):'本轮研究后结算';
+ // The complete printed catalogue is public; its order never reads the hidden deck.
+ const cards=[...current,...AUTO_INFLUENCE_CARDS.map(c=>c.id).filter(id=>!current.includes(id))];
+ return `<section class="auto-influence" data-auto-influence-owner="${owner}"><header><h2>${powerFlag(owner)} 自动影响力</h2><span>${timing}</span></header><div class="auto-influence-cards">${cards.map(id=>`<article data-auto-influence-card="${id}" class="${current.includes(id)?'is-current':''}"><span class="auto-influence-card-label">${current.includes(id)?'当前':''}</span><img src="assets/auto-influence/${id}.webp" alt="自动影响力卡图 ${id+1}" loading="lazy"><p>${autoInfluenceRow(s,id,owner)}</p></article>`).join('')}</div></section>`;
 }
 export function renderNonPlayerChoice(s,q){
  const step=q.nonPlayerChoice;let fields='';
