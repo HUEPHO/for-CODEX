@@ -33,7 +33,8 @@ import {readBidForm,readBidReward} from './event-bids-ui.js';
 import {renderEventBoard} from './event-ui.js';
 import {updateCooperationOrder} from './growth-cooperation-ui.js';
 import {RoomClient,roomLink,normalizeCode} from './room-client.js';
-import {renderRoomEntry,renderRoomLobby,renderRoomFlow,recentRoomLinks} from './room-ui.js';
+import {renderRoomEntry,renderRoomLobby,renderRoomFlow,recentRoomLinks,renderCurrentRoom} from './room-ui.js';
+import {initialRoomScreen,resolvedRoomScreen,roomScreenUrl} from './room-navigation.js';
 import {renderSteamAccount,renderSteamMembers,steamStatusText} from './steam-ui.js';
 import {setupPending,manualWindow} from './room-rules.js';
 import {liveAgreement,canNegotiateAgreement} from './interaction-state.js';
@@ -69,6 +70,8 @@ const SESSION_KEY=KEY+'-session-v1';
 let localRollback=createRollback();
 let room=null,uiRevision=0,localRevision=0,stagedCard=null,taskVersion=0,renderedTaskKey=null,renderedGameKey=null,taskCollapsed=false;
 let automaticResumePending=true;
+let roomScreen=initialRoomScreen(location.href),roomEntryCode='';
+const currentScreen=()=>resolvedRoomScreen(roomScreen,room,{steam:roomClient.isSteam});
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
 const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
@@ -88,7 +91,7 @@ function title(c){return c?.name||EVENT_EFFECTS[c?.id]?.name||GROWTH_DATA[c?.id]
 function card(id,source='view',presentation={}){const c=byId[id];if(!c)return'';return`<button class="cardbutton" data-card="${id}" data-source="${source}" ${source==='hand'?'data-drag-card="'+id+'"':''} aria-label="查看${esc(title(c))}"><img src="${esc(presentation.image||c.image)}" alt="${esc(presentation.alt||title(c))}" loading="lazy" draggable="false"><span class="cardmeta">${esc(c.name||GROWTH_DATA[c.id]?.name||BASIC_CARDS[c.id]?.name||labels[c.type])}${source==='allies'&&(state.players[state.current].bases||[]).includes(id)?' · 基地×'+state.players[state.current].bases.filter(cid=>cid===id).length:''}${source==='allies'&&(state.players[state.current].fdi||[]).includes(id)?' · FDI×'+state.players[state.current].fdi.filter(cid=>cid===id).length:''}${source==='allies'?foreignInvestmentCaption(state,state.current,id):''}${source==='allies'&&(state.players[state.current].exhaustedAllies||[]).includes(id)?' · 已消耗':''}${['usedAsset','usedExecutive'].includes(source)?' · 已使用':''}${c.level?' · 等级 '+c.level:''}${source==='growth'?' · '+(GROWTH_DATA[id]?.effect==='battlefield'?'购入即结算':state.round>=c.level?'已生效':'第'+c.level+'轮生效'):''}${c.era?' · '+(c.era==='chain'?'连锁':'时代 '+c.era):''}</span></button>`}
 function gameContext(){return room?`${room.code}:${room.gameRevision}:${room.seatRevision}:${room.seat}`:`local:${localRevision}:${state?.current}`;}
 function resumeAutomaticFlow(){
- if(!automaticResumePending||!ready||!state||state.current!==flowActor(state))return;
+ if(!automaticResumePending||!ready||!state||currentScreen()!=='game'||state.current!==flowActor(state))return;
  if(room?(room.status!=='playing'||room.seat!==room.actor||roomClient.busy||roomClient.status!=='online'):roomClient.isSteam)return;
  automaticResumePending=false;
  const action=nextAutomaticFlowAction(state);if(action)act(action);
@@ -194,10 +197,10 @@ function currentRollbackOptions(){return room?room.rollback||{step:{available:!!
 const currentRestartRequest=()=>room?room.restartRequest:turnRestartRequestView(localRollback,localIdentity(),state);
 function updateRollbackControls(){
  if(!ready||!state)return;
- const options=currentRollbackOptions(),blocked=room&&(roomClient.busy?'上一步正在保存，请稍候':roomClient.status==='offline'?'房间离线，恢复连接后才能撤回':!room.state?'请先进入对局':'');
+ const options=currentRollbackOptions(),blocked=currentScreen()!=='game'?'请先返回对局':room&&(roomClient.busy?'上一步正在保存，请稍候':roomClient.status==='offline'?'房间离线，恢复连接后才能撤回':!room.state?'请先进入对局':'');
  const request=currentRestartRequest();
  $('#undo').disabled=!!blocked||!!request||!options.step.available;$('#undo').title=options.step.available?'撤回上一步':options.step.reason||'还没有可以撤回的操作';
- $('#rollback').disabled=!!room&&!room.state||roomClient.isSteam&&!room;
+ $('#rollback').disabled=currentScreen()!=='game'||!!room&&!room.state||roomClient.isSteam&&!room;
  if(roomClient.isSteam&&!room)$('#undo').disabled=true;
  const owner=room?.seat||state.current;
  $('#rollback-owner').textContent=owner?'撤回对象：'+POWERS[owner].name+'最近的操作。':'';
@@ -243,8 +246,11 @@ function render(){
  const taskKey=key+':'+taskVersion,preservedTask=renderedTaskKey===taskKey?$('#table-task-body'):null;
  renderedTaskKey=taskKey;
  updateRoomHeader();
- if(roomClient.isSteam&&!room){$('#app').innerHTML=renderRoomEntry(state.config,'',{steam:roomClient.steamStatus});$('#app').setAttribute('aria-busy','false');updateRollbackControls();onRoomStatus(roomClient.status,roomClient.busy);return;}
- if(room&&!room.state){$('#app').innerHTML=renderRoomLobby(room,{steam:roomClient.steamStatus});$('#app').setAttribute('aria-busy','false');$('#undo').disabled=true;onRoomStatus(roomClient.status,roomClient.busy);return;}
+ if(currentScreen()!=='game'){
+  $('#app').innerHTML=currentScreen()==='lobby'?renderRoomEntry(state.config,roomEntryCode,{steam:roomClient.steamStatus,room}):renderRoomLobby(room,{steam:roomClient.steamStatus});
+  $('#app').setAttribute('aria-busy','false');updateRollbackControls();onRoomStatus(roomClient.status,roomClient.busy);
+  if(currentScreen()==='lobby')refreshRecentRooms();return;
+ }
  const p=state.players[state.current],power=POWERS[state.current];
  document.body.dataset.armyOwner=state.current;
  $('#app').setAttribute('aria-busy','false');$('#app').innerHTML=`<div class="layout game-table"><aside class="rail"><div class="rail-title"><h2>四个势力</h2><span>${room?'点击查看公开信息':'点击切换'}</span></div>${Object.entries(POWERS).map(([id,v])=>`<button class="player ${id===state.current?'active':''}" style="--pcolor:${v.color}" data-player="${id}" aria-pressed="${id===state.current}"><span class="pname"><span class="flag">${v.flag}</span>${v.name}${room&&room.actor===id?'<b class="room-turn"> · 当前</b>':''}</span><small><span>胜利分 <b class="score">${state.players[id].vp}</b></span><span>资金 ${state.players[id].money}</span></small><small><span>${state.players[id].focus}</span><span>${state.players[id].openingChoices?'待选起手':state.players[id].assetChoices?'待选资产':state.players[id].setupPending?'开局选牌':'手牌 '+state.players[id].hand.length}</span></small></button>`).join('')}<div class="roundbox"><span class="minor">${state.flow?'轮次 · 按流程推进':'轮次标记 · 手动切换'}</span><div class="rounds">${Array.from({length:6},(_,i)=>`<button data-round="${i+1}" ${state.flow?'disabled':''} class="${state.round===i+1?'on':''}" aria-label="第${i+1}轮">${i+1}</button>`).join('')}</div><select id="phase" ${state.flow?'disabled':''} class="phase" aria-label="阶段">${['准备','行动','研究',...(state.config.wit?['事件']:[]),'余波',...(state.phase==='结束'?['结束']:[])].map(x=>`<option ${x===state.phase?'selected':''}>${x}</option>`).join('')}</select></div></aside>
@@ -394,7 +400,7 @@ $('#rollback').onclick=()=>{updateRollbackControls();showGameDialog($('#rollback
 $('#rollback-dialog').addEventListener('click',e=>{const button=e.target.closest('[data-rollback-scope]');if(button&&!button.disabled)rollbackAction(button.dataset.rollbackScope);});
 $('#newgame').onclick=()=>{if(!ready)return;if(room&&!room.isHost){toast('由房主重新布置房间');return;}$('#settings-copy').textContent=room?'重新布置当前房间；已入座的玩家保留席位并重新选牌。':'选择对局模式与玩家势力。';$('#settings-warning').textContent=room?'这会替换当前房间的整盘游戏，回到大厅等待开始。':'这会清空当前本地桌面。';const config=room?.config||state.config;$('#dd').checked=config.dd;$('#wit').checked=config.wit;$('#executive').checked=!!config.executive;$('#growth-mode').value=config.growthMode||'families';$('#player-configuration').innerHTML=renderPlayerConfiguration(config);showGameDialog($('#settings'))};
 $('#help').onclick=()=>showGameDialog($('#help-dialog'));
-$('#confirm-new').onclick=async()=>{try{if(room){const result=await roomCommand('reset',{config:{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value,humans:readPlayerConfiguration($('#settings')),...readAutomatonConfiguration($('#settings'))}});if(result.ok)$('#settings').close();return;}state=createState(data,{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value,humans:readPlayerConfiguration($('#settings')),...readAutomatonConfiguration($('#settings'))});localRollback=createRollback();localRevision++;side='board';tray='hand';hide=false;persist();render();$('#settings').close();toast('请选择各势力的开局卡牌；已按启用模块布置新局')}catch(error){toast(error.message)}};
+$('#confirm-new').onclick=async()=>{try{if(room){const result=await roomCommand('reset',{config:{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value,humans:readPlayerConfiguration($('#settings')),...readAutomatonConfiguration($('#settings'))}});if(result.ok){$('#settings').close();showRoomScreen('room');}return;}state=createState(data,{dd:$('#dd').checked,wit:$('#wit').checked,executive:$('#executive').checked,growthMode:$('#growth-mode').value,humans:readPlayerConfiguration($('#settings')),...readAutomatonConfiguration($('#settings'))});localRollback=createRollback();localRevision++;side='board';tray='hand';hide=false;persist();showRoomScreen('game');$('#settings').close();toast('请选择各势力的开局卡牌；已按启用模块布置新局')}catch(error){toast(error.message)}};
 function readLocalState(){
  const valid=s=>s?.version===2&&s.players&&Object.keys(POWERS).every(p=>Array.isArray(s.players[p]?.hand));
  localRollback=createRollback();
@@ -403,7 +409,7 @@ function readLocalState(){
  return createState(data);
 }
 async function init(){try{const response=await fetch('./cards.json');if(!response.ok)throw Error('卡牌资料暂时无法读取');data=await response.json();byId=Object.fromEntries(data.map(c=>[c.id,c]));installPowerLabels(data.map(title));state=readLocalState();ready=true;await roomClient.initialize();const params=new URL(location.href).searchParams,code=params.get('room'),seat=params.get('seat');
- if(roomClient.isSteam){render();}else if(code){try{await roomClient.connect(code);if(seat&&POWERS[seat]&&!room.seat)await roomClient.send('join',{seat});}catch(error){render();openRoomDialog(code);toast(error.message);}}else{persist();render();}resumeAutomaticFlow();registerTools();
+ if(roomClient.isSteam){render();}else if(code){try{await roomClient.connect(code);if(seat&&POWERS[seat]&&!room.seat)await roomClient.send('join',{seat});window.history.replaceState(null,'',roomScreenUrl(location.href,roomScreen));}catch(error){openRoomDialog(code);toast(error.message);}}else{persist();render();}resumeAutomaticFlow();registerTools();
  }catch(e){$('#app').innerHTML='';$('#error').hidden=false;$('#error').textContent=e.message+'。请刷新页面重试。'}}
 
 function handleFlowClick(b){
@@ -483,19 +489,22 @@ function onRoomUpdate(next,cause){
  if(previous?.code!==room?.code||previous?.seat!==room?.seat){tray='hand';hide=false;automaticResumePending=true;}
  const viewerContextChanged=previous?.gameRevision!==room?.gameRevision||previous?.code!==room?.code||previous?.seat!==room?.seat||!!previous?.state!==!!room?.state;
  if($('#viewer').open&&viewerContextChanged){$('#viewer').close();if(cause==='remote')toast('局面已更新，请重新打开卡牌查看当前可用操作');}
- render();
- if($('#room-dialog').open&&room)$('#room-body').innerHTML=renderRoomLobby(room,{compact:true,steam:roomClient.steamStatus});
+ // A remote turn/seat update must not discard an unfinished creation form.
+ if(currentScreen()==='lobby'&&$('#app [data-current-room]')){
+  const target=$('#app [data-current-room]');if(target)target.innerHTML=renderCurrentRoom(room);updateRoomHeader();updateRollbackControls();
+ }else render();
  onRoomStatus(roomClient.status,roomClient.busy);
  if(previous?.seat&&!room?.seat&&room)toast('本标签页已离开席位或席位已被接管，请在大厅重新入座');
 }
 function updateRoomHeader(){
  debugUI.sync();
- $('.mode').textContent=roomClient.isSteam?`Steam 联机 · ${roomClient.steamStatus?.name||'连接中'}${room?' · '+(room.seat?POWERS[room.seat].name:'等待入座'):''}`:room?`房间 ${room.code} · ${room.seat?POWERS[room.seat].name:'等待入座'} · ${room.status==='lobby'?'大厅':'共享对局'}`:'本地桌面 · 辅助结算';
- $('#rooms').textContent=room?'房间大厅':roomClient.isSteam?'Steam 房间':'创建／加入房间';
+ const screen=currentScreen();document.body.dataset.screen=screen;
+ $('.mode').textContent=screen==='lobby'?'房间大厅':roomClient.isSteam?`Steam 联机 · ${roomClient.steamStatus?.name||'连接中'}${room?' · '+(room.seat?POWERS[room.seat].name:'等待入座'):''}`:room?`房间 ${room.code} · ${room.seat?POWERS[room.seat].name:'等待入座'} · ${room.status==='lobby'?'大厅':'共享对局'}`:'本地桌面 · 辅助结算';
+ $('#rooms').textContent=screen==='lobby'?'房间大厅':'返回房间大厅';$('#rooms').disabled=screen==='lobby';
  $('#newgame').disabled=!!room&&!room.isHost||roomClient.isSteam&&!room;
- const strip=$('#room-strip');strip.hidden=!room?.state;
- strip.innerHTML=room?.state?`<div class="room-game-strip"><strong>${POWERS[room.seat].flag} 你是${POWERS[room.seat].name}</strong><span>${canNegotiateAgreement(state,room.seat)?'共同协商':room.actor===room.seat?'轮到你操作':room.actor?'等待'+POWERS[room.actor].name:state.flow?.step==='ended'?'对局已结束':'开局选牌'}</span><span data-room-status role="status">已同步</span><button data-room-action="retry">重新同步</button></div>`:'';
- document.title=room?`${room.actor===room.seat&&room.seat?'轮到你 · ':''}${room.seat?POWERS[room.seat].name+' · ':''}房间 ${room.code} — World Order`:roomClient.isSteam?'World Order — Steam 联机':'World Order — 电子桌面';
+ const strip=$('#room-strip');strip.hidden=screen!=='game'||!room?.state;
+ strip.innerHTML=room?.state?`<div class="room-game-strip"><strong>${room.seat?POWERS[room.seat].flag:''} 我的席位</strong><span>${canNegotiateAgreement(state,room.seat)?'共同协商':room.actor===room.seat?'轮到你操作':room.actor?'等待'+POWERS[room.actor].name:state.flow?.step==='ended'?'对局已结束':'开局选牌'}</span><span data-room-status role="status">已同步</span><button data-room-action="retry">重新同步</button></div>`:'';
+ document.title=screen==='lobby'?'World Order — 房间大厅':room?`${room.actor===room.seat&&room.seat?'轮到你 · ':''}${room.seat?POWERS[room.seat].name+' · ':''}房间 ${room.code} — World Order`:roomClient.isSteam?'World Order — Steam 联机':'World Order — 电子桌面';
 }
 function onRoomStatus(status,busy){
  debugUI.sync();
@@ -505,8 +514,8 @@ function onRoomStatus(status,busy){
   for(const el of document.querySelectorAll('[data-steam-members]'))el.innerHTML=renderSteamMembers(roomClient.steamStatus);
  }
  for(const el of document.querySelectorAll('[data-room-status]')){el.textContent=text;el.classList.toggle('room-offline',status==='offline');}
- $('#room-body').inert=busy;$('#settings').inert=!!room&&busy;
- if(room||roomClient.isSteam)applyRoomPermissions();
+ $('#room-body').inert=busy;$('#settings').inert=!!room&&busy;$('#app').inert=currentScreen()!=='game'&&busy;
+ applyRoomPermissions();
  resumeAutomaticFlow();
 }
 function applyRoomPermissions(){
@@ -516,11 +525,11 @@ function applyRoomPermissions(){
  const blocked=el=>{if(!el)return;el.dataset.roomDisabled=String(el.disabled);el.disabled=true;};
  const busy=roomClient.busy,offline=roomClient.status==='offline';
  if(roomClient.isSteam){
-  for(const el of document.querySelectorAll('[data-steam-ready]'))el.disabled=!roomClient.steamStatus.ready||busy||offline;
+  for(const el of document.querySelectorAll('[data-steam-ready]'))el.disabled=!roomClient.steamStatus.ready||!!roomClient.steamStatus.lobbyId||busy||offline;
   for(const el of document.querySelectorAll('[data-room-action="join"],[data-room-action="takeover"],[data-room-action="start"]'))if(busy||offline)blocked(el);
   for(const el of document.querySelectorAll('[data-room-action="leave"]'))if(busy)blocked(el);
  }
- if(!room)return;
+ if(currentScreen()!=='game'||!room)return;
  if(!room.state)return;
  const general=room.actor===room.seat&&!Object.values(state.players).some(setupPending),draft=setupPending(state.players[room.seat]);
  for(const el of $('#app').querySelectorAll('button,input,select')){
@@ -542,18 +551,24 @@ function applyRoomPermissions(){
  // Keep the visible choice buttons in sync when their original selects recover.
  if(isGameClient){syncClientActionChoices();syncClientAllySelection();}
 }
-async function openRoomDialog(code=''){
- if(!ready)return;
- $('#room-body').innerHTML=room?renderRoomLobby(room,{compact:true,steam:roomClient.steamStatus}):renderRoomEntry(state.config,normalizeCode(code),{steam:roomClient.steamStatus});
- if(!$('#room-dialog').open)showGameDialog($('#room-dialog'));
- onRoomStatus(roomClient.status,roomClient.busy);
- if(!room&&!roomClient.isSteam){try{const list=await roomClient.recent(),target=$('#room-body [data-recent-rooms]');if(target)target.innerHTML=recentRoomLinks(list);}catch{const target=$('#room-body [data-recent-rooms]');if(target)target.textContent='最近房间暂时无法读取，可重试加入房间。';}}
+function showRoomScreen(screen){
+ roomScreen=screen;document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+ window.history.replaceState(null,'',roomScreenUrl(location.href,screen));render();resumeAutomaticFlow();
+}
+async function refreshRecentRooms(){
+ if(roomClient.isSteam)return;
+ const target=$('#app [data-recent-rooms]');if(!target)return;
+ try{const list=await roomClient.recent();if(target.isConnected)target.innerHTML=recentRoomLinks(list);}
+ catch{if(target.isConnected)target.textContent='最近房间暂时无法读取，可使用房间号加入。';}
+}
+function openRoomDialog(code=''){
+ if(!ready)return;roomEntryCode=normalizeCode(code);showRoomScreen('lobby');
 }
 $('#rooms').onclick=()=>openRoomDialog();
 document.addEventListener('change',event=>{if(event.target.matches('[data-automaton-mode]'))syncPlayerConfiguration(event.target.closest('.player-configuration'));});
 document.addEventListener('submit',async event=>{
  const form=event.target.closest('[data-room-form]');if(!form)return;event.preventDefault();
- try{await roomClient.connect(form.querySelector('[data-room-code]').value);$('#room-dialog').close();}catch(error){toast(error.message);}
+ try{await roomClient.connect(form.querySelector('[data-room-code]').value);showRoomScreen(room.state&&room.seat?'game':'room');}catch(error){toast(error.message);}
 });
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-room-action]');if(!button||button.disabled)return;
@@ -562,17 +577,19 @@ document.addEventListener('click',async event=>{
   if(op==='create'){
    const config=Object.fromEntries([...button.closest('.room-entry').querySelectorAll('[data-room-config]')].map(el=>[el.dataset.roomConfig,el.tagName==='SELECT'?el.value:el.checked]));
    config.humans=readPlayerConfiguration(button.closest('.room-entry'));Object.assign(config,readAutomatonConfiguration(button.closest('.room-entry')));
-   await roomClient.create(config);$('#room-dialog').close();return;
+   await roomClient.create(config);showRoomScreen('room');return;
   }
-  if(op==='recent'){await roomClient.connect(button.dataset.roomCode);$('#room-dialog').close();return;}
+  if(op==='recent'){await roomClient.connect(button.dataset.roomCode);showRoomScreen(room.state&&room.seat?'game':'room');return;}
   if(op==='join'||op==='takeover'){
    if(op==='takeover'&&!window.confirm(`在当前标签页恢复${POWERS[button.dataset.roomSeat].name}席位？原标签页将退出这个席位。`))return;
-   await roomClient.send('join',{seat:button.dataset.roomSeat,takeover:op==='takeover'});$('#room-dialog').close();return;
+   await roomClient.send('join',{seat:button.dataset.roomSeat,takeover:op==='takeover'});showRoomScreen(room.state?'game':'room');return;
   }
-  if(op==='start'){await roomClient.send('start');$('#room-dialog').close();return;}
-  if(op==='back'){$('#room-dialog').close();return;}
+  if(op==='start'){await roomClient.send('start');showRoomScreen('game');return;}
+  if(op==='hall'){openRoomDialog();return;}
+  if(op==='current'){showRoomScreen('room');return;}
+  if(op==='back'||op==='local'){showRoomScreen('game');return;}
   if(op==='retry'){await roomClient.sync();if(roomClient.status==='online')toast('房间已同步到最新局面');else toast('暂时无法连接，正在继续重试');return;}
-  if(op==='leave'){await roomClient.leave();$('#room-dialog').close();toast(roomClient.isSteam?'已退出 Steam 房间':'已返回本地桌面，房间进度仍然保留');return;}
+  if(op==='leave'){await roomClient.leave();showRoomScreen('lobby');toast(roomClient.isSteam?'已退出 Steam 房间':'已离开席位，房间进度仍然保留');return;}
   if(op==='copy'){
    const url=roomClient.isSteam?roomClient.steamStatus.lobbyId||room.code:roomLink(room.code);
    try{await navigator.clipboard.writeText(url);toast(roomClient.isSteam?'已复制 Steam 房间号':'已复制房间链接');}catch{window.prompt(roomClient.isSteam?'复制此房间号，发给 Steam 好友':'复制此链接，在新标签页加入同一房间',url);}

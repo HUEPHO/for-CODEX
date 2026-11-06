@@ -19,7 +19,7 @@ if(layout){
   document.querySelector('.topbar').append(controls);
   document.querySelector('.wordmark small').textContent='';
   const menu=document.createElement('dialog');menu.id='client-pause';
-  menu.innerHTML='<button class="close" aria-label="返回对局">×</button><p class="eyebrow">WORLD ORDER</p><h2>游戏菜单</h2><p>'+(native?'进度自动保存。联机时返回主菜单仍会保持房间连接，退出客户端会断开连接。':'网页端 · 进度自动保存。多人对局通过房间号或邀请链接加入；刷新可恢复当前席位。')+'</p><button data-client-resume class="gold">返回对局</button>'+(native?'<button data-client-home>主菜单</button>':'<button data-client-room>创建／加入房间</button>')+'<button data-client-fullscreen>窗口 / 全屏</button><p id="client-fullscreen-hint" hidden>浏览器未允许全屏，可使用浏览器菜单或 F11。</p><button data-client-help>操作说明</button><button data-client-setup>布置新对局</button>'+(native?'<button data-client-quit>退出游戏</button>':'');
+  menu.innerHTML='<button class="close" aria-label="返回对局">×</button><p class="eyebrow">WORLD ORDER</p><h2>游戏菜单</h2><p>'+(native?'进度自动保存。联机时返回主菜单仍会保持房间连接，退出客户端会断开连接。':'网页端 · 进度自动保存。多人对局通过房间号或邀请链接加入；刷新可恢复当前席位。')+'</p><button data-client-resume class="gold">返回对局</button>'+(native?'<button data-client-home>主菜单</button>':'<button data-client-room>返回房间大厅</button>')+'<button data-client-fullscreen>窗口 / 全屏</button><p id="client-fullscreen-hint" hidden>浏览器未允许全屏，可使用浏览器菜单或 F11。</p><button data-client-help>操作说明</button><button data-client-setup>布置新对局</button>'+(native?'<button data-client-quit>退出游戏</button>':'');
   document.body.append(menu);
   document.querySelector('#client-menu').onclick=()=>showGameDialog(menu);
   document.querySelector('#client-fullscreen').onclick=fullscreen;

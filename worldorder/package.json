@@ -19,7 +19,7 @@
     "test:dd-growth": "node scripts/check-dd-growth.mjs",
     "test:sequence": "node scripts/check-sequence-guards.mjs",
     "test:room-game": "node scripts/check-room-game.mjs",
-    "dev:local": "node scripts/dev-local.mjs",
+    "dev:local": "node scripts/launch-local.mjs",
     "dev:steam": "node scripts/start-steam.mjs",
     "test:steam": "node scripts/check-steam-native.mjs && node scripts/check-steam-session.mjs && node scripts/check-steam-client.mjs && node scripts/check-steam-http.mjs",
     "test:steam-runtime": "node scripts/check-steam-runtime.mjs",

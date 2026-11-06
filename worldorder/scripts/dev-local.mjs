@@ -67,6 +67,10 @@ export async function startLocalServer({port = 8787, dataDirectory = resolve(roo
       }
       const url = new URL(req.url, origin);
       if (url.origin !== origin) return await send(res, new Response('Forbidden', {status: 403}));
+      if (url.pathname === '/__local-info') {
+        if (!['GET', 'HEAD'].includes(req.method)) return await send(res, new Response('Method not allowed', {status: 405}));
+        return await send(res, Response.json({application: 'world-order-local', sourceRoot: resolve(root), dbPath: databasePath}, {headers: {'Cache-Control': 'no-store'}}), req.method === 'HEAD');
+      }
       if (url.pathname.startsWith('/api/rooms')) {
         const headers = new Headers();
         for (const [key, value] of Object.entries(req.headers)) {
@@ -134,9 +138,10 @@ export async function startLocalServer({port = 8787, dataDirectory = resolve(roo
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const app = await startLocalServer({port: Number(process.env.WORLD_ORDER_PORT || 8787)});
+    const app = await startLocalServer({port: Number(process.env.WORLD_ORDER_PORT || 8787), dataDirectory: process.env.WORLD_ORDER_DATA || undefined});
     console.log(`World Order 本地开发：${app.origin}`);
-    console.log('打开页面创建房间，再使用大厅的三个新标签页入口入座。仅限本机开发。');
+    console.log('打开页面创建或加入房间。仅限本机开发。');
+    console.log(`当前源码：${resolve(root)}`);
     console.log(`本地房间数据：${app.databasePath}`);
     const stop = () => app.close().catch(error => {console.error(error.message); process.exitCode = 1;});
     process.once('SIGINT', stop);
