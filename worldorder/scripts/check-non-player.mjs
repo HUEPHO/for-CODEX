@@ -98,12 +98,13 @@ try{
  s=fixture(['US','CN'],true);s.current='CN';s.flow.order=['CN','US'];s.flow.step='aftermath';s.flow.checks=[];
  s.eventEffects=[{owner:'CN',cardId:'c09c854e149a8'}];s.flow.pendingIncome={round:s.round,owner:'CN',base:{fdi:0,engage:0},remaining:['c09c854e149a8'],active:null,receipts:[]};
  s=applyAction(s,{type:'resolveIncomeEffect',effectId:'c09c854e149a8',choice:'offer'});assert.equal(s.flow.pendingIncome.active,'ceeFallback');assert.equal(currentActor(s),'CN');assertNpp(s);
- // Delegated board choices keep normal seat/revision/idempotency validation.
+ // Automatic choices keep normal seat/revision/idempotency validation;
+ // client-supplied targets cannot control the non-player's script.
  s=fixture(['US','CN'],true);s.flow.step='events';s.phase='事件';s.regions.E.armies.RU=2;
  s.eventBoard={round:1,slots:[null,null,'ce9e1586521dc'],personal:{US:null,CN:null,EU:null,RU:null},queued:[],seen:[],choice:null,revealQueue:[],distribution:null};startEventPhase(s);
  room={...room,state:s};const delegated={id:'npp-disarm',op:'action',gameRevision:room.gameRevision,action:{type:'resolveNonPlayerChoice',cardId:'ce9e1586521dc',placements:{E:1}}};
  assert.throws(()=>changeRoom(room,who.CN,delegated,cards),/正在等待/);
- assert.throws(()=>changeRoom(room,who.US,{...delegated,action:{...delegated.action,placements:{E:3}}},cards),/限额/);
+ const ignored=changeRoom(room,who.US,{...delegated,action:{...delegated.action,placements:{E:999}}},cards);assert.equal(ignored.state.flow.eventResolution.submissions.RU.count,1);
  const afterChoice=changeRoom(room,who.US,delegated,cards);assert.equal(afterChoice.state.flow.eventResolution.submissions.RU.armies.E,1);
  assert.deepEqual(changeRoom(afterChoice,who.US,delegated,cards),afterChoice);
  assert.throws(()=>changeRoom(afterChoice,who.US,{...delegated,id:'stale-npp'},cards),/局面已更新/);

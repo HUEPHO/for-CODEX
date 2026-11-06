@@ -158,6 +158,7 @@ export function resolveNonPlayerAgreementChoice(s,q,a){
  const armies=a.placements;if(!armies||typeof armies!=='object'||Array.isArray(armies))throw Error('请选择移回补给的军队');
  let count=0;for(const [region,n] of Object.entries(armies)){if(!step.regions.includes(region))throw Error('无效的军队地区');int(n,s.regions[region].armies[step.owner]);count+=n;}
  if(count<1)throw Error('至少移回1支版图军队');
+ q.receipts.push({player:step.owner,detail:`自动机脚本：承诺从${Object.entries(armies).filter(([,n])=>n).map(([region,n])=>AREAS[region].name+n+'支').join('、')}移回补给；协议达成时统一执行`,changes:[]});
  Object.assign(q.submissions[step.owner],{armies,count,confirmed:true});delete q.submissions[step.owner].pendingArmies;delete q.nonPlayerChoice;
  prepareNonPlayerAgreementChoice(s,q);checkAgreementCompletion(s,q);
 }

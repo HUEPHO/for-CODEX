@@ -8,9 +8,9 @@ function values(field){
  return null;
 }
 const state=(field,pair)=>field.type==='checkbox'?field.checked:field.value===pair.yes?true:field.value===pair.no?false:null;
-function label(field){const copy=(field.labels?.[0]||field.closest('label'))?.cloneNode(true);if(copy)for(const child of copy.querySelectorAll('input,select,button'))child.remove();return field.getAttribute('aria-label')||copy?.textContent.trim()||'选择';}
+function label(field){const copy=(field.labels?.[0]||field.closest('label'))?.cloneNode(true);if(copy)for(const child of copy.querySelectorAll('input,select,button'))child.remove();const visible=copy?.textContent.trim();return {text:field.getAttribute('aria-label')||visible||'选择',visible:!!visible};}
 function refresh(field,button){
- const current=state(field,values(field)),text=current===null?'—':current?(field.dataset.booleanOn||'是'):(field.dataset.booleanOff||'否');
+ const current=state(field,values(field)),text=button.hasAttribute('data-boolean-labelled')?'':current===null?'—':current?(field.dataset.booleanOn||'是'):(field.dataset.booleanOff||'否');
  if(button.textContent!==text)button.textContent=text;
  const disabled=blocked(field);if(button.disabled!==disabled)button.disabled=disabled;if(button.hidden!==field.hidden)button.hidden=field.hidden;button.classList.toggle('is-selected',current===true);
  const checked=current===null?'mixed':String(current);if(button.getAttribute('aria-checked')!==checked)button.setAttribute('aria-checked',checked);
@@ -19,7 +19,9 @@ export function syncBooleanControls(root=document.body){
  for(const field of root.querySelectorAll('input[type="checkbox"],select')){
   let button=controls.get(field);if(!button&&(field.hidden||!values(field)))continue;
   if(!button?.isConnected){
-   button=document.createElement('button');button.type='button';button.className='client-boolean-control';button.dataset.booleanControl='';button.setAttribute('role','checkbox');button.setAttribute('aria-label',label(field));button.title='左键选择，右键取消；← / → 也可调整';
+   const caption=label(field);
+   button=document.createElement('button');button.type='button';button.className='client-boolean-control';button.dataset.booleanControl='';button.setAttribute('role','checkbox');button.setAttribute('aria-label',caption.text);button.title='左键选择，右键取消；← / → 也可调整';
+   if(caption.visible)button.dataset.booleanLabelled='';
    if(field.id)button.dataset.booleanFor=field.id;
    sources.set(button,field);controls.set(field,button);field.after(button);field.classList.add('client-boolean-source');field.tabIndex=-1;
   }

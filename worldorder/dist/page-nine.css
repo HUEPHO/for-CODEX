@@ -1,8 +1,12 @@
 .game-client .client-boolean-source{display:none!important}
 .game-client .client-boolean-control{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:42px;min-height:32px;margin:2px 4px;padding:4px 9px;border:1px solid #718a96;border-radius:5px;background:#203b4b;color:#e8e1cc;font:700 15px/1.2 system-ui;cursor:pointer;user-select:none}
 .game-client .client-boolean-control.is-selected{border-color:#dfbb6b;background:#51452d;color:#ffe5ac}
+.game-client .client-boolean-control[data-boolean-labelled]{width:32px;min-width:32px;height:32px;padding:0;border-width:2px;box-sizing:border-box}
 .game-client .client-boolean-control:disabled{opacity:.4;cursor:default}.game-client .client-boolean-control[hidden]{display:none!important}
 .game-client .client-boolean-control:focus-visible{outline:2px solid #f3cf80;outline-offset:2px}
+.game-client :is(.regional-trade-destinations,.client-trade-regions) label:has(>.client-boolean-control[data-boolean-labelled]){position:relative;justify-content:center;min-height:32px;box-sizing:border-box;text-align:center}
+.game-client :is(.regional-trade-destinations,.client-trade-regions) label>.client-boolean-control[data-boolean-labelled]{position:absolute;inset:0;width:100%;min-width:0;height:100%;min-height:0;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;cursor:inherit}
+.game-client .client-trade-regions label:has(input:disabled){opacity:.4;cursor:default}
 .game-client .agreement-buttons{align-items:center;justify-content:space-between}.game-client .agreement-buttons .client-boolean-control{flex:1;margin:0}.game-client .agreement-buttons:has(.client-boolean-control)>button{width:auto}
 .game-client .event-card-link,.game-client .event-related-links button{background:none;border:0;border-bottom:1px dotted #ad9365;border-radius:0;padding:3px 0;color:#e5c784}
 .game-client .event-card-link{font-weight:700;font-size:14px;text-align:left}.event-related-links{display:flex;gap:6px 12px;flex-wrap:wrap;margin:6px 0 10px}.game-client .event-related-links button{font-size:12px}

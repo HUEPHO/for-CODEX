@@ -12,6 +12,16 @@ import {ECONOMY} from './economy.js';
 const record=(q,owner,detail)=>q.receipts.push({player:owner,detail:'基础自动机 · '+detail,changes:[]});
 function convert(s,owner,region,index){const actor=s.current;s.current=owner;changeInfluence(s,{region,operation:'convert',index});s.current=actor;}
 function automaRecord(q,owner,detail){q.receipts.push({player:owner,detail:'高级自动机 · '+detail,changes:[]});}
+function placeArmies(s,step,a){
+ const {owner,type}=step,placements=a.placements,p=s.players[owner];
+ if(!placements||typeof placements!=='object'||Array.isArray(placements))throw Error('请选择军队目的地');
+ const allowed=step.region?[step.region]:step.regions||(type==='withdraw'?Object.keys(AREAS).filter(region=>AREAS[region].interest.includes(owner)):Object.keys(AREAS));
+ let count=0;for(const [region,n] of Object.entries(placements)){if(!allowed.includes(region)||!Number.isInteger(n)||n<0)throw Error('无效的军队分配');count+=n;}
+ if(count>step.max||type==='withdraw'&&(count!==step.max||s.regions.C.armies[owner]<count))throw Error('军队数量不符合事件要求');
+ const cost=isAutoma(s,owner)?count*(step.moveCost||0):0;if(p.money<cost)throw Error('调遣军队所需资金不足');
+ p.money-=cost;if(type==='withdraw')s.regions.C.armies[owner]-=step.max;
+ for(const [region,n] of Object.entries(placements))s.regions[region].armies[owner]+=n;
+}
 function automaReward(s,q,step){
  const {owner,region,type}=step,p=s.players[owner];
  if(['influence','paidInfluence','africa','aukus'].includes(type)){
@@ -37,7 +47,7 @@ function automaReward(s,q,step){
   if(targets.length===1&&type==='convert'){convert(s,owner,targets[0].region,targets[0].index);automaRecord(q,owner,'临时影响力转为永久');return true;}
   q.nonPlayerChoice={...step,source:'reward',automa:true,targets};return false;
  }
- if(type==='move'||type==='withdraw'){
+ if(type==='move'||type==='withdraw'||type==='place'){
   const cost=step.moveCost||0,count=Math.min(step.max,cost?Math.floor(p.money/cost):step.max);
   if(type==='withdraw')s.regions.C.armies[owner]-=step.max;
   for(let i=0;i<count;i++){
@@ -62,7 +72,7 @@ export function drainNonPlayerRewards(s,q,finish){
    const regions=step.regions||[region],targets=regions.flatMap(region=>s.regions[region].temporary.flatMap((id,index)=>id===owner?[{region,index}]:[]));
    if(targets.length===1&&!step.optional&&type!=='nordstream'){convert(s,owner,targets[0].region,targets[0].index);record(q,owner,'临时影响力转为永久');}
    else if(targets.length){q.nonPlayerChoice={...step,source:'reward',targets};return;}
-  }else if(['move','withdraw','ttip'].includes(type)){
+  }else if(['move','withdraw','place','ttip'].includes(type)){
    q.nonPlayerChoice={...step,source:'reward',regions:step.regions||(type==='withdraw'?Object.keys(AREAS).filter(r=>AREAS[r].interest.includes(owner)):Object.keys(AREAS))};return;
   }else throw Error('非玩家事件奖励尚未登记：'+type);
   q.rewardQueue.shift();
@@ -79,7 +89,8 @@ export function resolveNonPlayerRewardChoice(s,q,a){
   }else if(type==='bricsCountry'){
    if(!step.countries.includes(a.country))throw Error('请选择协议允许的国家');
    const c=countryInfo(a.country),p=s.players[owner];acquireSearchedCountry(s.regions[c.region],a.country);p.allies=p.allies.filter(id=>countryInfo(id).countryName!==c.countryName);p.allies.push(a.country);s.eventCountryRandom=(s.eventCountryRandom||0)+1;
-  }else if(type==='ttip'){
+  }else if(['move','withdraw','place'].includes(type))placeArmies(s,step,a);
+  else if(type==='ttip'){
    const actor=s.current;s.current=owner;
    try{activateTTIP(s,owner,{face:a.face,productionKey:a.productionKey,source:q.cardId});}finally{s.current=actor;}
   }else throw Error('此高级自动机奖励没有人工选择');
@@ -92,19 +103,13 @@ export function resolveNonPlayerRewardChoice(s,q,a){
  }else if(type==='ttip'){
   if(!['investment','exchange'].includes(a.face))throw Error('请选择协议的一面');
   if(a.face==='investment'){
-   const partner=owner==='US'?'EU':'US',p=s.players[partner],choices=p.production.flatMap((n,k)=>n<ECONOMY[partner].max[k]?[k]:[]);
+   const partner=owner==='US'?'EU':'US',p=s.players[partner],choices=isNonPlayer(s,partner)?[]:p.production.flatMap((n,k)=>n<ECONOMY[partner].max[k]?[k]:[]);
    if(choices.length&&!choices.includes(a.productionKey))throw Error('请选择玩家可提升的产能');
    if(choices.length)p.production[a.productionKey]++;
    placeNonPlayerInfluence(s,owner,owner==='US'?'E':'M');
   }
- }else{
-  const placements=a.placements;
-  if(!placements||typeof placements!=='object'||Array.isArray(placements))throw Error('请选择军队目的地');
-  let count=0;for(const [region,n] of Object.entries(placements)){if(!step.regions.includes(region)||!Number.isInteger(n)||n<0)throw Error('无效的军队分配');count+=n;}
-  if(count>step.max||type==='withdraw'&&count!==step.max)throw Error('军队数量不符合事件要求');
-  if(type==='withdraw')s.regions.C.armies[owner]-=step.max;
-  for(const [region,n] of Object.entries(placements))s.regions[region].armies[owner]+=n;
- }
+ }else if(['move','withdraw','place'].includes(type))placeArmies(s,step,a);
+ else throw Error('非玩家事件选择尚未登记：'+type);
  record(q,owner,a.skip?'放弃可选棋盘效果':'已完成棋盘效果选择；不支付或领取资源');
  delete q.nonPlayerChoice;q.rewardQueue.shift();
 }

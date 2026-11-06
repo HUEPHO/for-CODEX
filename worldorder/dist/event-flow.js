@@ -5,6 +5,7 @@ import {BID_EVENTS,initializeBid,submitBid,resolveBidReward,resolveNonPlayerBidR
 import {isNonPlayer,isAutoma,isBasicNonPlayer,POWER_IDS} from './player-configuration.js';
 import {placeAutomaInfluence} from './automa-board.js';
 import {spendAutomaEventSmart} from './event-automa.js';
+import {nonPlayerDecision} from './non-player-decisions.js';
 import {drawNonPlayerBid} from './event-non-player-data.js';
 import {AUTOMA_PLAYERS} from './automa-data.js';
 import {placeNonPlayerInfluence,clearNonPlayerEconomy} from './non-player.js';
@@ -45,7 +46,9 @@ function nextEvent(s){
 }
 export function startEventPhase(s){if(!s.eventVersion)return;s.flow.eventRound={round:s.round,processed:[],complete:false};nextEvent(s);}
 export function nextAutomaEventAction(s){
- const q=s.flow?.eventResolution;if(!q||q.nonPlayerChoice||s.eventBoard.choice||!isAutoma(s,s.current)||q.stage!=='resolve')return null;
+ const q=s.flow?.eventResolution;if(!q||s.eventBoard.choice)return null;
+ if(q.nonPlayerChoice)return {type:'resolveNonPlayerChoice',cardId:q.cardId};
+ if(!isAutoma(s,s.current)||q.stage!=='resolve')return null;
  if(q.mode==='special'&&q.cardId==='c52e84cdecbe6')return {type:'submitEvent',cardId:q.cardId,payment:s.players[s.current].money>=10?'service':'none'};
  if(q.mode==='special'&&q.cardId==='c0a692aca2850'&&!q.afghanPresent)return {type:'submitEvent',cardId:q.cardId};
  return ['aid','paris','crisis'].includes(q.mode)?{type:'submitEvent',cardId:q.cardId,automa:true}:null;
@@ -127,7 +130,8 @@ function executeEventAction(s,a){
  const q=s.flow?.eventResolution;if(s.flow?.step!=='events'||!q||a.cardId!==q.cardId)throw Error('当前事件已变化，请刷新后操作');
  if(q.nonPlayerChoice&&a.type!=='resolveNonPlayerChoice')throw Error('请先完成非玩家的棋盘选择');
  if(a.type==='resolveNonPlayerChoice'){
-  if(q.agreementVersion)resolveNonPlayerAgreementChoice(s,q,a);else resolveNonPlayerBidReward(s,q,a);
+  const decision={type:a.type,cardId:q.cardId,...nonPlayerDecision(s,q)};
+  if(q.agreementVersion)resolveNonPlayerAgreementChoice(s,q,decision);else resolveNonPlayerBidReward(s,q,decision);
   s.current=eventActor(s);return true;
  }
  if(a.type==='updateAgreement'){updateAgreement(s,q,a);if(q.stage!=='agreement')s.current=eventActor(s);return true;}

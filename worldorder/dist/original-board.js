@@ -78,7 +78,7 @@ function majorities(s){
 
 function publicEffects(s,cards){
  const ids=[...new Set([...(s.eventEffects||[]).filter(e=>e.owner==='global').map(e=>e.cardId),...(s.activeEffects||[])])].filter(id=>EVENT_EFFECTS[id]?.owner==='global');
- return `<section class="original-public-effects" style="${rect(250,600,400,395)}" aria-label="公共效果"><h3>公共效果</h3><div>${Array.from({length:6},(_,i)=>{const id=ids[i];return id?`<button type="button" data-card="${id}" data-source="view" title="${EVENT_EFFECTS[id].name}"><img src="${cards[id].image}" alt="${EVENT_EFFECTS[id].name}" draggable="false"></button>`:'<span class="public-effect-empty"></span>';}).join('')}</div></section>`;
+ return `<section class="original-public-effects" style="${rect(200,550,460,445)}" aria-label="公共效果"><h3>公共效果</h3><div>${Array.from({length:6},(_,i)=>{const id=ids[i];return id?`<button type="button" data-card="${id}" data-source="view" title="${EVENT_EFFECTS[id].name}"><img src="${cards[id].image}" alt="${EVENT_EFFECTS[id].name}" draggable="false"></button>`:'<span class="public-effect-empty"></span>';}).join('')}</div></section>`;
 }
 
 /** The original printed map with live public state and existing form targets. */

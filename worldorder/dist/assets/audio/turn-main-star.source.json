@@ -1,0 +1,9 @@
+{
+  "name": "main_Star",
+  "source": "https://x.boardgamearena.net/data/themereleases/261106-1123/sound/main_Star.mp3",
+  "verifiedAt": "2026-11-06",
+  "officialPage": "https://en.boardgamearena.com/",
+  "evidence": "Public homepage globalUserInfos.sound_list.yourturn is main_Star; official ebg/common/soundservice loads g_themeurl + sound/<name>.mp3.",
+  "sha256": "84b9adef88481cdf347395e5c21758faeee222b361a53b0dd3b1d01838f2a39a",
+  "bytes": 61719
+}

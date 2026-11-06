@@ -55,7 +55,7 @@ export function nextAutomaticFlowAction(s){
 export function advanceAutomaticFlow(s){
  while(true){
   const actor=currentActor(s);
-  if(s.current!==actor){if(!isAutoma(s,actor))break;s.current=actor;}
+  if(s.current!==actor){if(!isAutoma(s,actor)&&!s.flow?.eventResolution?.nonPlayerChoice)break;s.current=actor;}
   const action=nextAutomaticFlowAction(s);if(!action)break;
   const before=structuredClone(s);
   if(action.type==='useEventEffect')useEventEffect(s,action);

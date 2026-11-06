@@ -1,4 +1,5 @@
 import {humanPlayers} from './player-configuration.js';
+import {createTurnNotifier} from './turn-notification.js';
 import {renderPlayerConfiguration,readPlayerConfiguration,readAutomatonConfiguration,syncPlayerConfiguration,readNonPlayerChoice,renderNonPlayerChoice,renderAutoInfluence} from './non-player-ui.js';
 import {renderAutomaDetails} from './automa-ui.js';
 import {isGameClient,syncGameClient,setGameClientPicking} from './game-client.js';
@@ -73,6 +74,7 @@ let automaticResumePending=true;
 let roomScreen=initialRoomScreen(location.href),roomEntryCode='';
 const currentScreen=()=>resolvedRoomScreen(roomScreen,room,{steam:roomClient.isSteam});
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
+const turnNotifier=createTurnNotifier();
 const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
 if(isGameClient){installNumberCounters();installBooleanControls();}
@@ -499,6 +501,7 @@ function onRoomUpdate(next,cause){
 function updateRoomHeader(){
  debugUI.sync();
  const screen=currentScreen();document.body.dataset.screen=screen;
+ turnNotifier.update({screen,state,room,isSteam:roomClient.isSteam});
  $('.mode').textContent=screen==='lobby'?'房间大厅':roomClient.isSteam?`Steam 联机 · ${roomClient.steamStatus?.name||'连接中'}${room?' · '+(room.seat?POWERS[room.seat].name:'等待入座'):''}`:room?`房间 ${room.code} · ${room.seat?POWERS[room.seat].name:'等待入座'} · ${room.status==='lobby'?'大厅':'共享对局'}`:'本地桌面 · 辅助结算';
  $('#rooms').textContent=screen==='lobby'?'房间大厅':'返回房间大厅';$('#rooms').disabled=screen==='lobby';
  $('#newgame').disabled=!!room&&!room.isHost||roomClient.isSteam&&!room;

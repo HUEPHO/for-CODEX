@@ -13,7 +13,7 @@ const mime = {
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
   '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml',
   '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon',
-  '.woff2': 'font/woff2', '.woff': 'font/woff',
+  '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp3': 'audio/mpeg',
 };
 
 function d1Adapter(sqlite) {

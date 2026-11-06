@@ -41,7 +41,12 @@ function createMatrix(form){
   options=node('button','client-trade-options-toggle','扩展');options.type='button';options.dataset.tradeTab='options';form.querySelector('.client-trade-heading').append(options);
  }
  form.dataset.tradeTab='resources';
- const result={matrix,labels,columns,options};elements.set(form,result);return result;
+ const result={matrix,labels,columns,options};elements.set(form,result);
+ // Room saving/turn permissions can change after this presentation is built.
+ // Follow the real inputs when they unlock; a layout click must not be needed.
+ const observer=new MutationObserver(()=>{if(form.isConnected)syncClientTradeMatrix(form);});
+ for(const input of form.querySelectorAll('[data-import-country],[data-import-key],[data-export-key],[data-export-region-key]'))observer.observe(input,{attributes:true,attributeFilter:['disabled','max']});
+ return result;
 }
 
 // One compact view over the original form inputs. Capacity, validity and
