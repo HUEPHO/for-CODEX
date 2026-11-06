@@ -25,7 +25,7 @@ export function manualWindow(s,seat=s.current){
 }
 export function gameActionIssue(s,a,seat=s.current){
  if(!a||typeof a.type!=='string')return '无效操作';
- if(a.type!=='switch'&&isNonPlayer(s,seat))return '非玩家势力由基础自动机处理';
+ if(a.type!=='switch'&&isNonPlayer(s,seat))return '非玩家势力由自动机处理';
  if(s.eventVersion&&['event','addEvent'].includes(a.type))return '请通过事件流程结算和补充事件';
  if(a.type==='useEventEffect'){if(Object.values(s.players).some(setupPending))return '请先完成开局';if(s.flow?.step==='ended'||currentActor(s)!==seat)return '请在本方操作时使用持续效果';return null;}
  const pending=pendingActionIssue(s,a.type,seat);
@@ -43,7 +43,7 @@ export function gameActionIssue(s,a,seat=s.current){
 }
 export function roomActionIssue(s,seat,a){
  if(!SEATS.includes(seat))return '请先选择一个势力入座';
- if(isNonPlayer(s,seat))return '该势力使用基础自动机';
+ if(isNonPlayer(s,seat))return '该势力使用自动机';
  if(!a||typeof a.type!=='string'||a.type==='switch')return '房间中每个标签页固定操作自己的势力';
  if(SETUP_ACTIONS.has(a.type))return setupPending(s.players[seat])?gameActionIssue(s,a,seat):'你已完成开局选牌，请等待其他玩家';
  if(Object.values(s.players).some(setupPending))return '请等待所有玩家完成开局选牌';

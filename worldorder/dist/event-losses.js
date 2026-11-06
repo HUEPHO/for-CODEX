@@ -8,5 +8,6 @@ function lose(target,key,amount,unit,p){
 export function loseEventMoney(p,amount){return lose(p,'money',amount,5,p);}
 export function loseEventResource(p,key,amount){
  if(!Number.isInteger(key)||key<0||key>6)throw Error('事件损失资源无效');
+ if(p.automa)return loseEventMoney(p,amount*[3,3,3,10,10,5,10][key]);
  return lose(p.resources,key,amount,1,p);
 }

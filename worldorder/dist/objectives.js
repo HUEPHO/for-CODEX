@@ -52,7 +52,7 @@ function evaluateTask(s,player,t,index){
    return t.compare?comparison(own,IDS.filter(id=>id!==player).map(id=>metric(s,id,check)),t.compare):own>=t.minimum;
   }).length;break;
   case 'fdiLeads':value=Object.keys(AREAS).filter(region=>{
-   const count=id=>investedCountries(s,id).filter(cid=>countryRegion(cid)===region).length;
+   const count=id=>s.players[id].automa?s.players[id].automa.investments[region]:investedCountries(s,id).filter(cid=>countryRegion(cid)===region).length;
    return IDS.filter(id=>id!==player).every(id=>count(player)>count(id));
   }).length;break;
   case 'bestFdiReturn':value=p.objectiveHistory?.bestFdiReturn??null;if(value<threshold&&!p.objectiveHistory?.fdiHistoryComplete)value=null;break;

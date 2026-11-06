@@ -38,7 +38,7 @@ export const INCOME_RULES={
    ceeFallback:{
     actor:'owner',prompt:'欧盟未购买。请选择中国—中东欧倡议的本轮收益。',choiceIssue:'请选择支付消费品获得15资金，或直接获得5资金',
     choices:{
-     goods:{label:'支付1消费品，获得15资金',issue:(s,q)=>s.players[q.owner].resources[3]<1?'中国没有可支付的消费品':null,
+     goods:{label:'支付1消费品，获得15资金',issue:(s,q)=>(s.players[q.owner].automa?s.players[q.owner].money<10:s.players[q.owner].resources[3]<1)?'中国没有可支付的消费品或折算资金':null,
       plan:(s,q)=>finished([resource(q.owner,3,-1),money(q.owner,15)],['中国—中东欧倡议：中国支付1消费品，获得15资金。'])},
      money:{label:'直接获得5资金',plan:(s,q)=>finished([money(q.owner,5)],['中国—中东欧倡议：中国获得5资金。'])}
     }

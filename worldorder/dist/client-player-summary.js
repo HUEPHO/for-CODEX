@@ -3,6 +3,7 @@ import {powerFlag} from './power-identity.js';
 import {resourceIconPath} from './resource-icons.js';
 import {GROWTH_DATA} from './growth-data.js';
 import {clientPlayerTradeModel} from './client-player-board.js';
+import {renderAutomaSummary} from './automa-ui.js';
 import {renderAutoInfluenceSummary} from './non-player-ui.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -43,6 +44,7 @@ function tradeSummary(state,id){
 }
 
 function playerSummary(state,byId,id,{viewer,actor}){
+ if(state.players[id].automa)return `<button type="button" class="client-player client-player--${id} client-player--non-player client-player--automa${id===actor?' client-player--acting':''}" data-client-player="${id}" data-army-owner="${id}" style="--player-color:${POWERS[id].color}" aria-haspopup="dialog" aria-label="查看${POWERS[id].name}高级自动机信息">${renderAutomaSummary(state,id)}</button>`;
  if(state.players[id].nonPlayer){const armies=Object.values(state.regions).reduce((n,r)=>n+r.armies[id],0),influence=Object.values(state.regions).reduce((n,r)=>n+r.influence[id],0);return `<button type="button" class="client-player client-player--${id} client-player--non-player" data-client-player="${id}" data-army-owner="${id}" style="--player-color:${POWERS[id].color}" aria-haspopup="dialog" aria-label="查看${POWERS[id].name}自动机的全部自动影响力卡牌"><span>${powerFlag(id)} 基础自动机</span><span class="npp-forces">影响力 ${influence} ${icon('army','版图军队')} ${armies}</span>${renderAutoInfluenceSummary(state,id)}</button>`;}
  const p=state.players[id],power=POWERS[id],self=id===viewer,acting=id===actor;
  const focus=typeof p.focus==='string'?p.focus:'';

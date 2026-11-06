@@ -1,4 +1,6 @@
-import {humanPlayers} from './player-configuration.js';
+import {AUTOMA_PLAYERS} from './automa-data.js';
+import {prepareAutoma,playAutomaTurn,researchAutoma,automaIncome,automaProsperity,addAutomaRoundCubes} from './automa.js';
+import {humanPlayers,activePlayers,isAutoma} from './player-configuration.js';
 import {resolveAutoInfluence} from './non-player.js';
 import {availableExecutive} from './special-cards.js';
 import {resumeAfterBattlefield} from './growth-battlefield.js';
@@ -36,7 +38,7 @@ function finishInvestment(s,actor){const f=s.flow;f.investmentDone.push(actor);i
 function requireStep(s,step){if(s.flow.step!==step)throw Error('当前不在该流程步骤');}
 function requireActor(s){if(currentActor(s)!==s.current)throw Error('请切换到当前轮到的势力');}
 function amount(n,min=0){if(!Number.isInteger(n)||n<min||n>999)throw Error('请输入有效的非负整数（最多999）');return n;}
-function afterResearch(s){if(s.round<6&&humanPlayers(s).length<4){s.marketDiscard??=[];s.marketDiscard.push(...s.market.splice(-(4-humanPlayers(s).length)));for(let i=humanPlayers(s).length;i<4;i++)refill(s);}resolveAutoInfluence(s);s.flow.research=null;s.flow.index=0;s.flow.step=s.config.wit?'events':'aftermath';s.phase=s.config.wit?'事件':'余波';s.current=s.flow.order[0];s.flow.checks=[];if(s.config.wit)startEventPhase(s);}
+function afterResearch(s){if(s.round<6&&activePlayers(s).length<4){s.marketDiscard??=[];s.marketDiscard.push(...s.market.splice(-(4-activePlayers(s).length)));for(let i=activePlayers(s).length;i<4;i++)refill(s);}resolveAutoInfluence(s);s.flow.research=null;s.flow.index=0;s.flow.step=s.config.wit?'events':'aftermath';s.phase=s.config.wit?'事件':'余波';s.current=s.flow.order[0];s.flow.checks=[];if(s.config.wit)startEventPhase(s);}
 function refill(s){if(s.marketDeck.length)s.market.unshift(s.marketDeck.shift());}
 function afterCard(s){
  const f=s.flow;if(f.pendingGrowth)return 'growth';if(f.pendingRelation)return 'relation';
@@ -45,13 +47,22 @@ function afterCard(s){
  if(resumeAfterBattlefield(s))return afterCard(s);
  handleFlow(s,{type:'endAction'});return 'end';
 }
-const TYPES=['startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','undoResearchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','prepareFocus','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
+const TYPES=['automaAction','automaResearch','startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','undoResearchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','prepareFocus','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
 export function handleFlow(s,a){
  if(!s.flow||!TYPES.includes(a.type)&&a.type!=='settlePhaseTask')return false;
  const f=s.flow,p=s.players[s.current];
  if(s.round!==f.round)throw Error('轮次与流程不一致');
  requireActor(s);
  switch(a.type){
+ case 'automaAction':{
+  requireStep(s,'actions');if(!isAutoma(s,s.current))throw Error('当前不是高级自动机回合');
+  playAutomaTurn(s,s.current);handleFlow(s,{type:'endAction'});break;
+ }
+ case 'automaResearch':{
+  requireStep(s,'research');if(!isAutoma(s,s.current))throw Error('当前不是高级自动机研究');
+  researchAutoma(s,s.current);f.index++;f.research=null;
+  if(f.index===f.order.length)afterResearch(s);else s.current=f.order[f.index];break;
+ }
  case 'startSequenceCard':{requireStep(s,'actions');requireActor(s);startSequence(s,a);afterCard(s);break;}
  case 'resolveSequenceStep':{requireStep(s,'actions');requireActor(s);resolveSequence(s,a);afterCard(s);break;}
  case 'manualSequence':{requireStep(s,'actions');requireActor(s);manualSequence(s);record(s,'已保存已结算账目与手动剩余步骤；不要重复支付或领奖，手动完成后结束行动');break;}
@@ -155,7 +166,7 @@ export function handleFlow(s,a){
  }
  case 'resolveInvestments':{
   requireAftermath(s,'投资回报');f.investmentDone??=[];if(s.current!==f.order[f.investmentDone.length])throw Error('请按行动顺序结算投资');
-  const actor=s.current,withdraw=a.withdraw||{},result=investmentPreview(s,actor,withdraw);p.money+=result.total;for(const [id,n] of Object.entries(withdraw))s.regions[id].engage[actor]-=n;
+  const actor=s.current,withdraw=a.withdraw||{},result=isAutoma(s,actor)?automaIncome(s,actor):investmentPreview(s,actor,withdraw);if(!isAutoma(s,actor))p.money+=result.total;for(const [id,n] of Object.entries(withdraw))s.regions[id].engage[actor]-=n;
   p.objectiveHistory??={fdiHistoryComplete:s.round===1};p.objectiveHistory.bestFdiReturn=Math.max(p.objectiveHistory.bestFdiReturn||0,result.fdi);
   if(beginIncomeEffects(s,actor,result))s.current=incomeEffectActor(s);else finishInvestment(s,actor);
   record(s,`${actor} · 投资回报${result.fdi}，撤回介入收益${result.engage}`);break;
@@ -172,25 +183,26 @@ export function handleFlow(s,a){
   record(s,`${actor} · 威胁结算失去${result.total}分，消耗${defend.length}个介入标记`);break;
  }
  case 'scoreWorld':{
-  requireAftermath(s,'地区与多数计分');const result=scoringPreview(s);for(const id of humanPlayers(s))s.players[id].vp+=result.totals[id];s.scoringHistory??=[];s.scoringHistory.push(result);if(s.round===6)s.finalRegionWins=result.wins;
-  finishAftermath(s,'地区与多数计分');record(s,`第${s.round}轮地区、多数及国家能力已结算：${humanPlayers(s).map(id=>id+' '+result.totals[id]).join('，')}`);break;
+  requireAftermath(s,'地区与多数计分');const result=scoringPreview(s);for(const id of activePlayers(s))s.players[id].vp+=result.totals[id];s.scoringHistory??=[];s.scoringHistory.push(result);if(s.round===6)s.finalRegionWins=result.wins;
+  finishAftermath(s,'地区与多数计分');record(s,`第${s.round}轮地区、多数及国家能力已结算：${activePlayers(s).map(id=>id+' '+result.totals[id]).join('，')}`);break;
  }
- case 'scoreSmart':{requireAftermath(s,'Smart Power计分');if(!s.config.wit)throw Error('未启用扩展');const points=smartPreview(s);for(const id of humanPlayers(s))s.players[id].vp+=points[id];finishAftermath(s,'Smart Power计分');record(s,'Smart Power多数已按并列最低名次自动计分');break;}
+ case 'scoreSmart':{requireAftermath(s,'Smart Power计分');if(!s.config.wit)throw Error('未启用扩展');const points=smartPreview(s);for(const id of activePlayers(s))s.players[id].vp+=points[id];finishAftermath(s,'Smart Power计分');record(s,'Smart Power多数已按并列最低名次自动计分');break;}
  case 'resolveProsperity':{
   requireStep(s,'aftermath');if(!s.economyVersion||aftermathSteps(s)[f.checks.length]!=='繁荣提升')throw Error('当前不能提升繁荣');
   f.prosperityDone??=[];if(s.current!==f.order[f.prosperityDone.length])throw Error('请按行动顺序选择繁荣提升');
-  const actor=s.current,result=resolveProsperity(s,a.improve);f.prosperityDone.push(actor);
+  const actor=s.current,result=isAutoma(s,actor)?automaProsperity(s,actor):resolveProsperity(s,a.improve);f.prosperityDone.push(actor);
   if(f.prosperityDone.length===f.order.length){f.checks.push('繁荣提升');s.current=f.order[0];}else s.current=f.order[f.prosperityDone.length];
-  record(s,`${actor} · ${result?'提升繁荣，支付'+result.cost+'消费品，获得'+result.vp+'分与'+result.money+'资金':'本轮跳过繁荣提升'}`);break;
+  record(s,`${actor} · ${result?'提升繁荣，支付'+result.cost+(isAutoma(s,actor)?'资金':'消费品')+'，获得'+result.vp+'分'+(result.money?'与'+result.money+'资金':''):'本轮跳过繁荣提升'}`);break;
  }
  case 'nextRound':{
   requireStep(s,'roundEnd');if(s.round>=6)throw Error('游戏已经结束');s.round++;f.round=s.round;s.phase='准备';f.step='countries';f.index=0;f.checks=[];f.prosperityDone=[];f.investmentDone=[];f.threatDone=[];f.threatResults={};
+  for(const id of activePlayers(s).filter(id=>isAutoma(s,id)))addAutomaRoundCubes(s,id);
   for(const id of humanPlayers(s))drawCards(s.players[id],6+(hasGrowth(s.players[id],s.round,'draw')?1:0));
   record(s,`第${s.round}轮准备：各玩家抽取基础6张，已生效灵活战术另加1张，牌库用尽时洗弃牌；接下来更新国家牌`);break;
  }
  case 'confirmCountries':{
   requireStep(s,'countries');for(const r of Object.values(s.regions))revealCountry(r);
-  const queue=[...humanPlayers(s)].sort((a,b)=>s.players[a].vp-s.players[b].vp||s.players[a].money-s.players[b].money||({US:30,CN:20,EU:25,RU:15}[a]-{US:30,CN:20,EU:25,RU:15}[b]));
+  const queue=[...activePlayers(s)].sort((a,b)=>s.players[a].vp-s.players[b].vp||s.players[a].money-s.players[b].money||((isAutoma(s,a)?AUTOMA_PLAYERS[a].money:{US:30,CN:20,EU:25,RU:15}[a])-(isAutoma(s,b)?AUTOMA_PLAYERS[b].money:{US:30,CN:20,EU:25,RU:15}[b])));
   f.draft={queue,slots:Array(queue.length).fill(null)};f.index=0;f.step='order';s.current=queue[0];record(s,'七个地区国家牌已更新；按低分、少资金顺序选择行动位置');break;
  }
  case 'chooseOrderSlot':{
@@ -209,10 +221,10 @@ export function handleFlow(s,a){
   f.focusProduction=prepareFocus(s,a);record(s,'焦点重整与产能升级已完成，请选择生产数量');break;
  }
  case 'confirmFocus':{
-  requireStep(s,'focus');if(s.current!==f.order[f.checks.length])throw Error('请按本轮顺序确认焦点');let result;if(s.economyVersion)result=resolveFocus(s,a);else if(a.confirmed!==true)throw Error('请先手动结算焦点的即时效果');
+  requireStep(s,'focus');if(s.current!==f.order[f.checks.length])throw Error('请按本轮顺序确认焦点');let result;if(isAutoma(s,s.current)){prepareAutoma(s,s.current);}else if(s.economyVersion)result=resolveFocus(s,a);else if(a.confirmed!==true)throw Error('请先手动结算焦点的即时效果');
   f.checks.push(s.current);
   if(f.checks.length===f.order.length){f.step='actions';s.phase='行动';s.actionTurns={index:0,completed:{US:0,CN:0,EU:0,RU:0}};s.current=f.order[0];}else s.current=f.order[f.checks.length];
-  record(s,(result?`焦点已结算：重整${result.ready}个盟国，升级花费${result.cost}资金，超限折现${result.overflow}资金${result.quickResponse?"；快速反应部队："+(result.quickResponse.mode==="army"?"花5资金获得1军队":"免费移动1军队"+(result.quickResponse.smartCost?"，消耗1 SP":"")):""}`:'焦点效果已手动确认')+(f.step==='actions'?'；开始本轮行动':''));break;
+  record(s,(result?`焦点已结算：重整${result.ready}个盟国，升级花费${result.cost}资金，超限折现${result.overflow}资金${result.quickResponse?"；快速反应部队："+(result.quickResponse.mode==="army"?"花5资金获得1军队":"免费移动1军队"+(result.quickResponse.smartCost?"，消耗1 SP":"")):""}`:isAutoma(s,f.checks.at(-1))?'自动机焦点已结算':'焦点效果已手动确认')+(f.step==='actions'?'；开始本轮行动':''));break;
  }
  }
  return true;

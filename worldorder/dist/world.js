@@ -2,7 +2,7 @@ import {eventThreatLoss} from './event-effect-state.js';
 import {countryValue,countryRegion} from './research.js';
 import {investedCountries} from './investment-tokens.js';
 import {hasGrowth} from './growth-effects.js';
-import {humanPlayers,isNonPlayer} from './player-configuration.js';
+import {activePlayers,isBasicNonPlayer,isAutoma} from './player-configuration.js';
 export const IDS=['US','CN','EU','RU'];
 export const AREAS={
  M:{name:'美洲',slots:3,temp:[4,3,2,1],bonus:[7,4,2],interest:['US'],start:['US']},
@@ -29,15 +29,15 @@ export function changeInfluence(s,a){const r=s.regions[a.region],area=AREAS[a.re
 }
 export function alliedCount(s,player,region){return s.players[player].allies.filter(id=>countryRegion(id)===region).length;}
 export function investmentPreview(s,player,withdraw={}){let fdi=0,engage=0;for(const id of investedCountries(s,player))fdi+=2*countryValue(id);for(const [region,n] of Object.entries(withdraw)){if(!AREAS[region]||!Number.isInteger(n)||n<0||n>s.regions[region].engage[player])throw Error('介入标记数量无效');engage+=n*5*alliedCount(s,player,region);}return {fdi,engage,total:fdi+engage};}
-export function threatPreview(s,player,defend=[]){if(isNonPlayer(s,player))return {rows:[],total:0};if(!Array.isArray(defend)||new Set(defend).size!==defend.length||defend.some(id=>!AREAS[id]?.interest.includes(player)||s.regions[id].engage[player]<1))throw Error('请选择利益地区中可消耗的介入标记');const rows=[];let total=0;for(const [id,a] of Object.entries(AREAS)){if(!a.interest.includes(player))continue;const r=s.regions[id],extra=defend.includes(id)?2*alliedCount(s,player,id):0,defense=r.armies[player]+(s.players[player].focus==='军事焦点'?1:0)+(hasGrowth(s.players[player],s.round,'nuclear')?1:0)+extra;const opponents=[];for(const enemy of IDS){if(enemy===player||(['US','EU'].includes(player)&&['US','EU'].includes(enemy)))continue;const n=r.armies[enemy],threat=n+(n>0&&s.players[enemy].focus==='军事焦点'?1:0)+(hasGrowth(s.players[enemy],s.round,'nuclear')?1:0);if(threat>defense&&eventThreatLoss(s,player,enemy)>0)opponents.push(enemy);}const loss=opponents.reduce((n,enemy)=>n+eventThreatLoss(s,player,enemy),0);rows.push({region:id,defense,opponents,loss});total+=loss;}return {rows,total};}
+export function threatPreview(s,player,defend=[]){if(isBasicNonPlayer(s,player))return {rows:[],total:0};if(!Array.isArray(defend)||new Set(defend).size!==defend.length||defend.some(id=>!AREAS[id]?.interest.includes(player)||s.regions[id].engage[player]<1))throw Error('请选择利益地区中可消耗的介入标记');const rows=[];let total=0;for(const [id,a] of Object.entries(AREAS)){if(!a.interest.includes(player))continue;const r=s.regions[id],extra=defend.includes(id)?2*alliedCount(s,player,id):0,defense=r.armies[player]+(s.players[player].focus==='军事焦点'?1:0)+(hasGrowth(s.players[player],s.round,'nuclear')?1:0)+extra;const opponents=[];for(const enemy of IDS){if(enemy===player||(['US','EU'].includes(player)&&['US','EU'].includes(enemy)))continue;const n=r.armies[enemy],threat=n+(n>0&&s.players[enemy].focus==='军事焦点'?1:0)+(hasGrowth(s.players[enemy],s.round,'nuclear')?1:0);if(threat>defense&&eventThreatLoss(s,player,enemy)>0)opponents.push(enemy);}const loss=opponents.reduce((n,enemy)=>n+eventThreatLoss(s,player,enemy),0);rows.push({region:id,defense,opponents,loss});total+=loss;}return {rows,total};}
 // Equal metric values receive the bonus for the lowest occupied tied position.
 export function rankBonus(entries,bonuses){const sorted=[...entries].sort((a,b)=>b.value-a.value||(b.priority||0)-(a.priority||0)||(b.tie||0)-(a.tie||0));const result={};for(let i=0;i<sorted.length;){let j=i+1;while(j<sorted.length&&sorted[j].value===sorted[i].value&&(sorted[j].priority||0)===(sorted[i].priority||0)&&(sorted[j].tie||0)===(sorted[i].tie||0))j++;for(let k=i;k<j;k++)result[sorted[k].id]={vp:bonuses[j-1]||0,rank:j};i=j;}return result;}
 export const MAJORITY_BONUSES=Object.freeze({money:Object.freeze([5,3,1]),armies:Object.freeze([6,3,1]),allies:Object.freeze([7,4,2])});
-export function majorityBonuses(s,key){return humanPlayers(s).length===2?[{money:2,armies:3,allies:4}[key]]:MAJORITY_BONUSES[key];}
+export function majorityBonuses(s,key){return activePlayers(s).length===2?[{money:2,armies:3,allies:4}[key]]:MAJORITY_BONUSES[key];}
 // Public counters shared by live map standings and the actual scoring report.
 // Reserve armies and fused underlays do not count toward these majorities.
 export function majorityStandings(s){
- const ids=humanPlayers(s),metrics={money:ids.map(id=>({id,value:s.players[id].money})),armies:ids.map(id=>({id,value:Object.values(s.regions).reduce((n,r)=>n+r.armies[id],0)})),allies:ids.map(id=>({id,value:s.players[id].allies.length}))};
+ const ids=activePlayers(s),metrics={money:ids.map(id=>({id,value:s.players[id].money})),armies:ids.map(id=>({id,value:Object.values(s.regions).reduce((n,r)=>n+r.armies[id],0)})),allies:ids.map(id=>({id,value:s.players[id].allies.length}))};
  return Object.fromEntries(Object.entries(metrics).map(([key,entries])=>{
   const ranked=rankBonus(entries,majorityBonuses(s,key)),highest=Math.max(...entries.map(entry=>entry.value));
   return [key,[...entries].sort((a,b)=>b.value-a.value).map(entry=>({...entry,...ranked[entry.id],leading:entry.value>0&&entry.value===highest}))];
@@ -45,13 +45,13 @@ export function majorityStandings(s){
 }
 export function scoringPreview(s){if(![3,6].includes(s.round))throw Error('仅在第3与第6轮计分');const totals=zeros(),wins=zeros(),regions=[];
  for(const [id,a] of Object.entries(AREAS)){const r=s.regions[id];if(emptyPermanentSlot(r)>=0){regions.push({region:id,eligible:false,points:zeros()});continue;}
-  const entries=IDS.map(player=>({id:player,value:r.influence[player],priority:hasGrowth(s.players[player],s.round,'authority')?1:0,tie:r.armies[player]}));if(r.influence.neutral)entries.push({id:'neutral',value:r.influence.neutral,tie:0});const ranked=rankBonus(entries,a.bonus),points=zeros();for(const player of humanPlayers(s)){points[player]=r.influence[player]+ranked[player].vp;totals[player]+=points[player];if(ranked[player].rank===1)wins[player]++;}regions.push({region:id,eligible:true,points});
+  const entries=IDS.map(player=>({id:player,value:r.influence[player],priority:hasGrowth(s.players[player],s.round,'authority')?1:0,tie:r.armies[player]}));if(r.influence.neutral)entries.push({id:'neutral',value:r.influence.neutral,tie:0});const ranked=rankBonus(entries,a.bonus),points=zeros();for(const player of activePlayers(s)){points[player]=r.influence[player]+ranked[player].vp;totals[player]+=points[player];if(ranked[player].rank===1)wins[player]++;}regions.push({region:id,eligible:true,points});
  }
  const majority={};for(const [key,entries] of Object.entries(majorityStandings(s))){majority[key]=Object.fromEntries(IDS.map(id=>{const entry=entries.find(row=>row.id===id);return [id,entry?{vp:entry.vp,rank:entry.rank}:{vp:0,rank:null}];}));for(const id of IDS)totals[id]+=majority[key][id].vp;}
  let usLeads=0,ruRegions=0;for(const [id,a] of Object.entries(AREAS)){const r=s.regions[id];if(r.influence.US===Math.max(...Object.values(r.influence)))usLeads++;if(a.interest.includes('RU')&&r.armies.RU>0&&r.armies.RU===Math.max(...Object.values(r.armies)))ruRegions++;}
  const national=zeros();national.US=usLeads<4?[-12,-8,-5,-2][usLeads]:0;national.RU=2*ruRegions;
- if(s.round===6){const count=new Set(investedCountries(s,'CN').map(countryRegion)).size;national.CN=({3:2,4:3,5:4,6:6,7:8})[count]||0;}
- for(const id of IDS){if(isNonPlayer(s,id))national[id]=0;totals[id]+=national[id];}return {round:s.round,totals,wins,regions,majority,national};
+ if(s.round===6){const count=isAutoma(s,'CN')?Object.values(s.players.CN.automa.investments).filter(n=>n>0).length:new Set(investedCountries(s,'CN').map(countryRegion)).size;national.CN=({3:2,4:3,5:4,6:6,7:8})[count]||0;}
+ for(const id of IDS){if(isBasicNonPlayer(s,id))national[id]=0;totals[id]+=national[id];}return {round:s.round,totals,wins,regions,majority,national};
 }
-export function smartPreview(s){const ranked=rankBonus(humanPlayers(s).map(id=>({id,value:s.players[id].smart})),humanPlayers(s).length===2?[3]:[5,3,1]);return Object.fromEntries(IDS.map(id=>[id,ranked[id]?.vp||0]));}
-export function winners(s){const wins=s.finalRegionWins;if(!wins)return null;let ids=[...humanPlayers(s)];for(const value of [id=>s.players[id].vp,id=>wins[id],id=>Object.values(s.regions).reduce((n,r)=>n+r.influence[id],0)]){const max=Math.max(...ids.map(value));ids=ids.filter(id=>value(id)===max);}return ids;}
+export function smartPreview(s){const ranked=rankBonus(activePlayers(s).map(id=>({id,value:s.players[id].smart})),activePlayers(s).length===2?[3]:[5,3,1]);return Object.fromEntries(IDS.map(id=>[id,ranked[id]?.vp||0]));}
+export function winners(s){const wins=s.finalRegionWins;if(!wins)return null;let ids=[...activePlayers(s)];for(const value of [id=>s.players[id].vp,id=>wins[id],id=>Object.values(s.regions).reduce((n,r)=>n+r.influence[id],0)]){const max=Math.max(...ids.map(value));ids=ids.filter(id=>value(id)===max);}return ids;}

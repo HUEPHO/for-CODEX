@@ -2,6 +2,7 @@
 // A missing entry is intentional: those powers cannot encounter the chained
 // event as NPPs because their personal precursor becomes influence instead.
 export const NON_PLAYER_EVENT_BIDS={
+ c4bfa45373360:{US:{yes:1,no:1},EU:{yes:1,no:1},RU:{yes:1,no:1},CN:{yes:1,no:1}},
  c963b6d849299:{EU:[0,3]},
  cd780718be7a6:{US:[2,4],EU:[2,4],CN:[0,2]},
  c0393427ae3df:{US:[0,2],EU:[0,2]},

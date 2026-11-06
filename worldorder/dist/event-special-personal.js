@@ -18,6 +18,7 @@ const kind=q=>SPECIAL_PERSONAL_EVENTS[q?.cardId]?.key;
 function integer(n,max){if(!Number.isInteger(n)||n<0||n>max)throw Error('请输入限额内的非负整数');return n;}
 function loseSP(p,amount){const spent=Math.min(p.smart,amount);p.smart-=spent;p.vp-=amount-spent;}
 function pay(p,{money=0,energy=0,services=0,diplomacy=0}){
+ if(p.automa){const cost=money+3*energy+10*services+5*diplomacy;if(p.money<cost)throw Error('高级自动机执行事件所需资金不足');p.money-=cost;return;}
  if(p.money<money||p.resources[0]<energy||p.resources[4]<services||p.resources[5]<diplomacy)throw Error('执行事件所需资金或资源不足');
  p.money-=money;p.resources[0]-=energy;p.resources[4]-=services;p.resources[5]-=diplomacy;
 }

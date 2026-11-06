@@ -1,7 +1,7 @@
 import {EVENT_CHAINS,TURNING_EVENT_CHAINS as turning} from './event-links.js';
 export {EVENT_CHAINS} from './event-links.js';
 import {EVENT_DATA} from './event-data.js';
-import {isNonPlayer,humanPlayers} from './player-configuration.js';
+import {isNonPlayer,isAutoma,firstHuman} from './player-configuration.js';
 import {drawNonPlayerBid} from './event-non-player-data.js';
 import {AREAS,syncInfluence} from './world.js';
 import {regionCountries,syncCountries} from './country-piles.js';
@@ -38,18 +38,19 @@ function placeEvent(s,id,slot,kind,rng){
   if(!next)return false;s.chain.splice(s.chain.indexOf(next),1);return placeEvent(s,next,slot,kind,rng);
  }
  if(card.players.length===1){
-  if(id===CROATIA)revealCroatia(s,rng);
+  if(id===CROATIA&&!isAutoma(s,card.players[0]))revealCroatia(s,rng);
   const owner=card.players[0],old=b.personal[owner];
   if(old){if(kind==='setup'){discard(s,id);log(s,`${card.name}：开局同方个人事件重复，弃置后补抽`);}else b.choice={type:'personal',owner,candidates:[old,id]};}
   else b.personal[owner]=id;
   return false;
  }
  b.slots[slot]=id;
- if(id===AFGHAN&&card.players.some(owner=>!isNonPlayer(s,owner))){
+ if(id===AFGHAN&&card.players.some(owner=>!isNonPlayer(s,owner)||isAutoma(s,owner))){
   b.nonPlayerAfghan={};
   for(const owner of ['US','EU'])if(isNonPlayer(s,owner)){
-   const amount=drawNonPlayerBid(id,owner,rng);b.nonPlayerAfghan[owner]=amount;s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;s.regions.C.armies[owner]+=amount;
-   log(s,`${owner} · 基础自动机：阿富汗揭示时从补给放置${amount}支军队`);
+   const drawn=drawNonPlayerBid(id,owner,rng),amount=isAutoma(s,owner)&&s.players[owner].money<5*drawn?0:drawn;b.nonPlayerAfghan[owner]=amount;s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;s.regions.C.armies[owner]+=amount;
+   if(isAutoma(s,owner))s.players[owner].money-=5*amount;
+   log(s,`${owner} · ${isAutoma(s,owner)?'高级':'基础'}自动机：阿富汗揭示时从补给放置${amount}支军队${isAutoma(s,owner)?`，支付${5*amount}资金`:''}`);
   }else b.revealQueue.push({type:'reveal',owner,cardId:id});
  }
  return true;
@@ -80,7 +81,7 @@ export function prepareNextEvents(s){
  continueEventDistribution(s);
 }
 export function choosePersonalEvent(s,a){
- const b=s.eventBoard,c=b.choice;if(c?.type!=='personal'||(isNonPlayer(s,c.owner)?(s.flow?.order||humanPlayers(s))[0]:c.owner)!==s.current||!c.candidates.includes(a.cardId))throw Error('请选择待处理的两张个人事件中的一张');
+ const b=s.eventBoard,c=b.choice;if(c?.type!=='personal'||(isNonPlayer(s,c.owner)?firstHuman(s):c.owner)!==s.current||!c.candidates.includes(a.cardId))throw Error('请选择待处理的两张个人事件中的一张');
  b.personal[c.owner]=a.cardId;for(const id of c.candidates)if(id!==a.cardId)discard(s,id);
  log(s,`${s.current}保留个人事件：${EVENT_DATA[a.cardId].name}`);b.choice=null;continueEventDistribution(s);
 }

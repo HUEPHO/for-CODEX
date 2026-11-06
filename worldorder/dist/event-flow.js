@@ -2,7 +2,11 @@ import {AGREEMENT_EVENTS,initializeAgreement,updateAgreement,submitAgreement,res
 import {SPECIAL_PERSONAL_EVENTS,initializeSpecialEvent,submitSpecialEvent} from './event-special-personal.js';
 import {removeEventEffect} from './event-effect-state.js';
 import {BID_EVENTS,initializeBid,submitBid,resolveBidReward,resolveNonPlayerBidReward} from './event-bids.js';
-import {isNonPlayer,POWER_IDS} from './player-configuration.js';
+import {isNonPlayer,isAutoma,isBasicNonPlayer,POWER_IDS} from './player-configuration.js';
+import {placeAutomaInfluence} from './automa-board.js';
+import {spendAutomaEventSmart} from './event-automa.js';
+import {drawNonPlayerBid} from './event-non-player-data.js';
+import {AUTOMA_PLAYERS} from './automa-data.js';
 import {placeNonPlayerInfluence,clearNonPlayerEconomy} from './non-player.js';
 import {PERSONAL_EVENTS,submitPersonalEvent} from './event-personal.js';
 import {EVENT_DATA} from './event-data.js';
@@ -22,13 +26,13 @@ function finishDistribution(s){
 }
 function nextEvent(s){
  const f=s.flow,b=s.eventBoard,processed=f.eventRound.processed;
- const order=[...f.order,...POWER_IDS.filter(id=>isNonPlayer(s,id))];
+ const order=[...new Set([...f.order,...POWER_IDS.filter(id=>isNonPlayer(s,id))])];
  const id=[...b.slots].reverse().find(Boolean)||order.map(owner=>b.personal[owner]).find(id=>id&&!processed.includes(id));
- if(!id){f.eventResolution=null;f.eventRound.complete=true;prepareNextEvents(s);finishDistribution(s);return;}
+ if(!id){if(!f.eventRound.smartConverted){spendAutomaEventSmart(s);f.eventRound.smartConverted=true;}f.eventResolution=null;f.eventRound.complete=true;prepareNextEvents(s);finishDistribution(s);return;}
  const data=EVENT_DATA[id],mode=id==='c0a692aca2850'&&!['US','EU'].some(owner=>s.regions.C.armies[owner]>0)?'special':AUTO_EVENTS[id]||'manual',owner=data.players.length===1?data.players[0]:null;
- if(owner&&isNonPlayer(s,owner)||data.players.every(player=>isNonPlayer(s,player))){
+ if(owner&&isNonPlayer(s,owner)||data.players.every(player=>isBasicNonPlayer(s,player))){
   let detail='事件仅影响非玩家势力，弃置且无效果';
-  if(owner){const regions=data.regions.length?data.regions:Object.keys(s.regions),region=regions[Math.floor(Math.random()*regions.length)];placeNonPlayerInfluence(s,owner,region);if(regions.length>1)s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;detail=`${owner}个人事件改为在${AREAS[region].name}放置1点影响力`;}
+  if(owner){const regions=data.regions.length?data.regions:Object.keys(s.regions),region=regions[Math.floor(Math.random()*regions.length)];let placed=true;if(isAutoma(s,owner))placed=placeAutomaInfluence(s,owner,region,{gainVp:false});else placeNonPlayerInfluence(s,owner,region);if(regions.length>1)s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;detail=placed?`${owner}个人事件改为在${AREAS[region].name}放置1点影响力`:`${owner}个人事件：${AREAS[region].name}没有合法影响力位置，未放置`;}
   log(s,`${data.name} · ${detail}`);s.eventHistory.push({round:s.round,cardId:id,mode:'nonPlayer',result:detail,receipts:[]});processed.push(id);removeCurrentEvent(s,id);nextEvent(s);return;
  }
  // Unsupported faces use four explicit acknowledgements, including affected non-flagged players.
@@ -40,6 +44,12 @@ function nextEvent(s){
  s.current=eventActor(s);
 }
 export function startEventPhase(s){if(!s.eventVersion)return;s.flow.eventRound={round:s.round,processed:[],complete:false};nextEvent(s);}
+export function nextAutomaEventAction(s){
+ const q=s.flow?.eventResolution;if(!q||q.nonPlayerChoice||s.eventBoard.choice||!isAutoma(s,s.current)||q.stage!=='resolve')return null;
+ if(q.mode==='special'&&q.cardId==='c52e84cdecbe6')return {type:'submitEvent',cardId:q.cardId,payment:s.players[s.current].money>=10?'service':'none'};
+ if(q.mode==='special'&&q.cardId==='c0a692aca2850'&&!q.afghanPresent)return {type:'submitEvent',cardId:q.cardId};
+ return ['aid','paris','crisis'].includes(q.mode)?{type:'submitEvent',cardId:q.cardId,automa:true}:null;
+}
 export function canPostponeEvent(s){const q=s.flow?.eventResolution;return !!q&&q.owner===s.current&&!q.done.length&&!q.manualStarted&&q.stage!=='result'&&s.round<6&&!EVENT_DATA[q.cardId].notPostponable&&s.players[s.current].smart>=1;}
 function integer(n,max=999){if(!Number.isInteger(n)||n<0||n>max)throw Error('请输入限额内的非负整数');return n;}
 function lowerProduction(p,key){
@@ -84,13 +94,15 @@ function submit(s,a,q){
   if(q.done.length===q.participants.length){settleSealed(s,q);q.stage='result';log(s,q.result);}s.current=eventActor(s);return;
  }
  if(q.mode==='aid'){
-  const n=integer(a.amount,Math.min(Math.floor(p.money/10),p.resources[2]));p.money-=10*n;p.resources[2]-=n;gainResource(p,5,2*n);p.smart+=n;detail=`援助${n}次；支付${10*n}资金、${n}粮食，获得${2*n}外交（超限舍弃）、${n} SP`;
+  if(isAutoma(s,id)){const drawn=drawNonPlayerBid(q.cardId,id);s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;const n=Number(drawn&&p.money>=13);p.money-=13*n;gainResource(p,5,2*n);p.smart+=n;detail=n?'高级自动机援助1次：支付13资金，获得10资金和1 SP':'高级自动机不参与援助';}
+  else{const n=integer(a.amount,Math.min(Math.floor(p.money/10),p.resources[2]));p.money-=10*n;p.resources[2]-=n;gainResource(p,5,2*n);p.smart+=n;detail=`援助${n}次；支付${10*n}资金、${n}粮食，获得${2*n}外交（超限舍弃）、${n} SP`;}
  }else if(q.mode==='paris'){
-  const keys=a.production||[];if(!Array.isArray(keys)||keys.length>2||new Set(keys).size!==keys.length||keys.some(k=>!Number.isInteger(k)||k<0||k>6||p.production[k]<=1))throw Error('请选择至多两种可实际降低的产能');
+  const keys=isAutoma(s,id)?[]:a.production||[];if(!Array.isArray(keys)||keys.length>2||new Set(keys).size!==keys.length||keys.some(k=>!Number.isInteger(k)||k<0||k>6||p.production[k]<=1))throw Error('请选择至多两种可实际降低的产能');
   for(const k of keys)p.production[k]--;gainResource(p,5,2*keys.length);p.vp+=keys.length;detail=`降低${keys.length}种产能，获得${2*keys.length}外交（超限舍弃）、${keys.length}分`;
  }else if(q.mode==='crisis'){
-  if(p.money>=START_MONEY[id]*2){p.vp+=2;detail='资金至少为初始资金两倍：获得2分';}
-  else {const lowered=lowerProduction(p,a.productionKey);detail=lowered?'降低所选产能1级':'全部产能已处于最低值，保持不变';if(p.money<=START_MONEY[id]){p.prosperity=Math.max(0,p.prosperity-1);p.vp-=2;detail+='；繁荣降低1级（最低为0），失去2分';}}
+  const starting=isAutoma(s,id)?AUTOMA_PLAYERS[id].money:START_MONEY[id];
+  if(p.money>=starting*2){p.vp+=2;detail='资金至少为初始资金两倍：获得2分';}
+  else {const lowered=isAutoma(s,id)?false:lowerProduction(p,a.productionKey);detail=lowered?'降低所选产能1级':isAutoma(s,id)?'高级自动机忽略产能降低':'全部产能已处于最低值，保持不变';if(p.money<=starting){p.prosperity=Math.max(0,p.prosperity-1);p.vp-=2;detail+='；繁荣降低1级（最低为0），失去2分';}}
  }else{
   if(a.confirmed!==true)throw Error('请核对并手动完成本张事件中涉及本方的效果');
   const chains=a.chains||[];if(!Array.isArray(chains)||chains.some(id=>!(EVENT_CHAINS[q.cardId]||[]).includes(id)))throw Error('所选连锁不属于此事件');

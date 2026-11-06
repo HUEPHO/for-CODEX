@@ -73,6 +73,7 @@ export function rollbackRevealReason(before,after,action={}){
   // including the automatic new-round draw for all four players.
   if(old.deck?.length>p.deck?.length||action.type==='draw'&&id===before.current||(action.type==='nextRound'||after.round>before.round)&&p.hand.length>0)return INFO_BARRIER;
  }
+ if((after.automaDecks?.drawCount||0)>(before.automaDecks?.drawCount||0))return '高级自动机已抽牌并揭示决策';
  if(hasNew(after.autoInfluence?.faceUp,before.autoInfluence?.faceUp))return '新自动影响力牌已经揭示';
  if(hasNew(after.market,before.market))return '能力市场已补充新牌';
  for(const [id,r] of Object.entries(after.regions)){

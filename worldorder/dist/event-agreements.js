@@ -1,5 +1,6 @@
 import {EVENT_DATA} from './event-data.js';
-import {isNonPlayer} from './player-configuration.js';
+import {isNonPlayer,isAutoma,isBasicNonPlayer} from './player-configuration.js';
+import {automaEventArmyOffer,automaAgreementCost,canPayAutomaAgreement} from './event-automa.js';
 import {drawNonPlayerBid,NON_PLAYER_EVENT_BIDS} from './event-non-player-data.js';
 import {drainNonPlayerRewards,resolveNonPlayerRewardChoice} from './non-player-rewards.js';
 import {countryInfo,applyRelations} from './country-actions.js';
@@ -48,6 +49,11 @@ export function initializeAgreement(s,q){ruleFor(q);q.agreementVersion=2;q.stage
     if(Object.values(s.regions).some(region=>region.armies[owner]>0)){offer.pendingArmies=true;offer.confirmed=false;}
     else offer.accept=false;
    }
+   if(isAutoma(s,owner)){
+    offer.automa=true;offer.credit=credit(s,owner,r);offer.diplomacy=Math.max(0,offer.diplomacy-offer.credit);
+    if(r.armies==='event')Object.assign(offer,automaEventArmyOffer(s,owner,r.region,offer.count));
+    if(!canPayAutomaAgreement(s,owner,offer)){offer.accept=false;offer.confirmed=true;delete offer.pendingArmies;}
+   }
   }
   q.submissions[owner]=offer;if(r.key!=='afghan')s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;
  }
@@ -62,7 +68,7 @@ export function agreementModel(s,q,owner=s.current){
  return {...rule,owner,name:EVENT_DATA[q.cardId].name,credit:credit(s,owner,rule),participants:[...q.participants]};
 }
 export function agreementOffer(s,q,owner,a){
- if(isNonPlayer(s,owner))return q.submissions[owner];
+ if(isNonPlayer(s,owner)){const offer=q.submissions[owner];if(offer.accept&&!canPayAutomaAgreement(s,owner,offer))throw Error('高级自动机协议出资所需资金不足');return offer;}
  const rule=agreementModel(s,q,owner),p=s.players[owner];
  if(a.accept!==true&&a.accept!==false)throw Error('请选择同意出资或不参与');
  if(!a.accept)return {accept:false,money:0,diplomacy:0,credit:0,armies:{},count:0,moveCost:0};
@@ -82,8 +88,8 @@ export function agreementOffer(s,q,owner,a){
 }
 function payContributions(s,q){
  for(const [owner,offer] of Object.entries(q.submissions))if(offer.accept){
-  const p=s.players[owner];p.money-=offer.money+offer.moveCost;p.resources[5]-=offer.diplomacy;
-  if(isNonPlayer(s,owner)){p.money=0;p.resources[5]=0;}
+  const p=s.players[owner];if(isAutoma(s,owner))p.money-=automaAgreementCost(offer);else{p.money-=offer.money+offer.moveCost;p.resources[5]-=offer.diplomacy;}
+  if(isBasicNonPlayer(s,owner)){p.money=0;p.resources[5]=0;}
   for(const [from,n] of Object.entries(offer.armies)){if(from==='reserve')p.resources[6]-=n;else s.regions[from].armies[owner]-=n;}
   if(ruleFor(q).armies==='event')q.eventArmies[owner]=offer.count;
  }
@@ -132,7 +138,7 @@ function settle(s,q,forcedFailure=false){
   if(['E','N','S'].some(region=>s.regions[region].temporary.includes('EU')))q.rewardQueue.push({owner:'EU',type:'convert',regions:['E','N','S'],optional:true});
  }else if(rule.reward==='brics'){
   for(const owner of [...contributors].sort((a,b)=>q.submissions[b].diplomacy-q.submissions[a].diplomacy))q.rewardQueue.push({owner,type:'bricsCountry',optional:true});
- }else if(rule.reward==='move')for(const owner of contributors)q.rewardQueue.push({owner,type:'move',max:2,optional:true});
+ }else if(rule.reward==='move')for(const owner of contributors)q.rewardQueue.push({owner,type:'move',max:2,moveCost:5,optional:true});
  else if(rule.reward==='nordstream'){gainResource(s.players.EU,5,2);q.rewardQueue.push({owner:'RU',type:'nordstream',regions:['E']});}
  else if(rule.reward==='ttip')for(const owner of contributors)q.rewardQueue.push({owner,type:'ttip'});
  q.result='共同协议已达成；参与方承诺已统一支付，SP及分数奖励已结算。'+(rule.effect&&!rule.reward?'对应持续效果已生效。':'')+(rule.chain?'后续连锁已登记。':'');
@@ -141,10 +147,10 @@ function settle(s,q,forcedFailure=false){
 function checkAgreementCompletion(s,q){
  q.done=q.participants.filter(id=>q.submissions[id].confirmed);
  const rejected=q.participants.filter(id=>q.submissions[id].accept===false).length;
- const humans=q.participants.filter(id=>!isNonPlayer(s,id)),humansRefuse=humans.length<q.participants.length&&humans.every(id=>q.submissions[id].accept===false);
+ const humans=q.participants.filter(id=>!isNonPlayer(s,id)),humansRefuse=humans.length>0&&humans.length<q.participants.length&&humans.every(id=>q.submissions[id].accept===false);
  if(rejected>=(ruleFor(q).key==='iran'?3:1)||humansRefuse){delete q.nonPlayerChoice;settle(s,q,true);}
  else if(q.nonPlayerChoice)return;
- else if(q.done.length===q.participants.length&&agreementEnough(q))settle(s,q);
+ else if(q.done.length===q.participants.length){if(agreementEnough(q))settle(s,q);else if(!humans.length)settle(s,q,true);}
 }
 export function resolveNonPlayerAgreementChoice(s,q,a){
  const step=q.nonPlayerChoice;if(!step)throw Error('当前没有非玩家选择');

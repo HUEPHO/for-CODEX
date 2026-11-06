@@ -1,9 +1,11 @@
+import {chooseAutoma} from './automa-random.js';
+import {planAutomaInfluence,applyAutomaInfluence} from './automa-board.js';
 import {ACTION_CARDS,requireTurn,effectPreview,resolveBasicEffect} from './basic-actions.js';
 import {consumeExtraCard,grantExtraPlay} from './growth-active.js';
 import {startOpenDiplomacy} from './growth-triggers.js';
 import {drawCards} from './draw.js';
 import {AREAS,changeInfluence} from './world.js';
-import {isNonPlayer} from './player-configuration.js';
+import {isBasicNonPlayer,isAutoma} from './player-configuration.js';
 import {placeNonPlayerInfluence} from './non-player.js';
 import {ECONOMY,validateProduction,resolveProsperity} from './economy.js';
 import {productionPreview,applyProduction} from './domestic-actions.js';
@@ -91,7 +93,12 @@ export function advanceSequence(s){const q=sequenceState(s),p=s.players[s.curren
   else if(step.type==='readyAlly'&&!p.allies.length){status='unavailable';log(s,'没有盟国可重整，继续结算其余效果');}
   else if(step.type==='searchRegion'&&!Object.values(s.regions).some(r=>regionCountries(r).length)){status='unavailable';log(s,'所有地区的国家牌已取完，完成本牌');}
   else if(step.type==='response'){
-   if(isNonPlayer(s,step.player)){const {region}=sequenceParameters(s);placeNonPlayerInfluence(s,step.player,region);log(s,`基础自动机 · ${step.player}按金砖国家牌面在${AREAS[region].name}添加影响力`);}
+   if(isBasicNonPlayer(s,step.player)){const {region}=sequenceParameters(s);placeNonPlayerInfluence(s,step.player,region);log(s,`基础自动机 · ${step.player}按金砖国家牌面在${AREAS[region].name}添加影响力`);}
+   else if(isAutoma(s,step.player)){
+    const {region}=sequenceParameters(s),accept=chooseAutoma(s,step.player,[false,true]),plan=accept?planAutomaInfluence(s,step.player,region):null;
+    if(plan){const cost=Math.min(step.upToMoney,s.players[step.player].money);s.players[step.player].money-=cost;applyAutomaInfluence(s,step.player,plan);log(s,`${step.player} · 接受金砖国家：支付${cost}资金，在${AREAS[region].name}添加影响力`);}
+    else log(s,`${step.player} · 不参与金砖国家邀请`);
+   }
    else{q.responder=step.player;s.current=step.player;log(s,`${sequenceName(s)} · 等待${powerNames[step.player]}回应，原行动暂停`);return true;}
   }
   else if(step.type==='returnArmy'&&!otherArmyTargets(s,sequenceParameters(s).region).length){log(s,'该地区没有其他玩家的军队，完成本牌');}

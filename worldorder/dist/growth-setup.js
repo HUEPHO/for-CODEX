@@ -38,7 +38,7 @@ export function growthMode(config){
 }
 function shuffled(items,rng){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 export function buildGrowthSupply(config,rng=Math.random){
- const mode=growthMode(config),supply=[],count=(config.humans||[0,1,2,3]).length;
+ const mode=growthMode(config),supply=[],count=(config.humans||[0,1,2,3]).length+Object.keys(config.automas||{}).length;
  for(let level=1;level<=5;level++){
   const families=GROWTH_FAMILIES.filter(g=>g.level===level);
   const remove=level===1&&count<4||level<5&&count===2?1:0;

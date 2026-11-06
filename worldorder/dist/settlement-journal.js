@@ -8,7 +8,7 @@ export function recordSettlementAction(before,after,a){
  const row={number:(after.settlementSerial||0)+1,round:before.round,phase:phaseKey(before),player:before.current,title,mode:['settlePhaseTask','confirmAftermath'].includes(a.type)?'manual':titles[a.type]?'automatic':'manual',changes:balanceChanges(publicBalances(before),publicBalances(after))};
  if(a.type==='settlePhaseTask'){
   row.title=before.flow.step==='events'?'确认本方事件结果':'登记目标计分';
-  if(before.flow.step==='aftermath'){const result=after.players[before.current].scoredObjectives.at(-1);row.points=result.points;row.scoreMode=result.mode;row.mode=result.tasks?.some(t=>t.manualHistory)?'assisted':'automatic';}
+  if(before.flow.step==='aftermath'){const results=after.players[before.current].scoredObjectives.slice(before.players[before.current].scoredObjectives?.length||0);row.points=results.reduce((n,r)=>n+r.points,0);row.scoreMode=results[0].mode;row.mode=results.some(r=>r.tasks?.some(t=>t.manualHistory))?'assisted':'automatic';}
  }
  const researchBefore=before.flow.research?.remaining||0,researchAfter=after.flow.research?.remaining||0;
  if(before.flow.step==='research')row.researchDelta=researchAfter-researchBefore;

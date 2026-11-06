@@ -35,7 +35,7 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
   case 'join':{
    const target=command.seat;
    if(!SEATS.includes(target))throw new RoomError('请选择有效势力');
-   if(isNonPlayer(room.state,target))throw new RoomError('该势力由基础自动机控制');
+   if(isNonPlayer(room.state,target))throw new RoomError('该势力由自动机控制');
    if(seat&&seat!==target)throw new RoomError('本标签页已经入座；请先离开当前席位');
    const occupant=next.seats[target];
    if(occupant?.token!==identity.token&&occupant){
@@ -56,7 +56,7 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
    if(!host)throw new RoomError('只有房主可以重新布置房间',403);
    if(command.gameRevision!==room.gameRevision)throw new RoomError('局面已更新，请重新确认布置',409);
    next.state=createState(cards,command.config);
-   if(SEATS.some(id=>room.seats[id]&&isNonPlayer(next.state,id)))throw new RoomError('已入座的势力须先离开席位，才能改为基础自动机');
+   if(SEATS.some(id=>room.seats[id]&&isNonPlayer(next.state,id)))throw new RoomError('已入座的势力须先离开席位，才能改为自动机');
    next.status='lobby';next.rollback=createRollback();next.gameRevision++;
    for(const id of SEATS)next.seatRevisions[id]++;break;
   }
@@ -135,6 +135,8 @@ export function playerView(source,seat){
  }
  for(const key of ['marketDeck','eraDeck','era2Deck'])s[key]=hidden(s[key]);
  if(s.autoInfluence)s.autoInfluence.deck=hidden(s.autoInfluence.deck);
+ if(s.automaDecks)for(const deck of ['decision','influence'])s.automaDecks[deck].deck=hidden(s.automaDecks[deck].deck);
+ for(const p of Object.values(s.players))if(p.automa)p.automa.objectiveDeck=hidden(p.automa.objectiveDeck);
  const searched=q?.owner===seat&&step?.type==='effect'?step.card.countrySearchRegion:null;
  for(const [id,r] of Object.entries(s.regions)){
   r.publicCountryPiles=countryPileContents(source.regions[id]);

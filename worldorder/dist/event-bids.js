@@ -1,5 +1,7 @@
 import {EVENT_DATA} from './event-data.js';
-import {isNonPlayer} from './player-configuration.js';
+import {isNonPlayer,isAutoma,isBasicNonPlayer} from './player-configuration.js';
+import {automaBidOffer} from './event-automa.js';
+import {AUTOMA_PLAYERS} from './automa-data.js';
 import {drawNonPlayerBid,nonPlayerBidModifier} from './event-non-player-data.js';
 import {drainNonPlayerRewards,resolveNonPlayerRewardChoice} from './non-player-rewards.js';
 import {AREAS,alliedCount} from './world.js';
@@ -56,16 +58,16 @@ export const BID_EVENTS={
  ]}
 };
 export function bidModifier(s,id,owner){
- if(isNonPlayer(s,owner))return nonPlayerBidModifier(s,id,owner);
+ if(isBasicNonPlayer(s,owner))return nonPlayerBidModifier(s,id,owner);
  const d=BID_EVENTS[id],p=s.players[owner];let n=d.bonus?.[owner]||0;
  if(d.effect==='dollar'&&owner==='US')n+=Math.floor(p.money/20);
  if(d.effect==='southChina'&&owner==='US')n+=alliedCount(s,owner,'P');
  if(d.effect==='aukus'&&p.allies.includes('caa7ff0f8b8f4'))n+=2;
- if(['africa','americas'].includes(d.effect)){const region=d.region;n+=alliedCount(s,owner,region)+investedCountries(s,owner).filter(cid=>p.allies.includes(cid)&&countryRegion(cid)===region).length+(p.bases||[]).filter(cid=>p.allies.includes(cid)&&countryRegion(cid)===region).length;}
+ if(['africa','americas'].includes(d.effect)){const region=d.region;n+=alliedCount(s,owner,region)+(isAutoma(s,owner)?p.automa.investments[region]+p.automa.bases[region]:investedCountries(s,owner).filter(cid=>p.allies.includes(cid)&&countryRegion(cid)===region).length+(p.bases||[]).filter(cid=>p.allies.includes(cid)&&countryRegion(cid)===region).length);}
  for(const rule of d.individualModifiers||[])n+=rule.resource!==undefined?p.resources[rule.resource]:rule.growth?p.growth.length:alliedCount(s,owner,rule.allyRegion);
  return n;
 }
-export function initializeBid(s,q){q.bidVersion=1;q.modifiers=Object.fromEntries(q.participants.map(owner=>[owner,bidModifier(s,q.cardId,owner)]));q.eventArmies={};q.rewardQueue=[];}
+export function initializeBid(s,q){q.bidVersion=1;q.modifiers=Object.fromEntries(q.participants.map(owner=>[owner,bidModifier(s,q.cardId,owner)]));q.eventArmies={};q.rewardQueue=[];if(q.participants.every(id=>isNonPlayer(s,id)))completeBid(s,q);}
 function integer(n,max=999){if(!Number.isInteger(n)||n<0||n>max)throw Error('竞价数量必须是限额内的非负整数');return n;}
 export function bidSaleLimit(s,cardId,owner){const sale=BID_EVENTS[cardId].sale;return sale?.players.includes(owner)?Math.min(sale.max??s.players[owner].resources[6],s.players[owner].resources[6]):0;}
 export function bidResourceLimit(s,cardId,owner,key){const option=BID_EVENTS[cardId][{4:'services',5:'diplomacy'}[key]];return option===true?s.players[owner].resources[key]:Math.min(option||0,s.players[owner].resources[key]);}
@@ -97,7 +99,7 @@ function finishBid(s,q){
 }
 function compareSides(s,q,sides,a,b){
  const regions=EVENT_DATA[q.cardId].regions;
- const values=side=>[Math.max(...side.map(p=>regions.reduce((n,r)=>n+s.regions[r].influence[p],0))),Math.max(...side.map(p=>q.before[p].vp)),Math.max(...side.map(p=>s.players[p].money)),Math.max(...side.map(p=>startingMoney[p]))];
+ const values=side=>[Math.max(...side.map(p=>regions.reduce((n,r)=>n+s.regions[r].influence[p],0))),Math.max(...side.map(p=>q.before[p].vp)),Math.max(...side.map(p=>s.players[p].money)),Math.max(...side.map(p=>isAutoma(s,p)?AUTOMA_PLAYERS[p].money:startingMoney[p]))];
  const av=values(sides[a]),bv=values(sides[b]);for(let i=0;i<av.length;i++)if(av[i]!==bv[i])return bv[i]-av[i];return 0;
 }
 function outcome(s,q){
@@ -160,7 +162,7 @@ function applyFace(s,q){
   q.totals={US:q.sideTotals[0].total,RU_CN:q.sideTotals[1].total,modifier:q.modifiers.US};
  }else if(d.effect==='africa')place(won[0],'A','africa');
  else if(d.effect==='mrca'){
-  const owner=won[0];if(contributed(owner)){s.players[owner].resources[6]--;s.players[owner].money+=10;place(owner,'S');effects.push(`${names[owner]}出售1支待命军队，获得10资金`);}
+  const owner=won[0];if(contributed(owner)){if(isAutoma(s,owner))s.players[owner].money-=10;else s.players[owner].resources[6]--;s.players[owner].money+=10;place(owner,'S');effects.push(`${names[owner]}出售1支待命军队，获得10资金`);}
  }else if(d.effect==='belarus'){
   if(won.includes('RU'))place('RU','E');else{grant('US',1);grant('EU',1);effects.push(removeEventInfluence(s,'RU','E'));}
  }else if(d.effect==='sahel'){
@@ -205,9 +207,13 @@ function applyFace(s,q){
 }
 export function submitBid(s,q,a){
  const owner=s.current;q.submissions[owner]=bidOffer(s,q,owner,a);q.done.push(owner);
+ completeBid(s,q);
+}
+function completeBid(s,q){
  if(q.participants.filter(id=>!isNonPlayer(s,id)).every(id=>q.done.includes(id))){
   const rule=BID_EVENTS[q.cardId];
   for(const id of q.participants.filter(id=>isNonPlayer(s,id))){
+   if(isAutoma(s,id)){q.submissions[id]=automaBidOffer(s,q,id,rule);if(!q.submissions[id].total)q.modifiers[id]=0;q.done.push(id);s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;continue;}
    const total=drawNonPlayerBid(q.cardId,id),canMove=rule.armies==='all'||rule.armies?.includes(id),multiple=rule.money||rule.diplomacy||rule.services||rule.sale;
    const count=canMove?(multiple?Math.floor(total/2):total):0;
    q.submissions[id]={nonPlayer:true,total,count,armies:{},cost:0,moneyUnits:0,diplomacy:0,services:0,soldArmies:0,saleIncome:0};q.done.push(id);

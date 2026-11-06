@@ -1,5 +1,5 @@
 import {incomeRuleActor} from './event-income-rules.js';
-import {humanPlayers,isNonPlayer} from './player-configuration.js';
+import {humanPlayers,isNonPlayer,firstHuman} from './player-configuration.js';
 // Read-only projection over existing saved workflows. No reducers, UI or I/O.
 // Nested growth/relation choices suspend, rather than replace, a card sequence.
 export const EVENT_ACTIONS=Object.freeze(['updateAgreement','resolveEventReward','resolveNonPlayerChoice','submitEvent','ackEvent','postponeEvent','choosePersonalEvent','resolveEventReveal']);
@@ -7,12 +7,13 @@ export const EVENT_MANUAL_ACTIONS=Object.freeze(['resource','adjustProduction','
 export function liveAgreement(s){return s.flow?.eventResolution?.agreementVersion===2&&s.flow.eventResolution.stage==='agreement'&&!s.eventBoard?.choice;}
 export function canNegotiateAgreement(s,seat,type='updateAgreement'){return !isNonPlayer(s,seat)&&!s.flow?.eventResolution?.nonPlayerChoice&&liveAgreement(s)&&['updateAgreement','submitEvent'].includes(type)&&s.flow.eventResolution.participants.includes(seat)&&s.flow.eventResolution.submissions[seat].accept!==false;}
 export function eventActor(s){
- if(s.eventBoard?.choice){const owner=s.eventBoard.choice.owner;return isNonPlayer(s,owner)?(s.flow?.order||humanPlayers(s))[0]:owner;}
+ if(s.eventBoard?.choice){const owner=s.eventBoard.choice.owner;return isNonPlayer(s,owner)?firstHuman(s):owner;}
  const q=s.flow?.eventResolution;if(!q)return null;
- if(q.nonPlayerChoice)return s.flow.order[0];
- if(liveAgreement(s)){const players=q.participants.filter(id=>!isNonPlayer(s,id));return players.find(id=>!q.submissions[id].confirmed)||players.find(id=>q.submissions[id].accept)||players[0];}
+ if(q.nonPlayerChoice)return firstHuman(s);
+ if(liveAgreement(s)){const players=q.participants.filter(id=>!isNonPlayer(s,id));return players.find(id=>!q.submissions[id].confirmed)||players.find(id=>q.submissions[id].accept)||players[0]||firstHuman(s);}
+ if(q.stage==='bid'&&q.bidVersion)return q.participants.find(id=>!isNonPlayer(s,id)&&!q.done.includes(id))||null;
  if(q.stage==='reward')return q.rewardQueue[0]?.owner||null;
- return (q.stage==='result'?q.participants.find(id=>!isNonPlayer(s,id)):q.participants[q.done.length])||null;
+ return (q.stage==='result'?(q.participants.find(id=>!isNonPlayer(s,id))||firstHuman(s)):q.participants[q.done.length])||null;
 }
 export const incomeEffectActor=incomeRuleActor;
 export function inEventInteraction(s){return !!(s.eventVersion&&(s.eventBoard?.choice||s.flow?.step==='events'));}

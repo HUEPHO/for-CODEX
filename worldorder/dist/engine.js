@@ -1,4 +1,6 @@
-import {configuredPlayers,humanPlayers} from './player-configuration.js';
+import {AUTOMA_PLAYERS} from './automa-data.js';
+import {initializeAutomas} from './automa.js';
+import {configuredPlayers,configuredAutomas,automatonMode,humanPlayers,activePlayers,isAutoma} from './player-configuration.js';
 import {initializeAutoInfluence,clearNonPlayerEconomy} from './non-player.js';
 import {useEventEffect} from './event-effect-actions.js';
 import {consumeExtraCard} from './growth-active.js';
@@ -21,19 +23,19 @@ import {buildGrowthSupply,growthMode} from './growth-setup.js';
 import {beginnerOpening} from './opening-hand.js';
 export function shuffle(a,rng=Math.random){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 export function createState(cards,config={dd:true,wit:true},rng=Math.random){
- const humans=configuredPlayers(config);
+ const humans=configuredPlayers(config),automas=configuredAutomas(config,humans),mode=automatonMode(config);
  const enabled=c=>c.module==='base'||c.module==='dd'&&config.dd||c.module==='wit'&&config.wit;
  const pool=(type,owner)=>cards.filter(c=>c.type===type&&enabled(c)&&(!owner||c.owner===owner));
- const state={version:2,economyVersion:1,initialOrder:null,actionTurns:null,config:{dd:!!config.dd,wit:!!config.wit,executive:!!config.executive,humans},current:humans[0],round:1,phase:'行动',players:{},regions:{},log:[`${humans.length}位玩家对局已布置${humans.length<4?'，其余势力使用基础自动机':''}。`]};
+ const state={version:2,economyVersion:1,initialOrder:null,actionTurns:null,config:{dd:!!config.dd,wit:!!config.wit,executive:!!config.executive,humans,automatonMode:mode,automas,automaDifficulty:config.automaDifficulty??'normal'},current:humans[0],round:1,phase:'行动',players:{},regions:{},log:[`${humans.length}位玩家对局已布置${humans.length<4?'，其余势力使用'+(mode==='advanced'?'高级':'基础')+'自动机':''}。`]};
  for(const [id,power] of Object.entries(POWERS)){
   const start=beginnerOpening(pool('starter',id),id),assets=shuffle(pool('asset',id),rng).slice(0,3);
   state.players[id]={hand:start.hand,deck:shuffle(start.deck,rng),openingChoices:null,discard:[],played:[],assets:[],assetChoices:assets.map(c=>({id:c.id,vp:c.vp||0})),assetSelection:[],usedAssets:[],objectives:[],objectiveChoices:config.dd?shuffle(pool('objective',id).map(c=>c.id),rng).slice(0,3):null,objectiveSelection:[],allies:pool('startingCountry',id).map(c=>c.id),growth:[],money:power.money,vp:0,resources:[...power.resources],production:[...power.resources],prosperity:0,smart:config.wit?2:0,focus:'内政焦点'};
  }
- for(const id of Object.keys(POWERS))if(!humans.includes(id)){const p=state.players[id];p.nonPlayer=true;for(const key of ['hand','deck','allies'])p[key]=[];p.assetChoices=null;p.objectiveChoices=null;p.money=0;p.resources=Array(7).fill(0);p.production=Array(7).fill(0);p.smart=0;}
+ for(const id of Object.keys(POWERS))if(!humans.includes(id)&&!automas[id]){const p=state.players[id];p.nonPlayer=true;for(const key of ['hand','deck','allies'])p[key]=[];p.assetChoices=null;p.objectiveChoices=null;p.money=0;p.resources=Array(7).fill(0);p.production=Array(7).fill(0);p.smart=0;}
  state.openingHandVersion=1;
  for(const p of Object.values(state.players))p.objectiveHistory={bestFdiReturn:0,fdiHistoryComplete:true,productionGains:Array(7).fill(0),prosperityGains:0,progressHistoryComplete:true};
  if(state.config.executive)for(const id of humans){state.players[id].executive=EXECUTIVE_BY_POWER[id];state.players[id].executiveUsed=false;}
- const market=shuffle(pool('ability').map(c=>c.id),rng);state.market=market.splice(0,6);state.marketDeck=market;
+ const market=shuffle(pool('ability').filter(c=>!Object.keys(automas).length||c.module!=='dd').map(c=>c.id),rng);state.market=market.splice(0,6);state.marketDeck=market;
  state.config.growthMode=growthMode(config);state.growthSetupVersion=1;state.growth=buildGrowthSupply(state.config,rng);
  state.eraDeck=shuffle(pool('event').filter(c=>c.era==='I').map(c=>c.id),rng);state.era2Deck=shuffle(pool('event').filter(c=>c.era==='II').map(c=>c.id),rng);state.events=[];state.chain=pool('event').filter(c=>c.era==='chain').map(c=>c.id);state.resolvedEvents=[];state.effects=pool('effect').map(c=>c.id);
  const initial={M:{US:1},E:{US:1,EU:1,RU:1},C:{RU:1},N:{US:1,EU:1,neutral:1},A:{EU:1},S:{CN:1,neutral:1},P:{US:1,CN:1}};
@@ -41,12 +43,12 @@ export function createState(cards,config={dd:true,wit:true},rng=Math.random){
   const unique=new Map();for(const c of pool('country').filter(c=>c.region===region))if(!unique.has(c.notes.split('-')[0]))unique.set(c.notes.split('-')[0],c.id);
   const deck=shuffle([...unique.values()],rng);state.regions[region]={available:deck.splice(0,2),deck,influence:{US:0,CN:0,EU:0,RU:0,neutral:0,...initial[region]},armies:{US:0,CN:0,EU:0,RU:0}};
  }
- initializeWorld(state);initializeCommerce(state);initializeAutoInfluence(state,rng);initializeEvents(state,rng);
+ initializeWorld(state);initializeCommerce(state);initializeAutomas(state,cards,rng);initializeAutoInfluence(state,rng);initializeEvents(state,rng);
  return state;
 }
 export function determineInitialOrder(state){
  if(Object.values(state.players).some(p=>p.openingChoices||p.assetChoices||p.objectiveChoices))throw Error('开局选牌尚未完成');
- return [...humanPlayers(state)].sort((a,b)=>state.players[b].vp-state.players[a].vp||POWERS[a].money-POWERS[b].money);
+ return [...activePlayers(state)].sort((a,b)=>state.players[b].vp-state.players[a].vp||(isAutoma(state,a)?AUTOMA_PLAYERS[a].money:POWERS[a].money)-(isAutoma(state,b)?AUTOMA_PLAYERS[b].money:POWERS[b].money));
 }
 export function applyAction(state,action){
  const next=applyGameAction(state,action);clearNonPlayerEconomy(next);recordObjectiveProgress(state,next);return action.type==='switch'?next:advanceAutomaticFlow(next);
