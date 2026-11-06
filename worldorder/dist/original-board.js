@@ -1,3 +1,4 @@
+import {EVENT_EFFECTS} from './event-effect-rules.js';
 import {AREAS,IDS,MAJORITY_BONUSES,majorityStandings} from './world.js';
 import {POWERS} from './game-constants.js';
 import {REGION_COLORS} from './region-presentation.js';
@@ -87,11 +88,16 @@ function majorities(s){
  return `<div class="original-majorities" aria-label="小目标实时排名">${Object.entries(standings).map(([key,rows])=>`<section class="original-majority original-majority--${key}" data-majority="${key}" aria-label="${names[key]}排名"><img class="original-majority-art" src="assets/majority-${key}.png" alt="${names[key]}多数奖励：${MAJORITY_BONUSES[key].join('、')}分" draggable="false"><div class="original-majority-standings">${rows.map(row=>`<span class="original-majority-chip${row.leading?' is-leading':''}" data-ranking-owner="${row.id}" data-ranking-value="${row.value}" title="${name(row.id)}：${row.value}${key==='money'?'资金':key==='armies'?'支地图军队':'个盟国'}${row.leading?'，当前领先':''}；按当前局面计分为第${row.rank}名、${row.vp}分">${powerFlag(row.id,{decorative:true})}<b>${row.value}</b></span>`).join('')}</div></section>`).join('')}</div>`;
 }
 
+function publicEffects(s,cards){
+ const ids=[...new Set([...(s.eventEffects||[]).filter(e=>e.owner==='global').map(e=>e.cardId),...(s.activeEffects||[])])].filter(id=>EVENT_EFFECTS[id]?.owner==='global');
+ return `<section class="original-public-effects" style="${rect(170,540,415,425)}" aria-label="公共事件效果"><h3>公共事件效果</h3><div>${Array.from({length:6},(_,i)=>{const id=ids[i];return id?`<button type="button" data-card="${id}" data-source="view" title="${EVENT_EFFECTS[id].name}"><img src="${cards[id].image}" alt="${EVENT_EFFECTS[id].name}" draggable="false"></button>`:'<span class="public-effect-empty"></span>';}).join('')}</div></section>`;
+}
+
 /** The original printed map with live public state and existing form targets. */
 export function renderOriginalBoard(s,cards={}, {selectedRegion,extraSlot=''}={}){
  const catalogue=Array.isArray(cards)?Object.fromEntries(cards.map(card=>[card.id,card])):cards;
  return `<section class="original-board" aria-label="原版世界主板"><div class="original-board-scroll" tabindex="0" aria-label="世界地图、影响力、驻军、介入和国家商店"><div class="original-board-surface"><img class="original-board-art" src="assets/map.webp" alt="World Order 原版世界主板" draggable="false">${Object.entries(ORIGINAL_BOARD_REGIONS).map(([region,layout])=>{
   const r=s.regions?.[region];if(!r)return '';
   return `<section class="original-region${selectedRegion===region?' original-region--selected':''}" data-board-region="${region}" style="--region-color:${REGION_COLORS[region]}" aria-label="${AREAS[region].name}"><button type="button" class="original-region-hit" data-region="${region}" style="${rect(...layout.box)}" title="${AREAS[region].name}" aria-label="${AREAS[region].name} · 操作时选择地区" aria-pressed="${selectedRegion===region}"></button>${influence(region,r,layout)}${forces(region,r,layout)}${countries(region,r,catalogue,layout)}</section>`;
- }).join('')}${turnOrder(s)}${scoreTrack(s)}${majorities(s)}</div></div>${extraSlot}</section>`;
+ }).join('')}${turnOrder(s)}${publicEffects(s,catalogue)}${scoreTrack(s)}${majorities(s)}</div></div>${extraSlot}</section>`;
 }

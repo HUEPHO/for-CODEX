@@ -11,7 +11,7 @@ import {countryPiles,syncCountries,revealCountry} from './country-piles.js';
 export {countryPiles,syncCountries,acquireCountry} from './country-piles.js';
 import {resolveBasicCard,resolvePass} from './basic-actions.js';
 import {investmentPreview,threatPreview,scoringPreview,smartPreview} from './world.js';
-import {producePrimary,resolveFocus,resolveProsperity} from './economy.js';
+import {producePrimary,prepareFocus,resolveFocus,resolveProsperity} from './economy.js';
 import {researchCost,countryValue,researchPreview,grantResearchBonuses} from './research.js';
 import {currentActor,aftermathSteps} from './phase-state.js';
 import {startEventPhase} from './event-flow.js';
@@ -44,7 +44,7 @@ function afterCard(s){
  if(resumeAfterBattlefield(s))return afterCard(s);
  handleFlow(s,{type:'endAction'});return 'end';
 }
-const TYPES=['startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','undoResearchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
+const TYPES=['startSequenceCard','resolveSequenceStep','manualSequence','resolveOpenDiplomacy','skipOpenDiplomacy','continueWithExtraCard','useGrowthAbility','finishGrowthAbility','playExtraAsset','endAction','startResearch','researchBuy','researchRefresh','researchAlly','undoResearchAlly','finishResearch','confirmEvents','confirmAftermath','nextRound','confirmCountries','chooseOrderSlot','confirmProduction','prepareFocus','confirmFocus','resolveProsperity','resolveInvestments','resolveIncomeEffect','resolveThreat','scoreWorld','scoreSmart','playBasicCard','passTurn'];
 export function handleFlow(s,a){
  if(!s.flow||!TYPES.includes(a.type)&&a.type!=='settlePhaseTask')return false;
  const f=s.flow,p=s.players[s.current];
@@ -202,6 +202,10 @@ export function handleFlow(s,a){
   requireStep(s,'production');let overflow=0;
   if(s.economyVersion)overflow=producePrimary(s);else if(a.confirmed!==true)throw Error('请先为四方手动生产能源、原料和粮食');
   f.step='focus';f.checks=[];s.current=f.order[0];record(s,s.economyVersion?`四方初级资源已自动生产，超限折现共${overflow}资金；开始选择焦点`:'初级资源生产已手动确认；开始选择焦点');break;
+ }
+ case 'prepareFocus':{
+  requireStep(s,'focus');if(f.focusProduction)throw Error('焦点已进入生产，请完成生产');
+  f.focusProduction=prepareFocus(s,a);record(s,'焦点重整与产能升级已完成，请选择生产数量');break;
  }
  case 'confirmFocus':{
   requireStep(s,'focus');if(s.current!==f.order[f.checks.length])throw Error('请按本轮顺序确认焦点');let result;if(s.economyVersion)result=resolveFocus(s,a);else if(a.confirmed!==true)throw Error('请先手动结算焦点的即时效果');

@@ -1,6 +1,6 @@
 import {POWERS} from './game-constants.js';
 import {currentActor,aftermathSteps,settlementProgress} from './phase-state.js';
-import {activeInteraction,EVENT_ACTIONS,inEventInteraction,manualEventOpen,pendingActionIssue} from './interaction-state.js';
+import {canNegotiateAgreement,activeInteraction,EVENT_ACTIONS,inEventInteraction,manualEventOpen,pendingActionIssue} from './interaction-state.js';
 
 // Command-type admission only. Payloads, prices, targets and hidden information
 // are still validated by the authoritative domain reducer on the full state.
@@ -46,7 +46,7 @@ export function roomActionIssue(s,seat,a){
  if(Object.values(s.players).some(setupPending))return '请等待四个势力完成开局选牌';
  if(a.type==='endAction'&&s.flow?.step==='actions'&&Array.isArray(s.flow.turnCards)&&!s.flow.turnCards.length)return '请先出牌并结算；若要放弃行动，请选择盖牌领取10资金';
  const actor=currentActor(s);
- if(actor!==seat&&!(manualWindow(s,seat)&&MANUAL_ACTIONS.has(a.type)))return actor?`正在等待${POWERS[actor].name}操作`:'当前只能补记本方结算结果';
+ if(actor!==seat&&!canNegotiateAgreement(s,seat,a.type)&&!(manualWindow(s,seat)&&MANUAL_ACTIONS.has(a.type)))return actor?`正在等待${POWERS[actor].name}操作`:'当前只能补记本方结算结果';
  if(a.type==='region'&&a.player!==seat)return '只能手动调整本方驻军；卡牌自动效果会处理对方军队';
  return gameActionIssue(s,a,seat);
 }

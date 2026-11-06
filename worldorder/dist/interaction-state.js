@@ -1,11 +1,14 @@
 import {incomeRuleActor} from './event-income-rules.js';
 // Read-only projection over existing saved workflows. No reducers, UI or I/O.
 // Nested growth/relation choices suspend, rather than replace, a card sequence.
-export const EVENT_ACTIONS=Object.freeze(['resolveEventReward','submitEvent','ackEvent','postponeEvent','choosePersonalEvent','resolveEventReveal']);
+export const EVENT_ACTIONS=Object.freeze(['updateAgreement','resolveEventReward','submitEvent','ackEvent','postponeEvent','choosePersonalEvent','resolveEventReveal']);
 export const EVENT_MANUAL_ACTIONS=Object.freeze(['resource','adjustProduction','adjustEventProsperity','region','worldInfluence','engageToken','exhaustAlly','readyAlly','toggleFDI','toggleBase','toggleCommerce']);
+export function liveAgreement(s){return s.flow?.eventResolution?.agreementVersion===2&&s.flow.eventResolution.stage==='agreement'&&!s.eventBoard?.choice;}
+export function canNegotiateAgreement(s,seat,type='updateAgreement'){return liveAgreement(s)&&['updateAgreement','submitEvent'].includes(type)&&s.flow.eventResolution.participants.includes(seat)&&s.flow.eventResolution.submissions[seat].accept!==false;}
 export function eventActor(s){
  if(s.eventBoard?.choice)return s.eventBoard.choice.owner;
  const q=s.flow?.eventResolution;if(!q)return null;
+ if(liveAgreement(s))return q.participants.find(id=>!q.submissions[id].confirmed)||q.participants.find(id=>q.submissions[id].accept)||q.participants[0];
  if(q.stage==='reward')return q.rewardQueue[0]?.owner||null;
  return (q.stage==='result'?q.participants[0]:q.participants[q.done.length])||null;
 }
@@ -22,7 +25,7 @@ const definitions=[
 export function activeInteraction(s){
  const definition=definitions.find(d=>d.present(s));if(!definition)return null;
  const actor=definition.actor(s),owner=definition.owner?.(s)||actor;
- return {kind:definition.kind,actor,owner,shared:!!definition.shared,label:definition.kind==='sequence'&&owner!==actor?'等待被点名玩家回应':definition.label};
+ return {kind:definition.kind,actor,owner,shared:!!definition.shared,label:liveAgreement(s)?'共同协商协议':definition.kind==='sequence'&&owner!==actor?'等待被点名玩家回应':definition.label};
 }
 export function pendingActionIssue(s,type,seat=s.current){
  for(const d of definitions){

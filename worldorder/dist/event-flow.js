@@ -1,4 +1,4 @@
-import {AGREEMENT_EVENTS,initializeAgreement,submitAgreement,resolveAgreementReward} from './event-agreements.js';
+import {AGREEMENT_EVENTS,initializeAgreement,updateAgreement,submitAgreement,resolveAgreementReward} from './event-agreements.js';
 import {SPECIAL_PERSONAL_EVENTS,initializeSpecialEvent,submitSpecialEvent} from './event-special-personal.js';
 import {removeEventEffect} from './event-effect-state.js';
 import {BID_EVENTS,initializeBid,submitBid,resolveBidReward} from './event-bids.js';
@@ -7,9 +7,9 @@ import {EVENT_DATA} from './event-data.js';
 import {EVENT_CHAINS,prepareNextEvents,choosePersonalEvent,resolveEventReveal,queueChain,removeCurrentEvent} from './event-board.js';
 import {gainResource} from './economy.js';
 import {publicBalances,balanceChanges} from './sequence-progress.js';
-import {EVENT_ACTIONS,eventActor} from './interaction-state.js';
-export {EVENT_ACTIONS,eventActor} from './interaction-state.js';
-export const AUTO_EVENTS={...Object.fromEntries(Object.keys(AGREEMENT_EVENTS).map(id=>[id,'agreement'])),...Object.fromEntries(Object.keys(SPECIAL_PERSONAL_EVENTS).map(id=>[id,'special'])),...Object.fromEntries(Object.keys(PERSONAL_EVENTS).map(id=>[id,'personal'])),...Object.fromEntries(Object.keys(BID_EVENTS).map(id=>[id,'bid'])),c4bfa45373360:'aid',c2bacc7276393:'paris',c402371a1ff87:'crisis',cd771b6a9d234:'bid',c963b6d849299:'agreement'};
+import {canNegotiateAgreement,EVENT_ACTIONS,eventActor} from './interaction-state.js';
+export {canNegotiateAgreement,EVENT_ACTIONS,eventActor} from './interaction-state.js';
+export const AUTO_EVENTS={...Object.fromEntries(Object.keys(AGREEMENT_EVENTS).map(id=>[id,'agreement'])),...Object.fromEntries(Object.keys(SPECIAL_PERSONAL_EVENTS).map(id=>[id,'special'])),...Object.fromEntries(Object.keys(PERSONAL_EVENTS).map(id=>[id,'personal'])),...Object.fromEntries(Object.keys(BID_EVENTS).map(id=>[id,'bid'])),c4bfa45373360:'aid',c2bacc7276393:'paris',c402371a1ff87:'crisis',cd771b6a9d234:'bid',c963b6d849299:'agreement',c0a692aca2850:'agreement'};
 export const REPEAT_EVENTS=['cd780718be7a6','cb29f5917c351','cbb2924757345','cb888393c6ff9'];
 const START_MONEY={US:30,CN:20,EU:25,RU:15};
 function log(s,text){s.log=[text,...s.log].slice(0,30);}
@@ -21,7 +21,7 @@ function nextEvent(s){
  const f=s.flow,b=s.eventBoard,processed=f.eventRound.processed;
  const id=[...b.slots].reverse().find(Boolean)||f.order.map(owner=>b.personal[owner]).find(id=>id&&!processed.includes(id));
  if(!id){f.eventResolution=null;f.eventRound.complete=true;prepareNextEvents(s);finishDistribution(s);return;}
- const data=EVENT_DATA[id],mode=AUTO_EVENTS[id]||'manual',owner=data.players.length===1?data.players[0]:null;
+ const data=EVENT_DATA[id],mode=id==='c0a692aca2850'&&!['US','EU'].some(owner=>s.regions.C.armies[owner]>0)?'special':AUTO_EVENTS[id]||'manual',owner=data.players.length===1?data.players[0]:null;
  // Unsupported faces use four explicit acknowledgements, including affected non-flagged players.
  const participants=mode==='manual'?(owner?[owner,...f.order.filter(p=>p!==owner)]:[...f.order]):f.order.filter(p=>data.players.includes(p));
  f.eventResolution={cardId:id,mode,stage:mode==='bid'||mode==='agreement'?mode:'resolve',participants,owner,done:[],submissions:{},before:publicBalances(s),receipts:[],chains:[],repeat:false};
@@ -98,11 +98,12 @@ function submit(s,a,q){
 }
 export function handleEventAction(s,a){
  if(!s.eventVersion||!EVENT_ACTIONS.includes(a.type))return false;
- if(eventActor(s)!==s.current)throw Error('请由当前事件责任玩家操作');
+ if(eventActor(s)!==s.current&&!canNegotiateAgreement(s,s.current,a.type))throw Error('请由当前事件责任玩家操作');
  if(a.type==='choosePersonalEvent'||a.type==='resolveEventReveal'){
   if(a.type==='choosePersonalEvent')choosePersonalEvent(s,a);else resolveEventReveal(s,a);finishDistribution(s);return true;
  }
  const q=s.flow?.eventResolution;if(s.flow?.step!=='events'||!q||a.cardId!==q.cardId)throw Error('当前事件已变化，请刷新后操作');
+ if(a.type==='updateAgreement'){updateAgreement(s,q,a);if(q.stage!=='agreement')s.current=eventActor(s);return true;}
  if(a.type==='resolveEventReward'){if(q.agreementVersion)resolveAgreementReward(s,q,a);else resolveBidReward(s,q,a);s.current=eventActor(s);return true;}
  if(a.type==='postponeEvent'){
   if(!canPostponeEvent(s))throw Error('本事件当前不能延期（已开始结算、禁止延期、第6轮或SP不足）');

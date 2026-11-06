@@ -141,7 +141,7 @@ function applyGameAction(state,action){
  case 'phase':if(!['准备','行动','研究','事件','余波'].includes(action.phase)||action.phase==='事件'&&!next.config.wit)throw Error('无效阶段');next.phase=action.phase;msg=`手动切换到${action.phase}阶段`;break;
  case 'adjustEventProsperity':{const q=next.flow?.eventResolution;if(!next.eventVersion||next.flow?.step!=='events'||q?.mode!=='manual'||q.stage==='result'||q.done.includes(next.current)||![-1,1].includes(action.delta))throw Error('仅可在未确认的人工事件中登记本方繁荣');p.prosperity=Math.max(0,Math.min(5,p.prosperity+action.delta));msg='按事件牌面手动调整繁荣；未自动支付费用或发放奖励';break;}
  case 'adjustProduction':{if(!next.economyVersion||!p.production||!Number.isInteger(action.key)||action.key<0||action.key>6||![-1,1].includes(action.delta))throw Error('无效产能调整');const value=p.production[action.key]+action.delta;if(value<1||value>ECONOMY[next.current].max[action.key])throw Error('超出本国产能轨范围');p.production[action.key]=value;msg='按卡牌效果手动调整产能（不自动支付费用或获得资源）';break;}
- case 'focus':if(next.economyVersion&&(!next.flow||next.flow.step!=='focus'||next.current!==next.flow.order[next.flow.checks.length]))throw Error('只能由当前玩家在准备阶段选择焦点');if(!['内政焦点','外交焦点','军事焦点'].includes(action.focus))throw Error('无效焦点');p.focus=action.focus;msg=`选择${action.focus}（请在流程面板完成选择后结算）`;break;
+ case 'focus':if(next.flow?.focusProduction)throw Error('焦点已进入生产，不能重新选择');if(next.economyVersion&&(!next.flow||next.flow.step!=='focus'||next.current!==next.flow.order[next.flow.checks.length]))throw Error('只能由当前玩家在准备阶段选择焦点');if(!['内政焦点','外交焦点','军事焦点'].includes(action.focus))throw Error('无效焦点');p.focus=action.focus;msg=`选择${action.focus}（请在流程面板完成选择后结算）`;break;
  default:throw Error('未知操作');
  }
  if(msg)next.log=[`${POWERS[next.current].name} · ${msg}`,...next.log].slice(0,30);

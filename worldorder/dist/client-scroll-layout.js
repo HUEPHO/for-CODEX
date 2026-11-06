@@ -1,5 +1,8 @@
 // Shared table composition. Existing controls and command attributes are moved,
 // not recreated with a second set of rules or event handlers.
+import {researchCost} from './research.js';
+import {actionAccess} from './action-policy.js';
+import {currentActor} from './phase-state.js';
 import {renderClientRoundStatus} from './client-round-status.js';
 import {renderClientPrintedBoard,renderClientTradeInfo} from './client-player-board.js';
 import {renderClientEventSummary} from './client-event-summary.js';
@@ -49,7 +52,7 @@ export function composeClientScrollTable(state,byId,card,{viewer=state.current,a
  if(owned){const abilities=owned.querySelector('.client-owned-group--abilities');owned.prepend(abilities);abilities.querySelector('header>span').remove();}
  table.querySelector('.client-right-dock')?.remove();
  const personal=section('client-personal-area','');personal.append(board,practical);
- const market=section('client-market-area',`<div class="client-market-cards"><header class="client-section-title"><h2>能力卡牌商店</h2><span>新牌在左 · 余 ${state.marketDeck.length} 张</span></header><div class="client-market-row">${state.market.map(id=>card(id,'market')).join('')}</div></div>`);
+ const market=section('client-market-area',`<div class="client-market-cards"><header class="client-section-title"><h2>能力卡牌商店</h2><span>新牌在左 · 余 ${state.marketDeck.length} 张</span></header><div class="client-market-row">${state.market.map(id=>`<div class="client-market-item">${card(id,'market')}${state.flow?.step==='research'&&state.flow.research?`<button type="button" class="market-purchase" data-card-action="researchBuy" data-id="${id}" ${currentActor(state)!==viewer||!actionAccess(state,{type:'researchBuy',id},viewer).allowed||researchCost(id)>state.flow.research.remaining?'disabled':''}>购入 · ${researchCost(id)}<span class="resource-icon resource-icon--research" role="img" aria-label="研究力" style="background-image:url('assets/icon-research.svg')"></span></button>`:''}</div>`).join('')}</div></div>`);
  const growth=section('client-growth-area',renderClientGrowthCatalogue(state,byId,card));
  growth.querySelector('h2').textContent='发展卡商店';growth.setAttribute('aria-label','发展卡商店');
  const history=section('client-history-area','<header class="client-section-title"><h2>操作记录</h2></header><ol class="client-history-list"></ol>');

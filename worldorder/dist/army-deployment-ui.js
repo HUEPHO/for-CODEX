@@ -1,3 +1,4 @@
+import {contributionDeploymentModel} from './army-contribution-ui.js';
 import {AREAS} from './world.js';
 import {militaryDestinations} from './military.js';
 import {deploymentMoves} from './army-deployment.js';
@@ -29,7 +30,7 @@ export function readDeploymentMoves(root){
 export function installArmyDeployment({root=document,getTask,getSurface,getState,canEdit,onMessage}){
  function plan(){return [...(getTask()?.querySelectorAll('.army-deployment')||[])].find(el=>!el.closest('[hidden],fieldset[disabled]'));}
  function model(){
-  const el=plan();if(!el)return bidArmyDeploymentModel(getTask(),getState());
+  const el=plan();if(!el)return contributionDeploymentModel(getTask(),getState())||bidArmyDeploymentModel(getTask(),getState());
   const s=getState(),{options,input,delta}=data(el),player=s.players[options.owner];
   const initial=player.resources[6]+options.gain+Number(options.production?document.querySelector(options.production)?.value||0:0);
   return {el,input,delta,options,s,initial,reserve:initial-Object.values(delta).reduce((sum,n)=>sum+n,0)};
@@ -49,15 +50,15 @@ export function installArmyDeployment({root=document,getTask,getSurface,getState
   }
   for(const player of root.querySelectorAll('[data-client-player]')){
    const owner=player.dataset.clientPlayer,stock=player.querySelector('[data-client-resource="6"]');if(!stock)continue;
-   const pending=m?.options.owner===owner,n=pending?m.reserve:s.players[owner].resources[6];stock.querySelector('b').textContent=n;
+   const pending=!m?.supply&&m?.options.owner===owner,n=pending?m.reserve:s.players[owner].resources[6];stock.querySelector('b').textContent=n;
    stock.classList.toggle('army-stock-pending',pending);stock.title=`仓库坦克：${n}${pending?'（派遣预览）':''}`;stock.setAttribute('aria-label',stock.title);
   }
   if(!m)return;
   if(m.bid){
-   const max=m.reserve+Number(m.input.value),unavailable=max===0;
+   const max=Math.min(m.options.maxMoves??999,m.reserve+Number(m.input.value)),unavailable=max===0;
    if(m.input.max!==String(max))m.input.max=max;
    if(m.input.hasAttribute('data-room-disabled'))m.input.dataset.roomDisabled=String(unavailable);
-   else m.input.disabled=unavailable||!!m.el.closest('fieldset[disabled]')||!!getTask().querySelector('#event-submit')?.disabled;
+   else m.input.disabled=unavailable||!!m.el.closest('fieldset[disabled]')||!m.contribution&&!!getTask().querySelector('#event-submit')?.disabled;
    return;
   }
   m.el.querySelector('.army-deployment-status').textContent=`仓库 ${m.reserve}（派遣前 ${m.initial}）`;
@@ -74,7 +75,7 @@ export function installArmyDeployment({root=document,getTask,getSurface,getState
   if(!canEdit()||m.el.closest('fieldset[disabled]')||(!m.bid&&m.input.disabled))return;
   const region=target.dataset.boardRegion,change=event.type==='contextmenu'?-1:1,current=m.delta[region]||0;
   if(m.bid){
-   if(getTask().querySelector('#event-submit')?.disabled||m.input.hasAttribute('data-room-disabled'))return;
+   if(!m.contribution&&getTask().querySelector('#event-submit')?.disabled||m.input.hasAttribute('data-room-disabled'))return;
    const piece=event.target.closest('.original-army');if(piece&&piece.dataset.armyOwner!==m.options.owner)return;
    if(change>0){
     if(current>=0){onMessage('只能左键原地区放回本次取回的军队。');return;}
