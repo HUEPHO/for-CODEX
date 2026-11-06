@@ -1,10 +1,10 @@
 import {POWERS,RESOURCE_NAMES} from './game-constants.js';
 import {debugModeIssue} from './action-policy.js';
 import {showGameDialog} from './client-dialogs.js';
+import {debugCardCatalog} from './debug-card-catalog.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const cardTypes=new Set(['starter','ability','asset']);
-const kindName=c=>c.type==='asset'?'战略资产':c.type==='starter'?'起始能力':'市场能力';
+const kindName=c=>c.type==='asset'?'战略资产':'市场能力';
 
 export function installDebugMode({getContext,getCards,cardTitle,onApply}){
  const button=document.querySelector('#debug-mode'),dialog=document.querySelector('#debug-dialog'),body=document.querySelector('#debug-body');
@@ -25,7 +25,7 @@ export function installDebugMode({getContext,getCards,cardTitle,onApply}){
  }
  function filter(){
   const search=body.querySelector('#debug-search').value.trim().toLowerCase(),kind=body.querySelector('#debug-kind').value,select=body.querySelector('#debug-card'),selected=select.value;
-  const cards=getCards().filter(c=>cardTypes.has(c.type)&&(kind==='all'||(kind==='asset'?c.type==='asset':c.type!=='asset'))&&`${cardTitle(c)} ${POWERS[c.owner]?.name||''} ${c.id} ${c.notes||''}`.toLowerCase().includes(search)).sort((a,b)=>cardTitle(a).localeCompare(cardTitle(b),'zh-CN')||String(a.owner).localeCompare(String(b.owner)));
+  const cards=debugCardCatalog(getCards()).filter(c=>(kind==='all'||(kind==='asset'?c.type==='asset':c.type!=='asset'))&&`${cardTitle(c)} ${POWERS[c.owner]?.name||''} ${c.id} ${c.notes||''}`.toLowerCase().includes(search)).sort((a,b)=>cardTitle(a).localeCompare(cardTitle(b),'zh-CN')||String(a.owner).localeCompare(String(b.owner)));
   select.innerHTML=cards.map(c=>`<option value="${c.id}">${esc(cardTitle(c))} · ${POWERS[c.owner]?.name||'通用'} · ${kindName(c)}${c.module==='dd'?' · 扩展':''}</option>`).join('');
   if(cards.some(c=>c.id===selected))select.value=selected;else select.selectedIndex=cards.length?0:-1;
   body.querySelector('[data-debug-count]').textContent=`${cards.length} 张`;

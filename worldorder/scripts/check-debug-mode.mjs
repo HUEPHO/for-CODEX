@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createState} from '../dist/engine.js';
 import {applyDebugAction} from '../dist/debug-mode.js';
+import {debugCardCatalog} from '../dist/debug-card-catalog.js';
 import {validateProduction,producePrimary} from '../dist/economy.js';
 import {newRoom,changeRoom,roomView} from '../server/rooms.js';
 
@@ -10,8 +11,10 @@ const seats=['US','CN','EU','RU'],identities=Object.fromEntries(seats.map(id=>[i
 const starter=cards.find(c=>c.type==='starter'&&c.owner==='CN'),ability=cards.find(c=>c.type==='ability'&&c.module==='dd'),asset=cards.find(c=>c.type==='asset'&&c.owner==='RU');
 let s=createState(cards,{dd:false,wit:false},()=>.5);
 const before=JSON.stringify(s),turn=s.current;
-s=applyDebugAction(s,{type:'addCard',player:'US',cardId:starter.id},cards);
-assert.equal(s.players.US.hand.at(-1),starter.id);
+const catalog=debugCardCatalog(cards),market=catalog.filter(c=>c.type==='ability');
+assert.ok(!catalog.some(c=>c.type==='starter'));
+assert.equal(market.length,new Set(cards.filter(c=>c.type==='ability').map(c=>c.name)).size,'One entry per market card, not per physical copy');
+assert.throws(()=>applyDebugAction(s,{type:'addCard',player:'US',cardId:starter.id},cards),/请选择/);
 s=applyDebugAction(s,{type:'addCard',player:'US',cardId:ability.id},cards);
 assert.equal(s.players.US.hand.at(-1),ability.id,'Disabled expansion cards are available for debug');
 s.players.US.usedAssets.push(asset.id);

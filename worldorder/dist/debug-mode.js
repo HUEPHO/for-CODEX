@@ -1,8 +1,9 @@
 import {POWERS,RESOURCE_NAMES} from './game-constants.js';
 import {ECONOMY} from './economy.js';
 import {recordObjectiveProgress} from './objective-progress.js';
+import {DEBUG_CARD_TYPES} from './debug-card-catalog.js';
 
-export const DEBUG_CARD_TYPES=new Set(['starter','ability','asset']);
+export {DEBUG_CARD_TYPES} from './debug-card-catalog.js';
 export const DEBUG_ROLLBACK_REASON='Debug Mode 已修改局面，之前的撤回快照已清除';
 
 // Debug commands are separate from ordinary play: no costs, rewards or turn

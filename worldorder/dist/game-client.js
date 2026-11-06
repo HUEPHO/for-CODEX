@@ -47,8 +47,10 @@ if(layout){
   const hidePreview=()=>{clearTimeout(previewTimer);preview.hidden=true;};
   function showPreview(card){
     const id=card.dataset.clientEventId||card.dataset.card,img=card.querySelector('img');if((!img&&!previewCards[id]?.image)||!card.isConnected||document.querySelector('dialog[open]'))return;
-    const copy=img?img.cloneNode():document.createElement('img');if(!img){copy.src=previewCards[id].image;copy.alt=previewCards[id].name;}copy.removeAttribute('loading');preview.replaceChildren(copy);preview.style.removeProperty('left');preview.style.removeProperty('top');preview.style.removeProperty('right');
+    const eventCard=previewCards[id]?.type==='event';
     const related=relatedEventCards(id).map(cid=>previewCards[cid]).filter(Boolean);preview.classList.toggle('has-related-cards',related.length>0);
+    if(eventCard&&!related.length){hidePreview();return;}
+    const copy=img?img.cloneNode():document.createElement('img');if(!img){copy.src=previewCards[id].image;copy.alt=previewCards[id].name;}copy.removeAttribute('loading');preview.replaceChildren(...(eventCard?[]:[copy]));preview.style.removeProperty('left');preview.style.removeProperty('top');preview.style.removeProperty('right');
     if(related.length){const group=document.createElement('div');group.className='event-preview-related';for(const card of related){const face=document.createElement('img');face.src=card.image;face.alt=card.name;face.dataset.relatedCard=card.id;group.append(face);}preview.append(group);}
     const anchored=card.matches('.draft-card');preview.classList.toggle('is-card-anchored',anchored);
     if(anchored){
@@ -59,6 +61,16 @@ if(layout){
       const size=preview.getBoundingClientRect();
       preview.style.left=Math.max(10,Math.min(innerWidth-size.width-10,box.left+(box.width-size.width)/2))+'px';
       preview.style.top=Math.max(top,box.top-size.height-10)+'px';preview.style.right='auto';
+    }else if(card.matches('[data-client-event-id],.event-card-link,.event-related-links [data-card],.original-public-effects [data-card]')){
+      const position=()=>{
+        if(preview.hidden)return;
+        const box=card.getBoundingClientRect(),size=preview.getBoundingClientRect(),gap=10;
+        const x=box.right+gap+size.width<=innerWidth-gap?box.right+gap:box.left-gap-size.width;
+        preview.style.left=Math.max(gap,Math.min(innerWidth-size.width-gap,x))+'px';
+        preview.style.top=Math.max(gap,Math.min(innerHeight-size.height-gap,box.top))+'px';preview.style.right='auto';
+      };
+      preview.hidden=false;position();
+      for(const face of preview.querySelectorAll('img'))face.addEventListener('load',position,{once:true});
     }else preview.hidden=false;
   }
   document.addEventListener('pointerover',event=>{
