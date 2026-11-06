@@ -1,4 +1,5 @@
 import {POWERS} from './game-constants.js';
+import {isNonPlayer} from './player-configuration.js';
 import {currentActor,aftermathSteps,settlementProgress} from './phase-state.js';
 import {canNegotiateAgreement,activeInteraction,EVENT_ACTIONS,inEventInteraction,manualEventOpen,pendingActionIssue} from './interaction-state.js';
 
@@ -24,6 +25,7 @@ export function manualWindow(s,seat=s.current){
 }
 export function gameActionIssue(s,a,seat=s.current){
  if(!a||typeof a.type!=='string')return '无效操作';
+ if(a.type!=='switch'&&isNonPlayer(s,seat))return '非玩家势力由基础自动机处理';
  if(s.eventVersion&&['event','addEvent'].includes(a.type))return '请通过事件流程结算和补充事件';
  if(a.type==='useEventEffect'){if(Object.values(s.players).some(setupPending))return '请先完成开局';if(s.flow?.step==='ended'||currentActor(s)!==seat)return '请在本方操作时使用持续效果';return null;}
  const pending=pendingActionIssue(s,a.type,seat);
@@ -31,7 +33,7 @@ export function gameActionIssue(s,a,seat=s.current){
   if(pending)return pending;
   if(EVENT_ACTIONS.includes(a.type))return null;
  }
- if(Object.values(s.players).some(setupPending)&&a.type!=='switch'&&!SETUP_ACTIONS.has(a.type))return '请先让四个势力完成起手牌与战略资产选择';
+ if(Object.values(s.players).some(setupPending)&&a.type!=='switch'&&!SETUP_ACTIONS.has(a.type))return '请先让所有玩家完成起手牌与战略资产选择';
  if(pending)return pending;
  if(settlementProgress(s)?.done.some(entry=>entry.player===seat)&&a.type!=='switch')return '本方已确认当前结算，不能继续改动；如需更正请撤销尚未被接续的一步';
  if(s.flow&&['round','phase','market','refreshMarket'].includes(a.type))return '请使用阶段流程面板操作';
@@ -41,9 +43,10 @@ export function gameActionIssue(s,a,seat=s.current){
 }
 export function roomActionIssue(s,seat,a){
  if(!SEATS.includes(seat))return '请先选择一个势力入座';
+ if(isNonPlayer(s,seat))return '该势力使用基础自动机';
  if(!a||typeof a.type!=='string'||a.type==='switch')return '房间中每个标签页固定操作自己的势力';
  if(SETUP_ACTIONS.has(a.type))return setupPending(s.players[seat])?gameActionIssue(s,a,seat):'你已完成开局选牌，请等待其他玩家';
- if(Object.values(s.players).some(setupPending))return '请等待四个势力完成开局选牌';
+ if(Object.values(s.players).some(setupPending))return '请等待所有玩家完成开局选牌';
  if(a.type==='endAction'&&s.flow?.step==='actions'&&Array.isArray(s.flow.turnCards)&&!s.flow.turnCards.length)return '请先出牌并结算；若要放弃行动，请选择盖牌领取10资金';
  const actor=currentActor(s);
  if(actor!==seat&&!canNegotiateAgreement(s,seat,a.type)&&!(manualWindow(s,seat)&&MANUAL_ACTIONS.has(a.type)))return actor?`正在等待${POWERS[actor].name}操作`:'当前只能补记本方结算结果';

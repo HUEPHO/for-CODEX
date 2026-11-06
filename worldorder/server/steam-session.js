@@ -167,7 +167,7 @@ export class SteamSession{
   // acknowledgement remains a successful retry if someone has since gone away.
   if(command.op==='start'&&!this.#room.receipts.some(r=>r.id===command.id&&r.user==='steam:'+peerId&&r.token==='steam:'+peerId)){
    const online=this.#context.members.filter(m=>m.id===this.#self()||this.#now()-(this.#seen.get(m.id)??-Infinity)<this.#offlineMs);
-   if(online.length!==4||Object.values(this.#room.seats).some(seat=>!seat||!online.some(m=>seat.user==='steam:'+m.id)))throw fail('四名 Steam 玩家全部在线并入座后才能开始',409);
+   if((this.#room.state.config.humans||['US','CN','EU','RU']).some(id=>{const seat=this.#room.seats[id];return !seat||!online.some(m=>seat.user==='steam:'+m.id);}))throw fail('所选 Steam 玩家全部在线并入座后才能开始',409);
   }
   try{next=changeRoom(this.#room,identity(peerId),command,this.#cards,this.#now());}
   catch(error){throw error.status?error:fail(error.message||'这次操作不符合游戏规则');}

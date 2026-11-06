@@ -3,6 +3,8 @@ import {consumeExtraCard,grantExtraPlay} from './growth-active.js';
 import {startOpenDiplomacy} from './growth-triggers.js';
 import {drawCards} from './draw.js';
 import {AREAS,changeInfluence} from './world.js';
+import {isNonPlayer} from './player-configuration.js';
+import {placeNonPlayerInfluence} from './non-player.js';
 import {ECONOMY,validateProduction,resolveProsperity} from './economy.js';
 import {productionPreview,applyProduction} from './domestic-actions.js';
 import {researchCost,countryRegion} from './research.js';
@@ -88,7 +90,10 @@ export function advanceSequence(s){const q=sequenceState(s),p=s.players[s.curren
   else if(step.type==='researchPlay'&&!sequenceMarket(s).length){status='unavailable';log(s,'市场没有费用符合限制的卡牌，免费研究无法执行');}
   else if(step.type==='readyAlly'&&!p.allies.length){status='unavailable';log(s,'没有盟国可重整，继续结算其余效果');}
   else if(step.type==='searchRegion'&&!Object.values(s.regions).some(r=>regionCountries(r).length)){status='unavailable';log(s,'所有地区的国家牌已取完，完成本牌');}
-  else if(step.type==='response'){q.responder=step.player;s.current=step.player;log(s,`${sequenceName(s)} · 等待${powerNames[step.player]}回应，原行动暂停`);return true;}
+  else if(step.type==='response'){
+   if(isNonPlayer(s,step.player)){const {region}=sequenceParameters(s);placeNonPlayerInfluence(s,step.player,region);log(s,`基础自动机 · ${step.player}按金砖国家牌面在${AREAS[region].name}添加影响力`);}
+   else{q.responder=step.player;s.current=step.player;log(s,`${sequenceName(s)} · 等待${powerNames[step.player]}回应，原行动暂停`);return true;}
+  }
   else if(step.type==='returnArmy'&&!otherArmyTargets(s,sequenceParameters(s).region).length){log(s,'该地区没有其他玩家的军队，完成本牌');}
   else if(step.type==='foreignInvestment'&&!foreignInvestmentTargets(s).length){log(s,'没有符合条件的其他玩家盟国可投资，完成本牌');}
   else return true;

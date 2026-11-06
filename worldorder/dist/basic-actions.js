@@ -29,7 +29,7 @@ export const BASIC_CARDS=Object.freeze({
 export const ACTION_CARDS=Object.freeze({...BASIC_CARDS,...MARKET_CARDS,...DD_MARKET_CARDS,...SPECIAL_CARDS});
 export const ENGAGE_LIMIT={US:3,CN:2,EU:3,RU:2};
 export const ENGAGE_COST={M:4,E:5,C:4,N:6,A:3,S:4,P:5};
-export function requireTurn(s){const f=s.flow;if(!f||f.step!=='actions'||s.phase!=='行动'||s.actionTurns.index>=16||s.current!==f.order[s.actionTurns.index%4])throw Error('当前不是本方的行动');if(!Array.isArray(f.turnCards))throw Error('结束当前行动后即可启用自动出牌');if(f.cardResolution)throw Error('请先完成当前卡牌的分段效果');if(f.pendingRelation)throw Error('请先完成开放外交追加结盟');if(f.pendingGrowth)throw Error('请先完成发展牌选牌');if(f.turnCards.length&&!extraCardAvailable(s))throw Error('本次行动已经出过牌；请完成效果后结束行动');}
+export function requireTurn(s){const f=s.flow;if(!f||f.step!=='actions'||s.phase!=='行动'||s.actionTurns.index>=4*f.order.length||s.current!==f.order[s.actionTurns.index%f.order.length])throw Error('当前不是本方的行动');if(!Array.isArray(f.turnCards))throw Error('结束当前行动后即可启用自动出牌');if(f.cardResolution)throw Error('请先完成当前卡牌的分段效果');if(f.pendingRelation)throw Error('请先完成开放外交追加结盟');if(f.pendingGrowth)throw Error('请先完成发展牌选牌');if(f.turnCards.length&&!extraCardAvailable(s))throw Error('本次行动已经出过牌；请完成效果后结束行动');}
 export function actionPreview(s,a){requireTurn(s);const entry=ACTION_CARDS[a.cardId];if(!entry||!s.players[s.current].hand.includes(a.cardId))throw Error('请选择手中已支持自动结算的能力牌');if(!s.worldVersion)throw Error('需要启用槽位记录的新桌面');
  if(entry.effect==='sequence')throw Error('请从分段结算入口打出此牌');if(s.flow.extraCard?.cardId&&s.flow.extraCard.cardId!==a.cardId)throw Error('必须打出刚研究的指定卡牌');return effectPreview(s,a,entry);
 }

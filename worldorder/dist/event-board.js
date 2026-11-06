@@ -1,6 +1,8 @@
 import {EVENT_CHAINS,TURNING_EVENT_CHAINS as turning} from './event-links.js';
 export {EVENT_CHAINS} from './event-links.js';
 import {EVENT_DATA} from './event-data.js';
+import {isNonPlayer,humanPlayers} from './player-configuration.js';
+import {drawNonPlayerBid} from './event-non-player-data.js';
 import {AREAS,syncInfluence} from './world.js';
 import {regionCountries,syncCountries} from './country-piles.js';
 const IDS=['US','CN','EU','RU'];
@@ -43,7 +45,13 @@ function placeEvent(s,id,slot,kind,rng){
   return false;
  }
  b.slots[slot]=id;
- if(id===AFGHAN)b.revealQueue.push(...['US','EU'].map(owner=>({type:'reveal',owner,cardId:id})));
+ if(id===AFGHAN&&card.players.some(owner=>!isNonPlayer(s,owner))){
+  b.nonPlayerAfghan={};
+  for(const owner of ['US','EU'])if(isNonPlayer(s,owner)){
+   const amount=drawNonPlayerBid(id,owner,rng);b.nonPlayerAfghan[owner]=amount;s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;s.regions.C.armies[owner]+=amount;
+   log(s,`${owner} · 基础自动机：阿富汗揭示时从补给放置${amount}支军队`);
+  }else b.revealQueue.push({type:'reveal',owner,cardId:id});
+ }
  return true;
 }
 export function continueEventDistribution(s,rng=Math.random){
@@ -72,7 +80,7 @@ export function prepareNextEvents(s){
  continueEventDistribution(s);
 }
 export function choosePersonalEvent(s,a){
- const b=s.eventBoard,c=b.choice;if(c?.type!=='personal'||c.owner!==s.current||!c.candidates.includes(a.cardId))throw Error('请选择本方两张个人事件中的一张');
+ const b=s.eventBoard,c=b.choice;if(c?.type!=='personal'||(isNonPlayer(s,c.owner)?(s.flow?.order||humanPlayers(s))[0]:c.owner)!==s.current||!c.candidates.includes(a.cardId))throw Error('请选择待处理的两张个人事件中的一张');
  b.personal[c.owner]=a.cardId;for(const id of c.candidates)if(id!==a.cardId)discard(s,id);
  log(s,`${s.current}保留个人事件：${EVENT_DATA[a.cardId].name}`);b.choice=null;continueEventDistribution(s);
 }

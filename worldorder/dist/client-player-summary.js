@@ -42,6 +42,7 @@ function tradeSummary(state,id){
 }
 
 function playerSummary(state,byId,id,{viewer,actor}){
+ if(state.players[id].nonPlayer){const armies=Object.values(state.regions).reduce((n,r)=>n+r.armies[id],0),influence=Object.values(state.regions).reduce((n,r)=>n+r.influence[id],0);return `<section class="client-player client-player--${id} client-player--non-player" data-army-owner="${id}" style="--player-color:${POWERS[id].color}"><span>${powerFlag(id)} 基础自动机</span><span class="npp-forces">影响力 ${influence} ${icon('army','版图军队')} ${armies}</span></section>`;}
  const p=state.players[id],power=POWERS[id],self=id===viewer,acting=id===actor;
  const focus=typeof p.focus==='string'?p.focus:'';
  const heading=`<span class="client-player-heading"><span class="client-player-name"><span class="client-power-mark" aria-hidden="true">${powerFlag(id,{decorative:true})}</span>${self?'<small class="client-player-you">你</small>':''}${acting?'<span class="client-player-turn" title="当前操作方" aria-label="当前操作方">●</span>':''}</span><span class="client-player-vp" title="胜利分：${number(p.vp)}">${icon('vp','胜利分')}<b>${number(p.vp)}</b></span><span class="client-player-hand" title="手牌数量：${count(p.hand)}张"><small>手牌</small><b>${count(p.hand)}</b></span></span>`;

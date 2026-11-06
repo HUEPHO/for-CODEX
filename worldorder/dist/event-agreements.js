@@ -1,4 +1,7 @@
 import {EVENT_DATA} from './event-data.js';
+import {isNonPlayer} from './player-configuration.js';
+import {drawNonPlayerBid,NON_PLAYER_EVENT_BIDS} from './event-non-player-data.js';
+import {drainNonPlayerRewards,resolveNonPlayerRewardChoice} from './non-player-rewards.js';
 import {countryInfo,applyRelations} from './country-actions.js';
 import {regionCountries} from './country-piles.js';
 import {AREAS} from './world.js';
@@ -33,12 +36,33 @@ function ruleFor(q){const rule=AGREEMENT_EVENTS[q?.cardId];if(!rule)throw Error(
 function credit(s,owner,rule){return rule.discountCountries?s.players[owner].allies.reduce((n,id)=>n+Number(rule.discountCountries.includes(countryInfo(id).countryName)),0):0;}
 function loseSP(p,n){const paid=Math.min(p.smart,n);p.smart-=paid;p.vp-=n-paid;return n-paid;}
 function receipt(s,q,before,detail,player=null){q.receipts.push({player,detail,changes:balanceChanges(before,publicBalances(s))});}
-export function initializeAgreement(s,q){ruleFor(q);q.agreementVersion=2;q.stage='agreement';q.submissions={};q.done=[];q.rewardQueue=[];q.eventArmies={};for(const owner of q.participants){const r=ruleFor(q);q.submissions[owner]={accept:true,money:r.fixed?.money||0,diplomacy:r.fixed?.diplomacy||0,credit:credit(s,owner,r),armies:{},count:0,moveCost:0,confirmed:false};}}
+export function initializeAgreement(s,q){ruleFor(q);q.agreementVersion=2;q.stage='agreement';q.submissions={};q.done=[];q.rewardQueue=[];q.eventArmies={};for(const owner of q.participants){const r=ruleFor(q);q.submissions[owner]={accept:true,money:r.fixed?.money||0,diplomacy:r.fixed?.diplomacy||0,credit:credit(s,owner,r),armies:{},count:0,moveCost:0,confirmed:false};}
+ for(const owner of q.participants.filter(id=>isNonPlayer(s,id))){
+  const r=ruleFor(q),printed=NON_PLAYER_EVENT_BIDS[q.cardId][owner],draw=r.key==='afghan'?s.eventBoard.nonPlayerAfghan[owner]:drawNonPlayerBid(q.cardId,owner),accept=draw!==false&&draw!==0;
+  const offer={accept,money:0,diplomacy:0,credit:0,armies:{},count:0,moveCost:0,confirmed:true,nonPlayer:true,draw};
+  if(accept){
+   offer.money=printed.money??r.fixed?.money??(r.key==='afghan'?15:0);
+   offer.diplomacy=printed.diplomacy??r.fixed?.diplomacy??(r.diplomacy?draw:0);
+   if(r.armies==='event')offer.count=draw;
+   if(r.armies==='supply'){
+    if(Object.values(s.regions).some(region=>region.armies[owner]>0)){offer.pendingArmies=true;offer.confirmed=false;}
+    else offer.accept=false;
+   }
+  }
+  q.submissions[owner]=offer;if(r.key!=='afghan')s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;
+ }
+ prepareNonPlayerAgreementChoice(s,q);checkAgreementCompletion(s,q);
+}
+function prepareNonPlayerAgreementChoice(s,q){
+ const owner=q.participants.find(id=>q.submissions[id].pendingArmies);
+ if(owner)q.nonPlayerChoice={owner,type:'disarm',source:'agreementOffer',regions:Object.keys(AREAS).filter(r=>s.regions[r].armies[owner]>0)};
+}
 export function agreementModel(s,q,owner=s.current){
  const rule=ruleFor(q);if(!q.participants.includes(owner))throw Error('该玩家不参与本协议');
  return {...rule,owner,name:EVENT_DATA[q.cardId].name,credit:credit(s,owner,rule),participants:[...q.participants]};
 }
 export function agreementOffer(s,q,owner,a){
+ if(isNonPlayer(s,owner))return q.submissions[owner];
  const rule=agreementModel(s,q,owner),p=s.players[owner];
  if(a.accept!==true&&a.accept!==false)throw Error('请选择同意出资或不参与');
  if(!a.accept)return {accept:false,money:0,diplomacy:0,credit:0,armies:{},count:0,moveCost:0};
@@ -59,6 +83,7 @@ export function agreementOffer(s,q,owner,a){
 function payContributions(s,q){
  for(const [owner,offer] of Object.entries(q.submissions))if(offer.accept){
   const p=s.players[owner];p.money-=offer.money+offer.moveCost;p.resources[5]-=offer.diplomacy;
+  if(isNonPlayer(s,owner)){p.money=0;p.resources[5]=0;}
   for(const [from,n] of Object.entries(offer.armies)){if(from==='reserve')p.resources[6]-=n;else s.regions[from].armies[owner]-=n;}
   if(ruleFor(q).armies==='event')q.eventArmies[owner]=offer.count;
  }
@@ -95,7 +120,7 @@ function settle(s,q,forcedFailure=false){
   else if(rule.failure==='tradeWar'){for(const owner of q.participants){s.players[owner].prosperity=Math.max(0,s.players[owner].prosperity-1);loseSP(s.players[owner],1);}grantEventEffect(s,'global','cdf7b014a4323',q.cardId);}
   else if(rule.failure==='iran'){addNeutralInfluence(s,'N');for(const owner of q.participants)loseSP(s.players[owner],s.regions.N.influence[owner]);}
   q.result='协议未达成；全部承诺未扣费。'+({minsk:'双方各失去2分，入侵乌克兰加入连锁。',afghan:'双方各失去1 SP（不足扣分），免费撤回中亚全部军队。',libya:'双方各失去2 SP（不足扣分），中东增加1中立影响力。',tradeWar:'双方繁荣降低1（最低0）、失去1 SP（不足扣分），中美贸易战生效。',iran:'中东增加1中立影响力，各方按本方在中东的影响力失去SP（不足扣分）。'}[rule.failure]||'没有后续效果。');
-  receipt(s,q,before,q.result);if(q.rewardQueue.length)q.stage='reward';else finish(s,q);return;
+  receipt(s,q,before,q.result);drainNonPlayerRewards(s,q,finish);return;
  }
  payContributions(s,q);
  if(rule.key==='minsk')removeEventEffect(s,'cc83057306d10');
@@ -111,7 +136,24 @@ function settle(s,q,forcedFailure=false){
  else if(rule.reward==='nordstream'){gainResource(s.players.EU,5,2);q.rewardQueue.push({owner:'RU',type:'nordstream',regions:['E']});}
  else if(rule.reward==='ttip')for(const owner of contributors)q.rewardQueue.push({owner,type:'ttip'});
  q.result='共同协议已达成；参与方承诺已统一支付，SP及分数奖励已结算。'+(rule.effect&&!rule.reward?'对应持续效果已生效。':'')+(rule.chain?'后续连锁已登记。':'');
- receipt(s,q,before,q.result);if(q.rewardQueue.length)q.stage='reward';else finish(s,q);
+ receipt(s,q,before,q.result);drainNonPlayerRewards(s,q,finish);
+}
+function checkAgreementCompletion(s,q){
+ q.done=q.participants.filter(id=>q.submissions[id].confirmed);
+ const rejected=q.participants.filter(id=>q.submissions[id].accept===false).length;
+ const humans=q.participants.filter(id=>!isNonPlayer(s,id)),humansRefuse=humans.length<q.participants.length&&humans.every(id=>q.submissions[id].accept===false);
+ if(rejected>=(ruleFor(q).key==='iran'?3:1)||humansRefuse){delete q.nonPlayerChoice;settle(s,q,true);}
+ else if(q.nonPlayerChoice)return;
+ else if(q.done.length===q.participants.length&&agreementEnough(q))settle(s,q);
+}
+export function resolveNonPlayerAgreementChoice(s,q,a){
+ const step=q.nonPlayerChoice;if(!step)throw Error('当前没有非玩家选择');
+ if(step.source==='reward'){resolveNonPlayerRewardChoice(s,q,a);drainNonPlayerRewards(s,q,finish);return;}
+ const armies=a.placements;if(!armies||typeof armies!=='object'||Array.isArray(armies))throw Error('请选择移回补给的军队');
+ let count=0;for(const [region,n] of Object.entries(armies)){if(!step.regions.includes(region))throw Error('无效的军队地区');int(n,s.regions[region].armies[step.owner]);count+=n;}
+ if(count<1)throw Error('至少移回1支版图军队');
+ Object.assign(q.submissions[step.owner],{armies,count,confirmed:true});delete q.submissions[step.owner].pendingArmies;delete q.nonPlayerChoice;
+ prepareNonPlayerAgreementChoice(s,q);checkAgreementCompletion(s,q);
 }
 export function updateAgreement(s,q,a){
  if(q.agreementVersion!==2||q.stage!=='agreement'||!q.participants.includes(s.current))throw Error('当前不能修改本方协议提案');
@@ -121,10 +163,7 @@ export function updateAgreement(s,q,a){
  if(a.operation==='unconfirm')q.submissions[s.current]={...previous,confirmed:false};
  else if(a.type==='submitEvent'&&a.accept===false)q.submissions[s.current]={accept:false,money:0,diplomacy:0,credit:0,armies:{},count:0,moveCost:0,confirmed:true};
  else q.submissions[s.current]={...agreementOffer(s,q,s.current,{...a,accept:true}),confirmed:a.type==='submitEvent'||previous.confirmed};
- q.done=q.participants.filter(id=>q.submissions[id].confirmed);
- const rejected=q.participants.filter(id=>q.submissions[id].accept===false).length;
- if(rejected>=(ruleFor(q).key==='iran'?3:1))settle(s,q,true);
- else if(q.done.length===q.participants.length&&agreementEnough(q))settle(s,q);
+ checkAgreementCompletion(s,q);
 }
 export function submitAgreement(s,q,a){
  if(q.agreementVersion===2){updateAgreement(s,q,{...a,type:'submitEvent'});return;}
@@ -166,5 +205,5 @@ export function resolveAgreementReward(s,q,a){
   else if(step.type==='convert'||step.type==='nordstream')convertEventInfluence(s,s.current,a.region,a.index);
   else if(step.type==='ttip')activateTTIP(s,s.current,{face:a.face,productionKey:a.productionKey,slot:a.slot,source:q.cardId});
  }
- receipt(s,q,before,detail,s.current);q.rewardQueue.shift();if(!q.rewardQueue.length)finish(s,q);
+ receipt(s,q,before,detail,s.current);q.rewardQueue.shift();drainNonPlayerRewards(s,q,finish);
 }

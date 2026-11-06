@@ -11,6 +11,7 @@ export const DEBUG_ROLLBACK_REASON='Debug Mode 已修改局面，之前的撤回
 export function applyDebugAction(state,action,cards){
  if(!action||!Object.hasOwn(POWERS,action.player))throw Error('请选择有效势力');
  const next=structuredClone(state),p=next.players[action.player];let message;
+ if(p.nonPlayer)throw Error('基础自动机不持有手牌或资源');
  if(action.type==='addCard'){
   const card=cards.find(c=>c.id===action.cardId&&DEBUG_CARD_TYPES.has(c.type));
   if(!card)throw Error('请选择能力牌或战略资产');

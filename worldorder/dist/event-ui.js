@@ -1,4 +1,5 @@
 import {renderEventLinks} from './event-related-cards.js';
+import {renderNonPlayerChoice} from './non-player-ui.js';
 import {renderArmyDeployment} from './army-deployment-ui.js';
 import {liveAgreement} from './interaction-state.js';
 import {renderAgreementForm,renderAgreementReward,renderAgreementSummary} from './event-agreements-ui.js';
@@ -26,6 +27,7 @@ export function renderEventPanel(s,cards={}){
   return `<b>事件补充 · ${names[actor]}选择</b>${body}`;
  }
  if(s.flow?.step!=='events'||!q)return '';
+ if(q.nonPlayerChoice)return `${cardButton(q.cardId)}${renderEventLinks(q.cardId,cards)}${renderNonPlayerChoice(s,q)}`;
  const p=s.players[s.current];let body='';
  if(q.stage==='result'){
   body=`${q.agreementVersion?renderAgreementSummary(q):q.bidVersion?renderBidSummary(q):''}<p>${esc(q.result)}</p>${renderEventInvestment(q,cards)}${!q.bidVersion&&!q.agreementVersion&&Object.keys(q.submissions).length?'<p>公开提交：'+Object.entries(q.submissions).map(([id,n])=>names[id]+' '+n).join('，')+'</p>':''}${!q.bidVersion&&!q.agreementVersion&&q.totals?`<p>美国总投标 ${q.totals.US}（资金修正+${q.totals.modifier}）；俄罗斯与中国 ${q.totals.RU_CN}</p>`:''}${receipt(q.receipts.map(r=>r.detail===q.result?{...r,detail:'本事件数值变化'}:r))}<button id="event-ack" ${disabled}>核对结果并继续下一事件</button>`;

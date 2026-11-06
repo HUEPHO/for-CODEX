@@ -2,6 +2,7 @@ import {EVENT_EFFECTS,EFFECT_IDS,grantEventEffect,hasEventEffect,eventTradeIssue
 import {gainResource,ECONOMY} from './economy.js';
 import {placeEventInfluence} from './event-influence.js';
 import {currentActor} from './phase-state.js';
+import {isNonPlayer} from './player-configuration.js';
 const ttipIds={US:EFFECT_IDS.ttipUS,EU:EFFECT_IDS.ttipEU};
 export function activateTTIP(s,owner,{face,productionKey,slot='permanent',source,preview=false}={}){
  if(preview)return activateTTIP(structuredClone(s),owner,{face,productionKey,slot,source});
@@ -10,7 +11,7 @@ export function activateTTIP(s,owner,{face,productionKey,slot='permanent',source
  const p=s.players[owner],partner=owner==='US'?'EU':'US',other=s.players[partner];
  if(face==='investment'){
   if(p.money<25)throw Error('TTIP投资面需要25资金');
-  const choices=other.production.flatMap((n,k)=>n<ECONOMY[partner].max[k]?[k]:[]);
+  const choices=isNonPlayer(s,partner)?[]:other.production.flatMap((n,k)=>n<ECONOMY[partner].max[k]?[k]:[]);
   if(choices.length&&!choices.includes(productionKey))throw Error('请选择对方可提升的产能');
   if(!['permanent','temporary'].includes(slot))throw Error('请选择影响力槽位');
   p.money-=25;if(choices.length)other.production[productionKey]++;
@@ -30,8 +31,8 @@ export function useEventEffect(s,a,{preview=false}={}){
  if(issue)throw Error(issue);
  const key=pipeline?0:a.resourceKey,allowed=pipeline?[0]:owner==='US'?[2,3,4]:[0,1,2,3,4];if(!allowed.includes(key))throw Error('请选择协议允许的资源');
  const cost=(pipeline?9:10)+eventImportSurcharge(s,owner,seller);if(p.money<cost)throw Error('资金不足');
- const cardIndex=pipeline?s.players.RU.commerce?.findIndex(c=>c.ready):-1;if(pipeline&&!(cardIndex>=0))throw Error('俄罗斯没有可翻用的贸易卡');
- p.money-=cost;s.players[seller].money+=pipeline?9:10;if(pipeline)s.players.RU.commerce[cardIndex].ready=false;
+ const npc=isNonPlayer(s,seller),cardIndex=pipeline?s.players.RU.commerce?.findIndex(c=>c.ready):-1;if(pipeline&&!npc&&!(cardIndex>=0))throw Error('俄罗斯没有可翻用的贸易卡');
+ p.money-=cost;if(!npc){s.players[seller].money+=pipeline?9:10;if(pipeline)s.players.RU.commerce[cardIndex].ready=false;}
  const quantity=key<3?3:1;gainResource(p,key,quantity);gainResource(p,5,1);e.usedRound=s.round;
  const detail=`${rule.name}：支付${cost}资金，获得${quantity}份资源和1外交；本轮已使用。`;s.log=[detail,...s.log].slice(0,30);return detail;
 }

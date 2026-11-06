@@ -1,3 +1,4 @@
+import {isNonPlayer} from './player-configuration.js';
 import {renderRegionalTradeChoice} from './regional-trade-ui.js';
 import {AREAS} from './world.js';
 import {resourceIconPath} from './resource-icons.js';
@@ -20,8 +21,8 @@ function partners(s,card,key){
  const sellers=Object.entries(COMMERCE).filter(([id,c])=>id!==s.current&&c.resources.includes(key));
  if(!sellers.length)return '<span class="client-trade-no-partner" aria-hidden="true"></span>';
  return `<details class="client-trade-partners"><summary>向玩家进口 <b data-trade-partner-total="${key}">0</b></summary><div class="client-trade-partner-list">${sellers.map(([id,c])=>{
-  const ready=s.players[id].commerce.filter(c=>c.ready).length,max=ready?c.quantity:Math.min(c.quantity,s.players[id].resources[key]);
-  return `<div class="client-trade-partner" data-partner="${id}"><b>${names[id]}</b><small>${ready?'专供出口 '+ready+' 张可用':'使用库存'} · 上限 ${max}</small>${stepper('trade-player-'+id+'-'+key,`data-import-player="${id}" data-import-key="${key}"`,max,'从'+names[id]+'进口'+RESOURCE_LABELS[key])}</div>`;
+  const ready=s.players[id].commerce.filter(c=>c.ready).length,max=isNonPlayer(s,id)||ready?c.quantity:Math.min(c.quantity,s.players[id].resources[key]);
+  return `<div class="client-trade-partner" data-partner="${id}"><b>${names[id]}</b><small>${isNonPlayer(s,id)?'基础自动机':ready?'专供出口 '+ready+' 张可用':'使用库存'} · 上限 ${max}</small>${stepper('trade-player-'+id+'-'+key,`data-import-player="${id}" data-import-key="${key}"`,max,'从'+names[id]+'进口'+RESOURCE_LABELS[key])}</div>`;
  }).join('')}</div></details>`;
 }
 function exports(s,card,cap,key){

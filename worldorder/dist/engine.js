@@ -1,3 +1,5 @@
+import {configuredPlayers,humanPlayers} from './player-configuration.js';
+import {initializeAutoInfluence,clearNonPlayerEconomy} from './non-player.js';
 import {useEventEffect} from './event-effect-actions.js';
 import {consumeExtraCard} from './growth-active.js';
 import {initializeEvents} from './event-board.js';
@@ -19,16 +21,18 @@ import {buildGrowthSupply,growthMode} from './growth-setup.js';
 import {beginnerOpening} from './opening-hand.js';
 export function shuffle(a,rng=Math.random){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 export function createState(cards,config={dd:true,wit:true},rng=Math.random){
+ const humans=configuredPlayers(config);
  const enabled=c=>c.module==='base'||c.module==='dd'&&config.dd||c.module==='wit'&&config.wit;
  const pool=(type,owner)=>cards.filter(c=>c.type===type&&enabled(c)&&(!owner||c.owner===owner));
- const state={version:2,economyVersion:1,initialOrder:null,actionTurns:null,config:{dd:!!config.dd,wit:!!config.wit,executive:!!config.executive},current:'US',round:1,phase:'行动',players:{},regions:{},log:['四人示例桌面已布置。费用与效果请手动结算。']};
+ const state={version:2,economyVersion:1,initialOrder:null,actionTurns:null,config:{dd:!!config.dd,wit:!!config.wit,executive:!!config.executive,humans},current:humans[0],round:1,phase:'行动',players:{},regions:{},log:[`${humans.length}位玩家对局已布置${humans.length<4?'，其余势力使用基础自动机':''}。`]};
  for(const [id,power] of Object.entries(POWERS)){
   const start=beginnerOpening(pool('starter',id),id),assets=shuffle(pool('asset',id),rng).slice(0,3);
   state.players[id]={hand:start.hand,deck:shuffle(start.deck,rng),openingChoices:null,discard:[],played:[],assets:[],assetChoices:assets.map(c=>({id:c.id,vp:c.vp||0})),assetSelection:[],usedAssets:[],objectives:[],objectiveChoices:config.dd?shuffle(pool('objective',id).map(c=>c.id),rng).slice(0,3):null,objectiveSelection:[],allies:pool('startingCountry',id).map(c=>c.id),growth:[],money:power.money,vp:0,resources:[...power.resources],production:[...power.resources],prosperity:0,smart:config.wit?2:0,focus:'内政焦点'};
  }
+ for(const id of Object.keys(POWERS))if(!humans.includes(id)){const p=state.players[id];p.nonPlayer=true;for(const key of ['hand','deck','allies'])p[key]=[];p.assetChoices=null;p.objectiveChoices=null;p.money=0;p.resources=Array(7).fill(0);p.production=Array(7).fill(0);p.smart=0;}
  state.openingHandVersion=1;
  for(const p of Object.values(state.players))p.objectiveHistory={bestFdiReturn:0,fdiHistoryComplete:true,productionGains:Array(7).fill(0),prosperityGains:0,progressHistoryComplete:true};
- if(state.config.executive)for(const id of Object.keys(POWERS)){state.players[id].executive=EXECUTIVE_BY_POWER[id];state.players[id].executiveUsed=false;}
+ if(state.config.executive)for(const id of humans){state.players[id].executive=EXECUTIVE_BY_POWER[id];state.players[id].executiveUsed=false;}
  const market=shuffle(pool('ability').map(c=>c.id),rng);state.market=market.splice(0,6);state.marketDeck=market;
  state.config.growthMode=growthMode(config);state.growthSetupVersion=1;state.growth=buildGrowthSupply(state.config,rng);
  state.eraDeck=shuffle(pool('event').filter(c=>c.era==='I').map(c=>c.id),rng);state.era2Deck=shuffle(pool('event').filter(c=>c.era==='II').map(c=>c.id),rng);state.events=[];state.chain=pool('event').filter(c=>c.era==='chain').map(c=>c.id);state.resolvedEvents=[];state.effects=pool('effect').map(c=>c.id);
@@ -37,15 +41,15 @@ export function createState(cards,config={dd:true,wit:true},rng=Math.random){
   const unique=new Map();for(const c of pool('country').filter(c=>c.region===region))if(!unique.has(c.notes.split('-')[0]))unique.set(c.notes.split('-')[0],c.id);
   const deck=shuffle([...unique.values()],rng);state.regions[region]={available:deck.splice(0,2),deck,influence:{US:0,CN:0,EU:0,RU:0,neutral:0,...initial[region]},armies:{US:0,CN:0,EU:0,RU:0}};
  }
- initializeWorld(state);initializeCommerce(state);initializeEvents(state,rng);
+ initializeWorld(state);initializeCommerce(state);initializeAutoInfluence(state,rng);initializeEvents(state,rng);
  return state;
 }
 export function determineInitialOrder(state){
  if(Object.values(state.players).some(p=>p.openingChoices||p.assetChoices||p.objectiveChoices))throw Error('开局选牌尚未完成');
- return Object.keys(POWERS).sort((a,b)=>state.players[b].vp-state.players[a].vp||POWERS[a].money-POWERS[b].money);
+ return [...humanPlayers(state)].sort((a,b)=>state.players[b].vp-state.players[a].vp||POWERS[a].money-POWERS[b].money);
 }
 export function applyAction(state,action){
- const next=applyGameAction(state,action);recordObjectiveProgress(state,next);return action.type==='switch'?next:advanceAutomaticFlow(next);
+ const next=applyGameAction(state,action);clearNonPlayerEconomy(next);recordObjectiveProgress(state,next);return action.type==='switch'?next:advanceAutomaticFlow(next);
 }
 function applyGameAction(state,action){
  const issue=gameActionIssue(state,action);if(issue)throw Error(issue);
@@ -102,7 +106,7 @@ function applyGameAction(state,action){
   p.hand=[...p.openingChoices[action.group]];p.deck=shuffle(p.openingChoices[1-action.group]);p.openingChoices=null;
   msg=`选择${action.group===0?'A':'B'}组作为6张起手牌`;break;
  }
- case 'switch':if(!POWERS[action.player])throw Error('无效势力');next.current=action.player;return next;
+ case 'switch':if(!humanPlayers(next).includes(action.player))throw Error('无效势力');next.current=action.player;return next;
  case 'endAction':{
   const turns=next.actionTurns;
   if(!turns||next.round!==1||next.phase!=='行动'||turns.index>=16)throw Error('目前仅支持新桌面的首轮行动轮转');
@@ -115,7 +119,7 @@ function applyGameAction(state,action){
   return next;
  }
  case 'draw':if(!p.deck.length&&p.discard.length){p.deck=shuffle(p.discard);p.discard=[]}if(!p.deck.length)throw Error('牌库与弃牌堆都没有牌了');p.hand.push(p.deck.shift());msg='抽取1张手牌';break;
- case 'play':if(next.flow?.extraCard?.cardId&&next.flow.extraCard.cardId!==action.id)throw Error('必须打出刚研究的指定卡牌');if(next.flow&&Array.isArray(next.flow.turnCards)){if(next.current!==next.flow.order[next.actionTurns.index%4])throw Error('请切换到当前行动玩家');consumeExtraCard(next);next.flow.turnCards.push(action.id);}move(p.hand,p.played,action.id);msg='将一张手牌放入行动区（效果待手动处理）';break;
+ case 'play':if(next.flow?.extraCard?.cardId&&next.flow.extraCard.cardId!==action.id)throw Error('必须打出刚研究的指定卡牌');if(next.flow&&Array.isArray(next.flow.turnCards)){if(next.current!==next.flow.order[next.actionTurns.index%next.flow.order.length])throw Error('请切换到当前行动玩家');consumeExtraCard(next);next.flow.turnCards.push(action.id);}move(p.hand,p.played,action.id);msg='将一张手牌放入行动区（效果待手动处理）';break;
  case 'discard':move(p.hand,p.discard,action.id);msg='弃置一张手牌';break;
  case 'return':if(next.flow&&Array.isArray(next.flow.turnCards)&&!next.flow.turnCards.includes(action.id))throw Error('只能收回本次行动刚打出的牌');move(p.played,p.hand,action.id);if(next.flow?.turnCards)next.flow.turnCards=next.flow.turnCards.filter(id=>id!==action.id);p.faceDownPlayed=(p.faceDownPlayed||[]).filter(id=>id!==action.id);msg='将行动区卡牌拿回手牌';break;
  case 'clearPlayed':if(!p.played.length)throw Error('行动区没有牌');p.discard.push(...p.played);p.played=[];p.faceDownPlayed=[];msg='将行动区卡牌移入弃牌堆';break;

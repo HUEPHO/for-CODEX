@@ -18,7 +18,7 @@ const hasNew=(next,previous)=>{const known=new Set(array(previous));return array
 const stepOf=s=>{const q=s.flow?.cardResolution;return q?.steps?.[q.index];};
 
 export function rollbackTurnKey(s,seat=s.current){
- return !Object.values(s.players).some(setupPending)&&s.flow?.step==='actions'&&s.actionTurns&&s.flow.order[s.actionTurns.index%4]===seat?`${s.round}:action:${s.actionTurns.index}`:null;
+ return !Object.values(s.players).some(setupPending)&&s.flow?.step==='actions'&&s.actionTurns&&s.flow.order[s.actionTurns.index%s.flow.order.length]===seat?`${s.round}:action:${s.actionTurns.index}`:null;
 }
 export function rollbackPhaseKey(s,seat=s.current){
  const f=s.flow,base=`${phaseKey(s)}:${seat}`,interaction=activeInteraction(s);
@@ -73,6 +73,7 @@ export function rollbackRevealReason(before,after,action={}){
   // including the automatic new-round draw for all four players.
   if(old.deck?.length>p.deck?.length||action.type==='draw'&&id===before.current||(action.type==='nextRound'||after.round>before.round)&&p.hand.length>0)return INFO_BARRIER;
  }
+ if(hasNew(after.autoInfluence?.faceUp,before.autoInfluence?.faceUp))return '新自动影响力牌已经揭示';
  if(hasNew(after.market,before.market))return '能力市场已补充新牌';
  for(const [id,r] of Object.entries(after.regions)){
   const old=before.regions[id];if(!old)continue;

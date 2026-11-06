@@ -1,4 +1,7 @@
 import {EVENT_DATA} from './event-data.js';
+import {isNonPlayer} from './player-configuration.js';
+import {drawNonPlayerBid,nonPlayerBidModifier} from './event-non-player-data.js';
+import {drainNonPlayerRewards,resolveNonPlayerRewardChoice} from './non-player-rewards.js';
 import {AREAS,alliedCount} from './world.js';
 import {countryRegion} from './research.js';
 import {investedCountries} from './investment-tokens.js';
@@ -53,6 +56,7 @@ export const BID_EVENTS={
  ]}
 };
 export function bidModifier(s,id,owner){
+ if(isNonPlayer(s,owner))return nonPlayerBidModifier(s,id,owner);
  const d=BID_EVENTS[id],p=s.players[owner];let n=d.bonus?.[owner]||0;
  if(d.effect==='dollar'&&owner==='US')n+=Math.floor(p.money/20);
  if(d.effect==='southChina'&&owner==='US')n+=alliedCount(s,owner,'P');
@@ -201,6 +205,14 @@ function applyFace(s,q){
 }
 export function submitBid(s,q,a){
  const owner=s.current;q.submissions[owner]=bidOffer(s,q,owner,a);q.done.push(owner);
+ if(q.participants.filter(id=>!isNonPlayer(s,id)).every(id=>q.done.includes(id))){
+  const rule=BID_EVENTS[q.cardId];
+  for(const id of q.participants.filter(id=>isNonPlayer(s,id))){
+   const total=drawNonPlayerBid(q.cardId,id),canMove=rule.armies==='all'||rule.armies?.includes(id),multiple=rule.money||rule.diplomacy||rule.services||rule.sale;
+   const count=canMove?(multiple?Math.floor(total/2):total):0;
+   q.submissions[id]={nonPlayer:true,total,count,armies:{},cost:0,moneyUnits:0,diplomacy:0,services:0,soldArmies:0,saleIncome:0};q.done.push(id);
+  }
+ }
  if(q.done.length!==q.participants.length)return;
  const before=publicBalances(s);
  for(const id of q.participants){const p=s.players[id],offer=q.submissions[id];p.money-=offer.cost;p.resources[5]-=offer.diplomacy;p.resources[4]-=offer.services||0;
@@ -212,8 +224,9 @@ export function submitBid(s,q,a){
  const effects=applyFace(s,q),winningSide=EVENT_DATA[q.cardId].sides[q.winner],winner=q.winner===null?(BID_EVENTS[q.cardId].tie==='shared'&&!q.allZero?'最高投标平局：所有玩家的基础SP按完整实际投标获得':''):(winningSide?winningSide.map(p=>names[p]).join('与'):'对手出价')+'获胜'+(q.tieBreak?'（按地区影响力、事件前分数、支付后资金及起始资金依次判平）':'');
  q.result=[winner,...effects,'投标费用与基础SP已结算；未出价的获胜成员不领取本方奖励'].filter(Boolean).join('；');
  addReceipt(q,s,before,q.result);
- if(q.rewardQueue.length)q.stage='reward';else finishBid(s,q);
+ drainNonPlayerRewards(s,q,finishBid);
 }
+export function resolveNonPlayerBidReward(s,q,a){resolveNonPlayerRewardChoice(s,q,a);drainNonPlayerRewards(s,q,finishBid);}
 export function resolveBidReward(s,q,a){
  const step=q.rewardQueue?.[0];if(q.stage!=='reward'||step?.owner!==s.current)throw Error('请由当前获奖玩家完成选择');
  const before=publicBalances(s);let detail='';
@@ -245,5 +258,5 @@ export function resolveBidReward(s,q,a){
   if(a.sellArmy===true){if(step.type!=='aukus'||p.resources[6]<1)throw Error('没有可出售的待命军队或此事件不允许出售');p.resources[6]--;p.money+=10;detail+='；出售1支待命军队，获得10资金';}
   if(step.country){takeEventCountry(s,step.owner,step.country,{clearInvestmentsFromOtherOwner:true,ready:true});detail+='；取得并准备格鲁吉亚，原属于其他玩家时清除原投资指示物';}
  }
- addReceipt(q,s,before,detail,s.current);q.rewardQueue.shift();if(!q.rewardQueue.length)finishBid(s,q);
+ addReceipt(q,s,before,detail,s.current);q.rewardQueue.shift();drainNonPlayerRewards(s,q,finishBid);
 }

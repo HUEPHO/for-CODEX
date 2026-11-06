@@ -7,7 +7,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 // Keep the shared admission/projection layer usable without loading mutation,
 // browser or server modules. Check actual imports, including re-exports and
 // literal dynamic imports, before evaluating the game module graph.
-const pureFiles=['game-constants.js','interaction-state.js','phase-state.js','action-policy.js','event-income-rules.js','event-decision-rules.js'];
+const pureFiles=['game-constants.js','player-configuration.js','interaction-state.js','phase-state.js','action-policy.js','event-income-rules.js','event-decision-rules.js'];
 const pure=new Set(pureFiles.map(name=>path.join(root,'dist',name))),edges=new Map();
 function dependencies(file){
  const source=fs.readFileSync(file,'utf8'),found=new Set();

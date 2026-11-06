@@ -1,3 +1,5 @@
+import {humanPlayers} from './player-configuration.js';
+import {resolveAutoInfluence} from './non-player.js';
 import {availableExecutive} from './special-cards.js';
 import {resumeAfterBattlefield} from './growth-battlefield.js';
 import {startSequence,resolveSequence,advanceSequence,manualSequence,startBattlefieldAsset} from './card-sequence.js';
@@ -18,8 +20,7 @@ import {startEventPhase} from './event-flow.js';
 import {beginIncomeEffects,resolveIncomeEffect,incomeEffectActor} from './event-income.js';
 import {settlePhaseTask} from './phase-settlement.js';
 export {currentActor as flowActor,aftermathSteps} from './phase-state.js';
-// Four-human round flow. Research values are imported; action/event effects remain manual.
-const IDS=['US','CN','EU','RU'];
+// Human turn flow; non-participating powers resolve after research. Research values are imported; action/event effects remain manual.
 export function newFlow(order,round=1){return {round,order:[...order],step:'actions',turnCards:[],index:0,research:null,checks:[],draft:null};}
 function record(s,text){s.log=[text,...s.log].slice(0,30);}
 function startResearch(s,incomeCards){
@@ -29,13 +30,13 @@ function startResearch(s,incomeCards){
  s.flow.research={remaining:base+extra,initial:base+extra,spent:0,bonuses:preview,consumedAllies:[]};
  record(s,`${owner} · 开始研究：手牌合计${base} + 内政焦点${extra}；自动领取${preview.money}资金、${preview.diplomacy-preview.lostDiplomacy}外交、${preview.armies}军队${preview.lostDiplomacy?'（外交超限损失'+preview.lostDiplomacy+'）':''}`);
 }
-function finishAftermath(s,step){const f=s.flow,steps=aftermathSteps(s);f.checks.push(step);s.current=f.order[0];if(f.checks.length===steps.length){if(s.round===6){s.finalAwards={};for(const id of IDS){const assets=2*s.players[id].assets.length,executive=availableExecutive(s,id)?3:0;s.players[id].vp+=assets+executive;s.finalAwards[id]={assets,executive};}f.step='ended';s.phase='结束';record(s,'六轮结束；未使用战略资产每张已自动加2分。'+(s.config.executive?'未使用行政命令已自动加3分。':''));}else f.step='roundEnd';}}
+function finishAftermath(s,step){const f=s.flow,steps=aftermathSteps(s);f.checks.push(step);s.current=f.order[0];if(f.checks.length===steps.length){if(s.round===6){s.finalAwards={};for(const id of humanPlayers(s)){const assets=2*s.players[id].assets.length,executive=availableExecutive(s,id)?3:0;s.players[id].vp+=assets+executive;s.finalAwards[id]={assets,executive};}f.step='ended';s.phase='结束';record(s,'六轮结束；未使用战略资产每张已自动加2分。'+(s.config.executive?'未使用行政命令已自动加3分。':''));}else f.step='roundEnd';}}
 function requireAftermath(s,step){requireStep(s,'aftermath');if(!s.worldVersion||aftermathSteps(s)[s.flow.checks.length]!==step)throw Error('当前不在该结算步骤');}
-function finishInvestment(s,actor){const f=s.flow;f.investmentDone.push(actor);if(f.investmentDone.length===4)finishAftermath(s,'投资回报');else s.current=f.order[f.investmentDone.length];}
+function finishInvestment(s,actor){const f=s.flow;f.investmentDone.push(actor);if(f.investmentDone.length===f.order.length)finishAftermath(s,'投资回报');else s.current=f.order[f.investmentDone.length];}
 function requireStep(s,step){if(s.flow.step!==step)throw Error('当前不在该流程步骤');}
 function requireActor(s){if(currentActor(s)!==s.current)throw Error('请切换到当前轮到的势力');}
 function amount(n,min=0){if(!Number.isInteger(n)||n<min||n>999)throw Error('请输入有效的非负整数（最多999）');return n;}
-function afterResearch(s){s.flow.research=null;s.flow.index=0;s.flow.step=s.config.wit?'events':'aftermath';s.phase=s.config.wit?'事件':'余波';s.current=s.flow.order[0];s.flow.checks=[];if(s.config.wit)startEventPhase(s);}
+function afterResearch(s){if(s.round<6&&humanPlayers(s).length<4){s.marketDiscard??=[];s.marketDiscard.push(...s.market.splice(-(4-humanPlayers(s).length)));for(let i=humanPlayers(s).length;i<4;i++)refill(s);}resolveAutoInfluence(s);s.flow.research=null;s.flow.index=0;s.flow.step=s.config.wit?'events':'aftermath';s.phase=s.config.wit?'事件':'余波';s.current=s.flow.order[0];s.flow.checks=[];if(s.config.wit)startEventPhase(s);}
 function refill(s){if(s.marketDeck.length)s.market.unshift(s.marketDeck.shift());}
 function afterCard(s){
  const f=s.flow;if(f.pendingGrowth)return 'growth';if(f.pendingRelation)return 'relation';
@@ -87,13 +88,13 @@ export function handleFlow(s,a){
  }
  case 'passTurn':{const actor=s.current;resolvePass(s,a);handleFlow(s,{type:'endAction'});record(s,`${actor} · 放弃行动，盖放手牌（若有），获得10资金；行动结束`);break;}
  case 'endAction':{
-  requireStep(s,'actions');requireActor(s);if(s.phase!=='行动'||s.actionTurns.index>=16)throw Error('本轮行动已经结束');
+  requireStep(s,'actions');requireActor(s);if(s.phase!=='行动'||s.actionTurns.index>=4*f.order.length)throw Error('本轮行动已经结束');
   if(f.extraCard?.cardId&&p.hand.length)throw Error('此牌要求打出刚研究的指定牌，请先完成额外出牌');
   if(f.battlefieldReturn){resumeAfterBattlefield(s);afterCard(s);break;}
   const actor=s.current,dominance=hasGrowth(p,s.round,'dominance')&&f.influencePlaced?.[actor]?1:0;p.vp+=dominance;f.influencePlaced={};s.actionTurns.completed[actor]++;s.actionTurns.index++;f.turnCards=[];f.extraCard=null;f.extraCardSpent=false;f.growthExtraGranted=false;f.extraQueue=[];
-  s.current=f.order[s.actionTurns.index%4];
-  if(s.actionTurns.index===16){if(s.round===6)afterResearch(s);else{f.step='research';s.phase='研究';f.index=0;f.research=null;}}
-  record(s,`${actor} · 完成第${s.actionTurns.completed[actor]}次行动${dominance?'；宣示主导获得1分':''}${s.actionTurns.index===16?'；进入'+s.phase+'阶段':''}`);break;
+  s.current=f.order[s.actionTurns.index%f.order.length];
+  if(s.actionTurns.index===4*f.order.length){if(s.round===6)afterResearch(s);else{f.step='research';s.phase='研究';f.index=0;f.research=null;}}
+  record(s,`${actor} · 完成第${s.actionTurns.completed[actor]}次行动${dominance?'；宣示主导获得1分':''}${s.actionTurns.index===4*f.order.length?'；进入'+s.phase+'阶段':''}`);break;
  }
  case 'startResearch':{
   requireStep(s,'research');requireActor(s);if(f.research)throw Error('本人的研究已经开始');
@@ -129,7 +130,7 @@ export function handleFlow(s,a){
  case 'finishResearch':{
   requireStep(s,'research');requireActor(s);if(!f.research)throw Error('请先结算手牌奖励并开始研究');
   const actor=s.current,lost=f.research.remaining;p.discard.push(...p.hand);p.hand=[];f.index++;f.research=null;
-  if(f.index===4)afterResearch(s);else s.current=f.order[f.index];
+  if(f.index===f.order.length)afterResearch(s);else s.current=f.order[f.index];
   record(s,`${actor} · 结束研究，剩余手牌弃置，未用${lost}研究力清零`);break;
  }
  case 'settlePhaseTask':{
@@ -142,14 +143,14 @@ export function handleFlow(s,a){
   }
   break;
  }
- case 'confirmEvents':requireStep(s,'events');throw Error('请让四方依次核对并确认事件结果');
+ case 'confirmEvents':requireStep(s,'events');throw Error('请让各玩家依次核对并确认事件结果');
  case 'confirmAftermath':{
   requireStep(s,'aftermath');const steps=aftermathSteps(s);const step=steps[f.checks.length];
-  if(step==='目标卡计分')throw Error('请让四方依次选择目标卡并登记计分');
+  if(step==='目标卡计分')throw Error('请让各玩家依次选择目标卡并登记计分');
   if(s.worldVersion&&['投资回报','威胁结算','地区与多数计分','Smart Power计分'].includes(step))throw Error('请使用本步骤的自动结算按钮');
-  if(s.economyVersion&&step==='繁荣提升')throw Error('请让四方依次选择提升繁荣或跳过');
+  if(s.economyVersion&&step==='繁荣提升')throw Error('请让各玩家依次选择提升繁荣或跳过');
   if(!step||a.step!==step||a.confirmed!==true)throw Error('请依次确认当前余波步骤');finishAftermath(s,step);
-  record(s,`${step} · 四方手动结算已确认`);
+  record(s,`${step} · 各玩家手动结算已确认`);
   break;
  }
  case 'resolveInvestments':{
@@ -167,41 +168,41 @@ export function handleFlow(s,a){
  case 'resolveThreat':{
   requireAftermath(s,'威胁结算');f.threatDone??=[];if(s.current!==f.order[f.threatDone.length])throw Error('请按行动顺序结算威胁');
   const actor=s.current,defend=a.defend||[],result=threatPreview(s,actor,defend);p.vp-=result.total;for(const id of defend)s.regions[id].engage[actor]--;
-  f.threatDone.push(actor);f.threatResults??={};f.threatResults[actor]=result;if(f.threatDone.length===4)finishAftermath(s,'威胁结算');else s.current=f.order[f.threatDone.length];
+  f.threatDone.push(actor);f.threatResults??={};f.threatResults[actor]=result;if(f.threatDone.length===f.order.length)finishAftermath(s,'威胁结算');else s.current=f.order[f.threatDone.length];
   record(s,`${actor} · 威胁结算失去${result.total}分，消耗${defend.length}个介入标记`);break;
  }
  case 'scoreWorld':{
-  requireAftermath(s,'地区与多数计分');const result=scoringPreview(s);for(const id of IDS)s.players[id].vp+=result.totals[id];s.scoringHistory??=[];s.scoringHistory.push(result);if(s.round===6)s.finalRegionWins=result.wins;
-  finishAftermath(s,'地区与多数计分');record(s,`第${s.round}轮地区、多数及国家能力已结算：${IDS.map(id=>id+' '+result.totals[id]).join('，')}`);break;
+  requireAftermath(s,'地区与多数计分');const result=scoringPreview(s);for(const id of humanPlayers(s))s.players[id].vp+=result.totals[id];s.scoringHistory??=[];s.scoringHistory.push(result);if(s.round===6)s.finalRegionWins=result.wins;
+  finishAftermath(s,'地区与多数计分');record(s,`第${s.round}轮地区、多数及国家能力已结算：${humanPlayers(s).map(id=>id+' '+result.totals[id]).join('，')}`);break;
  }
- case 'scoreSmart':{requireAftermath(s,'Smart Power计分');if(!s.config.wit)throw Error('未启用扩展');const points=smartPreview(s);for(const id of IDS)s.players[id].vp+=points[id];finishAftermath(s,'Smart Power计分');record(s,'Smart Power多数已按并列最低名次自动计分');break;}
+ case 'scoreSmart':{requireAftermath(s,'Smart Power计分');if(!s.config.wit)throw Error('未启用扩展');const points=smartPreview(s);for(const id of humanPlayers(s))s.players[id].vp+=points[id];finishAftermath(s,'Smart Power计分');record(s,'Smart Power多数已按并列最低名次自动计分');break;}
  case 'resolveProsperity':{
   requireStep(s,'aftermath');if(!s.economyVersion||aftermathSteps(s)[f.checks.length]!=='繁荣提升')throw Error('当前不能提升繁荣');
   f.prosperityDone??=[];if(s.current!==f.order[f.prosperityDone.length])throw Error('请按行动顺序选择繁荣提升');
   const actor=s.current,result=resolveProsperity(s,a.improve);f.prosperityDone.push(actor);
-  if(f.prosperityDone.length===4){f.checks.push('繁荣提升');s.current=f.order[0];}else s.current=f.order[f.prosperityDone.length];
+  if(f.prosperityDone.length===f.order.length){f.checks.push('繁荣提升');s.current=f.order[0];}else s.current=f.order[f.prosperityDone.length];
   record(s,`${actor} · ${result?'提升繁荣，支付'+result.cost+'消费品，获得'+result.vp+'分与'+result.money+'资金':'本轮跳过繁荣提升'}`);break;
  }
  case 'nextRound':{
   requireStep(s,'roundEnd');if(s.round>=6)throw Error('游戏已经结束');s.round++;f.round=s.round;s.phase='准备';f.step='countries';f.index=0;f.checks=[];f.prosperityDone=[];f.investmentDone=[];f.threatDone=[];f.threatResults={};
-  for(const id of IDS)drawCards(s.players[id],6+(hasGrowth(s.players[id],s.round,'draw')?1:0));
-  record(s,`第${s.round}轮准备：四方抽取基础6张，已生效灵活战术另加1张，牌库用尽时洗弃牌；接下来更新国家牌`);break;
+  for(const id of humanPlayers(s))drawCards(s.players[id],6+(hasGrowth(s.players[id],s.round,'draw')?1:0));
+  record(s,`第${s.round}轮准备：各玩家抽取基础6张，已生效灵活战术另加1张，牌库用尽时洗弃牌；接下来更新国家牌`);break;
  }
  case 'confirmCountries':{
   requireStep(s,'countries');for(const r of Object.values(s.regions))revealCountry(r);
-  const queue=[...IDS].sort((a,b)=>s.players[a].vp-s.players[b].vp||s.players[a].money-s.players[b].money||({US:30,CN:20,EU:25,RU:15}[a]-{US:30,CN:20,EU:25,RU:15}[b]));
-  f.draft={queue,slots:[null,null,null,null]};f.index=0;f.step='order';s.current=queue[0];record(s,'七个地区国家牌已更新；按低分、少资金顺序选择行动位置');break;
+  const queue=[...humanPlayers(s)].sort((a,b)=>s.players[a].vp-s.players[b].vp||s.players[a].money-s.players[b].money||({US:30,CN:20,EU:25,RU:15}[a]-{US:30,CN:20,EU:25,RU:15}[b]));
+  f.draft={queue,slots:Array(queue.length).fill(null)};f.index=0;f.step='order';s.current=queue[0];record(s,'七个地区国家牌已更新；按低分、少资金顺序选择行动位置');break;
  }
  case 'chooseOrderSlot':{
-  requireStep(s,'order');requireActor(s);if(!Number.isInteger(a.slot)||a.slot<0||a.slot>3||f.draft.slots[a.slot])throw Error('请选择空闲的行动位置');
+  requireStep(s,'order');requireActor(s);if(!Number.isInteger(a.slot)||a.slot<0||a.slot>=f.draft.slots.length||f.draft.slots[a.slot])throw Error('请选择空闲的行动位置');
   f.draft.slots[a.slot]=s.current;f.index++;
-  if(f.index===4){f.order=[...f.draft.slots];f.step='production';f.index=0;s.current=f.order[0];}else s.current=f.draft.queue[f.index];
+  if(f.index===f.order.length){f.order=[...f.draft.slots];f.step='production';f.index=0;s.current=f.order[0];}else s.current=f.draft.queue[f.index];
   record(s,'已选择行动位置'+(a.slot+1));break;
  }
  case 'confirmProduction':{
   requireStep(s,'production');let overflow=0;
-  if(s.economyVersion)overflow=producePrimary(s);else if(a.confirmed!==true)throw Error('请先为四方手动生产能源、原料和粮食');
-  f.step='focus';f.checks=[];s.current=f.order[0];record(s,s.economyVersion?`四方初级资源已自动生产，超限折现共${overflow}资金；开始选择焦点`:'初级资源生产已手动确认；开始选择焦点');break;
+  if(s.economyVersion)overflow=producePrimary(s);else if(a.confirmed!==true)throw Error('请先为各玩家手动生产能源、原料和粮食');
+  f.step='focus';f.checks=[];s.current=f.order[0];record(s,s.economyVersion?`各玩家初级资源已自动生产，超限折现共${overflow}资金；开始选择焦点`:'初级资源生产已手动确认；开始选择焦点');break;
  }
  case 'prepareFocus':{
   requireStep(s,'focus');if(f.focusProduction)throw Error('焦点已进入生产，请完成生产');
@@ -210,7 +211,7 @@ export function handleFlow(s,a){
  case 'confirmFocus':{
   requireStep(s,'focus');if(s.current!==f.order[f.checks.length])throw Error('请按本轮顺序确认焦点');let result;if(s.economyVersion)result=resolveFocus(s,a);else if(a.confirmed!==true)throw Error('请先手动结算焦点的即时效果');
   f.checks.push(s.current);
-  if(f.checks.length===4){f.step='actions';s.phase='行动';s.actionTurns={index:0,completed:{US:0,CN:0,EU:0,RU:0}};s.current=f.order[0];}else s.current=f.order[f.checks.length];
+  if(f.checks.length===f.order.length){f.step='actions';s.phase='行动';s.actionTurns={index:0,completed:{US:0,CN:0,EU:0,RU:0}};s.current=f.order[0];}else s.current=f.order[f.checks.length];
   record(s,(result?`焦点已结算：重整${result.ready}个盟国，升级花费${result.cost}资金，超限折现${result.overflow}资金${result.quickResponse?"；快速反应部队："+(result.quickResponse.mode==="army"?"花5资金获得1军队":"免费移动1军队"+(result.quickResponse.smartCost?"，消耗1 SP":"")):""}`:'焦点效果已手动确认')+(f.step==='actions'?'；开始本轮行动':''));break;
  }
  }

@@ -7,12 +7,15 @@ import {handleFlow} from './flow.js';
 import {handleEventAction} from './event-flow.js';
 import {recordSettlementAction} from './settlement-journal.js';
 import {recordObjectiveProgress} from './objective-progress.js';
+import {isNonPlayer} from './player-configuration.js';
+import {clearNonPlayerEconomy} from './non-player.js';
 
 // This projection also runs on seat views: use public ownership and counts,
 // never inspect another player's hidden cards or execute their effects here.
 export function nextAutomaticFlowAction(s){
  const f=s.flow;if(!f||Object.values(s.players).some(setupPending))return null;
  const interaction=activeInteraction(s);
+ if(interaction?.kind==='income'&&isNonPlayer(s,interaction.actor)&&s.flow.pendingIncome.active==='ceeOffer')return {type:'resolveIncomeEffect',effectId:'c09c854e149a8',choice:'decline'};
  if(interaction)return interaction.kind==='event'&&!s.eventBoard.choice&&f.eventResolution?.stage==='result'?{type:'ackEvent',cardId:f.eventResolution.cardId}:null;
  const actor=currentActor(s);if(!actor)return null;
  if(researchCanAutoStart(s))return {type:'startResearch'};
@@ -41,6 +44,7 @@ export function advanceAutomaticFlow(s){
  while(s.current===currentActor(s)&&(action=nextAutomaticFlowAction(s))){
   const before=structuredClone(s);
   if(!handleEventAction(s,action))handleFlow(s,action);
+  clearNonPlayerEconomy(s);
   recordSettlementAction(before,s,action);
   recordObjectiveProgress(before,s);
  }

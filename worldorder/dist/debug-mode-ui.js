@@ -2,6 +2,7 @@ import {POWERS,RESOURCE_NAMES} from './game-constants.js';
 import {debugModeIssue} from './action-policy.js';
 import {showGameDialog} from './client-dialogs.js';
 import {debugCardCatalog} from './debug-card-catalog.js';
+import {humanPlayers} from './player-configuration.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const kindName=c=>c.type==='asset'?'战略资产':'市场能力';
@@ -34,7 +35,7 @@ export function installDebugMode({getContext,getCards,cardTitle,onApply}){
  function open(){
   if(reason())return;
   const context=getContext();player=context.state.current;revision=context.key;
-  body.innerHTML=`<header class="debug-heading"><h2 id="debug-title">Debug Mode</h2><label>调整势力 <select id="debug-player">${Object.entries(POWERS).map(([id,p])=>`<option value="${id}"${id===player?' selected':''}>${p.name}</option>`).join('')}</select></label></header><div class="debug-columns"><section><h3>添加卡牌 <small data-debug-count></small></h3><div class="debug-search"><input id="debug-search" type="search" placeholder="搜索牌名或势力" aria-label="搜索卡牌"><select id="debug-kind" aria-label="卡牌类别"><option value="all">全部</option><option value="hand">手牌</option><option value="asset">战略资产</option></select></div><select id="debug-card" size="8" aria-label="选择卡牌"></select><div data-debug-preview></div><button type="button" id="debug-add-card" class="gold">加入所选卡牌</button></section><form id="debug-values"><h3>资源 / 产能</h3><div data-debug-numbers></div><p class="debug-hint">左键增加、右键减少；保存后生效，可超出通常上限。</p><button type="submit" class="gold">保存数值</button></form></div><p data-debug-status role="status">${context.room?'房主调试 · 修改后同步至房间':'本机调试 · 修改后自动保存'}</p>`;
+  body.innerHTML=`<header class="debug-heading"><h2 id="debug-title">Debug Mode</h2><label>调整势力 <select id="debug-player">${humanPlayers(context.state).map(id=>{const p=POWERS[id];return `<option value="${id}"${id===player?' selected':''}>${p.name}</option>`}).join('')}</select></label></header><div class="debug-columns"><section><h3>添加卡牌 <small data-debug-count></small></h3><div class="debug-search"><input id="debug-search" type="search" placeholder="搜索牌名或势力" aria-label="搜索卡牌"><select id="debug-kind" aria-label="卡牌类别"><option value="all">全部</option><option value="hand">手牌</option><option value="asset">战略资产</option></select></div><select id="debug-card" size="8" aria-label="选择卡牌"></select><div data-debug-preview></div><button type="button" id="debug-add-card" class="gold">加入所选卡牌</button></section><form id="debug-values"><h3>资源 / 产能</h3><div data-debug-numbers></div><p class="debug-hint">左键增加、右键减少；保存后生效，可超出通常上限。</p><button type="submit" class="gold">保存数值</button></form></div><p data-debug-status role="status">${context.room?'房主调试 · 修改后同步至房间':'本机调试 · 修改后自动保存'}</p>`;
   numbers();filter();showGameDialog(dialog);sync();
  }
  async function apply(action){

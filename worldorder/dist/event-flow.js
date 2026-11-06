@@ -1,9 +1,12 @@
-import {AGREEMENT_EVENTS,initializeAgreement,updateAgreement,submitAgreement,resolveAgreementReward} from './event-agreements.js';
+import {AGREEMENT_EVENTS,initializeAgreement,updateAgreement,submitAgreement,resolveAgreementReward,resolveNonPlayerAgreementChoice} from './event-agreements.js';
 import {SPECIAL_PERSONAL_EVENTS,initializeSpecialEvent,submitSpecialEvent} from './event-special-personal.js';
 import {removeEventEffect} from './event-effect-state.js';
-import {BID_EVENTS,initializeBid,submitBid,resolveBidReward} from './event-bids.js';
+import {BID_EVENTS,initializeBid,submitBid,resolveBidReward,resolveNonPlayerBidReward} from './event-bids.js';
+import {isNonPlayer,POWER_IDS} from './player-configuration.js';
+import {placeNonPlayerInfluence,clearNonPlayerEconomy} from './non-player.js';
 import {PERSONAL_EVENTS,submitPersonalEvent} from './event-personal.js';
 import {EVENT_DATA} from './event-data.js';
+import {AREAS} from './world.js';
 import {EVENT_CHAINS,prepareNextEvents,choosePersonalEvent,resolveEventReveal,queueChain,removeCurrentEvent} from './event-board.js';
 import {gainResource} from './economy.js';
 import {publicBalances,balanceChanges} from './sequence-progress.js';
@@ -19,11 +22,17 @@ function finishDistribution(s){
 }
 function nextEvent(s){
  const f=s.flow,b=s.eventBoard,processed=f.eventRound.processed;
- const id=[...b.slots].reverse().find(Boolean)||f.order.map(owner=>b.personal[owner]).find(id=>id&&!processed.includes(id));
+ const order=[...f.order,...POWER_IDS.filter(id=>isNonPlayer(s,id))];
+ const id=[...b.slots].reverse().find(Boolean)||order.map(owner=>b.personal[owner]).find(id=>id&&!processed.includes(id));
  if(!id){f.eventResolution=null;f.eventRound.complete=true;prepareNextEvents(s);finishDistribution(s);return;}
  const data=EVENT_DATA[id],mode=id==='c0a692aca2850'&&!['US','EU'].some(owner=>s.regions.C.armies[owner]>0)?'special':AUTO_EVENTS[id]||'manual',owner=data.players.length===1?data.players[0]:null;
+ if(owner&&isNonPlayer(s,owner)||data.players.every(player=>isNonPlayer(s,player))){
+  let detail='事件仅影响非玩家势力，弃置且无效果';
+  if(owner){const regions=data.regions.length?data.regions:Object.keys(s.regions),region=regions[Math.floor(Math.random()*regions.length)];placeNonPlayerInfluence(s,owner,region);if(regions.length>1)s.nonPlayerRandom=(s.nonPlayerRandom||0)+1;detail=`${owner}个人事件改为在${AREAS[region].name}放置1点影响力`;}
+  log(s,`${data.name} · ${detail}`);s.eventHistory.push({round:s.round,cardId:id,mode:'nonPlayer',result:detail,receipts:[]});processed.push(id);removeCurrentEvent(s,id);nextEvent(s);return;
+ }
  // Unsupported faces use four explicit acknowledgements, including affected non-flagged players.
- const participants=mode==='manual'?(owner?[owner,...f.order.filter(p=>p!==owner)]:[...f.order]):f.order.filter(p=>data.players.includes(p));
+ const participants=mode==='manual'?(owner?[owner,...f.order.filter(p=>p!==owner)]:[...f.order]):(mode==='bid'||mode==='agreement'?order:f.order).filter(p=>data.players.includes(p));
  f.eventResolution={cardId:id,mode,stage:mode==='bid'||mode==='agreement'?mode:'resolve',participants,owner,done:[],submissions:{},before:publicBalances(s),receipts:[],chains:[],repeat:false};
  if(mode==='bid'&&BID_EVENTS[id])initializeBid(s,f.eventResolution);
  if(mode==='agreement'&&AGREEMENT_EVENTS[id])initializeAgreement(s,f.eventResolution);
@@ -96,13 +105,19 @@ function submit(s,a,q){
  if(q.done.length===q.participants.length){q.stage='result';q.result=q.mode==='manual'?'四方已确认人工结算；请核对结果后继续。':'本张事件已自动结算；请勿重复扣费或领奖。';if(q.mode==='manual')q.receipts.push({player:null,detail:'本张事件期间人工调整合计',changes:balanceChanges(q.before,publicBalances(s))});}
  s.current=eventActor(s);
 }
-export function handleEventAction(s,a){
+export function handleEventAction(s,a){const handled=executeEventAction(s,a);if(handled)clearNonPlayerEconomy(s);return handled;}
+function executeEventAction(s,a){
  if(!s.eventVersion||!EVENT_ACTIONS.includes(a.type))return false;
  if(eventActor(s)!==s.current&&!canNegotiateAgreement(s,s.current,a.type))throw Error('请由当前事件责任玩家操作');
  if(a.type==='choosePersonalEvent'||a.type==='resolveEventReveal'){
   if(a.type==='choosePersonalEvent')choosePersonalEvent(s,a);else resolveEventReveal(s,a);finishDistribution(s);return true;
  }
  const q=s.flow?.eventResolution;if(s.flow?.step!=='events'||!q||a.cardId!==q.cardId)throw Error('当前事件已变化，请刷新后操作');
+ if(q.nonPlayerChoice&&a.type!=='resolveNonPlayerChoice')throw Error('请先完成非玩家的棋盘选择');
+ if(a.type==='resolveNonPlayerChoice'){
+  if(q.agreementVersion)resolveNonPlayerAgreementChoice(s,q,a);else resolveNonPlayerBidReward(s,q,a);
+  s.current=eventActor(s);return true;
+ }
  if(a.type==='updateAgreement'){updateAgreement(s,q,a);if(q.stage!=='agreement')s.current=eventActor(s);return true;}
  if(a.type==='resolveEventReward'){if(q.agreementVersion)resolveAgreementReward(s,q,a);else resolveBidReward(s,q,a);s.current=eventActor(s);return true;}
  if(a.type==='postponeEvent'){

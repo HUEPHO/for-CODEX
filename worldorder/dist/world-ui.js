@@ -21,4 +21,4 @@ export function renderWorldAftermath(s,step){const f=s.flow;
  if(step==='Smart Power计分'){const points=smartPreview(s);return `<b>Smart Power计分</b><p>${IDS.map(id=>`${names[id]}：SP ${s.players[id].smart} → +${points[id]}分`).join(' · ')}</p><button id="score-smart">应用SP多数计分</button>`;}
  return null;
 }
-export function renderWinners(s){const ids=winners(s);return ids?`<p><b>${ids.length>1?'共同获胜':'获胜'}：${ids.map(id=>names[id]).join('、')}</b></p><p>已依次比较总分、末轮获得地区第一名奖励次数、地图总影响力。特殊卡牌和目标得分需先正确记录。</p>${s.finalAwards?`<p>已计入总分的终局奖励：${IDS.map(id=>`${names[id]} 未用资产 +${s.finalAwards[id].assets}、未用行政命令 +${s.finalAwards[id].executive}`).join('；')}。请勿重复领取。</p>`:''}`:'';}
+export function renderWinners(s){const ids=winners(s);return ids?`<p><b>${ids.length>1?'共同获胜':'获胜'}：${ids.map(id=>names[id]).join('、')}</b></p><p>已依次比较总分、末轮获得地区第一名奖励次数、地图总影响力。特殊卡牌和目标得分需先正确记录。</p>${s.finalAwards?`<p>已计入总分的终局奖励：${IDS.map(id=>`${names[id]} 未用资产 +${s.finalAwards[id]?.assets||0}、未用行政命令 +${s.finalAwards[id]?.executive||0}`).join('；')}。请勿重复领取。</p>`:''}`:'';}

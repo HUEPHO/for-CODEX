@@ -22,7 +22,7 @@ function researchAllies(s,actor,cards,disabled){const p=s.players[actor];
  }).join('')}</div>`;
 }
 export function renderFlow(s,cards={}){
- const f=s.flow;if(!f)return renderEventPanel(s,cards)||'<p class="board-caption">四方完成开局选牌后，开始六轮流程。</p>';
+ const f=s.flow;if(!f)return renderEventPanel(s,cards)||'<p class="board-caption">所有玩家完成开局选牌后，开始六轮流程。</p>';
  const actor=flowActor(s),disabled=actor&&actor!==s.current?'disabled':'';
  let body='';
  if(f.step==='actions')body=`轮到${names[actor]}，本方已完成${s.actionTurns.completed[actor]}/4次行动。拖动或点击手牌，选择效果与目标后确认。结算完成会自动轮转；有额外出牌时可继续或结束本次行动。`;
@@ -31,7 +31,7 @@ export function renderFlow(s,cards={}){
   else if((f.extraQueue?.length||(!f.extraCardSpent&&!f.growthExtraGranted))&&f.turnCards?.length>=1&&s.actionTurns.completed[actor]===0&&s.players[actor].growth.some(id=>GROWTH_DATA[id]?.effect==='extra'&&GROWTH_DATA[id].level<=s.round))body+='<p>战略优势已生效：结算完第一张牌后，可选择追加一张。</p><button id="continue-extra-card">追加出牌</button>';
  }
  if(f.step==='research'){
-  body=`<b>轮到${names[actor]}研究（${f.index+1}/4）</b>`;
+  body=`<b>轮到${names[actor]}研究（${f.index+1}/${f.order.length}）</b>`;
   if(!f.research){const preview=researchPreview(s,actor);if(preview.incomePending)body+=`<fieldset ${disabled}><legend>收入优化 · 选择${preview.incomeCount}张手牌</legend><p>所选牌的上半部奖励再领取一次，不额外获得研究力。</p>${s.players[actor].hand.map(id=>`<label><input type="checkbox" data-income-card="${id}"> ${ACTION_CARDS[id]?.name||'能力牌'} <button data-card="${id}" data-source="view">查看</button></label>`).join('')}</fieldset><button id="start-research" ${disabled}>确认选择并开始研究</button>`;}
   else body+=`<p class="research-balance">剩余研究力 <strong>${f.research.remaining}</strong> · 已花费 ${f.research.spent}</p>${researchAllies(s,actor,cards,disabled)}<button id="research-refresh" ${disabled||f.research.remaining<2?'disabled':''}>花2研究力刷新最右3张</button><button id="finish-research" ${disabled}>结束研究并弃置剩余手牌</button>`;
  }
@@ -43,7 +43,7 @@ export function renderFlow(s,cards={}){
  if(f.step==='production')body='<b>准备 · 初级资源生产</b><p>按各自生产轨手动增加能源、原料和粮食；生产轨尚未自动计算。</p><label><input id="flow-confirm" type="checkbox"> 四方生产已记录</label><button id="confirm-production">确认初级资源生产</button>';
  if(f.step==='focus')body=`<b>准备 · ${names[f.order[f.checks.length]]}选择焦点</b><p>在玩家面板选择焦点，并按面板手动支付费用、执行即时效果。</p><label><input id="flow-confirm" type="checkbox"> 本方焦点效果已记录</label><button id="confirm-focus" ${s.current!==f.order[f.checks.length]?'disabled':''}>确认本方焦点</button>`;
  if(s.economyVersion){
-  if(f.step==='production')body='<b>准备 · 初级资源生产</b><p>按各自产能自动增加能源、原料、粮食；库存超过10的部分每个折为3资金。特殊卡牌修正仍需手动处理。</p><button id="confirm-production">为四方生产初级资源</button>';
+  if(f.step==='production')body='<b>准备 · 初级资源生产</b><p>按各自产能自动增加能源、原料、粮食；库存超过10的部分每个折为3资金。特殊卡牌修正仍需手动处理。</p><button id="confirm-production">为所有玩家生产初级资源</button>';
   if(f.step==='focus')body=renderFocus(s,cards);
   if(f.step==='aftermath'&&aftermathSteps(s)[f.checks.length]==='繁荣提升')body=renderProsperity(s);
  }

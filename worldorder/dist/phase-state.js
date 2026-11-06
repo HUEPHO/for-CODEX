@@ -1,3 +1,4 @@
+import {humanPlayers} from './player-configuration.js';
 import {activeInteraction} from './interaction-state.js';
 // Shared phase description and ownership. Read-only: safe on full states and player views.
 export const PHASES={
@@ -22,7 +23,7 @@ export function currentActor(s){
  const f=s.flow;if(!f||f.step==='ended')return null;
  if(interaction)return interaction.actor;
  const settlement=settlementProgress(s);if(settlement)return settlement.actor;
- if(f.step==='actions')return f.order[s.actionTurns.index%4];
+ if(f.step==='actions')return f.order[s.actionTurns.index%f.order.length];
  if(f.step==='research')return f.order[f.index];
  if(f.step==='order')return f.draft.queue[f.index];
  if(f.step==='focus')return f.order[f.checks.length];
@@ -33,10 +34,10 @@ export function currentActor(s){
  return f.order[0];
 }
 export function phaseStatus(s){
- const f=s.flow;if(!f)return {label:'开局选牌',group:'开局',actor:null,progress:Object.values(s.players).filter(p=>!p.openingChoices&&!p.assetChoices&&!p.objectiveChoices&&!p.setupPending).length,total:4};
+ const f=s.flow;if(!f)return {label:'开局选牌',group:'开局',actor:null,progress:humanPlayers(s).map(id=>s.players[id]).filter(p=>!p.openingChoices&&!p.assetChoices&&!p.objectiveChoices&&!p.setupPending).length,total:humanPlayers(s).length};
  const definition=PHASES[f.step]||{label:'旧存档阶段',group:s.phase},settlement=settlementProgress(s);
  const progress=settlement?settlement.done.length:f.step==='actions'?s.actionTurns.index:f.step==='research'||f.step==='order'?f.index:f.step==='focus'||f.step==='aftermath'?f.checks.length:0;
- const total=settlement?settlement.total:f.step==='actions'?16:['research','order','focus'].includes(f.step)?4:f.step==='aftermath'?aftermathSteps(s).length:0;
+ const total=settlement?settlement.total:f.step==='actions'?4*f.order.length:['research','order','focus'].includes(f.step)?f.order.length:f.step==='aftermath'?aftermathSteps(s).length:0;
  const pending=activeInteraction(s)?.label||null;
  return {...definition,label:s.eventVersion&&f.step==='events'?'事件结算':definition.label,actor:currentActor(s),progress,total,pending,detail:f.step==='aftermath'?aftermathSteps(s)[f.checks.length]:null};
 }

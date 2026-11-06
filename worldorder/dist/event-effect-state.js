@@ -1,9 +1,11 @@
 import {EVENT_EFFECTS,EFFECT_IDS} from './event-effect-rules.js';
+import {isNonPlayer} from './player-configuration.js';
 import {RESEARCH_DATA} from './research-data.js';
 import {countryPiles,syncCountries,acquireSearchedCountry,regionCountries} from './country-piles.js';
 export {EVENT_EFFECTS,EFFECT_IDS} from './event-effect-rules.js';
 export function hasEventEffect(s,owner,cardId){if(EVENT_EFFECTS[cardId]?.owner!==owner)return false;return (s.eventEffects||[]).some(e=>e.owner===owner&&e.cardId===cardId)||(owner==='global'&&(s.activeEffects||[]).includes(cardId));}
 export function grantEventEffect(s,owner,cardId,source){
+ if(isNonPlayer(s,owner))return;
  if(EVENT_EFFECTS[cardId]?.owner!==owner)throw Error('持续效果的所属玩家不符');
  s.eventEffects??=[];if(!hasEventEffect(s,owner,cardId))s.eventEffects.push({cardId,owner,source,round:s.round});
  if(owner==='global'){s.activeEffects??=[];if(!s.activeEffects.includes(cardId))s.activeEffects.push(cardId);}

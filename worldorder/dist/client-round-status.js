@@ -10,9 +10,9 @@ const phaseLabels={开局:'准备',准备:'准备',行动:'行动',研究:'研�
 export function clientRoundStatusModel(state){
  const status=phaseStatus(state),phase=phaseLabels[status.group]||phaseLabels[state.phase]||'准备';
  const index=state.actionTurns?.index,order=state.flow?.order||state.initialOrder||[];
- const actionOwner=Number.isInteger(index)&&index<16?order[index%4]:null;
+ const actionOwner=Number.isInteger(index)&&index<4*order.length?order[index%order.length]:null;
  const completed=state.actionTurns?.completed?.[actionOwner];
- const action=phase==='行动'&&actionOwner?Math.min(4,Math.max(1,Number.isInteger(completed)?completed+1:Math.floor(index/4)+1)):null;
+ const action=phase==='行动'&&actionOwner?Math.min(4,Math.max(1,Number.isInteger(completed)?completed+1:Math.floor(index/order.length)+1)):null;
  const progress=action?`第 ${action} 次行动 / 共 4 次`:phase==='准备'?'行动待开始 / 共 4 次':'行动已完成 / 共 4 次';
  const detail=status.pending||status.detail||(['开局','准备','轮末','终局'].includes(status.group)?status.label:null);
  return {round:state.round,phase,actor:status.actor,actionOwner,action,progress,detail,order,

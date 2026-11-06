@@ -1,4 +1,5 @@
 import {applyAction,createState} from '../dist/engine.js';
+import {humanPlayers,isNonPlayer} from '../dist/player-configuration.js';
 import {applyDebugAction,DEBUG_ROLLBACK_REASON} from '../dist/debug-mode.js';
 import {debugModeIssue} from '../dist/action-policy.js';
 import {countryPileContents} from '../dist/country-pile-view.js';
@@ -13,9 +14,9 @@ export function seatFor(room,identity){
 }
 export const isHost=(room,identity)=>room.host.token===identity.token&&room.host.user===identity.user;
 export function newRoom(code,identity,cards,config,now=Date.now()){
- const seats=Object.fromEntries(SEATS.map(id=>[id,null]));seats.US={...identity};
+ const state=createState(cards,config),seats=Object.fromEntries(SEATS.map(id=>[id,null]));seats[humanPlayers(state)[0]]={...identity};
  return {code,version:1,revision:0,gameRevision:0,seatRevisions:Object.fromEntries(SEATS.map(id=>[id,0])),
-  host:{...identity},seats,status:'lobby',state:createState(cards,config),rollback:createRollback(),history:[],receipts:[],createdAt:now,updatedAt:now};
+  host:{...identity},seats,status:'lobby',state,rollback:createRollback(),history:[],receipts:[],createdAt:now,updatedAt:now};
 }
 function ensureFresh(room,seat,command){
  if(command.op==='action'&&SETUP_ACTIONS.has(command.action?.type)){
@@ -34,6 +35,7 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
   case 'join':{
    const target=command.seat;
    if(!SEATS.includes(target))throw new RoomError('请选择有效势力');
+   if(isNonPlayer(room.state,target))throw new RoomError('该势力由基础自动机控制');
    if(seat&&seat!==target)throw new RoomError('本标签页已经入座；请先离开当前席位');
    const occupant=next.seats[target];
    if(occupant?.token!==identity.token&&occupant){
@@ -47,13 +49,15 @@ export function changeRoom(room,identity,command,cards,now=Date.now()){
   case 'start':{
    if(!host)throw new RoomError('由创建房间的标签页开始对局',403);
    if(room.status!=='lobby')throw new RoomError('对局已经开始');
-   if(SEATS.some(id=>!room.seats[id]))throw new RoomError('四个势力全部入座后即可开始');
+   if(humanPlayers(room.state).some(id=>!room.seats[id]))throw new RoomError('所选玩家势力全部入座后即可开始');
    next.status='playing';next.rollback=createRollback();next.gameRevision++;break;
   }
   case 'reset':{
    if(!host)throw new RoomError('只有房主可以重新布置房间',403);
    if(command.gameRevision!==room.gameRevision)throw new RoomError('局面已更新，请重新确认布置',409);
-   next.state=createState(cards,command.config);next.status='lobby';next.rollback=createRollback();next.gameRevision++;
+   next.state=createState(cards,command.config);
+   if(SEATS.some(id=>room.seats[id]&&isNonPlayer(next.state,id)))throw new RoomError('已入座的势力须先离开席位，才能改为基础自动机');
+   next.status='lobby';next.rollback=createRollback();next.gameRevision++;
    for(const id of SEATS)next.seatRevisions[id]++;break;
   }
   case 'undo':{
@@ -130,6 +134,7 @@ export function playerView(source,seat){
   s.flow.turnCards=s.flow.turnCards.map(card=>covered.has(card)?null:card);
  }
  for(const key of ['marketDeck','eraDeck','era2Deck'])s[key]=hidden(s[key]);
+ if(s.autoInfluence)s.autoInfluence.deck=hidden(s.autoInfluence.deck);
  const searched=q?.owner===seat&&step?.type==='effect'?step.card.countrySearchRegion:null;
  for(const [id,r] of Object.entries(s.regions)){
   r.publicCountryPiles=countryPileContents(source.regions[id]);
@@ -148,7 +153,7 @@ export function roomView(room,identity){
  const seat=seatFor(room,identity),rollback=rollbackAvailability(room.rollback,{seat,...identity},Date.now(),room.state);
  return {code:room.code,revision:room.revision,gameRevision:room.gameRevision,seatRevision:seat?room.seatRevisions[seat]:0,
   status:room.status,seat,isHost:isHost(room,identity),config:room.state.config,actor:roomActor(room.state),
-  seats:Object.fromEntries(SEATS.map(id=>[id,{occupied:!!room.seats[id],mine:room.seats[id]?.user===identity.user,setupDone:!setupPending(room.state.players[id])}])),
+  seats:Object.fromEntries(SEATS.map(id=>[id,{occupied:!!room.seats[id],nonPlayer:isNonPlayer(room.state,id),mine:room.seats[id]?.user===identity.user,setupDone:!setupPending(room.state.players[id])}])),
   canUndo:!!seat&&rollback.step.available,rollback,restartRequest:turnRestartRequestView(room.rollback,{seat,...identity},room.state),
   state:room.status==='playing'&&seat?playerView(room.state,seat):null};
 }

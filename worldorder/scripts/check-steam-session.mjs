@@ -41,7 +41,7 @@ const envelope=(type,extra={})=>({v:1,lobbyId:network.lobbyId,hostId:ids[0],epoc
 try{
  const lobby=await sessions[0].create({dd:true,wit:true});assert.equal(lobby.seat,'US');assert.equal(saved.length,1);
  await assert.rejects(sessions[0].create({}),/先离开/);
- await assert.rejects(send(0,'start'),/四名 Steam 玩家/);
+ await assert.rejects(send(0,'start'),/所选 Steam 玩家/);
  for(let i=1;i<4;i++){const joined=await sessions[i].join(network.lobbyId);assert.equal(joined.seat,null);await send(i,'join',{seat:seats[i]});}
  await assert.rejects(send(1,'join',{seat:'RU'}),/已经入座/);
  await assert.rejects(send(1,'start'),/创建房间/);

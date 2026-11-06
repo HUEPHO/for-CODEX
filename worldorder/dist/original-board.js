@@ -1,5 +1,7 @@
+import {renderAutoInfluence} from './non-player-ui.js';
+import {humanPlayers} from './player-configuration.js';
 import {EVENT_EFFECTS} from './event-effect-rules.js';
-import {AREAS,IDS,MAJORITY_BONUSES,majorityStandings} from './world.js';
+import {AREAS,IDS,MAJORITY_BONUSES,majorityStandings,majorityBonuses} from './world.js';
 import {POWERS} from './game-constants.js';
 import {REGION_COLORS} from './region-presentation.js';
 import {powerFlag} from './power-identity.js';
@@ -72,7 +74,7 @@ function turnOrder(s){
 
 function majorities(s){
  const standings=majorityStandings(s),names={money:'资金',armies:'地图军队',allies:'盟国'};
- return `<div class="original-majorities" aria-label="小目标实时排名">${Object.entries(standings).map(([key,rows])=>`<section class="original-majority original-majority--${key}" data-majority="${key}" aria-label="${names[key]}排名"><img class="original-majority-art" src="assets/majority-${key}.png" alt="${names[key]}多数奖励：${MAJORITY_BONUSES[key].join('、')}分" draggable="false"><div class="original-majority-standings">${rows.map(row=>`<span class="original-majority-chip${row.leading?' is-leading':''}" data-ranking-owner="${row.id}" data-ranking-value="${row.value}" title="${name(row.id)}：${row.value}${key==='money'?'资金':key==='armies'?'支地图军队':'个盟国'}${row.leading?'，当前领先':''}；按当前局面计分为第${row.rank}名、${row.vp}分">${powerFlag(row.id,{decorative:true})}<b>${row.value}</b></span>`).join('')}</div></section>`).join('')}</div>`;
+ return `<div class="original-majorities" aria-label="小目标实时排名">${Object.entries(standings).map(([key,rows])=>`<section class="original-majority original-majority--${key}" data-majority="${key}" aria-label="${names[key]}排名"><img class="original-majority-art" src="assets/majority-${key}${humanPlayers(s).length===2?'-two':''}.png" alt="${names[key]}多数奖励：${majorityBonuses(s,key).join('、')}分" draggable="false"><div class="original-majority-standings">${rows.map(row=>`<span class="original-majority-chip${row.leading?' is-leading':''}" data-ranking-owner="${row.id}" data-ranking-value="${row.value}" title="${name(row.id)}：${row.value}${key==='money'?'资金':key==='armies'?'支地图军队':'个盟国'}${row.leading?'，当前领先':''}；按当前局面计分为第${row.rank}名、${row.vp}分">${powerFlag(row.id,{decorative:true})}<b>${row.value}</b></span>`).join('')}</div></section>`).join('')}</div>`;
 }
 
 function publicEffects(s,cards){
@@ -86,5 +88,5 @@ export function renderOriginalBoard(s,cards={}, {selectedRegion,extraSlot=''}={}
  return `<section class="original-board" aria-label="原版世界主板"><div class="original-board-scroll" tabindex="0" aria-label="世界地图、影响力、驻军、介入和国家商店"><div class="original-board-crop"><div class="original-board-surface"><img class="original-board-art" src="assets/map.webp" alt="World Order 原版世界主板" draggable="false">${Object.entries(ORIGINAL_BOARD_REGIONS).map(([region,layout])=>{
   const r=s.regions?.[region];if(!r)return '';
   return `<section class="original-region${selectedRegion===region?' original-region--selected':''}" data-board-region="${region}" style="--region-color:${REGION_COLORS[region]}" aria-label="${AREAS[region].name}"><button type="button" class="original-region-hit" data-region="${region}" style="${rect(...layout.box)}" title="${AREAS[region].name}" aria-label="${AREAS[region].name} · 操作时选择地区" aria-pressed="${selectedRegion===region}"></button>${influence(region,r,layout)}${forces(region,r,layout)}${countries(region,r,catalogue,layout)}</section>`;
- }).join('')}${turnOrder(s)}${publicEffects(s,catalogue)}${majorities(s)}</div></div></div>${extraSlot}</section>`;
+ }).join('')}${turnOrder(s)}${publicEffects(s,catalogue)}${majorities(s)}</div></div></div>${extraSlot}${renderAutoInfluence(s)}</section>`;
 }
