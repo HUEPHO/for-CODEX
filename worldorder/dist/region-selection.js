@@ -42,7 +42,7 @@ function inactive(field){
 }
 function title(field,fallback){
  const label=field.labels?.[0]||field.closest('label');
- const text=label&&Array.from(label.childNodes).filter(node=>node!==field&&!node.contains?.(field)).map(node=>node.textContent).join(' ');
+ const text=label&&Array.from(label.childNodes).filter(node=>node!==field&&!node.contains?.(field)&&!node.matches?.('[data-boolean-control],[data-number-counter]')).map(node=>node.textContent).join(' ');
  return clean(field.getAttribute('aria-label')||text)||fallback||'选择影响力位置';
 }
 function definition(field){
@@ -135,13 +135,13 @@ export function activateRegionField(keyOrElement,root=document,context={}){
  * For placement, the rules choose the permanent vacancy / temporary queue tail;
  * a board click selects the track, never an arbitrary insertion position.
  */
-export function selectRegionTarget(region,{kind,index,value}={},root=document,context={}){
+export function selectRegionTarget(region,{kind,index,value,selected=true}={},root=document,context={}){
  const {active}=selection(root,context);if(!active)return false;
  const match=active.model.options.find(option=>!option.disabled&&(value!==undefined?option.value===value:option.region===region&&(active.model.kind==='region'||active.model.kind==='regions'||option.kind===kind&&(active.model.kind!=='slot'||option.index===index))));
  if(!match)return false;
  const field=active.boxes?.find(box=>box.dataset[active.boxKey]===match.value)||active.field;
  if(!field||inactive(field)||disabled(field))return false;
- if(active.boxes)field.checked=!field.checked;
+ if(active.boxes){if(field.checked===selected)return true;field.checked=selected;}
  else{field.value=match.value;if(field.value!==match.value)return false;}
  const ChangeEvent=field.ownerDocument?.defaultView?.Event||globalThis.Event;
  field.dispatchEvent(new ChangeEvent('change',{bubbles:true}));

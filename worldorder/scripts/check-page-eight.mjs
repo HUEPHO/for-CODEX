@@ -124,7 +124,7 @@ const finish=cmd('finish',{diplomacy:4});room=changeRoom(room,identity.CN,finish
 assert.equal(room.state.players.CN.resources[5],6);assert.equal(room.state.eventHistory.filter(e=>e.cardId===ids.tradeWar).length,1);
 
 const board=base();board.eventEffects=[{owner:'global',cardId:EFFECT_IDS.sanctions},{owner:'CN',cardId:EFFECT_IDS.siberia}];board.activeEffects=[EFFECT_IDS.sanctions,EFFECT_IDS.tradeWar];
-const html=renderOriginalBoard(board,byId);assert.equal((html.match(/class="public-effect-empty"/g)||[]).length,4);assert.match(html,/公共事件效果/);
+const html=renderOriginalBoard(board,byId);assert.equal((html.match(/class="public-effect-empty"/g)||[]).length,4);assert.match(html,/公共效果/);
 if(process.argv.includes('--fixtures')){
  fs.mkdirSync(new URL('../.local/page-eight/',import.meta.url),{recursive:true});
  const focus=base();focus.players.US.exhaustedAllies=[...focus.players.US.allies];focus.players.US.growth=[cards.find(c=>c.type==='growth').id];

@@ -3,6 +3,7 @@ import {showGameDialog,closeClientDialogs} from './client-dialogs.js';
 import {composeClientScrollTable} from './client-scroll-layout.js';
 import {syncClientActionLayout} from './client-action-layout.js';
 import {installNumberCounters} from './client-number-counters.js';
+import {installBooleanControls} from './client-boolean-controls.js';
 import {nextAutomaticFlowAction} from './automatic-flow.js';
 import {syncClientAllySelection,handleClientAllySelection} from './client-ally-selection.js';
 import {renderClientPlayerBoard} from './client-player-board.js';
@@ -68,7 +69,7 @@ let automaticResumePending=true;
 const roomClient=new RoomClient({onChange:onRoomUpdate,onStatus:onRoomStatus});
 const debugUI=installDebugMode({getContext:()=>({ready,state,room,key:gameContext(),steam:roomClient.isSteam,busy:roomClient.busy,offline:roomClient.status==='offline'}),getCards:()=>data,cardTitle:title,onApply:debugAct});
 installResourceIcons([...Object.values(ASSET_NAMES),...Object.values(BASIC_CARDS).map(c=>c.name),...Object.values(GROWTH_DATA).map(c=>c.name)]);
-if(isGameClient)installNumberCounters();
+if(isGameClient){installNumberCounters();installBooleanControls();}
 const labels={starter:'起始能力',ability:'市场能力',growth:'发展牌',asset:'战略资产',event:'事件',objective:'目标',country:'国家',startingCountry:'起始盟国',effect:'效果牌',executive:'行政命令'};
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('#toast').classList.remove('show'),3200)}
 const localIdentity=()=>({seat:state.current,user:'local',token:'local:'+state.current});
@@ -261,7 +262,7 @@ function render(){
  updateRollbackControls();
  applyRoomPermissions();
  syncTableTargets(!preservedTask);
- syncGameClient({key:taskKey,setup:!!(p.assetChoices||p.openingChoices),staged:!!stagedCard,collapsed:taskCollapsed});
+ syncGameClient({cards:byId,key:taskKey,setup:!!(p.assetChoices||p.openingChoices),staged:!!stagedCard,collapsed:taskCollapsed});
  if(isGameClient)syncClientActionChoices();
  if(isGameClient)$('#app').scrollTop=scrollPosition;
 }
@@ -342,6 +343,7 @@ $('#app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b|
 $('#app').addEventListener('change',e=>{
  if(e.target.id==='client-seat'){if(!room)act({type:'switch',player:e.target.value});return;}
  if(e.target.closest('#basic-form')){changeCardForm(e);return;}
+ if(e.target.id==='agreement-confirmation'){if(e.target.checked)act({type:'submitEvent',cardId:state.flow.eventResolution.cardId,...readAgreementForm()});else act({type:'updateAgreement',cardId:state.flow.eventResolution.cardId,operation:'unconfirm'});return;}
  if(e.target.closest('#agreement-form')){updateAgreementForm(state);if(state.flow.eventResolution.agreementVersion===2){try{const offer=readAgreementForm();agreementOffer(state,state.flow.eventResolution,state.current,offer);act({type:'updateAgreement',cardId:state.flow.eventResolution.cardId,...offer});}catch(error){toast(error.message);}}return;}
  if(e.target.closest('#agreement-reward-form')){updateAgreementReward(state);return;}
  if(e.target.closest('#personal-event-form')){if(state.flow?.eventResolution?.mode==='special')updateSpecialPersonalEvent(state);else updatePersonalEvent(state);return;}
@@ -377,7 +379,7 @@ $('#viewer').addEventListener('click',e=>{const b=e.target.closest('[data-use-ev
 $('#viewer').addEventListener('click',e=>{const b=e.target.closest('[data-world-op],[data-engage-delta]');if(b&&!b.disabled)commitViewerRegionAction(b);});
 $('#viewer').addEventListener('change',e=>{if(e.target.closest('#basic-form'))changeCardForm(e);});
 $('#app').addEventListener('input',e=>{if(e.target.closest('#basic-form')){updateBasicForm(state,byId);syncTableTargets();}});
-$('#app').addEventListener('contextmenu',event=>{const button=event.target.closest('[data-research-undo]');if(!button)return;event.preventDefault();if(!button.disabled)act({type:'undoResearchAlly',id:button.dataset.researchUndo});});
+$('#app').addEventListener('contextmenu',event=>{if(isGameClient&&handleClientAllySelection(event))return;const button=event.target.closest('[data-research-undo]');if(!button)return;event.preventDefault();if(!button.disabled)act({type:'undoResearchAlly',id:button.dataset.researchUndo});});
 $('#app').addEventListener('change',e=>{if(!e.target.closest('#basic-form'))syncTableTargets(true);});
 $('#app').addEventListener('input',e=>{if(e.target.closest('#focus-production'))updateFocusProduction(state);if(e.target.closest('#agreement-form'))updateAgreementForm(state);if(e.target.closest('#agreement-reward-form'))updateAgreementReward(state);if(e.target.closest('#personal-event-form')){if(state.flow?.eventResolution?.mode==='special')updateSpecialPersonalEvent(state);else updatePersonalEvent(state);}});
 $('#viewer').addEventListener('input',e=>{if(e.target.hasAttribute('data-growth-primary'))updateBasicForm(state,byId);});

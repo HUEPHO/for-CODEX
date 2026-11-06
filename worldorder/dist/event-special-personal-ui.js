@@ -4,24 +4,24 @@ import {specialEventModel,specialEventPreview} from './event-special-personal.js
 import {countryInfo} from './country-actions.js';
 import {REGIONS,POWERS} from './game-constants.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const choice='<label>本次选择<select id="special-accept"><option value="no">不执行提议</option><option value="yes">支付费用并执行</option></select></label>';
+const choice='<label>执行提议<select id="special-accept"><option value="no">不执行提议</option><option value="yes">支付费用并执行</option></select></label>';
 const slot='<label>新增影响力位置<select id="special-slot" data-region-value="E"><option value="permanent">永久槽</option><option value="temporary">临时槽</option></select></label>';
 export function renderSpecialPersonalEvent(s,q,cards={}){
  const model=specialEventModel(s,q),p=s.players[s.current];let body='';
- if(model.key==='covid')body=`<p>繁荣当前${model.prosperity}级。不支付则失去${model.loss}分；随后繁荣均降低1级，最低保持0。</p><label>本次支付<select id="special-payment"><option value="none">不支付</option><option value="money">支付20资金</option><option value="service">支付1服务</option></select></label>`;
+ if(model.key==='covid')body=`<p>当前繁荣${model.prosperity}级；不支付失去${model.loss}分。</p><label>本次支付<select id="special-payment"><option value="none">不支付</option><option value="money">支付20资金</option><option value="service">支付1服务</option></select></label>`;
  else if(model.key==='afghan'){
   if(!model.present)body='<p>美欧均无中亚军队：双方各失去3 SP，不足部分扣分，中亚加入1中立影响力。确认后统一结算。</p>';
   else if(model.phase==='offer')body=`<p>美欧共同支付恰好30资金，可由任意一方全付；双方各得1 SP并保留中亚军队。未达成则不扣承诺资金，双方各失去1 SP，不足部分扣分，随后免费撤回全部中亚军队。</p>${Object.entries(q.submissions).map(([id,n])=>`<p>${POWERS[id].name}已承诺${n}资金。</p>`).join('')}<label>本方承诺资金<input id="special-amount" type="number" min="0" max="${Math.min(30,p.money)}" value="0"></label>`;
   else body=`<p>将中亚全部${model.armies}辆坦克免费重新派遣。</p>`+renderArmyDeployment(s,{id:'withdrawal-deployment',maxMoves:model.armies,destinations:model.destinations,normalDestinations:model.destinations,source:['C'],initial:{C:-model.armies}});
  }else if(model.key==='croatia'){
   body=`<p>${model.country?'已拥有克罗地亚':'尚未拥有克罗地亚'}；${model.improved?'已提升过繁荣':model.historyKnown?'尚未提升繁荣':'旧存档缺少完整繁荣历史'}。</p>`;
-  if(model.country&&!model.historyKnown)body+='<label>确认本局繁荣历史<select id="special-prosperity-improved"><option value="">请选择</option><option value="yes">本局曾提升繁荣</option><option value="no">本局未提升繁荣</option></select></label>';
+  if(model.country&&!model.historyKnown)body+='<label>本局曾提升繁荣<select id="special-prosperity-improved"><option value="">请选择</option><option value="yes">本局曾提升繁荣</option><option value="no">本局未提升繁荣</option></select></label>';
   body+=model.country&&model.improved!==false?'<p>若条件达成：欧洲增加1影响力、获得2 SP，并将克罗地亚移出游戏。</p>'+slot:'<p>条件未同时满足：确认后结束，无后续效果。</p>';
  }
- else if(model.key==='korea')body=`<p>支付10资金、2能源和2外交，获得2 SP；从供应向欧洲放置1支军队，并获得额外的朝鲜（2024）盟国。普通朝鲜保持原归属。</p>${choice}`;
+ else if(model.key==='korea')body=`${choice}`;
  else if(model.key==='brexit'){
-  body=`<p>支付6外交，获得3 SP和2分。若不支付，则将本方欧洲1影响力原位替换为中立，并将英国加入游戏，可立即按正常费用改善关系。</p>${choice}<div id="special-decline"><label>与英国改善关系<select id="special-relate"><option value="no">不结盟，英国留在欧洲左堆顶</option><option value="yes">正常付费立即结盟</option></select></label><div id="special-relation"><fieldset><legend>横置就绪欧洲盟国减免外交</legend>${p.allies.filter(id=>countryInfo(id).region==='E'&&!p.exhaustedAllies?.includes(id)).map(id=>`<label><input type="checkbox" data-special-exhaust="${id}">${esc(cards[id]?.name||'欧洲盟国')} · 价值${countryInfo(id).countryValue}</label>`).join('')||'<p>无可横置盟国。</p>'}</fieldset><label>SP替代外交<input id="special-relation-sp" type="number" min="0" max="${p.smart}" value="0"></label></div></div>`;
- }else if(model.key==='crimea')body=`<p>支付5外交，获得2 SP，并可将欧洲1临时影响力转换为永久。拒绝则尽量移动${model.movable}支可负担的军队到事件牌（每支5资金，结算后进入欧洲），并继续影响力降级、制裁、明斯克连锁和乌克兰替换。</p>${choice}<div id="special-accept-options"><label>转换欧洲临时影响力<select id="special-convert" data-region-value="E"><option value="">不转换</option>${model.temporary.map(index=>`<option value="${index}">第${index+1}个位置</option>`).join('')}</select></label></div><div id="special-decline">${renderArmyContribution(s,{id:'crimea-armies',max:model.movable})}</div>`;
+  body=`${choice}<div id="special-decline"><label>与英国改善关系<select id="special-relate"><option value="no">不结盟，英国留在欧洲左堆顶</option><option value="yes">正常付费立即结盟</option></select></label><div id="special-relation"><fieldset><legend>横置就绪欧洲盟国减免外交</legend>${p.allies.filter(id=>countryInfo(id).region==='E'&&!p.exhaustedAllies?.includes(id)).map(id=>`<label><input type="checkbox" data-special-exhaust="${id}">${esc(cards[id]?.name||'欧洲盟国')} · 价值${countryInfo(id).countryValue}</label>`).join('')||'<p>无可横置盟国。</p>'}</fieldset><label>SP替代外交<input id="special-relation-sp" type="number" min="0" max="${p.smart}" value="0"></label></div></div>`;
+ }else if(model.key==='crimea')body=`${choice}<div id="special-accept-options"><label>转换欧洲临时影响力<select id="special-convert" data-region-value="E"><option value="">不转换</option>${model.temporary.map(index=>`<option value="${index}">第${index+1}个位置</option>`).join('')}</select></label></div><div id="special-decline">${renderArmyContribution(s,{id:'crimea-armies',max:model.movable})}</div>`;
  return `<div id="personal-event-form">${body}<p id="personal-preview" aria-live="polite"></p></div>`;
 }
 export function readSpecialPersonalEvent(){
@@ -33,5 +33,5 @@ export function updateSpecialPersonalEvent(s){
  const a={accept:document.querySelector('#special-accept')?.value==='yes',relate:document.querySelector('#special-relate')?.value==='yes'},decline=document.querySelector('#special-decline'),accepted=document.querySelector('#special-accept-options'),relation=document.querySelector('#special-relation');
  if(decline)decline.hidden=a.accept;if(accepted)accepted.hidden=!a.accept;if(relation)relation.hidden=!a.relate;
  const button=document.querySelector('#event-submit'),preview=document.querySelector('#personal-preview');
- try{preview.textContent=specialEventPreview(s,s.flow.eventResolution,readSpecialPersonalEvent());button.disabled=false;}catch(error){preview.textContent=error.message;button.disabled=true;}
+ try{specialEventPreview(s,s.flow.eventResolution,readSpecialPersonalEvent());preview.textContent='';button.disabled=false;}catch(error){preview.textContent=error.message;button.disabled=true;}
 }

@@ -12,7 +12,7 @@ app.whenReady().then(async()=>{
   const result=await window.webContents.executeJavaScript(`(async()=>{
    const {syncClientAllySelection:sync,handleClientAllySelection:click}=await import(${JSON.stringify(moduleUrl)}),root=document.querySelector('#fixture'),checks=[];
    const check=(value,message)=>{if(!value)throw Error(message);checks.push(message);};
-   const event=button=>({target:button,preventDefault(){}});
+   const event=(button,type='click')=>({target:button,type,preventDefault(){}});
    function reset(){root.innerHTML='<div id="table-task-body"><section id="basic-form"><fieldset id="basic-discounts"><legend>盟国减费</legend><label><input type="checkbox" data-basic-exhaust="a">甲国</label><label><input type="checkbox" data-basic-exhaust="b">乙国</label><label><input type="checkbox" data-basic-exhaust="missing">缺少牌面的旧数据</label></fieldset><button id="commit-basic" disabled>确认</button></section></div><aside class="client-owned-cards"><div class="client-owned-ally"><button data-card="a" data-source="allies" aria-label="查看甲国"><img alt="甲国"></button></div><div class="client-owned-ally"><button data-card="b" data-source="allies">乙国</button></div><div class="client-owned-ally"><button data-card="other" data-source="allies">其他地区</button></div></aside>';}
    reset();let task=root.querySelector('#table-task-body'),changes=0;root.addEventListener('change',()=>changes++);
    const field=id=>root.querySelector('[data-basic-exhaust="'+id+'"]'),button=id=>root.querySelector('[data-card="'+id+'"]');
@@ -22,7 +22,8 @@ app.whenReady().then(async()=>{
    check(field('a').closest('label').classList.contains('client-ally-discount-adapted')&&!field('missing').closest('label').classList.contains('client-ally-discount-adapted'),'Only sources with a real visible ally are adapted; missing cards retain the form fallback');
    check(click(event(button('a')),task,root)&&field('a').checked&&changes===1,'Card click selects the real checkbox and emits exactly one bubbling change despite disabled commit');
    check(button('a').getAttribute('aria-pressed')==='true'&&root.querySelector('.client-ally-discount-hint').textContent.includes('甲国'),'Selected card and compact hint follow the original checkbox');
-   click(event(button('a')),task,root);check(!field('a').checked&&changes===2,'Second click deselects the checkbox');
+   click(event(button('a')),task,root);check(field('a').checked&&changes===1,'Repeated left click keeps selection');
+   click(event(button('a'),'contextmenu'),task,root);check(!field('a').checked&&changes===2,'Right click deselects the checkbox');
    field('a').disabled=true;sync(task,root);click(event(button('a')),task,root);check(!field('a').checked&&changes===2,'Disabled source rejects card selection');
    field('a').disabled=false;root.querySelector('#basic-discounts').disabled=true;sync(task,root);click(event(button('a')),task,root);check(!field('a').checked&&changes===2,'Inherited fieldset disabling also rejects selection');
    root.querySelector('#basic-discounts').disabled=false;button('a').disabled=true;click(event(button('a')),task,root);check(!field('a').checked&&changes===2,'Disabled visible card cannot select an enabled source');button('a').disabled=false;

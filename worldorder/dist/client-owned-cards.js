@@ -75,8 +75,7 @@ function renderAlly(item,card,interactive){
  }).join('');
  const presentation=item.exhausted&&item.backImage?{image:item.backImage,alt:item.name+' · 已消耗（背面）'}:{};
  const status=item.investors.map(x=>`${POWERS[x.investor]?.name||x.investor}投资 FDI ×${x.count}`).concat(item.bases?[`${POWERS[item.owner].name}基地 ×${item.bases}`]:[]).join('；');
- const details=`<div class="client-ally-details"><strong>${esc(item.name)}</strong><span>地区：${esc(item.region)}</span><span>价值：${item.value??'—'}</span></div>`;
- return `<div class="client-owned-card client-owned-ally${item.exhausted?' is-exhausted':''}${item.underlays.length?' has-underlays':''}" data-owned-card="${esc(item.id)}"${status?` title="${esc(status)}"`:''}><div class="client-ally-art">${underlays}${card(item.id,interactive?item.source:'view',presentation)}${allyTokens(item)}</div>${details}<div class="client-owned-marks">${marks}</div></div>`;
+ return `<div class="client-owned-card client-owned-ally${item.exhausted?' is-exhausted':''}${item.underlays.length?' has-underlays':''}" data-owned-card="${esc(item.id)}" title="${esc([item.name,item.region,`价值${item.value??'—'}`,status].filter(Boolean).join(' · '))}"><div class="client-ally-art">${underlays}${card(item.id,interactive?item.source:'view',presentation)}${allyTokens(item)}</div><div class="client-owned-marks">${marks}</div></div>`;
 }
 
 /** Public ally detail only: no hands, effect previews or actor changes. The

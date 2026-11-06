@@ -1,0 +1,18 @@
+.game-client .client-boolean-source{display:none!important}
+.game-client .client-boolean-control{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:42px;min-height:32px;margin:2px 4px;padding:4px 9px;border:1px solid #718a96;border-radius:5px;background:#203b4b;color:#e8e1cc;font:700 15px/1.2 system-ui;cursor:pointer;user-select:none}
+.game-client .client-boolean-control.is-selected{border-color:#dfbb6b;background:#51452d;color:#ffe5ac}
+.game-client .client-boolean-control:disabled{opacity:.4;cursor:default}.game-client .client-boolean-control[hidden]{display:none!important}
+.game-client .client-boolean-control:focus-visible{outline:2px solid #f3cf80;outline-offset:2px}
+.game-client .agreement-buttons{align-items:center;justify-content:space-between}.game-client .agreement-buttons .client-boolean-control{flex:1;margin:0}.game-client .agreement-buttons:has(.client-boolean-control)>button{width:auto}
+.game-client .event-card-link,.game-client .event-related-links button{background:none;border:0;border-bottom:1px dotted #ad9365;border-radius:0;padding:3px 0;color:#e5c784}
+.game-client .event-card-link{font-weight:700;font-size:14px;text-align:left}.event-related-links{display:flex;gap:6px 12px;flex-wrap:wrap;margin:6px 0 10px}.game-client .event-related-links button{font-size:12px}
+.game-client #personal-preview:empty,.game-client #economic-preview:empty,.game-client #agreement-preview:empty{display:none}
+/* Crop 75px from every edge of the 2200x1964 print; pieces keep its coordinates. */
+.original-board-crop{position:relative;overflow:hidden;width:100%;min-width:680px;aspect-ratio:2050/1814}
+.original-board-crop>.original-board-surface{position:absolute;width:107.31707317%;height:108.26901874%;left:-3.65853659%;top:-4.13450937%;min-width:0}
+.game-client.client-scroll .original-board-crop{min-width:0}
+.game-client #client-card-preview.has-related-cards{display:flex;align-items:flex-start;gap:10px;max-width:calc(100vw - 28px);padding:10px;box-sizing:border-box}
+.game-client #client-card-preview.has-related-cards>img{max-width:30vw;max-height:min(60vh,440px)}
+.game-client #client-card-preview .event-preview-related{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:8px;max-height:calc(100vh - 150px);overflow:auto;max-width:48vw}
+.game-client #client-card-preview .event-preview-related img{width:auto;max-width:min(23vw,270px);max-height:min(27vh,205px);object-fit:contain}
+.game-client .client-owned-ally>.client-owned-marks:empty{display:none}

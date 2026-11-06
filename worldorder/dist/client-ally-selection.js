@@ -5,6 +5,7 @@ const optionSelector='input[type="checkbox"][data-basic-exhaust]';
 const cardSelector='.client-owned-cards .client-owned-ally [data-card][data-source="allies"]';
 const adapted=new WeakMap();
 const clean=value=>String(value??'').replace(/\s+/g,' ').trim();
+function fieldName(field){const label=field.labels?.[0]?.cloneNode(true);if(label)for(const el of label.querySelectorAll('input,select,button'))el.remove();return clean(label?.textContent);}
 
 function disabled(node){return !!(node.disabled||node.matches?.(':disabled')||node.closest?.('[aria-disabled="true"]'));}
 function hidden(node){
@@ -61,8 +62,8 @@ export function syncClientAllySelection(task=document.querySelector('#table-task
   button.classList.toggle('client-ally-discount-selected',selected);
   button.classList.toggle('client-ally-discount-disabled',blocked);
   button.setAttribute('aria-pressed',String(selected));
-  const name=clean(field.labels?.[0]?.textContent)||previous['aria-label']||'盟国';
-  const hint=blocked?'当前不可更改':selected?'已选减费，再点取消；确认后才消耗':'点击选作减费；确认后才消耗';
+  const name=fieldName(field)||previous['aria-label']||'盟国';
+  const hint=blocked?'当前不可更改':selected?'已选减费，右键取消；确认后才消耗':'左键选作减费，右键取消；确认后才消耗';
   button.setAttribute('aria-label',name+' · '+hint);button.setAttribute('title',name+' · '+hint);
   let mark=button.querySelector('.client-ally-discount-mark');
   if(!mark){mark=button.ownerDocument.createElement('span');mark.className='client-ally-discount-mark';mark.setAttribute('aria-hidden','true');button.append(mark);}
@@ -75,9 +76,9 @@ export function syncClientAllySelection(task=document.querySelector('#table-task
  for(const field of options)field.closest('label')?.classList.toggle('client-ally-discount-adapted',mapped.has(field));
  let hint=group.querySelector('.client-ally-discount-hint');
  if(!hint){hint=group.ownerDocument.createElement('span');hint.className='client-ally-discount-hint';hint.setAttribute('aria-live','polite');group.append(hint);}
- const selected=options.filter(field=>field.checked),names=selected.map(field=>clean(field.labels?.[0]?.textContent)||field.dataset.basicExhaust);
+ const selected=options.filter(field=>field.checked),names=selected.map(field=>fieldName(field)||field.dataset.basicExhaust);
  const available=options.some(field=>!disabled(field));
- hint.textContent=options.length?(!available?'当前不能更改盟国减费。':mapped.size?'点击下方盟国选择减费；确认后才消耗。':'可选择当地盟国减费；确认后才消耗。')+(names.length?' 已选：'+names.join('、')+'。':' 尚未选择。'):'当地没有可消耗的盟国。';
+ hint.textContent=options.length?(!available?'当前不能更改盟国减费。':mapped.size?'左键下方盟国选择减费，右键取消；确认后才消耗。':'可选择当地盟国减费；确认后才消耗。')+(names.length?' 已选：'+names.join('、')+'。':' 尚未选择。'):'当地没有可消耗的盟国。';
 }
 
 /** Run before generic card click/inspection handlers. A recognized disabled or
@@ -88,7 +89,7 @@ export function handleClientAllySelection(event,task=document.querySelector('#ta
  if(!field){if(button.isConnected===false&&adapted.has(button)){event.preventDefault();return true;}return false;}
  event.preventDefault();
  if(button.isConnected===false||!surface?.contains(button)||disabled(button)||hidden(button)||disabled(field)||hidden(field))return true;
- field.checked=!field.checked;
+ const selected=event.type!=='contextmenu';if(field.checked===selected)return true;field.checked=selected;
  const ChangeEvent=field.ownerDocument.defaultView.Event;
  field.dispatchEvent(new ChangeEvent('change',{bubbles:true}));
  // The existing change handler can replace the entire form/selection context.

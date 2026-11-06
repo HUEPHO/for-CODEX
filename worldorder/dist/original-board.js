@@ -70,19 +70,6 @@ function turnOrder(s){
  return `<div class="original-turn-order" style="${rect(145,443,430,68)}" aria-label="本轮行动顺序">${order.map((owner,index)=>`<span title="第${index+1}位：${name(owner)}" aria-label="第${index+1}位：${name(owner)}">${powerFlag(owner,{decorative:true})}</span>`).join('')}</div><span class="original-round" style="${at(150,1053+(6-Math.min(6,Math.max(1,Number(s.round)||1)))*84,58)}" title="当前第${s.round||1}轮" aria-label="当前第${s.round||1}轮"></span>`;
 }
 
-function scoreTrack(s){
- return IDS.flatMap((owner,index)=>{
-  const vp=s.players?.[owner]?.vp;if(!Number.isFinite(vp))return [];
-  const v=Math.max(0,Math.floor(vp))%100;
-  let x,y;
-  if(v<=30){x=35+v*71;y=35;}
-  else if(v<=50){x=2165;y=35+(v-30)*94.65;}
-  else if(v<=80){x=2165-(v-50)*71;y=1928;}
-  else{x=35;y=1928-(v-80)*94.65;}
-  return `<span class="original-score" data-score-owner="${owner}" style="${at(x+(index%2?10:-10),y+(index<2?-8:8),45)};--piece-color:${colors[owner]}" title="${name(owner)}：${vp}胜利分" aria-label="${name(owner)}：${vp}胜利分">${powerFlag(owner,{decorative:true})}</span>`;
- }).join('');
-}
-
 function majorities(s){
  const standings=majorityStandings(s),names={money:'资金',armies:'地图军队',allies:'盟国'};
  return `<div class="original-majorities" aria-label="小目标实时排名">${Object.entries(standings).map(([key,rows])=>`<section class="original-majority original-majority--${key}" data-majority="${key}" aria-label="${names[key]}排名"><img class="original-majority-art" src="assets/majority-${key}.png" alt="${names[key]}多数奖励：${MAJORITY_BONUSES[key].join('、')}分" draggable="false"><div class="original-majority-standings">${rows.map(row=>`<span class="original-majority-chip${row.leading?' is-leading':''}" data-ranking-owner="${row.id}" data-ranking-value="${row.value}" title="${name(row.id)}：${row.value}${key==='money'?'资金':key==='armies'?'支地图军队':'个盟国'}${row.leading?'，当前领先':''}；按当前局面计分为第${row.rank}名、${row.vp}分">${powerFlag(row.id,{decorative:true})}<b>${row.value}</b></span>`).join('')}</div></section>`).join('')}</div>`;
@@ -90,14 +77,14 @@ function majorities(s){
 
 function publicEffects(s,cards){
  const ids=[...new Set([...(s.eventEffects||[]).filter(e=>e.owner==='global').map(e=>e.cardId),...(s.activeEffects||[])])].filter(id=>EVENT_EFFECTS[id]?.owner==='global');
- return `<section class="original-public-effects" style="${rect(170,540,415,425)}" aria-label="公共事件效果"><h3>公共事件效果</h3><div>${Array.from({length:6},(_,i)=>{const id=ids[i];return id?`<button type="button" data-card="${id}" data-source="view" title="${EVENT_EFFECTS[id].name}"><img src="${cards[id].image}" alt="${EVENT_EFFECTS[id].name}" draggable="false"></button>`:'<span class="public-effect-empty"></span>';}).join('')}</div></section>`;
+ return `<section class="original-public-effects" style="${rect(250,600,400,395)}" aria-label="公共效果"><h3>公共效果</h3><div>${Array.from({length:6},(_,i)=>{const id=ids[i];return id?`<button type="button" data-card="${id}" data-source="view" title="${EVENT_EFFECTS[id].name}"><img src="${cards[id].image}" alt="${EVENT_EFFECTS[id].name}" draggable="false"></button>`:'<span class="public-effect-empty"></span>';}).join('')}</div></section>`;
 }
 
 /** The original printed map with live public state and existing form targets. */
 export function renderOriginalBoard(s,cards={}, {selectedRegion,extraSlot=''}={}){
  const catalogue=Array.isArray(cards)?Object.fromEntries(cards.map(card=>[card.id,card])):cards;
- return `<section class="original-board" aria-label="原版世界主板"><div class="original-board-scroll" tabindex="0" aria-label="世界地图、影响力、驻军、介入和国家商店"><div class="original-board-surface"><img class="original-board-art" src="assets/map.webp" alt="World Order 原版世界主板" draggable="false">${Object.entries(ORIGINAL_BOARD_REGIONS).map(([region,layout])=>{
+ return `<section class="original-board" aria-label="原版世界主板"><div class="original-board-scroll" tabindex="0" aria-label="世界地图、影响力、驻军、介入和国家商店"><div class="original-board-crop"><div class="original-board-surface"><img class="original-board-art" src="assets/map.webp" alt="World Order 原版世界主板" draggable="false">${Object.entries(ORIGINAL_BOARD_REGIONS).map(([region,layout])=>{
   const r=s.regions?.[region];if(!r)return '';
   return `<section class="original-region${selectedRegion===region?' original-region--selected':''}" data-board-region="${region}" style="--region-color:${REGION_COLORS[region]}" aria-label="${AREAS[region].name}"><button type="button" class="original-region-hit" data-region="${region}" style="${rect(...layout.box)}" title="${AREAS[region].name}" aria-label="${AREAS[region].name} · 操作时选择地区" aria-pressed="${selectedRegion===region}"></button>${influence(region,r,layout)}${forces(region,r,layout)}${countries(region,r,catalogue,layout)}</section>`;
- }).join('')}${turnOrder(s)}${publicEffects(s,catalogue)}${scoreTrack(s)}${majorities(s)}</div></div>${extraSlot}</section>`;
+ }).join('')}${turnOrder(s)}${publicEffects(s,catalogue)}${majorities(s)}</div></div></div>${extraSlot}</section>`;
 }

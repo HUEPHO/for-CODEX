@@ -1,3 +1,4 @@
+import {relatedEventCards} from './event-related-cards.js';
 // Shared browser/desktop presentation. Every command, target and permission comes
 // from the existing forms and shared rules; this module never mutates a game.
 import {showGameDialog} from './client-dialogs.js';
@@ -7,7 +8,7 @@ async function fullscreen(){
  try{if(native)await window.worldOrderDesktop.fullscreen();else if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}
  catch{const hint=document.querySelector('#client-fullscreen-hint');if(hint)hint.hidden=false;}
 }
-let context='',picking=false;
+let context='',picking=false,previewCards={};
 export const isGameClient=layout;
 export function setGameClientPicking(value){if(!layout)return;picking=!!value;document.body.classList.toggle('client-picking',picking);}
 if(layout){
@@ -45,8 +46,10 @@ if(layout){
   let previewTimer;
   const hidePreview=()=>{clearTimeout(previewTimer);preview.hidden=true;};
   function showPreview(card){
-    const img=card.querySelector('img');if(!img||!card.isConnected||document.querySelector('dialog[open]'))return;
-    const copy=img.cloneNode();copy.removeAttribute('loading');preview.replaceChildren(copy);preview.style.removeProperty('left');preview.style.removeProperty('top');preview.style.removeProperty('right');
+    const id=card.dataset.clientEventId||card.dataset.card,img=card.querySelector('img');if((!img&&!previewCards[id]?.image)||!card.isConnected||document.querySelector('dialog[open]'))return;
+    const copy=img?img.cloneNode():document.createElement('img');if(!img){copy.src=previewCards[id].image;copy.alt=previewCards[id].name;}copy.removeAttribute('loading');preview.replaceChildren(copy);preview.style.removeProperty('left');preview.style.removeProperty('top');preview.style.removeProperty('right');
+    const related=relatedEventCards(id).map(cid=>previewCards[cid]).filter(Boolean);preview.classList.toggle('has-related-cards',related.length>0);
+    if(related.length){const group=document.createElement('div');group.className='event-preview-related';for(const card of related){const face=document.createElement('img');face.src=card.image;face.alt=card.name;face.dataset.relatedCard=card.id;group.append(face);}preview.append(group);}
     const anchored=card.matches('.draft-card');preview.classList.toggle('is-card-anchored',anchored);
     if(anchored){
       const box=card.getBoundingClientRect(),top=document.querySelector('.topbar').getBoundingClientRect().bottom+8;
@@ -59,13 +62,13 @@ if(layout){
     }else preview.hidden=false;
   }
   document.addEventListener('pointerover',event=>{
-    const card=event.target.closest('.hand .cardbutton,.board-country,.table-gallery .cardbutton,.client-owned-cards .cardbutton,.draft-card');
+    const card=event.target.closest('.hand .cardbutton,.board-country,.table-gallery .cardbutton,.client-owned-cards .cardbutton,.draft-card,[data-client-event-id],.event-card-link,.event-related-links [data-card],.original-public-effects [data-card]');
     if(!card||event.pointerType==='touch'||document.querySelector('dialog[open]'))return;
     if(card.contains(event.relatedTarget))return;
     clearTimeout(previewTimer);
     previewTimer=setTimeout(()=>showPreview(card),550);
   });
-  document.addEventListener('pointerout',event=>{const card=event.target.closest('.cardbutton,.board-country');if(card&&!card.contains(event.relatedTarget))hidePreview();});
+  document.addEventListener('pointerout',event=>{const card=event.target.closest('.cardbutton,.board-country,.draft-card,[data-client-event-id],.event-card-link,.event-related-links [data-card],.original-public-effects [data-card]');if(card&&!card.contains(event.relatedTarget))hidePreview();});
   document.addEventListener('pointerdown',hidePreview,true);document.addEventListener('keydown',hidePreview,true);
   document.addEventListener('scroll',()=>{
     hidePreview();
@@ -76,7 +79,8 @@ if(layout){
   },true);
   window.addEventListener('resize',hidePreview);
 }
-export function syncGameClient({key,setup,staged,collapsed}){
+export function syncGameClient({cards,key,setup,staged,collapsed}){
+  previewCards=cards;
   if(!layout)return;
   if(context!==key){context=key;picking=false;}
   document.body.classList.toggle('client-picking',picking);

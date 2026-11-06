@@ -63,7 +63,7 @@ function renderBanner(model,surface){
  const fields=model.fields.map(field=>`<button type="button" class="region-field-button${field.id===model.activeFieldId?' active':''}" data-region-field="${esc(field.id)}" aria-pressed="${field.id===model.activeFieldId}">${esc(field.heading)}</button>`).join('');
  const values=valueButtons(model,surface).map(option=>`<button type="button" class="region-value-button${selected(option,model)?' active':''}" data-region-value="${esc(option.value)}" aria-pressed="${!!selected(option,model)}" ${option.disabled?'disabled':''}>${esc(option.buttonLabel)}</button>`).join('');
  const labels=model.options.filter(option=>selected(option,model)).map(option=>option.label);
- const hint=!model.activeFieldId?'先选择上面的项目，再点击地区。':model.projected?'先执行转换，再按规则放置；请用这里的按钮选择放置类型。':model.kind==='placement'?'点击高亮的永久空位或临时队尾选择放置类型。':model.kind==='slot'?'点击高亮的影响力格子选择目标。':model.kind==='regions'?'点击高亮地区勾选或取消，可选择多个地区。':'点击高亮地区选择；费用与效果在中央操作区确认后执行。';
+ const hint=!model.activeFieldId?'先选择上面的项目，再点击地区。':model.projected?'先执行转换，再按规则放置；请用这里的按钮选择放置类型。':model.kind==='placement'?'点击高亮的永久空位或临时队尾选择放置类型。':model.kind==='slot'?'点击高亮的影响力格子选择目标。':model.kind==='regions'?'左键高亮地区选中，右键取消，可选择多个地区。':'点击高亮地区选择；费用与效果在中央操作区确认后执行。';
  return `<div class="region-field-buttons">${fields}</div><p class="region-target-hint">${hint}</p>${values?`<div class="region-target-values">${values}</div>`:''}${labels.length?`<p class="region-target-current">已选：${esc(labels.join('、'))}</p>`:''}`;
 }
 
@@ -101,6 +101,7 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
  const message=text=>onMessage?.(text);
  function click(event){
   if(disposed)return;
+  if(event.type==='contextmenu'&&current().model?.kind!=='regions')return;
   const target=event.target?.closest?event.target:event.target?.parentElement;if(!target)return;
   const banner=getBanner(),fieldButton=target.closest('[data-region-field]'),valueButton=target.closest('[data-region-value]');
   if(fieldButton&&banner?.contains(fieldButton)){
@@ -132,7 +133,7 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
    activateRegionField(pair.placement.id,task,context);model=regionSelectionModel(task,context);
    if(!clickedSlot){sync();return;}
   }
-  let choice={};
+  let choice={selected:event.type!=='contextmenu'};
   if(model.kind==='placement'||model.kind==='slot'){
    const slot=target.closest('[data-board-slot]');
    if(!slot||!panel.contains(slot)||unavailable(slot)){message('请点击高亮的影响力格子。');return;}
@@ -151,11 +152,12 @@ export function installRegionTable({root=document,getTask,getSurface,getBanner,c
  }
  function change(event){if(getTask()?.contains(event.target))schedule();}
  root.addEventListener('click',click,true);
+ root.addEventListener('contextmenu',click,true);
  root.addEventListener('focusin',focus);
  root.addEventListener('change',change,true);
  return {sync,dispose(){
   if(disposed)return;disposed=true;
-  root.removeEventListener('click',click,true);root.removeEventListener('focusin',focus);root.removeEventListener('change',change,true);
+  root.removeEventListener('click',click,true);root.removeEventListener('contextmenu',click,true);root.removeEventListener('focusin',focus);root.removeEventListener('change',change,true);
   clearTargets(getSurface());const banner=getBanner();if(banner){banner.replaceChildren();banner.hidden=true;}
  }};
 }

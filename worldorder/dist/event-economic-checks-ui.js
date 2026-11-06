@@ -8,12 +8,12 @@ import {investmentSPControl,readInvestmentSP,updateInvestmentSP} from './smart-p
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slots='<label>新增影响力位置<select id="economic-slot"><option value="permanent">永久槽</option><option value="temporary">临时槽</option></select></label>';
 export function renderEconomicCheckEvent(s,q,cards={}){
- const model=economicCheckCondition(s,q),p=s.players[q.owner],owned={...s,current:q.owner};let body=`<p>${esc(model.detail)}</p>`;
+ const model=economicCheckCondition(s,q),p=s.players[q.owner],owned={...s,current:q.owner};let body=`<p>${model.kind==='ceta'?'美洲盟国':'巴基斯坦投资'}：${model.count}</p>`;
  if(!model.met)body+='<p>条件未满足：确认后结束此事件。</p>';
  else{
-  body+=`<label>本次选择<select id="economic-accept"><option value="no">${model.kind==='cpec'?'领取2 SP，放弃再次投资':'放弃可选介入'}</option><option value="yes">${model.kind==='cpec'?'领取2 SP，并付费再次投资':'正常付费介入美洲'}</option></select></label><div id="economic-options">`;
+  body+=`<label>${model.kind==='cpec'?'再次投资':'介入美洲'}<select id="economic-accept"><option value="no">${model.kind==='cpec'?'领取2 SP，放弃再次投资':'放弃可选介入'}</option><option value="yes">${model.kind==='cpec'?'领取2 SP，并付费再次投资':'正常付费介入美洲'}</option></select></label><div id="economic-options">`;
   if(model.kind==='ceta'){
-   body+='<p>介入成功后才获得1 SP，不能预支此奖励支付介入费用。</p><fieldset><legend>横置美洲就绪盟国减免外交 · 可不选</legend>'+model.allies.filter(id=>!(p.exhaustedAllies||[]).includes(id)).map(id=>`<label><input type="checkbox" data-economic-exhaust="${id}">${esc(cards[id]?.name||'盟国')} · 减免${countryInfo(id).countryValue}外交</label>`).join('')+'</fieldset><label><input id="economic-engage-sp" type="checkbox">支付1 SP，按美洲盟国数量减少外交费用</label>';
+   body+='<fieldset><legend>横置美洲就绪盟国减免外交 · 可不选</legend>'+model.allies.filter(id=>!(p.exhaustedAllies||[]).includes(id)).map(id=>`<label><input type="checkbox" data-economic-exhaust="${id}">${esc(cards[id]?.name||'盟国')} · 减免${countryInfo(id).countryValue}外交</label>`).join('')+'</fieldset><label><input id="economic-engage-sp" type="checkbox">支付1 SP，按美洲盟国数量减少外交费用</label>';
    const used=Object.values(s.regions).reduce((n,r)=>n+r.engage[q.owner],0);
    if(used>=ENGAGE_LIMIT[q.owner])body+=`<label>移来已有介入标记<select id="economic-move-from">${Object.keys(AREAS).filter(region=>s.regions[region].engage[q.owner]>0).map(region=>`<option value="${region}">${AREAS[region].name}</option>`).join('')}</select></label>`;
   }else body+=`<label>再次投资的巴基斯坦<select id="economic-country">${model.targets.map(id=>`<option value="${id}">${esc(cards[id]?.name||'巴基斯坦')} · ${investmentCost(id)}资金${p.exhaustedAllies?.includes(id)?' · 已横置':''}</option>`).join('')||'<option value="">没有可正常投资的本方巴基斯坦盟国</option>'}</select></label>${investmentSPControl('economic-invest-sp')}`;
@@ -28,5 +28,5 @@ export function updateEconomicCheckEvent(s){
  updateInvestmentSP('economic-invest-sp',s.players[q.owner].exhaustedAllies?.includes(a.country));
  updateResilience(owned,a.country?countryRegion(a.country):'M',a.slot,'economic');
  const button=document.querySelector('#event-submit');
- try{preview.textContent=resolveEconomicCheck(owned,q,readEconomicCheckEvent(),{preview:true});button.disabled=false;}catch(error){preview.textContent=error.message;button.disabled=true;}
+ try{resolveEconomicCheck(owned,q,readEconomicCheckEvent(),{preview:true});preview.textContent='';button.disabled=false;}catch(error){preview.textContent=error.message;button.disabled=true;}
 }

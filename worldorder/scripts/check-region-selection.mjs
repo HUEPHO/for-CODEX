@@ -112,13 +112,14 @@ assert.equal(selectRegionTarget('E',{kind:'temporary',index:0},resetForm),true);
 const swap=new Field('sequence-swap-permanent',[new Option('extraPermanent:1',{dataset:{kind:'extraPermanent',index:'1'}})],{attributes:{'data-region-value':'P'}});
 assert.equal(selectRegionTarget('P',{kind:'extraPermanent',index:1},new Form(swap)),true);
 
-// Region checkboxes toggle only the clicked district and run a bubbling change.
+// Region checkboxes set or clear only the clicked district; repeated selection is inert.
 const boxE=new Field('',[],{type:'input',label:'欧洲',attributes:{'data-sequence-region':'E'}});
 const boxN=new Field('',[],{type:'input',label:'中东',attributes:{'data-sequence-region':'N'}});
 const multi=new Form(boxE,boxN);
 assert.equal(regionSelectionModel(multi).kind,'regions');
 assert.equal(selectRegionTarget('N',{},multi),true);assert.equal(boxN.checked,true);assert.equal(boxE.checked,false);
-assert.equal(selectRegionTarget('N',{},multi),true);assert.equal(boxN.checked,false);assert.equal(multi.changes.length,2);
+assert.equal(selectRegionTarget('N',{},multi),true);assert.equal(boxN.checked,true);assert.equal(multi.changes.length,1);
+assert.equal(selectRegionTarget('N',{selected:false},multi),true);assert.equal(boxN.checked,false);assert.equal(multi.changes.length,2);
 assert.ok(multi.changes.every(change=>change.field===boxN&&change.bubbles));
 
 // Trade clicks reuse the same explicit SP-region checkboxes. They alter the
@@ -131,7 +132,8 @@ const tradeRegions=new Form(tradeM,tradeP,tradeHidden,tradeDisabled);
 assert.equal(regionSelectionModel(tradeRegions).activeFieldId,'trade-regions');
 assert.deepEqual(regionSelectionModel(tradeRegions).options.map(option=>option.region),['M','P']);
 assert.equal(selectRegionTarget('P',{},tradeRegions),true);assert.equal(tradeP.checked,true);assert.equal(tradeM.checked,false);
-assert.equal(selectRegionTarget('P',{},tradeRegions),true);assert.equal(tradeP.checked,false);
+assert.equal(selectRegionTarget('P',{},tradeRegions),true);assert.equal(tradeP.checked,true);
+assert.equal(selectRegionTarget('P',{selected:false},tradeRegions),true);assert.equal(tradeP.checked,false);
 assert.equal(selectRegionTarget('N',{},tradeRegions),false);assert.equal(selectRegionTarget('E',{},tradeRegions),false);
 assert.ok(tradeRegions.changes.every(change=>change.field===tradeP&&change.bubbles));
 const mixedRegions=new Form(boxE,boxN,tradeM,tradeP);

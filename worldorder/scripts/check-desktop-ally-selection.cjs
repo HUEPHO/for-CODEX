@@ -12,12 +12,12 @@ module.exports=async({app,main,services})=>{
  const run=code=>main.webContents.executeJavaScript(code,true);
  const load=file=>import(pathToFileURL(path.join(root,'dist',file)).href);
  async function until(code){for(let i=0;i<100;i++){try{if(await run(code))return;}catch{}await delay(100);}throw Error('Timed out: '+code);}
- async function click(selector){
+ async function click(selector,mouseButton='left'){
   await run(`document.querySelector(${JSON.stringify(selector)})?.scrollIntoView({block:'center',inline:'nearest'})`);await delay(100);
   const point=await run(`(()=>{const button=document.querySelector(${JSON.stringify(selector)});if(!button)return null;const r=button.getBoundingClientRect(),x=Math.round(r.x+r.width/2),y=Math.round(r.y+r.height/2);return {x,y,visible:button.contains(document.elementFromPoint(x,y)),disabled:!!button.disabled};})()`);
   assert.ok(point?.visible&&!point.disabled,'Visible enabled control: '+selector);
-  main.webContents.sendInputEvent({type:'mouseDown',button:'left',clickCount:1,x:point.x,y:point.y});
-  main.webContents.sendInputEvent({type:'mouseUp',button:'left',clickCount:1,x:point.x,y:point.y});await delay(180);
+  main.webContents.sendInputEvent({type:'mouseDown',button:mouseButton,clickCount:1,x:point.x,y:point.y});
+  main.webContents.sendInputEvent({type:'mouseUp',button:mouseButton,clickCount:1,x:point.x,y:point.y});await delay(180);
  }
  async function shot(name){await delay(250);fs.writeFileSync(path.join(out,name+'.png'),(await main.webContents.capturePage()).toPNG());}
  async function chooseCountry(id){await run(`(()=>{const field=document.querySelector('#basic-country');field.value=${JSON.stringify(id)};field.dispatchEvent(new Event('change',{bubbles:true}));})()`);await delay(120);}
@@ -70,8 +70,8 @@ module.exports=async({app,main,services})=>{
   assert.equal(await run(`document.querySelector(${JSON.stringify(ally+' img')}).getAttribute('src')`),byId[fixture.ally].image,'Pending selection does not flip the ally prematurely');
   assert.equal(await run(`document.querySelector(${JSON.stringify(ally)}).getAttribute('aria-pressed')`),'true');
   await shot('01-ally-selected-before-confirm');
-  await click(ally);
-  assert.equal(await run(`document.querySelector(${JSON.stringify(field)}).checked`),false,'A second click removes the pending discount');
+  await click(ally,'right');
+  assert.equal(await run(`document.querySelector(${JSON.stringify(field)}).checked`),false,'Right click removes the pending discount');
   assert.equal(await run("document.querySelector('#commit-basic').disabled"),true,'Removing the discount restores the original insufficient-fee preview');
   assert.equal(await saved(),original);
   // applyRoomPermissions uses this exact source disabled flag for busy/offline
@@ -98,7 +98,7 @@ module.exports=async({app,main,services})=>{
   assert.equal(actual.resources[5],player.resources[5]-fixture.after,'Original settlement charges exactly the previewed diplomacy');
   assert.ok(actual.played.includes(cardId),'Original confirmation plays the relation card');
   await shot('02-after-normal-confirm');
-  result.checks.push('Real mouse card clicks toggle the existing exhaust checkbox and update the original cost preview','An otherwise unaffordable action becomes confirmable through its legal pending discount','Selection and deselection do not alter saved engine state or turn the ally over','Room-disabled and missing original choices cannot be selected through cards','Normal confirmation alone consumes the ally, spends the previewed diplomacy and plays the action card');
+  result.checks.push('Real left/right mouse card clicks set/clear the existing exhaust checkbox and update the original cost preview','An otherwise unaffordable action becomes confirmable through its legal pending discount','Selection and deselection do not alter saved engine state or turn the ally over','Room-disabled and missing original choices cannot be selected through cards','Normal confirmation alone consumes the ally, spends the previewed diplomacy and plays the action card');
   result.fixture=fixture;result.passed=true;
  }catch(error){result.passed=false;result.error=error.stack;try{await shot('failure');}catch{}}
  result.servicePids=[...services.values()].map(service=>service.child.pid);
